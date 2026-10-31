@@ -61,9 +61,42 @@
       shape.append(svg);
     }else if(m.demo_type==="count-up"){
       box.dataset.target=String(Number.isFinite(Number(m.demo_config?.target_value))?m.demo_config.target_value:259);
+    }else if(m.demo_type==="line-draw"){
+      const ns="http://www.w3.org/2000/svg";
+      const svg=document.createElementNS(ns,"svg");
+      svg.setAttribute("viewBox","0 0 160 80");
+      svg.setAttribute("aria-hidden","true");
+      const path=document.createElementNS(ns,"path");
+      path.setAttribute("d","M8 65 C28 10, 48 12, 66 42 S110 70, 152 13");
+      path.setAttribute("fill","none");
+      path.setAttribute("stroke","currentColor");
+      path.setAttribute("stroke-width","6");
+      path.setAttribute("stroke-linecap","round");
+      svg.append(path);
+      shape.append(svg);
+    }else if(m.demo_type==="burst"||m.demo_type==="particle-burst"){
+      const count=m.demo_type==="burst"?8:12;
+      for(let i=0;i<count;i++){
+        const dot=el("span","","demo-burst-dot");
+        dot.style.setProperty("--bearing",String(i*360/count)+"deg");
+        dot.style.setProperty("--distance",m.demo_type==="burst"?"40px":(27+i%3*9)+"px");
+        shape.append(dot);
+      }
+    }else if(m.demo_type==="kinetic-type"){
+      for(const ch of "MOTION"){
+        shape.append(el("span",ch,"demo-type-letter"));
+      }
+    }else if(m.demo_type==="easing-comparison"){
+      for(let i=0;i<3;i++)shape.append(el("span","","demo-easing-dot"));
+    }else if(m.demo_type==="motion-trail"){
+      for(let i=0;i<4;i++)shape.append(el("span","","demo-trail-dot"));
+    }else if(m.demo_type==="parallax"){
+      for(let i=0;i<3;i++)shape.append(el("span","","demo-parallax-layer"));
+    }else if(m.demo_type==="mask-reveal"){
+      shape.textContent="REVEAL";
     }
     box.append(shape);
-    if(reduced&&["shake","error-shake","wiggle","pulse","spinner","skeleton","stagger-reveal","checkmark-draw"].includes(m.demo_type))box.dataset.reduced="true";
+    if(reduced&&["shake","error-shake","wiggle","pulse","spinner","skeleton","stagger-reveal","checkmark-draw","burst","particle-burst","kinetic-type","motion-trail","parallax","liquid-motion","squash-stretch"].includes(m.demo_type))box.dataset.reduced="true";
     return box;
   }
   const countFrames=new WeakMap();
