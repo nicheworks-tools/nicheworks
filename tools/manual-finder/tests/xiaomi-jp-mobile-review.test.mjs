@@ -41,13 +41,19 @@ const cmsLeica=structuredClone(cms);
 const group=JSON.parse(cmsLeica.data.layouts[0].children[0].extstr);
 group.data[0].content[6].link='https://www.mi.com/jp/support/user-guide-pdf/leica-leitzphone-powered-by-xiaomi/';
 cmsLeica.data.layouts[0].children[0].extstr=JSON.stringify(group);
-const withheld=await reviewAll({pass,html,cmsJson:cmsLeica,pdfFetcher});
+const withheld=await reviewAll({pass,html,cmsJson:cmsLeica,pdfFetcher,leicaFetcher:async()=>{throw Error('Leica official page not yet verified')}});
 assert.deepEqual(withheld.counts,{direct:59,shared:0,support_only:0,held:1});
 assert.equal(withheld.heldModels[0],'Leica Leitzphone powered by Xiaomi');
 assert.ok(withheld.records.every(x=>x.state==='held'||x.evidenceUrls.some(y=>y.startsWith('https://gl123.alsgp0.mi-fds.com/'))));
 await assert.rejects(async()=>officialPopulation(pass,html.replace('Xiaomi 17T Pro','Xiaomi 17T Pro New'),cms),/mismatch|drift/);
 const malformed={...cms,data:{...cms.data,pageInfo:{path:'support/wrong'}}};
 assert.throws(()=>officialCms(malformed),/path/);
-const failPdf=await reviewAll({pass,html,cmsJson:cmsLeica,pdfFetcher:async()=>{throw Error('PDF magic missing')}});
+const manufacturerLeica=await reviewAll({pass,html,cmsJson:cmsLeica,pdfFetcher,leicaFetcher:async()=>({
+ url:'https://leica-camera.com/ja-JP/mobile/leitzphone-powered-by-xiaomi/downloads',
+ html:'<title>Leica Leitzphone powered by Xiaomi</title><p>Quickstart-Guide</p><a href="/sites/default/files/pm-127087-Leica-Leitzphone-powered-by-Xiaomi-Quickstart-guide.pdf">Download</a>'
+})});
+assert.deepEqual(manufacturerLeica.counts,{direct:60,shared:0,support_only:0,held:0});
+assert.equal(manufacturerLeica.records.find(x=>x.model==='Leica Leitzphone powered by Xiaomi').reviewMethod,'secondary_manufacturer_Leica_exact_model_multilingual_quickstart_PDF');
+const failPdf=await reviewAll({pass,html,cmsJson:cmsLeica,pdfFetcher:async()=>{throw Error('PDF magic missing')},leicaFetcher:async()=>{throw Error('Leica still unverified')}});
 assert.deepEqual(failPdf.counts,{direct:0,shared:0,support_only:0,held:60});
 console.log('Xiaomi official 306-guide index / 74 mobile entries / 60 exact phone/tablet models and PDF fail-closed checks passed.');
