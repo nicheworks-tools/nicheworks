@@ -17,7 +17,7 @@ All future model-level expansion must follow `COVERAGE_PASS_WORKFLOW.md`. Script
 
 ## Current verified model-level inventory
 
-With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifilm GFX/X, VAIO JP start-guide PCs, Samsung JP Galaxy smartphones, dynabook JP 2024–2026 PCs, Fujitsu FMWORLD LIFEBOOK U business PCs, Google Pixel JP model-specific safety/support documentation, Motorola JP current smartphone lineup, and ASUS JP Vivobook series, the accepted dataset contains **2,317 verified model/caliber rows**. **1,874 are outside Seiko**. Coverage-Pass publication contributes **801 reviewed rows across eleven bounded manufacturer scopes**. ASUS JP contributes 35 exact manufacturer-model guide indexes with visibly selected configuration SKUs; no ASUS company-wide coverage is implied.
+With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifilm GFX/X, VAIO JP start-guide PCs, Samsung JP Galaxy smartphones, dynabook JP 2024–2026 PCs, Fujitsu FMWORLD LIFEBOOK U business PCs, Google Pixel JP model-specific safety/support documentation, Motorola JP current smartphone lineup, ASUS JP Vivobook series, and Xiaomi JP smartphone/tablet user-guide index, the accepted dataset contains **2,376 verified model/caliber rows**. **1,933 are outside Seiko**. Coverage-Pass publication contributes **860 reviewed rows across twelve bounded manufacturer scopes**. The Xiaomi JP 60-device source reconciles to 59 positively verified manufacturer PDF guides and one held co-branded Leica model; 59 guide rows are published. This is not Xiaomi company-wide coverage.
 
 | Maker / dataset identity | Verified rows | Current state | Notes |
 | --- | ---: | --- | --- |
@@ -32,6 +32,7 @@ With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifil
 | Panasonic | 27 | expanded, scope-complete | JP LUMIX S/G/compact camera-body sitemap scope is complete and published: 27 direct official manual/support destinations. Panasonic company-wide coverage remains incomplete. |
 | Samsung Mobile | 89 | expanded, scope-complete | Samsung Japan Galaxy smartphone manuals index: five smartphone tables A/S/Note/Fold-Flip/other = 89 models; 85 direct manufacturer model-specific manual-download sections + 4 exact manufacturer support-only + 0 held. One labelled official carrier SKU per model; carrier variants are not assumed interchangeable. Broader Samsung remains incomplete. |
 | Google Pixel | 38 | expanded, support-scope-complete | Google Japan Pixel phone release table 2016–2026: 33 source rows expanded to 38 exact marketed models. Manufacturer official safety/regulatory index explicitly maps these to 24 verified model-named support documents. 0 direct, 0 shared, 38 support_only, 0 held. These documents are **not operational user manuals**; company-wide and operating-manual completeness are not claimed. |
+| Xiaomi | 59 | expanded, scope-reviewed | Official Japan mobile user-guide index: 306 manufacturer guide links total, 74 raw mobile-section entries, 60 unique phone/tablet models after generic/accessory exclusions and exact duplicate collapse; 59 direct manufacturer PDF quick-start/product guides verified, one Leica held. Not all Xiaomi products. |
 | ASUS | 35 | expanded, scope-complete | Japanese manufacturer Vivobook product category: 35 complete product records in official API 20+15, with 35 direct exact selected-variant ASUS HTML manual indexes containing verified user manual metadata. 34 have Japanese manuals; X1605EA verified English-only. Not entire ASUS line. |
 | Motorola | 11 | expanded, scope-reviewed | Japan current 12-phone lineup reconciled: 11 direct exact operating HTML guides published; one Japanese `moto g37j` held (vendor JP exact guide HTTP 403 in CI; global `moto g37` was rejected). Not full Motorola catalog. |
 | Fujitsu FMV | 148 | expanded, scope-complete | Manufacturer FMWORLD JP business LIFEBOOK U-series only: exact 148 model-specific manual pages, each with positively verified official manual PDF evidence. 78 distinct official PDF endpoints validated. Business LIFEBOOK A/E/other families and consumer FMV are not complete. |
@@ -51,7 +52,7 @@ With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifil
 | Epson | 6 | expanded | Wave 3D first Colorio batch; exact official manual/support targets with verified consumable mappings. |
 | Canon | 6 | expanded | Wave 3E first PIXUS batch; direct or vendor-shared official online manuals with verified consumable mappings. |
 | Hisense | 2 | expanded | Exact TV function-manual targets; coverage is still very thin. |
-| **Total** | **2,317** |  |  |
+| **Total** | **2,376** |  |  |
 
 Counts above are accepted repository rows, not estimates of manufacturer catalog size.
 
@@ -82,7 +83,7 @@ Counts above are accepted repository rows, not estimates of manufacturer catalog
 | 19 | Google Pixel | **expanded — 38** | Exact manufacturer model-specific safety/regulatory support-only records. 38/38 scope complete; operational user-guide coverage remains pending. |
 | 20 | Samsung Mobile | **expanded — 89** | Samsung JP five smartphone tables scope-complete: 85 exact model-specific manual indexes + 4 manufacturer support-only; not Samsung-wide |
 | 21 | Huawei | generic-only | Mobile queue |
-| 22 | Xiaomi | generic-only | Mobile queue |
+| 22 | Xiaomi | **expanded — 59** | Xiaomi Japan full mobile/tablet user-guide index: 60 unique named devices from 74 mobile-section links; 59 exact manufacturer PDF guides direct, Leica Leitzphone held after Leica PDF HTTP 502 in CI. |
 | 23 | OPPO | generic-only | Mobile queue |
 | 24 | OnePlus | generic-only | Mobile queue |
 | 25 | Motorola | **expanded — 11** | Motorola JP 12 currently listed phones: 11 exact operational HTML manuals published; moto g37j held following official Japanese guide HTTP 403 and non-exact global g37 guide. |
@@ -128,7 +129,7 @@ Counts above are accepted repository rows, not estimates of manufacturer catalog
 | 65 | Bambu Lab | generic-only | P1 3D-printer queue |
 | 66 | Creality | generic-only | P1 3D-printer queue |
 
-Result after the Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, and Fujifilm GFX/X publications: **45 of the 66 baseline brands are still generic-only**. The previous deep Seiko/Roland work therefore must not be treated as evidence that ManualFinder's manufacturer coverage is broadly mature.
+Result after the Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, and Fujifilm GFX/X publications: **44 of the 66 baseline brands are still generic-only**. The previous deep Seiko/Roland work therefore must not be treated as evidence that ManualFinder's manufacturer coverage is broadly mature.
 
 ## P0 source audit and order
 
@@ -190,6 +191,10 @@ The [Motorola Japan manufacturer-controlled product lineup](https://moto-bu.moto
 ### ASUS Japan Vivobook official 2026 product catalog Coverage-Pass
 
 The manufacturer's [Vivobook JP product list](https://www.asus.com/jp/laptops/for-home/vivobook/filter?Series=Vivobook) loads 20 cards initially but has 35 products in the independent ASUS-operated `odinapi.asus.com` paginated ProductList API; page 1 has 20 and page 2 has 15, with `PageSize=100` independently re-capturing all 35 in the same order. The full ordered model/product-ID/official-URL mapping is locked by SHA256. All 35 manufacturer-listed models, including one Vivobook Pro creator model enumerated in the filter, were kept in the same bounded population. Live CI positively reviewed the exact manufacturer model code, separately selected manufacturer-supported SKU, final official HTTPS HTML `Manual & Document` destination, and language/version/download metadata of an actual operating user manual. **35 = 35 direct + 0 shared + 0 support_only + 0 held**. There are 35 accepted exact manual-index pages; 34 display Japanese user manuals and the X1605EA selected SKU has an English manual listing only. Where ASUS JP's support route fell back to the marketing page, the alternative global ASUS product's manufacturer-explicit model selector supplied the verified selected SKU. ASUS global **M1605YA** and two Snapdragon **QA** variants were escalated and positively tied to their exact manufacturer product families; no family-wide interchangeability is claimed. Every public title displays the actually verified selected variant and says other configurations may require different manuals. Manifest: `coverage-passes/asus/jp-vivobook-official-2026-product-index.json`; public batch: `data/manuals.coverage-pass.asus-jp-vivobook.js`; live review workflow: `.github/workflows/manualfinder-asus-jp-vivobook-coverage-pass.yml`. This is a bounded 2026 Vivobook category and is not ASUS company-wide completeness.
+
+### Xiaomi Japan mobile phones and tablets official guide-index Coverage-Pass
+
+Xiaomi's [Japanese user guide index](https://www.mi.com/jp/support/user-guide/) includes 306 manufacturer-labelled guide links across six categories. The contiguous initial mobile category has 74 source items. Removing six generic OS/safety documents, seven clearly identified accessories and one exact duplicate Redmi Pad 2 4G index row yields **60 unique marketed smartphones/tablets**; carrier-specific and radio variants remain separate manufacturer-identified models. The manufacturer-owned `go.buy.mi.com/jp/v2/cms/page/get` CMS response independently associates each exact model label with an actual guide PDF or other source. The live runner verifies all 306 source entries and six CMS groups, each candidate's manufacturer-hosted HTTPS origin, actual PDF bytes (not HTTP 200 alone), and `%PDF-` format magic. Final reconciliation: **60 = 59 direct + 0 shared + 0 support_only + 1 held**, with all 59 validated PDF quick-start/product guides published in `data/manuals.coverage-pass.xiaomi-jp-mobile.js`. The single held **Leica Leitzphone powered by Xiaomi** is in the Xiaomi-owned source index, but its Xiaomi CMS guide link is self-referential; the independently verified [Leica Japan manufacturer quick-start guide](https://leica-camera.com/ja-JP/mobile/leitzphone-powered-by-xiaomi/downloads) points to an exact PDF that returned HTTP 502 in CI, so it was deliberately not published as direct. The held source entry, alternate manufacturer download evidence and reason remain in `coverage-passes/xiaomi/jp-mobile-user-guide-2026.json`. PDF files are manufacturer-issued and linked, never redistributed by ManualFinder. Many are quick-start guides rather than full reference manuals; public copy says so. This is a bounded Japan mobile/phone/tablet guide-index scope, **not** Xiaomi/REDMI/POCO company-wide completion.
 
 ## Wave rotation contract
 
