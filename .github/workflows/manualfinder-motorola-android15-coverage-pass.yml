@@ -1,0 +1,25 @@
+name: ManualFinder Motorola Android 15 official-model source probe
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/scripts/motorola-android15-source-probe.mjs'
+      - '.github/workflows/manualfinder-motorola-android15-coverage-pass.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  official-source-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tools/manual-finder/scripts/motorola-android15-source-probe.mjs
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: manualfinder-motorola-android15-source-probe
+          path: manualfinder-motorola-probe/*.json
+          if-no-files-found: warn
