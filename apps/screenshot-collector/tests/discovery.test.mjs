@@ -1,0 +1,15 @@
+import {readFileSync} from "node:fs";
+import {test} from "node:test";
+import assert from "node:assert/strict";
+import {pathToFileURL} from "node:url";
+const code=readFileSync(new URL("../extension/discovery.js",import.meta.url),"utf8");
+const encoded="data:text/javascript;base64,"+Buffer.from(code).toString("base64");
+const {normalizeUrl}=await import(encoded);
+const origin="https://example.com";
+test("strips fragments and tracking parameters",()=>assert.equal(normalizeUrl("https://example.com/a/?utm_source=x&id=2#part",origin,origin),"https://example.com/a?id=2"));
+test("dedupes query ordering",()=>assert.equal(normalizeUrl("/p?b=2&a=1",origin,origin),"https://example.com/p?a=1&b=2"));
+test("rejects cross-origin",()=>assert.equal(normalizeUrl("https://other.test/",origin,origin),null));
+test("rejects javascript and data schemes",()=>{assert.equal(normalizeUrl("javascript:alert(1)",origin,origin),null);assert.equal(normalizeUrl("data:text/html,x",origin,origin),null);});
+test("rejects dangerous paths",()=>{assert.equal(normalizeUrl("/logout",origin,origin),null);assert.equal(normalizeUrl("/admin/users",origin,origin),null);});
+test("preserves meaningful query",()=>assert.equal(normalizeUrl("/search?q=hello",origin,origin),"https://example.com/search?q=hello"));
+test("normalizes trailing slash",()=>assert.equal(normalizeUrl("/docs/",origin,origin),"https://example.com/docs"));
