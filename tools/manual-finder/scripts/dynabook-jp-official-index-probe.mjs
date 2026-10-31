@@ -65,7 +65,7 @@ for(const {year,url} of YEARS){
  const item=inspectYear(html,year,url);
  const duplicateNames=Object.entries(Object.groupBy(item.tableResults.flatMap(x=>x.rows),x=>x.name)).filter(x=>x[1].length>1).map(([name,rows])=>({name,n:rows.length}));
  out.push({...item,duplicateNames,sample:item.tableResults.flatMap(x=>x.rows).slice(0,5)});
- console.log(JSON.stringify({year,bytes:html.length,tables:item.tableCount,products:item.rowCount,sections:item.tableResults.map(t=>({table:t.index,count:t.rowCount})),duplicateNames:duplicateNames.slice(0,10),examples:item.tableResults.flatMap(x=>x.rows).slice(0,3).map(x=>({name:x.name,manuals:x.lastCellLinks.slice(0,3)}))}));
+ console.log(JSON.stringify({year,bytes:html.length,tables:item.tableCount,products:item.rowCount,sections:item.tableResults.map(t=>({table:t.index,count:t.rowCount})),duplicateNames:duplicateNames.slice(0,10),examples:item.tableResults.flatMap(x=>x.rows).slice(0,3).map(x=>({name:x.name,manuals:x.manualLinks.slice(0,3)}))}));
 }
 await fs.mkdir('manualfinder-dynabook-probe',{recursive:true});
 await fs.writeFile('manualfinder-dynabook-probe/official-2024-2026-structure.json',JSON.stringify(out,null,2)+'\n');
