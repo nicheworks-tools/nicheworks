@@ -47,9 +47,12 @@ async function readBytes(file) {
   if (typeof file.size === 'number' && file.size > BATCH_LIMITS.maxFileBytes) {
     reject('input_too_large');
   }
-  const bytes = file.bytes === undefined
-    ? (typeof file.arrayBuffer === 'function' ? await file.arrayBuffer() : undefined)
-    : file.bytes;
+  // Modern Blob/File defines bytes() as an async METHOD, not a byte buffer.
+  // Only treat bytes as a direct fixture buffer when it is actually binary data.
+  const raw = file.bytes;
+  const bytes = (raw instanceof ArrayBuffer || ArrayBuffer.isView(raw))
+    ? raw
+    : (typeof file.arrayBuffer === 'function' ? await file.arrayBuffer() : undefined);
   const buffer = asBuffer(bytes);
   if (buffer.byteLength > BATCH_LIMITS.maxFileBytes) reject('input_too_large');
   return buffer;
