@@ -37,6 +37,9 @@ async function warmLazy(id) {
   }});
 }
 async function cdpCapture(id){
+  // Recheck the final origin immediately before invoking privileged capture.
+  const tab=await chrome.tabs.get(id);
+  if(!tab.url || !["http:","https:"].includes(new URL(tab.url).protocol))throw Error("Unsafe capture target");
   await chrome.debugger.attach({tabId:id},"1.3");
   try {
     await send(id,"Page.enable");
@@ -69,6 +72,7 @@ chrome.runtime.onMessage.addListener((msg,sender,reply)=>{
   if(msg?.type!=="CAPTURE_POC")return;
   (async()=>{
     const url=safeUrl(msg.url).href;
+    if(!sender.url?.startsWith(chrome.runtime.getURL("collector.html")))throw Error("Unexpected message sender");
     const result=await withTarget(url,async id=>{
       await warmLazy(id);
       if(msg.engine==="cdp")return await cdpCapture(id);
