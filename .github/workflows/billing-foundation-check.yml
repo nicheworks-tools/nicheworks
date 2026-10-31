@@ -8,6 +8,8 @@ on:
       - 'assets/old-kanji-pro-sales.*'
       - 'assets/okj-history-collection.js'
       - 'assets/okj-workspace-*.js'
+      - 'assets/okj-name-place-batch*'
+      - 'scripts/check-old-kanji-name-place-batch.mjs'
       - 'assets/okj-workspace.css'
       - 'scripts/check-old-kanji-workspaces.mjs'
       - 'assets/okj-ocr-pro-*.js'
@@ -38,6 +40,8 @@ on:
       - 'assets/old-kanji-pro-sales.*'
       - 'assets/okj-history-collection.js'
       - 'assets/okj-workspace-*.js'
+      - 'assets/okj-name-place-batch*'
+      - 'scripts/check-old-kanji-name-place-batch.mjs'
       - 'assets/okj-workspace.css'
       - 'scripts/check-old-kanji-workspaces.mjs'
       - 'assets/okj-ocr-pro-*.js'
@@ -84,6 +88,8 @@ jobs:
           node --check assets/okj-history-collection.js
           node --check assets/okj-workspace-store.js
           node --check assets/okj-workspace-ui.js
+          node --check assets/okj-name-place-batch.js
+          node --check assets/okj-name-place-batch-ui.js
       - name: Check billing contract
         run: node scripts/check-billing-foundation.mjs
       - name: Test fail-closed unpriced and unknown products
@@ -96,3 +102,5 @@ jobs:
         run: node scripts/check-old-kanji-pro-functional.mjs
       - name: Test cross-tool Pro workspaces with entitlement-specific gates
         run: node scripts/check-old-kanji-workspaces.mjs
+      - name: Test actual reference-backed Name and Place CSV batch
+        run: node scripts/check-old-kanji-name-place-batch.mjs
