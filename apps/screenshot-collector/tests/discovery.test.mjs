@@ -13,3 +13,5 @@ test("rejects javascript and data schemes",()=>{assert.equal(normalizeUrl("javas
 test("rejects dangerous paths",()=>{assert.equal(normalizeUrl("/logout",origin,origin),null);assert.equal(normalizeUrl("/admin/users",origin,origin),null);});
 test("preserves meaningful query",()=>assert.equal(normalizeUrl("/search?q=hello",origin,origin),"https://example.com/search?q=hello"));
 test("normalizes trailing slash",()=>assert.equal(normalizeUrl("/docs/",origin,origin),"https://example.com/docs"));
+test("rejects dangerous query actions",()=>{assert.equal(normalizeUrl("/?action=logout",origin,origin),null);assert.equal(normalizeUrl("/index.php?do=delete&id=2",origin,origin),null);});
+test("removes repeated tracking keys",()=>assert.equal(normalizeUrl("/?utm_source=a&utm_source=b&id=1",origin,origin),"https://example.com/?id=1"));
