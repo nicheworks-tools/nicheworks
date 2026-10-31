@@ -13,8 +13,8 @@ import {htmlToText,decodeHtml,hostAllowed,validateCoveragePass} from './coverage
 export const INDEX='https://moto-bu.motorola.co.jp/products/';
 const PASS=new URL('../coverage-passes/motorola/jp-motobu-2026-smartphone-lineup.json',import.meta.url);
 const SPECIAL={
- 'moto g 37 j':{url:'https://jp-jp.support.motorola.com/app/answers/detail/a_id/192333/',titleAlias:'moto g37j'},
- 'moto g 66 j':{url:'https://jp-jp.support.motorola.com/app/answers/detail/a_id/187425/',titleAlias:'moto g66j 5G'}
+ 'moto g 37 j':{url:'https://jp-jp.support.motorola.com/app/answers/detail/a_id/192333/',titleAlias:'moto g37j',alternateGuide:'https://help.motorola.com/hc/3737/16/global/ja-jp/index.html?t=index'},
+ 'moto g 66 j':{url:'https://jp-jp.support.motorola.com/app/answers/detail/a_id/187425/',titleAlias:'moto g66j 5G',alternateGuide:'https://help.motorola.com/hc/3658/15/global/ja-jp/index.html?t=index'}
 };
 const clean=s=>htmlToText(String(s||'')).normalize('NFKC').replace(/\s+/g,' ').trim();
 const key=s=>clean(s).toLowerCase().replace(/[^a-z0-9]+/g,'');
@@ -74,11 +74,19 @@ export async function reviewAll({pass,indexHtml,fetcher=get,concurrency=5}){
    let direct=null;
    if(special){
     try{
-     const doc=await fetcher(special.url);
-     const test=checkManualHtml(doc,model,{alias:special.titleAlias,regional:true});
-     attempts.push({url:special.url,finalUrl:doc.url,...test});
-     if(test.accepted)direct={url:doc.url,title:test.title,reviewMethod:'exact_Japan_manufacturer_device_specific_HTML_user_guide'};
-    }catch(e){attempts.push({url:special.url,error:String(e)});}
+     const doc=await fetcher(special.alternateGuide);
+     const test=checkManualHtml(doc,model,{alias:special.titleAlias});
+     attempts.push({url:special.alternateGuide,finalUrl:doc.url,...test});
+     if(test.accepted)direct={url:doc.url,title:test.title,reviewMethod:'secondary_exact_Japan_language_Motorola_operational_HTML_guide'};
+    }catch(e){attempts.push({url:special.alternateGuide,error:String(e)});}
+    if(!direct){
+     try{
+      const doc=await fetcher(special.url);
+      const test=checkManualHtml(doc,model,{alias:special.titleAlias,regional:true});
+      attempts.push({url:special.url,finalUrl:doc.url,...test});
+      if(test.accepted)direct={url:doc.url,title:test.title,reviewMethod:'exact_Japan_manufacturer_device_specific_HTML_user_guide'};
+     }catch(e){attempts.push({url:special.url,error:String(e)});}
+    }
    }else{
     for(const name of candidateModels(model)){
      const url=guideCandidate(name);
