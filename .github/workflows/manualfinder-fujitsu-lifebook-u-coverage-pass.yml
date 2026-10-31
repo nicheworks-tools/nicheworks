@@ -5,6 +5,7 @@ on:
       - 'tools/manual-finder/coverage-passes/fujitsu/**'
       - 'tools/manual-finder/scripts/fujitsu-lifebook-u-index-probe.mjs'
       - 'tools/manual-finder/scripts/fujitsu-lifebook-u-review.mjs'
+      - 'tools/manual-finder/scripts/fujitsu-lifebook-u-reconcile-publication.mjs'
       - 'tools/manual-finder/tests/fujitsu-lifebook-u-review.test.mjs'
       - 'tools/manual-finder/tests/fujitsu-lifebook-u-publication.test.mjs'
       - 'tools/manual-finder/data/manuals.coverage-pass.fujitsu-lifebook-u.js'
@@ -35,6 +36,10 @@ jobs:
           mkdir -p manualfinder-fujitsu-review
           node tools/manual-finder/scripts/fujitsu-lifebook-u-review.mjs \
             --out manualfinder-fujitsu-review/complete-review.json
+      - name: Reconcile live model and PDF evidence against published manifest
+        run: |
+          node tools/manual-finder/scripts/fujitsu-lifebook-u-reconcile-publication.mjs \
+            --live manualfinder-fujitsu-review/complete-review.json
       - if: always()
         uses: actions/upload-artifact@v4
         with:
