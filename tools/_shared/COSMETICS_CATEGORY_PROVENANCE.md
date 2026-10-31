@@ -402,3 +402,10 @@ Reviewed set: Polyisobutene (binding), PEG-60 Hydrogenated Castor Oil (emulsifyi
 COSMILE's page for Ethylhexyl Dimethyl PABA explicitly identifies *Padimate O* as an alternative identity; the link is pinned to that exact entry rather than treating a similar chemical name as interchangeable. All 18 HTTPS URLs and source-function labels are pinned in `check-cosmetics-source-verified-wave28.mjs`.
 
 This wave targets **562 / 599 = 93.82%** runtime supported bilingual roles; **37** remain incomplete. Raw recognition and original category hints are frozen and audited separately.
+
+
+## Source-backed category wave 29 (2026-10-31)
+
+14 further individual functions with exact COSMILE Europe source URLs: Honey Extract (humectant), Royal Jelly Extract and Propolis Extract (skin conditioning), Sodium Stearate and Potassium Laurate (cleansing), Sea Salt (humectant), Camphor (fragrance), Hydrochloric Acid (buffering), Eucalyptus Globulus Leaf Oil, Citrus Aurantium Dulcis (Orange) Peel Oil, Citrus Limon (Lemon) Peel Oil, Mentha Piperita (Peppermint) Oil, Evernia Prunastri Extract and Evernia Furfuracea Extract (fragrance).
+
+The source botanical oil pages use standard INCI names without explanatory English common names in parentheses; these correspond to the frozen canonical entries' parenthetical common names, not new automatic alias rules. COSMILE exact source identity/function/URLs are pinned by `check-cosmetics-source-verified-wave29.mjs`. These mappings **do not** extrapolate the role from all essential oils, all animal extracts, or all soap salts. Old category hints and missing-category states remain auditable. Target after this wave: **576/599 supported role identities**, with **23** remaining.
