@@ -152,6 +152,12 @@ Phone QuickCheck v1 is complete under the maintained contract:
 
 Future work is maintenance: new models, source changes, corrections, and evidence upgrades. It is not part of the v1 closure backlog.
 
+## Post-v1 maintenance Wave 15 — 2026-10-31
+
+Added a measured production browser regression to the already merged mobile badge-close fix: the live stylesheet must contain the 46px clearance rule; at each mobile/tablet viewport (320/390/414/768) the actual Chrome badge and 32px close-control bounding rectangles must **not intersect**. Both the close control's 32px minimum hit area and the existing JP/EN, search, mobile-sheet and 208-phone production assertions remain enforced.
+
+The earlier 320/390px production screenshots revealed overlap despite all data tests passing. This new test will specifically fail on recurrence, including if Cloudflare serves a stale stylesheet. No business logic, model data, scope or common spec altered.
+
 ## Post-v1 maintenance Wave 14 — 2026-10-31
 
 Live deployed Chrome screenshots at 320/390/414px from [PR #1445](https://github.com/nicheworks-tools/nicheworks/pull/1445) revealed the mobile Quick Check badge colliding with the absolutely positioned × close button. Automatic no-overflow and JP/EN checks passed but did not detect the overlap.
