@@ -33,7 +33,7 @@ const EXPECTED = Object.freeze({
 const AUTHORITY = 'Cosmetics Europe / COSMILE Europe';
 const evidence = parser.verifiedNoteEvidence || {};
 const keys = Object.keys(evidence);
-assert.equal(keys.length, PRIOR_COUNT + Object.keys(EXPECTED).length, 'wave 21 must add exactly three reviewed identities');
+assert.ok(keys.length >= PRIOR_COUNT + Object.keys(EXPECTED).length, 'wave 21 identities must remain verified after subsequent enrichment waves');
 const merged = parser.mergeDictionaryRecords(rows);
 const byIdentity = new Map(merged.map(item => [parser.canonicalIdentityKey(item.en), item]));
 
@@ -59,7 +59,7 @@ for (const [canonical, expected] of Object.entries(EXPECTED)) {
 for (const ambiguous of parser.ambiguousExactKeys || []) {
   assert.equal(evidence[ambiguous], undefined, `${ambiguous}: ambiguous names cannot be verified notes`);
 }
-assert.equal(parser.version, '1.58.0');
+assert.ok(Number(parser.version.split('.')[1]) >= 58, 'the wave21-reviewed parser contract must remain available');
 console.log(JSON.stringify({
   status: 'pass',
   phase: 'verified-note-wave-21-common-label-priority',
