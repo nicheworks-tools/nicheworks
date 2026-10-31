@@ -102,6 +102,10 @@ for (const phone of phones) {
     if (charging[key] !== null && charging[key] !== undefined && !finitePositive(charging[key])) fail(`${label}: invalid charging.${key}`);
   }
   if (charging.protocols !== undefined && !Array.isArray(charging.protocols)) fail(`${label}: charging.protocols must be an array`);
+  if (charging.wirelessStatus != null && charging.wirelessStatus !== 'not_supported') fail(`${label}: unsupported charging.wirelessStatus`);
+  if (charging.wirelessStatus === 'not_supported' && (charging.wirelessStandard != null || charging.wirelessMaxW != null)) {
+    fail(`${label}: not_supported wireless cannot carry a standard or maximum wattage`);
+  }
 
   const battery = charging.battery || {};
   if (String(phone.manufacturer).toLowerCase() === 'apple' && battery.capacityMah !== null && battery.capacityMah !== undefined) {
