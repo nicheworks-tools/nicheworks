@@ -1,6 +1,6 @@
 {
   "schema": "cta-affiliate-image-acquisition-wave6-v2.3",
-  "version": "2026-10-31-reviewed-image-wave8-two-1",
+  "version": "2026-10-31-reviewed-image-wave9-four-1",
   "policy": {
     "queue_order": "curated source-feasibility work order, NOT empirical market ranking",
     "no_guessed_search_volume": true,
@@ -17,9 +17,9 @@
   },
   "expected": {
     "active_affiliate_mappings": 432,
-    "revenue_ready": 40,
-    "awaiting_source": 392,
-    "first_wave": 5,
+    "revenue_ready": 44,
+    "awaiting_source": 388,
+    "first_wave": 1,
     "source_leads": 3
   },
   "first_wave_ids": [
@@ -122,7 +122,27 @@
     {
       "entry_id": "reciprocating_saw",
       "disposition": "rejected_subject_focus",
-      "review": "Wave8 candidate only shows reciprocating saw front and blade actively cutting lumber, with most tool body cropped off; rejected for canonical identification and not promoted. Seek a full-tool original."
+      "review": "Wave8 candidate only shows reciprocating saw front and blade actively cutting lumber, with most tool body cropped off; rejected for canonical identification and not promoted. Seek a full-tool original. Wave9 second proposed saw image inspected: saw body and rear grip visible but cutting blade and tool nose absent; still inadequate for canonical illustration; remain awaiting_source."
+    },
+    {
+      "entry_id": "laser_distance_meter",
+      "disposition": "promoted",
+      "review": "Original JPEG / primary WebP visually inspected, Commons API SHA-1 matched verified original, attribution and publication lifecycle completed. Inspected original 750x507 JPEG and 750x507 WebP: complete handheld laser distance meter with screen and controls, clearly recognizable; source file original SHA-1 confirmed through Commons API."
+    },
+    {
+      "entry_id": "pipe_wrench",
+      "disposition": "promoted",
+      "review": "Original JPEG / primary WebP visually inspected, Commons API SHA-1 matched verified original, attribution and publication lifecycle completed. Inspected original 4608x3072 JPEG and 960x640 WebP: full red pipe wrench, adjustable jaw and knurled knob clearly visible in uncluttered foreground."
+    },
+    {
+      "entry_id": "speed_square",
+      "disposition": "promoted",
+      "review": "Original JPEG / primary WebP visually inspected, Commons API SHA-1 matched verified original, attribution and publication lifecycle completed. Inspected original 567x480 JPEG and 567x480 WebP: Swanson triangular speed square with right-angle edges and graduated layout scales; adequate focal tool despite native resolution."
+    },
+    {
+      "entry_id": "nail_gun",
+      "disposition": "promoted",
+      "review": "Original JPEG / primary WebP visually inspected, Commons API SHA-1 matched verified original, attribution and publication lifecycle completed. Inspected original 2816x2112 JPEG and 960x720 WebP: one full pneumatic nail gun shown side-on with barrel, magazine, grip and air fitting; correct canonical subject."
     }
   ]
 }

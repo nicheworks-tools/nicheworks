@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-registry-v2.3",
-  "version": "2026-10-31-reviewed-image-wave8-two-1",
+  "version": "2026-10-31-reviewed-image-wave9-four-1",
   "policy": {
     "primary_format": "webp",
     "formal_min_state": "reviewed",
@@ -1183,6 +1183,102 @@
         "source_sha1": "6906c01a40180712660fdce8df495d96395fab67"
       },
       "notes": "Wave8: full original/derivative visual review and pinned binary SHA-1 verification; Inspected original 588x1065 JPEG and primary 398x720 WebP: an automatic wire stripper with visible stripping jaws and red handles is clearly identifiable."
+    },
+    {
+      "entry_id": "laser_distance_meter",
+      "alt_ja": "手に持った赤と黒のレーザー距離計、液晶表示と測定操作ボタン",
+      "alt_en": "Handheld laser distance meter with display and measuring controls",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/laser_distance_meter/source.jpg",
+        "display": "./images/laser_distance_meter/primary.webp",
+        "thumbnail": "./images/laser_distance_meter/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/9/91/Handheld_laser_distance_meter.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Handheld_laser_distance_meter.jpg",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "author": "Krzysztof Maria Różański (Upior polnocy)",
+        "attribution": "Krzysztof Maria Różański (Upior polnocy) / Wikimedia Commons, CC BY-SA 3.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, converted to WebP; original source retained locally; derivative remains under the source license.",
+        "source_sha1": "24c266f815ea1dbcc49ff7852ef86ad0ce22e49d"
+      },
+      "notes": "Wave9: full original/derivative visual review and pinned binary SHA-1 verification; Inspected original 750x507 JPEG and 750x507 WebP: complete handheld laser distance meter with screen and controls, clearly recognizable; source file original SHA-1 confirmed through Commons API."
+    },
+    {
+      "entry_id": "pipe_wrench",
+      "alt_ja": "歯付きジョーと調整ナットを備えた赤いパイプレンチ",
+      "alt_en": "Red adjustable pipe wrench with toothed jaws and knurled adjustment nut",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/pipe_wrench/source.jpg",
+        "display": "./images/pipe_wrench/primary.webp",
+        "thumbnail": "./images/pipe_wrench/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Pipe_wrench.JPG",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Pipe_wrench.JPG",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "author": "Altoscroll",
+        "attribution": "Altoscroll / Wikimedia Commons, CC BY-SA 3.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, converted to WebP; original source retained locally; derivative remains under the source license.",
+        "source_sha1": "b5f85461c09515e3d84d8d78843be45a8dcbf2e3"
+      },
+      "notes": "Wave9: full original/derivative visual review and pinned binary SHA-1 verification; Inspected original 4608x3072 JPEG and 960x640 WebP: full red pipe wrench, adjustable jaw and knurled knob clearly visible in uncluttered foreground."
+    },
+    {
+      "entry_id": "speed_square",
+      "alt_ja": "角度目盛りのある三角形のスピードスクエア",
+      "alt_en": "Triangular Swanson speed square with readable layout and degree scales",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/speed_square/source.jpg",
+        "display": "./images/speed_square/primary.webp",
+        "thumbnail": "./images/speed_square/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Swanson_Speed_Square_by_NIP.JPG",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Swanson_Speed_Square_by_NIP.JPG",
+        "license": "Public Domain (PD-self)",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-self",
+        "author": "Norvell IP",
+        "attribution": "Norvell IP / Wikimedia Commons, Public Domain (PD-self)",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, converted to WebP; original source retained locally; derivative remains under the source license.",
+        "source_sha1": "eb5e49d2d9178131cb173cbd69ff1716ee57345e"
+      },
+      "notes": "Wave9: full original/derivative visual review and pinned binary SHA-1 verification; Inspected original 567x480 JPEG and 567x480 WebP: Swanson triangular speed square with right-angle edges and graduated layout scales; adequate focal tool despite native resolution."
+    },
+    {
+      "entry_id": "nail_gun",
+      "alt_ja": "金属マガジンとエア接続部を備えたエア式釘打ち機",
+      "alt_en": "Pneumatic nail gun with metal nail magazine, air fitting and grip",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/nail_gun/source.jpg",
+        "display": "./images/nail_gun/primary.webp",
+        "thumbnail": "./images/nail_gun/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Nail_gun_008.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Nail_gun_008.jpg",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "author": "Boatbuilder",
+        "attribution": "Boatbuilder / Wikimedia Commons, CC BY-SA 3.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, converted to WebP; original source retained locally; derivative remains under the source license.",
+        "source_sha1": "ccf42ce9ccf4d0054b7d2c703efa806249b80663"
+      },
+      "notes": "Wave9: full original/derivative visual review and pinned binary SHA-1 verification; Inspected original 2816x2112 JPEG and 960x720 WebP: one full pneumatic nail gun shown side-on with barrel, magazine, grip and air fitting; correct canonical subject."
     }
   ]
 }

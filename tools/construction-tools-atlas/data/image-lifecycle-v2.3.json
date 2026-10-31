@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-lifecycle-v2.3",
-  "version": "2026-10-31-reviewed-image-wave8-two-1",
+  "version": "2026-10-31-reviewed-image-wave9-four-1",
   "candidates": [
     {
       "id": "existing:allen_key",
@@ -519,6 +519,42 @@
       "source_ref": {
         "file": "image-wave8-sources-v2.3.json",
         "entry_id": "wire_stripper"
+      }
+    },
+    {
+      "id": "wave6:laser_distance_meter",
+      "source_entry_id": "laser_distance_meter",
+      "kind": "photograph",
+      "source_ref": {
+        "file": "image-wave9-sources-v2.3.json",
+        "entry_id": "laser_distance_meter"
+      }
+    },
+    {
+      "id": "wave6:pipe_wrench",
+      "source_entry_id": "pipe_wrench",
+      "kind": "photograph",
+      "source_ref": {
+        "file": "image-wave9-sources-v2.3.json",
+        "entry_id": "pipe_wrench"
+      }
+    },
+    {
+      "id": "wave6:speed_square",
+      "source_entry_id": "speed_square",
+      "kind": "photograph",
+      "source_ref": {
+        "file": "image-wave9-sources-v2.3.json",
+        "entry_id": "speed_square"
+      }
+    },
+    {
+      "id": "wave6:nail_gun",
+      "source_entry_id": "nail_gun",
+      "kind": "photograph",
+      "source_ref": {
+        "file": "image-wave9-sources-v2.3.json",
+        "entry_id": "nail_gun"
       }
     }
   ],
@@ -4781,6 +4817,42 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-10-31T14:26:00Z",
+          "actor": "image-wave9-reviewed-20261031",
+          "reason": "Pinned Wikimedia original accepted for review, with distinct canonical subject and reviewed license.",
+          "candidate_id": "wave6:laser_distance_meter",
+          "candidate_sha256": "584aa6a582f8caa88b8760d745036c456e2208eb4078c26d8e1eecb63cf5e38f",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-10-31T14:26:01Z",
+          "actor": "image-wave9-reviewed-20261031",
+          "reason": "Commons attribution, license URL, source page, original bytes, and SHA-1 were validated.",
+          "candidate_id": "wave6:laser_distance_meter",
+          "candidate_sha256": "584aa6a582f8caa88b8760d745036c456e2208eb4078c26d8e1eecb63cf5e38f",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-10-31T14:26:02Z",
+          "actor": "image-wave9-reviewed-20261031",
+          "reason": "Inspected original 750x507 JPEG and 750x507 WebP: complete handheld laser distance meter with screen and controls, clearly recognizable; source file original SHA-1 confirmed through Commons API.",
+          "candidate_id": "wave6:laser_distance_meter",
+          "candidate_sha256": "584aa6a582f8caa88b8760d745036c456e2208eb4078c26d8e1eecb63cf5e38f",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-10-31T14:26:03Z",
+          "actor": "image-wave9-reviewed-20261031",
+          "reason": "Promoted only after direct visual review, SHA-1 match, retained source JPEG, distinct local primary and thumbnail WebP derivatives.",
+          "candidate_id": "wave6:laser_distance_meter",
+          "candidate_sha256": "584aa6a582f8caa88b8760d745036c456e2208eb4078c26d8e1eecb63cf5e38f",
+          "hold": null
         }
       ]
     },
@@ -5443,6 +5515,42 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-10-31T14:26:00Z",
+          "actor": "image-wave9-reviewed-20261031",
+          "reason": "Pinned Wikimedia original accepted for review, with distinct canonical subject and reviewed license.",
+          "candidate_id": "wave6:nail_gun",
+          "candidate_sha256": "f1a7047737a5b96ce687cea529efcc59598be43c3ba90bf75d9fce43f2f0ae75",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-10-31T14:26:01Z",
+          "actor": "image-wave9-reviewed-20261031",
+          "reason": "Commons attribution, license URL, source page, original bytes, and SHA-1 were validated.",
+          "candidate_id": "wave6:nail_gun",
+          "candidate_sha256": "f1a7047737a5b96ce687cea529efcc59598be43c3ba90bf75d9fce43f2f0ae75",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-10-31T14:26:02Z",
+          "actor": "image-wave9-reviewed-20261031",
+          "reason": "Inspected original 2816x2112 JPEG and 960x720 WebP: one full pneumatic nail gun shown side-on with barrel, magazine, grip and air fitting; correct canonical subject.",
+          "candidate_id": "wave6:nail_gun",
+          "candidate_sha256": "f1a7047737a5b96ce687cea529efcc59598be43c3ba90bf75d9fce43f2f0ae75",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-10-31T14:26:03Z",
+          "actor": "image-wave9-reviewed-20261031",
+          "reason": "Promoted only after direct visual review, SHA-1 match, retained source JPEG, distinct local primary and thumbnail WebP derivatives.",
+          "candidate_id": "wave6:nail_gun",
+          "candidate_sha256": "f1a7047737a5b96ce687cea529efcc59598be43c3ba90bf75d9fce43f2f0ae75",
+          "hold": null
         }
       ]
     },
@@ -5852,6 +5960,42 @@
           "reason": "A pipe wrench is a distinctive toothed-jaw hand tool for round pipe; a subject-matched photograph strongly aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-10-31T14:26:00Z",
+          "actor": "image-wave9-reviewed-20261031",
+          "reason": "Pinned Wikimedia original accepted for review, with distinct canonical subject and reviewed license.",
+          "candidate_id": "wave6:pipe_wrench",
+          "candidate_sha256": "897893cad865d93335bb1b97af25529624a6d86da46bd0ad6822da6e6ec2afc8",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-10-31T14:26:01Z",
+          "actor": "image-wave9-reviewed-20261031",
+          "reason": "Commons attribution, license URL, source page, original bytes, and SHA-1 were validated.",
+          "candidate_id": "wave6:pipe_wrench",
+          "candidate_sha256": "897893cad865d93335bb1b97af25529624a6d86da46bd0ad6822da6e6ec2afc8",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-10-31T14:26:02Z",
+          "actor": "image-wave9-reviewed-20261031",
+          "reason": "Inspected original 4608x3072 JPEG and 960x640 WebP: full red pipe wrench, adjustable jaw and knurled knob clearly visible in uncluttered foreground.",
+          "candidate_id": "wave6:pipe_wrench",
+          "candidate_sha256": "897893cad865d93335bb1b97af25529624a6d86da46bd0ad6822da6e6ec2afc8",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-10-31T14:26:03Z",
+          "actor": "image-wave9-reviewed-20261031",
+          "reason": "Promoted only after direct visual review, SHA-1 match, retained source JPEG, distinct local primary and thumbnail WebP derivatives.",
+          "candidate_id": "wave6:pipe_wrench",
+          "candidate_sha256": "897893cad865d93335bb1b97af25529624a6d86da46bd0ad6822da6e6ec2afc8",
           "hold": null
         }
       ]
@@ -19250,6 +19394,42 @@
           "reason": "A speed square is a physical triangular layout/measuring tool with distinctive shape and markings; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-10-31T14:26:00Z",
+          "actor": "image-wave9-reviewed-20261031",
+          "reason": "Pinned Wikimedia original accepted for review, with distinct canonical subject and reviewed license.",
+          "candidate_id": "wave6:speed_square",
+          "candidate_sha256": "0906d50094d07ceb9e7abb9fa776cfd9fd13223d54a1e53d634061979f547ccc",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-10-31T14:26:01Z",
+          "actor": "image-wave9-reviewed-20261031",
+          "reason": "Commons attribution, license URL, source page, original bytes, and SHA-1 were validated.",
+          "candidate_id": "wave6:speed_square",
+          "candidate_sha256": "0906d50094d07ceb9e7abb9fa776cfd9fd13223d54a1e53d634061979f547ccc",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-10-31T14:26:02Z",
+          "actor": "image-wave9-reviewed-20261031",
+          "reason": "Inspected original 567x480 JPEG and 567x480 WebP: Swanson triangular speed square with right-angle edges and graduated layout scales; adequate focal tool despite native resolution.",
+          "candidate_id": "wave6:speed_square",
+          "candidate_sha256": "0906d50094d07ceb9e7abb9fa776cfd9fd13223d54a1e53d634061979f547ccc",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-10-31T14:26:03Z",
+          "actor": "image-wave9-reviewed-20261031",
+          "reason": "Promoted only after direct visual review, SHA-1 match, retained source JPEG, distinct local primary and thumbnail WebP derivatives.",
+          "candidate_id": "wave6:speed_square",
+          "candidate_sha256": "0906d50094d07ceb9e7abb9fa776cfd9fd13223d54a1e53d634061979f547ccc",
           "hold": null
         }
       ]
