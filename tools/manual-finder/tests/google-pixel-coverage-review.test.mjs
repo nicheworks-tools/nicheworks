@@ -20,7 +20,7 @@ const indexGroups=[
  [19,20],[21],[22,23],[24],[25],[26],[27],[28,29],[30,31],[32,33],[34,35],[36,37]
 ];
 const groups=indexGroups.map((ids,i)=>({url:'https://support.google.com/pixelphone/answer/'+(1000+i)+'?hl=ja',models:ids.map(j=>m[j])}));
-const safety=groups.map(g=>'<a href="'+g.url.split('?')[0].replace('https://support.google.com','')+'">'+g.models.join('、')+'（2026）</a>').join('');
+const safety='<h2>安全と規制に関する情報</h2>'+groups.map(g=>'<a href="'+g.url.split('?')[0].replace('https://support.google.com','')+'">'+g.models.join('、')+'（2026）</a>').join('')+'<h2>RFE 情報</h2>';
 const got=extractOfficialSupportIndex(safety);
 assert.equal(got.length,24);
 const reconciled=reconcileSources(html,safety,pass);
