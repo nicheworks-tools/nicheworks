@@ -22,7 +22,7 @@ function staticServer() {
       const ok=u.searchParams.get('productId')==='okj.toolkit_pro' &&
         u.searchParams.get('sessionId')==='cs_test_WORKSPACEQA';
       res.writeHead(ok?200:403,{'content-type':'application/json;charset=utf-8','cache-control':'no-store'});
-      res.end(JSON.stringify(ok?{ok:true,active:true,features:['okj.workspaces','okj.name.batch','okj.place.batch','okj.reports','okj.advancedExport']}:{ok:false,active:false,error:'not_entitled'}));
+      res.end(JSON.stringify(ok?{ok:true,active:true,features:['okj.workspaces','okj.name.batch','okj.place.batch','okj.reports','okj.advancedExport','okj.ocr.crop']}:{ok:false,active:false,error:'not_entitled'}));
       return;
     }
     let p=decodeURIComponent(u.pathname); if(p.endsWith('/'))p+='index.html';
@@ -195,9 +195,33 @@ async function main(){
         fail.push('reports/browser-download: expected Markdown report and CSV advanced export '+JSON.stringify(downloads));
       }
     }
+    // QA-only verified entitlement: drag touch selection and OCR on an actual PNG.
+    await c.nav(base+'/tools/old-kanji-ocr-scanner/');
+    await sleep(420);
+    const cropMounted=await c.js("return !!document.getElementById('okj-pro-crop');");
+    if(!cropMounted)fail.push('crop/verified: Pro crop panel not mounted');
+    else {
+      await c.js("window.__cropCapture=null; window.Tesseract={recognize:async function(blob,lang){ const bitmap=await createImageBitmap(blob); window.__cropCapture={width:bitmap.width,height:bitmap.height,lang:lang}; bitmap.close(); return {data:{text:'舊學'}}; }}; const fixture=document.createElement('canvas'); fixture.width=320;fixture.height=160; const ctx=fixture.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,320,160);ctx.fillStyle='#111';ctx.fillRect(40,20,240,120); const raw=atob(fixture.toDataURL('image/png').split(',')[1]); const bytes=new Uint8Array(raw.length); for(let i=0;i<raw.length;i++)bytes[i]=raw.charCodeAt(i); const file=new File([bytes],'cropping-fixture.png',{type:'image/png'}); const data=new DataTransfer();data.items.add(file); const picker=document.getElementById('image-input');picker.files=data.files; picker.dispatchEvent(new Event('change',{bubbles:true}));");
+      await sleep(320);
+      const cropReady=await c.js("return {shown:!!document.getElementById('okj-pro-crop-canvas')?.width,disabled:document.getElementById('okj-pro-crop-run')?.disabled,loaded:document.getElementById('preview-image')?.naturalWidth||0};");
+      if(!cropReady.shown||cropReady.disabled||cropReady.loaded!==320)fail.push('crop/image-loading: '+JSON.stringify(cropReady));
+      else {
+        await c.js("const preview=document.getElementById('okj-pro-crop-canvas'); const bounds=preview.getBoundingClientRect(); const fire=(type,x,y)=>preview.dispatchEvent(new PointerEvent(type,{bubbles:true,pointerId:7,pointerType:'touch',clientX:bounds.left+bounds.width*x,clientY:bounds.top+bounds.height*y})); fire('pointerdown',.2,.25);fire('pointermove',.8,.75);fire('pointerup',.8,.75); document.getElementById('okj-pro-crop-run').click();");
+        await sleep(500);
+        const cropObserved=await c.js("return {capture:window.__cropCapture,text:document.getElementById('manual-text')?.value||'',modern:document.getElementById('modern-preview-output')?.textContent||'',status:document.querySelector('#okj-pro-crop .okj-pro-crop-status')?.textContent||''};");
+        if(!cropObserved.capture||cropObserved.capture.lang!=='jpn'||
+           Math.abs(cropObserved.capture.width-192)>2||Math.abs(cropObserved.capture.height-80)>2||
+           cropObserved.text!=='舊學'||!cropObserved.modern.includes('旧学')){
+          fail.push('crop/touch-selection-ocr: '+JSON.stringify(cropObserved));
+        }
+      }
+    }
     await c.js("localStorage.setItem('nicheworks:billing:session:okj.toolkit_pro','cs_test_DENIED');");
     await c.nav(base+'/tools/old-kanji-ocr-scanner/');
     await sleep(350);
+    if(await c.js("return !!document.getElementById('okj-pro-crop');")){
+      fail.push('crop/denied: Pro crop UI exposed without verified entitlement');
+    }
     if(await c.js("return !!document.getElementById('okj-pro-reports-export');")){
       fail.push('reports/denied: report/export UI exposed without verified entitlement');
     }
