@@ -40,6 +40,15 @@ async function httpSmoke(){
   assert.equal(live.find(p=>p.id==='fcnt-arrows-alpha-m08')?.included?.adapter,'included','FCNT Alpha bundled charger missing from public data');
   assert.ok(live.some(p=>p.id==='fcnt-arrows-alpha2-m10'),'Existing FCNT Alpha2 missing from public JSON');
   assert.equal(live.find(p=>p.id==='nothing-phone-4b')?.charging?.wirelessStatus,'not_supported','Existing Nothing 4b wireless negative state missing');
+  // Wave 18: verify all four added models and SKU-specific charging/package facts in public deployment.
+  assert.ok(live.some(p=>p.id==='fcnt-arrows-we2-m07'),'FCNT We2 M07 missing from public JSON');
+  assert.equal(live.find(p=>p.id==='fcnt-arrows-we2-m07')?.charging?.battery?.capacityMah,4500,'FCNT We2 M07 battery mismatch');
+  assert.equal(live.find(p=>p.id==='nothing-cmf-phone-2-pro')?.charging?.wirelessStatus,'not_supported','CMF Phone 2 Pro unsupported-wireless evidence missing');
+  assert.equal(live.find(p=>p.id==='nothing-cmf-phone-2-pro')?.charging?.wiredMaxW,33,'CMF Phone 2 Pro 33W missing');
+  assert.equal(live.find(p=>p.id==='nothing-phone-3a-lite')?.charging?.wirelessStatus,'not_supported','Phone 3a Lite no-wireless evidence missing');
+  assert.equal(live.find(p=>p.id==='nothing-phone-3a-lite')?.included?.cable,'included','Phone 3a Lite Japan cable mismatch');
+  assert.equal(live.find(p=>p.id==='nothing-phone-3')?.charging?.wirelessMaxW,15,'Phone 3 15W wireless mismatch');
+  assert.equal(live.find(p=>p.id==='nothing-phone-3')?.included?.cable,'included','Phone 3 Japan A024 cable mismatch');
   assert.ok(Array.isArray(JSON.parse(data['data/accessories.json']).accessories),'Accessories JSON missing');
   console.log('HTTP PASS: '+count+' verified public phones, assets and latest records');
 }
