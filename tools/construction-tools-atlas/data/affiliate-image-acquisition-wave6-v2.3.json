@@ -1,0 +1,86 @@
+{
+  "schema": "cta-affiliate-image-acquisition-wave6-v2.3",
+  "version": "2026-10-31-affiliate-image-first-acquisition-1",
+  "policy": {
+    "queue_order": "curated source-feasibility work order, NOT empirical market ranking",
+    "no_guessed_search_volume": true,
+    "no_earnings_forecast": true,
+    "promotion_requires_download_hash_review_local_derivatives": true,
+    "no_hotlink": true,
+    "publication_state": "unchanged_pending_formal_image_promotion"
+  },
+  "source_versions": {
+    "public_image_inventory": "2026-09-16-q014-identity-closure-1",
+    "affiliate_offers": "2026-09-18-wave6l-affiliate-1",
+    "content_quality": "2026-09-16-q014-identity-closure-1",
+    "revenue_policy": "2026-09-19-revenue-priority-2"
+  },
+  "expected": {
+    "active_affiliate_mappings": 432,
+    "revenue_ready": 33,
+    "awaiting_source": 399,
+    "first_wave": 12,
+    "source_leads": 3
+  },
+  "first_wave_ids": [
+    "hammer_drill",
+    "tape_measure",
+    "torque_wrench",
+    "utility_knife",
+    "multimeter",
+    "laser_distance_meter",
+    "reciprocating_saw",
+    "nail_gun",
+    "pipe_wrench",
+    "wire_stripper",
+    "speed_square",
+    "screwdriver"
+  ],
+  "source_leads": [
+    {
+      "entry_id": "hammer_drill",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Hammer_drill-1.jpg",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Hammer_drill-1.jpg",
+      "author": "Shakespeare (English Wikipedia)",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "expected_sha1": "3076529a2af3514d64a784177f37c52eb3aed4a1",
+      "subject_note": "Corded hammer drill, visibly depicted in Commons photo; still requires verified binary and subject-quality audit.",
+      "source_filename": "source.jpg",
+      "attribution": "Shakespeare (English Wikipedia) / Wikimedia Commons, CC BY-SA 3.0",
+      "source_review": "commons_metadata_checked",
+      "binary_review": "pending_download_sha1_webp_quality_review",
+      "promotion_allowed": false
+    },
+    {
+      "entry_id": "tape_measure",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Centroinstrument_measuring_tape.JPG",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Centroinstrument_measuring_tape.JPG",
+      "author": "Dmitry G",
+      "license": "Public Domain (PD-self)",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-self",
+      "expected_sha1": "dd3e0b24aa589afee0c7986949e18645dd896d0b",
+      "subject_note": "Retractable measuring tape, subject metadata confirmed; full-source visual review and binary hash audit still pending.",
+      "source_filename": "source.jpg",
+      "attribution": "Dmitry G / Wikimedia Commons, Public Domain (PD-self)",
+      "source_review": "commons_metadata_checked",
+      "binary_review": "pending_download_sha1_webp_quality_review",
+      "promotion_allowed": false
+    },
+    {
+      "entry_id": "torque_wrench",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Torque_Wrench_Collection.jpg",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Torque_Wrench_Collection.jpg",
+      "author": "Donghao Zhang",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "expected_sha1": "bcc55dc1f189883c8e39784e28de4216ba3422c7",
+      "subject_note": "Torque wrench collection with multiple heads; source visual confirmation and derivative quality audit still pending.",
+      "source_filename": "source.jpg",
+      "attribution": "Donghao Zhang / Wikimedia Commons, CC BY-SA 4.0",
+      "source_review": "commons_metadata_checked",
+      "binary_review": "pending_download_sha1_webp_quality_review",
+      "promotion_allowed": false
+    }
+  ]
+}
