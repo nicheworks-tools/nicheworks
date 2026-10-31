@@ -106,7 +106,7 @@
       <section><h2>Adjusted image</h2><pre id="qa-adjusted-result">No result yet.</pre></section>
     </div>
     <p id="qa-delta" class="muted">Run baseline and adjusted OCR on the same photo and reference to see a comparison.</p>
-    <p class="micro muted">CER = character edit distance / transcribed characters, after NFKC, case and whitespace normalization. Ingredient recall/precision require exact spelling (no automatic OCR correction), and preserve repeated ingredients as separate occurrences. Lower CER and higher exact recall are better. These metrics are for the selected photo only, not a universal OCR accuracy claim.</p>
+    <p class="micro muted">CER = character edit distance / transcribed ingredient characters after NFKC, case, whitespace and ingredient-delimiter normalization (commas and line breaks compare equivalently; numeric locant commas remain part of names). Ingredient recall/precision require exact spelling (no automatic OCR correction), and preserve repeated ingredients as separate occurrences. Lower CER and higher exact recall are better. These metrics are for the selected photo only, not a universal OCR accuracy claim.</p>
     <label for="qa-recognized">Review the most recently recognized ingredients (read-only)</label>
     <textarea id="qa-recognized" readonly></textarea>
     <img id="qa-preview" alt="Actual image prepared for the last OCR run" hidden>
