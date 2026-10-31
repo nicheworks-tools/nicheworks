@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self'; img-src 'self' data:; font-src 'self' data:; object-src 'none'; base-uri 'none'">
+  <title>購入済みProの復元 | NicheWorks</title>
+  <meta name="description" content="NicheWorksの購入済みPro利用権を秘密の復元コードで別端末に復元します。">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="canonical" href="https://nicheworks.app/billing/restore.html">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.ico">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 20px; font: 16px/1.6 system-ui, -apple-system, sans-serif; background: #f6f7fa; color: #142033; }
+    main { max-width: 680px; margin: 30px auto; padding: clamp(18px, 4vw, 32px); background: white; border: 1px solid #d3d7df; border-radius: 16px; }
+    h1 { margin: 0 0 8px; font-size: clamp(1.35rem, 4vw, 1.9rem); }
+    .muted { color: #4b5563; }
+    label { display: block; font-weight: 600; margin: 14px 0 6px; }
+    input, select { display: block; width: 100%; padding: 12px; font: inherit; border: 1px solid #8290a5; border-radius: 9px; background: white; color: #142033; }
+    button, a.action { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 16px; border-radius: 10px; font: inherit; text-decoration: none; cursor: pointer; }
+    button { background: #1b416e; color: white; border: 1px solid #1b416e; margin-top: 16px; }
+    button:disabled { opacity: .6; cursor: wait; }
+    a.action { background: #f1f4f8; color: #1b416e; border: 1px solid #9ea9bc; }
+    input:focus-visible, select:focus-visible, button:focus-visible, a:focus-visible { outline: 3px solid #2563eb; outline-offset: 2px; }
+    #state { margin-top: 15px; min-height: 1.5em; overflow-wrap: anywhere; }
+    .notice { margin-top: 20px; padding: 12px; border-radius: 10px; background: #f1f4f8; }
+    .en { font-size: .93rem; }
+    .actions { margin-top: 14px; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>購入済みProの復元</h1>
+  <p class="muted en">Restore an existing NicheWorks Pro purchase on this device.</p>
+  <p>購入時に保存した<strong>秘密の復元コード</strong>を入力してください。新しい購入や請求は発生しません。</p>
+  <p class="muted en">Enter the confidential recovery code you saved after checkout. This does not create a new purchase or charge.</p>
+  <form id="recoveryForm" autocomplete="off">
+    <label for="product">対象商品 / Product</label>
+    <select id="product" required>
+      <option value="csv_tidy.pro_v1">CSV Tidy Pro</option>
+      <option value="reconcile.pro_v1">NicheWorks Reconcile Pro</option>
+      <option value="okj.toolkit_pro">Old Kanji Toolkit Pro</option>
+    </select>
+    <label for="code">秘密の復元コード / Confidential recovery code</label>
+    <input id="code" type="password" required autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="text" maxlength="512" placeholder="cs_test_… / cs_live_…">
+    <button id="restoreButton" type="submit">購入権利を確認して復元 / Verify &amp; restore</button>
+  </form>
+  <p id="state" role="status" aria-live="polite"></p>
+  <div class="actions" id="returnActions" hidden>
+    <a id="returnLink" class="action" href="/tools/csv-tidy/">ツールへ戻る / Return to tool</a>
+  </div>
+  <div class="notice">
+    <p>復元コードはパスワードと同様に扱ってください。他人へ送らないでください。確認先はNicheWorksのサーバーのみです。</p>
+    <p class="en">Treat this code like a password. Anyone who has it may gain the same product access. Verification uses NicheWorks' first-party server only.</p>
+    <p>コードを失い、元の端末にもアクセスできない場合、自動メール復元は現在利用できません。Stripeの領収書を保管し、サポートへお問い合わせください。</p>
+  </div>
+</main>
+<script src="/assets/nw-pro-entitlement.js"></script>
+<script>
+  (() => {
+    'use strict';
+    const destinations = {
+      'csv_tidy.pro_v1': '/tools/csv-tidy/',
+      'reconcile.pro_v1': '/tools/reconcile/',
+      'okj.toolkit_pro': '/tools/old-kanji-reference/'
+    };
+    const form = document.getElementById('recoveryForm');
+    const product = document.getElementById('product');
+    const code = document.getElementById('code');
+    const state = document.getElementById('state');
+    const button = document.getElementById('restoreButton');
+    const actions = document.getElementById('returnActions');
+    const returnLink = document.getElementById('returnLink');
+    const requested = new URLSearchParams(location.search).get('product_id');
+    if (Object.hasOwn(destinations, requested)) product.value = requested;
+    // A recovery code is NEVER accepted from URL query parameters.
+    try { if (location.search) history.replaceState(null, '', location.pathname); } catch {}
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      actions.hidden = true;
+      const productId = product.value;
+      const sessionId = code.value.trim();
+      if (!Object.hasOwn(destinations, productId) ||
+          !/^cs_(test|live)_[A-Za-z0-9]+$/.test(sessionId)) {
+        state.textContent = 'コードの形式を確認してください。/ Check the recovery code format.';
+        return;
+      }
+      if (!window.NicheWorksProEntitlement ||
+          typeof window.NicheWorksProEntitlement.activateFromSession !== 'function') {
+        state.textContent = '確認サービスを利用できません。/ Verification is unavailable.';
+        return;
+      }
+      button.disabled = true;
+      state.textContent = 'サーバーで確認しています… / Verifying with server…';
+      let result;
+      try {
+        result = await window.NicheWorksProEntitlement.activateFromSession({ productId, sessionId });
+      } catch {
+        result = null;
+      } finally {
+        button.disabled = false;
+      }
+      const features = new Set(Array.isArray(result?.features) ? result.features : []);
+      const completeCsvAccess = productId !== 'csv_tidy.pro_v1' ||
+        ['csvTidy.savedPresets', 'csvTidy.batchApply', 'csvTidy.batchReport'].every(name => features.has(name));
+      if (result?.source === 'server' && result?.active === true &&
+          result?.productId === productId && completeCsvAccess) {
+        state.textContent = '復元に成功しました。購入済みの機能をこの端末で利用できます。/ Restored. Paid features are available on this device.';
+        code.value = '';
+        returnLink.href = destinations[productId];
+        actions.hidden = false;
+      } else {
+        // Do not reveal any checkout or internal record identifiers on failure.
+        state.textContent = '権利を確認できませんでした。商品・コードを確認してください。/ Purchase not verified. Check the product and code.';
+      }
+    });
+  })();
+</script>
+</body>
+</html>

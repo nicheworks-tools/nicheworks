@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Billing recovery — CI-only Chrome acceptance</title>
+  <style>body{margin:0;font:14px/1.4 system-ui}iframe{display:block;width:1440px;height:960px;border:0}pre{white-space:pre-wrap;padding:16px}</style>
+</head>
+<body data-test-result="RUNNING">
+  <iframe id="page" title="Billing recovery QA"></iframe>
+  <pre id="results" data-test-result="RUNNING">RUNNING</pre>
+  <script>(() => {
+  'use strict';
+  const tests = [];
+  const frame = document.getElementById('page');
+  const KEY='nicheworks:billing:session:csv_tidy.pro_v1';
+  const secret='cs_test_QAFIXTURE';
+  const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+  const pass=(name,ok,detail='')=>tests.push({name,ok:!!ok,detail:String(detail)});
+  async function until(predicate,limit=7000){
+    const start=Date.now();
+    while(Date.now()-start<limit){
+      if(predicate())return true;
+      await sleep(75);
+    }
+    return false;
+  }
+  let counter=0;
+  async function open(path){
+    return new Promise((resolve,reject)=>{
+      let done=false;
+      const timeout=setTimeout(()=>{
+        if(!done){done=true;reject(new Error('frame_timeout:'+path));}
+      },10000);
+      frame.addEventListener('load',()=>{
+        if(done)return;
+        done=true;clearTimeout(timeout);
+        resolve(frame.contentWindow);
+      },{once:true});
+      const separator=path.includes('?')?'&':'?';
+      frame.src=path+separator+'qa='+String(++counter);
+    });
+  }
+  function setCode(doc,value){
+    const el=doc.getElementById('code');
+    el.value=value;
+    doc.getElementById('recoveryForm').dispatchEvent(
+      new doc.defaultView.Event('submit',{bubbles:true,cancelable:true}));
+  }
+  async function run(){
+    localStorage.removeItem(KEY);
+    let w=await open('../success.html?session_id=cs_test_NOTVALID&product_id=csv_tidy.pro_v1&return_path=%2Ftools%2Fcsv-tidy%2F');
+    const bad=w.document;
+    pass('success page does not load Google Analytics with bearer-like session token',
+      !bad.querySelector('script[src*="googletagmanager"]') &&
+      !bad.documentElement.innerHTML.includes('G-57QT78M3JB'));
+    pass('success page scrubs session and entire sensitive query immediately',
+      w.location.search==='');
+    pass('unverified checkout does not show secret or backup panel',
+      await until(()=>bad.getElementById('statusTitle').textContent.includes('Could not verify')||
+        bad.getElementById('statusTitle').textContent.includes('pending')) &&
+      bad.getElementById('recoveryBox').hidden &&
+      !bad.getElementById('recoveryCode').value);
+    pass('failed checkout does not persist a purchased entitlement', !localStorage.getItem(KEY));
+
+    w=await open('../success.html?session_id='+secret+'&product_id=csv_tidy.pro_v1&return_path=%2Ftools%2Fcsv-tidy%2F');
+    const good=w.document;
+    pass('server-confirmed success shows a recoverable secret only after verification',
+      await until(()=>!good.getElementById('recoveryBox').hidden) &&
+      good.getElementById('recoveryCode').value===secret &&
+      good.getElementById('recoveryCode').type==='password');
+    pass('verified success page still has no session token in its URL',
+      w.location.search==='' && !w.location.href.includes(secret));
+    pass('verified secret is not interpolated into visible text or links',
+      !good.body.textContent.includes(secret) &&
+      ![...good.querySelectorAll('a')].some(a=>a.href.includes(secret)));
+    pass('verified session is persisted locally for future page loads',
+      localStorage.getItem(KEY)===secret);
+
+    // Simulate a second device by resetting all browser-side product state.
+    localStorage.removeItem(KEY);
+    w=await open('../restore.html?product_id=csv_tidy.pro_v1');
+    const restore=w.document;
+    pass('restore screen has no analytics and accepts no secret in query',
+      !restore.documentElement.innerHTML.includes('googletagmanager') &&
+      w.location.search==='' &&
+      restore.getElementById('code').type==='password');
+    setCode(restore,'cs_test_NOTVALID');
+    pass('fake valid-format key is rejected with no stored entitlement',
+      await until(()=>restore.getElementById('state').textContent.includes('not verified')) &&
+      !localStorage.getItem(KEY) &&
+      restore.getElementById('returnActions').hidden);
+
+    setCode(restore,'not_a_session');
+    pass('invalid format does not invoke entitlement or unlock',
+      await until(()=>restore.getElementById('state').textContent.includes('format')) &&
+      !localStorage.getItem(KEY));
+
+    restore.getElementById('product').value='reconcile.pro_v1';
+    setCode(restore,secret);
+    pass('token from another product cannot restore wrong product',
+      await until(()=>restore.getElementById('state').textContent.includes('not verified')) &&
+      !localStorage.getItem('nicheworks:billing:session:reconcile.pro_v1'));
+
+    restore.getElementById('product').value='csv_tidy.pro_v1';
+    setCode(restore,secret);
+    pass('verified key restores access onto a fresh browser state',
+      await until(()=>!restore.getElementById('returnActions').hidden) &&
+      localStorage.getItem(KEY)===secret &&
+      restore.getElementById('code').value==='' &&
+      restore.getElementById('returnLink').getAttribute('href')==='/tools/csv-tidy/');
+
+    w=await open('../../tools/csv-tidy/index.html');
+    pass('restored entitlement unlocks actual CSV Tidy Pro UI',
+      await until(()=>!!w.document.getElementById('csvTidyProPanel')));
+    pass('Pro module retains the server-verified feature gate',
+      typeof w.NicheWorksProEntitlement.refreshProState==='function');
+
+    localStorage.removeItem(KEY);
+    w=await open('../../tools/csv-tidy/index.html');
+    await sleep(350);
+    pass('no saved key means no Pro controls after a new load',
+      !w.document.getElementById('csvTidyProPanel'));
+  }
+  run().catch(err=>pass('browser recovery QA completed without exception',false,err?.stack||String(err)))
+    .finally(()=>{
+      const ok=tests.filter(x=>x.ok).length;
+      const result=ok===tests.length?'PASS':'FAIL';
+      document.body.dataset.testResult=result;
+      const out=document.getElementById('results');
+      out.dataset.testResult=result;
+      out.textContent=result+' ('+ok+'/'+tests.length+')\n'+
+        tests.map(x=>(x.ok?'PASS ':'FAIL ')+x.name+(x.detail?' — '+x.detail:'')).join('\n');
+    });
+})();</script>
+</body>
+</html>
