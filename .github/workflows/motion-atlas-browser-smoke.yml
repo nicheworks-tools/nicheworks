@@ -1,0 +1,30 @@
+name: Motion Atlas browser smoke
+
+on:
+  pull_request:
+    paths:
+      - 'tools/motion-atlas/**'
+      - '.github/workflows/motion-atlas-browser-smoke.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'tools/motion-atlas/**'
+      - '.github/workflows/motion-atlas-browser-smoke.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  chromium-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check browser availability
+        run: command -v google-chrome || command -v google-chrome-stable || command -v chromium
+      - name: Exercise Motion Atlas EN/JA desktop/mobile
+        run: node tools/motion-atlas/tests/browser-smoke.mjs
