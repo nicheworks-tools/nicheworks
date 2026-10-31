@@ -20,18 +20,18 @@
   "sources": {
     "publication_inventory_version": "2026-09-16-q014-identity-closure-1",
     "publication_id_sha256": "9c82f042e92a167cabcb46e80ad1e6b77566f594d36932ff42c352e875aa8177",
-    "image_registry_version": "2026-10-31-reviewed-image-wave6-two-1",
+    "image_registry_version": "2026-10-31-reviewed-image-wave7-three-1",
     "image_exception_ledger_version": "2026-09-18-applicability-wave17-final"
   },
   "summary": {
     "public_entries": 870,
-    "formal_image_entries": 44,
-    "missing_formal_image_entries": 779,
+    "formal_image_entries": 47,
+    "missing_formal_image_entries": 776,
     "not_required_entries": 47,
     "unobtainable_entries": 0,
     "classified_entries": 870,
-    "formal_coverage_percent": 5.0575,
-    "registry_items_total": 44,
+    "formal_coverage_percent": 5.4023,
+    "registry_items_total": 47,
     "formal_images_inherited_via_redirect": 6,
     "formal_images_outside_public": 0,
     "image_exceptions_outside_public": 0,
@@ -46,20 +46,20 @@
       "applicability_reviewed": 870,
       "required": 823,
       "on_hold": 0,
-      "final_dispositions": 91,
-      "unresolved": 779,
+      "final_dispositions": 94,
+      "unresolved": 776,
       "by_stage": {
         "unreviewed": 0,
         "not_required": 47,
-        "awaiting_source": 779,
+        "awaiting_source": 776,
         "candidate": 0,
         "provenance_verified": 0,
         "subject_verified": 0,
         "verified": 0,
-        "promoted": 44
+        "promoted": 47
       }
     },
-    "evidence_sha256": "218985cfc4e9d5a51531cae0331bbe38b5cf5f7a057995b2f81b982848407efb",
+    "evidence_sha256": "30eef18ea13aa433fd45542d6d5a8dd8eb11d39509fc33d93b97f3f7d9ef09c2",
     "rows": [
       {
         "id": "access_door",
@@ -2612,15 +2612,15 @@
       {
         "id": "multimeter",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "A multimeter is a distinctive electrical measuring instrument with display, controls, and test leads; a subject-matched photograph is appropriate.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Promoted only after direct visual review, SHA-1 match, retained source JPEG, distinct local primary and thumbnail WebP derivatives.",
+        "candidate_id": "wave6:multimeter",
+        "source_entry_id": "multimeter",
+        "attachment": "direct"
       },
       {
         "id": "nail_gun",
@@ -10217,15 +10217,15 @@
       {
         "id": "screwdriver",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "A screwdriver is a physical hand tool with a distinctive shaft, tip, and handle; a reviewed photograph is appropriate.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Promoted only after direct visual review, SHA-1 match, retained source JPEG, distinct local primary and thumbnail WebP derivatives.",
+        "candidate_id": "wave6:screwdriver",
+        "source_entry_id": "screwdriver",
+        "attachment": "direct"
       },
       {
         "id": "seal_tape",
@@ -11049,15 +11049,15 @@
       {
         "id": "utility_knife",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "A utility knife is a physical cutting hand tool with a recognizable retractable/replaceable blade form; a reviewed photograph is appropriate.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Promoted only after direct visual review, SHA-1 match, retained source JPEG, distinct local primary and thumbnail WebP derivatives.",
+        "candidate_id": "wave6:utility_knife",
+        "source_entry_id": "utility_knife",
+        "attachment": "direct"
       },
       {
         "id": "valley_flashing",
@@ -11523,17 +11523,17 @@
     },
     "tool": {
       "public_entries": 333,
-      "formal_image": 34,
-      "missing_formal_image": 274,
+      "formal_image": 37,
+      "missing_formal_image": 271,
       "not_required": 25,
       "unobtainable": 0
     }
   },
   "hashes": {
     "public_id_sha256": "9c82f042e92a167cabcb46e80ad1e6b77566f594d36932ff42c352e875aa8177",
-    "public_formal_image_id_sha256": "e908f227919ed1511c7975cc69e34e92dcde2a833d805051e1d7310f4584d1b3",
-    "public_missing_formal_image_id_sha256": "732cfdb341e1ad9304521de7961e509947873b71444e76d2954eff8f8153a2b5",
-    "public_image_classification_sha256": "20ed46204439ef006125f9ccd2e130883ed1f3f0fee24abd6fe523f2cc7ad514"
+    "public_formal_image_id_sha256": "b9d2114c02ebe99a9cea6fb6255d0259c7a8d9597e126c851c916c8b95647e5c",
+    "public_missing_formal_image_id_sha256": "7a8f4cd128dd9a05b8803b1bc5d7c1407c7ca83c914d5efa97197ef84b474255",
+    "public_image_classification_sha256": "a3b404471cf80d8defded7c0ddc29926df37d6b0133dd1e435eb4fb584e000e3"
   },
   "inherited_formal_images": [
     {

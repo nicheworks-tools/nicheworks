@@ -1,6 +1,6 @@
 {
   "schema": "cta-affiliate-image-acquisition-wave6-v2.3",
-  "version": "2026-10-31-reviewed-image-wave6-two-1",
+  "version": "2026-10-31-reviewed-image-wave7-three-1",
   "policy": {
     "queue_order": "curated source-feasibility work order, NOT empirical market ranking",
     "no_guessed_search_volume": true,
@@ -17,9 +17,9 @@
   },
   "expected": {
     "active_affiliate_mappings": 432,
-    "revenue_ready": 35,
-    "awaiting_source": 397,
-    "first_wave": 10,
+    "revenue_ready": 38,
+    "awaiting_source": 394,
+    "first_wave": 7,
     "source_leads": 3
   },
   "first_wave_ids": [
@@ -98,6 +98,21 @@
       "entry_id": "torque_wrench",
       "disposition": "rejected_subject_focus",
       "review": "Image depicts a wall-mounted mixed-tool/wrench collection; inadequate focal representation of a single torque wrench. Keep canonical awaiting_source; find a new photo."
+    },
+    {
+      "entry_id": "utility_knife",
+      "disposition": "promoted",
+      "review": "Wave7 source and WebP originals directly inspected, exact Commons SHA-1 matched, licensed attribution retained, complete formal lifecycle completed: Inspected original 1800x1350 JPEG and primary 960x720 WebP: yellow and black retractable segmented-blade construction utility knife shown clearly with spare break-off blade; correct canonical subject."
+    },
+    {
+      "entry_id": "screwdriver",
+      "disposition": "promoted",
+      "review": "Wave7 source and WebP originals directly inspected, exact Commons SHA-1 matched, licensed attribution retained, complete formal lifecycle completed: Inspected original 2736x3648 JPEG and primary 540x720 WebP: one full-length manual cross-head screwdriver, clear handle, shaft and tip, distinct from powered drivers; correct canonical subject."
+    },
+    {
+      "entry_id": "multimeter",
+      "disposition": "promoted",
+      "review": "Wave7 source and WebP originals directly inspected, exact Commons SHA-1 matched, licensed attribution retained, complete formal lifecycle completed: Inspected original 1840x2453 JPEG and primary 540x720 WebP: digital multimeter with screen, selector knob, electrical measurement ranges and lead ports; single identifiable multimeter."
     }
   ]
 }

@@ -12,15 +12,15 @@
     "revenue_priority_policy_version": "2026-09-19-revenue-priority-2",
     "public_content_quality_version": "2026-09-16-q014-identity-closure-1",
     "public_image_inventory_version": "2026-09-16-q014-identity-closure-1",
-    "image_registry_version": "2026-10-31-reviewed-image-wave6-two-1",
+    "image_registry_version": "2026-10-31-reviewed-image-wave7-three-1",
     "affiliate_offers_version": "2026-09-18-wave6l-affiliate-1"
   },
   "summary": {
     "public_runtime_entries": 870,
-    "published_static_detail_pages": 35,
-    "with_promoted_image": 34,
+    "published_static_detail_pages": 38,
+    "with_promoted_image": 37,
     "image_not_required": 1,
-    "with_active_affiliate_mapping": 35
+    "with_active_affiliate_mapping": 38
   },
   "entries": [
     {
@@ -156,6 +156,12 @@
       "affiliate": "active"
     },
     {
+      "id": "multimeter",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/multimeter/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
       "id": "notched_trowel",
       "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/notched_trowel/",
       "image": "promoted",
@@ -228,8 +234,20 @@
       "affiliate": "active"
     },
     {
+      "id": "screwdriver",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/screwdriver/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
       "id": "tape_measure",
       "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/tape_measure/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "utility_knife",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/utility_knife/",
       "image": "promoted",
       "affiliate": "active"
     }
