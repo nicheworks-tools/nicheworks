@@ -4,6 +4,7 @@ on:
     paths:
       - 'tools/manual-finder/scripts/xiaomi-jp-model-guide-probe.mjs'
       - 'tools/manual-finder/scripts/xiaomi-jp-pdfviewer-asset-probe.mjs'
+      - 'tools/manual-finder/scripts/xiaomi-jp-pdfviewer-dependencies-probe.mjs'
       - '.github/workflows/manualfinder-xiaomi-jp-coverage-pass.yml'
   workflow_dispatch:
 permissions:
@@ -19,6 +20,7 @@ jobs:
           node-version: '22'
       - run: node tools/manual-finder/scripts/xiaomi-jp-model-guide-probe.mjs
       - run: node tools/manual-finder/scripts/xiaomi-jp-pdfviewer-asset-probe.mjs
+      - run: node tools/manual-finder/scripts/xiaomi-jp-pdfviewer-dependencies-probe.mjs
       - if: always()
         uses: actions/upload-artifact@v4
         with:
