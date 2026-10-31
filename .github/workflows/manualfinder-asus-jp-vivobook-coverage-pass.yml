@@ -1,29 +1,47 @@
-name: ManualFinder ASUS JP Vivobook manufacturer-source probe
+name: ManualFinder ASUS JP Vivobook 35-model Coverage-Pass
 on:
   pull_request:
     paths:
-      - 'tools/manual-finder/scripts/asus-jp-vivobook-probe.mjs'
-      - 'tools/manual-finder/scripts/asus-jp-vivobook-api-probe.mjs'
-      - 'tools/manual-finder/scripts/asus-jp-vivobook-manual-probe.mjs'
+      - 'tools/manual-finder/coverage-passes/asus/**'
+      - 'tools/manual-finder/scripts/asus-jp-vivobook-*.mjs'
+      - 'tools/manual-finder/tests/asus-jp-vivobook-*.test.mjs'
+      - 'tools/manual-finder/data/manuals.coverage-pass.asus-jp-vivobook.js'
+      - 'tools/manual-finder/data/manuals.coverage-passes.js'
+      - 'tools/manual-finder/COVERAGE.md'
+      - 'tools/manual-finder/SPEC.md'
       - '.github/workflows/manualfinder-asus-jp-vivobook-coverage-pass.yml'
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
-  asus-source-probe:
+  asus-vivobook-coverage-pass:
     runs-on: ubuntu-latest
-    timeout-minutes: 14
+    timeout-minutes: 18
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node tools/manual-finder/scripts/asus-jp-vivobook-probe.mjs
-      - run: node tools/manual-finder/scripts/asus-jp-vivobook-api-probe.mjs
-      - run: node tools/manual-finder/scripts/asus-jp-vivobook-manual-probe.mjs
+      - name: Fail-closed 35-model source and model-manual unit tests
+        run: |
+          node tools/manual-finder/tests/coverage-pass-pipeline.test.mjs
+          node tools/manual-finder/tests/asus-jp-vivobook-review.test.mjs
+          if test -f tools/manual-finder/tests/asus-jp-vivobook-publication.test.mjs; then
+            node tools/manual-finder/tests/asus-jp-vivobook-publication.test.mjs
+          fi
+      - name: Live official full 35-model ASUS manual index review
+        run: |
+          mkdir -p manualfinder-asus-review
+          node tools/manual-finder/scripts/asus-jp-vivobook-review.mjs --out manualfinder-asus-review/review.json
+      - name: Compare published records to fresh manufacturer review
+        if: success()
+        run: |
+          if test -f tools/manual-finder/scripts/asus-jp-vivobook-reconcile.mjs; then
+            node tools/manual-finder/scripts/asus-jp-vivobook-reconcile.mjs --live manualfinder-asus-review/review.json
+          fi
       - if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: manualfinder-asus-jp-vivobook-source-probe
-          path: manualfinder-asus-probe/*
+          name: manualfinder-asus-vivobook-35-official-full-review
+          path: manualfinder-asus-review/*.json
           if-no-files-found: warn
