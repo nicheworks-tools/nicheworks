@@ -51,7 +51,7 @@ const details = cell.children[0];
 assert.equal(details.tag, 'details');
 assert.equal(details.children[0].tag, 'summary');
 assert.match(details.children[0].textContent, /Source-backed/);
-assert.equal(details.children[1].textContent, verified.note);
+assert.equal(details.children[1].textContent, verified.note_short);
 assert.equal(details.children[2].children[0].href, verified.note_sources[0]);
 assert.equal(details.children[2].children[0].rel, 'noopener noreferrer');
 const previousLength = cell.children.length;
