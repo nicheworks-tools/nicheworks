@@ -152,6 +152,14 @@ Phone QuickCheck v1 is complete under the maintained contract:
 
 Future work is maintenance: new models, source changes, corrections, and evidence upgrades. It is not part of the v1 closure backlog.
 
+## Post-v1 maintenance Wave 12 — 2026-10-31
+
+Added a second new Japan-market manufacturer, **Nothing**, with **Phone (4b)** (Japan sale 2026-10-27). Dataset **207 → 208 phones**, **10 → 11 manufacturers**, foldables unchanged at 36.
+
+The maintained Japan Rakuten A009P [specification](https://network.mobile.rakuten.co.jp/product/smartphone/phone-4b/spec/) provides exact 164.4 × 78.22 × 8.65 mm / 210g, 6.77-inch display, 5,200mAh, USB Type-C, IPX4/IP6X, a Type-C cable in box, and no power adapter; the [Japan release notice](https://corp.mobile.rakuten.co.jp/news/press/2026/1020_01/) establishes market and launch. Official Nothing [Japan catalog](https://jp.nothing.tech/products/phone-4b) confirms the 5,200mAh capacity and official [support](https://support.nothing.tech/hc/ja/categories/43042083804945-25131) confirms the Type-C cable/in-box state.
+
+Caution: the Nothing global laboratory dimensions are rounded to 164.4 × 78.2 × 8.6mm, but the maintained Japan carrier SKU A009P specification is more precise; use JP record values without averaging. The Japan carrier **explicitly says wireless charging unsupported**, but this tool currently has no `wirelessStatus=not_supported` schema: null is preserved rather than falsely presenting a wireless standard or wattage. Wired fast charging is confirmed in general, but there is no sufficiently exact source for a device-side maximum or adapter recommendation; therefore wattage remains unknown. Nothing recommends a PPS charger but that is not promoted to explicit device PPS support without exact evidence. This is a schema/display follow-up, not an excuse to fabricate a positive charging claim.
+
 ## Post-v1 maintenance Wave 11 — 2026-10-31
 
 Expanded the verified Japan-market manufacturer set by **FCNT**, and added **arrows Alpha2 M10** (SIM-free). Dataset **206 → 207 models / 9 → 10 manufacturers**, 36 foldables retained. Official FCNT [specification](https://www.fcnt.com/spec/m10-sim-free/) and [Japan SIM-free launch notice](https://www.fcnt.com/news/35527/) establish 155 × 72 × 8.6 mm, approximately 187 g, 6.4-inch display, 5,370 mAh, USB-C / USB Power Delivery 3.0, IPX6/IPX8/IPX9 + IP6X, and the 2026-08-27 release. The exhaustive [included items](https://www.fcnt.com/spec/m10-sim-free/) section lists only the quick-start guide, supporting not-included cable and adapter for the SIM-free variant. The [90W compatible adapter notice](https://www.fcnt.com/accessory/charger/a02/) and [product page](https://www.fcnt.com/product/arrows/alpha2/) support a **90W recommended adapter class**, not an inferred handset maximum input; therefore `wiredMaxW = null`. PPS and wireless remain unknown without primary device-specific support documentation.

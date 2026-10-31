@@ -10878,6 +10878,58 @@
         "verifiedAt": "2026-10-31"
       },
       "affiliateKeys": []
+    },
+    {
+      "id": "nothing-phone-4b",
+      "manufacturer": "Nothing",
+      "model": "Phone (4b)",
+      "aliases": [
+        "Nothing Phone (4b)",
+        "Nothing Phone 4b",
+        "Phone 4b",
+        "フォン4b",
+        "A009P"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 164.4,
+        "widthMm": 78.22,
+        "depthMm": 8.65
+      },
+      "weightG": 210,
+      "displayInch": 6.77,
+      "waterRating": "IPX4 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5200,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://jp.nothing.tech/products/phone-4b"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-4b/spec/",
+        "manualUrl": "https://support.nothing.tech/hc/ja/categories/43042083804945-25131",
+        "releaseUrl": "https://corp.mobile.rakuten.co.jp/news/press/2026/1020_01/",
+        "chargingUrl": "https://support.nothing.tech/hc/en-us/articles/47859704876177-How-long-does-it-take-to-charge",
+        "waterUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-4b/spec/",
+        "packageUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-4b/spec/",
+        "verifiedAt": "2026-10-31"
+      },
+      "affiliateKeys": []
     }
   ]
 }
