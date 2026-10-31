@@ -391,3 +391,14 @@ Twelve *specific reviewed ingredients* receive verified primary public functions
 | Cinnamyl Alcohol | `fragrance` | FRAGRANCE |
 
 Exact source URLs are in `cosmetics-category-taxonomy.json` and checked by `check-cosmetics-source-verified-wave27.mjs`. Former raw category hints are retained and tested separately, including the prior unverified Cinnamyl Alcohol note. Runtime target: **544/599 = 90.82%** supported public-role identities, 55 incomplete.
+
+
+## Source-backed category wave 28 (2026-10-31)
+
+Eighteen more *individual reviewed identities* receive verified public roles from their exact COSMILE Europe function entries. This is not a conversion of the legacy `powder`, `polymer`, `wax`, `barrier lipid`, `conditioning polymer`, or `solubilizer` groups. Explicit `COLORANT → colorant` mapping is introduced to the maintained taxonomy because Kaolin and Magnesium Stearate each have a direct COSMILE COLORANT function. Group-level safety conclusions remain prohibited.
+
+Reviewed set: Polyisobutene (binding), PEG-60 Hydrogenated Castor Oil (emulsifying), Kaolin and Magnesium Stearate (colorant), Nylon-12, Microcrystalline Cellulose, Zinc Stearate and Ozokerite (viscosity controlling), Guar Hydroxypropyltrimonium Chloride, Ceramide NS and Glycosphingolipids (skin conditioning), Calcium Carbonate (buffering), Polyquaternium-37, Polymethyl Methacrylate, Polyacrylate-13 and Polyacrylamide (film forming), Soluble Collagen (humectant), Padimate O / Ethylhexyl Dimethyl PABA (UV filter).
+
+COSMILE's page for Ethylhexyl Dimethyl PABA explicitly identifies *Padimate O* as an alternative identity; the link is pinned to that exact entry rather than treating a similar chemical name as interchangeable. All 18 HTTPS URLs and source-function labels are pinned in `check-cosmetics-source-verified-wave28.mjs`.
+
+This wave targets **562 / 599 = 93.82%** runtime supported bilingual roles; **37** remain incomplete. Raw recognition and original category hints are frozen and audited separately.
