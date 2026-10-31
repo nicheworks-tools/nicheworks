@@ -3,7 +3,7 @@
   "maker": "Motorola",
   "scopeId": "jp-motobu-2026-official-phone-lineup",
   "scopeLabel": "Motorola Mobility Japan official fan-club product lineup: 12 explicitly listed smartphones (razr, edge, moto g), excluding the single moto pen accessory",
-  "status": "reviewing",
+  "status": "coverage-pass-complete",
   "asOf": "2026-10-31",
   "region": "JP",
   "language": "ja",
@@ -41,10 +41,10 @@
       "liveRunId": 41203984853,
       "artifactId": 13043940681
     },
-    "notes": "These 12 are one bounded manufacturer Japan currently listed phone lineup, not all historically sold Motorola devices. The corresponding support user guides may use standard no-space spelling (moto g37j, moto g06, moto g66j 5G) while the manufacturer lineup image alt uses spaced stylization; manufacturer official exact device title, explicit alternate manufacturer article and independently corroborated identity are required before accepting each. A general help.php?m=... URL is candidate discovery only."
+    "notes": "These 12 are one bounded manufacturer Japan currently listed phone lineup, not all historically sold Motorola devices. The corresponding support user guides may use standard no-space spelling (moto g37j, moto g06, moto g66j 5G) while the manufacturer lineup image alt uses spaced stylization; manufacturer official exact device title, explicit alternate manufacturer article and independently corroborated identity are required before accepting each. A general help.php?m=... URL is candidate discovery only. Live Motorola JP source 2026-10-31: 13 official H4 products, 12 smartphones + 1 accessory. Reviews of all 12 published manufacturer-controlled exact model user guides found 11 direct (10 exact English, 1 exact Japanese) and one held Japanese moto g37j: generic worldwide guide title is moto g37 (not exact) and the manufacturer Japan specific exact HTML user guide returned HTTP 403 in GitHub Actions. The JP documentation existing elsewhere does not justify claiming that the independently unverified deep guide is direct. Full 12 population preserved."
   },
   "review": {
-    "publicationGate": "blocked_until_12_exact_model_user_guide_verification",
+    "publicationGate": "full_manufacturer_population_reconciled_11_positive_1_held_not_published",
     "sourceStructure": "Manufacturer Japan H4 logo alt includes 12 phone names and one separately labelled moto pen accessory.",
     "discoveryChannels": [
       "manufacturer_jp_bounded_product_lineup",
@@ -53,7 +53,240 @@
       "official_jp_motorola_device_specific_support",
       "secondary_official_variant_identity"
     ],
-    "notes": "Candidate help.php with arbitrary name must never suffice. Accept a model only if actual final HTTPS manufacturer guide title and substantial user-guide content verify exact identity; for explicitly reviewed Japanese special variants, use manufacturer named device support article. Keep unresolved models held; require complete 12-way reconciliation."
+    "notes": "Candidate help.php with arbitrary name must never suffice. Accept a model only if actual final HTTPS manufacturer guide title and substantial user-guide content verify exact identity; for explicitly reviewed Japanese special variants, use manufacturer named device support article. Keep unresolved models held; require complete 12-way reconciliation.",
+    "liveReview": {
+      "workflowRunId": 41204514045,
+      "artifactId": 13044400838,
+      "sourcePhonePopulation": 12,
+      "direct": 11,
+      "shared": 0,
+      "support_only": 0,
+      "held": 1,
+      "verifiedDirectGuideLanguage": {
+        "english": 10,
+        "japanese": 1
+      },
+      "heldModel": "moto g 37 j",
+      "heldReason": "Motorola JP exact guide article found in manufacturer index/web, but returned HTTP 403 in live GitHub Actions; alternative global help page was moto g37, not exact moto g37j, and was positively rejected.",
+      "notes": "All direct links resolve to manufacturer-operated HTTPS model exact HTML operating manual indexes with substantial content. No generated URL accepted without final page verification. Held remains in locked universe, not public runtime."
+    },
+    "refreshPath": "Recheck moto g37j exact Japanese model user guide from manufacturer alternate support site and official help.motorola.com resources; publish separately once exact manufacturer manual URL and content verified; other Motorola historic devices outside this bounded lineup."
   },
-  "records": []
+  "records": [
+    {
+      "model": "motorola razr fold",
+      "state": "direct",
+      "manualUrl": "https://help.motorola.com/hc/5536/16/global/en-us/index.html?t=index",
+      "supportUrl": "https://help.motorola.com/hc/5536/16/global/en-us/index.html?t=index",
+      "evidenceUrls": [
+        "https://moto-bu.motorola.co.jp/products/",
+        "https://help.motorola.com/hc/5536/16/global/en-us/index.html?t=index"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_exact_model_English_HTML_operating_guide",
+      "attemptedDiscovery": [
+        "official_JP_product_lineup",
+        "manufacturer_help_Html_guide_candidate",
+        "official_final_guide_model_title_and_body"
+      ],
+      "reviewNote": "Manufacturer-controlled exact model HTML operational user guide verified over HTTPS with substantial model documentation; manufacturer product list model alias kept as source truth."
+    },
+    {
+      "model": "motorola razr 60 ultra",
+      "state": "direct",
+      "manualUrl": "https://help.motorola.com/hc/5520/16/global/en-us/index.html?t=index",
+      "supportUrl": "https://help.motorola.com/hc/5520/16/global/en-us/index.html?t=index",
+      "evidenceUrls": [
+        "https://moto-bu.motorola.co.jp/products/",
+        "https://help.motorola.com/hc/5520/16/global/en-us/index.html?t=index"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_exact_model_English_HTML_operating_guide",
+      "attemptedDiscovery": [
+        "official_JP_product_lineup",
+        "manufacturer_help_Html_guide_candidate",
+        "official_final_guide_model_title_and_body"
+      ],
+      "reviewNote": "Manufacturer-controlled exact model HTML operational user guide verified over HTTPS with substantial model documentation; manufacturer product list model alias kept as source truth."
+    },
+    {
+      "model": "motorola razr 60",
+      "state": "direct",
+      "manualUrl": "https://help.motorola.com/hc/5522/16/global/en-us/index.html?t=index",
+      "supportUrl": "https://help.motorola.com/hc/5522/16/global/en-us/index.html?t=index",
+      "evidenceUrls": [
+        "https://moto-bu.motorola.co.jp/products/",
+        "https://help.motorola.com/hc/5522/16/global/en-us/index.html?t=index"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_exact_model_English_HTML_operating_guide",
+      "attemptedDiscovery": [
+        "official_JP_product_lineup",
+        "manufacturer_help_Html_guide_candidate",
+        "official_final_guide_model_title_and_body"
+      ],
+      "reviewNote": "Manufacturer-controlled exact model HTML operational user guide verified over HTTPS with substantial model documentation; manufacturer product list model alias kept as source truth."
+    },
+    {
+      "model": "motorola razr 50 ultra",
+      "state": "direct",
+      "manualUrl": "https://help.motorola.com/hc/5512/16/global/en-us/index.html?t=index",
+      "supportUrl": "https://help.motorola.com/hc/5512/16/global/en-us/index.html?t=index",
+      "evidenceUrls": [
+        "https://moto-bu.motorola.co.jp/products/",
+        "https://help.motorola.com/hc/5512/16/global/en-us/index.html?t=index"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_exact_model_English_HTML_operating_guide",
+      "attemptedDiscovery": [
+        "official_JP_product_lineup",
+        "manufacturer_help_Html_guide_candidate",
+        "official_final_guide_model_title_and_body"
+      ],
+      "reviewNote": "Manufacturer-controlled exact model HTML operational user guide verified over HTTPS with substantial model documentation; manufacturer product list model alias kept as source truth."
+    },
+    {
+      "model": "motorola razr 50",
+      "state": "direct",
+      "manualUrl": "https://help.motorola.com/hc/5514/16/global/en-us/index.html?t=index",
+      "supportUrl": "https://help.motorola.com/hc/5514/16/global/en-us/index.html?t=index",
+      "evidenceUrls": [
+        "https://moto-bu.motorola.co.jp/products/",
+        "https://help.motorola.com/hc/5514/16/global/en-us/index.html?t=index"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_exact_model_English_HTML_operating_guide",
+      "attemptedDiscovery": [
+        "official_JP_product_lineup",
+        "manufacturer_help_Html_guide_candidate",
+        "official_final_guide_model_title_and_body"
+      ],
+      "reviewNote": "Manufacturer-controlled exact model HTML operational user guide verified over HTTPS with substantial model documentation; manufacturer product list model alias kept as source truth."
+    },
+    {
+      "model": "motorola edge 70 fusion",
+      "state": "direct",
+      "manualUrl": "https://help.motorola.com/hc/7172/17/global/en-us/index.html?t=index",
+      "supportUrl": "https://help.motorola.com/hc/7172/17/global/en-us/index.html?t=index",
+      "evidenceUrls": [
+        "https://moto-bu.motorola.co.jp/products/",
+        "https://help.motorola.com/hc/7172/17/global/en-us/index.html?t=index"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_exact_model_English_HTML_operating_guide",
+      "attemptedDiscovery": [
+        "official_JP_product_lineup",
+        "manufacturer_help_Html_guide_candidate",
+        "official_final_guide_model_title_and_body"
+      ],
+      "reviewNote": "Manufacturer-controlled exact model HTML operational user guide verified over HTTPS with substantial model documentation; manufacturer product list model alias kept as source truth."
+    },
+    {
+      "model": "motorola edge 60 pro",
+      "state": "direct",
+      "manualUrl": "https://help.motorola.com/hc/7164/17/global/en-us/index.html?t=index",
+      "supportUrl": "https://help.motorola.com/hc/7164/17/global/en-us/index.html?t=index",
+      "evidenceUrls": [
+        "https://moto-bu.motorola.co.jp/products/",
+        "https://help.motorola.com/hc/7164/17/global/en-us/index.html?t=index"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_exact_model_English_HTML_operating_guide",
+      "attemptedDiscovery": [
+        "official_JP_product_lineup",
+        "manufacturer_help_Html_guide_candidate",
+        "official_final_guide_model_title_and_body"
+      ],
+      "reviewNote": "Manufacturer-controlled exact model HTML operational user guide verified over HTTPS with substantial model documentation; manufacturer product list model alias kept as source truth."
+    },
+    {
+      "model": "motorola edge 60",
+      "state": "direct",
+      "manualUrl": "https://help.motorola.com/hc/7162/17/global/en-us/index.html?t=index",
+      "supportUrl": "https://help.motorola.com/hc/7162/17/global/en-us/index.html?t=index",
+      "evidenceUrls": [
+        "https://moto-bu.motorola.co.jp/products/",
+        "https://help.motorola.com/hc/7162/17/global/en-us/index.html?t=index"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_exact_model_English_HTML_operating_guide",
+      "attemptedDiscovery": [
+        "official_JP_product_lineup",
+        "manufacturer_help_Html_guide_candidate",
+        "official_final_guide_model_title_and_body"
+      ],
+      "reviewNote": "Manufacturer-controlled exact model HTML operational user guide verified over HTTPS with substantial model documentation; manufacturer product list model alias kept as source truth."
+    },
+    {
+      "model": "motorola edge 50 pro",
+      "state": "direct",
+      "manualUrl": "https://help.motorola.com/hc/7150/16/global/en-us/index.html?t=index",
+      "supportUrl": "https://help.motorola.com/hc/7150/16/global/en-us/index.html?t=index",
+      "evidenceUrls": [
+        "https://moto-bu.motorola.co.jp/products/",
+        "https://help.motorola.com/hc/7150/16/global/en-us/index.html?t=index"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_exact_model_English_HTML_operating_guide",
+      "attemptedDiscovery": [
+        "official_JP_product_lineup",
+        "manufacturer_help_Html_guide_candidate",
+        "official_final_guide_model_title_and_body"
+      ],
+      "reviewNote": "Manufacturer-controlled exact model HTML operational user guide verified over HTTPS with substantial model documentation; manufacturer product list model alias kept as source truth."
+    },
+    {
+      "model": "moto g 37 j",
+      "state": "held",
+      "reason": "Official Japanese moto g37j HTML user guide article identified at Motorola JP support but HTTP 403 blocked live verification. Alternate global guide rendered 'moto g37', which is not exact moto g37j and must not be promoted or asserted as a shared manual.",
+      "evidenceUrls": [
+        "https://moto-bu.motorola.co.jp/products/",
+        "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192333/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_JP_product_lineup",
+        "manufacturer_global_help_index",
+        "manufacturer_JP_exact_device_guide_article",
+        "manufacturer_alternate_locale_support"
+      ],
+      "reviewNote": "Retained in full 12-model manufacturer population. Not silently dropped; do not infer g37 and g37j equivalence or manual existence from unverified HTTP response."
+    },
+    {
+      "model": "moto g 06",
+      "state": "direct",
+      "manualUrl": "https://help.motorola.com/hc/3606/15/global/en-us/index.html?t=index",
+      "supportUrl": "https://help.motorola.com/hc/3606/15/global/en-us/index.html?t=index",
+      "evidenceUrls": [
+        "https://moto-bu.motorola.co.jp/products/",
+        "https://help.motorola.com/hc/3606/15/global/en-us/index.html?t=index"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_exact_model_English_HTML_operating_guide",
+      "attemptedDiscovery": [
+        "official_JP_product_lineup",
+        "manufacturer_help_Html_guide_candidate",
+        "official_final_guide_model_title_and_body"
+      ],
+      "reviewNote": "Manufacturer-controlled exact model HTML operational user guide verified over HTTPS with substantial model documentation; manufacturer product list model alias kept as source truth."
+    },
+    {
+      "model": "moto g 66 j",
+      "state": "direct",
+      "manualUrl": "https://help.motorola.com/hc/3658/15/global/ja-jp/index.html?t=index",
+      "supportUrl": "https://help.motorola.com/hc/3658/15/global/ja-jp/index.html?t=index",
+      "evidenceUrls": [
+        "https://moto-bu.motorola.co.jp/products/",
+        "https://help.motorola.com/hc/3658/15/global/ja-jp/index.html?t=index"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "manufacturer_exact_model_Japanese_HTML_operating_guide",
+      "attemptedDiscovery": [
+        "official_JP_product_lineup",
+        "manufacturer_help_Html_guide_candidate",
+        "official_final_guide_model_title_and_body"
+      ],
+      "reviewNote": "Manufacturer-owned Japanese HTML user guide, exact moto g66j 5G variant positively verified, official regional product alias linked to Japan lineup."
+    }
+  ]
 }
