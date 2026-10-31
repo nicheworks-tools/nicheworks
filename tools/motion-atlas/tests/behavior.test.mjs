@@ -69,5 +69,15 @@ assert.match(en, /data-pro-active="true"/);
 assert.match(ja, /data-pro-active="true"/);
 assert.doesNotMatch(en, /buy\.stripe\.com/);
 assert.doesNotMatch(ja, /buy\.stripe\.com/);
+for (const [language, html] of [["en", en], ["ja", ja]]) {
+  assert.match(html, /\/assets\/nw-tool-analytics\.js/, language + ": existing event helper not loaded");
+  assert.match(html, /\/assets\/nw-tool-analytics-pilot\.js/, language + ": missing search/compare/detail event wiring");
+}
+assert.match(source, /function trackUsage\(name\)\{ window\.NWToolAnalytics\?\.track\(name\); \}/);
+assert.match(source, /trackUsage\("tool_execute"\)/, "handoff action should be measurable");
+assert.match(source, /trackUsage\("result_shown"\)/, "handoff rendering should be measurable");
+assert.match(source, /trackUsage\("download_result"\)/, "file export should be measurable");
+assert.match(source, /trackUsage\("copy_result"\)/, "successful handoff copies should be measurable");
+assert.doesNotMatch(source, /gtag\(['"]event['"]/, "tool must use shared allowlisted event helper");
 
 console.log("Motion Atlas behavior-contract tests passed: 42 bilingual motions, demo wiring, free outputs, safety fallbacks.");
