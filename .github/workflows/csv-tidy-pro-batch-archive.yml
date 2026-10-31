@@ -1,0 +1,25 @@
+name: CSV Tidy Pro batch archive
+
+on:
+  pull_request:
+    paths:
+      - 'tools/csv-tidy/pro/**'
+      - 'tools/csv-tidy/tests/pro-batch-archive.mjs'
+      - '.github/workflows/csv-tidy-pro-batch-archive.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  zip:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify ZIP central directory, CRC and independent Python CSV reparse
+        run: node tools/csv-tidy/tests/pro-batch-archive.mjs
+      - name: Verify no generated changes
+        run: |
+          git diff --exit-code
+          test -z "$(git status --porcelain)"
