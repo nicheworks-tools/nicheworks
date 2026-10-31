@@ -1,0 +1,122 @@
+{
+  "schema": "cta-affiliate-image-acquisition-wave9-v2.3",
+  "version": "2026-10-31-wave9-five-pinned-reviewed-1",
+  "policy": {
+    "stage_mode": "Original downloaded JPEG sha1 must match immutable pinned SHA-1 and Commons MediaWiki API, independently checked; no automated release from intake",
+    "no_direct_promotion": true,
+    "no_runtime_hotlink": true,
+    "requires_manual_visual_review": true
+  },
+  "first_wave_ids": [
+    "laser_distance_meter",
+    "pipe_wrench",
+    "speed_square",
+    "nail_gun",
+    "reciprocating_saw"
+  ],
+  "source_leads": [
+    {
+      "entry_id": "laser_distance_meter",
+      "commons_filename": "Handheld laser distance meter.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Handheld_laser_distance_meter.jpg",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/9/91/Handheld_laser_distance_meter.jpg",
+      "source_filename": "source.jpg",
+      "author": "Krzysztof Maria Różański (Upior polnocy)",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "attribution": "Krzysztof Maria Różański (Upior polnocy) / Wikimedia Commons, CC BY-SA 3.0",
+      "subject_note": "Handheld Leica laser distance meter in an operator's hand; digital rangefinder subject.",
+      "expected_sha1": "24c266f815ea1dbcc49ff7852ef86ad0ce22e49d",
+      "source_review": "Commons_file_page_license_and_original_SHA1_API_verified_20261031",
+      "binary_review": "sha1_verified_raster_derivatives_visually_reviewed",
+      "promotion_allowed": false
+    },
+    {
+      "entry_id": "pipe_wrench",
+      "commons_filename": "Pipe wrench.JPG",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Pipe_wrench.JPG",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Pipe_wrench.JPG",
+      "source_filename": "source.jpg",
+      "author": "Altoscroll",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "attribution": "Altoscroll / Wikimedia Commons, CC BY-SA 3.0",
+      "subject_note": "Pipe wrench photographed as the primary identifiable tool.",
+      "expected_sha1": "b5f85461c09515e3d84d8d78843be45a8dcbf2e3",
+      "source_review": "Commons_file_page_license_and_original_SHA1_API_verified_20261031",
+      "binary_review": "sha1_verified_raster_derivatives_visually_reviewed",
+      "promotion_allowed": false
+    },
+    {
+      "entry_id": "speed_square",
+      "commons_filename": "Swanson Speed Square by NIP.JPG",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Swanson_Speed_Square_by_NIP.JPG",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Swanson_Speed_Square_by_NIP.JPG",
+      "source_filename": "source.jpg",
+      "author": "Norvell IP",
+      "license": "Public Domain (PD-self)",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-self",
+      "attribution": "Norvell IP / Wikimedia Commons, Public Domain (PD-self)",
+      "subject_note": "Swanson triangular carpenter speed square with degree and rafter scale markings.",
+      "expected_sha1": "eb5e49d2d9178131cb173cbd69ff1716ee57345e",
+      "source_review": "Commons_file_page_license_and_original_SHA1_API_verified_20261031",
+      "binary_review": "sha1_verified_raster_derivatives_visually_reviewed",
+      "promotion_allowed": false
+    },
+    {
+      "entry_id": "nail_gun",
+      "commons_filename": "Nail gun 008.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Nail_gun_008.jpg",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Nail_gun_008.jpg",
+      "source_filename": "source.jpg",
+      "author": "Boatbuilder",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "attribution": "Boatbuilder / Wikimedia Commons, CC BY-SA 3.0",
+      "subject_note": "Nail gun single-tool subject; subject-focus must be checked in full photo.",
+      "expected_sha1": "ccf42ce9ccf4d0054b7d2c703efa806249b80663",
+      "source_review": "Commons_file_page_license_and_original_SHA1_API_verified_20261031",
+      "binary_review": "sha1_verified_raster_derivatives_visually_reviewed",
+      "promotion_allowed": false
+    },
+    {
+      "entry_id": "reciprocating_saw",
+      "commons_filename": "Makita JR3070CT Reciprocating Saw.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Makita_JR3070CT_Reciprocating_Saw.jpg",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/8/86/Makita_JR3070CT_Reciprocating_Saw.jpg",
+      "source_filename": "source.jpg",
+      "author": "Mark Hunter",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "attribution": "Mark Hunter / Wikimedia Commons, CC BY 2.0",
+      "subject_note": "Different source from rejected cropped saw; subject-focus must be checked on the original.",
+      "expected_sha1": "9010ff13f36b78dd55d8af2ced69cf5c78e41a94",
+      "source_review": "Commons_file_page_license_and_original_SHA1_API_verified_20261031",
+      "binary_review": "sha1_verified_but_visual_tool_focus_rejected",
+      "promotion_allowed": false
+    }
+  ],
+  "review_decisions": [
+    {
+      "entry_id": "laser_distance_meter",
+      "disposition": "source_subject_verified_for_formal_promotion"
+    },
+    {
+      "entry_id": "pipe_wrench",
+      "disposition": "source_subject_verified_for_formal_promotion"
+    },
+    {
+      "entry_id": "speed_square",
+      "disposition": "source_subject_verified_for_formal_promotion"
+    },
+    {
+      "entry_id": "nail_gun",
+      "disposition": "source_subject_verified_for_formal_promotion"
+    },
+    {
+      "entry_id": "reciprocating_saw",
+      "disposition": "rejected_subject_focus",
+      "review": "Second candidate shows body and rear handle but not the cutting blade or full nose, so it fails the canonical educational identification requirement."
+    }
+  ]
+}

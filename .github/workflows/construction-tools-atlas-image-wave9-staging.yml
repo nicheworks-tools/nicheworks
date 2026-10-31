@@ -1,0 +1,35 @@
+name: Construction Atlas Wave9 Five Wikimedia Source Verification
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/construction-tools-atlas-image-wave9-staging.yml'
+      - 'tools/construction-tools-atlas/scripts/materialize-image-wave9-v2.3.mjs'
+      - 'tools/construction-tools-atlas/data/affiliate-image-acquisition-wave9-v2.3.json'
+permissions:
+  contents: read
+jobs:
+  stage-source-candidates:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install raster optimizer
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qq -y imagemagick
+      - name: Check intake
+        run: node tools/construction-tools-atlas/scripts/materialize-image-wave9-v2.3.mjs --check
+      - name: Download originals and independently check Wikimedia Commons API SHA1
+        env:
+          CTA_WAVE9_STAGING_DIR: ${{ runner.temp }}/cta-wave9
+        run: node tools/construction-tools-atlas/scripts/materialize-image-wave9-v2.3.mjs --stage
+      - name: Upload original sources and WebP derivatives for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: construction-atlas-wave9-commons-verified-staging
+          path: ${{ runner.temp }}/cta-wave9/
+          retention-days: 14
+          if-no-files-found: error

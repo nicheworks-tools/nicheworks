@@ -20,18 +20,18 @@
   "sources": {
     "publication_inventory_version": "2026-09-16-q014-identity-closure-1",
     "publication_id_sha256": "9c82f042e92a167cabcb46e80ad1e6b77566f594d36932ff42c352e875aa8177",
-    "image_registry_version": "2026-10-31-reviewed-image-wave8-two-1",
+    "image_registry_version": "2026-10-31-reviewed-image-wave9-four-1",
     "image_exception_ledger_version": "2026-09-18-applicability-wave17-final"
   },
   "summary": {
     "public_entries": 870,
-    "formal_image_entries": 49,
-    "missing_formal_image_entries": 774,
+    "formal_image_entries": 53,
+    "missing_formal_image_entries": 770,
     "not_required_entries": 47,
     "unobtainable_entries": 0,
     "classified_entries": 870,
-    "formal_coverage_percent": 5.6322,
-    "registry_items_total": 49,
+    "formal_coverage_percent": 6.092,
+    "registry_items_total": 53,
     "formal_images_inherited_via_redirect": 6,
     "formal_images_outside_public": 0,
     "image_exceptions_outside_public": 0,
@@ -46,20 +46,20 @@
       "applicability_reviewed": 870,
       "required": 823,
       "on_hold": 0,
-      "final_dispositions": 96,
-      "unresolved": 774,
+      "final_dispositions": 100,
+      "unresolved": 770,
       "by_stage": {
         "unreviewed": 0,
         "not_required": 47,
-        "awaiting_source": 774,
+        "awaiting_source": 770,
         "candidate": 0,
         "provenance_verified": 0,
         "subject_verified": 0,
         "verified": 0,
-        "promoted": 49
+        "promoted": 53
       }
     },
-    "evidence_sha256": "abad9b143479b6973b5a12486a9b2859d79e275d815083b931d4bf49217ee43a",
+    "evidence_sha256": "6a1914390ba8ec5163deeb611a0e2cbf31caf6a3e4ea558d72326f614839499f",
     "rows": [
       {
         "id": "access_door",
@@ -2261,15 +2261,15 @@
       {
         "id": "laser_distance_meter",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "A laser distance meter is a distinctive handheld measuring instrument; a subject-matched photograph strongly aids identification.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Promoted only after direct visual review, SHA-1 match, retained source JPEG, distinct local primary and thumbnail WebP derivatives.",
+        "candidate_id": "wave6:laser_distance_meter",
+        "source_entry_id": "laser_distance_meter",
+        "attachment": "direct"
       },
       {
         "id": "laser_level",
@@ -2625,15 +2625,15 @@
       {
         "id": "nail_gun",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "A nail gun is a distinctive powered fastening tool; a reviewed photograph strongly aids identification.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Promoted only after direct visual review, SHA-1 match, retained source JPEG, distinct local primary and thumbnail WebP derivatives.",
+        "candidate_id": "wave6:nail_gun",
+        "source_entry_id": "nail_gun",
+        "attachment": "direct"
       },
       {
         "id": "nail_set",
@@ -2872,15 +2872,15 @@
       {
         "id": "pipe_wrench",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "A pipe wrench is a distinctive toothed-jaw hand tool for round pipe; a subject-matched photograph strongly aids identification.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Promoted only after direct visual review, SHA-1 match, retained source JPEG, distinct local primary and thumbnail WebP derivatives.",
+        "candidate_id": "wave6:pipe_wrench",
+        "source_entry_id": "pipe_wrench",
+        "attachment": "direct"
       },
       {
         "id": "plate_compactor",
@@ -10516,15 +10516,15 @@
       {
         "id": "speed_square",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "A speed square is a physical triangular layout/measuring tool with distinctive shape and markings; a reviewed photograph is appropriate.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Promoted only after direct visual review, SHA-1 match, retained source JPEG, distinct local primary and thumbnail WebP derivatives.",
+        "candidate_id": "wave6:speed_square",
+        "source_entry_id": "speed_square",
+        "attachment": "direct"
       },
       {
         "id": "spirit_level",
@@ -11523,17 +11523,17 @@
     },
     "tool": {
       "public_entries": 333,
-      "formal_image": 39,
-      "missing_formal_image": 269,
+      "formal_image": 43,
+      "missing_formal_image": 265,
       "not_required": 25,
       "unobtainable": 0
     }
   },
   "hashes": {
     "public_id_sha256": "9c82f042e92a167cabcb46e80ad1e6b77566f594d36932ff42c352e875aa8177",
-    "public_formal_image_id_sha256": "79e432c59f8c30faca857a0233c4e1e8b76913d6b54cc605de503f3a17c94230",
-    "public_missing_formal_image_id_sha256": "4b69920167290b67ed5727ecde7e46c4e5867991c76ee3273a23389c47fd5184",
-    "public_image_classification_sha256": "459c52a8f9740f65402dc5f19168195eddc785eb8605b11e74c87b01b3e9c196"
+    "public_formal_image_id_sha256": "32363771efe9e76c83f2e99b4ec7a2627e6b9f82934b8823682a3077038b58dd",
+    "public_missing_formal_image_id_sha256": "b3ef638048d60b91ec13d03e4f58ea0310733b92492fec29392b9396584d33f9",
+    "public_image_classification_sha256": "98edabc060ca8293ed049c1a590c8405ad3a62c9bf21f2edb4d6346d3f5eac77"
   },
   "inherited_formal_images": [
     {
