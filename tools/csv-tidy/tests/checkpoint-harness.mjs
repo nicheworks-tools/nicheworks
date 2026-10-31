@@ -35,7 +35,7 @@ export function harness(Decoder = TextDecoder) {
   let source = fs.readFileSync(new URL('../app.js', import.meta.url), 'utf8');
   const needle = '  document.addEventListener("DOMContentLoaded", init);';
   assert.ok(source.includes(needle));
-  source = source.replace(needle, 'globalThis.api = { state, els, guessDelimiter, guessEncoding, decodeArrayBuffer, parseCSV, stringifyCSV, buildOutputPreview, handleFile, downloadCSV, applyTemplate, bindUI, renderColsList };' + needle);
+  source = source.replace(needle, 'globalThis.api = { state, els, guessDelimiter, guessEncoding, decodeArrayBuffer, parseCSV, stringifyCSV, convertZenHan, applyCellOptions, applyHeaderOptions, buildOutputPreview, handleFile, downloadCSV, applyTemplate, bindUI, renderColsList };' + needle);
   vm.runInNewContext(source, sandbox);
   const api = sandbox.api;
   api.state.ui.lang = 'en';
