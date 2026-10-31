@@ -13,7 +13,8 @@ import {validateCoveragePass} from './coverage-pass-lib.mjs';
 export const INDEX='https://www.mi.com/jp/support/user-guide/';
 export const CMS='https://go.buy.mi.com/jp/v2/cms/page/get?from=web&cacheable=1&path=support%2Fuser-guide';
 const PASS=new URL('../coverage-passes/xiaomi/jp-mobile-user-guide-2026.json',import.meta.url);
-const PDF_HOSTS=new Set(['gl123.alsgp0.mi-fds.com','alsgp0.fds.api.xiaomi.com']);
+const PDF_HOSTS=new Set(['gl123.alsgp0.mi-fds.com','alsgp0.fds.api.xiaomi.com','leica-camera.com']);
+export const LEICA_DOWNLOADS='https://leica-camera.com/ja-JP/mobile/leitzphone-powered-by-xiaomi/downloads';
 const clean=s=>String(s||'').replace(/<[^>]+>/g,' ').replace(/&nbsp;|&#160;|&ensp;/gi,' ').replace(/&amp;/gi,'&').replace(/\s+/g,' ').trim();
 const digest=s=>crypto.createHash('sha256').update(s,'utf8').digest('hex');
 async function sourceGet(url){
@@ -90,7 +91,26 @@ export async function readPdfStart(url){
  const bytes=Number(r.headers.get('content-range')?.split('/')?.at(-1))||Number(r.headers.get('content-length'))||null;
  return{url:r.url,status:r.status,contentType:ct,pdfVersion:sample.subarray(0,8).toString('latin1'),fileBytes:bytes,verifiedBytes:sample.length};
 }
-export async function reviewAll({pass,html,cmsJson,pdfFetcher=readPdfStart,concurrency=8}){
+export async function discoverLeicaOfficialPdf(fetcher=async url=>{
+ const r=await fetch(url,{redirect:'follow',signal:AbortSignal.timeout(22000),headers:{'user-agent':'Mozilla/5.0','accept':'text/html'}});
+ if(!r.ok||new URL(r.url).hostname!=='leica-camera.com')throw Error('Leica manufacturer download page could not be positively verified');
+ return{url:r.url,html:await r.text()};
+}){
+ const page=await fetcher(LEICA_DOWNLOADS),html=page.html;
+ const target='https://leica-camera.com/sites/default/files/pm-127087-Leica-Leitzphone-powered-by-Xiaomi-Quickstart-guide.pdf';
+ if(!/Leica Leitzphone powered by Xiaomi/i.test(html)||!/Quickstart-Guide/i.test(html)||
+    !html.includes('pm-127087-Leica-Leitzphone-powered-by-Xiaomi-Quickstart-guide.pdf'))
+  throw Error('Leica official product name, quickstart and manufacturer document hyperlink must all be present');
+ return{pdfUrl:target,manufacturerPage:page.url};
+}
+async function pdfWithRetries(url,fetcher){
+ let lastError;
+ for(let i=0;i<3;i++){
+  try{return await fetcher(url)}catch(e){lastError=e;if(i<2)await new Promise(r=>setTimeout(r,400*(i+1)))}
+ }
+ throw lastError;
+}
+export async function reviewAll({pass,html,cmsJson,pdfFetcher=readPdfStart,leicaFetcher,concurrency=8}){
  const source=officialPopulation(pass,html,cmsJson),records=new Array(60);let cursor=0;
  async function worker(){
   while(cursor<records.length){
@@ -100,16 +120,19 @@ export async function reviewAll({pass,html,cmsJson,pdfFetcher=readPdfStart,concu
     attemptedDiscovery:['official_Japan_user_guide_category_full_306','manufacturer_exact_model_guide_link','manufacturer_CMS_explicit_exact_model_pdf_link','manufacturer_owned_PDF_magic_and_mime']};
    const dest=row.cmsLink;
    try{
-    if(!PDF_HOSTS.has(new URL(dest).hostname)||!new URL(dest).pathname.toLowerCase().endsWith('.pdf')){
-     result.state='held';result.reason='Manufacturer CMS points to a model-guide route, not a direct PDF; second official guide source needed to establish actual operating document. '+dest;
-    }else{
-     const test=await pdfFetcher(dest);
-     if(!PDF_HOSTS.has(new URL(test.url).hostname)||!test.pdfVersion?.startsWith('%PDF-'))throw Error('official PDF verification not positive');
-     result.state='direct';result.manualUrl=test.url;result.cmsPdfUrl=dest;result.pdfEvidence=test;
-     result.evidenceUrls=[...evidence,dest,test.url];
-     result.reviewMethod='manufacturer_model_named_JP_index_independent_CMS_exact_PDF_mapping_and_live_file_magic';
-     result.reviewNote='Manufacturer Xiaomi Japan user-guide index explicitly names model and links its CMS record to the verified official PDF file. This is a quick-start/product guide; does not imply a full operating reference manual.';
+    let pdfUrl=dest,secondSource=null;
+    if(row.label==='Leica Leitzphone powered by Xiaomi'&&!new URL(dest).pathname.toLowerCase().endsWith('.pdf')){
+      const discovered=await discoverLeicaOfficialPdf(leicaFetcher);
+      pdfUrl=discovered.pdfUrl;secondSource=discovered.manufacturerPage;
     }
+    if(!PDF_HOSTS.has(new URL(pdfUrl).hostname)||!new URL(pdfUrl).pathname.toLowerCase().endsWith('.pdf'))
+      throw Error('Official manufacturer CMS provided no verifiable PDF and secondary maker search unresolved: '+dest);
+    const test=await pdfWithRetries(pdfUrl,pdfFetcher);
+    if(!PDF_HOSTS.has(new URL(test.url).hostname)||!test.pdfVersion?.startsWith('%PDF-'))throw Error('official PDF verification not positive');
+    result.state='direct';result.manualUrl=test.url;result.cmsPdfUrl=dest;result.pdfEvidence=test;
+    result.evidenceUrls=[...evidence,...(secondSource?[secondSource]:[]),pdfUrl,test.url];
+    result.reviewMethod=secondSource?'secondary_manufacturer_Leica_exact_model_multilingual_quickstart_PDF':'manufacturer_model_named_JP_index_independent_CMS_exact_PDF_mapping_and_live_file_magic';
+    result.reviewNote=secondSource?'Leica manufacturer official Japanese downloads explicitly identifies Leitzphone powered by Xiaomi and offers multilingual quick-start PDF including Japanese. Exact PDF verified by HTTPS origin and PDF magic.':'Manufacturer Xiaomi Japan user-guide index explicitly names model and links its CMS record to the verified official PDF file. This is a quick-start/product guide; does not imply a full operating reference manual.';
    }catch(e){
     result.state='held';result.reason='Manufacturer PDF document failed live byte/status/origin verification: '+String(e);
    }
