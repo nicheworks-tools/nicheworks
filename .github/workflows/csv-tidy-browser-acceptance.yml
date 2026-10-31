@@ -1,0 +1,87 @@
+name: CSV Tidy browser acceptance
+
+on:
+  pull_request:
+    paths:
+      - 'tools/csv-tidy/**'
+      - '.github/workflows/csv-tidy-browser-acceptance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  chromium:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Exercise CSV Tidy in installed Chrome and verify downloaded CSV
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/nw-csv-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" || true' EXIT
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:8765/tools/csv-tidy/ >/dev/null; then break; fi
+            sleep 1
+          done
+
+          CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          if [ -z "$CHROME" ]; then
+            echo "BLOCKED: Chromium/Chrome not available on runner"
+            exit 2
+          fi
+
+          export TEST_DOWNLOAD_DIR="$RUNNER_TEMP/csv-tidy-downloads"
+          export TEST_CHROME_PROFILE="$RUNNER_TEMP/csv-tidy-chrome-profile"
+          mkdir -p "$TEST_DOWNLOAD_DIR" "$TEST_CHROME_PROFILE/Default"
+          python3 - <<'PY'
+          import json, os, pathlib
+          profile = pathlib.Path(os.environ["TEST_CHROME_PROFILE"]) / "Default" / "Preferences"
+          profile.write_text(json.dumps({"download": {
+              "default_directory": os.environ["TEST_DOWNLOAD_DIR"],
+              "prompt_for_download": False,
+              "directory_upgrade": True
+          }}), encoding="utf-8")
+          PY
+
+          "$CHROME" --headless=new --no-sandbox --disable-gpu \
+            --disable-dev-shm-usage --disable-background-networking \
+            --no-first-run --no-default-browser-check \
+            --user-data-dir="$TEST_CHROME_PROFILE" \
+            --download-default-directory="$TEST_DOWNLOAD_DIR" \
+            --window-size=1440,1000 --virtual-time-budget=30000 \
+            --dump-dom http://127.0.0.1:8765/tools/csv-tidy/tests/browser-acceptance.html \
+            >"$RUNNER_TEMP/csv-tidy-browser-result.html" \
+            2>"$RUNNER_TEMP/csv-tidy-chrome.log" || {
+              tail -80 "$RUNNER_TEMP/csv-tidy-chrome.log" || true
+              exit 1
+            }
+
+          python3 - <<'PY'
+          import os, pathlib, re, sys
+          from html import unescape
+          output = pathlib.Path(os.environ["RUNNER_TEMP"]) / "csv-tidy-browser-result.html"
+          text = output.read_text(encoding="utf-8", errors="replace")
+          match = re.search(r'<pre id="results"[^>]*>(.*?)</pre>', text, flags=re.S)
+          report = unescape(match.group(1)) if match else "ERROR: browser harness report absent"
+          print(report)
+          if 'data-test-result="PASS"' not in text or not report.startswith("PASS"):
+              sys.exit("Browser acceptance FAILED/BLOCKED; inspect report above")
+          PY
+
+          python3 - <<'PY'
+          import csv, os, pathlib
+          dest = pathlib.Path(os.environ["TEST_DOWNLOAD_DIR"])
+          files = list(dest.glob("browser-acceptance.csv"))
+          assert len(files) == 1, f"Real browser download absent: {list(dest.iterdir())}"
+          with files[0].open(encoding="utf-8-sig", newline="") as file:
+              rows = list(csv.reader(file))
+          expected = [["item_code","note"],["001","hi,there"],["002","ok"]]
+          assert rows == expected, f"Independent reparse mismatch: {rows!r}"
+          print(f"PASS: browser-saved CSV independently reparsed ({len(rows)} records)")
+          PY
