@@ -57,7 +57,7 @@ for(const row of rows){
 const sources=Array.from(sandbox.window.MANUALFINDER_COVERAGE_PASS_BATCHES||[]);
 assert.ok(sources.includes('manuals.coverage-pass.dynabook-jp-2024-2026.js'));
 const merged=Array.from(sandbox.window.MANUALFINDER_BUILD_COVERAGE_PASSES());
-assert.equal(merged.length,569);
+assert.ok(merged.length>=569,'later manufacturer batches must not break dynabook scope tests');
 for(const [maker,n] of [['Sony',107],['Panasonic',27],['Apple',31],['Fujifilm',56],['VAIO',82],['Samsung Mobile',89],['dynabook',177]]){
  assert.equal(merged.filter(x=>x.maker===maker).length,n);
 }
