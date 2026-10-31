@@ -1119,3 +1119,7 @@ Reviewed 50 Phase 1 municipalities across Ibaraki (3), Chiba (8), Tokyo (14), Ka
 ### Batch 02 review safeguards
 
 `reviewed_no_direct` is a completed review state, not a reason to fabricate direct links or publish a municipality page. National Batch 02 keeps 河内町 and 東村山市 in this state and preserves their evidence notes in the ledger; their source candidates are not published. The Tokyo Toshima island route uses `tokyo/toshima-island/` to avoid colliding with the existing Toshima special ward route. Source-only checks do not substitute for the required PR CI gate.
+
+### Shared root sitemap coordination for Batch 02
+
+TrashNavi's dedicated `sitemap-trashnavi.xml` contains the tool root and all published municipality pages. The repository-root `sitemap.xml` additionally carries pages from other tools, including a generated Construction Tools Atlas block. After adding municipality URLs, preserve all pre-existing root URLs and retain the Atlas generator's canonical ordering; both generators' `--check` modes must pass before merge.
