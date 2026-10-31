@@ -23,6 +23,7 @@ await Promise.all(names.map(async name=>{
  if(!link){result.samples.push({name,error:'not exact manufacturer index label'});return}
  try{
   const url=new URL(link.href,INDEX),doc=await get(url.href);
+  if(['Xiaomi 17T Pro','POCO F7'].includes(name))await fs.writeFile('manualfinder-xiaomi-probe/guide-'+name.toLowerCase().replace(/[^a-z0-9]+/g,'-')+'.html',doc.html);
   const title=tidy(doc.html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1]||'');
   const texts=tidy(doc.html),hits=[...doc.html.matchAll(/https?:\/\/[^"'\s<>]+\.pdf(?:\?[^"'\s<>]*)?/gi)].slice(0,20).map(x=>x[0]);
   const modelMatches=doc.html.toLowerCase().split(name.toLowerCase()).length-1;
