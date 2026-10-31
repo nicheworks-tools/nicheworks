@@ -53,7 +53,8 @@ export function inspectManual(doc,product){
  const title=clean(doc.text.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1]||'');
  const heads=[...doc.text.matchAll(/<h[1-5]\b[^>]*>([\s\S]*?)<\/h[1-5]>/gi)].map(m=>clean(m[1])).filter(Boolean);
  const url=new URL(doc.url),variant=url.searchParams.get('model2Name')||'';
- const exactFamily=title.toUpperCase().includes('('+code+')')||title.toUpperCase().includes('('+code+',');
+ const manufacturerAbbreviation=(code==='X1607QA'||code==='X1407QA')&&title.toUpperCase().includes('('+code.slice(0,-1)+')')&&product.productUrl.toLowerCase().includes('-'+code.slice(0,-1).toLowerCase()+'/')&&variant.toUpperCase()===code;
+ const exactFamily=title.toUpperCase().includes('('+code+')')||title.toUpperCase().includes('('+code+',')||manufacturerAbbreviation;
  const officialVariant=variant.toUpperCase().includes(code)&&variant.length<100;
  const section=heads.some(x=>/^(Manual|マニュアル)$/i.test(x))||/Manual & Document|マニュアルとドキュメント/i.test(doc.text);
  const japanese=/User.s Manual for Japanese Edition|Japanese User.s Manual|日本語版.{0,100}(?:ユーザーマニュアル|取扱説明書)/i.test(doc.text);
@@ -112,7 +113,24 @@ export async function reviewAll({pass,indexHtml,apiFetch=getOfficial,pageFetch=g
      const variantUrl=item.productUrl+'helpdesk_manual?model2Name='+encodeURIComponent(variant);
      passed=await attempt(variantUrl,'manufacturer_explicit_variant_option');
      if(!passed)passed=await attempt(item.productUrl+'helpdesk_manual/?model2Name='+encodeURIComponent(variant),'manufacturer_explicit_variant_slash_form');
+     // Global manual variant is a separately manufacturer-controlled exact
+     // destination. Never infer another family/variant equivalence.
+     if(!passed){
+      const regional=new URL(global);
+      regional.pathname=regional.pathname.replace(/\/helpdesk_manual\/?$/,'/helpdesk_manual');
+      regional.searchParams.set('model2Name',variant);
+      passed=await attempt(regional.href,'manufacturer_global_explicit_selected_variant');
+     }
      if(passed)break;
+    }
+    // On older ASUS products, the manufacturer's category page may drop the
+    // model selector. The exact current product name itself may identify a
+    // manufacturer "Vivobook-Go-..." selector only if positively validated.
+    if(!passed&&(!options.length)&&/\/vivobook-go-/.test(item.productUrl)){
+      const short=new URL(item.productUrl).pathname.split('/').filter(Boolean).at(-1);
+      const sourceVariant=short.replace(/^vivobook-go-/, 'Vivobook-Go-');
+      passed=await attempt(item.productUrl+'helpdesk_manual?model2Name='+encodeURIComponent(sourceVariant),'exact_manufacturer_product_slug_selector');
+      if(!passed)passed=await attempt(item.productUrl+'helpdesk_manual/?model2Name='+encodeURIComponent(sourceVariant),'exact_manufacturer_product_slug_selector_slash');
     }
    }
    if(!passed){
