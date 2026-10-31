@@ -29,15 +29,19 @@ jobs:
           run-id: 41173221395
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path: ${{ runner.temp }}/cta-wave6-sources
-      - name: Promote only the two visually reviewed source images
+      - name: Promote only the two visually reviewed source images (idempotent on synchronize)
         run: |
-          for id in hammer_drill tape_measure; do
-            mkdir -p "tools/construction-tools-atlas/images/$id"
-            cp "${{ runner.temp }}/cta-wave6-sources/$id/source.jpg" "tools/construction-tools-atlas/images/$id/source.jpg"
-            cp "${{ runner.temp }}/cta-wave6-sources/$id/primary.webp" "tools/construction-tools-atlas/images/$id/primary.webp"
-            cp "${{ runner.temp }}/cta-wave6-sources/$id/thumb.webp" "tools/construction-tools-atlas/images/$id/thumb.webp"
-          done
-          node tools/construction-tools-atlas/scripts/promote-image-wave6-reviewed-v2.3.cjs
+          if [ -f tools/construction-tools-atlas/data/image-wave6-sources-v2.3.json ]; then
+            echo "Two formally reviewed sources already committed; verify generated state."
+          else
+            for id in hammer_drill tape_measure; do
+              mkdir -p "tools/construction-tools-atlas/images/$id"
+              cp "${{ runner.temp }}/cta-wave6-sources/$id/source.jpg" "tools/construction-tools-atlas/images/$id/source.jpg"
+              cp "${{ runner.temp }}/cta-wave6-sources/$id/primary.webp" "tools/construction-tools-atlas/images/$id/primary.webp"
+              cp "${{ runner.temp }}/cta-wave6-sources/$id/thumb.webp" "tools/construction-tools-atlas/images/$id/thumb.webp"
+            done
+            node tools/construction-tools-atlas/scripts/promote-image-wave6-reviewed-v2.3.cjs
+          fi
       - name: Regenerate frozen image and public SEO snapshots
         run: |
           node tools/construction-tools-atlas/scripts/audit-image-inventory-v2.3.cjs --write > /dev/null
