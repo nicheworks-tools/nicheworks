@@ -1,4 +1,4 @@
-import { loadProductsConfig, validateConfiguredProduct } from './product-config.js';
+import { getProduct, loadProductsConfig, validateConfiguredProduct } from './product-config.js';
 
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -127,17 +127,21 @@ export async function onRequestPost({ request, env }) {
     return json({ ok: false, error: 'products_config_unavailable' }, 503);
   }
 
-  const productCheck = validateConfiguredProduct(config, productId);
-  if (!productCheck.ok) {
-    const status = productCheck.error === 'unknown_product_id' ? 404 : 409;
-    return json({ ok: false, error: productCheck.error }, status);
+  // The catalog can contain unpriced planning products. Check the explicit launch
+  // gates BEFORE price validation, so all such products fail closed consistently.
+  const listedProduct = getProduct(config, productId);
+  if (!listedProduct) {
+    return json({ ok: false, error: 'unknown_product_id' }, 404);
   }
-
-  const { product } = productCheck;
-  // Explicit launch gate: secret configuration alone must not start selling a planning product.
-  if (product.stripe.mode !== 'connected') {
+  if (config.status !== 'active' || listedProduct.stripe?.mode !== 'connected') {
     return json({ ok: false, error: 'product_not_on_sale' }, 409);
   }
+
+  const productCheck = validateConfiguredProduct(config, productId);
+  if (!productCheck.ok) {
+    return json({ ok: false, error: productCheck.error }, 409);
+  }
+  const { product } = productCheck;
   const priceIdEnvName = product.stripe.priceIdEnv;
   const stripePriceId = env[priceIdEnvName];
   if (typeof stripePriceId !== 'string' || !stripePriceId) {

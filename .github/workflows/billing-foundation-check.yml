@@ -10,6 +10,7 @@ on:
       - 'assets/okj-ocr-pro-phase1.css'
       - 'tools/old-kanji-ocr-scanner/index.html'
       - 'scripts/check-old-kanji-pro-functional.mjs'
+      - 'scripts/check-old-kanji-checkout-closed.mjs'
       - 'billing/success.html'
       - 'billing/cancel.html'
       - 'config/billing/products.json'
@@ -71,6 +72,8 @@ jobs:
           node --check assets/okj-history-collection.js
       - name: Check billing contract
         run: node scripts/check-billing-foundation.mjs
+      - name: Test fail-closed unpriced and unknown products
+        run: node scripts/check-old-kanji-checkout-closed.mjs
       - name: Check Old Kanji product contract
         run: node scripts/check-old-kanji-pro-phase1.mjs
       - name: Test real local OCR Batch and History Pro gate

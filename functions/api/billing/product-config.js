@@ -78,8 +78,9 @@ export function validateConfiguredProduct(config, productId) {
   const tierCurrency = normalizedCurrency(tier.currency);
 
   if (
-    !Number.isFinite(amount)
-    || amount < 0
+    typeof price.amount !== 'number'
+    || !Number.isFinite(amount)
+    || amount <= 0
     || !Number.isFinite(tierAmount)
     || amount !== tierAmount
     || !currency
