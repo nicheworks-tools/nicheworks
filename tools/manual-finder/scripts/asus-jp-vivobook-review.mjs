@@ -126,6 +126,14 @@ export async function reviewAll({pass,indexHtml,apiFetch=getOfficial,pageFetch=g
     // On older ASUS products, the manufacturer's category page may drop the
     // model selector. The exact current product name itself may identify a
     // manufacturer "Vivobook-Go-..." selector only if positively validated.
+    // Secondary manufacturer source: global alternate Vivobook 16 OLED M1605
+    // exact family manual, expressly names variant M1605YA. The JP listing
+    // M1605 page lacks the guide selector; do not infer URL from its slug.
+    if(!passed&&code==='M1605'&&item.productUrl.endsWith('/asus-vivobook-16-m1605/')){
+     const verifiedAlternate='https://www.asus.com/laptops/for-home/vivobook/asus-vivobook-16-oled-m1605/helpdesk_manual?model2Name=M1605YA';
+     passed=await attempt(verifiedAlternate,'manufacturer_independent_global_exact_family_and_selected_M1605YA');
+     if(passed)row.officialSecondaryManualSource='https://www.asus.com/laptops/for-home/vivobook/asus-vivobook-16-oled-m1605/';
+    }
     if(!passed&&(!options.length)&&/\/vivobook-go-/.test(item.productUrl)){
       const short=new URL(item.productUrl).pathname.split('/').filter(Boolean).at(-1);
       const sourceVariant=short.replace(/^vivobook-go-/, 'Vivobook-Go-');
