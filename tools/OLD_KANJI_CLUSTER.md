@@ -138,3 +138,7 @@ Priority signals:
 2. Growth in relevant long-tail query impressions/clicks without query cannibalization among tools.
 3. Internal handoff usage between the eight tools.
 4. Pro/support interest only after the free task is being completed successfully.
+
+## Toolkit Pro Phase 1 — re-opened, staged (2026-10-31)
+
+One purchasable product is planned for all eight tools: `okj.toolkit_pro`. The approved feature IDs and Free guarantees are in `config/old-kanji-toolkit-pro-phase1.json`. This is a **staged implementation, not a completed sale**; price is undecided and checkout stays blocked until payment/webhook/entitlement/restore tests prove real operation. Keep Reference CSV, JSON, Markdown and Print Free. Amazon Associates remains AFFILIATE in all eight and never receives user-entered input.

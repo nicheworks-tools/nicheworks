@@ -11,7 +11,7 @@ function normalizedCurrency(value) {
   return String(value || '').trim().toUpperCase();
 }
 
-function expectedMinorAmount(product) {
+export function expectedMinorAmount(product) {
   const currency = normalizedCurrency(product?.price?.currency);
   const amount = Number(product?.price?.amount);
   if (!currency || !Number.isFinite(amount) || amount < 0) return null;
@@ -78,8 +78,9 @@ export function validateConfiguredProduct(config, productId) {
   const tierCurrency = normalizedCurrency(tier.currency);
 
   if (
-    !Number.isFinite(amount)
-    || amount < 0
+    typeof price.amount !== 'number'
+    || !Number.isFinite(amount)
+    || amount <= 0
     || !Number.isFinite(tierAmount)
     || amount !== tierAmount
     || !currency

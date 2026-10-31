@@ -1,0 +1,39 @@
+name: Construction Tools Atlas Wave7 Source Staging
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/construction-tools-atlas-image-wave7-staging.yml'
+      - 'tools/construction-tools-atlas/scripts/materialize-image-wave7-v2.3.mjs'
+      - 'tools/construction-tools-atlas/data/affiliate-image-acquisition-wave7-v2.3.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stage-pinned-source-images:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install image converter
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq imagemagick
+          command -v convert
+      - name: Validate Wikimedia source-intake metadata
+        run: node tools/construction-tools-atlas/scripts/materialize-image-wave7-v2.3.mjs --check
+      - name: Download and SHA1-verify 3 original photographs then create local WebP
+        env:
+          CTA_WAVE7_STAGING_DIR: ${{ runner.temp }}/cta-wave7
+        run: node tools/construction-tools-atlas/scripts/materialize-image-wave7-v2.3.mjs --stage
+      - name: Retain source, derivative assets, SHA1 and staging report
+        uses: actions/upload-artifact@v4
+        with:
+          name: construction-atlas-wave7-pinned-source-staging
+          path: ${{ runner.temp }}/cta-wave7/
+          if-no-files-found: error
+          retention-days: 14

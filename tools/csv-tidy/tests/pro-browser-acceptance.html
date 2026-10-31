@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSV Tidy Pro — CI-only browser acceptance</title>
+  <style>body{font-family:system-ui;margin:0}iframe{display:block;width:1440px;height:970px;border:0}pre{white-space:pre-wrap;padding:16px}</style>
+</head>
+<body data-result="RUNNING">
+  <iframe id="tool" title="CSV Tidy Free and verified Pro"></iframe>
+  <pre id="results" data-result="RUNNING">RUNNING</pre>
+  <pre id="zipPayload"></pre>
+  <script>(() => {
+  'use strict';
+  const tests = [];
+  const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+  const report = (name, ok, note = '') => tests.push({name, ok:!!ok, note:String(note)});
+  async function until(check, limit=8000) {
+    const start=Date.now();
+    while(Date.now()-start<limit) {
+      if(check())return true;
+      await sleep(80);
+    }
+    return false;
+  }
+  const frame=document.getElementById('tool');
+  const sessionKey='nicheworks:billing:session:csv_tidy.pro_v1';
+  function openWorkbench() {
+    return new Promise((resolve,reject) => {
+      let finished=false;
+      const tid=setTimeout(() => {
+        if (!finished){ finished=true; reject(new Error('iframe-load-timeout')); }
+      },12000);
+      frame.addEventListener('load', () => {
+        if(finished)return;
+        finished=true;clearTimeout(tid);resolve(frame.contentWindow);
+      }, {once:true});
+      frame.src='../index.html?csv_pro_qa='+Math.random().toString(16).slice(2);
+    });
+  }
+  function setFiles(w,input,files) {
+    const dt=new w.DataTransfer();
+    files.forEach(item=>dt.items.add(new w.File([item.data],item.name,{type:item.type||'text/csv'})));
+    input.files=dt.files;
+    input.dispatchEvent(new w.Event('change',{bubbles:true}));
+  }
+  async function run() {
+    localStorage.removeItem(sessionKey);
+    let w=await openWorkbench();
+    await sleep(650);
+    report('Free session does not render any paid Pro controls', !w.document.getElementById('csvTidyProPanel'));
+    localStorage.setItem(sessionKey,'cs_test_UNVERIFIED');
+    w=await openWorkbench();
+    await sleep(800);
+    report('Fake or revoked session cannot mount Pro controls', !w.document.getElementById('csvTidyProPanel'));
+
+    localStorage.setItem(sessionKey,'cs_test_QAFIXTURE');
+    w=await openWorkbench();
+    const d=w.document;
+    report('Server-verified product with all features mounts Pro panel',
+      await until(()=>!!d.getElementById('csvTidyProPanel')));
+    const panel=d.getElementById('csvTidyProPanel');
+    if(!panel)return;
+    // Capture the exact browser-generated ZIP Blob in this CI harness without
+    // starting an external download navigation during --dump-dom.
+    const originalCreate=w.URL.createObjectURL.bind(w.URL);
+    w.URL.createObjectURL=(blob)=>{
+      if(blob?.type==='application/zip')window.__qaZipBlob=blob;
+      return originalCreate(blob);
+    };
+    const originalClick=w.HTMLAnchorElement.prototype.click;
+    w.HTMLAnchorElement.prototype.click=function(){
+      if(this.download==='csv-tidy-batch.zip'){
+        window.__qaZipRequested=true;
+        return;
+      }
+      return originalClick.call(this);
+    };
+    const sample='code,name,note\n001,Alice,x\n002,Bob,done\n';
+    setFiles(w,d.getElementById('fileInput'),[{name:'source.csv',data:sample}]);
+    report('Free CSV source can be loaded with Pro present',
+      await until(()=>d.querySelectorAll('#colsList li.col-item').length===3 &&
+        !d.getElementById('downloadBtn').disabled));
+
+    const cols=[...d.querySelectorAll('#colsList li.col-item')];
+    const rename=cols[1].querySelector('.col-name');
+    rename.value='title';
+    rename.dispatchEvent(new w.Event('input',{bubbles:true}));
+    const exclude=cols[2].querySelector('.col-exclude');
+    exclude.checked=true;exclude.dispatchEvent(new w.Event('change',{bubbles:true}));
+    const pname=d.getElementById('csvt-pro-name');
+    pname.value='Monthly';
+    panel.querySelectorAll('.csvt-pro-button')[0].click();
+    report('Preset saved from current Free edits to local storage',
+      await until(()=>{
+        try {
+          const data=JSON.parse(localStorage.getItem('nicheworks:csv-tidy:pro-presets:v1')||'[]');
+          return data.length===1&&data[0].label==='Monthly'&&data[0].columns[1].name==='title'&&
+            data[0].columns[2].excluded===true;
+        } catch{return false;}
+      }));
+    const selection=d.getElementById('csvt-pro-presets');
+    report('Saved preset selected in real UI', selection.value==='Monthly');
+
+    setFiles(w,d.getElementById('csvt-pro-files'),[
+      {name:'first.csv',data:'code,name,note\n003,Carol,hi\n'},
+      {name:'invalid.csv',data:'code,name,note\n"not-closed,Carol,hi\n'},
+      {name:'third.csv',data:'code,name,note\n004,Dan,bye\n'}
+    ]);
+    panel.querySelector('#csvt-pro-files').dispatchEvent(new w.Event('change',{bubbles:true}));
+    const execute=[...panel.querySelectorAll('.csvt-pro-button')].at(-1);
+    execute.click();
+    report('Browser batch action creates ZIP Blob and download request',
+      await until(()=>panel.querySelector('.csvt-pro-status').textContent.includes('ZIP')));
+    if(window.__qaZipBlob){
+      const bytes=new Uint8Array(await window.__qaZipBlob.arrayBuffer());
+      let binary='';
+      for(const byte of bytes)binary+=String.fromCharCode(byte);
+      document.getElementById('zipPayload').textContent=btoa(binary);
+    }
+    report('ZIP Blob generated by real Chrome',!!window.__qaZipBlob&&!!window.__qaZipRequested);
+    report('Browser status reports two valid and one rejected file',
+      /2/.test(panel.querySelector('.csvt-pro-status').textContent) &&
+      /1/.test(panel.querySelector('.csvt-pro-status').textContent),
+      panel.querySelector('.csvt-pro-status').textContent);
+
+    d.querySelector('.nw-lang-switch button[data-lang="en"]').click();
+    report('Verified Pro UI respects English language toggle',
+      await until(()=>execute.textContent==='Process CSV files and download ZIP'));
+    d.querySelector('.nw-lang-switch button[data-lang="ja"]').click();
+    report('Verified Pro UI respects Japanese language toggle',
+      await until(()=>execute.textContent==='CSVを一括変換してZIPを保存'));
+
+    execute.focus();
+    report('Pro primary action is keyboard-focusable', d.activeElement===execute);
+    for(const width of [375,320]) {
+      frame.style.width=width+'px';
+      await sleep(170);
+      const client=d.documentElement.clientWidth;
+      report('Pro responsive layout '+width+'px',
+        client>=width-18 && d.documentElement.scrollWidth<=client+2,
+        'client='+client+' scroll='+d.documentElement.scrollWidth);
+    }
+  }
+  run().catch(error=>report('browser QA completed',false,error.stack||String(error)))
+    .finally(()=>{
+      const ok=tests.filter(x=>x.ok).length;
+      const state=ok===tests.length?'PASS':'FAIL';
+      document.body.dataset.result=state;
+      const out=document.getElementById('results');
+      out.dataset.result=state;
+      out.textContent=state+' ('+ok+'/'+tests.length+')\n'+
+        tests.map(x=>(x.ok?'PASS ':'FAIL ')+x.name+(x.note?' — '+x.note:'')).join('\n');
+    });
+})();</script>
+</body>
+</html>

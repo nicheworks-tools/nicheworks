@@ -1,0 +1,1910 @@
+{
+  "schemaVersion": 1,
+  "maker": "Samsung Mobile",
+  "scopeId": "jp-galaxy-smartphone-online-manual-index",
+  "scopeLabel": "Samsung Japan Galaxy smartphone online-manual index: A, S, Note, Fold/Flip, other smartphone tables; excludes tablet table",
+  "status": "coverage-pass-complete",
+  "asOf": "2026-10-31",
+  "region": "JP",
+  "language": "ja",
+  "allowedDomains": [
+    "samsung.com",
+    "downloadcenter.samsung.com"
+  ],
+  "universe": {
+    "sourceUrls": [
+      "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/"
+    ],
+    "declaredCount": null,
+    "models": [
+      "Galaxy A8",
+      "Galaxy A30",
+      "Galaxy A7",
+      "Galaxy A20",
+      "Galaxy A41",
+      "Galaxy A21",
+      "Galaxy A51 5G",
+      "Galaxy A32 5G",
+      "Galaxy A52 5G",
+      "Galaxy A21 シンプル",
+      "Galaxy A22 5G",
+      "Galaxy A53 5G",
+      "Galaxy A23 5G",
+      "Galaxy A54 5G",
+      "Galaxy A55 5G",
+      "Galaxy A25 5G",
+      "Galaxy A36 5G",
+      "Galaxy A57 5G",
+      "Galaxy S",
+      "GALAXY S II",
+      "GALAXY S II WiMAX",
+      "GALAXY S II LTE",
+      "GALAXY S III",
+      "GALAXY S III α",
+      "GALAXY S III Progre",
+      "GALAXY S4",
+      "Galaxy S5",
+      "Galaxy S5 ACTIVE",
+      "Galaxy S6",
+      "Galaxy S6 edge",
+      "Galaxy S7edge",
+      "Galaxy S8",
+      "Galaxy S8+",
+      "Galaxy S9",
+      "Galaxy S9+",
+      "Galaxy S10",
+      "Galaxy S10+",
+      "Galaxy S10+ Olympic Games Edition",
+      "Galaxy S20 5G",
+      "Galaxy S20+ 5G",
+      "Galaxy S20 Ultra 5G",
+      "Galaxy S21 5G",
+      "Galaxy S21+ 5G",
+      "Galaxy S21 Ultra 5G",
+      "Galaxy S22",
+      "Galaxy S22 Ultra",
+      "Galaxy S23",
+      "Galaxy S23 Ultra",
+      "Galaxy S23 FE",
+      "Galaxy S24",
+      "Galaxy S24 Ultra",
+      "Galaxy S24 FE",
+      "Galaxy S25",
+      "Galaxy S25 Ultra",
+      "Galaxy S26",
+      "Galaxy S26+",
+      "Galaxy S26 Ultra",
+      "GALAXY Note",
+      "GALAXY Note II",
+      "Galaxy Note3",
+      "Galaxy Note Edge",
+      "Galaxy Note8",
+      "Galaxy Note9",
+      "Galaxy Note10+",
+      "Galaxy Note20 Ultra 5G",
+      "Galaxy Fold",
+      "Galaxy Z Flip",
+      "Galaxy Z Flip Thom Browne Edition",
+      "Galaxy Z Flip 5G",
+      "Galaxy Z Fold2 5G",
+      "Galaxy Z Fold2 5G Thom Browne Edition",
+      "Galaxy Z Flip3 5G",
+      "Galaxy Z Fold3 5G",
+      "Galaxy Z Flip4",
+      "Galaxy Z Fold4",
+      "Galaxy Z Flip5",
+      "Galaxy Z Fold5",
+      "Galaxy Z Flip6",
+      "Galaxy Z Fold6",
+      "Galaxy Z Flip7",
+      "Galaxy Z Fold7",
+      "Galaxy Z Flip8",
+      "Galaxy Z Fold8",
+      "Galaxy Z Fold8 Ultra",
+      "Galaxy J",
+      "Galaxy Active neo",
+      "Galaxy Feel",
+      "Galaxy Feel2",
+      "Galaxy M23 5G"
+    ],
+    "populationMethod": "manufacturer_documented_galaxy_smartphone_manual_tables_0_through_4",
+    "notes": "Manufacturer Japan online manual article: five complete and separately enumerated smartphone tables (18+39+8+19+5) = 89 exact marketed models. Sixth 34-row tablet table explicitly excluded. Live CI re-extracted all 89 with 189 official carrier/model support candidates. First-pass 82 direct, 7 title mismatches; independent manufacturer secondary discovery reconciled all 89 as 85 direct manual-index + 4 exact support-only + 0 held. No variant identities inferred from family, and no third-party carrier manual used. Samsung A21 Simple index uses SCG49 while separate official au firmware list uses SCV49; exact シンプル Japanese manual metadata in Samsung product page resolves this inconsistency."
+  },
+  "subscopes": [
+    {
+      "id": "a-series",
+      "tableIndex": 0,
+      "sourceUrl": "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+      "models": [
+        "Galaxy A8",
+        "Galaxy A30",
+        "Galaxy A7",
+        "Galaxy A20",
+        "Galaxy A41",
+        "Galaxy A21",
+        "Galaxy A51 5G",
+        "Galaxy A32 5G",
+        "Galaxy A52 5G",
+        "Galaxy A21 シンプル",
+        "Galaxy A22 5G",
+        "Galaxy A53 5G",
+        "Galaxy A23 5G",
+        "Galaxy A54 5G",
+        "Galaxy A55 5G",
+        "Galaxy A25 5G",
+        "Galaxy A36 5G",
+        "Galaxy A57 5G"
+      ],
+      "capturedCount": 18,
+      "captureState": "captured"
+    },
+    {
+      "id": "s-series",
+      "tableIndex": 1,
+      "sourceUrl": "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+      "models": [
+        "Galaxy S",
+        "GALAXY S II",
+        "GALAXY S II WiMAX",
+        "GALAXY S II LTE",
+        "GALAXY S III",
+        "GALAXY S III α",
+        "GALAXY S III Progre",
+        "GALAXY S4",
+        "Galaxy S5",
+        "Galaxy S5 ACTIVE",
+        "Galaxy S6",
+        "Galaxy S6 edge",
+        "Galaxy S7edge",
+        "Galaxy S8",
+        "Galaxy S8+",
+        "Galaxy S9",
+        "Galaxy S9+",
+        "Galaxy S10",
+        "Galaxy S10+",
+        "Galaxy S10+ Olympic Games Edition",
+        "Galaxy S20 5G",
+        "Galaxy S20+ 5G",
+        "Galaxy S20 Ultra 5G",
+        "Galaxy S21 5G",
+        "Galaxy S21+ 5G",
+        "Galaxy S21 Ultra 5G",
+        "Galaxy S22",
+        "Galaxy S22 Ultra",
+        "Galaxy S23",
+        "Galaxy S23 Ultra",
+        "Galaxy S23 FE",
+        "Galaxy S24",
+        "Galaxy S24 Ultra",
+        "Galaxy S24 FE",
+        "Galaxy S25",
+        "Galaxy S25 Ultra",
+        "Galaxy S26",
+        "Galaxy S26+",
+        "Galaxy S26 Ultra"
+      ],
+      "capturedCount": 39,
+      "captureState": "captured"
+    },
+    {
+      "id": "note-series",
+      "tableIndex": 2,
+      "sourceUrl": "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+      "models": [
+        "GALAXY Note",
+        "GALAXY Note II",
+        "Galaxy Note3",
+        "Galaxy Note Edge",
+        "Galaxy Note8",
+        "Galaxy Note9",
+        "Galaxy Note10+",
+        "Galaxy Note20 Ultra 5G"
+      ],
+      "capturedCount": 8,
+      "captureState": "captured"
+    },
+    {
+      "id": "fold-flip",
+      "tableIndex": 3,
+      "sourceUrl": "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+      "models": [
+        "Galaxy Fold",
+        "Galaxy Z Flip",
+        "Galaxy Z Flip Thom Browne Edition",
+        "Galaxy Z Flip 5G",
+        "Galaxy Z Fold2 5G",
+        "Galaxy Z Fold2 5G Thom Browne Edition",
+        "Galaxy Z Flip3 5G",
+        "Galaxy Z Fold3 5G",
+        "Galaxy Z Flip4",
+        "Galaxy Z Fold4",
+        "Galaxy Z Flip5",
+        "Galaxy Z Fold5",
+        "Galaxy Z Flip6",
+        "Galaxy Z Fold6",
+        "Galaxy Z Flip7",
+        "Galaxy Z Fold7",
+        "Galaxy Z Flip8",
+        "Galaxy Z Fold8",
+        "Galaxy Z Fold8 Ultra"
+      ],
+      "capturedCount": 19,
+      "captureState": "captured"
+    },
+    {
+      "id": "other-smartphones",
+      "tableIndex": 4,
+      "sourceUrl": "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+      "models": [
+        "Galaxy J",
+        "Galaxy Active neo",
+        "Galaxy Feel",
+        "Galaxy Feel2",
+        "Galaxy M23 5G"
+      ],
+      "capturedCount": 5,
+      "captureState": "captured"
+    }
+  ],
+  "discovery": {
+    "channels": [
+      "official_samsung_jp_online_manual_index",
+      "linked_exact_model_support_pages",
+      "official_download_metadata",
+      "alternate_official_support_search"
+    ],
+    "candidateSource": "Manufacturer-controlled row hyperlinks, not patterned URLs."
+  },
+  "review": {
+    "publicationGate": "locked_89_reviewed_89_reconciled",
+    "validationSample": [
+      "Galaxy A8",
+      "Galaxy A20",
+      "Galaxy A57 5G",
+      "GALAXY S II WiMAX",
+      "Galaxy S10+ Olympic Games Edition",
+      "Galaxy S24",
+      "Galaxy S26 Ultra",
+      "Galaxy Note20 Ultra 5G",
+      "Galaxy Z Fold2 5G Thom Browne Edition",
+      "Galaxy Fold",
+      "Galaxy J"
+    ],
+    "notes": "Check exact smartphone name in manufacturer model page title, manufacturer-controlled HTTPS redirects, explicit Samsung manual download metadata; do not infer carrier compatibility from family or share manuals absent manufacturer's explicit grouping.",
+    "candidateRun": {
+      "workflowRunId": 41099458392,
+      "artifactId": 12998271099,
+      "officialPopulation": 89,
+      "firstPass": {
+        "direct": 82,
+        "support_only": 0,
+        "held": 7,
+        "carrierCandidateLinks": 189,
+        "identityFailures": 11
+      },
+      "secondary": {
+        "direct": 85,
+        "shared": 0,
+        "support_only": 4,
+        "held": 0
+      },
+      "validation": "all five manufacturer phone tables recaptured exactly; six-table/tablet boundary fail-closed",
+      "secondaryDiscoveryNotes": "Two alternate exact manual-support pages (GALAXY S II, Z Flip Thom Browne), one explicit Simple variant manual (Galaxy A21), four exact manufacturer model-to-code mapping links retained as support-only without promoting weak deep manual links."
+    },
+    "refreshPath": "rerun official 6-table source extraction and model/manual runner, compare exact 89-model locked scope and new/deprecated models before updating the manifest; retain historic variant evidence"
+  },
+  "records": [
+    {
+      "model": "Galaxy A8",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-A800JZDEKDI/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-A800JZDEKDI/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-A800JZDEKDI/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy A30",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-A305JZBEJCO/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-A305JZBEJCO/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-A305JZBEJCO/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy A7",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-A750CZKARKT/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-A750CZKARKT/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-A750CZKARKT/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy A20",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-A102DZRADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-A102DZRADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-A102DZRADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy A41",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-A415DZWADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-A415DZWADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-A415DZWADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy A21",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-A102DZRJDCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-A102DZRJDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-A102DZRJDCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy A51 5G",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-A516DZKADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-A516DZKADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-A516DZKADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy A32 5G",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-A326JZWNKDI/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-A326JZWNKDI/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-A326JZWNKDI/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy A52 5G",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-A526DLVADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-A526DLVADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-A526DLVADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy A21 シンプル",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-A102JZKKKDI/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-A102JZKKKDI/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-A102JZKKKDI/",
+        "https://www.samsung.com/jp/support/mobile-devices/please-tell-us-about-the-latest-version-of-galaxy-terminal-which-is-sold-in-au/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "official_secondary_manual_or_exact_sku_verification",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata",
+        "secondary_official_product_or_carrier_mapping"
+      ],
+      "reviewNote": "Exact シンプル Japanese manual metadata verified in linked manufacturer model page; separate Samsung au source confirms SCV49 despite official manual-index code SCG49 discrepancy."
+    },
+    {
+      "model": "Galaxy A22 5G",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-A223DZKADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-A223DZKADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-A223DZKADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy A53 5G",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-A536DLBADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-A536DLBADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-A536DLBADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy A23 5G",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-A233DZKDDCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-A233DZKDDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-A233DZKDDCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy A54 5G",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-A546DLVBDCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-A546DLVBDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-A546DLVBDCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy A55 5G",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-A556DZKBDCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-A556DZKBDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-A556DZKBDCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy A25 5G",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-A253DLBADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-A253DLBADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-A253DLBADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy A36 5G",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-A366DZAADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-A366DZAADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-A366DZAADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy A57 5G",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-A576DDBADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-A576DDBADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-A576DDBADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SGH-N013RWNDCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SGH-N013RWNDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SGH-N013RWNDCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "GALAXY S II",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SGH-N033RWNDCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SGH-N033RWNDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SGH-N033RWNDCM/",
+        "https://www.samsung.com/jp/support/model/SGH-N033LKNDCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "official_secondary_manual_or_exact_sku_verification",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata",
+        "secondary_official_product_or_carrier_mapping"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "GALAXY S II WiMAX",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SCH-J001LKJKDI/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SCH-J001LKJKDI/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SCH-J001LKJKDI/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "GALAXY S II LTE",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SGH-N034RWNDCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SGH-N034RWNDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SGH-N034RWNDCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "GALAXY S III",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SGH-N064RW3DCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SGH-N064RW3DCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SGH-N064RW3DCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "GALAXY S III α",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SGH-N035TANDCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SGH-N035TANDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SGH-N035TANDCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "GALAXY S III Progre",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SCH-J021ZWJKDI/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SCH-J021ZWJKDI/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SCH-J021ZWJKDI/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "GALAXY S4",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SGH-N045ZKEDCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SGH-N045ZKEDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SGH-N045ZKEDCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S5",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-G900DSIEDCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-G900DSIEDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-G900DSIEDCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S5 ACTIVE",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-G870DDGADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-G870DDGADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-G870DDGADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S6",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-G920DZKADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-G920DZKADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-G920DZKADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S6 edge",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-G925XZGEDCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-G925XZGEDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-G925XZGEDCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S7edge",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-G935DZBADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-G935DZBADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-G935DZBADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S8",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-G950DZVADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-G950DZVADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-G950DZVADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S8+",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-G955DZSADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-G955DZSADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-G955DZSADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S9",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-G960DZKADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-G960DZKADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-G960DZKADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S9+",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-G965DZAADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-G965DZAADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-G965DZAADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S10",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-G973DZWADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-G973DZWADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-G973DZWADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S10+",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-G975DZKADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-G975DZKADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-G975DZKADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S10+ Olympic Games Edition",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-G975DZWQDCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-G975DZWQDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-G975DZWQDCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S20 5G",
+      "state": "support_only",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-G981DZAADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-G981DZAADCM/",
+        "https://www.samsung.com/jp/support/mobile-devices/please-tell-us-about-the-latest-version-of-the-galaxy-device-sold-in-docomo/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "official_secondary_manual_or_exact_sku_verification",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata",
+        "secondary_official_product_or_carrier_mapping"
+      ],
+      "reviewNote": "Samsung official index links this marketing model to an exact manufacturer product support page and a second official model/code listing confirms the identity; the destination's marketing title differs, so no deeper manual is promoted."
+    },
+    {
+      "model": "Galaxy S20+ 5G",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-G986DZAADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-G986DZAADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-G986DZAADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S20 Ultra 5G",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-G988JZKAKDI/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-G988JZKAKDI/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-G988JZKAKDI/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S21 5G",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-G991DZAEDCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-G991DZAEDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-G991DZAEDCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S21+ 5G",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-G996JZKEKDI/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-G996JZKEKDI/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-G996JZKEKDI/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S21 Ultra 5G",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-G998DZKEDCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-G998DZKEDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-G998DZKEDCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S22",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-S901DZWEDCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-S901DZWEDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-S901DZWEDCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S22 Ultra",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-S908DDREDCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-S908DDREDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-S908DDREDCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S23",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-S911DLIEDCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-S911DLIEDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-S911DLIEDCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S23 Ultra",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-S918DZEEDCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-S918DZEEDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-S918DZEEDCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S23 FE",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-S711JZWEKDI/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-S711JZWEKDI/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-S711JZWEKDI/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S24",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-S921DZKEDCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-S921DZKEDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-S921DZKEDCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S24 Ultra",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-S928DZKFDCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-S928DZKFDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-S928DZKFDCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S24 FE",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-S721JLBAKDI/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-S721JLBAKDI/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-S721JLBAKDI/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S25",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-S931DDBEDCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-S931DDBEDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-S931DDBEDCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S25 Ultra",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-S938DZBADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-S938DZBADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-S938DZBADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S26",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-S942DZKEDCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-S942DZKEDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-S942DZKEDCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S26+",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-S947DZKADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-S947DZKADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-S947DZKADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy S26 Ultra",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-S948DZKADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-S948DZKADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-S948DZKADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "GALAXY Note",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SGH-N054ZBNDCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SGH-N054ZBNDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SGH-N054ZBNDCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "GALAXY Note II",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SGH-N025RWNDCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SGH-N025RWNDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SGH-N025RWNDCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy Note3",
+      "state": "support_only",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-N900DZWEDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-N900DZWEDCM/",
+        "https://www.samsung.com/jp/support/mobile-devices/please-tell-us-about-the-latest-version-of-the-galaxy-device-sold-in-docomo/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "official_secondary_manual_or_exact_sku_verification",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata",
+        "secondary_official_product_or_carrier_mapping"
+      ],
+      "reviewNote": "Samsung official index links this marketing model to an exact manufacturer product support page and a second official model/code listing confirms the identity; the destination's marketing title differs, so no deeper manual is promoted."
+    },
+    {
+      "model": "Galaxy Note Edge",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-N915DZKEDCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-N915DZKEDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-N915DZKEDCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy Note8",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-N950DZDADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-N950DZDADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-N950DZDADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy Note9",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-N960DZBADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-N960DZBADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-N960DZBADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy Note10+",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-N975DZWADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-N975DZWADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-N975DZWADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy Note20 Ultra 5G",
+      "state": "support_only",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-N986DZKEDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-N986DZKEDCM/",
+        "https://www.samsung.com/jp/support/mobile-devices/please-tell-us-about-the-latest-version-of-the-galaxy-device-sold-in-docomo/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "official_secondary_manual_or_exact_sku_verification",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata",
+        "secondary_official_product_or_carrier_mapping"
+      ],
+      "reviewNote": "Samsung official index links this marketing model to an exact manufacturer product support page and a second official model/code listing confirms the identity; the destination's marketing title differs, so no deeper manual is promoted."
+    },
+    {
+      "model": "Galaxy Fold",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-F900JZSAKDI/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-F900JZSAKDI/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-F900JZSAKDI/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy Z Flip",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-F700JZKAKDI/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-F700JZKAKDI/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-F700JZKAKDI/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy Z Flip Thom Browne Edition",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-F700JZPAKDI/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-F700JZPAKDI/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-F700JZPAKDI/",
+        "https://www.samsung.com/jp/support/model/SM-F700JZAYKDI/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "official_secondary_manual_or_exact_sku_verification",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata",
+        "secondary_official_product_or_carrier_mapping"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy Z Flip 5G",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-F707JZNAKDI/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-F707JZNAKDI/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-F707JZNAKDI/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy Z Fold2 5G",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-F916JZNAKDI/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-F916JZNAKDI/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-F916JZNAKDI/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy Z Fold2 5G Thom Browne Edition",
+      "state": "support_only",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-F916QZAYSJP/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-F916QZAYSJP/",
+        "https://www.samsung.com/jp/support/mobile-devices/about-discontinued-products-for-manufacturer-brand-repair/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "official_secondary_manual_or_exact_sku_verification",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata",
+        "secondary_official_product_or_carrier_mapping"
+      ],
+      "reviewNote": "Samsung official index links this marketing model to an exact manufacturer product support page and a second official model/code listing confirms the identity; the destination's marketing title differs, so no deeper manual is promoted."
+    },
+    {
+      "model": "Galaxy Z Flip3 5G",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-F711DZEADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-F711DZEADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-F711DZEADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy Z Fold3 5G",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-F926DZKADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-F926DZKADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-F926DZKADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy Z Flip4",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-F721DLVADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-F721DLVADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-F721DLVADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy Z Fold4",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-F936DZAADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-F936DZAADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-F936DZAADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy Z Flip5",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-F731DLGADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-F731DLGADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-F731DLGADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy Z Fold5",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-F946DLBADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-F946DLBADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-F946DLBADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy Z Flip6",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-F741DLBADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-F741DLBADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-F741DLBADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy Z Fold6",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-F956DZSADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-F956DZSADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-F956DZSADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy Z Flip7",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-F766DDBADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-F766DDBADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-F766DDBADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy Z Fold7",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-F966DZKADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-F966DZKADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-F966DZKADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy Z Flip8",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-F776DZWADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-F776DZWADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-F776DZWADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy Z Fold8",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-F971DZWADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-F971DZWADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-F971DZWADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy Z Fold8 Ultra",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-F976DZKFDCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-F976DZKFDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-F976DZKFDCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy J",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SGH-N075ZIEDCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SGH-N075ZIEDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SGH-N075ZIEDCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy Active neo",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-G388DZKEDCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-G388DZKEDCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-G388DZKEDCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy Feel",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-A310DZGADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-A310DZGADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-A310DZGADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy Feel2",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-A530DZIADCM/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-A530DZIADCM/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-A530DZIADCM/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    },
+    {
+      "model": "Galaxy M23 5G",
+      "state": "direct",
+      "manualUrl": "https://www.samsung.com/jp/support/model/SM-M236QLBFSJP/#downloads",
+      "supportUrl": "https://www.samsung.com/jp/support/model/SM-M236QLBFSJP/",
+      "evidenceUrls": [
+        "https://www.samsung.com/jp/support/mobile-devices/how-to-check-galaxy-online-manual/",
+        "https://www.samsung.com/jp/support/model/SM-M236QLBFSJP/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_exact_official_model_title_and_manual_metadata",
+      "attemptedDiscovery": [
+        "official_jp_samsung_manual_index",
+        "linked_samsung_exact_model_support",
+        "manufacturer_jp_manual_download_metadata"
+      ],
+      "reviewNote": "Samsung-controlled HTTPS model-specific support page: exact manufacturer title and Japanese manual-download metadata verified; manufacturer index links the identity."
+    }
+  ]
+}

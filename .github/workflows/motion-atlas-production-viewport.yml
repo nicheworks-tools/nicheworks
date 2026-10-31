@@ -1,0 +1,32 @@
+name: Motion Atlas production viewport verification
+
+on:
+  pull_request:
+    paths:
+      - 'tools/motion-atlas/tests/production-viewport.test.mjs'
+      - '.github/workflows/motion-atlas-production-viewport.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/motion-atlas/tests/production-viewport.test.mjs'
+      - '.github/workflows/motion-atlas-production-viewport.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify system Chrome
+        run: command -v google-chrome || command -v google-chrome-stable || command -v chromium
+      - name: Verify actual production site at 390px and 1280px
+        env:
+          MOTION_ATLAS_ORIGIN: https://nicheworks.app
+        run: node tools/motion-atlas/tests/production-viewport.test.mjs

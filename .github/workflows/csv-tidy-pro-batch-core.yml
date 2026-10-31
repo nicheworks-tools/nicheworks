@@ -1,0 +1,26 @@
+name: CSV Tidy Pro batch core
+
+on:
+  pull_request:
+    paths:
+      - 'tools/csv-tidy/pro/**'
+      - 'tools/csv-tidy/tests/pro-batch-core.mjs'
+      - 'tools/csv-tidy/tests/checkpoint-harness.mjs'
+      - '.github/workflows/csv-tidy-pro-batch-core.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  batch-core:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Exercise production-codec parity, failure isolation and independent CSV reparse
+        run: node tools/csv-tidy/tests/pro-batch-core.mjs
+      - name: Ensure read-only checks
+        run: |
+          git diff --exit-code
+          test -z "$(git status --porcelain)"

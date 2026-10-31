@@ -1,0 +1,48 @@
+name: ManualFinder Fujitsu LIFEBOOK U 148-model Coverage-Pass
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/coverage-passes/fujitsu/**'
+      - 'tools/manual-finder/scripts/fujitsu-lifebook-u-index-probe.mjs'
+      - 'tools/manual-finder/scripts/fujitsu-lifebook-u-review.mjs'
+      - 'tools/manual-finder/scripts/fujitsu-lifebook-u-reconcile-publication.mjs'
+      - 'tools/manual-finder/tests/fujitsu-lifebook-u-review.test.mjs'
+      - 'tools/manual-finder/tests/fujitsu-lifebook-u-publication.test.mjs'
+      - 'tools/manual-finder/data/manuals.coverage-pass.fujitsu-lifebook-u.js'
+      - 'tools/manual-finder/data/manuals.coverage-passes.js'
+      - 'tools/manual-finder/COVERAGE.md'
+      - '.github/workflows/manualfinder-fujitsu-lifebook-u-coverage-pass.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  fujitsu-lifebook-u-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify source population lock and positive document evidence gates
+        run: |
+          node tools/manual-finder/tests/coverage-pass-pipeline.test.mjs
+          node tools/manual-finder/tests/fujitsu-lifebook-u-review.test.mjs
+          if test -f tools/manual-finder/tests/fujitsu-lifebook-u-publication.test.mjs; then
+            node tools/manual-finder/tests/fujitsu-lifebook-u-publication.test.mjs
+          fi
+      - name: Live review all 148 manufacturer-linked model manual pages and PDF documents
+        run: |
+          mkdir -p manualfinder-fujitsu-review
+          node tools/manual-finder/scripts/fujitsu-lifebook-u-review.mjs \
+            --out manualfinder-fujitsu-review/complete-review.json
+      - name: Reconcile live model and PDF evidence against published manifest
+        run: |
+          node tools/manual-finder/scripts/fujitsu-lifebook-u-reconcile-publication.mjs \
+            --live manualfinder-fujitsu-review/complete-review.json
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: manualfinder-fujitsu-lifebook-u-148-review
+          path: manualfinder-fujitsu-review/*.json
+          if-no-files-found: warn

@@ -1,0 +1,5 @@
+.old-kanji-pro-sales{border:1px solid #aab9ca;border-radius:10px;padding:16px;margin:18px 0;background:#f8fafc;color:#18202b}
+.old-kanji-pro-sales h2{font-size:1.2rem;margin:0 0 6px}.old-kanji-pro-sales p{margin:8px 0;line-height:1.45}
+.old-kanji-pro-sales button{padding:10px 14px;border:1px solid #1e5e91;background:#155e95;color:#fff;border-radius:7px;font:inherit;cursor:pointer}
+.old-kanji-pro-sales button:disabled{opacity:.65;cursor:wait}
+@media(max-width:480px){.old-kanji-pro-sales{padding:12px}.old-kanji-pro-sales button{width:100%}}

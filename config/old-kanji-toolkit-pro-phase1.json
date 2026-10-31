@@ -1,0 +1,135 @@
+{
+  "schemaVersion": "okj-toolkit-pro-phase1-v1",
+  "productId": "okj.toolkit_pro",
+  "status": "staged-not-for-sale",
+  "priceDecision": "pending",
+  "entitlementScope": "single-product-all-eight-tools",
+  "featureIds": [
+    "okj.batch",
+    "okj.history",
+    "okj.collections",
+    "okj.workspaces",
+    "okj.reports",
+    "okj.advancedExport",
+    "okj.ocr.batch",
+    "okj.ocr.crop",
+    "okj.modernizer.batch",
+    "okj.name.batch",
+    "okj.place.batch",
+    "okj.unicode.batch",
+    "okj.variant.batch",
+    "okj.document.batch"
+  ],
+  "tools": [
+    {
+      "slug": "old-kanji-reference",
+      "freeGuarantee": "Search, list, details, favorites, recent, quiz, CSV, JSON, Markdown and print remain Free.",
+      "proFeatureIds": [
+        "okj.batch",
+        "okj.history",
+        "okj.collections",
+        "okj.workspaces",
+        "okj.reports"
+      ]
+    },
+    {
+      "slug": "kanji-modernizer",
+      "freeGuarantee": "Single text conversion both directions, conservative/first-candidate, ambiguity review and copy remain Free.",
+      "proFeatureIds": [
+        "okj.batch",
+        "okj.modernizer.batch",
+        "okj.history",
+        "okj.workspaces",
+        "okj.advancedExport"
+      ]
+    },
+    {
+      "slug": "old-kanji-ocr-scanner",
+      "freeGuarantee": "Single image OCR, manual correction, old-kanji detection, modern preview and copy remain Free.",
+      "proFeatureIds": [
+        "okj.batch",
+        "okj.ocr.batch",
+        "okj.ocr.crop",
+        "okj.history",
+        "okj.collections",
+        "okj.workspaces",
+        "okj.reports",
+        "okj.advancedExport"
+      ]
+    },
+    {
+      "slug": "old-document-kanji-highlighter",
+      "freeGuarantee": "Single document highlighting, detection, mechanical preview and copy remain Free.",
+      "proFeatureIds": [
+        "okj.batch",
+        "okj.document.batch",
+        "okj.history",
+        "okj.workspaces",
+        "okj.reports"
+      ]
+    },
+    {
+      "slug": "unicode-kanji-checker",
+      "freeGuarantee": "Existing Unicode, decimal, HTML entity, UTF-16, compatibility/VS and copy remain Free.",
+      "proFeatureIds": [
+        "okj.batch",
+        "okj.unicode.batch",
+        "okj.history",
+        "okj.collections",
+        "okj.advancedExport",
+        "okj.reports"
+      ]
+    },
+    {
+      "slug": "variant-kanji-compare",
+      "freeGuarantee": "Existing multi-character comparison, presets, glyph/metadata, copy and shipped CSV remain Free.",
+      "proFeatureIds": [
+        "okj.batch",
+        "okj.variant.batch",
+        "okj.history",
+        "okj.collections",
+        "okj.workspaces",
+        "okj.reports"
+      ]
+    },
+    {
+      "slug": "place-old-kanji-checker",
+      "freeGuarantee": "Single place/rail/address candidate checks, metadata and Modernizer handoff remain Free.",
+      "proFeatureIds": [
+        "okj.batch",
+        "okj.place.batch",
+        "okj.history",
+        "okj.workspaces",
+        "okj.reports",
+        "okj.advancedExport"
+      ]
+    },
+    {
+      "slug": "name-old-kanji-checker",
+      "freeGuarantee": "Single name/surname candidate checks, metadata, copy and Modernizer handoff remain Free.",
+      "proFeatureIds": [
+        "okj.batch",
+        "okj.name.batch",
+        "okj.history",
+        "okj.workspaces",
+        "okj.reports",
+        "okj.advancedExport"
+      ]
+    }
+  ],
+  "dataPolicy": {
+    "userContentSentToBilling": false,
+    "userContentSentToAffiliate": false,
+    "userContentSentToAnalytics": false,
+    "historyStorage": "browser-local-opt-in"
+  },
+  "launchGates": [
+    "price-approved",
+    "stripe-price-and-secret-configured",
+    "d1-migration-applied",
+    "checkout-paid-webhook-verified",
+    "entitlement-restore-verified",
+    "mobile-desktop-jp-en-browser-qa",
+    "ci-passed"
+  ]
+}

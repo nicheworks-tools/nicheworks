@@ -1,0 +1,148 @@
+{
+  "schema": "cta-affiliate-image-acquisition-wave6-v2.3",
+  "version": "2026-10-31-reviewed-image-wave9-four-1",
+  "policy": {
+    "queue_order": "curated source-feasibility work order, NOT empirical market ranking",
+    "no_guessed_search_volume": true,
+    "no_earnings_forecast": true,
+    "promotion_requires_download_hash_review_local_derivatives": true,
+    "no_hotlink": true,
+    "publication_state": "unchanged_pending_formal_image_promotion"
+  },
+  "source_versions": {
+    "public_image_inventory": "2026-09-16-q014-identity-closure-1",
+    "affiliate_offers": "2026-09-18-wave6l-affiliate-1",
+    "content_quality": "2026-09-16-q014-identity-closure-1",
+    "revenue_policy": "2026-09-19-revenue-priority-2"
+  },
+  "expected": {
+    "active_affiliate_mappings": 432,
+    "revenue_ready": 44,
+    "awaiting_source": 388,
+    "first_wave": 1,
+    "source_leads": 3
+  },
+  "first_wave_ids": [
+    "hammer_drill",
+    "tape_measure",
+    "torque_wrench",
+    "utility_knife",
+    "multimeter",
+    "laser_distance_meter",
+    "reciprocating_saw",
+    "nail_gun",
+    "pipe_wrench",
+    "wire_stripper",
+    "speed_square",
+    "screwdriver"
+  ],
+  "source_leads": [
+    {
+      "entry_id": "hammer_drill",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Hammer_drill-1.jpg",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Hammer_drill-1.jpg",
+      "author": "Shakespeare (English Wikipedia)",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "expected_sha1": "3076529a2af3514d64a784177f37c52eb3aed4a1",
+      "subject_note": "Corded hammer drill, visibly depicted in Commons photo; still requires verified binary and subject-quality audit.",
+      "source_filename": "source.jpg",
+      "attribution": "Shakespeare (English Wikipedia) / Wikimedia Commons, CC BY-SA 3.0",
+      "source_review": "commons_metadata_checked",
+      "binary_review": "pending_download_sha1_webp_quality_review",
+      "promotion_allowed": false
+    },
+    {
+      "entry_id": "tape_measure",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Centroinstrument_measuring_tape.JPG",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Centroinstrument_measuring_tape.JPG",
+      "author": "Dmitry G",
+      "license": "Public Domain (PD-self)",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-self",
+      "expected_sha1": "dd3e0b24aa589afee0c7986949e18645dd896d0b",
+      "subject_note": "Retractable measuring tape, subject metadata confirmed; full-source visual review and binary hash audit still pending.",
+      "source_filename": "source.jpg",
+      "attribution": "Dmitry G / Wikimedia Commons, Public Domain (PD-self)",
+      "source_review": "commons_metadata_checked",
+      "binary_review": "pending_download_sha1_webp_quality_review",
+      "promotion_allowed": false
+    },
+    {
+      "entry_id": "torque_wrench",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Torque_Wrench_Collection.jpg",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Torque_Wrench_Collection.jpg",
+      "author": "Donghao Zhang",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "expected_sha1": "bcc55dc1f189883c8e39784e28de4216ba3422c7",
+      "subject_note": "Torque wrench collection with multiple heads; source visual confirmation and derivative quality audit still pending.",
+      "source_filename": "source.jpg",
+      "attribution": "Donghao Zhang / Wikimedia Commons, CC BY-SA 4.0",
+      "source_review": "commons_metadata_checked",
+      "binary_review": "pending_download_sha1_webp_quality_review",
+      "promotion_allowed": false
+    }
+  ],
+  "review_decisions": [
+    {
+      "entry_id": "hammer_drill",
+      "disposition": "promoted",
+      "review": "Original and WebP image visibly match hammer drill; SHA-1 verified, formal image lifecycle completed."
+    },
+    {
+      "entry_id": "tape_measure",
+      "disposition": "promoted",
+      "review": "Original and WebP image visibly match tape measure; SHA-1 verified, formal image lifecycle completed."
+    },
+    {
+      "entry_id": "torque_wrench",
+      "disposition": "promoted",
+      "review": "Original mixed-tool source rejected, replaced with a direct close-up of a single adjustable torque wrench. New Wave8 image verified via original and WebP visual inspection and SHA-1. Inspected original 2560x1920 JPEG and primary 960x720 WebP: a complete torque wrench with torque setting grip and ratchet head is clearly visible; replaces the rejected mixed-tool collection photo."
+    },
+    {
+      "entry_id": "utility_knife",
+      "disposition": "promoted",
+      "review": "Wave7 source and WebP originals directly inspected, exact Commons SHA-1 matched, licensed attribution retained, complete formal lifecycle completed: Inspected original 1800x1350 JPEG and primary 960x720 WebP: yellow and black retractable segmented-blade construction utility knife shown clearly with spare break-off blade; correct canonical subject."
+    },
+    {
+      "entry_id": "screwdriver",
+      "disposition": "promoted",
+      "review": "Wave7 source and WebP originals directly inspected, exact Commons SHA-1 matched, licensed attribution retained, complete formal lifecycle completed: Inspected original 2736x3648 JPEG and primary 540x720 WebP: one full-length manual cross-head screwdriver, clear handle, shaft and tip, distinct from powered drivers; correct canonical subject."
+    },
+    {
+      "entry_id": "multimeter",
+      "disposition": "promoted",
+      "review": "Wave7 source and WebP originals directly inspected, exact Commons SHA-1 matched, licensed attribution retained, complete formal lifecycle completed: Inspected original 1840x2453 JPEG and primary 540x720 WebP: digital multimeter with screen, selector knob, electrical measurement ranges and lead ports; single identifiable multimeter."
+    },
+    {
+      "entry_id": "wire_stripper",
+      "disposition": "promoted",
+      "review": "Inspected original 588x1065 JPEG and primary 398x720 WebP: an automatic wire stripper with visible stripping jaws and red handles is clearly identifiable."
+    },
+    {
+      "entry_id": "reciprocating_saw",
+      "disposition": "rejected_subject_focus",
+      "review": "Wave8 candidate only shows reciprocating saw front and blade actively cutting lumber, with most tool body cropped off; rejected for canonical identification and not promoted. Seek a full-tool original. Wave9 second proposed saw image inspected: saw body and rear grip visible but cutting blade and tool nose absent; still inadequate for canonical illustration; remain awaiting_source."
+    },
+    {
+      "entry_id": "laser_distance_meter",
+      "disposition": "promoted",
+      "review": "Original JPEG / primary WebP visually inspected, Commons API SHA-1 matched verified original, attribution and publication lifecycle completed. Inspected original 750x507 JPEG and 750x507 WebP: complete handheld laser distance meter with screen and controls, clearly recognizable; source file original SHA-1 confirmed through Commons API."
+    },
+    {
+      "entry_id": "pipe_wrench",
+      "disposition": "promoted",
+      "review": "Original JPEG / primary WebP visually inspected, Commons API SHA-1 matched verified original, attribution and publication lifecycle completed. Inspected original 4608x3072 JPEG and 960x640 WebP: full red pipe wrench, adjustable jaw and knurled knob clearly visible in uncluttered foreground."
+    },
+    {
+      "entry_id": "speed_square",
+      "disposition": "promoted",
+      "review": "Original JPEG / primary WebP visually inspected, Commons API SHA-1 matched verified original, attribution and publication lifecycle completed. Inspected original 567x480 JPEG and 567x480 WebP: Swanson triangular speed square with right-angle edges and graduated layout scales; adequate focal tool despite native resolution."
+    },
+    {
+      "entry_id": "nail_gun",
+      "disposition": "promoted",
+      "review": "Original JPEG / primary WebP visually inspected, Commons API SHA-1 matched verified original, attribution and publication lifecycle completed. Inspected original 2816x2112 JPEG and 960x720 WebP: one full pneumatic nail gun shown side-on with barrel, magazine, grip and air fitting; correct canonical subject."
+    }
+  ]
+}

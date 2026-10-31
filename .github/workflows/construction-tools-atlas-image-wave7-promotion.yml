@@ -1,0 +1,25 @@
+name: Construction Tools Atlas Wave7 Image Provenance Audit
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit-retained-source-images:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify Wave7 original hashes and official attribution
+        run: |
+          echo "d4d42d040c2be9f5764f165590b9700d60753bd7  tools/construction-tools-atlas/images/utility_knife/source.jpg" | sha1sum -c
+          echo "73a6fa3dbbd195bc549a94beb2838158f543cf47  tools/construction-tools-atlas/images/screwdriver/source.jpg" | sha1sum -c
+          echo "ff22145553196e8b7fe75d30bb8e519441b89a3f  tools/construction-tools-atlas/images/multimeter/source.jpg" | sha1sum -c
+          node tools/construction-tools-atlas/scripts/check-image-registry-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/check-image-attribution-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/build-seo-detail-pages-v2.3.cjs --check
+          node tools/construction-tools-atlas/scripts/build-affiliate-image-acquisition-queue-v2.3.cjs --check

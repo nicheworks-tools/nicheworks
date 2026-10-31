@@ -16,7 +16,17 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 function staticServer() {
   const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.ico':'image/x-icon'};
   const server=http.createServer((req,res)=>{
-    const u=new URL(req.url||'/',base); let p=decodeURIComponent(u.pathname); if(p.endsWith('/'))p+='index.html';
+    const u=new URL(req.url||'/',base);
+    // Local QA-only entitlement fixture; never part of the deployed app.
+    if(u.pathname==='/api/billing/entitlement'){
+      const sessionId=u.searchParams.get('sessionId');
+      const ok=u.searchParams.get('productId')==='okj.toolkit_pro' &&
+        ['cs_test_WORKSPACEQA','cs_test_BATCHFEATUREONLY'].includes(sessionId);
+      res.writeHead(ok?200:403,{'content-type':'application/json;charset=utf-8','cache-control':'no-store'});
+      res.end(JSON.stringify(ok?{ok:true,active:true,features:sessionId==='cs_test_BATCHFEATUREONLY'?['okj.modernizer.batch']:['okj.batch','okj.ocr.batch','okj.workspaces','okj.name.batch','okj.place.batch','okj.reports','okj.advancedExport','okj.ocr.crop','okj.modernizer.batch','okj.unicode.batch','okj.variant.batch','okj.document.batch']}:{ok:false,active:false,error:'not_entitled'}));
+      return;
+    }
+    let p=decodeURIComponent(u.pathname); if(p.endsWith('/'))p+='index.html';
     const f=path.resolve(root,'.'+p), rr=path.resolve(root)+path.sep;
     if(!f.startsWith(rr)||!fs.existsSync(f)||!fs.statSync(f).isFile()){res.writeHead(404).end('Not found');return;}
     res.writeHead(200,{'content-type':mime[path.extname(f)]||'application/octet-stream','cache-control':'no-store'}); fs.createReadStream(f).pipe(res);
@@ -138,6 +148,178 @@ async function main(){
       if(tool==='old-kanji-reference'&&vp.name==='desktop')await referenceExports(c,fail);
       const errs=await c.js('return window.__w15||[]');if(errs.length)fail.push(label+': runtime errors '+JSON.stringify(errs));check(label+'/final',await c.js(scanScript),fail);
     }}
+    // Authenticated Pro UI: prove one workspace survives navigation between two distinct tools.
+    await c.rect(1440,1000);
+    await c.nav(base+'/tools/old-kanji-ocr-scanner/');
+    await c.js("localStorage.setItem('nicheworks:billing:session:okj.toolkit_pro','cs_test_WORKSPACEQA');");
+    await c.nav(base+'/tools/old-kanji-ocr-scanner/');
+    await sleep(450);
+    const proMounted=await c.js("return !!document.getElementById('okj-pro-workspaces');");
+    if(!proMounted)fail.push('workspace/entitled: Pro workspace panel failed to mount');
+    else{
+      await c.js("const panel=document.getElementById('okj-pro-workspaces'); panel.querySelector('.okj-workspace-row input').value='QA historical manuscript'; panel.querySelector('.okj-workspace-row button').click();");
+      await sleep(200);
+      await c.js("const panel=document.getElementById('okj-pro-workspaces'); panel.querySelector('textarea').value='舊學 𠮷 historical text'; panel.querySelectorAll('.okj-workspace-row')[2].querySelector('button').click();");
+      await sleep(250);
+      const count=await c.js("return document.querySelectorAll('#okj-pro-workspaces .okj-workspace-entry').length;");
+      if(count!==1)fail.push('workspace/ocr: expected one stored entry, got '+count);
+      await c.nav(base+'/tools/name-old-kanji-checker/');
+      await sleep(500);
+      const reused=await c.js("const panel=document.getElementById('okj-pro-workspaces'); return {mounted:!!panel,text:panel?.querySelector('.okj-workspace-entry p')?.textContent||''};");
+      if(!reused.mounted||!reused.text.includes('舊學 𠮷'))fail.push('workspace/cross-tool: saved OCR entry missing from Name Checker');
+    }
+    // A real Chrome interaction with the new Pro batch panels and on-site dictionary.
+    await c.js("const batchPanel=document.getElementById('okj-pro-batch'); if(batchPanel){ batchPanel.querySelector('textarea').value=['舊','學'].join(String.fromCharCode(10)); batchPanel.querySelector('.okj-batch-actions button').click(); }");
+    await sleep(350);
+    const checkedName=await c.js("const panel=document.getElementById('okj-pro-batch'); return {mounted:!!panel,rows:panel?.querySelectorAll('tbody tr').length||0,text:panel?.querySelector('tbody')?.textContent||''};");
+    if(!checkedName.mounted || checkedName.rows!==2 || !checkedName.text.includes('旧') || !checkedName.text.includes('学')){
+      fail.push('batch/name: verified name checker did not analyze 舊 and 學: '+JSON.stringify(checkedName));
+    }
+    await c.nav(base+'/tools/place-old-kanji-checker/');
+    await sleep(500);
+    await c.js("const batchPanel=document.getElementById('okj-pro-batch'); if(batchPanel){ batchPanel.querySelector('textarea').value=['廣島','國府'].join(String.fromCharCode(10)); batchPanel.querySelector('.okj-batch-actions button').click(); }");
+    await sleep(350);
+    const checkedPlace=await c.js("const panel=document.getElementById('okj-pro-batch'); return {mounted:!!panel,rows:panel?.querySelectorAll('tbody tr').length||0,text:panel?.querySelector('tbody')?.textContent||''};");
+    if(!checkedPlace.mounted || checkedPlace.rows!==2 || !checkedPlace.text.includes('広') || !checkedPlace.text.includes('国')){
+      fail.push('batch/place: verified place checker did not analyze 廣 and 國: '+JSON.stringify(checkedPlace));
+    }
+    // Verify real browser download actions for Reports and Advanced Export.
+    await c.nav(base+'/tools/old-kanji-ocr-scanner/');
+    await sleep(550);
+    const reportVisible=await c.js("return !!document.getElementById('okj-pro-reports-export');");
+    if(!reportVisible)fail.push('reports/verified: report and export UI missing');
+    else{
+      await c.js("const e=document.getElementById('manual-text'); e.value='舊學'; e.dispatchEvent(new Event('input',{bubbles:true})); window.__okjReportsDownloaded=[]; HTMLAnchorElement.prototype.click=function(){window.__okjReportsDownloaded.push(this.download||'');}; const panel=document.getElementById('okj-pro-reports-export'); panel.querySelector('button[data-report-type=report][data-report-format=md]').click(); panel.querySelector('button[data-report-type=export][data-report-format=csv]').click();");
+      await sleep(500);
+      const downloads=await c.js("return {files:window.__okjReportsDownloaded||[],status:document.querySelector('#okj-pro-reports-export .okj-reports-status')?.textContent||''};");
+      if(!downloads.files.includes('old-kanji-report.md')||!downloads.files.includes('old-kanji-export.csv')){
+        fail.push('reports/browser-download: expected Markdown report and CSV advanced export '+JSON.stringify(downloads));
+      }
+    }
+    // QA-only verified entitlement: mobile-width touch drag on an actual PNG.
+    await c.rect(375,812);
+    await c.nav(base+'/tools/old-kanji-ocr-scanner/');
+    await sleep(420);
+    const cropMounted=await c.js("return !!document.getElementById('okj-pro-crop');");
+    if(!cropMounted)fail.push('crop/verified: Pro crop panel not mounted');
+    else {
+      await c.js("window.__cropCapture=null; window.Tesseract={recognize:async function(blob,lang){ const bitmap=await createImageBitmap(blob); window.__cropCapture={width:bitmap.width,height:bitmap.height,lang:lang}; bitmap.close(); return {data:{text:'舊學'}}; }}; const fixture=document.createElement('canvas'); fixture.width=320;fixture.height=160; const ctx=fixture.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,320,160);ctx.fillStyle='#111';ctx.fillRect(40,20,240,120); const raw=atob(fixture.toDataURL('image/png').split(',')[1]); const bytes=new Uint8Array(raw.length); for(let i=0;i<raw.length;i++)bytes[i]=raw.charCodeAt(i); const file=new File([bytes],'cropping-fixture.png',{type:'image/png'}); const data=new DataTransfer();data.items.add(file); const picker=document.getElementById('image-input');picker.files=data.files; picker.dispatchEvent(new Event('change',{bubbles:true}));");
+      await sleep(320);
+      const cropReady=await c.js("return {shown:!!document.getElementById('okj-pro-crop-canvas')?.width,disabled:document.getElementById('okj-pro-crop-run')?.disabled,loaded:document.getElementById('preview-image')?.naturalWidth||0};");
+      if(!cropReady.shown||cropReady.disabled||cropReady.loaded!==320)fail.push('crop/image-loading: '+JSON.stringify(cropReady));
+      else {
+        await c.js("const preview=document.getElementById('okj-pro-crop-canvas'); const bounds=preview.getBoundingClientRect(); const fire=(type,x,y)=>preview.dispatchEvent(new PointerEvent(type,{bubbles:true,pointerId:7,pointerType:'touch',clientX:bounds.left+bounds.width*x,clientY:bounds.top+bounds.height*y})); fire('pointerdown',.2,.25);fire('pointermove',.8,.75);fire('pointerup',.8,.75); document.getElementById('okj-pro-crop-run').click();");
+        await sleep(500);
+        const cropObserved=await c.js("return {capture:window.__cropCapture,text:document.getElementById('manual-text')?.value||'',modern:document.getElementById('modern-preview-output')?.textContent||'',status:document.querySelector('#okj-pro-crop .okj-pro-crop-status')?.textContent||''};");
+        if(!cropObserved.capture||cropObserved.capture.lang!=='jpn'||
+           Math.abs(cropObserved.capture.width-192)>2||Math.abs(cropObserved.capture.height-80)>2||
+           cropObserved.text!=='舊學'||!cropObserved.modern.includes('旧学')){
+          fail.push('crop/touch-selection-ocr: '+JSON.stringify(cropObserved));
+        }
+      }
+    }
+    // Four tool-specific Pro batch integrations, real DOM inputs, local dictionary data, CSV/JSON exports.
+    await c.rect(375,812);
+    const multiCases=[
+      {slug:'kanji-modernizer',values:'舊學\\n國府',expected:['旧学','国府'],kind:'modernizer'},
+      {slug:'unicode-kanji-checker',values:'𠮷\\n﨑',expected:['U+20BB7','U+FA11'],kind:'unicode'},
+      {slug:'variant-kanji-compare',values:'舊 旧\\n﨑 崎',expected:['U+820A','U+FA11'],kind:'variant'},
+      {slug:'old-document-kanji-highlighter',values:'舊學\\n國府',expected:['旧学','国府'],kind:'document'}
+    ];
+    for(const test of multiCases){
+      await c.nav(base+'/tools/'+test.slug+'/');await sleep(450);
+      const mounted=await c.js("return !!document.getElementById('okj-multi-batch');");
+      if(!mounted){fail.push('multibatch/'+test.kind+': entitled UI missing');continue;}
+      await c.js("const v=arguments[0];document.getElementById('okj-multi-input').value=v;document.querySelector('#okj-multi-batch .okj-multi-actions button').click();",[test.values.replaceAll('\\n','\n')]);
+      await sleep(450);
+      const result=await c.js("return {rows:document.querySelectorAll('#okj-multi-batch tbody tr').length,text:document.querySelector('#okj-multi-batch tbody')?.textContent||'',status:document.querySelector('#okj-multi-batch .okj-multi-status')?.textContent||'',overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth};");
+      if(result.rows!==2||!test.expected.every(value=>result.text.includes(value))||result.overflow>2){
+        fail.push('multibatch/'+test.kind+': bad mobile conversion '+JSON.stringify(result));
+      }
+      await c.js("window.__okjBatchDownloaded=[];HTMLAnchorElement.prototype.click=function(){window.__okjBatchDownloaded.push(this.download||'');};const buttons=document.querySelectorAll('#okj-multi-batch .okj-multi-actions button');buttons[1].click();buttons[2].click();");
+      await sleep(350);
+      const files=await c.js("return window.__okjBatchDownloaded||[];");
+      if(!files.includes('old-kanji-'+test.kind+'-batch.csv')||!files.includes('old-kanji-'+test.kind+'-batch.json')){
+        fail.push('multibatch/'+test.kind+': CSV/JSON downloads missing '+JSON.stringify(files));
+      }
+    }
+
+    // Shared Batch integration: mobile bilingual hub, six real text modes and OCR handoff.
+    await c.rect(375,812);
+    await c.nav(base+'/tools/old-kanji-reference/');
+    await sleep(550);
+    const sharedPresent=await c.js("return {panel:!!document.getElementById('okj-shared-batch'),options:document.querySelectorAll('#okj-shared-batch-kind option').length,links:document.querySelectorAll('#okj-shared-batch nav a').length,overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth};");
+    if(!sharedPresent.panel||sharedPresent.options!==7||sharedPresent.links!==7||sharedPresent.overflow>2){
+      fail.push('sharedhub/mobile-entitlement: '+JSON.stringify(sharedPresent));
+    }else{
+      await c.js("const field=document.getElementById('okj-shared-batch-input');field.value='舊學'+String.fromCharCode(10)+'國府';document.querySelector('#okj-shared-batch .okj-shared-batch-actions button').click();");
+      await sleep(440);
+      const modernRows=await c.js("return {rows:document.querySelectorAll('#okj-shared-batch tbody tr').length,text:document.querySelector('#okj-shared-batch tbody')?.textContent||''};");
+      if(modernRows.rows!==2||!modernRows.text.includes('旧学')||!modernRows.text.includes('国府'))
+        fail.push('sharedhub/modernizer-run: '+JSON.stringify(modernRows));
+      await c.js("const kind=document.getElementById('okj-shared-batch-kind');kind.value='place';kind.dispatchEvent(new Event('change',{bubbles:true}));document.getElementById('okj-shared-batch-input').value='廣島'+String.fromCharCode(10)+'國府';document.querySelector('#okj-shared-batch .okj-shared-batch-actions button').click();");
+      await sleep(440);
+      const placeRows=await c.js("return {rows:document.querySelectorAll('#okj-shared-batch tbody tr').length,text:document.querySelector('#okj-shared-batch tbody')?.textContent||''};");
+      if(placeRows.rows!==2||!placeRows.text.includes('広')||!placeRows.text.includes('国'))
+        fail.push('sharedhub/place-run: '+JSON.stringify(placeRows));
+      await c.js("const kind=document.getElementById('okj-shared-batch-kind');kind.value='unicode';kind.dispatchEvent(new Event('change',{bubbles:true}));const csv='text'+String.fromCharCode(10)+'𠮷'+String.fromCharCode(10)+'﨑';const file=new File([csv],'batch-input.csv',{type:'text/csv'});const dt=new DataTransfer();dt.items.add(file);document.getElementById('okj-shared-batch-file').files=dt.files;document.getElementById('okj-shared-batch-file').dispatchEvent(new Event('change',{bubbles:true}));document.querySelector('#okj-shared-batch .okj-shared-batch-actions button').click();");
+      await sleep(460);
+      const unicodeRows=await c.js("return {rows:document.querySelectorAll('#okj-shared-batch tbody tr').length,text:document.querySelector('#okj-shared-batch tbody')?.textContent||'',status:document.querySelector('#okj-shared-batch .okj-shared-batch-status')?.textContent||''};");
+      if(unicodeRows.rows!==2||!unicodeRows.text.includes('U+20BB7')||!unicodeRows.text.includes('U+FA11'))
+        fail.push('sharedhub/unicode-csv-run: '+JSON.stringify(unicodeRows));
+      await c.js("window.__sharedDownloads=[];HTMLAnchorElement.prototype.click=function(){window.__sharedDownloads.push(this.download||'');};const buttons=document.querySelectorAll('#okj-shared-batch .okj-shared-batch-actions button');buttons[1].click();buttons[2].click();");
+      await sleep(440);
+      const downloads=await c.js("return window.__sharedDownloads||[];");
+      if(!downloads.includes('old-kanji-unicode-batch.csv')||!downloads.includes('old-kanji-unicode-batch.json'))
+        fail.push('sharedhub/local-downloads: '+JSON.stringify(downloads));
+      await c.js("const kind=document.getElementById('okj-shared-batch-kind');kind.value='ocr';kind.dispatchEvent(new Event('change',{bubbles:true}));");
+      const ocrLink=await c.js("return {to:document.querySelector('#okj-shared-batch .okj-shared-batch-image a')?.getAttribute('href'),inputHidden:document.getElementById('okj-shared-batch-input')?.hidden};");
+      if(ocrLink.to!=='/tools/old-kanji-ocr-scanner/#okj-pro-ocr-phase1'||!ocrLink.inputHidden)
+        fail.push('sharedhub/image-scanner-handoff: '+JSON.stringify(ocrLink));
+    }
+    await c.nav(base+'/tools/kanji-modernizer/');
+    await sleep(400);
+    const sharedShortcut=await c.js("return {panel:!!document.getElementById('okj-shared-batch'),url:document.querySelector('#okj-shared-batch a.okj-shared-batch-home')?.getAttribute('href')||''};");
+    if(!sharedShortcut.panel||sharedShortcut.url!=='/tools/old-kanji-reference/#okj-shared-batch')
+      fail.push('sharedhub/cross-tool-navigation: '+JSON.stringify(sharedShortcut));
+    await c.js("localStorage.setItem('nicheworks:billing:session:okj.toolkit_pro','cs_test_BATCHFEATUREONLY');");
+    await c.nav(base+'/tools/old-kanji-reference/');
+    await sleep(380);
+    if(await c.js("return !!document.getElementById('okj-shared-batch');"))
+      fail.push('sharedhub/featureonly: shared UI must require separate okj.batch grant');
+    await c.nav(base+'/tools/kanji-modernizer/');
+    await sleep(380);
+    if(!await c.js("return !!document.getElementById('okj-multi-batch');"))
+      fail.push('sharedhub/featureonly: existing specific batch UI must remain usable');
+    await c.rect(1440,1000);
+    await c.js("localStorage.setItem('nicheworks:billing:session:okj.toolkit_pro','cs_test_DENIED');");
+    await c.nav(base+'/tools/old-kanji-ocr-scanner/');
+    await sleep(350);
+    if(await c.js("return !!document.getElementById('okj-pro-crop');")){
+      fail.push('crop/denied: Pro crop UI exposed without verified entitlement');
+    }
+    if(await c.js("return !!document.getElementById('okj-pro-reports-export');")){
+      fail.push('reports/denied: report/export UI exposed without verified entitlement');
+    }
+    await c.nav(base+'/tools/name-old-kanji-checker/');
+    await sleep(350);
+    if(await c.js("return !!document.getElementById('okj-pro-batch');")){
+      fail.push('batch/denied: place batch UI exposed without verified entitlement');
+    }
+    if(await c.js("return !!document.getElementById('okj-pro-workspaces');")){
+      fail.push('workspace/denied: Pro UI exposed without verified entitlement');
+    }
+    for(const slug of ['kanji-modernizer','unicode-kanji-checker','variant-kanji-compare','old-document-kanji-highlighter']){
+      await c.nav(base+'/tools/'+slug+'/');await sleep(350);
+      if(await c.js("return !!document.getElementById('okj-multi-batch');")){
+        fail.push('multibatch/denied: unverified Pro panel exposed in '+slug);
+      }
+    }
+    await c.nav(base+'/tools/old-kanji-reference/');
+    await sleep(380);
+    if(await c.js("return !!document.getElementById('okj-shared-batch');"))
+      fail.push('sharedhub/denied: shared UI exposed without server entitlement');
+    await c.js("localStorage.removeItem('nicheworks:billing:session:okj.toolkit_pro');");
     if(fail.length){console.error(`Old Kanji browser UX audit failed: ${fail.length}`);for(const x of fail)console.error('- '+x);process.exitCode=1;}else console.log(`Old Kanji browser UX audit passed: ${tools.length} tools x ${viewports.length} viewports.`);
   }finally{if(c)await c.close().catch(()=>{});proc.kill('SIGTERM');server.close();}
 }

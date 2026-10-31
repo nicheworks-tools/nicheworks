@@ -1,0 +1,64 @@
+name: Billing purchase recovery browser acceptance
+
+on:
+  pull_request:
+    paths:
+      - 'billing/success.html'
+      - 'billing/restore.html'
+      - 'billing/tests/restore-browser-acceptance.html'
+      - 'assets/nw-pro-entitlement.js'
+      - 'tools/csv-tidy/pro/ui.mjs'
+      - 'scripts/ops/csv-tidy-pro-qa-server.py'
+      - '.github/workflows/billing-purchase-recovery.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-restore:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - name: Chrome checkout success and cross-device recovery (isolated local fixture)
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/ops/csv-tidy-pro-qa-server.py --port 8771 >/tmp/billing-restore-qa.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" || true' EXIT
+          for i in {1..25}; do
+            if curl -fsS http://127.0.0.1:8771/billing/restore.html >/dev/null; then break; fi
+            sleep 1
+          done
+          CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          if [ -z "$CHROME" ]; then
+            echo "BLOCKED: headless Chrome is unavailable"
+            exit 2
+          fi
+          "$CHROME" --headless=new --no-sandbox --disable-gpu \
+            --disable-dev-shm-usage --disable-background-networking \
+            --no-first-run --no-default-browser-check \
+            --user-data-dir="$RUNNER_TEMP/billing-restore-profile" \
+            --window-size=1440,1000 --virtual-time-budget=16000 \
+            --dump-dom http://127.0.0.1:8771/billing/tests/restore-browser-acceptance.html \
+            >"$RUNNER_TEMP/billing-restore-browser.html" \
+            2>"$RUNNER_TEMP/billing-restore-chrome.log" || {
+              tail -80 "$RUNNER_TEMP/billing-restore-chrome.log" || true
+              exit 1
+            }
+          python3 - <<'PY'
+          from html import unescape
+          import os,pathlib,re,sys
+          doc=(pathlib.Path(os.environ['RUNNER_TEMP'])/'billing-restore-browser.html').read_text(encoding='utf-8',errors='replace')
+          result=re.search(r'<pre id="results"[^>]*>(.*?)</pre>',doc,re.S)
+          report=unescape(result.group(1)) if result else "ERROR: test result not available"
+          print(report)
+          if 'data-test-result="PASS"' not in doc or not report.startswith('PASS'):
+              sys.exit("Billing recovery browser validation failed")
+          PY
+      - name: Verify worktree unchanged
+        run: |
+          git diff --exit-code
+          test -z "$(git status --porcelain)"

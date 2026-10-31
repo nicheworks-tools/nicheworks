@@ -9,6 +9,7 @@ const fail = (message) => failures.push(message);
 
 const trustedSourceDomains = {
   Apple: ['apple.com'],
+  FCNT: ['fcnt.com'],
   Google: ['google.com', 'google'],
   Samsung: ['samsung.com', 'au.com', 'docomo.ne.jp', 'povo.jp'],
   Sony: ['sony.jp', 'sony.com', 'docomo.ne.jp'],
@@ -16,6 +17,7 @@ const trustedSourceDomains = {
   OPPO: ['oppo.com'],
   Xiaomi: ['mi.com'],
   Motorola: ['motorola.com', 'motorola.co.jp'],
+  Nothing: ['nothing.tech', 'rakuten.co.jp'],
   ZTE: ['nubia.com', 'ymobile.jp']
 };
 
@@ -63,6 +65,13 @@ for (const phone of phones) {
   const hasWirelessWattage = charging.wirelessMaxW !== null && charging.wirelessMaxW !== undefined;
   if (hasWirelessWattage && !hasWirelessStandard) {
     fail(`${phone.id}: wirelessMaxW requires wirelessStandard`);
+  }
+  if (charging.wirelessStatus != null && charging.wirelessStatus !== 'not_supported') {
+    fail(`${phone.id}: unsupported wirelessStatus`);
+  }
+  if (charging.wirelessStatus === 'not_supported') {
+    if (hasWirelessStandard || hasWirelessWattage) fail(`${phone.id}: wirelessStatus not_supported conflicts with positive wireless fields`);
+    if (!sources.wirelessUrl) fail(`${phone.id}: source-backed wirelessStatus not_supported requires sources.wirelessUrl`);
   }
 
   const hasChargingClaim =

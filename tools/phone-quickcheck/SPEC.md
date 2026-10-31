@@ -6,7 +6,7 @@
 - Public URL: `https://nicheworks.app/tools/phone-quickcheck/`
 - Specification status: `complete`
 - Common specification: `common-spec/spec-ja.md`
-- Current dataset: `204 verified models`
+- Current dataset: `215 verified models`
 - Public launch date: `2026-09-13`
 - Product class: `static browser utility / quick-check directory`
 
@@ -18,11 +18,13 @@ It is intentionally not a comprehensive smartphone encyclopedia, review database
 
 ## Current functional contract
 
-The maintained public dataset contains 204 verified models across Apple, Google, Samsung, Sony, SHARP, OPPO, Xiaomi, Motorola, and ZTE, including 36 foldables with separate folded/unfolded dimensions. Users can search by model name and maintained aliases, filter by manufacturer, charging connector, and release year, and sort by newest, lightest, or compact-size oriented order.
+The maintained public dataset contains 215 verified models across Apple, FCNT, Google, Samsung, Sony, SHARP, OPPO, Xiaomi, Motorola, Nothing, and ZTE, including 36 foldables with separate folded/unfolded dimensions. Users can search by model name and maintained aliases, filter by manufacturer, charging connector, and release year, and sort by newest, lightest, or compact-size oriented order.
 
 The list view remains deliberately compact. Selecting a phone exposes detail information including dimensions, weight, display size where maintained, water/dust rating or an explicitly source-backed non-resistant state, charging port, charger guidance, verified protocol labels, PPS state, wireless charging standard/wattage, battery capacity where an accepted value exists, included cable/adapter state, official specification/manual links, and last verification date.
 
-Charging semantics must remain explicit:
+Charging and wireless semantics must remain explicit:
+
+- A wireless capability with a verified positive standard uses `charging.wirelessStandard` (and optional source-backed `wirelessMaxW`). When primary manufacturer/carrier documentation explicitly establishes no wireless charging, `charging.wirelessStatus: not_supported` may be used together with `sources.wirelessUrl`. It must not coexist with positive standard/wattage fields. Missing evidence remains unknown and must not be converted to non-support.
 
 - `wiredRecommendedW` is charger guidance or a maintained adapter class. It must not automatically be described as the handset's measured maximum input.
 - A separate device-side maximum may be displayed only when the maintained source supports that interpretation.
@@ -125,7 +127,7 @@ Desktop uses a wide two-pane layout: searchable/filterable list on the left and 
 - [x] One canonical public tool page exists at `/tools/phone-quickcheck/`.
 - [x] Japanese and English UI are available on the same page.
 - [x] Desktop uses list + right detail pane and mobile uses a bottom sheet for details.
-- [x] The maintained public dataset contains 204 maintained models.
+- [x] The maintained public dataset contains 215 maintained models.
 - [x] Search matches canonical model names plus maintained aliases.
 - [x] Manufacturer, connector, and release-year filters work from canonical data.
 - [x] Device dimensions, weight, charging information, and official-source links can be displayed without converting the tool into a full specification encyclopedia.

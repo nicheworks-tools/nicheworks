@@ -66,6 +66,26 @@ These fixtures contain raw OCR-style output including noise. Copy/paste them int
 - Exact dictionary-aware line repair may join adjacent OCR fragments only when the current regression contract allows it.
 - Obvious non-ingredient blocks do not dominate the result list.
 
+## Real-photo OCR accuracy benchmark (local-only runner)
+
+The suite includes a measurement page at `/tools/inci-fastscan/qa/photo-ocr-benchmark.html` (file: `tools/inci-fastscan/qa/photo-ocr-benchmark.html`). This page is a **QA tool, not an already measured accuracy result**. It reuses the production `runOCR`, image preprocessing, OCR text cleanup and shared ingredient parser.
+
+1. Select an **actual** cosmetic ingredient-label photo, not a text-file fixture, and independently transcribe the ingredient lines from the package as the ground-truth reference. Do not copy the initial OCR output as ground truth.
+2. Select English or Japanese+English OCR according to the photographed label.
+3. Run the **original** image first. This supplies a baseline with no image modifications.
+4. Set 90° rotation, fine deskew ±12°, edge crop or 100–180% contrast. Run the **adjusted** image using the same photo/reference.
+5. Compare normalized character error rate (CER, edit distance/reference characters), exact-ingredient recall and precision (duplicates counted) and time to complete. The CER normalizer first tokenizes label ingredients via the shared parser so the OCR cleanup's comma-to-line-break formatting does not create false OCR character errors; numeric locant commas inside ingredient names remain significant. For CER lower is better; for exact-name recall higher is better.
+6. Copy the **metrics-only JSON** for later aggregation. It contains no source image, filename, transcribed label or OCR output. Raw photo and label transcription stay local to the browser. Tesseract's library/language data are downloaded externally.
+7. Repeat on independent English and Japanese packaging photos, including low contrast, imperfect lighting, slight tilt, shadows, different phone cameras, high ingredient density, and text wrapping.
+
+**Minimum objective QA sample before declaring success:** 10 independent real photos spanning both language modes, with a ground-truth transcription, measured baseline and adjusted runs for each. Record browser/device OS and test context separately without transmitting private photo contents. Report per-photo and pooled CER and exact ingredient recall; do not present a single-photo improvement as a general OCR accuracy gain. Validate mobile 360px controls and OCR execution on an actual handset before closing the device QA gate. This repository does **not** yet contain or claim results from ten independently labeled real photos.
+
+The deterministic metric/HTML privacy regression is:
+```bash
+node tools/_shared/check-fastscan-photo-ocr-metrics.mjs
+```
+This checks metric mathematics and wiring, **not** Tesseract recognition quality on real photographs. Changes in the image options must invalidate stale measurements. For real-annotation sets, a bad recognition result is diagnostic information, not permission to silently alter the transcription or auto-correct exact dictionary matches.
+
 ## Detailed result regression
 
 For known matches, confirm cards expose the maintained reference information expected by the current UI, including canonical INCI and the route used to resolve the name where available.

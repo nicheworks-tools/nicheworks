@@ -354,3 +354,58 @@ The runtime readiness audit identified three identities with source-backed verif
 | `ammonium hydroxide` | `buffer` | category missing | COSMILE Europe lists `BUFFERING` for Ammonium Hydroxide. |
 
 After this closure, all 22 verified-note identities also satisfy the strong runtime definition: supported public role + maintained Japanese name + source-backed verified ingredient-specific note.
+
+
+## Source-backed category wave 26 (2026-10-31)
+
+The user-facing runtime had 78/599 canonical identities without a supported bilingual role explanation. This bounded wave reviews **11** additional existing identities one by one using the exact COSMILE Europe ingredient pages, without inferring functions from raw category names or rewriting dictionary recognition records.
+
+| Canonical identity | Verified public role | COSMILE source function |
+| --- | --- | --- |
+| `hydrolyzed keratin` | `hair conditioning` | HAIR CONDITIONING |
+| `hydrolyzed silk` | `hair conditioning` | HAIR CONDITIONING |
+| `hydrolyzed collagen` | `humectant` | HUMECTANT |
+| `menthol` | `fragrance` | FRAGRANCE |
+| `beeswax` | `viscosity adjuster` | VISCOSITY CONTROLLING |
+| `aluminum starch octenylsuccinate` | `viscosity adjuster` | VISCOSITY CONTROLLING |
+| `benzyl benzoate` | `fragrance` | FRAGRANCE |
+| `benzyl salicylate` | `fragrance` | FRAGRANCE |
+| `hydroxycitronellal` | `fragrance` | FRAGRANCE |
+| `isoeugenol` | `fragrance` | FRAGRANCE |
+| `amyl cinnamal` | `fragrance` | FRAGRANCE |
+
+The authoritative HTTPS URLs are stored in the verified parser category overlay, the taxonomy reviewed mapping, and the regression file `check-cosmetics-source-verified-wave26.mjs`. Ingredient roles express possible formulation functions, **not** product-specific concentrations, allergy forecasts or safety determinations. After this wave, runtime supported roles are expected at **532/599**, leaving **67** unresolved. Frozen raw-canonical baseline remains 408/599.
+
+
+## Source-backed category wave 27 (2026-10-31)
+
+Twelve *specific reviewed ingredients* receive verified primary public functions from distinct COSMILE Europe ingredient pages. There is no bulk rule equating all `protein`, `mineral`, `powder` or fragrance-allergen legacy categories with a new public role.
+
+| Canonical identity | Verified role | Official-function basis |
+| --- | --- | --- |
+| Hydrolyzed Wheat Protein, Rice Protein, Vegetable Protein, Pea Protein, Elastin | `hair conditioning` | HAIR CONDITIONING |
+| Hydrolyzed Soy Protein | `humectant` | HUMECTANT |
+| Collagen | `hair conditioning` | HAIR CONDITIONING |
+| Calcium Chloride, Magnesium Chloride, Aluminum Hydroxide | `viscosity adjuster` | VISCOSITY CONTROLLING |
+| Boron Nitride | `skin conditioning` | SKIN CONDITIONING |
+| Cinnamyl Alcohol | `fragrance` | FRAGRANCE |
+
+Exact source URLs are in `cosmetics-category-taxonomy.json` and checked by `check-cosmetics-source-verified-wave27.mjs`. Former raw category hints are retained and tested separately, including the prior unverified Cinnamyl Alcohol note. Runtime target: **544/599 = 90.82%** supported public-role identities, 55 incomplete.
+
+
+## Source-backed category wave 28 (2026-10-31)
+
+Eighteen more *individual reviewed identities* receive verified public roles from their exact COSMILE Europe function entries. This is not a conversion of the legacy `powder`, `polymer`, `wax`, `barrier lipid`, `conditioning polymer`, or `solubilizer` groups. Explicit `COLORANT → colorant` mapping is introduced to the maintained taxonomy because Kaolin and Magnesium Stearate each have a direct COSMILE COLORANT function. Group-level safety conclusions remain prohibited.
+
+Reviewed set: Polyisobutene (binding), PEG-60 Hydrogenated Castor Oil (emulsifying), Kaolin and Magnesium Stearate (colorant), Nylon-12, Microcrystalline Cellulose, Zinc Stearate and Ozokerite (viscosity controlling), Guar Hydroxypropyltrimonium Chloride, Ceramide NS and Glycosphingolipids (skin conditioning), Calcium Carbonate (buffering), Polyquaternium-37, Polymethyl Methacrylate, Polyacrylate-13 and Polyacrylamide (film forming), Soluble Collagen (humectant), Padimate O / Ethylhexyl Dimethyl PABA (UV filter).
+
+COSMILE's page for Ethylhexyl Dimethyl PABA explicitly identifies *Padimate O* as an alternative identity; the link is pinned to that exact entry rather than treating a similar chemical name as interchangeable. All 18 HTTPS URLs and source-function labels are pinned in `check-cosmetics-source-verified-wave28.mjs`.
+
+This wave targets **562 / 599 = 93.82%** runtime supported bilingual roles; **37** remain incomplete. Raw recognition and original category hints are frozen and audited separately.
+
+
+## Source-backed category wave 29 (2026-10-31)
+
+14 further individual functions with exact COSMILE Europe source URLs: Honey Extract (humectant), Royal Jelly Extract and Propolis Extract (skin conditioning), Sodium Stearate and Potassium Laurate (cleansing), Sea Salt (humectant), Camphor (fragrance), Hydrochloric Acid (buffering), Eucalyptus Globulus Leaf Oil, Citrus Aurantium Dulcis (Orange) Peel Oil, Citrus Limon (Lemon) Peel Oil, Mentha Piperita (Peppermint) Oil, Evernia Prunastri Extract and Evernia Furfuracea Extract (fragrance).
+
+The source botanical oil pages use standard INCI names without explanatory English common names in parentheses; these correspond to the frozen canonical entries' parenthetical common names, not new automatic alias rules. COSMILE exact source identity/function/URLs are pinned by `check-cosmetics-source-verified-wave29.mjs`. These mappings **do not** extrapolate the role from all essential oils, all animal extracts, or all soap salts. Old category hints and missing-category states remain auditable. Target after this wave: **576/599 supported role identities**, with **23** remaining.

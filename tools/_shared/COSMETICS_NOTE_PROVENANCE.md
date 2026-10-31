@@ -423,3 +423,63 @@ After Wave 19:
 - strong runtime identities: 78 / 599;
 - Wave 18 identities retained: 4 / 4;
 - raw dictionary records rewritten: no.
+
+
+## Verified note wave 20
+
+Wave 20 continues frequency-prioritized source-backed enrichment:
+
+| Canonical identity | Corpus occurrences | Reviewed runtime note basis |
+| --- | ---: | --- |
+| `glycine` | 2 | COSMILE Europe: antistatic, buffering, skin conditioning and hair conditioning. |
+| `lactic acid` | 2 | COSMILE Europe: buffering, humectant, skin conditioning and fragrance-functional roles. |
+| `peg-100 stearate` | 2 | COSMILE Europe: surfactant-cleansing. |
+| `proline` | 2 | COSMILE Europe: skin and hair conditioning. |
+
+After Wave 20:
+
+- cumulative verified-note identities: 82;
+- strong runtime identities: 82 / 599;
+- Wave 19 identities retained: 4 / 4;
+- raw dictionary records rewritten: no.
+
+
+## Verified note wave 21
+
+Wave 21 adds source-backed ingredient-specific notes for three maintained Japanese-named identities frequent in the 30-product label corpus.
+
+| Canonical identity | Official-label corpus occurrences | Reviewed source basis |
+| --- | ---: | --- |
+| `1,2-hexanediol` | 7 | COSMILE Europe: solvent, skin conditioning and fragrance-functional use. |
+| `sodium citrate` | 2 | COSMILE Europe: buffering and chelating. |
+| `urea` | 2 | COSMILE Europe: humectant and skin-conditioning ingredient, also buffering. |
+
+After wave 21: cumulative verified notes 85; strong runtime identities 85/599. The notes are narrow descriptive statements, not a safety/irritation/concentration score. Raw dictionary notes, recognition and OCR are unchanged. The three exact authoritative URLs are pinned by `check-cosmetics-verified-note-wave21.mjs`.
+
+
+## Verified note wave 22 (2026-10-31)
+
+Eleven category Wave 26 identities also receive distinct reviewed, ingredient-specific notes and official COSMILE URLs. Notes intentionally describe functional roles only, do not assert whether a consumer product is safe, and do not extend claims beyond the cited source.
+
+- **Hair/skin/moisture:** Hydrolyzed Keratin, Hydrolyzed Silk, Hydrolyzed Collagen
+- **Formulation viscosity:** Beeswax, Aluminum Starch Octenylsuccinate
+- **Perfuming and related documented functions:** Menthol, Benzyl Benzoate, Benzyl Salicylate, Hydroxycitronellal, Isoeugenol, Amyl Cinnamal
+
+Review remains per-ingredient, not extrapolated from `protein`, `wax`, `powder` or `fragrance allergen` legacy group labels. After Wave 22 the verified note inventory is **96/599**, all with supported role and maintained Japanese naming, leaving **503** identities without the stronger source-backed note. No raw ingredient records or legacy notes are modified. Exact source links and function terms are enforced by `check-cosmetics-source-verified-wave26.mjs`.
+
+
+## Verified note wave 23 (2026-10-31)
+
+The same 12 reviewed canonical identities receive narrow, ingredient-specific short notes backed by their own COSMILE Europe function lists. Runtime note/strong completion rises from 96 to **108/599 (18.03%)**, leaving **491** without an equivalent reviewed note.
+
+The note text does not make product safety, allergy probability, medical efficacy, or concentration claims. In particular, older unsourced source-record descriptions (such as Cinnamyl Alcohol's legacy text) are **not** accepted as provenance. Their verified runtime notes are separate source-backed overlays. Exact function/category/note/source alignment is enforced in `check-cosmetics-source-verified-wave27.mjs`.
+
+
+## Verified ingredient note wave 24 (2026-10-31)
+
+The 18 reviewed category-wave28 ingredients also receive individual source-backed, neutral short notes. Notes describe only the cosmetic-function properties of their exact COSMILE ingredient entries (including the explicitly listed Padimate O identity synonym); they do not claim that a particular finished product contains sufficient concentrations, is safe for an allergy, or has an approved SPF rating. `note_verified` and HTTPS source metadata must survive canonical merging. Cumulative note/strong runtime: **126 / 599 (21.04%)**, with **473** identities still lacking an equivalent ingredient-specific verified note.
+
+
+## Source-backed note wave 25 (2026-10-31)
+
+The same 14 individually reviewed ingredients receive provenance-checked neutral function descriptions. All notes remain optional and secondary to maintained bilingual role explanations. The notes do not predict allergy, medical efficacy, concentrations, product SPF, or finished product safety. The combined strong runtime inventory is **140/599 = 23.37%**, with **459** ingredient-specific verified notes still unreviewed. Exact source URLs and texts are pinned in `check-cosmetics-source-verified-wave29.mjs`.

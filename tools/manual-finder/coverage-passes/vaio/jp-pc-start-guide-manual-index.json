@@ -1,0 +1,1626 @@
+{
+  "schemaVersion": 1,
+  "maker": "VAIO",
+  "scopeId": "jp-pc-start-guide-manual-index",
+  "scopeLabel": "VAIO Corporation Japanese start-guide manual index, individual and business PC model entries (not accessories or service support indexes)",
+  "status": "coverage-pass-complete",
+  "asOf": "2026-10-31",
+  "region": "JP",
+  "language": "ja",
+  "allowedDomains": [
+    "solutions.vaio.com",
+    "support.vaio.com"
+  ],
+  "universe": {
+    "sourceUrls": [
+      "https://solutions.vaio.com/2012"
+    ],
+    "declaredCount": null,
+    "models": [
+      "VJS4R2",
+      "VJS4R1",
+      "VJS147",
+      "VJS146",
+      "VJS145",
+      "VJS144",
+      "VJS143",
+      "VJS142",
+      "VJS141",
+      "VJS127",
+      "VJS126",
+      "VJS125",
+      "VJS124",
+      "VJS123",
+      "VJS122",
+      "VJS121",
+      "VJF142",
+      "VJF162",
+      "VJF141",
+      "VJF161",
+      "VJS155",
+      "VJS154",
+      "VJS153",
+      "VJS152",
+      "VJS151",
+      "VJS136",
+      "VJS135",
+      "VJS134",
+      "VJS132",
+      "VJS131",
+      "VJS112",
+      "VJS111",
+      "VJZ142",
+      "VJZ141",
+      "VJZ131",
+      "VJZ13B",
+      "VJZ13A",
+      "VJZ12A",
+      "VJFL51",
+      "VJA121",
+      "VJC151",
+      "VJF156",
+      "VJF152",
+      "VJF151",
+      "VJP132",
+      "VJP111",
+      "VJP131",
+      "VJPKR2",
+      "VJPKR1",
+      "VJPK25",
+      "VJPK24",
+      "VJPK23",
+      "VJPK22",
+      "VJPK21",
+      "VJPK13",
+      "VJPK11",
+      "VJPJ25",
+      "VJPJ23",
+      "VJPJ22",
+      "VJPJ21",
+      "VJPJ13",
+      "VJPJ11",
+      "VJPG32",
+      "VJPG31",
+      "VJPG21",
+      "VJPG14",
+      "VJPG13",
+      "VJPG11",
+      "VJBM12",
+      "VJBK12",
+      "VJBM11",
+      "VJBK11",
+      "VJPH23",
+      "VJPH22",
+      "VJPH21",
+      "VJPH11",
+      "VJPZ11",
+      "VJPA11",
+      "VJPB11",
+      "VJPF11",
+      "VJP112",
+      "VJP133"
+    ],
+    "populationMethod": "manufacturer_pc_start_guide_tables_personal_and_business_exact_model_codes",
+    "notes": "Exact 82-entry population (47 personal, 35 business) manually bounded from VAIO's official start-guide index and independently re-extracted by live GitHub Actions on 2026-10-31, with zero missing, unexpected or duplicate index model identities. Reconciliation after secondary title-validated official review: 82 = 21 direct HTML guides + 0 shared + 61 exact official support_only + 0 held. The 61 support_only rows do not claim that manuals do not exist; PDF links returned 403 in CI and thus were not promoted without document verification."
+  },
+  "subscopes": [
+    {
+      "id": "personal",
+      "sourceUrl": "https://solutions.vaio.com/2012",
+      "models": [
+        "VJS4R2",
+        "VJS4R1",
+        "VJS147",
+        "VJS146",
+        "VJS145",
+        "VJS144",
+        "VJS143",
+        "VJS142",
+        "VJS141",
+        "VJS127",
+        "VJS126",
+        "VJS125",
+        "VJS124",
+        "VJS123",
+        "VJS122",
+        "VJS121",
+        "VJF142",
+        "VJF162",
+        "VJF141",
+        "VJF161",
+        "VJS155",
+        "VJS154",
+        "VJS153",
+        "VJS152",
+        "VJS151",
+        "VJS136",
+        "VJS135",
+        "VJS134",
+        "VJS132",
+        "VJS131",
+        "VJS112",
+        "VJS111",
+        "VJZ142",
+        "VJZ141",
+        "VJZ131",
+        "VJZ13B",
+        "VJZ13A",
+        "VJZ12A",
+        "VJFL51",
+        "VJA121",
+        "VJC151",
+        "VJF156",
+        "VJF152",
+        "VJF151",
+        "VJP132",
+        "VJP111",
+        "VJP131"
+      ],
+      "capturedCount": 47,
+      "captureState": "captured"
+    },
+    {
+      "id": "business",
+      "sourceUrl": "https://solutions.vaio.com/2012",
+      "models": [
+        "VJPKR2",
+        "VJPKR1",
+        "VJPK25",
+        "VJPK24",
+        "VJPK23",
+        "VJPK22",
+        "VJPK21",
+        "VJPK13",
+        "VJPK11",
+        "VJPJ25",
+        "VJPJ23",
+        "VJPJ22",
+        "VJPJ21",
+        "VJPJ13",
+        "VJPJ11",
+        "VJPG32",
+        "VJPG31",
+        "VJPG21",
+        "VJPG14",
+        "VJPG13",
+        "VJPG11",
+        "VJBM12",
+        "VJBK12",
+        "VJBM11",
+        "VJBK11",
+        "VJPH23",
+        "VJPH22",
+        "VJPH21",
+        "VJPH11",
+        "VJPZ11",
+        "VJPA11",
+        "VJPB11",
+        "VJPF11",
+        "VJP112",
+        "VJP133"
+      ],
+      "capturedCount": 35,
+      "captureState": "captured"
+    }
+  ],
+  "discovery": {
+    "primaryChannel": "official_start_guide_model_pdf_table",
+    "secondaryChannels": [
+      "official_model_userguide",
+      "official_product_support",
+      "official_site_search",
+      "official_archive",
+      "official_pdf_document"
+    ],
+    "parser": "vaio-jp-start-guides-review.mjs"
+  },
+  "review": {
+    "publicationGate": "full_population_verified_and_reconciled",
+    "validationSample": [
+      "VJS4R2",
+      "VJS127",
+      "VJF142",
+      "VJS131",
+      "VJZ13A",
+      "VJPK24",
+      "VJPJ25",
+      "VJPG11",
+      "VJP133"
+    ],
+    "notes": "Sample intentionally includes direct HTML guides, manufacturer-shared PDF groups, OS variants, older archived entries and HTML-only rows. Candidate URLs require HTTPS, manufacturer control, exact identity, destination-kind checks and official secondary discovery for exceptions.",
+    "candidateRun": {
+      "workflowRunId": 41095058960,
+      "artifactId": 12995861657,
+      "sourceReextracted": 82,
+      "missingFromOfficialIndex": 0,
+      "unexpectedFromOfficialIndex": 0,
+      "duplicateIndexRows": 0,
+      "candidateReviewExceptions": 58,
+      "secondaryReview": {
+        "direct": 21,
+        "shared": 0,
+        "support_only": 61,
+        "held": 0
+      },
+      "notes": "CI reviewed all 82 exact support page titles, and explicitly linked HTML user guides. Official PDF download endpoints returned HTTP 403 and were not promoted as manuals. Three HTML guides had title mismatch against the originating model (VJPKR2, VJPKR1, VJBM11) and therefore remain support_only rather than inferred shared."
+    },
+    "refreshPath": "rerun VAIO index candidate and secondary title review; compare new index population, PDF accessibility, HTML guide changes, model support title changes, and reviewed states before replacement"
+  },
+  "records": [
+    {
+      "model": "VJS4R2",
+      "state": "direct",
+      "manualUrl": "https://support.vaio.com/products/VJS4R2/userguide/",
+      "supportUrl": "https://support.vaio.com/products/VJS4R2/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJS4R2/",
+        "https://support.vaio.com/products/VJS4R2/userguide/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support",
+        "official_index_linked_html_user_guide"
+      ],
+      "reviewMethod": "live_exact_official_html_manual_title",
+      "reviewNote": "Exact model and user-manual identity positively verified on manufacturer-controlled official HTML user guide, linked by official start-guide index."
+    },
+    {
+      "model": "VJS4R1",
+      "state": "direct",
+      "manualUrl": "https://support.vaio.com/products/VJS4R1/userguide/",
+      "supportUrl": "https://support.vaio.com/products/VJS4R1/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJS4R1/",
+        "https://support.vaio.com/products/VJS4R1/userguide/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support",
+        "official_index_linked_html_user_guide"
+      ],
+      "reviewMethod": "live_exact_official_html_manual_title",
+      "reviewNote": "Exact model and user-manual identity positively verified on manufacturer-controlled official HTML user guide, linked by official start-guide index."
+    },
+    {
+      "model": "VJS147",
+      "state": "direct",
+      "manualUrl": "https://support.vaio.com/products/VJS147/userguide/",
+      "supportUrl": "https://support.vaio.com/products/VJS147/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJS147/",
+        "https://support.vaio.com/products/VJS147/userguide/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support",
+        "official_index_linked_html_user_guide"
+      ],
+      "reviewMethod": "live_exact_official_html_manual_title",
+      "reviewNote": "Exact model and user-manual identity positively verified on manufacturer-controlled official HTML user guide, linked by official start-guide index."
+    },
+    {
+      "model": "VJS146",
+      "state": "direct",
+      "manualUrl": "https://support.vaio.com/products/VJS146/userguide/",
+      "supportUrl": "https://support.vaio.com/products/VJS146/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJS146/",
+        "https://support.vaio.com/products/VJS146/userguide/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support",
+        "official_index_linked_html_user_guide"
+      ],
+      "reviewMethod": "live_exact_official_html_manual_title",
+      "reviewNote": "Exact model and user-manual identity positively verified on manufacturer-controlled official HTML user guide, linked by official start-guide index."
+    },
+    {
+      "model": "VJS145",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJS145/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJS145/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJS144",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJS144/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJS144/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJS143",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJS143/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJS143/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJS142",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJS142/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJS142/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJS141",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJS141/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJS141/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJS127",
+      "state": "direct",
+      "manualUrl": "https://support.vaio.com/products/VJS127/userguide/",
+      "supportUrl": "https://support.vaio.com/products/VJS127/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJS127/",
+        "https://support.vaio.com/products/VJS127/userguide/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support",
+        "official_index_linked_html_user_guide"
+      ],
+      "reviewMethod": "live_exact_official_html_manual_title",
+      "reviewNote": "Exact model and user-manual identity positively verified on manufacturer-controlled official HTML user guide, linked by official start-guide index."
+    },
+    {
+      "model": "VJS126",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJS126/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJS126/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJS125",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJS125/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJS125/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJS124",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJS124/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJS124/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJS123",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJS123/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJS123/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJS122",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJS122/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJS122/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJS121",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJS121/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJS121/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJF142",
+      "state": "direct",
+      "manualUrl": "https://support.vaio.com/products/VJF142/userguide/",
+      "supportUrl": "https://support.vaio.com/products/VJF142/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJF142/",
+        "https://support.vaio.com/products/VJF142/userguide/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support",
+        "official_index_linked_html_user_guide"
+      ],
+      "reviewMethod": "live_exact_official_html_manual_title",
+      "reviewNote": "Exact model and user-manual identity positively verified on manufacturer-controlled official HTML user guide, linked by official start-guide index."
+    },
+    {
+      "model": "VJF162",
+      "state": "direct",
+      "manualUrl": "https://support.vaio.com/products/VJF162/userguide/",
+      "supportUrl": "https://support.vaio.com/products/VJF162/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJF162/",
+        "https://support.vaio.com/products/VJF162/userguide/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support",
+        "official_index_linked_html_user_guide"
+      ],
+      "reviewMethod": "live_exact_official_html_manual_title",
+      "reviewNote": "Exact model and user-manual identity positively verified on manufacturer-controlled official HTML user guide, linked by official start-guide index."
+    },
+    {
+      "model": "VJF141",
+      "state": "direct",
+      "manualUrl": "https://support.vaio.com/products/VJF141/userguide/",
+      "supportUrl": "https://support.vaio.com/products/VJF141/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJF141/",
+        "https://support.vaio.com/products/VJF141/userguide/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support",
+        "official_index_linked_html_user_guide"
+      ],
+      "reviewMethod": "live_exact_official_html_manual_title",
+      "reviewNote": "Exact model and user-manual identity positively verified on manufacturer-controlled official HTML user guide, linked by official start-guide index."
+    },
+    {
+      "model": "VJF161",
+      "state": "direct",
+      "manualUrl": "https://support.vaio.com/products/VJF161/userguide/",
+      "supportUrl": "https://support.vaio.com/products/VJF161/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJF161/",
+        "https://support.vaio.com/products/VJF161/userguide/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support",
+        "official_index_linked_html_user_guide"
+      ],
+      "reviewMethod": "live_exact_official_html_manual_title",
+      "reviewNote": "Exact model and user-manual identity positively verified on manufacturer-controlled official HTML user guide, linked by official start-guide index."
+    },
+    {
+      "model": "VJS155",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJS155/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJS155/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJS154",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJS154/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJS154/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJS153",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJS153/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJS153/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJS152",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJS152/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJS152/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJS151",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJS151/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJS151/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJS136",
+      "state": "direct",
+      "manualUrl": "https://support.vaio.com/products/VJS136/userguide/",
+      "supportUrl": "https://support.vaio.com/products/VJS136/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJS136/",
+        "https://support.vaio.com/products/VJS136/userguide/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support",
+        "official_index_linked_html_user_guide"
+      ],
+      "reviewMethod": "live_exact_official_html_manual_title",
+      "reviewNote": "Exact model and user-manual identity positively verified on manufacturer-controlled official HTML user guide, linked by official start-guide index."
+    },
+    {
+      "model": "VJS135",
+      "state": "direct",
+      "manualUrl": "https://support.vaio.com/products/VJS135/userguide/",
+      "supportUrl": "https://support.vaio.com/products/VJS135/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJS135/",
+        "https://support.vaio.com/products/VJS135/userguide/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support",
+        "official_index_linked_html_user_guide"
+      ],
+      "reviewMethod": "live_exact_official_html_manual_title",
+      "reviewNote": "Exact model and user-manual identity positively verified on manufacturer-controlled official HTML user guide, linked by official start-guide index."
+    },
+    {
+      "model": "VJS134",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJS134/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJS134/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJS132",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJS132/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJS132/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJS131",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJS131/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJS131/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJS112",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJS112/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJS112/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJS111",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJS111/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJS111/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJZ142",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJZ142/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJZ142/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJZ141",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJZ141/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJZ141/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJZ131",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJZ131/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJZ131/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJZ13B",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJZ13B/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJZ13B/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJZ13A",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJZ13A/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJZ13A/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJZ12A",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJZ12A/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJZ12A/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJFL51",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJFL51/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJFL51/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJA121",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJA121/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJA121/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJC151",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJC151/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJC151/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJF156",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJF156/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJF156/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJF152",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJF152/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJF152/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJF151",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJF151/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJF151/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJP132",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJP132/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJP132/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJP111",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJP111/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJP111/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJP131",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJP131/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJP131/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJPKR2",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJPKR2/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJPKR2/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJPKR1",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJPKR1/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJPKR1/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJPK25",
+      "state": "direct",
+      "manualUrl": "https://support.vaio.com/products/VJPK25/userguide/",
+      "supportUrl": "https://support.vaio.com/products/VJPK25/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJPK25/",
+        "https://support.vaio.com/products/VJPK25/userguide/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support",
+        "official_index_linked_html_user_guide"
+      ],
+      "reviewMethod": "live_exact_official_html_manual_title",
+      "reviewNote": "Exact model and user-manual identity positively verified on manufacturer-controlled official HTML user guide, linked by official start-guide index."
+    },
+    {
+      "model": "VJPK24",
+      "state": "direct",
+      "manualUrl": "https://support.vaio.com/products/VJPK24/userguide/",
+      "supportUrl": "https://support.vaio.com/products/VJPK24/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJPK24/",
+        "https://support.vaio.com/products/VJPK24/userguide/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support",
+        "official_index_linked_html_user_guide"
+      ],
+      "reviewMethod": "live_exact_official_html_manual_title",
+      "reviewNote": "Exact model and user-manual identity positively verified on manufacturer-controlled official HTML user guide, linked by official start-guide index."
+    },
+    {
+      "model": "VJPK23",
+      "state": "direct",
+      "manualUrl": "https://support.vaio.com/products/VJPK23/userguide/",
+      "supportUrl": "https://support.vaio.com/products/VJPK23/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJPK23/",
+        "https://support.vaio.com/products/VJPK23/userguide/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support",
+        "official_index_linked_html_user_guide"
+      ],
+      "reviewMethod": "live_exact_official_html_manual_title",
+      "reviewNote": "Exact model and user-manual identity positively verified on manufacturer-controlled official HTML user guide, linked by official start-guide index."
+    },
+    {
+      "model": "VJPK22",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJPK22/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJPK22/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJPK21",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJPK21/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJPK21/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJPK13",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJPK13/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJPK13/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJPK11",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJPK11/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJPK11/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJPJ25",
+      "state": "direct",
+      "manualUrl": "https://support.vaio.com/products/VJPJ25/userguide/",
+      "supportUrl": "https://support.vaio.com/products/VJPJ25/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJPJ25/",
+        "https://support.vaio.com/products/VJPJ25/userguide/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support",
+        "official_index_linked_html_user_guide"
+      ],
+      "reviewMethod": "live_exact_official_html_manual_title",
+      "reviewNote": "Exact model and user-manual identity positively verified on manufacturer-controlled official HTML user guide, linked by official start-guide index."
+    },
+    {
+      "model": "VJPJ23",
+      "state": "direct",
+      "manualUrl": "https://support.vaio.com/products/VJPJ23/userguide/",
+      "supportUrl": "https://support.vaio.com/products/VJPJ23/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJPJ23/",
+        "https://support.vaio.com/products/VJPJ23/userguide/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support",
+        "official_index_linked_html_user_guide"
+      ],
+      "reviewMethod": "live_exact_official_html_manual_title",
+      "reviewNote": "Exact model and user-manual identity positively verified on manufacturer-controlled official HTML user guide, linked by official start-guide index."
+    },
+    {
+      "model": "VJPJ22",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJPJ22/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJPJ22/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJPJ21",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJPJ21/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJPJ21/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJPJ13",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJPJ13/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJPJ13/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJPJ11",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJPJ11/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJPJ11/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJPG32",
+      "state": "direct",
+      "manualUrl": "https://support.vaio.com/products/VJPG32/userguide/",
+      "supportUrl": "https://support.vaio.com/products/VJPG32/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJPG32/",
+        "https://support.vaio.com/products/VJPG32/userguide/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support",
+        "official_index_linked_html_user_guide"
+      ],
+      "reviewMethod": "live_exact_official_html_manual_title",
+      "reviewNote": "Exact model and user-manual identity positively verified on manufacturer-controlled official HTML user guide, linked by official start-guide index."
+    },
+    {
+      "model": "VJPG31",
+      "state": "direct",
+      "manualUrl": "https://support.vaio.com/products/VJPG31/userguide/",
+      "supportUrl": "https://support.vaio.com/products/VJPG31/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJPG31/",
+        "https://support.vaio.com/products/VJPG31/userguide/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support",
+        "official_index_linked_html_user_guide"
+      ],
+      "reviewMethod": "live_exact_official_html_manual_title",
+      "reviewNote": "Exact model and user-manual identity positively verified on manufacturer-controlled official HTML user guide, linked by official start-guide index."
+    },
+    {
+      "model": "VJPG21",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJPG21/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJPG21/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJPG14",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJPG14/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJPG14/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJPG13",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJPG13/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJPG13/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJPG11",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJPG11/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJPG11/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJBM12",
+      "state": "direct",
+      "manualUrl": "https://support.vaio.com/products/VJBM12/userguide/",
+      "supportUrl": "https://support.vaio.com/products/VJBM12/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJBM12/",
+        "https://support.vaio.com/products/VJBM12/userguide/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support",
+        "official_index_linked_html_user_guide"
+      ],
+      "reviewMethod": "live_exact_official_html_manual_title",
+      "reviewNote": "Exact model and user-manual identity positively verified on manufacturer-controlled official HTML user guide, linked by official start-guide index."
+    },
+    {
+      "model": "VJBK12",
+      "state": "direct",
+      "manualUrl": "https://support.vaio.com/products/VJBK12/userguide/",
+      "supportUrl": "https://support.vaio.com/products/VJBK12/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJBK12/",
+        "https://support.vaio.com/products/VJBK12/userguide/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support",
+        "official_index_linked_html_user_guide"
+      ],
+      "reviewMethod": "live_exact_official_html_manual_title",
+      "reviewNote": "Exact model and user-manual identity positively verified on manufacturer-controlled official HTML user guide, linked by official start-guide index."
+    },
+    {
+      "model": "VJBM11",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJBM11/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJBM11/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJBK11",
+      "state": "direct",
+      "manualUrl": "https://support.vaio.com/products/VJBK11/userguide/",
+      "supportUrl": "https://support.vaio.com/products/VJBK11/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJBK11/",
+        "https://support.vaio.com/products/VJBK11/userguide/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support",
+        "official_index_linked_html_user_guide"
+      ],
+      "reviewMethod": "live_exact_official_html_manual_title",
+      "reviewNote": "Exact model and user-manual identity positively verified on manufacturer-controlled official HTML user guide, linked by official start-guide index."
+    },
+    {
+      "model": "VJPH23",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJPH23/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJPH23/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJPH22",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJPH22/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJPH22/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJPH21",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJPH21/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJPH21/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJPH11",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJPH11/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJPH11/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJPZ11",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJPZ11/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJPZ11/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJPA11",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJPA11/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJPA11/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJPB11",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJPB11/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJPB11/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJPF11",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJPF11/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJPF11/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJP112",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJP112/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJP112/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    },
+    {
+      "model": "VJP133",
+      "state": "support_only",
+      "supportUrl": "https://support.vaio.com/products/VJP133/",
+      "evidenceUrls": [
+        "https://solutions.vaio.com/2012",
+        "https://support.vaio.com/products/VJP133/"
+      ],
+      "verifiedAt": "2026-10-31",
+      "attemptedDiscovery": [
+        "official_start_guide_index",
+        "official_exact_model_product_support"
+      ],
+      "reviewMethod": "secondary_official_exact_model_support_title",
+      "reviewNote": "Exact model support page verified by manufacturer-controlled HTTPS and exact HTML document title. Official index lists a start-guide PDF but CI access to PDF failed HTTP 403; no manual/nonexistence inference made."
+    }
+  ]
+}

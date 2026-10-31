@@ -1,0 +1,3513 @@
+{
+  "schema": "cta-affiliate-image-acquisition-queue-v2.3",
+  "version": "2026-10-31-reviewed-image-wave9-four-1",
+  "sources": {
+    "public_image_inventory": "2026-09-16-q014-identity-closure-1",
+    "affiliate_offers": "2026-09-18-wave6l-affiliate-1",
+    "content_quality": "2026-09-16-q014-identity-closure-1",
+    "revenue_policy": "2026-09-19-revenue-priority-2"
+  },
+  "notice": "Execution order only. It is not a search-demand, CPC, conversion or earnings score.",
+  "summary": {
+    "active_affiliate_mappings": 432,
+    "revenue_ready": 44,
+    "awaiting_source": 388,
+    "first_wave": 1,
+    "source_leads": 3,
+    "new_formally_promoted": 11
+  },
+  "rows": [
+    {
+      "order": 1,
+      "entry_id": "reciprocating_saw",
+      "offer_id": "amazon_reciprocating_saw_search",
+      "maintained_query": "レシプロソー",
+      "image_stage": "awaiting_source",
+      "queue_group": "selected_first_wave",
+      "source_status": "rejected_visual_review_needs_replacement"
+    },
+    {
+      "order": 2,
+      "entry_id": "anchor_bolt",
+      "offer_id": "amazon_anchor_bolt_search",
+      "maintained_query": "アンカーボルト",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 3,
+      "entry_id": "anchor_plastic_plug",
+      "offer_id": "amazon_anchor_plastic_plug_search",
+      "maintained_query": "カールプラグ 壁 プラグ アンカー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 4,
+      "entry_id": "angle_finder",
+      "offer_id": "amazon_angle_finder_search",
+      "maintained_query": "デジタル 角度計 勾配計",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 5,
+      "entry_id": "auto_level",
+      "offer_id": "amazon_auto_level_search",
+      "maintained_query": "オートレベル 測量",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 6,
+      "entry_id": "backer_rod",
+      "offer_id": "amazon_backer_rod_search",
+      "maintained_query": "バックアップ材 シーリング 目地",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 7,
+      "entry_id": "bolt_nut",
+      "offer_id": "amazon_bolt_nut_search",
+      "maintained_query": "ボルト ナット セット",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 8,
+      "entry_id": "brick_hammer",
+      "offer_id": "amazon_brick_hammer_search",
+      "maintained_query": "レンガ ハンマー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 9,
+      "entry_id": "brick_trowel",
+      "offer_id": "amazon_brick_trowel_search",
+      "maintained_query": "レンガ こて",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 10,
+      "entry_id": "bucket",
+      "offer_id": "amazon_bucket_search",
+      "maintained_query": "作業用 バケツ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 11,
+      "entry_id": "butyl_tape_002",
+      "offer_id": "amazon_butyl_tape_002_search",
+      "maintained_query": "ブチルテープ 防水",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 12,
+      "entry_id": "cable_tie",
+      "offer_id": "amazon_cable_tie_search",
+      "maintained_query": "結束バンド 耐候",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 13,
+      "entry_id": "caulk_back_up_tape",
+      "offer_id": "amazon_caulk_back_up_tape_search",
+      "maintained_query": "シーリング マスキングテープ 建築",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 14,
+      "entry_id": "caulk_finisher",
+      "offer_id": "amazon_caulk_finisher_search",
+      "maintained_query": "シーリング ならしヘラ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 15,
+      "entry_id": "caulking_scraper",
+      "offer_id": "amazon_caulking_scraper_search",
+      "maintained_query": "コーキング スクレーパー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 16,
+      "entry_id": "caulking_sealant",
+      "offer_id": "amazon_caulking_sealant_search",
+      "maintained_query": "シーリング材",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 17,
+      "entry_id": "cement",
+      "offer_id": "amazon_cement_search",
+      "maintained_query": "セメント 補修",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 18,
+      "entry_id": "cement_board",
+      "offer_id": "amazon_cement_board_search",
+      "maintained_query": "セメントボード タイル 下地",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 19,
+      "entry_id": "chalk_line",
+      "offer_id": "amazon_chalk_line_search",
+      "maintained_query": "墨つぼ チョークライン",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 20,
+      "entry_id": "chisel",
+      "offer_id": "amazon_chisel_search",
+      "maintained_query": "のみ 大工",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 21,
+      "entry_id": "concrete",
+      "offer_id": "amazon_concrete_search",
+      "maintained_query": "インスタント コンクリート",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 22,
+      "entry_id": "concrete_mixer",
+      "offer_id": "amazon_concrete_mixer_search",
+      "maintained_query": "コンクリート ミキサー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 23,
+      "entry_id": "concrete_saw",
+      "offer_id": "amazon_concrete_saw_search",
+      "maintained_query": "コンクリートカッター ダイヤモンド",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 24,
+      "entry_id": "concrete_screw",
+      "offer_id": "amazon_concrete_screw_search",
+      "maintained_query": "コンクリートビス",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 25,
+      "entry_id": "concrete_vibrator",
+      "offer_id": "amazon_concrete_vibrator_search",
+      "maintained_query": "コンクリート バイブレーター",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 26,
+      "entry_id": "conduit",
+      "offer_id": "amazon_conduit_search",
+      "maintained_query": "電線管",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 27,
+      "entry_id": "conduit_pf",
+      "offer_id": "amazon_conduit_pf_search",
+      "maintained_query": "PF管 電線管",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 28,
+      "entry_id": "construction_adhesive_001",
+      "offer_id": "amazon_construction_adhesive_001_search",
+      "maintained_query": "建築用 接着剤",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 29,
+      "entry_id": "cordless_work_light",
+      "offer_id": "amazon_cordless_work_light_search",
+      "maintained_query": "コードレス 作業灯",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 30,
+      "entry_id": "core_drill",
+      "offer_id": "amazon_core_drill_search",
+      "maintained_query": "コアドリル",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 31,
+      "entry_id": "corner_bead",
+      "offer_id": "amazon_corner_bead_search",
+      "maintained_query": "コーナービード 石膏ボード",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 32,
+      "entry_id": "corner_float",
+      "offer_id": "amazon_corner_float_search",
+      "maintained_query": "コーナーゴテ 左官",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 33,
+      "entry_id": "crimping_tool",
+      "offer_id": "amazon_crimping_tool_search",
+      "maintained_query": "圧着工具",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 34,
+      "entry_id": "cut_resistant_gloves",
+      "offer_id": "amazon_cut_resistant_gloves_search",
+      "maintained_query": "耐切創手袋",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 35,
+      "entry_id": "deburring_tool",
+      "offer_id": "amazon_deburring_tool_search",
+      "maintained_query": "バリ取り工具 パイプ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 36,
+      "entry_id": "dial_gauge",
+      "offer_id": "amazon_dial_gauge_search",
+      "maintained_query": "ダイヤルゲージ 測定",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 37,
+      "entry_id": "diamond_blade",
+      "offer_id": "amazon_diamond_blade_search",
+      "maintained_query": "ダイヤモンドブレード コンクリート",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 38,
+      "entry_id": "drill_bit_set",
+      "offer_id": "amazon_drill_bit_set_search",
+      "maintained_query": "ドリルビット",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 39,
+      "entry_id": "drop_cloth",
+      "offer_id": "amazon_drop_cloth_search",
+      "maintained_query": "養生シート",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 40,
+      "entry_id": "drywall",
+      "offer_id": "amazon_drywall_search",
+      "maintained_query": "石膏ボード",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 41,
+      "entry_id": "drywall_lift",
+      "offer_id": "amazon_drywall_lift_search",
+      "maintained_query": "ボードリフター 石膏ボード",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 42,
+      "entry_id": "drywall_screw",
+      "offer_id": "amazon_drywall_screw_search",
+      "maintained_query": "石膏ボード ビス",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 43,
+      "entry_id": "drywall_tape",
+      "offer_id": "amazon_drywall_tape_search",
+      "maintained_query": "石膏ボード ジョイントテープ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 44,
+      "entry_id": "dust_barrier",
+      "offer_id": "amazon_dust_barrier_search",
+      "maintained_query": "防じんシート 間仕切り 養生",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 45,
+      "entry_id": "dust_mask",
+      "offer_id": "amazon_dust_mask_search",
+      "maintained_query": "防じんマスク",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 46,
+      "entry_id": "ear_protection",
+      "offer_id": "amazon_ear_protection_search",
+      "maintained_query": "耳栓 イヤーマフ 作業用",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 47,
+      "entry_id": "expansion_anchor",
+      "offer_id": "amazon_expansion_anchor_search",
+      "maintained_query": "ウェッジアンカー 拡張アンカー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 48,
+      "entry_id": "extension_cord",
+      "offer_id": "amazon_extension_cord_search",
+      "maintained_query": "延長コード 作業用",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 49,
+      "entry_id": "extension_pole",
+      "offer_id": "amazon_extension_pole_search",
+      "maintained_query": "塗装 延長ポール ローラー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 50,
+      "entry_id": "feeler_gauge",
+      "offer_id": "amazon_feeler_gauge_search",
+      "maintained_query": "シクネスゲージ 隙間ゲージ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 51,
+      "entry_id": "first_aid_kit",
+      "offer_id": "amazon_first_aid_kit_search",
+      "maintained_query": "救急箱 現場 作業用",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 52,
+      "entry_id": "fish_tape",
+      "offer_id": "amazon_fish_tape_search",
+      "maintained_query": "通線ワイヤー 呼び線",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 53,
+      "entry_id": "flashing_tape",
+      "offer_id": "amazon_flashing_tape_search",
+      "maintained_query": "フラッシングテープ 防水 建築",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 54,
+      "entry_id": "float_trowel",
+      "offer_id": "amazon_float_trowel_search",
+      "maintained_query": "コンクリート フロート こて",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 55,
+      "entry_id": "form_tie",
+      "offer_id": "amazon_form_tie_search",
+      "maintained_query": "フォームタイ 型枠",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 56,
+      "entry_id": "generator",
+      "offer_id": "amazon_generator_search",
+      "maintained_query": "発電機 ポータブル 工事",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 57,
+      "entry_id": "gfci_rcd",
+      "offer_id": "amazon_gfci_rcd_search",
+      "maintained_query": "漏電遮断器 GFCI RCD ポータブル",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 58,
+      "entry_id": "glasswool",
+      "offer_id": "amazon_glasswool_search",
+      "maintained_query": "グラスウール 断熱材",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 59,
+      "entry_id": "ground_fault_breaker",
+      "offer_id": "amazon_ground_fault_breaker_search",
+      "maintained_query": "漏電遮断器 ブレーカー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 60,
+      "entry_id": "grout",
+      "offer_id": "amazon_grout_search",
+      "maintained_query": "タイル 目地材 グラウト",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 61,
+      "entry_id": "hacksaw",
+      "offer_id": "amazon_hacksaw_search",
+      "maintained_query": "弓のこ 金属",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 62,
+      "entry_id": "hammer_tacker",
+      "offer_id": "amazon_hammer_tacker_search",
+      "maintained_query": "ハンマータッカー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 63,
+      "entry_id": "hand_saw",
+      "offer_id": "amazon_hand_saw_search",
+      "maintained_query": "手のこ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 64,
+      "entry_id": "handsaw",
+      "offer_id": "amazon_handsaw_search",
+      "maintained_query": "手のこ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 65,
+      "entry_id": "heat_gun",
+      "offer_id": "amazon_heat_gun_search",
+      "maintained_query": "ヒートガン",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 66,
+      "entry_id": "heat_shrink_tubing",
+      "offer_id": "amazon_heat_shrink_tubing_search",
+      "maintained_query": "熱収縮チューブ 配線",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 67,
+      "entry_id": "high_visibility_vest",
+      "offer_id": "amazon_high_visibility_vest_search",
+      "maintained_query": "反射ベスト 高視認性 作業",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 68,
+      "entry_id": "hole_saw",
+      "offer_id": "amazon_hole_saw_search",
+      "maintained_query": "ホールソー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 69,
+      "entry_id": "hose_clamp",
+      "offer_id": "amazon_hose_clamp_search",
+      "maintained_query": "ホースバンド ステンレス",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 70,
+      "entry_id": "joint_compound",
+      "offer_id": "amazon_joint_compound_search",
+      "maintained_query": "石膏ボード ジョイントコンパウンド パテ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 71,
+      "entry_id": "junction_box",
+      "offer_id": "amazon_junction_box_search",
+      "maintained_query": "ジョイントボックス 配線箱 電気",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 72,
+      "entry_id": "ladder",
+      "offer_id": "amazon_ladder_search",
+      "maintained_query": "はしご",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 73,
+      "entry_id": "lag_screw",
+      "offer_id": "amazon_lag_screw_search",
+      "maintained_query": "コーチスクリュー 木工",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 74,
+      "entry_id": "line_level",
+      "offer_id": "amazon_line_level_search",
+      "maintained_query": "糸水平器 ラインレベル",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 75,
+      "entry_id": "marker",
+      "offer_id": "amazon_marker_search",
+      "maintained_query": "建築用 マーカー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 76,
+      "entry_id": "masking_tape",
+      "offer_id": "amazon_masking_tape_search",
+      "maintained_query": "マスキングテープ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 77,
+      "entry_id": "masonry_chisel",
+      "offer_id": "amazon_masonry_chisel_search",
+      "maintained_query": "石工 タガネ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 78,
+      "entry_id": "mixing_paddle",
+      "offer_id": "amazon_mixing_paddle_search",
+      "maintained_query": "ミキサーパドル 攪拌羽根",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 79,
+      "entry_id": "mortar",
+      "offer_id": "amazon_mortar_search",
+      "maintained_query": "補修 モルタル",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 80,
+      "entry_id": "mud_pan",
+      "offer_id": "amazon_mud_pan_search",
+      "maintained_query": "パテ皿 マッドパン",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 81,
+      "entry_id": "nail_set",
+      "offer_id": "amazon_nail_set_search",
+      "maintained_query": "釘しめ ネイルポンチ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 82,
+      "entry_id": "nails",
+      "offer_id": "amazon_nails_search",
+      "maintained_query": "建築 釘 木工",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 83,
+      "entry_id": "orbital_sander",
+      "offer_id": "amazon_orbital_sander_search",
+      "maintained_query": "オービタルサンダー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 84,
+      "entry_id": "osb",
+      "offer_id": "amazon_osb_search",
+      "maintained_query": "OSB 合板",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 85,
+      "entry_id": "p_trap",
+      "offer_id": "amazon_p_trap_search",
+      "maintained_query": "Pトラップ 排水 配管",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 86,
+      "entry_id": "paint_brush",
+      "offer_id": "amazon_paint_brush_search",
+      "maintained_query": "塗装 刷毛",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 87,
+      "entry_id": "paint_roller",
+      "offer_id": "amazon_paint_roller_search",
+      "maintained_query": "塗装 ローラー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 88,
+      "entry_id": "paint_sprayer",
+      "offer_id": "amazon_paint_sprayer_search",
+      "maintained_query": "塗装 スプレーガン エアレス",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 89,
+      "entry_id": "pe_foam",
+      "offer_id": "amazon_pe_foam_search",
+      "maintained_query": "PE 発泡シート 養生",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 90,
+      "entry_id": "pickaxe",
+      "offer_id": "amazon_pickaxe_search",
+      "maintained_query": "つるはし",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 91,
+      "entry_id": "pipe_cutter",
+      "offer_id": "amazon_pipe_cutter_search",
+      "maintained_query": "パイプカッター",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 92,
+      "entry_id": "pipe_joint_compound",
+      "offer_id": "amazon_pipe_joint_compound_search",
+      "maintained_query": "配管 シール剤 ねじ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 93,
+      "entry_id": "plate_compactor",
+      "offer_id": "amazon_plate_compactor_search",
+      "maintained_query": "プレートコンパクター",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 94,
+      "entry_id": "pliers",
+      "offer_id": "amazon_pliers_search",
+      "maintained_query": "ペンチ 工具",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 95,
+      "entry_id": "plumb_bob",
+      "offer_id": "amazon_plumb_bob_search",
+      "maintained_query": "下げ振り",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 96,
+      "entry_id": "plumber_s_putty",
+      "offer_id": "amazon_plumber_s_putty_search",
+      "maintained_query": "配管パテ プランバーズパテ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 97,
+      "entry_id": "plywood",
+      "offer_id": "amazon_plywood_search",
+      "maintained_query": "合板 ベニヤ板",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 98,
+      "entry_id": "primer",
+      "offer_id": "amazon_primer_search",
+      "maintained_query": "塗装 プライマー 下塗り",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 99,
+      "entry_id": "primer_003",
+      "offer_id": "amazon_primer_003_search",
+      "maintained_query": "建築 プライマー 下塗り",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 100,
+      "entry_id": "pry_bar",
+      "offer_id": "amazon_pry_bar_search",
+      "maintained_query": "バール 工具",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 101,
+      "entry_id": "ptfe_tape",
+      "offer_id": "amazon_ptfe_tape_search",
+      "maintained_query": "シールテープ PTFE 配管",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 102,
+      "entry_id": "putty_knife",
+      "offer_id": "amazon_putty_knife_search",
+      "maintained_query": "パテ ヘラ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 103,
+      "entry_id": "pvc_pipe",
+      "offer_id": "amazon_pvc_pipe_search",
+      "maintained_query": "塩ビ管",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 104,
+      "entry_id": "q014_airless_sprayer",
+      "offer_id": "amazon_q014_airless_sprayer_search",
+      "maintained_query": "エアレス 塗装機",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 105,
+      "entry_id": "q014_asphalt_rake",
+      "offer_id": "amazon_q014_asphalt_rake_search",
+      "maintained_query": "アスファルト レーキ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 106,
+      "entry_id": "q014_backer_tape",
+      "offer_id": "amazon_q014_backer_tape_search",
+      "maintained_query": "ボンドブレーカー テープ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 107,
+      "entry_id": "q014_baluster",
+      "offer_id": "amazon_q014_baluster_search",
+      "maintained_query": "手すり 縦格子",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 108,
+      "entry_id": "q014_concrete_paver",
+      "offer_id": "amazon_q014_concrete_paver_search",
+      "maintained_query": "コンクリート 平板 舗装",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 109,
+      "entry_id": "q014_corner_guard",
+      "offer_id": "amazon_q014_corner_guard_search",
+      "maintained_query": "コーナーガード 養生",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 110,
+      "entry_id": "q014_drain_cover",
+      "offer_id": "amazon_q014_drain_cover_search",
+      "maintained_query": "排水口 蓋 屋外",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 111,
+      "entry_id": "q014_elastomeric_paint",
+      "offer_id": "amazon_q014_elastomeric_paint_search",
+      "maintained_query": "弾性塗料",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 112,
+      "entry_id": "q014_expansion_joint_filler",
+      "offer_id": "amazon_q014_expansion_joint_filler_search",
+      "maintained_query": "伸縮目地 目地材",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 113,
+      "entry_id": "q014_exterior_fence",
+      "offer_id": "amazon_q014_exterior_fence_search",
+      "maintained_query": "外構 フェンス",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 114,
+      "entry_id": "q014_fence_post",
+      "offer_id": "amazon_q014_fence_post_search",
+      "maintained_query": "フェンス 支柱",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 115,
+      "entry_id": "q014_filler_coat",
+      "offer_id": "amazon_q014_filler_coat_search",
+      "maintained_query": "外壁 フィラー 下塗り",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 116,
+      "entry_id": "q014_floor_protection_board",
+      "offer_id": "amazon_q014_floor_protection_board_search",
+      "maintained_query": "床 養生ボード",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 117,
+      "entry_id": "q014_gate",
+      "offer_id": "amazon_q014_gate_search",
+      "maintained_query": "門扉",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 118,
+      "entry_id": "q014_gate_hinge",
+      "offer_id": "amazon_q014_gate_hinge_search",
+      "maintained_query": "門扉 丁番",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 119,
+      "entry_id": "q014_gate_latch",
+      "offer_id": "amazon_q014_gate_latch_search",
+      "maintained_query": "門扉 ラッチ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 120,
+      "entry_id": "q014_glass_suction_cup",
+      "offer_id": "amazon_q014_glass_suction_cup_search",
+      "maintained_query": "ガラス 吸盤",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 121,
+      "entry_id": "q014_guard_post",
+      "offer_id": "amazon_q014_guard_post_search",
+      "maintained_query": "手すり 支柱",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 122,
+      "entry_id": "q014_hand_roller",
+      "offer_id": "amazon_q014_hand_roller_search",
+      "maintained_query": "ハンドローラー 舗装",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 123,
+      "entry_id": "q014_handrail",
+      "offer_id": "amazon_q014_handrail_search",
+      "maintained_query": "手すり 建築",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 124,
+      "entry_id": "q014_interlocking_paver",
+      "offer_id": "amazon_q014_interlocking_paver_search",
+      "maintained_query": "インターロッキングブロック",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 125,
+      "entry_id": "q014_joint_sealant_exterior",
+      "offer_id": "amazon_q014_joint_sealant_exterior_search",
+      "maintained_query": "外壁 目地 シーリング材",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 126,
+      "entry_id": "q014_line_marking_paint",
+      "offer_id": "amazon_q014_line_marking_paint_search",
+      "maintained_query": "路面標示 塗料",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 127,
+      "entry_id": "q014_lute_rake",
+      "offer_id": "amazon_q014_lute_rake_search",
+      "maintained_query": "アスファルト ルートレーキ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 128,
+      "entry_id": "q014_modified_silicone_sealant",
+      "offer_id": "amazon_q014_modified_silicone_sealant_search",
+      "maintained_query": "変成シリコーン シーリング材",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 129,
+      "entry_id": "q014_panel_lifter_exterior",
+      "offer_id": "amazon_q014_panel_lifter_exterior_search",
+      "maintained_query": "パネル リフター 外壁",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 130,
+      "entry_id": "q014_paving_stone",
+      "offer_id": "amazon_q014_paving_stone_search",
+      "maintained_query": "敷石 舗装",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 131,
+      "entry_id": "q014_permeable_paver",
+      "offer_id": "amazon_q014_permeable_paver_search",
+      "maintained_query": "透水性 舗装 ブロック",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 132,
+      "entry_id": "q014_poly_curing_sheet",
+      "offer_id": "amazon_q014_poly_curing_sheet_search",
+      "maintained_query": "養生 ポリシート",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 133,
+      "entry_id": "q014_polyurethane_sealant",
+      "offer_id": "amazon_q014_polyurethane_sealant_search",
+      "maintained_query": "ポリウレタン シーリング材",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 134,
+      "entry_id": "q014_scaffold_sheet",
+      "offer_id": "amazon_q014_scaffold_sheet_search",
+      "maintained_query": "足場 メッシュシート",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 135,
+      "entry_id": "q014_sealant_spatula",
+      "offer_id": "amazon_q014_sealant_spatula_search",
+      "maintained_query": "シーリング ヘラ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 136,
+      "entry_id": "q014_sealer_coat",
+      "offer_id": "amazon_q014_sealer_coat_search",
+      "maintained_query": "外壁 シーラー 下塗り",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 137,
+      "entry_id": "q014_spray_gun",
+      "offer_id": "amazon_q014_spray_gun_search",
+      "maintained_query": "塗装 スプレーガン",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 138,
+      "entry_id": "q015_access_door_mep",
+      "offer_id": "amazon_q015_access_door_mep_search",
+      "maintained_query": "設備 点検口",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 139,
+      "entry_id": "q015_access_panel_duct",
+      "offer_id": "amazon_q015_access_panel_duct_search",
+      "maintained_query": "ダクト 点検口",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 140,
+      "entry_id": "q015_air_vent_valve",
+      "offer_id": "amazon_q015_air_vent_valve_search",
+      "maintained_query": "自動 空気抜き弁",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 141,
+      "entry_id": "q015_airflow_hood",
+      "offer_id": "amazon_q015_airflow_hood_search",
+      "maintained_query": "風量測定 フード",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 142,
+      "entry_id": "q015_aluminum_jacket",
+      "offer_id": "amazon_q015_aluminum_jacket_search",
+      "maintained_query": "配管 アルミ 外装材",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 143,
+      "entry_id": "q015_anemometer",
+      "offer_id": "amazon_q015_anemometer_search",
+      "maintained_query": "風速計",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 144,
+      "entry_id": "q015_anti_vibration_hanger",
+      "offer_id": "amazon_q015_anti_vibration_hanger_search",
+      "maintained_query": "防振吊り金物",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 145,
+      "entry_id": "q015_backdraft_damper",
+      "offer_id": "amazon_q015_backdraft_damper_search",
+      "maintained_query": "逆止ダンパー 換気",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 146,
+      "entry_id": "q015_balancing_valve",
+      "offer_id": "amazon_q015_balancing_valve_search",
+      "maintained_query": "バランシングバルブ 配管",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 147,
+      "entry_id": "q015_booster_pump",
+      "offer_id": "amazon_q015_booster_pump_search",
+      "maintained_query": "加圧ポンプ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 148,
+      "entry_id": "q015_butterfly_valve",
+      "offer_id": "amazon_q015_butterfly_valve_search",
+      "maintained_query": "バタフライ弁",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 149,
+      "entry_id": "q015_cable_gland",
+      "offer_id": "amazon_q015_cable_gland_search",
+      "maintained_query": "ケーブルグランド",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 150,
+      "entry_id": "q015_cable_label",
+      "offer_id": "amazon_q015_cable_label_search",
+      "maintained_query": "ケーブルタグ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 151,
+      "entry_id": "q015_cable_lug",
+      "offer_id": "amazon_q015_cable_lug_search",
+      "maintained_query": "圧着端子 ケーブル",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 152,
+      "entry_id": "q015_cleanout_plug",
+      "offer_id": "amazon_q015_cleanout_plug_search",
+      "maintained_query": "掃除口 プラグ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 153,
+      "entry_id": "q015_clevis_hanger",
+      "offer_id": "amazon_q015_clevis_hanger_search",
+      "maintained_query": "クレビスハンガー 配管",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 154,
+      "entry_id": "q015_condensate_pump",
+      "offer_id": "amazon_q015_condensate_pump_search",
+      "maintained_query": "ドレンアップポンプ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 155,
+      "entry_id": "q015_control_relay",
+      "offer_id": "amazon_q015_control_relay_search",
+      "maintained_query": "制御リレー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 156,
+      "entry_id": "q015_diffuser",
+      "offer_id": "amazon_q015_diffuser_search",
+      "maintained_query": "空調 吹出口",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 157,
+      "entry_id": "q015_drain_trap_hvac",
+      "offer_id": "amazon_q015_drain_trap_hvac_search",
+      "maintained_query": "空調 ドレントラップ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 158,
+      "entry_id": "q015_drain_up_piping",
+      "offer_id": "amazon_q015_drain_up_piping_search",
+      "maintained_query": "空調 ドレン管",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 159,
+      "entry_id": "q015_drain_valve",
+      "offer_id": "amazon_q015_drain_valve_search",
+      "maintained_query": "ドレン弁 配管",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 160,
+      "entry_id": "q015_duct_flange",
+      "offer_id": "amazon_q015_duct_flange_search",
+      "maintained_query": "ダクト フランジ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 161,
+      "entry_id": "q015_duct_hanger",
+      "offer_id": "amazon_q015_duct_hanger_search",
+      "maintained_query": "ダクト 吊り金物",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 162,
+      "entry_id": "q015_earth_leakage_breaker",
+      "offer_id": "amazon_q015_earth_leakage_breaker_search",
+      "maintained_query": "漏電遮断器",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 163,
+      "entry_id": "q015_emergency_light",
+      "offer_id": "amazon_q015_emergency_light_search",
+      "maintained_query": "非常灯",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 164,
+      "entry_id": "q015_equipment_anchor",
+      "offer_id": "amazon_q015_equipment_anchor_search",
+      "maintained_query": "設備 アンカー コンクリート",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 165,
+      "entry_id": "q015_exhaust_fan",
+      "offer_id": "amazon_q015_exhaust_fan_search",
+      "maintained_query": "換気扇",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 166,
+      "entry_id": "q015_exit_sign",
+      "offer_id": "amazon_q015_exit_sign_search",
+      "maintained_query": "誘導灯",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 167,
+      "entry_id": "q015_expansion_joint_pipe",
+      "offer_id": "amazon_q015_expansion_joint_pipe_search",
+      "maintained_query": "伸縮継手 配管",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 168,
+      "entry_id": "q015_faucet",
+      "offer_id": "amazon_q015_faucet_search",
+      "maintained_query": "水栓",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 169,
+      "entry_id": "q015_ferrule_terminal",
+      "offer_id": "amazon_q015_ferrule_terminal_search",
+      "maintained_query": "フェルール端子",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 170,
+      "entry_id": "q015_flexible_connector",
+      "offer_id": "amazon_q015_flexible_connector_search",
+      "maintained_query": "ダクト キャンバス継手",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 171,
+      "entry_id": "q015_flexible_duct",
+      "offer_id": "amazon_q015_flexible_duct_search",
+      "maintained_query": "フレキシブルダクト",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 172,
+      "entry_id": "q015_flexible_joint",
+      "offer_id": "amazon_q015_flexible_joint_search",
+      "maintained_query": "フレキシブルジョイント 配管",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 173,
+      "entry_id": "q015_floor_drain",
+      "offer_id": "amazon_q015_floor_drain_search",
+      "maintained_query": "床排水金物",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 174,
+      "entry_id": "q015_floor_sleeve",
+      "offer_id": "amazon_q015_floor_sleeve_search",
+      "maintained_query": "配管 床貫通 スリーブ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 175,
+      "entry_id": "q015_flow_meter",
+      "offer_id": "amazon_q015_flow_meter_search",
+      "maintained_query": "配管 流量計",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 176,
+      "entry_id": "q015_gate_valve",
+      "offer_id": "amazon_q015_gate_valve_search",
+      "maintained_query": "仕切弁",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 177,
+      "entry_id": "q015_glass_wool_pipe_cover",
+      "offer_id": "amazon_q015_glass_wool_pipe_cover_search",
+      "maintained_query": "グラスウール 保温筒",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 178,
+      "entry_id": "q015_globe_valve",
+      "offer_id": "amazon_q015_globe_valve_search",
+      "maintained_query": "玉形弁",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 179,
+      "entry_id": "q015_grille",
+      "offer_id": "amazon_q015_grille_search",
+      "maintained_query": "換気 ガラリ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 180,
+      "entry_id": "q015_ground_rod",
+      "offer_id": "amazon_q015_ground_rod_search",
+      "maintained_query": "接地棒",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 181,
+      "entry_id": "q015_ground_wire",
+      "offer_id": "amazon_q015_ground_wire_search",
+      "maintained_query": "接地線",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 182,
+      "entry_id": "q015_grounding_busbar",
+      "offer_id": "amazon_q015_grounding_busbar_search",
+      "maintained_query": "接地銅バー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 183,
+      "entry_id": "q015_heat_shrink_tube",
+      "offer_id": "amazon_q015_heat_shrink_tube_search",
+      "maintained_query": "熱収縮チューブ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 184,
+      "entry_id": "q015_inline_fan",
+      "offer_id": "amazon_q015_inline_fan_search",
+      "maintained_query": "中間ダクトファン",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 185,
+      "entry_id": "q015_insulation_tape",
+      "offer_id": "amazon_q015_insulation_tape_search",
+      "maintained_query": "保温 テープ 配管",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 186,
+      "entry_id": "q015_junction_box",
+      "offer_id": "amazon_q015_junction_box_search",
+      "maintained_query": "ジョイントボックス 電気",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 187,
+      "entry_id": "q015_leak_detector",
+      "offer_id": "amazon_q015_leak_detector_search",
+      "maintained_query": "冷媒 漏れ検知器",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 188,
+      "entry_id": "q015_led_downlight",
+      "offer_id": "amazon_q015_led_downlight_search",
+      "maintained_query": "LED ダウンライト",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 189,
+      "entry_id": "q015_light_fixture",
+      "offer_id": "amazon_q015_light_fixture_search",
+      "maintained_query": "照明器具",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 190,
+      "entry_id": "q015_louver",
+      "offer_id": "amazon_q015_louver_search",
+      "maintained_query": "換気 ルーバー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 191,
+      "entry_id": "q015_magnetic_contactor",
+      "offer_id": "amazon_q015_magnetic_contactor_search",
+      "maintained_query": "電磁接触器",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 192,
+      "entry_id": "q015_manometer",
+      "offer_id": "amazon_q015_manometer_search",
+      "maintained_query": "差圧計",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 193,
+      "entry_id": "q015_mccb",
+      "offer_id": "amazon_q015_mccb_search",
+      "maintained_query": "配線用遮断器 MCCB",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 194,
+      "entry_id": "q015_mixer_faucet",
+      "offer_id": "amazon_q015_mixer_faucet_search",
+      "maintained_query": "混合水栓",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 195,
+      "entry_id": "q015_occupancy_sensor",
+      "offer_id": "amazon_q015_occupancy_sensor_search",
+      "maintained_query": "人感センサー 照明",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 196,
+      "entry_id": "q015_photoelectric_sensor",
+      "offer_id": "amazon_q015_photoelectric_sensor_search",
+      "maintained_query": "明暗センサー 照明",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 197,
+      "entry_id": "q015_pipe_insulation",
+      "offer_id": "amazon_q015_pipe_insulation_search",
+      "maintained_query": "配管 保温材",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 198,
+      "entry_id": "q015_pipe_saddle",
+      "offer_id": "amazon_q015_pipe_saddle_search",
+      "maintained_query": "サドルバンド 配管",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 199,
+      "entry_id": "q015_pipe_shoe",
+      "offer_id": "amazon_q015_pipe_shoe_search",
+      "maintained_query": "パイプシュー 配管",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 200,
+      "entry_id": "q015_pipe_support",
+      "offer_id": "amazon_q015_pipe_support_search",
+      "maintained_query": "配管 支持金具",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 201,
+      "entry_id": "q015_polyethylene_pipe_cover",
+      "offer_id": "amazon_q015_polyethylene_pipe_cover_search",
+      "maintained_query": "ポリエチレン 保温筒",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 202,
+      "entry_id": "q015_pressure_gauge",
+      "offer_id": "amazon_q015_pressure_gauge_search",
+      "maintained_query": "圧力計",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 203,
+      "entry_id": "q015_pressure_reducing_valve",
+      "offer_id": "amazon_q015_pressure_reducing_valve_search",
+      "maintained_query": "減圧弁",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 204,
+      "entry_id": "q015_pressure_switch",
+      "offer_id": "amazon_q015_pressure_switch_search",
+      "maintained_query": "圧力スイッチ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 205,
+      "entry_id": "q015_pressure_test_pump",
+      "offer_id": "amazon_q015_pressure_test_pump_search",
+      "maintained_query": "水圧試験ポンプ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 206,
+      "entry_id": "q015_pull_box",
+      "offer_id": "amazon_q015_pull_box_search",
+      "maintained_query": "プルボックス 電気",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 207,
+      "entry_id": "q015_pump",
+      "offer_id": "amazon_q015_pump_search",
+      "maintained_query": "ポンプ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 208,
+      "entry_id": "q015_refrigerant_pipe",
+      "offer_id": "amazon_q015_refrigerant_pipe_search",
+      "maintained_query": "冷媒管 銅管",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 209,
+      "entry_id": "q015_return_air_grille",
+      "offer_id": "amazon_q015_return_air_grille_search",
+      "maintained_query": "空調 吸込口",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 210,
+      "entry_id": "q015_ring_terminal",
+      "offer_id": "amazon_q015_ring_terminal_search",
+      "maintained_query": "丸形圧着端子",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 211,
+      "entry_id": "q015_riser_clamp",
+      "offer_id": "amazon_q015_riser_clamp_search",
+      "maintained_query": "立管バンド",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 212,
+      "entry_id": "q015_sirocco_fan",
+      "offer_id": "amazon_q015_sirocco_fan_search",
+      "maintained_query": "シロッコファン",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 213,
+      "entry_id": "q015_sleeve_ring",
+      "offer_id": "amazon_q015_sleeve_ring_search",
+      "maintained_query": "配管 スリーブリング",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 214,
+      "entry_id": "q015_smoke_tester",
+      "offer_id": "amazon_q015_smoke_tester_search",
+      "maintained_query": "スモークテスター 気流",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 215,
+      "entry_id": "q015_solenoid_valve",
+      "offer_id": "amazon_q015_solenoid_valve_search",
+      "maintained_query": "電磁弁",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 216,
+      "entry_id": "q015_spade_terminal",
+      "offer_id": "amazon_q015_spade_terminal_search",
+      "maintained_query": "Y形圧着端子",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 217,
+      "entry_id": "q015_strainer",
+      "offer_id": "amazon_q015_strainer_search",
+      "maintained_query": "ストレーナー 配管",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 218,
+      "entry_id": "q015_sump_pump",
+      "offer_id": "amazon_q015_sump_pump_search",
+      "maintained_query": "排水ポンプ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 219,
+      "entry_id": "q015_switch_box",
+      "offer_id": "amazon_q015_switch_box_search",
+      "maintained_query": "スイッチボックス 電気",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 220,
+      "entry_id": "q015_temperature_gauge",
+      "offer_id": "amazon_q015_temperature_gauge_search",
+      "maintained_query": "配管 温度計",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 221,
+      "entry_id": "q015_test_plug",
+      "offer_id": "amazon_q015_test_plug_search",
+      "maintained_query": "排水管 テストプラグ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 222,
+      "entry_id": "q015_transformer",
+      "offer_id": "amazon_q015_transformer_search",
+      "maintained_query": "変圧器",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 223,
+      "entry_id": "q015_trap_primer",
+      "offer_id": "amazon_q015_trap_primer_search",
+      "maintained_query": "トラップ 給水装置",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 224,
+      "entry_id": "q015_trapeze_hanger",
+      "offer_id": "amazon_q015_trapeze_hanger_search",
+      "maintained_query": "配管 門型 吊り金物",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 225,
+      "entry_id": "q015_u_bolt_pipe",
+      "offer_id": "amazon_q015_u_bolt_pipe_search",
+      "maintained_query": "Uボルト 配管",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 226,
+      "entry_id": "q015_volume_damper",
+      "offer_id": "amazon_q015_volume_damper_search",
+      "maintained_query": "風量調整ダンパー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 227,
+      "entry_id": "q015_wall_sleeve",
+      "offer_id": "amazon_q015_wall_sleeve_search",
+      "maintained_query": "配管 壁貫通 スリーブ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 228,
+      "entry_id": "q015_wire_marker",
+      "offer_id": "amazon_q015_wire_marker_search",
+      "maintained_query": "線名札 電線",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 229,
+      "entry_id": "q015_y_strainer",
+      "offer_id": "amazon_q015_y_strainer_search",
+      "maintained_query": "Y形ストレーナー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 230,
+      "entry_id": "q016_access_ceiling_panel",
+      "offer_id": "amazon_q016_access_ceiling_panel_search",
+      "maintained_query": "天井 点検口",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 231,
+      "entry_id": "q016_acoustic_ceiling_tile",
+      "offer_id": "amazon_q016_acoustic_ceiling_tile_search",
+      "maintained_query": "吸音 天井板",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 232,
+      "entry_id": "q016_carpet_adhesive",
+      "offer_id": "amazon_q016_carpet_adhesive_search",
+      "maintained_query": "カーペット 接着剤",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 233,
+      "entry_id": "q016_ceiling_hanger_wire",
+      "offer_id": "amazon_q016_ceiling_hanger_wire_search",
+      "maintained_query": "天井 吊り線",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 234,
+      "entry_id": "q016_ceiling_tile",
+      "offer_id": "amazon_q016_ceiling_tile_search",
+      "maintained_query": "天井板",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 235,
+      "entry_id": "q016_coating_thickness_gauge",
+      "offer_id": "amazon_q016_coating_thickness_gauge_search",
+      "maintained_query": "膜厚計",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 236,
+      "entry_id": "q016_concrete_sealer",
+      "offer_id": "amazon_q016_concrete_sealer_search",
+      "maintained_query": "コンクリート シーラー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 237,
+      "entry_id": "q016_corner_protection_tape",
+      "offer_id": "amazon_q016_corner_protection_tape_search",
+      "maintained_query": "コーナー 養生 テープ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 238,
+      "entry_id": "q016_corner_tape",
+      "offer_id": "amazon_q016_corner_tape_search",
+      "maintained_query": "コーナーテープ 石膏ボード",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 239,
+      "entry_id": "q016_corner_trowel",
+      "offer_id": "amazon_q016_corner_trowel_search",
+      "maintained_query": "左官 角こて",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 240,
+      "entry_id": "q016_cove_base",
+      "offer_id": "amazon_q016_cove_base_search",
+      "maintained_query": "巻上げ巾木 コーブ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 241,
+      "entry_id": "q016_crack_filler",
+      "offer_id": "amazon_q016_crack_filler_search",
+      "maintained_query": "壁 ひび割れ 補修材",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 242,
+      "entry_id": "q016_cross_cut_tester",
+      "offer_id": "amazon_q016_cross_cut_tester_search",
+      "maintained_query": "クロスカット テスター 塗膜",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 243,
+      "entry_id": "q016_cross_tee",
+      "offer_id": "amazon_q016_cross_tee_search",
+      "maintained_query": "天井 クロスTバー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 244,
+      "entry_id": "q016_drop_cloth",
+      "offer_id": "amazon_q016_drop_cloth_search",
+      "maintained_query": "塗装 養生布",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 245,
+      "entry_id": "q016_dust_barrier",
+      "offer_id": "amazon_q016_dust_barrier_search",
+      "maintained_query": "防塵 養生 シート",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 246,
+      "entry_id": "q016_epoxy_floor_coating",
+      "offer_id": "amazon_q016_epoxy_floor_coating_search",
+      "maintained_query": "エポキシ 床 塗料",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 247,
+      "entry_id": "q016_first_aid_kit",
+      "offer_id": "amazon_q016_first_aid_kit_search",
+      "maintained_query": "救急箱",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 248,
+      "entry_id": "q016_floor_adhesive",
+      "offer_id": "amazon_q016_floor_adhesive_search",
+      "maintained_query": "床用 接着剤",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 249,
+      "entry_id": "q016_floor_hardener",
+      "offer_id": "amazon_q016_floor_hardener_search",
+      "maintained_query": "コンクリート 床 硬化剤",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 250,
+      "entry_id": "q016_floor_joint_strip",
+      "offer_id": "amazon_q016_floor_joint_strip_search",
+      "maintained_query": "床 見切り材",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 251,
+      "entry_id": "q016_floor_polisher",
+      "offer_id": "amazon_q016_floor_polisher_search",
+      "maintained_query": "床 ポリッシャー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 252,
+      "entry_id": "q016_floor_sander",
+      "offer_id": "amazon_q016_floor_sander_search",
+      "maintained_query": "床 サンダー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 253,
+      "entry_id": "q016_floor_scraper",
+      "offer_id": "amazon_q016_floor_scraper_search",
+      "maintained_query": "床 スクレーパー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 254,
+      "entry_id": "q016_floor_underlayment",
+      "offer_id": "amazon_q016_floor_underlayment_search",
+      "maintained_query": "フローリング 下地材",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 255,
+      "entry_id": "q016_floor_weld_rod",
+      "offer_id": "amazon_q016_floor_weld_rod_search",
+      "maintained_query": "床シート 溶接棒",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 256,
+      "entry_id": "q016_flooring_board",
+      "offer_id": "amazon_q016_flooring_board_search",
+      "maintained_query": "フローリング材",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 257,
+      "entry_id": "q016_grout_sealer",
+      "offer_id": "amazon_q016_grout_sealer_search",
+      "maintained_query": "目地 シーラー タイル",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 258,
+      "entry_id": "q016_grout_sponge",
+      "offer_id": "amazon_q016_grout_sponge_search",
+      "maintained_query": "タイル 目地 スポンジ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 259,
+      "entry_id": "q016_hearing_protection",
+      "offer_id": "amazon_q016_hearing_protection_search",
+      "maintained_query": "防音 イヤーマフ 耳栓",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 260,
+      "entry_id": "q016_hepa_filter",
+      "offer_id": "amazon_q016_hepa_filter_search",
+      "maintained_query": "HEPA フィルター 集じん機",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 261,
+      "entry_id": "q016_interior_paint",
+      "offer_id": "amazon_q016_interior_paint_search",
+      "maintained_query": "内装 塗料",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 262,
+      "entry_id": "q016_joint_compound",
+      "offer_id": "amazon_q016_joint_compound_search",
+      "maintained_query": "ジョイントコンパウンド",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 263,
+      "entry_id": "q016_laminate_flooring",
+      "offer_id": "amazon_q016_laminate_flooring_search",
+      "maintained_query": "複合フローリング",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 264,
+      "entry_id": "q016_main_tee",
+      "offer_id": "amazon_q016_main_tee_search",
+      "maintained_query": "天井 Tバー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 265,
+      "entry_id": "q016_masking_film",
+      "offer_id": "amazon_q016_masking_film_search",
+      "maintained_query": "マスカー 養生",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 266,
+      "entry_id": "q016_moisture_barrier_coating",
+      "offer_id": "amazon_q016_moisture_barrier_coating_search",
+      "maintained_query": "床 防湿 塗料",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 267,
+      "entry_id": "q016_negative_air_machine",
+      "offer_id": "amazon_q016_negative_air_machine_search",
+      "maintained_query": "負圧 集じん機",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 268,
+      "entry_id": "q016_oil_based_paint",
+      "offer_id": "amazon_q016_oil_based_paint_search",
+      "maintained_query": "油性 塗料",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 269,
+      "entry_id": "q016_paint_extension_pole",
+      "offer_id": "amazon_q016_paint_extension_pole_search",
+      "maintained_query": "塗装 継ぎ柄",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 270,
+      "entry_id": "q016_paint_primer_interior",
+      "offer_id": "amazon_q016_paint_primer_interior_search",
+      "maintained_query": "内装 プライマー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 271,
+      "entry_id": "q016_paint_putty",
+      "offer_id": "amazon_q016_paint_putty_search",
+      "maintained_query": "塗装 パテ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 272,
+      "entry_id": "q016_paint_roller_cover",
+      "offer_id": "amazon_q016_paint_roller_cover_search",
+      "maintained_query": "塗装 ローラー 替筒",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 273,
+      "entry_id": "q016_plaster",
+      "offer_id": "amazon_q016_plaster_search",
+      "maintained_query": "漆喰",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 274,
+      "entry_id": "q016_plaster_base",
+      "offer_id": "amazon_q016_plaster_base_search",
+      "maintained_query": "左官 下塗り材",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 275,
+      "entry_id": "q016_plaster_hawk",
+      "offer_id": "amazon_q016_plaster_hawk_search",
+      "maintained_query": "左官 ホーク",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 276,
+      "entry_id": "q016_plaster_mesh",
+      "offer_id": "amazon_q016_plaster_mesh_search",
+      "maintained_query": "左官 メッシュ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 277,
+      "entry_id": "q016_plaster_trowel",
+      "offer_id": "amazon_q016_plaster_trowel_search",
+      "maintained_query": "左官 こて",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 278,
+      "entry_id": "q016_pull_off_tester",
+      "offer_id": "amazon_q016_pull_off_tester_search",
+      "maintained_query": "プルオフテスター",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 279,
+      "entry_id": "q016_repair_patch",
+      "offer_id": "amazon_q016_repair_patch_search",
+      "maintained_query": "壁 補修 パッチ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 280,
+      "entry_id": "q016_scratch_guard",
+      "offer_id": "amazon_q016_scratch_guard_search",
+      "maintained_query": "傷防止 養生シート",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 281,
+      "entry_id": "q016_skim_coat",
+      "offer_id": "amazon_q016_skim_coat_search",
+      "maintained_query": "薄塗り 補修材 壁",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 282,
+      "entry_id": "q016_soft_baseboard",
+      "offer_id": "amazon_q016_soft_baseboard_search",
+      "maintained_query": "ソフト巾木",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 283,
+      "entry_id": "q016_spackling_paste",
+      "offer_id": "amazon_q016_spackling_paste_search",
+      "maintained_query": "壁 穴 補修 パテ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 284,
+      "entry_id": "q016_sponge_float",
+      "offer_id": "amazon_q016_sponge_float_search",
+      "maintained_query": "スポンジ 浮き 左官",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 285,
+      "entry_id": "q016_suspended_ceiling_grid",
+      "offer_id": "amazon_q016_suspended_ceiling_grid_search",
+      "maintained_query": "システム天井 グリッド",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 286,
+      "entry_id": "q016_tack_strip",
+      "offer_id": "amazon_q016_tack_strip_search",
+      "maintained_query": "カーペット グリッパー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 287,
+      "entry_id": "q016_temporary_floor_mat",
+      "offer_id": "amazon_q016_temporary_floor_mat_search",
+      "maintained_query": "床 養生 マット",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 288,
+      "entry_id": "q016_tile_backer_board",
+      "offer_id": "amazon_q016_tile_backer_board_search",
+      "maintained_query": "タイル 下地 ボード",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 289,
+      "entry_id": "q016_tile_leveling_clip",
+      "offer_id": "amazon_q016_tile_leveling_clip_search",
+      "maintained_query": "タイル レベリング クリップ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 290,
+      "entry_id": "q016_tile_nipper",
+      "offer_id": "amazon_q016_tile_nipper_search",
+      "maintained_query": "タイル ニッパー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 291,
+      "entry_id": "q016_tile_wedge",
+      "offer_id": "amazon_q016_tile_wedge_search",
+      "maintained_query": "タイル レベリング くさび",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 292,
+      "entry_id": "q016_vinyl_floor_tile",
+      "offer_id": "amazon_q016_vinyl_floor_tile_search",
+      "maintained_query": "ビニル床タイル",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 293,
+      "entry_id": "q016_vinyl_sheet_flooring",
+      "offer_id": "amazon_q016_vinyl_sheet_flooring_search",
+      "maintained_query": "長尺シート 床",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 294,
+      "entry_id": "q016_wall_putty",
+      "offer_id": "amazon_q016_wall_putty_search",
+      "maintained_query": "内装 パテ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 295,
+      "entry_id": "q016_wall_repair_mesh",
+      "offer_id": "amazon_q016_wall_repair_mesh_search",
+      "maintained_query": "壁 補修 メッシュ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 296,
+      "entry_id": "q016_wallpaper",
+      "offer_id": "amazon_q016_wallpaper_search",
+      "maintained_query": "壁紙 クロス",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 297,
+      "entry_id": "q016_wallpaper_adhesive",
+      "offer_id": "amazon_q016_wallpaper_adhesive_search",
+      "maintained_query": "壁紙 糊",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 298,
+      "entry_id": "q016_wallpaper_brush",
+      "offer_id": "amazon_q016_wallpaper_brush_search",
+      "maintained_query": "撫で刷毛 クロス",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 299,
+      "entry_id": "q016_wallpaper_cutting_guide",
+      "offer_id": "amazon_q016_wallpaper_cutting_guide_search",
+      "maintained_query": "地ベラ クロス",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 300,
+      "entry_id": "q016_wallpaper_seam_roller",
+      "offer_id": "amazon_q016_wallpaper_seam_roller_search",
+      "maintained_query": "壁紙 ジョイントローラー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 301,
+      "entry_id": "q016_wallpaper_spatula",
+      "offer_id": "amazon_q016_wallpaper_spatula_search",
+      "maintained_query": "クロス ヘラ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 302,
+      "entry_id": "q016_water_based_paint",
+      "offer_id": "amazon_q016_water_based_paint_search",
+      "maintained_query": "水性 塗料",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 303,
+      "entry_id": "q016_wet_tile_saw",
+      "offer_id": "amazon_q016_wet_tile_saw_search",
+      "maintained_query": "湿式 タイルソー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 304,
+      "entry_id": "q016_zip_wall",
+      "offer_id": "amazon_q016_zip_wall_search",
+      "maintained_query": "仮設 間仕切り 養生",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 305,
+      "entry_id": "q017_abrasive_block",
+      "offer_id": "amazon_abrasive_block_search",
+      "maintained_query": "研磨ブロック",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 306,
+      "entry_id": "q017_access_floor_panel",
+      "offer_id": "amazon_access_floor_panel_search",
+      "maintained_query": "OAフロア パネル",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 307,
+      "entry_id": "q017_adhesive_spreader",
+      "offer_id": "amazon_adhesive_spreader_search",
+      "maintained_query": "接着剤 ヘラ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 308,
+      "entry_id": "q017_barricade_bar",
+      "offer_id": "amazon_q017_barricade_bar_search",
+      "maintained_query": "バリケード バー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 309,
+      "entry_id": "q017_cable_cutter",
+      "offer_id": "amazon_q017_cable_cutter_search",
+      "maintained_query": "ケーブルカッター",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 310,
+      "entry_id": "q017_cable_tie_tool",
+      "offer_id": "amazon_q017_cable_tie_tool_search",
+      "maintained_query": "結束バンド 工具",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 311,
+      "entry_id": "q017_ceiling_hanger",
+      "offer_id": "amazon_q017_ceiling_hanger_search",
+      "maintained_query": "天井 吊り金物",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 312,
+      "entry_id": "q017_ceiling_runner",
+      "offer_id": "amazon_q017_ceiling_runner_search",
+      "maintained_query": "天井 ランナー 軽量下地",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 313,
+      "entry_id": "q017_conduit_connector",
+      "offer_id": "amazon_q017_conduit_connector_search",
+      "maintained_query": "電線管 コネクタ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 314,
+      "entry_id": "q017_conduit_coupling",
+      "offer_id": "amazon_q017_conduit_coupling_search",
+      "maintained_query": "電線管 カップリング",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 315,
+      "entry_id": "q017_drop_in_anchor",
+      "offer_id": "amazon_q017_drop_in_anchor_search",
+      "maintained_query": "打込み式 アンカー コンクリート",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 316,
+      "entry_id": "q017_eye_bolt",
+      "offer_id": "amazon_q017_eye_bolt_search",
+      "maintained_query": "アイボルト",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 317,
+      "entry_id": "q017_floor_edge_pad",
+      "offer_id": "amazon_q017_floor_edge_pad_search",
+      "maintained_query": "フローリング 当て木",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 318,
+      "entry_id": "q017_flooring_pull_bar",
+      "offer_id": "amazon_q017_flooring_pull_bar_search",
+      "maintained_query": "フローリング 引き寄せ 金具",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 319,
+      "entry_id": "q017_flooring_roller",
+      "offer_id": "amazon_q017_flooring_roller_search",
+      "maintained_query": "床 ローラー 圧着",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 320,
+      "entry_id": "q017_flooring_spacer",
+      "offer_id": "amazon_q017_flooring_spacer_search",
+      "maintained_query": "フローリング スペーサー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 321,
+      "entry_id": "q017_form_clamp",
+      "offer_id": "amazon_q017_form_clamp_search",
+      "maintained_query": "型枠 クランプ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 322,
+      "entry_id": "q017_formwork_panel",
+      "offer_id": "amazon_q017_formwork_panel_search",
+      "maintained_query": "型枠 パネル",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 323,
+      "entry_id": "q017_inspection_mirror",
+      "offer_id": "amazon_q017_inspection_mirror_search",
+      "maintained_query": "点検 ミラー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 324,
+      "entry_id": "q017_insulated_screwdriver",
+      "offer_id": "amazon_q017_insulated_screwdriver_search",
+      "maintained_query": "絶縁 ドライバー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 325,
+      "entry_id": "q017_laser_receiver",
+      "offer_id": "amazon_q017_laser_receiver_search",
+      "maintained_query": "レーザー 受光器",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 326,
+      "entry_id": "q017_pipe_coupling",
+      "offer_id": "amazon_q017_pipe_coupling_search",
+      "maintained_query": "配管 ソケット 継手",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 327,
+      "entry_id": "q017_pipe_deburrer",
+      "offer_id": "amazon_q017_pipe_deburrer_search",
+      "maintained_query": "配管 面取り器",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 328,
+      "entry_id": "q017_pipe_elbow",
+      "offer_id": "amazon_q017_pipe_elbow_search",
+      "maintained_query": "配管 エルボ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 329,
+      "entry_id": "q017_pipe_tee",
+      "offer_id": "amazon_q017_pipe_tee_search",
+      "maintained_query": "配管 チーズ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 330,
+      "entry_id": "q017_pipe_threader",
+      "offer_id": "amazon_q017_pipe_threader_search",
+      "maintained_query": "配管 ねじ切り機",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 331,
+      "entry_id": "q017_rotary_laser",
+      "offer_id": "amazon_q017_rotary_laser_search",
+      "maintained_query": "回転レーザー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 332,
+      "entry_id": "q017_seam_roller",
+      "offer_id": "amazon_q017_seam_roller_search",
+      "maintained_query": "目地 ローラー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 333,
+      "entry_id": "q017_stop_valve",
+      "offer_id": "amazon_q017_stop_valve_search",
+      "maintained_query": "止水栓",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 334,
+      "entry_id": "q017_switch_plate",
+      "offer_id": "amazon_q017_switch_plate_search",
+      "maintained_query": "スイッチ プレート",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 335,
+      "entry_id": "q017_wire_duct",
+      "offer_id": "amazon_q017_wire_duct_search",
+      "maintained_query": "配線ダクト",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 336,
+      "entry_id": "q017_wood_rasp",
+      "offer_id": "amazon_q017_wood_rasp_search",
+      "maintained_query": "木工 ヤスリ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 337,
+      "entry_id": "random_orbit_sander",
+      "offer_id": "amazon_random_orbit_sander_search",
+      "maintained_query": "ランダムサンダー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 338,
+      "entry_id": "rebar",
+      "offer_id": "amazon_rebar_search",
+      "maintained_query": "鉄筋 棒",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 339,
+      "entry_id": "rebar_bender",
+      "offer_id": "amazon_rebar_bender_search",
+      "maintained_query": "鉄筋 ベンダー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 340,
+      "entry_id": "rebar_cutter",
+      "offer_id": "amazon_rebar_cutter_search",
+      "maintained_query": "鉄筋 カッター",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 341,
+      "entry_id": "rebar_tying_tool",
+      "offer_id": "amazon_rebar_tying_tool_search",
+      "maintained_query": "鉄筋 結束機",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 342,
+      "entry_id": "receptacle_outlet",
+      "offer_id": "amazon_receptacle_outlet_search",
+      "maintained_query": "コンセント 接地極 配線器具",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 343,
+      "entry_id": "respirator_mask",
+      "offer_id": "amazon_respirator_mask_search",
+      "maintained_query": "防毒マスク 防じんマスク",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 344,
+      "entry_id": "rockwool",
+      "offer_id": "amazon_rockwool_search",
+      "maintained_query": "ロックウール 断熱材",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 345,
+      "entry_id": "roofing_felt",
+      "offer_id": "amazon_roofing_felt_search",
+      "maintained_query": "ルーフィング 屋根 下葺き材",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 346,
+      "entry_id": "safety_cones",
+      "offer_id": "amazon_safety_cones_search",
+      "maintained_query": "カラーコーン",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 347,
+      "entry_id": "safety_glasses",
+      "offer_id": "amazon_safety_glasses_search",
+      "maintained_query": "保護メガネ 作業用",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 348,
+      "entry_id": "safety_shoes",
+      "offer_id": "amazon_safety_shoes_search",
+      "maintained_query": "安全靴",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 349,
+      "entry_id": "sandpaper",
+      "offer_id": "amazon_sandpaper_search",
+      "maintained_query": "紙やすり サンドペーパー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 350,
+      "entry_id": "scaffold",
+      "offer_id": "amazon_scaffold_search",
+      "maintained_query": "足場 仮設",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 351,
+      "entry_id": "screed",
+      "offer_id": "amazon_screed_search",
+      "maintained_query": "コンクリート スクリード ならし",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 352,
+      "entry_id": "screw_set",
+      "offer_id": "amazon_screw_set_search",
+      "maintained_query": "ねじ セット",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 353,
+      "entry_id": "seal_tape",
+      "offer_id": "amazon_seal_tape_search",
+      "maintained_query": "防水テープ 建築 外壁",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 354,
+      "entry_id": "self_leveling_compound",
+      "offer_id": "amazon_self_leveling_compound_search",
+      "maintained_query": "セルフレベリング材 床",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 355,
+      "entry_id": "shingle",
+      "offer_id": "amazon_shingle_search",
+      "maintained_query": "アスファルトシングル 屋根材",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 356,
+      "entry_id": "shovel",
+      "offer_id": "amazon_shovel_search",
+      "maintained_query": "スコップ 工具",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 357,
+      "entry_id": "silicone_sealant",
+      "offer_id": "amazon_silicone_sealant_search",
+      "maintained_query": "シリコンシーラント 建築",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 358,
+      "entry_id": "sledgehammer",
+      "offer_id": "amazon_sledgehammer_search",
+      "maintained_query": "大ハンマー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 359,
+      "entry_id": "sleeve_anchor",
+      "offer_id": "amazon_sleeve_anchor_search",
+      "maintained_query": "スリーブアンカー コンクリート",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 360,
+      "entry_id": "socket_wrench",
+      "offer_id": "amazon_socket_wrench_search",
+      "maintained_query": "ソケットレンチ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 361,
+      "entry_id": "soldering_iron",
+      "offer_id": "amazon_soldering_iron_search",
+      "maintained_query": "はんだごて 電気",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 362,
+      "entry_id": "spade_bit",
+      "offer_id": "amazon_spade_bit_search",
+      "maintained_query": "木工 フラットドリル",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 363,
+      "entry_id": "spirit_level",
+      "offer_id": "amazon_spirit_level_search",
+      "maintained_query": "水平器",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 364,
+      "entry_id": "square_tool",
+      "offer_id": "amazon_square_tool_search",
+      "maintained_query": "差し金 スコヤ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 365,
+      "entry_id": "staple_gun",
+      "offer_id": "amazon_staple_gun_search",
+      "maintained_query": "タッカー ステープル",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 366,
+      "entry_id": "step_ladder",
+      "offer_id": "amazon_step_ladder_search",
+      "maintained_query": "脚立",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 367,
+      "entry_id": "stepladder",
+      "offer_id": "amazon_stepladder_search",
+      "maintained_query": "脚立",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 368,
+      "entry_id": "story_pole",
+      "offer_id": "amazon_story_pole_search",
+      "maintained_query": "ストーリーポール 寸法棒",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 369,
+      "entry_id": "string_line",
+      "offer_id": "amazon_string_line_search",
+      "maintained_query": "水糸 建築",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 370,
+      "entry_id": "stud_finder",
+      "offer_id": "amazon_stud_finder_search",
+      "maintained_query": "下地センサー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 371,
+      "entry_id": "tamper",
+      "offer_id": "amazon_tamper_search",
+      "maintained_query": "ハンドタンパー 転圧",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 372,
+      "entry_id": "tarpaulin_tarp",
+      "offer_id": "amazon_tarpaulin_tarp_search",
+      "maintained_query": "ブルーシート",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 373,
+      "entry_id": "threaded_rod",
+      "offer_id": "amazon_threaded_rod_search",
+      "maintained_query": "全ねじ ボルト",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 374,
+      "entry_id": "tile_cutter",
+      "offer_id": "amazon_tile_cutter_search",
+      "maintained_query": "タイル カッター",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 375,
+      "entry_id": "tile_spacer",
+      "offer_id": "amazon_tile_spacer_search",
+      "maintained_query": "タイル スペーサー",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 376,
+      "entry_id": "toggle_anchor",
+      "offer_id": "amazon_toggle_anchor_search",
+      "maintained_query": "トグルアンカー 石膏ボード",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 377,
+      "entry_id": "top_coat",
+      "offer_id": "amazon_top_coat_search",
+      "maintained_query": "上塗り 塗料 建築",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 378,
+      "entry_id": "trowel",
+      "offer_id": "amazon_trowel_search",
+      "maintained_query": "左官 こて",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 379,
+      "entry_id": "vapor_barrier",
+      "offer_id": "amazon_vapor_barrier_search",
+      "maintained_query": "防湿シート 建築",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 380,
+      "entry_id": "vise",
+      "offer_id": "amazon_vise_search",
+      "maintained_query": "卓上 万力",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 381,
+      "entry_id": "voltage_tester",
+      "offer_id": "amazon_voltage_tester_search",
+      "maintained_query": "検電器",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 382,
+      "entry_id": "waterproof_membrane",
+      "offer_id": "amazon_waterproof_membrane_search",
+      "maintained_query": "防水シート 防水膜 建築",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 383,
+      "entry_id": "wedge_anchor",
+      "offer_id": "amazon_wedge_anchor_search",
+      "maintained_query": "ウェッジアンカー コンクリート",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 384,
+      "entry_id": "wheelbarrow",
+      "offer_id": "amazon_wheelbarrow_search",
+      "maintained_query": "一輪車 ねこ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 385,
+      "entry_id": "wire_connector",
+      "offer_id": "amazon_wire_connector_search",
+      "maintained_query": "配線コネクタ ワイヤーナット",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 386,
+      "entry_id": "work_gloves",
+      "offer_id": "amazon_work_gloves_search",
+      "maintained_query": "作業用 手袋",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 387,
+      "entry_id": "wrench",
+      "offer_id": "amazon_wrench_search",
+      "maintained_query": "レンチ スパナ 工具",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    },
+    {
+      "order": 388,
+      "entry_id": "wrench_adjustable",
+      "offer_id": "amazon_wrench_adjustable_search",
+      "maintained_query": "モンキーレンチ",
+      "image_stage": "awaiting_source",
+      "queue_group": "remaining_backlog",
+      "source_status": "not_sourced"
+    }
+  ]
+}

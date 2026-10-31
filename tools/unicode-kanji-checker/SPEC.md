@@ -107,3 +107,10 @@
 - `tools/unicode-kanji-checker/app.js` — code point/entity/UTF-16解析、BMPとSupplement両方のcompatibility ideograph判定、variation selector判定、Old Kanji Reference data load、exact `?q=` handoff、copy/render logic。
 - `tools/unicode-kanji-checker/tests/behavior.test.mjs` — BMP/supplementary code point、UTF-16 surrogate pair、Compatibility Ideographs Supplement、Variation Selectors Supplement、reverse mapping、CSV escaping、exact query handoffのdurable regression QA。
 - `tools/old-kanji-reference/dict.json` and metadata files — mapping/reference source consumed by this tool。
+## Toolkit Pro Phase 1 — staged / not on sale
+
+- Shared product ID: `okj.toolkit_pro` (one entitlement covers all eight tools).
+- Current Free guarantee: Existing Unicode, decimal, HTML entity, UTF-16, compatibility/VS and copy remain Free.
+- Proposed Pro feature IDs: `okj.unicode.batch`, `okj.history`, `okj.collections`, `okj.advancedExport`, `okj.reports`.
+- The active Free workflow remains unchanged. No purchase CTA/fixed Pro price is allowed until verified checkout, entitlement, restore and browser QA.
+- Canonical definition: `config/old-kanji-toolkit-pro-phase1.json`. Existing contextual Amazon Associates links remain active and independent of Pro; user content must not flow to affiliate URLs or analytics.

@@ -61,6 +61,11 @@ const CATEGORY_LABELS = {
   ph: { ja: 'pH調整', en: 'pH adjuster' },
   'ph adjuster': { ja: 'pH調整', en: 'pH adjuster' },
   'viscosity adjuster': { ja: '粘度調整', en: 'Viscosity adjuster' },
+  buffer: { ja: 'pH安定化', en: 'Buffer' },
+  conditioning: { ja: 'コンディショニング', en: 'Conditioning' },
+  'skin conditioning': { ja: '整肌', en: 'Skin conditioning' },
+  'hair conditioning': { ja: '毛髪コンディショニング', en: 'Hair conditioning' },
+  'plant extract': { ja: '植物エキス', en: 'Plant extract' },
   general: { ja: '情報不足', en: 'Information incomplete' }
 };
 
@@ -96,7 +101,12 @@ const ROLE_DESCRIPTIONS = {
   'chelating agent': { ja: '金属イオンを捕捉し、処方を安定させる目的で使われる成分です。', en: 'Used to bind metal ions and support formula stability.' },
   ph: { ja: '製品のpHを調整する目的で使われる成分です。', en: 'Used to adjust product pH.' },
   'ph adjuster': { ja: '製品のpHを調整する目的で使われる成分です。', en: 'Used to adjust product pH.' },
-  'viscosity adjuster': { ja: '製品の粘度を調整する目的で使われる成分です。', en: 'Used to adjust product viscosity.' }
+  'viscosity adjuster': { ja: '製品の粘度を調整する目的で使われる成分です。', en: 'Used to adjust product viscosity.' },
+  buffer: { ja: '製品のpHを安定させる目的で使われる成分です。', en: 'Used to help stabilize product pH.' },
+  conditioning: { ja: '肌や毛髪の感触を整える目的で使われる成分です。', en: 'Used for skin or hair conditioning.' },
+  'skin conditioning': { ja: '肌の状態や感触を整える目的で使われる成分です。', en: 'Used for skin conditioning.' },
+  'hair conditioning': { ja: '毛髪の感触やまとまりを整える目的で使われる成分です。', en: 'Used for hair conditioning.' },
+  'plant extract': { ja: '植物から得られたエキス成分です。', en: 'A plant-derived extract ingredient.' }
 };
 
 const FLAG_RULES = [
@@ -276,7 +286,8 @@ function hasPublicExplanation(match, flags) {
 
 function buildDescription(match, flags) {
   if (match && hasBilingualRoleExplanation(match.category)) {
-    if (currentLang === 'en' && match.note_short) return match.note_short;
+    // Always show the maintained bilingual role explanation first.
+    // Raw dictionary notes are not a valid substitute for a role description.
     return roleDescription(match.category);
   }
   const fallback = flags[0];
@@ -289,6 +300,40 @@ function buildDescription(match, flags) {
   return currentLang === 'en'
     ? 'Role information is not available for this spelling yet. Check the label spelling or official manufacturer information.'
     : 'この表記の役割情報はまだ登録されていません。表記やメーカー公式の成分表示を確認してください。';
+}
+
+function verifiedIngredientNote(match) {
+  if (match?.note_verified !== true) return null;
+  const note = typeof match.note_short === 'string' ? match.note_short.trim() : '';
+  const sources = Array.isArray(match.note_sources)
+    ? match.note_sources.filter(url => typeof url === 'string' && /^https:\/\//i.test(url.trim()))
+    : [];
+  if (!note || !sources.length) return null;
+  return { note, sources };
+}
+
+function appendVerifiedIngredientNote(cell, match) {
+  const reviewed = verifiedIngredientNote(match);
+  if (!reviewed) return;
+  const detail = document.createElement('details');
+  detail.className = 'lite-verified-note';
+  const summary = document.createElement('summary');
+  summary.textContent = currentLang === 'en' ? 'Source-backed ingredient note' : '出典付きの補足説明（英語）';
+  const description = document.createElement('p');
+  description.textContent = reviewed.note;
+  const evidence = document.createElement('p');
+  evidence.className = 'lite-verified-note-links';
+  reviewed.sources.forEach((url, index) => {
+    if (index) evidence.appendChild(document.createTextNode(' / '));
+    const link = document.createElement('a');
+    link.href = url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.textContent = (currentLang === 'en' ? 'Source ' : '出典 ') + (index + 1);
+    evidence.appendChild(link);
+  });
+  detail.append(summary, description, evidence);
+  cell.appendChild(detail);
 }
 
 function roleLabel(item) {
@@ -362,6 +407,7 @@ function renderTable(items) {
     roleCell.appendChild(renderRoleCell(item));
     const noteCell = document.createElement('td');
     noteCell.textContent = buildDescription(item.match, item.flags);
+    if (item.statusKey === 'matched') appendVerifiedIngredientNote(noteCell, item.match);
     row.appendChild(nameCell);
     row.appendChild(roleCell);
     row.appendChild(noteCell);

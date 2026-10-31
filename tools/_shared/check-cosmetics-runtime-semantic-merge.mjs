@@ -27,7 +27,7 @@ const safetyConflicts = merged.filter((item) => Array.isArray(item.semantic_conf
 const categoryConflicts = merged.filter((item) => Array.isArray(item.semantic_conflicts?.category));
 
 assert.equal(safetyConflicts.length, 16, 'all 16 audited legacy safety conflicts must be explicit at runtime');
-assert.equal(categoryConflicts.length, 65, 'the 2 remaining legacy-only category conflicts plus 63 reviewed verified-primary role conflicts must be explicit at runtime');
+assert.equal(categoryConflicts.length, 110, 'two legacy-only and 108 reviewed verified-primary role conflicts must remain explicit');
 
 for (const item of safetyConflicts) {
   assert.equal(item.safety, undefined, `${item.en}: conflicting legacy safety must not select a runtime winner`);
@@ -98,7 +98,52 @@ const reviewedVerifiedPrimary = new Map([
   ['zinc oxide', { category: 'uv filter', legacy: ['colorant'] }],
   ['zea mays starch', { category: 'viscosity adjuster', legacy: ['powder'] }],
   ['peg-8', { category: 'humectant', legacy: ['solvent'] }],
-  ['microcrystalline wax', { category: 'viscosity adjuster', legacy: ['wax', 'texture agent'] }]
+  ['microcrystalline wax', { category: 'viscosity adjuster', legacy: ['wax', 'texture agent'] }],
+  ['hydrolyzed keratin', { category: 'hair conditioning', legacy: ['protein'] }],
+  ['hydrolyzed silk', { category: 'hair conditioning', legacy: ['protein'] }],
+  ['hydrolyzed collagen', { category: 'humectant', legacy: ['protein'] }],
+  ['menthol', { category: 'fragrance', legacy: ['sensory'] }],
+  ['beeswax', { category: 'viscosity adjuster', legacy: ['wax'] }],
+  ['aluminum starch octenylsuccinate', { category: 'viscosity adjuster', legacy: ['powder'] }],
+  ['isoeugenol', { category: 'fragrance', legacy: ['fragrance allergen'] }],
+  ["hydrolyzed wheat protein", { category: "hair conditioning", legacy: ["protein"] }],
+  ["hydrolyzed rice protein", { category: "hair conditioning", legacy: ["protein"] }],
+  ["hydrolyzed vegetable protein", { category: "hair conditioning", legacy: ["protein"] }],
+  ["hydrolyzed soy protein", { category: "humectant", legacy: ["protein"] }],
+  ["hydrolyzed pea protein", { category: "hair conditioning", legacy: ["protein"] }],
+  ["hydrolyzed elastin", { category: "hair conditioning", legacy: ["protein"] }],
+  ["collagen", { category: "hair conditioning", legacy: ["protein"] }],
+  ["magnesium chloride", { category: "viscosity adjuster", legacy: ["mineral"] }],
+  ["calcium chloride", { category: "viscosity adjuster", legacy: ["mineral"] }],
+  ["aluminum hydroxide", { category: "viscosity adjuster", legacy: ["pigment coating"] }],
+  ["boron nitride", { category: "skin conditioning", legacy: ["powder"] }],
+  ["peg-60 hydrogenated castor oil", { category: "emulsifier", legacy: ["solubilizer"] }],
+  ["kaolin", { category: "colorant", legacy: ["powder"] }],
+  ["nylon-12", { category: "viscosity adjuster", legacy: ["powder"] }],
+  ["guar hydroxypropyltrimonium chloride", { category: "skin conditioning", legacy: ["conditioning polymer"] }],
+  ["calcium carbonate", { category: "buffer", legacy: ["powder"] }],
+  ["polyquaternium-37", { category: "film former", legacy: ["conditioning polymer"] }],
+  ["microcrystalline cellulose", { category: "viscosity adjuster", legacy: ["powder"] }],
+  ["zinc stearate", { category: "viscosity adjuster", legacy: ["powder binder"] }],
+  ["polymethyl methacrylate", { category: "film former", legacy: ["powder"] }],
+  ["polyacrylate-13", { category: "film former", legacy: ["polymer"] }],
+  ["magnesium stearate", { category: "colorant", legacy: ["powder binder"] }],
+  ["glycosphingolipids", { category: "skin conditioning", legacy: ["barrier lipid"] }],
+  ["ceramide ns", { category: "skin conditioning", legacy: ["barrier lipid"] }],
+  ["soluble collagen", { category: "humectant", legacy: ["protein"] }],
+  ["ozokerite", { category: "viscosity adjuster", legacy: ["wax"] }],
+  ["polyacrylamide", { category: "film former", legacy: ["polymer"] }],
+  ["honey extract", { category: "humectant", legacy: ["animal extract"] }],
+  ["royal jelly extract", { category: "skin conditioning", legacy: ["animal extract"] }],
+  ["propolis extract", { category: "skin conditioning", legacy: ["animal extract"] }],
+  ["sodium stearate", { category: "cleanser", legacy: ["soap"] }],
+  ["potassium laurate", { category: "cleanser", legacy: ["soap"] }],
+  ["sea salt", { category: "humectant", legacy: ["mineral"] }],
+  ["camphor", { category: "fragrance", legacy: ["sensory"] }],
+  ["eucalyptus globulus leaf oil", { category: "fragrance", legacy: ["essential oil"] }],
+  ["citrus aurantium dulcis orange peel oil", { category: "fragrance", legacy: ["essential oil"] }],
+  ["citrus limon lemon peel oil", { category: "fragrance", legacy: ["essential oil"] }],
+  ["mentha piperita peppermint oil", { category: "fragrance", legacy: ["essential oil"] }]
 ]);
 
 for (const item of categoryConflicts) {

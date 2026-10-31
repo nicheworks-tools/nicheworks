@@ -152,6 +152,112 @@ Phone QuickCheck v1 is complete under the maintained contract:
 
 Future work is maintenance: new models, source changes, corrections, and evidence upgrades. It is not part of the v1 closure backlog.
 
+## Post-v1 maintenance Wave 19 — 2026-10-31
+
+Expanded the real production Chrome smoke to enforce the new **Wave 18 four-model** deployment facts in addition to the existing exact full-file JSON parity assertion. The public JSON must include FCNT arrows We2 M07 with its 4,500mAh battery; Nothing CMF Phone 2 Pro with 33W/negative wireless; Nothing Phone (3a) Lite with JP USB-C cable and negative wireless; and Nothing Phone (3) with JP A024 cable inclusion plus 15W wireless. This specifically guards against cross-regional package-state regressions, stale deploys and unsupported wireless claims. Five viewport browser checks, JP/EN, and badge-close non-overlap remain intact.
+
+Do not declare the public **215-phone** release verified until GitHub Actions actually fetches and confirms the public page and JSON.
+
+## Post-v1 maintenance Wave 18 — 2026-10-31
+
+Backfilled four **existing-maker** Japan-market phones using first-party manufacturer and Japanese carrier sources. Maintained **211 → 215 phones**, **11 manufacturers**, **36 foldables** (no new unreviewed package or water unknown fields). Existing V1 closure baseline of 181 unchanged.
+
+### FCNT arrows We2 M07 (SIM-free, released 2024-08-16)
+[FCNT model-specific SIM-free specifications](https://www.fcnt.com/spec/m07-sim-free/) and [official release notice](https://www.fcnt.com/news/1008/): 155 × 73 × 8.9mm / 179g; 6.1-inch display; 4,500mAh; USB Type-C / USB PD Rev 3.0; IPX5/IPX8 and IP6X. The published in-box list contains only a quick-start guide, supporting cable/adapter not included for M07. Charge wattages, PPS and wireless remain unknown.
+
+### Nothing CMF Phone 2 Pro A001 (Japan carrier, released 2025-07-24)
+[Rakuten carrier SKU specifications](https://network.mobile.rakuten.co.jp/product/smartphone/cmf-phone-2-pro/spec/) and [2025 Japan launch](https://corp.mobile.rakuten.co.jp/news/press/2025/0722_01/): a 5,000mAh phone with 6.77-inch display, IPX4 / IP5X, wireless charging **not supported**, cable included and AC adapter not included. Manufacturer [JP product page](https://jp.nothing.tech/products/cmf-phone-2-pro) states 33W fast charging; Nothing's [manufacturer support](https://support.nothing.tech/hc/ja/categories/32612177779473-CMF-by-Nothing-Phone-2-Pro) gives exact device laboratory dimensions **164.08 × 78.06 × 7.80mm** and weight **185g**. The manufacturer's preference for a PPS-capable charger is not incorrectly promoted to mandatory device PPS support.
+
+### Nothing Phone (3a) Lite A001T (Japan carrier, released 2026-01-15)
+[Rakuten A001T specifications](https://network.mobile.rakuten.co.jp/product/smartphone/phone-3a-lite/spec/) and [official Japanese carrier announcement](https://corp.mobile.rakuten.co.jp/news/press/2026/0107_01/): 6.77-inch display, 5,000mAh, IPX4 / IP5X, source-backed wireless **not supported**, cable included and charger not included. Manufacturer [Japan product page](https://jp.nothing.tech/products/phone-3a-lite) confirms 33W fast charging; [manufacturer support](https://support.nothing.tech/hc/ja/categories/37560459056913-Nothing-Phone-3a-Lite) provides unrounded laboratory dimensions **164.10 × 78.08 × 8.35mm** and **199.2g** (the carrier rounds to 164 × 78 × 8.3mm / 199g).
+
+### Nothing Phone (3) A024 (Japan carrier, released 2025-08-28)
+[Rakuten A024 Japan SKU specification](https://network.mobile.rakuten.co.jp/product/smartphone/phone-3/spec/) and [domestic launch](https://corp.mobile.rakuten.co.jp/news/press/2025/0820_01/) verify 160.6 × 75.59 × 8.99mm, 218g, 6.67-inch display, 5,150mAh, USB-C, IPX8 / IP6X, and **USB-C cable included / AC charger excluded**. [Nothing JP manufacturer product](https://jp.nothing.tech/products/phone-3) expressly supports 15W wireless charging; recorded as "Wireless charging" **without guessing Qi version**. Device wired wattage and PPS remain uncommitted without a source-backed in-schema reference. **Important provenance conflict**: [Nothing generic support](https://support.nothing.tech/hc/ja/categories/34659490954897-Nothing-Phone-3) lists a general box without a cable, but the JP carrier A024 SKU spec expressly includes the Nothing C-to-C cable. Preserve the SKU-specific carrier box fact; do not collapse cross-region packaging.
+
+### Gates
+- Zero new unreviewed actionable package/water unknown fields. Non-Apple battery capacities all official/manufacturer sourced; Apple 34 remain intentionally unknown.
+- CI and post-merge production Chrome HTTP/JSON exact equality for 215 phones and 320/390/414/768/1280px browser behavior are required before declaring public completion.
+
+## Post-v1 maintenance Wave 17 — 2026-10-31
+
+Strengthened the independent live Cloudflare Pages smoke to verify **whole-file canonical JSON parity**, not merely total phone count, against the GitHub checkout used by CI. Public phones.json must structurally match checked-in data (all device IDs, source facts, attributes, provenance and revision metadata); this detects stale partial deploys or unexpected source changes. Added targeted checks for the three Wave 16 Japan-market models: Alpha M08 bundled adapter, We2 Plus M06 inclusion, Nothing Phone (3a) explicit wireless non-support. Existing Alpha2/Phone (4b) checks and all 5 production browser viewports remain intact.
+
+PR-triggered production verification is required to establish public **211 phones**, and a main-push production smoke should continue guarding all future Phone QuickCheck updates.
+
+## Post-v1 maintenance Wave 16 — 2026-10-31
+
+Verified Japan-market backfill of three missing phones from the existing two under-covered manufacturers: FCNT and Nothing. Dataset **208 → 211**; manufacturers **11**, foldables **36** unchanged. All in-box, charging-protocol and water facts are tied to official sources; wireless support on Nothing Phone (3a) is explicitly verified negative.
+
+### FCNT arrows Alpha M08 (SIM-free, 2025-08-28)
+- [Manufacturer SIM-free specifications](https://www.fcnt.com/spec/m08-sim-free/) and [release confirmation](https://www.fcnt.com/news/27917/) state 156 × 72 × 8.8 mm; approx. 188 g; 6.4-inch screen; 5,000 mAh; USB-C and USB Power Delivery Revision 3.0; IPX6/IPX8/IPX9 and IP6X.
+- FCNT's official SIM-free in-box list explicitly includes both **AC adapter a02 (90W)** and **USB cable**, so both are `included`. 90W is a **charger recommendation/adapter capability**, not assumed as device input maximum; `wiredMaxW` remains null. No PPS or wireless charging capability is inferred.
+
+### FCNT arrows We2 Plus M06 (Rakuten Mobile, 2024-10-15)
+- [Official M06 specifications](https://www.fcnt.com/spec/m06/) and [launch announcement](https://www.fcnt.com/news/1005/) show 162 × 75 × 8.5 mm; approx. 182 g; 6.6-inch display; 5,000 mAh; USB-C + USB Power Delivery Rev 3.0; IPX5/IPX8 + IP6X.
+- FCNT's exhaustive official M06 **in-box list names only the quick-start guide**, so adapter and cable are marked `not_included` for this **specific M06 SKU**. Carrier-specific F-51E is not silently conflated with M06. Charging watts/PPS/wireless remain unknown.
+
+### Nothing Phone (3a) A059 (Rakuten Mobile Japan, 2025-04-15)
+- [Rakuten Japan product specification](https://network.mobile.rakuten.co.jp/product/smartphone/phone-3a/spec/) and [2025 launch notice](https://corp.mobile.rakuten.co.jp/news/press/2025/0408_01/) establish 163.52 × 77.5 × 8.35 mm; 201g; 6.77-inch screen; 5,000 mAh; USB Type-C; IPX4 + IP6X; official **wireless charging: not supported**.
+- [Nothing's own explicit in-box list](https://support.nothing.tech/hc/ja/articles/32978953822609-Phone-3a-%E3%81%AE%E3%83%9C%E3%83%83%E3%82%AF%E3%82%B9%E3%81%AB%E3%81%AF%E4%BD%95%E3%81%8C%E5%85%A5%E3%81%A3%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%81%8B) confirms a USB-C cable and no AC charger. No USB-PD/PPS protocol or device-side wattage is inferred from retailer claims or other regions.
+
+### Verification
+- Completion/data/source semantics retain **zero unreviewed package/water fields**; the three records add no false positives or arbitrary wattage.
+- The live-production Chrome workflow merged in [PR #1445](https://github.com/nicheworks-tools/nicheworks/pull/1445) will run on the main push; pending CI and deployment assertions must pass before claiming public 211.
+
+## Post-v1 maintenance Wave 15 — 2026-10-31
+
+Added a measured production browser regression to the already merged mobile badge-close fix: the live stylesheet must contain the 46px clearance rule; at each mobile/tablet viewport (320/390/414/768) the actual Chrome badge and 32px close-control bounding rectangles must **not intersect**. Both the close control's 32px minimum hit area and the existing JP/EN, search, mobile-sheet and 208-phone production assertions remain enforced.
+
+The earlier 320/390px production screenshots revealed overlap despite all data tests passing. This new test will specifically fail on recurrence, including if Cloudflare serves a stale stylesheet. No business logic, model data, scope or common spec altered.
+
+## Post-v1 maintenance Wave 14 — 2026-10-31
+
+Live deployed Chrome screenshots at 320/390/414px from [PR #1445](https://github.com/nicheworks-tools/nicheworks/pull/1445) revealed the mobile Quick Check badge colliding with the absolutely positioned × close button. Automatic no-overflow and JP/EN checks passed but did not detect the overlap.
+
+At the existing max-width:900px breakpoint, .bottom-sheet .detail-title now reserves 46px to clear the 32px close button positioned 14px from the right, while preserving the close touch target. The responsive contract checks the rule. Model data remains 208 phones / 11 makers / 36 foldables; historical v1 baseline remains unchanged.
+
+Fresh public Chrome screenshots and a bounding-box non-overlap assertion are required before closing this visual defect.
+
+## Post-v1 maintenance Wave 13 — 2026-10-31
+
+Implemented explicit negative wireless charging state in the Phone QuickCheck runtime and data/source QA: `charging.wirelessStatus: not_supported` requires a manufacturer/carrier primary `sources.wirelessUrl` and forbids coexisting positive `wirelessStandard` or `wirelessMaxW`. The JP/EN detail view now renders **非対応 / Not supported** rather than a dash for a source-backed negative claim. Existing unknowns and affirmative wireless records retain their prior output, and behavioral coverage confirms both languages.
+
+Applied to Japan-model **Nothing Phone (4b)** using the [Rakuten Mobile official Japan specification](https://network.mobile.rakuten.co.jp/product/smartphone/phone-4b/spec/) explicitly stating ワイヤレス充電 非対応. Model count and manufacturer count remain **208 / 11**, foldables **36**.
+
+## Post-v1 maintenance Wave 12 — 2026-10-31
+
+Added a second new Japan-market manufacturer, **Nothing**, with **Phone (4b)** (Japan sale 2026-10-27). Dataset **207 → 208 phones**, **10 → 11 manufacturers**, foldables unchanged at 36.
+
+The maintained Japan Rakuten A009P [specification](https://network.mobile.rakuten.co.jp/product/smartphone/phone-4b/spec/) provides exact 164.4 × 78.22 × 8.65 mm / 210g, 6.77-inch display, 5,200mAh, USB Type-C, IPX4/IP6X, a Type-C cable in box, and no power adapter; the [Japan release notice](https://corp.mobile.rakuten.co.jp/news/press/2026/1020_01/) establishes market and launch. Official Nothing [Japan catalog](https://jp.nothing.tech/products/phone-4b) confirms the 5,200mAh capacity and official [support](https://support.nothing.tech/hc/ja/categories/43042083804945-25131) confirms the Type-C cable/in-box state.
+
+Caution: the Nothing global laboratory dimensions are rounded to 164.4 × 78.2 × 8.6mm, but the maintained Japan carrier SKU A009P specification is more precise; use JP record values without averaging. The Japan carrier **explicitly says wireless charging unsupported**, but this tool currently has no `wirelessStatus=not_supported` schema: null is preserved rather than falsely presenting a wireless standard or wattage. Wired fast charging is confirmed in general, but there is no sufficiently exact source for a device-side maximum or adapter recommendation; therefore wattage remains unknown. Nothing recommends a PPS charger but that is not promoted to explicit device PPS support without exact evidence. This is a schema/display follow-up, not an excuse to fabricate a positive charging claim.
+
+## Post-v1 maintenance Wave 11 — 2026-10-31
+
+Expanded the verified Japan-market manufacturer set by **FCNT**, and added **arrows Alpha2 M10** (SIM-free). Dataset **206 → 207 models / 9 → 10 manufacturers**, 36 foldables retained. Official FCNT [specification](https://www.fcnt.com/spec/m10-sim-free/) and [Japan SIM-free launch notice](https://www.fcnt.com/news/35527/) establish 155 × 72 × 8.6 mm, approximately 187 g, 6.4-inch display, 5,370 mAh, USB-C / USB Power Delivery 3.0, IPX6/IPX8/IPX9 + IP6X, and the 2026-08-27 release. The exhaustive [included items](https://www.fcnt.com/spec/m10-sim-free/) section lists only the quick-start guide, supporting not-included cable and adapter for the SIM-free variant. The [90W compatible adapter notice](https://www.fcnt.com/accessory/charger/a02/) and [product page](https://www.fcnt.com/product/arrows/alpha2/) support a **90W recommended adapter class**, not an inferred handset maximum input; therefore `wiredMaxW = null`. PPS and wireless remain unknown without primary device-specific support documentation.
+
+## Post-v1 maintenance Wave 10 — 2026-10-31
+
+Added **moto g06** from Motorola Japan first-party product specifications and dated Japan launch notice.
+
+Maintained dataset: **205 → 206**; manufacturers: **9**; foldables: **36**.
+
+Manufacturer official [specifications](https://store.motorola.co.jp/item/MOTO_G06.html) preserve exactly: 171.35 × 77.50 × 8.31 mm, approximately 194 g, 6.9-inch screen, 5,200mAh battery, USB Type-C, 10W charging, and IP64. Both the power adapter and USB cable are explicitly not included. [Manufacturer Japan-market release notice](https://store.motorola.co.jp/topics_detail.html?info_id=1148) dated 2026-03-10 states Japan retail launch scheduled for 2026-03-19.
+
+`wiredMaxW` reflects the stated 10W device charging capability; `wiredRecommendedW` remains null. No USB-PD/PPS/wireless capability is invented; PPS is unknown and wireless fields are null. Charging, water, package, release and battery sources are stored explicitly.
+
+## Post-v1 maintenance Wave 9 — 2026-10-31
+
+Added **motorola edge 70 fusion**, released for Japan on **2026-10-23**.
+
+Maintained dataset: **204 → 205**. Manufacturers: **9**. Foldables: **36**.
+
+Canonical facts were verified against Motorola Japan's [official specification table](https://store.motorola.co.jp/item/EDGE70FUSION.html): 162.76 × 75.60 × 7.99 mm, approximately 193 g, 6.78-inch display, 7,000 mAh, 68W TurboPower, IP68/IP69, USB-C, and explicitly non-included AC adapter/USB cable. The product page's promotional summary has a conflicting 7.2 mm/177 g line; the detailed Japanese specification table and Motorola Japan's 2026-10-23 launch release both support 7.99 mm/193 g, so the canonical record uses the specification-table values.
+
+Wireless charging and PPS remain unknown (not asserted as unsupported) because this evidence does not establish their exact device capability. The adapter guidance remains null rather than treating a supported handset charge rate as a charger recommendation.
+
+`data/phones.json` updatedAt was advanced from the stale 2026-09-18 value to 2026-10-31 to reflect this maintained update.
+
 ## Post-v1 maintenance Wave 6 — 2026-09-19
 
 Added three Japan-market 2026 records:

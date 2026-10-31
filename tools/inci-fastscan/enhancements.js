@@ -28,13 +28,22 @@
           found: false,
           safety: undefined,
           note_short: undefined,
+          note_verified: false,
+          note_sources: [],
           publicSemanticIncomplete: true
         };
       }
+      const sources = Array.isArray(result.note_sources)
+        ? result.note_sources.filter(url => typeof url === 'string' && /^https:\/\//i.test(url.trim()))
+        : [];
+      const verified = result.note_verified === true && typeof result.note_short === 'string' &&
+        result.note_short.trim().length > 0 && sources.length > 0;
       return {
         ...result,
         safety: undefined,
-        note_short: undefined
+        note_short: verified ? result.note_short : undefined,
+        note_verified: verified,
+        note_sources: verified ? sources : []
       };
     });
   }
@@ -63,6 +72,19 @@
     wrappedRender.__nwPublicCompleteness = true;
     root.renderResults = wrappedRender;
   }
+
+  const rotationState = Object.create(null);
+  const prepState = Object.create(null);
+  root.fastScanImageRotation = fileId => rotationState[fileId] || 0;
+  root.fastScanImageOptions = fileId => {
+    const state = prepState[fileId] || { crop: { left: 0, right: 0, top: 0, bottom: 0 }, contrastPercent: 100, deskewDegrees: 0 };
+    return {
+      quarterTurns: rotationState[fileId] || 0,
+      crop: { ...state.crop },
+      contrastPercent: state.contrastPercent,
+      deskewDegrees: state.deskewDegrees
+    };
+  };
 
   const workflows = [
     {
@@ -161,15 +183,53 @@
     const ocrBox = fileInput.closest('.ocr-box') || fileRow?.parentElement;
     if (!fileRow || !ocrBox) return;
 
+    const uiLanguage = () => document.documentElement.lang === 'en' ? 'en' : 'ja';
+    const edges = [
+      { name: 'left', ja: '左端', en: 'Left edge' },
+      { name: 'right', ja: '右端', en: 'Right edge' },
+      { name: 'top', ja: '上端', en: 'Top edge' },
+      { name: 'bottom', ja: '下端', en: 'Bottom edge' }
+    ];
+    const cropControls = edges.map(edge =>
+      '<label class="ocr-image-control">' +
+      '<span data-lang-text data-ja="' + edge.ja + '" data-en="' + edge.en + '">' +
+      textFor(uiLanguage(), edge.ja, edge.en) + '</span>' +
+      '<input type="range" data-ocr-crop="' + edge.name + '" min="0" max="90" step="5" value="0">' +
+      '<output>0%</output></label>'
+    ).join('');
+
     const preview = document.createElement('div');
     preview.className = 'ocr-image-preview';
     preview.hidden = true;
-    preview.innerHTML = `
-      <img alt="${textFor(config.lang, 'OCR対象画像のプレビュー', 'Preview of image selected for OCR')}" />
-      <div class="ocr-image-preview-meta">
-        <span class="ocr-image-preview-label"></span>
-        <button type="button" class="ocr-image-clear">${textFor(config.lang, '画像を外す', 'Remove image')}</button>
-      </div>`;
+    preview.innerHTML =
+      '<img alt="' + textFor(uiLanguage(), 'OCR対象画像のプレビュー', 'Image selected for OCR') + '" />' +
+      '<div class="ocr-image-preview-meta"><span class="ocr-image-preview-label"></span>' +
+      '<button type="button" class="ocr-image-clear">' +
+      textFor(uiLanguage(), '画像を外す', 'Remove image') + '</button></div>' +
+      '<div class="ocr-image-rotate-controls" role="group" aria-label="Image rotation">' +
+      '<button type="button" data-ocr-rotate="-1" data-lang-text data-ja="左へ90°回転" data-en="Rotate 90° left">' +
+      textFor(uiLanguage(), '左へ90°回転', 'Rotate 90° left') + '</button>' +
+      '<button type="button" data-ocr-rotate="1" data-lang-text data-ja="右へ90°回転" data-en="Rotate 90° right">' +
+      textFor(uiLanguage(), '右へ90°回転', 'Rotate 90° right') + '</button></div>' +
+      '<details class="ocr-image-adjustments"><summary><span data-lang-text ' +
+      'data-ja="傾き・切り抜き・コントラスト" data-en="Deskew, crop and contrast">' +
+      textFor(uiLanguage(), '傾き・切り抜き・コントラスト', 'Deskew, crop and contrast') + '</span></summary>' +
+      '<p data-lang-text data-ja="各辺から除く割合を調整します。変更後の画像でOCRします。" ' +
+      'data-en="Correct tilt first; crop percentages apply to the resulting image. OCR uses the processed preview.">' +
+      textFor(uiLanguage(), '傾きを直してから各辺の切り抜き割合を調整できます。補正後の画像をOCRします。',
+        'Correct tilt first; crop percentages apply to the resulting image. OCR uses the processed preview.') + '</p>' +
+      '<label class="ocr-image-control"><span data-lang-text data-ja="傾き補正（手動）" data-en="Deskew (manual)">' +
+      textFor(uiLanguage(), '傾き補正（手動）', 'Deskew (manual)') + '</span>' +
+      '<input type="range" data-ocr-deskew min="-12" max="12" step="1" value="0">' +
+      '<output>0°</output></label>' +
+      '<div class="ocr-image-crop-controls">' + cropControls + '</div>' +
+      '<label class="ocr-image-control"><span data-lang-text data-ja="文字コントラスト" data-en="Text contrast">' +
+      textFor(uiLanguage(), '文字コントラスト', 'Text contrast') + '</span>' +
+      '<input type="range" data-ocr-contrast min="100" max="180" step="10" value="100">' +
+      '<output>100%</output></label>' +
+      '<button type="button" class="ocr-image-adjust-reset" data-lang-text ' +
+      'data-ja="補正をリセット" data-en="Reset adjustments">' +
+      textFor(uiLanguage(), '補正をリセット', 'Reset adjustments') + '</button></details>';
     fileRow.insertAdjacentElement('afterend', preview);
 
     const reviewHint = document.createElement('div');
@@ -177,49 +237,174 @@
     reviewHint.hidden = true;
     reviewHint.setAttribute('role', 'status');
     reviewHint.textContent = textFor(
-      config.lang,
-      'OCR結果が入力欄に入りました。商品ラベルと見比べて誤認識を修正してから「成分の役割を確認」を押してください。',
-      'OCR text is now editable above. Compare it with the label, correct any misreads, then explain the ingredients.'
+      uiLanguage(),
+      'OCR結果をラベルと見比べて修正してから、成分の役割を確認してください。',
+      'Compare OCR text with the label and correct errors before explaining ingredients.'
     );
     status.insertAdjacentElement('afterend', reviewHint);
 
     const image = preview.querySelector('img');
     const label = preview.querySelector('.ocr-image-preview-label');
     const clear = preview.querySelector('.ocr-image-clear');
+    const cropSliders = [...preview.querySelectorAll('[data-ocr-crop]')];
+    const contrastSlider = preview.querySelector('[data-ocr-contrast]');
+    const deskewSlider = preview.querySelector('[data-ocr-deskew]');
     let objectUrl = null;
+    let previewVersion = 0;
+    let previewTimer = null;
+    prepState[config.fileId] = { crop: { left: 0, right: 0, top: 0, bottom: 0 }, contrastPercent: 100, deskewDegrees: 0 };
 
-    function clearPreview({ clearInput = false } = {}) {
+    function readControls() {
+      const crop = {};
+      for (const slider of cropSliders) crop[slider.dataset.ocrCrop] = Number(slider.value);
+      prepState[config.fileId] = { crop, contrastPercent: Number(contrastSlider.value), deskewDegrees: Number(deskewSlider.value) };
+      for (const slider of [...cropSliders, contrastSlider]) {
+        slider.nextElementSibling.textContent = slider.value + '%';
+      }
+      deskewSlider.nextElementSibling.textContent = deskewSlider.value + '°';
+    }
+
+    function resetControls({ resetContrast = true } = {}) {
+      for (const slider of cropSliders) slider.value = '0';
+      if (resetContrast) {
+        contrastSlider.value = '100';
+        deskewSlider.value = '0';
+      }
+      readControls();
+    }
+
+    function clearPreview({ clearInput = false, resetRotation = false } = {}) {
+      previewVersion += 1;
+      if (previewTimer !== null) clearTimeout(previewTimer);
+      previewTimer = null;
       if (objectUrl) URL.revokeObjectURL(objectUrl);
       objectUrl = null;
       preview.hidden = true;
       image.removeAttribute('src');
       label.textContent = '';
       reviewHint.hidden = true;
+      if (resetRotation) {
+        rotationState[config.fileId] = 0;
+        resetControls();
+      }
       if (clearInput) fileInput.value = '';
     }
 
-    function updatePreview() {
+    function markOcrTextStale() {
+      if (!textarea.value.trim()) return;
+      if (progress) {
+        progress.value = 0;
+        progress.hidden = true;
+      }
+      status.hidden = false;
+      status.textContent = textFor(
+        uiLanguage(),
+        '画像を変更しました。以前のOCR文字は残っています。新しい画像でOCRを再実行してください。',
+        'Image settings changed. Previous OCR text remains; run OCR again for the updated image.'
+      );
+      reviewHint.hidden = true;
+    }
+
+    async function updatePreview() {
       clearPreview();
+      const requestId = previewVersion;
       const file = fileInput.files?.[0];
       if (!file || !file.type.startsWith('image/')) return;
-      objectUrl = URL.createObjectURL(file);
-      image.src = objectUrl;
-      const kb = Math.max(1, Math.round(file.size / 1024));
-      label.textContent = textFor(config.lang, `選択画像 · ${kb} KB`, `Selected image · ${kb} KB`);
-      preview.hidden = false;
+      const options = root.fastScanImageOptions(config.fileId);
+
+      try {
+        if (typeof root.prepareFastScanOcrImage !== 'function') {
+          throw new Error('Image processing is unavailable.');
+        }
+        const imageBlob = await root.prepareFastScanOcrImage(file, options.quarterTurns, options);
+        if (requestId !== previewVersion) return;
+        objectUrl = URL.createObjectURL(imageBlob);
+        image.src = objectUrl;
+
+        const kb = Math.max(1, Math.round(file.size / 1024));
+        const trimmed = Object.values(options.crop).some(value => value > 0);
+        const adjustments = (options.deskewDegrees ? ' / tilt ' + options.deskewDegrees + '°' : '') +
+          (trimmed ? ' / Crop' : '') +
+          (options.contrastPercent !== 100 ? ' / ' + options.contrastPercent + '% contrast' : '');
+        label.textContent = textFor(
+          uiLanguage(),
+          '選択画像 · ' + kb + ' KB · 回転 ' + options.quarterTurns * 90 + '°' + adjustments,
+          'Selected image · ' + kb + ' KB · rotated ' + options.quarterTurns * 90 + '°' + adjustments
+        );
+        preview.hidden = false;
+      } catch (error) {
+        if (requestId !== previewVersion) return;
+        label.textContent = textFor(
+          uiLanguage(),
+          '画像補正に失敗しました。補正を戻すか画像を選び直してください。',
+          'Image preparation failed. Reset adjustments or choose another image.'
+        );
+        preview.hidden = false;
+      }
+    }
+
+    function schedulePreview() {
+      if (previewTimer !== null) clearTimeout(previewTimer);
+      previewTimer = setTimeout(() => {
+        previewTimer = null;
+        void updatePreview();
+      }, 180);
     }
 
     function updateReviewHint() {
       const hasText = Boolean(textarea.value.trim());
-      const progressComplete = progress ? Number(progress.value || 0) >= 100 : false;
+      const progressComplete = progress && !progress.hidden && Number(progress.value || 0) >= 100;
       const statusText = status.textContent.trim();
       const likelyCompleted = progressComplete || /完了|complete|done|recognized|認識/i.test(statusText);
       reviewHint.hidden = !(hasText && likelyCompleted);
     }
 
-    fileInput.addEventListener('change', updatePreview);
-    clear.addEventListener('click', () => clearPreview({ clearInput: true }));
-    reset?.addEventListener('click', () => clearPreview({ clearInput: true }));
+    fileInput.addEventListener('change', () => {
+      rotationState[config.fileId] = 0;
+      resetControls();
+      markOcrTextStale();
+      void updatePreview();
+    });
+    preview.querySelectorAll('[data-ocr-rotate]').forEach(button => {
+      button.addEventListener('click', () => {
+        if (!fileInput.files?.[0]) return;
+        const step = Number(button.dataset.ocrRotate);
+        rotationState[config.fileId] = ((rotationState[config.fileId] || 0) + step + 4) % 4;
+        // Crop is defined in rotated-image coordinates; changing orientation resets its edges.
+        resetControls({ resetContrast: false });
+        markOcrTextStale();
+        void updatePreview();
+      });
+    });
+    cropSliders.forEach(slider => {
+      slider.addEventListener('input', () => {
+        const opposite = { left: 'right', right: 'left', top: 'bottom', bottom: 'top' }[slider.dataset.ocrCrop];
+        const other = cropSliders.find(item => item.dataset.ocrCrop === opposite);
+        slider.value = String(Math.min(Number(slider.value), 90 - Number(other.value)));
+        readControls();
+        markOcrTextStale();
+        schedulePreview();
+      });
+    });
+    contrastSlider.addEventListener('input', () => {
+      readControls();
+      markOcrTextStale();
+      schedulePreview();
+    });
+    deskewSlider.addEventListener('input', () => {
+      // Cropping follows the deskewed bounding rectangle. Keep crop values
+      // stable so users can fine-tune tilt without losing their edge settings.
+      readControls();
+      markOcrTextStale();
+      schedulePreview();
+    });
+    preview.querySelector('.ocr-image-adjust-reset').addEventListener('click', () => {
+      resetControls();
+      markOcrTextStale();
+      void updatePreview();
+    });
+    clear.addEventListener('click', () => clearPreview({ clearInput: true, resetRotation: true }));
+    reset?.addEventListener('click', () => clearPreview({ clearInput: true, resetRotation: true }));
     textarea.addEventListener('input', updateReviewHint);
 
     const statusObserver = new MutationObserver(updateReviewHint);

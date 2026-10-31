@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-registry-v2.3",
-  "version": "2026-09-19-wave5-promotion-1",
+  "version": "2026-10-31-reviewed-image-wave9-four-1",
   "policy": {
     "primary_format": "webp",
     "formal_min_state": "reviewed",
@@ -1015,6 +1015,270 @@
         "source_sha1": "5c4c636002f7e51946b7fe34268e8b79f013d1ff"
       },
       "notes": "Wave 5 promotion of a previously provenance-verified and subject-verified lifecycle candidate."
+    },
+    {
+      "entry_id": "hammer_drill",
+      "alt_ja": "補助ハンドルとコンクリート用ドリルビットが付いた有線振動ドリル",
+      "alt_en": "Corded hammer drill with auxiliary handle and masonry drill bit",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/hammer_drill/source.jpg",
+        "display": "./images/hammer_drill/primary.webp",
+        "thumbnail": "./images/hammer_drill/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Hammer_drill-1.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Hammer_drill-1.jpg",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "author": "Shakespeare (English Wikipedia)",
+        "attribution": "Shakespeare (English Wikipedia) / Wikimedia Commons, CC BY-SA 3.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, converted to WebP; original source retained locally; derivative remains under the source license.",
+        "source_sha1": "3076529a2af3514d64a784177f37c52eb3aed4a1"
+      },
+      "notes": "Wave6: full original/derivative visual review and pinned binary SHA-1 verification; Inspected original 800x905 JPEG and 636x720 WebP: corded hammer drill with side handle and masonry drill bit clearly identifiable, not an impact driver or rotary hammer."
+    },
+    {
+      "entry_id": "tape_measure",
+      "alt_ja": "伸縮式の金属製巻尺（10メートル表示）",
+      "alt_en": "Retractable ten-metre tape measure with a partially extended metal measuring blade",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/tape_measure/source.jpg",
+        "display": "./images/tape_measure/primary.webp",
+        "thumbnail": "./images/tape_measure/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Centroinstrument_measuring_tape.JPG",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Centroinstrument_measuring_tape.JPG",
+        "license": "Public Domain (PD-self)",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-self",
+        "author": "Dmitry G",
+        "attribution": "Dmitry G / Wikimedia Commons, Public Domain (PD-self)",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, converted to WebP; original source retained locally; derivative remains under the source license.",
+        "source_sha1": "dd3e0b24aa589afee0c7986949e18645dd896d0b"
+      },
+      "notes": "Wave6: full original/derivative visual review and pinned binary SHA-1 verification; Inspected original 3648x2056 JPEG and 960x541 WebP: identifiable tape housing, ten-metre label and extended ruler; clear tool subject."
+    },
+    {
+      "entry_id": "utility_knife",
+      "alt_ja": "黄色と黒のスライド式カッターナイフと交換用折り刃",
+      "alt_en": "Yellow and black retractable snap-off utility knife with a spare segmented blade",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/utility_knife/source.jpg",
+        "display": "./images/utility_knife/primary.webp",
+        "thumbnail": "./images/utility_knife/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Utility_knife.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Utility_knife.jpg",
+        "license": "CC BY-SA 2.5",
+        "license_url": "https://creativecommons.org/licenses/by-sa/2.5/",
+        "author": "Matěj Baťha",
+        "attribution": "Matěj Baťha / Wikimedia Commons, CC BY-SA 2.5",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, converted to WebP; original source retained locally; derivative remains under the source license.",
+        "source_sha1": "d4d42d040c2be9f5764f165590b9700d60753bd7"
+      },
+      "notes": "Wave7: full original/derivative visual review and pinned binary SHA-1 verification; Inspected original 1800x1350 JPEG and primary 960x720 WebP: yellow and black retractable segmented-blade construction utility knife shown clearly with spare break-off blade; correct canonical subject."
+    },
+    {
+      "entry_id": "screwdriver",
+      "alt_ja": "黒と黄色のグリップと金属軸を備えた手動ドライバー",
+      "alt_en": "Manual screwdriver with black-and-yellow grip and steel shaft",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/screwdriver/source.jpg",
+        "display": "./images/screwdriver/primary.webp",
+        "thumbnail": "./images/screwdriver/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Screw_driver.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Screw_driver.jpg",
+        "license": "Public Domain (PD-self)",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-self",
+        "author": "Dmitry G",
+        "attribution": "Dmitry G / Wikimedia Commons, Public Domain",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, converted to WebP; original source retained locally; derivative remains under the source license.",
+        "source_sha1": "73a6fa3dbbd195bc549a94beb2838158f543cf47"
+      },
+      "notes": "Wave7: full original/derivative visual review and pinned binary SHA-1 verification; Inspected original 2736x3648 JPEG and primary 540x720 WebP: one full-length manual cross-head screwdriver, clear handle, shaft and tip, distinct from powered drivers; correct canonical subject."
+    },
+    {
+      "entry_id": "multimeter",
+      "alt_ja": "黄色い液晶付きデジタルマルチメーターの測定切替ダイヤルと入力端子",
+      "alt_en": "Yellow digital multimeter with LCD, rotary range selector and test lead sockets",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/multimeter/source.jpg",
+        "display": "./images/multimeter/primary.webp",
+        "thumbnail": "./images/multimeter/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/4/43/DT830D_DIGITAL_MULTIMETER.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:DT830D_DIGITAL_MULTIMETER.jpg",
+        "license": "CC0 1.0",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "author": "Ranjithkumar Murugesan",
+        "attribution": "Ranjithkumar Murugesan / Wikimedia Commons, CC0 1.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, converted to WebP; original source retained locally; derivative remains under the source license.",
+        "source_sha1": "ff22145553196e8b7fe75d30bb8e519441b89a3f"
+      },
+      "notes": "Wave7: full original/derivative visual review and pinned binary SHA-1 verification; Inspected original 1840x2453 JPEG and primary 540x720 WebP: digital multimeter with screen, selector knob, electrical measurement ranges and lead ports; single identifiable multimeter."
+    },
+    {
+      "entry_id": "torque_wrench",
+      "alt_ja": "黒と赤の調整グリップとラチェットヘッドを備えたトルクレンチ",
+      "alt_en": "Torque wrench with black-and-red adjustable grip, torque markings and ratcheting head",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/torque_wrench/source.jpg",
+        "display": "./images/torque_wrench/primary.webp",
+        "thumbnail": "./images/torque_wrench/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/e/e6/1-4%22_5-25Nm.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:1-4%22_5-25Nm.jpg",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "author": "Sunnyhappy123",
+        "attribution": "Sunnyhappy123 / Wikimedia Commons, CC BY-SA 4.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, converted to WebP; original source retained locally; derivative remains under the source license.",
+        "source_sha1": "616511023ad6dd0c4a13632892c7f1177f623e97"
+      },
+      "notes": "Wave8: full original/derivative visual review and pinned binary SHA-1 verification; Inspected original 2560x1920 JPEG and primary 960x720 WebP: a complete torque wrench with torque setting grip and ratchet head is clearly visible; replaces the rejected mixed-tool collection photo."
+    },
+    {
+      "entry_id": "wire_stripper",
+      "alt_ja": "赤いグリップと自動被覆剥き取り機構を備えたワイヤーストリッパー",
+      "alt_en": "Automatic wire stripper with red handles and wire insulation stripping jaws",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/wire_stripper/source.jpg",
+        "display": "./images/wire_stripper/primary.webp",
+        "thumbnail": "./images/wire_stripper/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/2/25/Wire_Stripper_Automatic.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Wire_Stripper_Automatic.jpg",
+        "license": "Public Domain (PD-self)",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-self",
+        "author": "Scott Ehardt",
+        "attribution": "Scott Ehardt / Wikimedia Commons, Public Domain",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, converted to WebP; original source retained locally; derivative remains under the source license.",
+        "source_sha1": "6906c01a40180712660fdce8df495d96395fab67"
+      },
+      "notes": "Wave8: full original/derivative visual review and pinned binary SHA-1 verification; Inspected original 588x1065 JPEG and primary 398x720 WebP: an automatic wire stripper with visible stripping jaws and red handles is clearly identifiable."
+    },
+    {
+      "entry_id": "laser_distance_meter",
+      "alt_ja": "手に持った赤と黒のレーザー距離計、液晶表示と測定操作ボタン",
+      "alt_en": "Handheld laser distance meter with display and measuring controls",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/laser_distance_meter/source.jpg",
+        "display": "./images/laser_distance_meter/primary.webp",
+        "thumbnail": "./images/laser_distance_meter/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/9/91/Handheld_laser_distance_meter.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Handheld_laser_distance_meter.jpg",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "author": "Krzysztof Maria Różański (Upior polnocy)",
+        "attribution": "Krzysztof Maria Różański (Upior polnocy) / Wikimedia Commons, CC BY-SA 3.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, converted to WebP; original source retained locally; derivative remains under the source license.",
+        "source_sha1": "24c266f815ea1dbcc49ff7852ef86ad0ce22e49d"
+      },
+      "notes": "Wave9: full original/derivative visual review and pinned binary SHA-1 verification; Inspected original 750x507 JPEG and 750x507 WebP: complete handheld laser distance meter with screen and controls, clearly recognizable; source file original SHA-1 confirmed through Commons API."
+    },
+    {
+      "entry_id": "pipe_wrench",
+      "alt_ja": "歯付きジョーと調整ナットを備えた赤いパイプレンチ",
+      "alt_en": "Red adjustable pipe wrench with toothed jaws and knurled adjustment nut",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/pipe_wrench/source.jpg",
+        "display": "./images/pipe_wrench/primary.webp",
+        "thumbnail": "./images/pipe_wrench/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Pipe_wrench.JPG",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Pipe_wrench.JPG",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "author": "Altoscroll",
+        "attribution": "Altoscroll / Wikimedia Commons, CC BY-SA 3.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, converted to WebP; original source retained locally; derivative remains under the source license.",
+        "source_sha1": "b5f85461c09515e3d84d8d78843be45a8dcbf2e3"
+      },
+      "notes": "Wave9: full original/derivative visual review and pinned binary SHA-1 verification; Inspected original 4608x3072 JPEG and 960x640 WebP: full red pipe wrench, adjustable jaw and knurled knob clearly visible in uncluttered foreground."
+    },
+    {
+      "entry_id": "speed_square",
+      "alt_ja": "角度目盛りのある三角形のスピードスクエア",
+      "alt_en": "Triangular Swanson speed square with readable layout and degree scales",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/speed_square/source.jpg",
+        "display": "./images/speed_square/primary.webp",
+        "thumbnail": "./images/speed_square/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Swanson_Speed_Square_by_NIP.JPG",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Swanson_Speed_Square_by_NIP.JPG",
+        "license": "Public Domain (PD-self)",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-self",
+        "author": "Norvell IP",
+        "attribution": "Norvell IP / Wikimedia Commons, Public Domain (PD-self)",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, converted to WebP; original source retained locally; derivative remains under the source license.",
+        "source_sha1": "eb5e49d2d9178131cb173cbd69ff1716ee57345e"
+      },
+      "notes": "Wave9: full original/derivative visual review and pinned binary SHA-1 verification; Inspected original 567x480 JPEG and 567x480 WebP: Swanson triangular speed square with right-angle edges and graduated layout scales; adequate focal tool despite native resolution."
+    },
+    {
+      "entry_id": "nail_gun",
+      "alt_ja": "金属マガジンとエア接続部を備えたエア式釘打ち機",
+      "alt_en": "Pneumatic nail gun with metal nail magazine, air fitting and grip",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/nail_gun/source.jpg",
+        "display": "./images/nail_gun/primary.webp",
+        "thumbnail": "./images/nail_gun/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Nail_gun_008.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Nail_gun_008.jpg",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "author": "Boatbuilder",
+        "attribution": "Boatbuilder / Wikimedia Commons, CC BY-SA 3.0",
+        "modifications": "Auto-oriented if required, resized, metadata stripped, converted to WebP; original source retained locally; derivative remains under the source license.",
+        "source_sha1": "ccf42ce9ccf4d0054b7d2c703efa806249b80663"
+      },
+      "notes": "Wave9: full original/derivative visual review and pinned binary SHA-1 verification; Inspected original 2816x2112 JPEG and 960x720 WebP: one full pneumatic nail gun shown side-on with barrel, magazine, grip and air fitting; correct canonical subject."
     }
   ]
 }

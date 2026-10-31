@@ -1,0 +1,62 @@
+{
+  "schema": "cta-affiliate-image-acquisition-wave8-v2.3",
+  "version": "2026-10-31-wave8-three-candidates-1",
+  "policy": {
+    "no_image_hotlink": true,
+    "originals_must_be_retained": true,
+    "no_direct_promotion": true,
+    "manual_derivative_visual_review_required": true
+  },
+  "first_wave_ids": [
+    "torque_wrench",
+    "wire_stripper",
+    "reciprocating_saw"
+  ],
+  "source_leads": [
+    {
+      "entry_id": "torque_wrench",
+      "source_page": "https://commons.wikimedia.org/wiki/File:1-4%22_5-25Nm.jpg",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/e/e6/1-4%22_5-25Nm.jpg",
+      "author": "Sunnyhappy123",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "attribution": "Sunnyhappy123 / Wikimedia Commons, CC BY-SA 4.0",
+      "expected_sha1": "616511023ad6dd0c4a13632892c7f1177f623e97",
+      "subject_note": "Replacement for rejected collection photo; original preview shows one full adjustable torque wrench with ratchet head and torque setting grip.",
+      "source_filename": "source.jpg",
+      "source_review": "commons_file_metadata_and_license_checked_20261031",
+      "binary_review": "pending_download_sha1_webp_quality_review",
+      "promotion_allowed": false
+    },
+    {
+      "entry_id": "wire_stripper",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Wire_Stripper_Automatic.jpg",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/2/25/Wire_Stripper_Automatic.jpg",
+      "author": "Scott Ehardt",
+      "license": "Public Domain (PD-self)",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-self",
+      "attribution": "Scott Ehardt / Wikimedia Commons, Public Domain",
+      "expected_sha1": "6906c01a40180712660fdce8df495d96395fab67",
+      "subject_note": "Single automatic wire stripper with stripping jaws, red handles and gauge markings; not a generic wire cutter.",
+      "source_filename": "source.jpg",
+      "source_review": "commons_file_metadata_and_license_checked_20261031",
+      "binary_review": "pending_download_sha1_webp_quality_review",
+      "promotion_allowed": false
+    },
+    {
+      "entry_id": "reciprocating_saw",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Makita_JR3070CT_Reciprocating_Saw_(4887120085).jpg",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Makita_JR3070CT_Reciprocating_Saw_%284887120085%29.jpg",
+      "author": "Mark Hunter",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "attribution": "Mark Hunter / Wikimedia Commons (from Flickr), CC BY 2.0",
+      "expected_sha1": "f35f7ab683cf39610f52b24c873e0de59aa8311e",
+      "subject_note": "Image is labeled as Makita JR3070CT reciprocating saw; full-source visual and tool-focus review required after staging.",
+      "source_filename": "source.jpg",
+      "source_review": "commons_file_metadata_and_license_checked_20261031",
+      "binary_review": "pending_download_sha1_webp_quality_review",
+      "promotion_allowed": false
+    }
+  ]
+}

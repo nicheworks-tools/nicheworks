@@ -1,0 +1,52 @@
+/* CSV Tidy Pro: inserted only after verified entitlement. */
+.csvt-pro {
+  margin: 24px auto;
+  padding: clamp(14px, 3vw, 24px);
+  border: 1px solid var(--border, #c9d0d9);
+  border-radius: 14px;
+  background: var(--card, #f8fafc);
+  display: grid;
+  gap: 11px;
+  max-width: 1120px;
+  box-sizing: border-box;
+}
+.csvt-pro h2 { margin: 0; font-size: clamp(1.15rem, 2vw, 1.55rem); }
+.csvt-pro-description { margin: 0 0 7px; line-height: 1.6; }
+.csvt-pro label { font-weight: 600; }
+.csvt-pro input[type=text], .csvt-pro select, .csvt-pro input[type=file] {
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #aebacc;
+  border-radius: 9px;
+  padding: 10px;
+  font: inherit;
+  background: #fff;
+  color: #15243b;
+}
+.csvt-pro-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+.csvt-pro-button {
+  border: 1px solid #61738e;
+  border-radius: 9px;
+  padding: 11px 14px;
+  background: #fff;
+  color: #182e4f;
+  font: inherit;
+  cursor: pointer;
+  min-height: 44px;
+}
+.csvt-pro-button:disabled { opacity: .52; cursor: wait; }
+.csvt-pro-button:focus-visible, .csvt-pro input:focus-visible, .csvt-pro select:focus-visible {
+  outline: 3px solid #376bdf;
+  outline-offset: 2px;
+}
+#csvTidyProPanel > .csvt-pro-button:last-of-type {
+  background: #1d4075;
+  color: #fff;
+}
+.csvt-pro-status { margin: 2px 0 0; min-height: 1.5em; overflow-wrap: anywhere; }
+@media (max-width: 375px) {
+  .csvt-pro-buttons { flex-direction: column; }
+  .csvt-pro-buttons > * { width: 100%; }
+}

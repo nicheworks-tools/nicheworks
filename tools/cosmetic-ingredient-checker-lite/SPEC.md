@@ -59,9 +59,11 @@ A row may be counted and labeled as `役割・説明あり / Role and explanatio
 - a supported bilingual role label, and
 - a non-empty JP and EN role explanation for that role.
 
+Lite and FastScan use identical bilingual role labels and descriptions for the supported `buffer`, `conditioning`, `skin conditioning`, `hair conditioning`, and `plant extract` categories. These remain role-level explanations, not ingredient-specific notes. `general` must remain incomplete. CI enforces this parity.
+
 Dictionary recognition by itself is not enough to qualify as a complete public result. A dictionary record with missing or unsupported role/explanation metadata is presented as `情報不足 / Information incomplete` rather than receiving a fabricated role description.
 
-`note_short` remains a more specific data-layer note where available. Missing `note_short` must not be disguised as a verified ingredient-specific note. The public Japanese explanation may be a clearly role-level explanation; the UI labels that column `役割の説明` rather than implying that every sentence is an ingredient-specific monograph.
+`note_short` remains a more specific data-layer note where available. A raw note is **not** evidence. The primary explanation always uses the maintained bilingual role-level copy, including English mode; a secondary expandable ingredient-specific note may appear only when `note_verified` is true and one or more valid HTTPS `note_sources` exist. Source links are visible, the English-language original is explicitly labeled as English in Japanese mode, and the browser constructs links without HTML interpolation. Missing or unverified `note_short` must never be shown as a verified monograph. The UI labels its main explanation column `役割の説明`.
 
 ## Current functional contract
 
@@ -203,6 +205,7 @@ The affiliate card must display `[PR]` and the active-language Amazon Associates
 - [x] One-result queries hide redundant filtering and aggregate summary.
 - [x] The explanation column is explicitly `役割の説明 / Role explanation`.
 - [x] A row is labeled complete only when a bilingual public role explanation exists.
+- [x] The primary role explanation never reuses unverified legacy `note_short`; optional source-backed note details are gated by `note_verified` and HTTPS evidence links. Deterministic regression enforces the distinction.
 - [x] Unsupported/missing role metadata is exposed as incomplete instead of receiving a fabricated complete label.
 - [x] JP/EN switching preserves the current result state.
 - [x] Mobile results remain readable without mandatory horizontal scrolling.

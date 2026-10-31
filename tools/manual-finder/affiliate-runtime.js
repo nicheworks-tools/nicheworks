@@ -3,6 +3,7 @@
 
   const runtimeScriptUrl = document.currentScript?.src || "";
   let initialized = false;
+  let refreshAfterAccessoryLayers = () => {};
 
   function loadScript(relativeUrl, isLoaded, done) {
     if (isLoaded() || !runtimeScriptUrl) {
@@ -87,7 +88,7 @@
     if (initialized) return;
     initialized = true;
 
-    const config = window.MANUALFINDER_AFFILIATE_CONFIG;
+    let config = window.MANUALFINDER_AFFILIATE_CONFIG;
     const affiliate = window.NWAmazonAffiliate;
     const results = document.getElementById("results");
 
@@ -200,6 +201,7 @@
           url: modelUrl,
           label: currentLang() === "en" ? `Find ${maker} ${model} on Amazon` : `Amazonで ${maker} ${model} を探す`,
           placement: "manual_result_commerce",
+          destinationKey: `model:${maker}:${model}`,
           className: "mf-amazon-link"
         });
         if (mounted) mountedCount += 1;
@@ -212,6 +214,7 @@
           url: offer.url,
           label: currentLang() === "en" ? offer.labelEn : offer.labelJa,
           placement: "manual_result_consumable",
+          destinationKey: `consumable:${maker}:${model}:${offer.key || offer.query}`,
           className: "mf-amazon-link"
         });
         if (mounted) {
@@ -227,6 +230,7 @@
           url: offer.url,
           label: currentLang() === "en" ? offer.labelEn : offer.labelJa,
           placement: "manual_result_accessory",
+          destinationKey: `accessory:${maker}:${model}:${offer.key || offer.query}`,
           className: "mf-amazon-link"
         });
         if (mounted) {
@@ -268,11 +272,29 @@
       refreshDisclosure();
     }
 
+    function applyAccessoryLayers() {
+      const latest = window.MANUALFINDER_AFFILIATE_CONFIG;
+      if (!latest || latest.enabled !== true) return;
+      config = latest;
+      affiliate.configure({
+        enabled: true,
+        tool: config.tool || "manual-finder",
+        targets: config.targets || {}
+      });
+      results.querySelectorAll(".card").forEach((card) => {
+        card.querySelector(".mf-commerce")?.remove();
+        delete card.dataset.mfAffiliateChecked;
+      });
+      refresh();
+    }
+    refreshAfterAccessoryLayers = applyAccessoryLayers;
+
     const observer = new MutationObserver(refresh);
     observer.observe(results, { childList: true });
 
     refresh();
   }
 
-  loadCameraAccessoryLayers(init);
+  init();
+  loadCameraAccessoryLayers(refreshAfterAccessoryLayers);
 })();

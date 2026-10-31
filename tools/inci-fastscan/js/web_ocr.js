@@ -1,12 +1,18 @@
-async function runOCR(imageFile, lang = "eng", onProgress = null) {
+async function runOCR(imageFile, lang = "eng", onProgress = null, options = {}) {
   if (!imageFile) return "";
 
   if (typeof Tesseract === "undefined") {
     throw new Error("Tesseract.js is not loaded.");
   }
 
+  const turns = Number.isInteger(options?.quarterTurns) ? options.quarterTurns : 0;
+  if (typeof prepareFastScanOcrImage !== "function") {
+    throw new Error("Local image processing is unavailable.");
+  }
+  const preparedImage = await prepareFastScanOcrImage(imageFile, turns, options);
+
   const { data } = await Tesseract.recognize(
-    imageFile,
+    preparedImage,
     lang,
     {
       logger: message => {

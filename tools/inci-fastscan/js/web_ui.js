@@ -60,6 +60,7 @@ const ROLE_LABELS = {
   antioxidant: { ja: "酸化防止", en: "Antioxidant" },
   botanical: { ja: "植物由来", en: "Botanical" },
   extract: { ja: "植物エキス", en: "Extract" },
+  "plant extract": { ja: "植物エキス", en: "Plant extract" },
   peptide: { ja: "ペプチド", en: "Peptide" },
   ferment: { ja: "発酵由来", en: "Ferment" },
   thickener: { ja: "増粘", en: "Thickener" },
@@ -100,6 +101,7 @@ const ROLE_DESCRIPTIONS = {
   antioxidant: { ja: "成分や処方の酸化を抑える目的で使われる成分です。", en: "Used to help limit oxidation in the formula or on skin." },
   botanical: { ja: "植物由来の成分として配合されています。", en: "A botanical-derived ingredient." },
   extract: { ja: "植物などから得られたエキス成分です。", en: "An extract-derived ingredient." },
+  "plant extract": { ja: "植物から得られたエキス成分です。", en: "A plant-derived extract ingredient." },
   peptide: { ja: "ペプチド系のコンディショニング成分です。", en: "A peptide used for conditioning functions." },
   ferment: { ja: "発酵由来の成分として配合されています。", en: "A ferment-derived ingredient." },
   thickener: { ja: "製品の粘度やテクスチャーを調整する目的で使われる成分です。", en: "Used to adjust viscosity and texture." },
@@ -129,9 +131,23 @@ function roleLabel(category, lang) {
 
 function ingredientDescription(item, lang) {
   const key = roleKey(item?.category);
-  if (lang === "en" && item?.note_short) return item.note_short;
   const description = ROLE_DESCRIPTIONS[key] || ROLE_DESCRIPTIONS.general;
   return description[lang] || description.ja;
+}
+
+function renderVerifiedNote(item, lang) {
+  if (item?.note_verified !== true || typeof item.note_short !== "string" || !item.note_short.trim()) return "";
+  const urls = Array.isArray(item.note_sources)
+    ? item.note_sources.filter(url => typeof url === "string" && /^https:\/\//i.test(url.trim()))
+    : [];
+  if (!urls.length) return "";
+  const heading = lang === "en" ? "Source-backed ingredient note" : "出典付きの補足説明（英語）";
+  const sourceLabel = lang === "en" ? "Source" : "出典";
+  const links = urls.map((url, i) => '<a href="' + escapeHtml(url) +
+    '" target="_blank" rel="noopener noreferrer">' + escapeHtml(sourceLabel + ' ' + (i + 1)) +
+    '</a>').join(' / ');
+  return '<details class="result-verified-note"><summary>' + escapeHtml(heading) +
+    '</summary><p>' + escapeHtml(item.note_short) + '</p><p class="small">' + links + '</p></details>';
 }
 
 function renderResults(container, results, lang = "ja") {
@@ -192,6 +208,7 @@ function renderResults(container, results, lang = "ja") {
         </div>
         <div class="small"><strong>${escapeHtml(rt("role", uiLang))}:</strong> ${escapeHtml(role)}</div>
         <div class="result-note"><strong>${escapeHtml(rt("whatItDoes", uiLang))}:</strong> ${escapeHtml(description)}</div>
+        ${renderVerifiedNote(r, uiLang)}
         ${r.en ? `<div class="small">${escapeHtml(rt("inci", uiLang))}: ${escapeHtml(r.en)}</div>` : ""}
         ${Array.isArray(r.jp) && r.jp.length ? `<div class="small">${escapeHtml(rt("japaneseName", uiLang))}: ${escapeHtml(r.jp.join(" / "))}</div>` : ""}
         ${isReviewState(r.safety) ? `<div class="small">${escapeHtml(rt("reviewHint", uiLang))}</div>` : ""}

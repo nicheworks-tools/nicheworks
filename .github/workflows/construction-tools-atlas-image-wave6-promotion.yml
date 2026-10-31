@@ -1,0 +1,24 @@
+name: Construction Tools Atlas Wave6 Source Audit
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  recheck-reviewed-image-provenance:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify two retained source hashes and existing image registry
+        run: |
+          echo "3076529a2af3514d64a784177f37c52eb3aed4a1  tools/construction-tools-atlas/images/hammer_drill/source.jpg" | sha1sum -c
+          echo "dd3e0b24aa589afee0c7986949e18645dd896d0b  tools/construction-tools-atlas/images/tape_measure/source.jpg" | sha1sum -c
+          node tools/construction-tools-atlas/scripts/check-image-registry-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/check-image-attribution-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/build-seo-detail-pages-v2.3.cjs --check

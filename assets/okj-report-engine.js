@@ -3,7 +3,7 @@
 
   var REPORT_SCHEMA_VERSION = 'okj-report-v1';
   var DEFAULT_PRODUCT_ID = 'okj.toolkit_pro';
-  var REPORT_FEATURE_ID = 'okj.report';
+  var REPORT_FEATURE_ID = 'okj.reports';
 
   function normalizeString(value) {
     return typeof value === 'string' ? value : '';

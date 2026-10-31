@@ -99,3 +99,20 @@ The primary interaction is one text area followed by results and caution cards.
 - `tools/place-old-kanji-checker/tests/behavior.test.mjs` — forward/reverse/array mapping, bilingual metadata/shape/stroke/rendering-note schemas, optional-data degradation, safe primary-load failure, exact Modernizer handoff, privacy/non-authority wording, and public Pro-boundary regression QA.
 - `tools/place-old-kanji-checker/style.css`
 - `tools/old-kanji-reference/dict.json`
+
+## Toolkit Pro Phase 1 — staged / not on sale
+
+- Shared product ID: `okj.toolkit_pro` (one entitlement covers all eight tools).
+- Current Free guarantee: Single place/rail/address candidate checks, metadata and Modernizer handoff remain Free.
+- Proposed Pro feature IDs: `okj.place.batch`, `okj.history`, `okj.workspaces`, `okj.reports`, `okj.advancedExport`.
+- The active Free workflow remains unchanged. No purchase CTA/fixed Pro price is allowed until verified checkout, entitlement, restore and browser QA.
+- Canonical definition: `config/old-kanji-toolkit-pro-phase1.json`. Existing contextual Amazon Associates links remain active and independent of Pro; user content must not flow to affiliate URLs or analytics.
+
+## Phase 1C — implemented batch checker (still not for sale)
+
+- The existing Free single-entry input, all Free analysis/copy paths and Amazon context remain unchanged.
+- Verified `okj.toolkit_pro` entitlement and the exact feature ID are required: `okj.place.batch`.
+- Browser-only bulk entry (one per line) and local CSV import (one-column or named column), maximum 200 nonempty entries, maximum 400 characters per entry.
+- Forward old→modern and reverse modern→old candidates use the same Old Kanji Reference `dict.json` mapping as the Free checker, including array-valued mappings. Results include unmatched entries; no claim of legal/official eligibility.
+- Download CSV/JSON results locally. CSV output escapes cell quoting and mitigates spreadsheet formula interpretation. User input, files, addresses, names and results are not sent to billing, analytics or Amazon.
+- Gate is re-verified before processing and exporting, and the panel is absent for unverified Free sessions. Browser QA uses mocked entitlement and does not verify real Stripe purchases.

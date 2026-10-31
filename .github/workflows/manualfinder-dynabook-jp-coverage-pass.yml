@@ -1,0 +1,43 @@
+name: ManualFinder dynabook JP 2024-2026 official 177-model Coverage-Pass
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/coverage-passes/dynabook/**'
+      - 'tools/manual-finder/scripts/dynabook-jp-official-index-probe.mjs'
+      - 'tools/manual-finder/scripts/dynabook-jp-2024-26-review.mjs'
+      - 'tools/manual-finder/tests/dynabook-jp-2024-26-review.test.mjs'
+      - 'tools/manual-finder/tests/dynabook-jp-2024-26-publication.test.mjs'
+      - 'tools/manual-finder/data/manuals.coverage-pass.dynabook-jp-2024-2026.js'
+      - 'tools/manual-finder/data/manuals.coverage-passes.js'
+      - 'tools/manual-finder/COVERAGE.md'
+      - '.github/workflows/manualfinder-dynabook-jp-coverage-pass.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  dynabook-coverage-pass:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fail-closed source-universe invariants and publication guard
+        run: |
+          node tools/manual-finder/tests/coverage-pass-pipeline.test.mjs
+          node tools/manual-finder/tests/dynabook-jp-2024-26-review.test.mjs
+          if [ -e tools/manual-finder/tests/dynabook-jp-2024-26-publication.test.mjs ]; then
+            node tools/manual-finder/tests/dynabook-jp-2024-26-publication.test.mjs
+          fi
+      - name: Live official index and PDF manual review all 177 models
+        run: |
+          mkdir -p manualfinder-dynabook-review
+          node tools/manual-finder/scripts/dynabook-jp-2024-26-review.mjs \
+            --out manualfinder-dynabook-review/review-2024-2026.json
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: manualfinder-dynabook-177-model-official-review
+          path: manualfinder-dynabook-review/*.json
+          if-no-files-found: warn
