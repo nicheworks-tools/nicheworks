@@ -1,0 +1,26 @@
+name: ManualFinder Fujitsu LIFEBOOK U official index probe
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/scripts/fujitsu-lifebook-u-index-probe.mjs'
+      - '.github/workflows/manualfinder-fujitsu-lifebook-u-coverage-pass.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  fujitsu-official-index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Extract complete manufacturer LIFEBOOK U model list
+        run: node tools/manual-finder/scripts/fujitsu-lifebook-u-index-probe.mjs
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: manualfinder-fujitsu-lifebook-u-index-probe
+          path: manualfinder-fujitsu-probe/*.json
+          if-no-files-found: warn
