@@ -3,7 +3,7 @@
   "maker": "Fujitsu FMV",
   "scopeId": "jp-business-lifebook-u-model-manual-index",
   "scopeLabel": "Fujitsu FMWORLD Japan business PC LIFEBOOK U series manufacturer model-specific manual index",
-  "status": "reviewing",
+  "status": "coverage-pass-complete",
   "asOf": "2026-10-31",
   "region": "JP",
   "language": "ja",
@@ -174,10 +174,10 @@
       "ciRun": 41172749267,
       "ciArtifact": 13031369324
     },
-    "notes": "Manufacturer official FMWORLD LIFEBOOK page contains many other families (A, E, P, etc), explicitly out of this bounded U series scope. Live source captured all 148 official U series model hyperlinks, including new U9416NQ and U8316 variants not present in older search snapshots. Source digests must fail CI when models or exact linked URLs drift. Company-wide FMV remains incomplete."
+    "notes": "Manufacturer official FMWORLD LIFEBOOK page contains many other families (A, E, P, etc), explicitly out of this bounded U series scope. Live source captured all 148 official U series model hyperlinks, including new U9416NQ and U8316 variants not present in older search snapshots. Source digests must fail CI when models or exact linked URLs drift. Company-wide FMV remains incomplete. Live primary review completed 2026-10-31: official index source population 148/148 exact names and linked URLs match SHA256-locked snapshot; all 148 exact H1 manufacturer manual index pages have manufacturer-linked PDF artifacts passing HTTPS redirect, HTTP response, and %PDF- magic. 78 distinct PDF destinations checked; 148 direct / 0 shared / 0 support_only / 0 held. Manual directory points to per-model official manual index (which can list multiple manuals); identical subordinate PDFs do not make different model-specific index destinations shared."
   },
   "review": {
-    "publicationGate": "blocked until all 148 model-specific manual landing pages pass official identity and document checks and full reconciliation",
+    "publicationGate": "complete_after_148_model_positive_official_guide_and_pdf_verification",
     "officialSourceType": "manufacturer_manually_enumerated_model_specific_manual_pages",
     "channels": [
       "official_bounded_lifebook_u_index",
@@ -185,7 +185,2981 @@
       "official_document_links",
       "alternate_official_business_support_and_archive"
     ],
-    "notes": "Do not promote HTTP200 alone, reject redirected unofficial domains, require exact <h1> model and at least one manufacturer-controlled manual PDF link in body-manual table. Where no positive evidence, retain held and escalate secondary discovery."
+    "notes": "All 148 source-linked exact manual-index destinations and at least one linked PDF per model pass live checks; every direct record includes per-model manual index and one confirmed PDF artifact. Full manufacturer does not mean scope-complete outside U-series.",
+    "liveReview": {
+      "workflowRunId": 41172890943,
+      "artifactId": 13031374502,
+      "population": 148,
+      "manualPages": 148,
+      "direct": 148,
+      "shared": 0,
+      "support_only": 0,
+      "held": 0,
+      "distinctPdfUrlsChecked": 78,
+      "sourceNameDigest": "dd168f1d183415b13335195d8a66ae85369ee3a435e3a9aae0d49574636a1866",
+      "sourceNameUrlDigest": "4837b50a2aada200e4865d5ee867f10d087794682c479de880f94680a6d3d310"
+    }
   },
-  "records": []
+  "records": [
+    {
+      "model": "LIFEBOOK U9416NQ/CX",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9416nqcx.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9416nqcx.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4641.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9416nqcx.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4641.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9416NQ/C",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9416nqc.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9416nqc.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4641.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9416nqc.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4641.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9416A/CX",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9416acx.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9416acx.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4711.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9416acx.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4711.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9416A/CW",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9416acw.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9416acw.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4711.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9416acw.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4711.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9416A/C",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9416ac.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9416ac.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4711.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9416ac.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4711.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9416/BX",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9416bx.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9416bx.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4051.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9416bx.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4051.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9416/BW",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9416bw.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9416bw.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4051.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9416bw.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4051.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9416/B",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9416b.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9416b.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4051.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9416b.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4051.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9415/AX",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9415ax.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9415ax.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3691.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9415ax.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3691.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9415/AW",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9415aw.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9415aw.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3691.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9415aw.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3691.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9415/A",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9415a.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9415a.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3691.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9415a.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3691.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9414/V",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9414v.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9414v.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3711.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9414v.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3711.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9414/RW",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9414rw.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9414rw.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL1901.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9414rw.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL1901.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9414/R",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9414r.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9414r.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL1901.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9414r.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL1901.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9413/RX",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9413rx.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9413rx.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL1911.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9413rx.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL1911.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9413/NX",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9413nx.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9413nx.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0951.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9413nx.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0951.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9413/N",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9413n.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9413n.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0951.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9413n.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0951.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9413/MX",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9413mx.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9413mx.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0071.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9413mx.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0071.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9413/M",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9413m.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9413m.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0071.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9413m.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0071.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U939X/C",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u939xc.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u939xc.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK3161.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u939xc.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK3161.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U939X/B",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u939xb.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u939xb.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK2581.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u939xb.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK2581.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U939X/A",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u939xa.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u939xa.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK2021.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u939xa.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK2021.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U939/CW",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u939cw.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u939cw.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK3151.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u939cw.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK3151.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U939/C",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u939c.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u939c.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK3151.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u939c.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK3151.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U939/BW",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u939bw.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u939bw.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK2591.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u939bw.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK2591.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U939/B",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u939b.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u939b.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK2591.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u939b.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK2591.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U939/AW",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u939aw.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u939aw.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK2031.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u939aw.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK2031.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U939/A",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u939a.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u939a.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK2031.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u939a.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK2031.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U938/VW",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u938vw.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u938vw.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK1521.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u938vw.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK1521.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U938/V",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u938v.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u938v.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK1521.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u938v.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK1521.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U938/TW",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u938tw.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u938tw.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK0851.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u938tw.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK0851.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U938/T",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u938t.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u938t.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK0851.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u938t.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK0851.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U938/S",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u938s.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u938s.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK0321.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u938s.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK0321.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U937/R",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u937r.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u937r.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK/B5FK9381.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u937r.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK/B5FK9381.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U937/P",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u937p.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u937p.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK/B5FK8621.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u937p.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK/B5FK8621.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9314X/S",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9314xs.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9314xs.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL2451.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9314xs.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL2451.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9313X/N",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313xn.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313xn.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0961.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313xn.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0961.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9313X/M",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313xm.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313xm.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0081.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313xm.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0081.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9313/RX",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313rx.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313rx.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL1911.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313rx.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL1911.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9313/R",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313r.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313r.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL1911.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313r.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL1911.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9313/NX",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313nx.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313nx.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0951.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313nx.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0951.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9313/NW",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313nw.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313nw.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0951.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313nw.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0951.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9313/N",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313n.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313n.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0951.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313n.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0951.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9313/MX",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313mx.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313mx.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0071.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313mx.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0071.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9313/MW",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313mw.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313mw.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0071.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313mw.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0071.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9313/M",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313m.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313m.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0071.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9313m.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0071.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9312X/K",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9312xk.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9312xk.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK8641.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9312xk.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK8641.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9312X/J",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9312xj.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9312xj.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK8151.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9312xj.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK8151.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9312/KX",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9312kx.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9312kx.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FH/B6FHD310.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9312kx.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FH/B6FHD310.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9312/KW",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9312kw.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9312kw.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK8631.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9312kw.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK8631.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9312/K",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9312k.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9312k.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK8631.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9312k.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK8631.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9312/JW",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9312jw.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9312jw.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK8141.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9312jw.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK8141.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9312/J",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9312j.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9312j.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK8141.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9312j.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK8141.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9311X/H",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9311xh.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9311xh.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK7141.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9311xh.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK7141.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9311X/F",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9311xf.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9311xf.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK5561.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9311xf.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK5561.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9311/HX",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9311hx.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9311hx.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FH/B6FHD213.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9311hx.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FH/B6FHD213.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9311/HW",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9311hw.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9311hw.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK7131.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9311hw.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK7131.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9311/H",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9311h.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9311h.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK7131.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9311h.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK7131.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9311/FW",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9311fw.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9311fw.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK5551.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9311fw.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK5551.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9311/F",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9311f.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9311f.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK5551.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9311f.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK5551.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9310X/E",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9310xe.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9310xe.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK4151.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9310xe.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK4151.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9310X/D",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9310xd.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9310xd.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK3731.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9310xd.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK3731.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9310/EW",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9310ew.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9310ew.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK4141.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9310ew.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK4141.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9310/E",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9310e.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9310e.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK4141.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9310e.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK4141.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9310/DW",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9310dw.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9310dw.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK3721.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9310dw.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK3721.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U9310/D",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9310d.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9310d.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK3721.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u9310d.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK3721.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U904/H",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u904h.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u904h.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK3121.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u904h.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK3121.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U8316X/C",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u8316xc.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u8316xc.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4691.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u8316xc.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4691.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U8316A/C",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u8316ac.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u8316ac.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4711.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u8316ac.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4711.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U8316/C",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u8316c.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u8316c.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4681.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u8316c.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4681.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U8315X/A",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u8315xa.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u8315xa.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3701.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u8315xa.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3701.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U8315/AX",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u8315ax.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u8315ax.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3691.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u8315ax.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3691.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U8315/A",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u8315a.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u8315a.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3691.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u8315a.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3691.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U772/G",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u772g.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u772g.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK1771.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u772g.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK1771.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U772/FW",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u772fw.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u772fw.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK0591.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u772fw.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK0591.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U772/F",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u772f.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u772f.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK0591.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u772f.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK0591.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U772/E",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u772e.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u772e.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FJ9051.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u772e.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FJ9051.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U7614/R",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7614r.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7614r.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL1891.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7614r.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL1891.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U7613/N",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7613n.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7613n.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0991.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7613n.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0991.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U7613/M",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7613m.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7613m.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0061.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7613m.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0061.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U759/A",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u759a.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u759a.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK1991.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u759a.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK1991.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U758/S",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u758s.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u758s.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK0311.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u758s.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK0311.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U757/R",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u757r.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u757r.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK/B5FK9511.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u757r.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK/B5FK9511.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U757/P",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u757p.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u757p.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK/B5FK8601.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u757p.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK/B5FK8601.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U7512/K",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7512k.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7512k.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK8651.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7512k.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK8651.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U7512/J",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7512j.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7512j.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK8131.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7512j.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK8131.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U7511/H",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7511h.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7511h.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK7151.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7511h.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK7151.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U7511/G",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7511g.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7511g.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK5661.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7511g.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK5661.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U7510/D",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7510d.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7510d.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK3711.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7510d.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK3711.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U749/A",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u749a.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u749a.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK1991.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u749a.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK1991.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U748/S",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u748s.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u748s.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK0311.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u748s.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK0311.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U747/R",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u747r.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u747r.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK/B5FK9511.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u747r.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK/B5FK9511.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U747/P",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u747p.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u747p.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK/B5FK8601.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u747p.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK/B5FK8601.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U745/M",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u745m.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u745m.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK/B5FK7041.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u745m.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK/B5FK7041.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U745/K",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u745k.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u745k.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK/B5FK5191.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u745k.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK/B5FK5191.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U7414/R",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7414r.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7414r.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL1891.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7414r.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL1891.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U7413/N",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7413n.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7413n.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0991.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7413n.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0991.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U7413/M",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7413m.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7413m.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0061.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7413m.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0061.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U7412/KX",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7412kx.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7412kx.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FH/B6FHD309.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7412kx.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FH/B6FHD309.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U7412/K",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7412k.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7412k.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK8651.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7412k.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK8651.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U7412/J",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7412j.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7412j.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK8131.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7412j.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK8131.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U7411/H",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7411h.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7411h.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK7151.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7411h.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK7151.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U7411/G",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7411g.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7411g.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK5661.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7411g.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK5661.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U7410/D",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7410d.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7410d.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK3711.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7410d.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK3711.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U7314/R",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7314r.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7314r.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL1891.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7314r.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL1891.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U7313/N",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7313n.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7313n.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0991.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7313n.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0991.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U7313/M",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7313m.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7313m.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0061.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7313m.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0061.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U7312/K",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7312k.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7312k.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK8651.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7312k.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK8651.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U7312/J",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7312j.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7312j.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK8131.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7312j.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK8131.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U7311/HX",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7311hx.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7311hx.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FH/B6FHD214.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7311hx.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FH/B6FHD214.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U7311/H",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7311h.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7311h.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK7161.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7311h.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK7161.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U7311/F",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7311f.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7311f.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK5571.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7311f.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK5571.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U7310/D",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7310d.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7310d.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK3711.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u7310d.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK3711.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U729X/A",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u729xa.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u729xa.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK2011.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u729xa.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK2011.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U729/A",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u729a.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u729a.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK1991.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u729a.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK1991.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U728/S",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u728s.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u728s.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK0311.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u728s.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK0311.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U727/R",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u727r.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u727r.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK/B5FK9511.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u727r.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK/B5FK9511.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U727/P",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u727p.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u727p.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK/B5FK8601.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u727p.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK/B5FK8601.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U6313/RX",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u6313rx.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u6313rx.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL1891.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u6313rx.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL1891.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U6313/R",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u6313r.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u6313r.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL1891.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u6313r.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL1891.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U6313/NX",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u6313nx.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u6313nx.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0991.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u6313nx.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0991.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U6313/N",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u6313n.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u6313n.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0991.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u6313n.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0991.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U6313/MX",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u6313mx.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u6313mx.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0061.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u6313mx.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0061.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U6313/M",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u6313m.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u6313m.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0061.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u6313m.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0061.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U6312/KX",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u6312kx.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u6312kx.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FH/B6FHD308.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u6312kx.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FH/B6FHD308.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U6312/K",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u6312k.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u6312k.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK8651.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u6312k.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK8651.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U6312/J",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u6312j.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u6312j.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK8131.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u6312j.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FK/B6FK8131.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U5616A/B",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5616ab.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5616ab.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4491.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5616ab.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4491.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U5616/C",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5616c.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5616c.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4701.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5616c.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4701.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U5615A/A",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5615aa.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5615aa.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3941.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5615aa.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3941.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U5615/A",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5615a.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5615a.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3731.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5615a.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3731.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U5416A/B",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5416ab.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5416ab.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4491.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5416ab.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4491.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U5416/C",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5416c.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5416c.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4701.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5416c.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4701.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U5415A/AX",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5415aax.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5415aax.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3941.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5415aax.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3941.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U5415A/A",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5415aa.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5415aa.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3941.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5415aa.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3941.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U5415/AX",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5415ax.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5415ax.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3731.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5415ax.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3731.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U5415/A",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5415a.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5415a.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3731.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5415a.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3731.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U5414/SX",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5414sx.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5414sx.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL2461.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5414sx.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL2461.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U5414/S",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5414s.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5414s.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL2461.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5414s.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL2461.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U5313X/R",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5313xr.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5313xr.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL1921.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5313xr.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL1921.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U5313X/N",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5313xn.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5313xn.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0971.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5313xn.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0971.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U5313X/M",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5313xm.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5313xm.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0091.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5313xm.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL0091.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U5313X/A",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5313xa.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5313xa.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3741.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u5313xa.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3741.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U3116X/BEG",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u3116xbeg.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u3116xbeg.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4131.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u3116xbeg.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4131.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U3116X/B",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u3116xb.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u3116xb.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4121.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u3116xb.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL4121.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U3114X/SEG",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u3114xseg.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u3114xseg.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FH/B6FHD614.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u3114xseg.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FH/B6FHD614.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U3114X/S",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u3114xs.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u3114xs.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL2371.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u3114xs.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL2371.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    },
+    {
+      "model": "LIFEBOOK U3114X/A",
+      "state": "direct",
+      "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u3114xa.html",
+      "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u3114xa.html",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3751.pdf",
+      "evidenceUrls": [
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u3114xa.html",
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FL/B5FL3751.pdf"
+      ],
+      "verifiedAt": "2026-10-31",
+      "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
+      "attemptedDiscovery": [
+        "manufacturer_U_series_complete_index",
+        "manufacturer_exact_model_manual_page",
+        "manufacturer_linked_PDF_signature"
+      ],
+      "reviewNote": "Exact model-specific manufacturer manual landing page positively verified and at least one linked official PDF passed content-signature validation; multiple distinct documents can be selected on the model landing page."
+    }
+  ]
 }
