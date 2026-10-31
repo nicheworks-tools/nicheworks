@@ -40,6 +40,8 @@ requireText(checkout, "product_id", 'checkout');
 requireText(checkout, "return_path", 'checkout');
 requireText(checkout, "BILLING_LIVE_CHECKOUT_ENABLED", 'checkout');
 requireText(checkout, "product_not_on_sale", 'checkout');
+requireText(checkout, "verifyStripePrice", 'checkout');
+requireText(checkout, "stripe_price_mismatch_or_unavailable", 'checkout');
 forbidText(checkout, "product?.productId === 'okj.toolkit_pro'", 'checkout');
 
 requireText(productConfig, 'session?.amount_total', 'product config');

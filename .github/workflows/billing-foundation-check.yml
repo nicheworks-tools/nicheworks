@@ -12,6 +12,7 @@ on:
       - 'tools/old-kanji-ocr-scanner/index.html'
       - 'scripts/check-old-kanji-pro-functional.mjs'
       - 'scripts/check-old-kanji-checkout-closed.mjs'
+      - 'scripts/check-old-kanji-live-readiness.mjs'
       - 'billing/success.html'
       - 'billing/cancel.html'
       - 'config/billing/products.json'
@@ -79,6 +80,8 @@ jobs:
         run: node scripts/check-billing-foundation.mjs
       - name: Test fail-closed unpriced and unknown products
         run: node scripts/check-old-kanji-checkout-closed.mjs
+      - name: Test live launch and pricing guard
+        run: node scripts/check-old-kanji-live-readiness.mjs
       - name: Check Old Kanji product contract
         run: node scripts/check-old-kanji-pro-phase1.mjs
       - name: Test real local OCR Batch and History Pro gate
