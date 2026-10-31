@@ -152,6 +152,18 @@
     if (state.lang === "en") return value.en || value.ja || "";
     return value.ja || value.en || "";
   }
+  function preferredItems(value) {
+    if (state.lang === "en") return value.en.length ? value.en : value.ja;
+    return value.ja.length ? value.ja : value.en;
+  }
+  function isTemplateText(value) {
+    const copy = text(value);
+    return /^(仕様と下地条件を確認する。|周辺部材との取り合いを確認する。|Check the specification and substrate conditions\.|Confirm adjacent details before finishing\.)$/.test(copy)
+      || /^.+を使う前に寸法と仕様を確認する。$/.test(copy)
+      || /^Check dimensions and specifications before using .+\.$/.test(copy)
+      || /^.+は仕様、下地条件、周辺部材との取り合いを確認して使う。施工前後の確認を省くと不具合や手戻りの原因になる。$/.test(copy)
+      || /^Use .+ after checking the specification, substrate, and adjacent details\. Missing checks can cause defects or rework\.$/.test(copy);
+  }
 
   function humanize(value) {
     const raw = text(value);
@@ -315,7 +327,8 @@
     state.filtered.slice(0, 7).forEach((entry) => {
       const button = document.createElement("button");
       button.type = "button";
-      button.appendChild(createThumb(entry, "autocompleteThumb"));
+      if (state.images.has(entry.id)) button.appendChild(createThumb(entry, "autocompleteThumb"));
+      else button.classList.add("autocompleteNoImage");
       const copy = document.createElement("div");
       const strong = document.createElement("strong"); strong.textContent = primaryTerm(entry);
       const sub = document.createElement("span"); sub.textContent = secondaryTerm(entry) || primaryPair(entry.summary);
@@ -351,7 +364,8 @@
       row.setAttribute("role", "button");
       row.tabIndex = 0;
       row.setAttribute("aria-current", String(state.current?.id === entry.id));
-      row.appendChild(createThumb(entry, "resultThumb"));
+      if (state.images.has(entry.id)) row.appendChild(createThumb(entry, "resultThumb"));
+      else row.classList.add("resultRow--no-image");
 
       const copy = document.createElement("div"); copy.className = "resultText";
       const title = document.createElement("div"); title.className = "resultTitle"; title.textContent = primaryTerm(entry);
@@ -361,14 +375,27 @@
       [humanize(entry.type), ...entry.categories.slice(0, 1).map(humanize)].filter(Boolean).forEach((value) => {
         const span = document.createElement("span"); span.className = "chip"; span.textContent = value; meta.appendChild(span);
       });
-      const contextValue = primaryPair(entry.detail);
-      const context = document.createElement("div"); context.className = "resultContext";
-      if (contextValue && contextValue !== summary.textContent) {
-        context.textContent = contextValue;
-      }
+      const reviewedNotes = preferredItems(entry.bullets).filter((value) => !isTemplateText(value));
+      const note = reviewedNotes[0] || primaryPair(entry.detail);
+      const example = preferredItems(entry.examples).find((value) => !isTemplateText(value));
+      const aliases = preferredItems(entry.aliases).slice(0, 3);
       copy.append(title); if (secondary.textContent) copy.append(secondary);
-      copy.append(summary);
-      if (context.textContent) copy.append(context);
+      if (summary.textContent) copy.append(summary);
+      if (note && note !== summary.textContent && !isTemplateText(note)) {
+        const context = document.createElement("div"); context.className = "resultContext";
+        context.textContent = (state.lang === "en" ? "Use / note: " : "用途・注意：") + note;
+        copy.append(context);
+      }
+      if (example) {
+        const usage = document.createElement("div"); usage.className = "resultExample";
+        usage.textContent = (state.lang === "en" ? "Example: " : "使用例：") + example;
+        copy.append(usage);
+      }
+      if (aliases.length) {
+        const alias = document.createElement("div"); alias.className = "resultAliases";
+        alias.textContent = (state.lang === "en" ? "Also: " : "別名：") + aliases.join(" / ");
+        copy.append(alias);
+      }
       copy.append(meta);
 
       const star = document.createElement("button"); star.type = "button"; star.className = `starButton${state.favs.has(entry.id) ? " active" : ""}`; star.textContent = state.favs.has(entry.id) ? "★" : "☆";
@@ -436,7 +463,8 @@
     clear(els.detailImage);
     const image = state.images.get(entry.id);
     els.detailImage.hidden = !image;
-    els.detailImageMissing.hidden = Boolean(image);
+    // Do not reserve space or repeat a missing-photo message for entries without reviewed imagery.
+    els.detailImageMissing.hidden = true;
     if (!image) return;
     const img = document.createElement("img");
     img.src = image.display;
@@ -738,11 +766,16 @@
 
     const requested = new URL(window.location.href).searchParams.get("entry");
     if (requested) {
-      if (!openDetail(requested, "none")) setEntryInUrl("", "replace");
-      else if (resolveId(requested) !== requested) setEntryInUrl(state.current.id, "replace");
+      if (!openDetail(requested, "none")) {
+        setEntryInUrl("", "replace");
+        if (!isMobile()) {
+          const fallback = STARTER_IDS.find(id => state.entryById.has(id)) || state.filtered[0]?.id;
+          if (fallback) openDetail(fallback, "none");
+        }
+      } else if (resolveId(requested) !== requested) setEntryInUrl(state.current.id, "replace");
     } else if (!isMobile()) {
-      // Do not leave the desktop dictionary's entire detail half blank on first load.
-      const starter = STARTER_IDS.find(id => state.entryById.has(id));
+      // Keep a useful term visible even if the curated starter set changes.
+      const starter = STARTER_IDS.find(id => state.entryById.has(id)) || state.filtered[0]?.id;
       if (starter) openDetail(starter, "none");
     }
   }
