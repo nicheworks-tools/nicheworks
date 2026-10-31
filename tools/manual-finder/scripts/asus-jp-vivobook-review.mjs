@@ -69,7 +69,7 @@ export async function reviewAll({pass,indexHtml,apiFetch=getOfficial,pageFetch=g
  async function worker(){
   while(cursor<records.length){
    const i=cursor++,item=pop.items[i],code=familyCode(item.model);
-   const candidate=item.productUrl+'helpdesk_manual?model2Name='+encodeURIComponent(code);
+   const candidate=item.productUrl+'helpdesk_manual/?model2Name='+encodeURIComponent(code);
    const row={model:item.model,productId:item.productId,productUrl:item.productUrl,verifiedAt:'2026-10-31',
     attemptedDiscovery:['official_complete_Vivobook_API','exact_official_product_page','official_model_variant_manual_index','official_user_manual_language_version_listing'],candidateUrl:candidate};
    try{
