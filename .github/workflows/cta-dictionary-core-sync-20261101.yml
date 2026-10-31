@@ -1,0 +1,41 @@
+name: CTA Dictionary Source to Existing Static Page Sync
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/cta-dictionary-core-sync-20261101.yml'
+      - 'tools/construction-tools-atlas/data/tools.quality-017.json'
+permissions:
+  contents: write
+jobs:
+  synchronize-existing-needle-nose-page:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Rebuild existing static mirror of reviewed canonical definition
+        run: |
+          node tools/construction-tools-atlas/scripts/build-seo-detail-pages-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/build-seo-detail-pages-v2.3.cjs --check
+          node tools/construction-tools-atlas/scripts/check-dictionary-reviewed-definitions-v2.3.cjs
+      - name: Require only the previously published needle nose page changed
+        run: |
+          changed="$(git diff --name-only)"
+          if [ "$changed" != "tools/construction-tools-atlas/entries/q017_needle_nose_pliers/index.html" ]; then
+            echo "Unexpected output drift:" >&2
+            printf '%s\n' "$changed" >&2
+            exit 1
+          fi
+      - name: Commit exactly the pre-existing page's text parity
+        run: |
+          git config user.name "nicheworks-dictionary-sync[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/construction-tools-atlas/entries/q017_needle_nose_pliers/index.html
+          git commit -m "CTA: synchronize the existing needle nose canonical page with dictionary source"
+          git push origin HEAD:"${{ github.event.pull_request.head.ref }}"
