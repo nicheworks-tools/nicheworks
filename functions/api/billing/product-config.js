@@ -11,7 +11,7 @@ function normalizedCurrency(value) {
   return String(value || '').trim().toUpperCase();
 }
 
-function expectedMinorAmount(product) {
+export function expectedMinorAmount(product) {
   const currency = normalizedCurrency(product?.price?.currency);
   const amount = Number(product?.price?.amount);
   if (!currency || !Number.isFinite(amount) || amount < 0) return null;

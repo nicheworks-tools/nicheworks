@@ -62,6 +62,8 @@ jobs:
       - name: Syntax check billing modules
         run: |
           node --check functions/api/billing/product-config.js
+          node --check functions/api/billing/old-kanji-launch-guard.js
+          node --check functions/api/billing/product-availability.js
           node --check functions/api/billing/create-checkout-session.js
           node --check functions/api/billing/entitlement-store.js
           node --check functions/api/billing/entitlement.js

@@ -1,4 +1,5 @@
-import { getProduct, loadProductsConfig, validateConfiguredProduct } from './product-config.js';
+import { expectedMinorAmount, getProduct, loadProductsConfig, validateConfiguredProduct } from './product-config.js';
+import { oldKanjiLiveReady } from './old-kanji-launch-guard.js';
 
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -65,6 +66,28 @@ function evaluateCheckoutGate(secretKey, env, productId) {
   }
 
   return { ok: false, error: 'stripe_secret_key_invalid', status: 503 };
+}
+
+async function verifyStripePrice(secretKey, priceId, product, mode) {
+  // Prevent charging a Stripe amount/currency different from the approved public product contract.
+  let response, data;
+  try {
+    response = await fetch('https://api.stripe.com/v1/prices/' + encodeURIComponent(priceId), {
+      method: 'GET',
+      headers: { Authorization: 'Bearer ' + secretKey }
+    });
+    data = await response.json();
+  } catch {
+    return false;
+  }
+  return Boolean(
+    response.ok && data?.active === true &&
+    data?.type === 'one_time' && data?.recurring == null &&
+    data?.livemode === (mode === 'live') &&
+    data?.currency === String(product?.price?.currency || '').toLowerCase() &&
+    Number.isInteger(data?.unit_amount) &&
+    data.unit_amount === expectedMinorAmount(product)
+  );
 }
 
 async function createStripeCheckoutSession({ secretKey, priceId, successUrl, cancelUrl, metadata }) {
@@ -150,6 +173,14 @@ export async function onRequestPost({ request, env }) {
 
   const gate = evaluateCheckoutGate(env.STRIPE_SECRET_KEY, env, product.productId);
   if (!gate.ok) return json({ ok: false, error: gate.error }, gate.status);
+  if (product.productId === 'okj.toolkit_pro' && gate.mode === 'live') {
+    if (!(await oldKanjiLiveReady(config, product, env))) {
+      return json({ ok: false, error: 'product_not_on_sale' }, 409);
+    }
+  }
+  if (!(await verifyStripePrice(env.STRIPE_SECRET_KEY, stripePriceId, product, gate.mode))) {
+    return json({ ok: false, error: 'stripe_price_mismatch_or_unavailable' }, 503);
+  }
 
   const origin = buildOrigin(request, env);
   const query = new URLSearchParams({
