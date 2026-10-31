@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 import crypto from 'node:crypto';
 import {validateCoveragePass,hostAllowed} from '../scripts/coverage-pass-lib.mjs';
+import {reconcile} from '../scripts/asus-jp-vivobook-reconcile.mjs';
 
 const pass=JSON.parse(fs.readFileSync(new URL('../coverage-passes/asus/jp-vivobook-official-2026-product-index.json',import.meta.url),'utf8'));
 const gate=validateCoveragePass(pass);
@@ -84,4 +85,17 @@ const coverage=fs.readFileSync(new URL('../COVERAGE.md',import.meta.url),'utf8')
 assert.ok(coverage.includes('**2,317 verified model/caliber rows**'));
 assert.ok(coverage.includes('**45 of the 66 baseline brands are still generic-only**'));
 assert.ok(coverage.includes('| ASUS | 35 | expanded, scope-complete |'));
-console.log('ASUS 35 exact selected variant manuals, 801 runtime Coverage-Pass rows, full source lock and no variant guessing passed.');
+const reviewed={
+ officialPopulation:35,manufacturerPageRows:[20,15],sourceDigest:digest,
+ counts:{direct:35,shared:0,support_only:0,held:0},
+ records:pass.records.map(x=>({model:x.model,state:x.state,productId:x.productId,productUrl:x.supportUrl,
+  manualUrl:x.manualUrl,selectedVariant:x.selectedVariant,
+  manualEvidence:{accepted:true,english:true,japanese:x.manualLanguage.includes('ja')}}))
+};
+assert.equal(reconcile(pass,reviewed).valid,true);
+reviewed.records[0].manualUrl='https://www.asus.com/incorrect';
+assert.equal(reconcile(pass,reviewed).valid,false,'even a previously accepted model must be reverified at its exact destination');
+reviewed.records[0].manualUrl=pass.records[0].manualUrl;
+reviewed.records[4].manualEvidence.japanese=false;
+assert.equal(reconcile(pass,reviewed).valid,false,'operational manual language evidence drift must fail');
+console.log('ASUS 35 exact selected variant manuals, 801 runtime Coverage-Pass rows, full source lock and live evidence reconciliation passed.');
