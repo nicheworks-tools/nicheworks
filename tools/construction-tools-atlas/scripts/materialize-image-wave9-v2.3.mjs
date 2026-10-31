@@ -14,7 +14,7 @@ if(!items.length)throw Error("No pinned Wave9 leads");
 for(const item of items){
  if(!/^[a-z0-9_]+$/.test(item.entry_id)||seen.has(item.entry_id)||!intake.first_wave_ids.includes(item.entry_id))throw Error("Invalid or duplicate Wave9 canonical ID");
  seen.add(item.entry_id);
- if(!/^https:\/\/upload\.wikimedia\.org\/wikipedia\/commons\//.test(item.source_url)||item.promotion_allowed!==false||item.expected_sha1!==null||item.binary_review!=="pending_api_sha1_download_webp_and_visual_review")throw Error("Wave9 source has invalid provenance or premature promotion: "+item.entry_id);
+ if(!/^https:\/\/upload\.wikimedia\.org\/wikipedia\/commons\//.test(item.source_url)||item.promotion_allowed!==false||!/^[0-9a-f]{40}$/.test(item.expected_sha1)||!["sha1_verified_raster_derivatives_visually_reviewed","sha1_verified_but_visual_tool_focus_rejected"].includes(item.binary_review))throw Error("Wave9 source has invalid provenance or premature promotion: "+item.entry_id);
 }
 if(!process.argv.includes("--stage")){
  console.log("Wave9 source preflight: PASS "+JSON.stringify({source_leads:items.length,formally_promoted:0}));
@@ -44,7 +44,7 @@ for(const item of items){
  const expectedUrl=new URL(item.source_url);
  const allowedTracking=new Set(["utm_source","utm_campaign","utm_content"]);
  const knownTracking=apiUrl && [...apiUrl.searchParams.keys()].every(key=>allowedTracking.has(key));
- if(!info||info.sha1!==sha1||!apiUrl||apiUrl.origin!==expectedUrl.origin||apiUrl.pathname!==expectedUrl.pathname||!knownTracking||apiUrl.hash)
+ if(sha1!==item.expected_sha1||!info||info.sha1!==sha1||!apiUrl||apiUrl.origin!==expectedUrl.origin||apiUrl.pathname!==expectedUrl.pathname||!knownTracking||apiUrl.hash)
    throw Error(item.entry_id+": Commons API SHA1/URL integrity mismatch "+JSON.stringify({api_sha1:info?.sha1,local_sha1:sha1,api_url:info?.url,declared_url:item.source_url}));
 
  console.log("WAVE9_VERIFIED_SOURCE="+JSON.stringify({entry_id:item.entry_id,sha1,source_url:item.source_url,size:bytes.length}));
