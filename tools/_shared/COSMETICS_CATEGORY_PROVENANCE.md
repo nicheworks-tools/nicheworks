@@ -418,3 +418,21 @@ Cross-checked exact cosmetic functions against 13 COSMILE Europe ingredient reco
 COSMILE ingredient-level records support: 3-O-Ethyl Ascorbic Acid (skin conditioning), Trametes Versicolor Extract (hair conditioning), Madecassic Acid and Asiatic Acid (skin conditioning), Anisyl/Anise Alcohol and Isoamyl Salicylate (fragrance), Lavandula Angustifolia Oil (fragrance), Copernicia Cerifera Cera (film forming), Euphorbia Cerifera Cera (film forming), PEG-12 and PEG-75 (humectant), PPG-26-Buteth-26 (hair conditioning), Elastin (skin conditioning).
 
 This review distinguishes exact source-page INCI names from maintained frozen display names containing explanatory parentheses (lavender, carnauba and candelilla) and a well-documented common-name spelling (anisyl/anise alcohol). Source URLs/functions are pinned in `check-cosmetics-source-verified-wave30.mjs` and the separate taxonomy `reviewed_mappings`. No bulk conversion of `wax`, `protein`, `essential oil`, `humectant/solvent` or `solubilizer` categories is allowed. Updated runtime target: **592 of 599** supported bilingual primary roles; **7** unresolved identities are explicitly left incomplete rather than assigned guessed categories.
+
+
+## Source-backed category wave 31: six final unambiguous gaps (2026-11-01)
+
+Six independent existing ingredients receive evidence-backed roles without altering the raw recognition dictionary. This wave adds the *new* bilingual role **bulking agent** only where the identified source explicitly says **BULKING**.
+
+| Maintained identity | Verified primary function | Source authority |
+| --- | --- | --- |
+| Disodium EDTA Dihydrate | chelating agent | Health Canada NHPID exact hydrated-ingredient listing |
+| Benzyl Cinnamate | fragrance | Korea Cosmetic Association exact INCI entry and purpose |
+| Citrus Aurantium Bergamia (Bergamot) Fruit Oil | fragrance | Health Canada NHPID exact fruit-oil name and non-medicinal purpose |
+| Talc | bulking agent | COSMILE Europe TALC, explicitly BULKING |
+| Nylon-6 | bulking agent | Cosmetic Ingredient Review peer-reviewed assessment explicitly including Nylon-6 |
+| PTFE | bulking agent | COSMILE Europe PTFE, explicitly BULKING |
+
+The exact sources and authority terms are preserved in `cosmetics-category-taxonomy.json` and `check-cosmetics-source-verified-wave31.mjs`. Non-equivalent Nylon-6/12 and bergamot *peel* oil are not treated as substitutes for Nylon-6 or fruit oil. The Health Canada ingredient database supplies function evidence only, not a cosmetics registration or a cross-jurisdiction safety conclusion. Existing category hints such as `powder` and `essential oil` remain auditable.
+
+**Deliberate remaining exception:** `BHA` is an ambiguous exact token with multiple possible ingredient referents. Its public category remains `Information incomplete / 情報不足`; it must not be assigned a fabricated single identity. The post-wave target of **598 / 599 (99.83%) supported roles** includes this uncertainty, not a false claim of 100%.
