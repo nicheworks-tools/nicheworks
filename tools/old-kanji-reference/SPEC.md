@@ -149,3 +149,9 @@ The dense searchable catalog, filters, detector, display modes, export controls,
 - Proposed Pro feature IDs: `okj.history`, `okj.collections`, `okj.workspaces`, `okj.reports`.
 - The active Free workflow remains unchanged. No purchase CTA/fixed Pro price is allowed until verified checkout, entitlement, restore and browser QA.
 - Canonical definition: `config/old-kanji-toolkit-pro-phase1.json`. Existing contextual Amazon Associates links remain active and independent of Pro; user content must not flow to affiliate URLs or analytics.
+
+## Phase 1G — Shared Batch Hub (staged / not for sale)
+
+- Old Kanji Reference exposes the cross-tool `okj.batch` entry for verified users. All eight tools link to it when the shared grant is present.
+- Six kinds of text batch tasks can be run in the browser directly (Modernizer / Unicode / Variant / Document / Name / Place), with local CSV/JSON export and per-feature authorization. The OCR batch option routes to the dedicated scanner without transferring source files.
+- The hub verifies both `okj.batch` and the specific feature; it is not a billing or subscription page. The Free reference list/search/quiz/export/print stays unchanged, as does the contextual Amazon Affiliate module.

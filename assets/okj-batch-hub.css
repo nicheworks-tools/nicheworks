@@ -1,0 +1,22 @@
+.okj-shared-batch{max-width:100%;box-sizing:border-box;margin:20px 0;padding:16px;border:1px solid #cbd5e1;border-radius:10px;background:#f8fafc;color:#213547}
+.okj-shared-batch *{box-sizing:border-box}
+.okj-shared-batch h2{font-size:1.2rem;line-height:1.35;margin:0 0 8px}
+.okj-shared-batch p{line-height:1.6}
+.okj-shared-batch-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:14px 0}
+.okj-shared-batch-nav a,.okj-shared-batch-home{display:block;padding:9px 11px;border:1px solid #94a3b8;border-radius:7px;background:#fff;color:#174d80;text-decoration:underline;overflow-wrap:anywhere}
+.okj-shared-batch-form{padding-top:12px;border-top:1px solid #cbd5e1;margin-top:12px}
+.okj-shared-batch-form label:not(:has(input[type=checkbox])){display:block;font-weight:600;margin:11px 0 5px}
+.okj-shared-batch-form textarea{width:100%;max-width:100%;min-height:120px;padding:9px;border:1px solid #64748b;border-radius:6px;font:inherit;color:#213547;background:#fff}
+.okj-shared-batch-form select,.okj-shared-batch-form button{font:inherit;padding:9px;border:1px solid #64748b;border-radius:6px;color:#213547;background:#fff;max-width:100%}
+.okj-shared-batch-form input[type=file]{max-width:100%;font:inherit}
+.okj-shared-batch-form .okj-shared-batch-options{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;margin:12px 0}
+.okj-shared-batch-options label{margin:0!important}
+.okj-shared-batch-form .okj-shared-batch-actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.okj-shared-batch-form button:disabled{opacity:.55}
+.okj-shared-batch-status{min-height:1.4em;font-weight:600}
+.okj-shared-batch-scroll{max-width:100%;overflow-x:auto}
+.okj-shared-batch-scroll table{width:100%;min-width:550px;border-collapse:collapse;font-size:.9rem}
+.okj-shared-batch-scroll th,.okj-shared-batch-scroll td{padding:8px;border:1px solid #cbd5e1;overflow-wrap:anywhere;vertical-align:top;text-align:left}
+.okj-shared-batch-scroll pre{white-space:pre-wrap;overflow-wrap:anywhere;margin:0;max-width:380px;font:inherit;font-size:.81rem}
+.okj-shared-batch [hidden]{display:none!important}
+@media(max-width:540px){.okj-shared-batch{padding:12px}.okj-shared-batch-nav{grid-template-columns:minmax(0,1fr)}.okj-shared-batch-form .okj-shared-batch-actions,.okj-shared-batch-form .okj-shared-batch-options{display:block}.okj-shared-batch-form .okj-shared-batch-options select,.okj-shared-batch-form .okj-shared-batch-actions button{width:100%;display:block;margin:8px 0}}

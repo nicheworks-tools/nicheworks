@@ -19,10 +19,11 @@ function staticServer() {
     const u=new URL(req.url||'/',base);
     // Local QA-only entitlement fixture; never part of the deployed app.
     if(u.pathname==='/api/billing/entitlement'){
+      const sessionId=u.searchParams.get('sessionId');
       const ok=u.searchParams.get('productId')==='okj.toolkit_pro' &&
-        u.searchParams.get('sessionId')==='cs_test_WORKSPACEQA';
+        ['cs_test_WORKSPACEQA','cs_test_BATCHFEATUREONLY'].includes(sessionId);
       res.writeHead(ok?200:403,{'content-type':'application/json;charset=utf-8','cache-control':'no-store'});
-      res.end(JSON.stringify(ok?{ok:true,active:true,features:['okj.workspaces','okj.name.batch','okj.place.batch','okj.reports','okj.advancedExport','okj.ocr.crop','okj.modernizer.batch','okj.unicode.batch','okj.variant.batch','okj.document.batch']}:{ok:false,active:false,error:'not_entitled'}));
+      res.end(JSON.stringify(ok?{ok:true,active:true,features:sessionId==='cs_test_BATCHFEATUREONLY'?['okj.modernizer.batch']:['okj.batch','okj.ocr.batch','okj.workspaces','okj.name.batch','okj.place.batch','okj.reports','okj.advancedExport','okj.ocr.crop','okj.modernizer.batch','okj.unicode.batch','okj.variant.batch','okj.document.batch']}:{ok:false,active:false,error:'not_entitled'}));
       return;
     }
     let p=decodeURIComponent(u.pathname); if(p.endsWith('/'))p+='index.html';
@@ -242,6 +243,54 @@ async function main(){
         fail.push('multibatch/'+test.kind+': CSV/JSON downloads missing '+JSON.stringify(files));
       }
     }
+
+    // Shared Batch integration: mobile bilingual hub, six real text modes and OCR handoff.
+    await c.rect(375,812);
+    await c.nav(base+'/tools/old-kanji-reference/');
+    await sleep(550);
+    const sharedPresent=await c.js("return {panel:!!document.getElementById('okj-shared-batch'),options:document.querySelectorAll('#okj-shared-batch-kind option').length,links:document.querySelectorAll('#okj-shared-batch nav a').length,overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth};");
+    if(!sharedPresent.panel||sharedPresent.options!==7||sharedPresent.links!==7||sharedPresent.overflow>2){
+      fail.push('sharedhub/mobile-entitlement: '+JSON.stringify(sharedPresent));
+    }else{
+      await c.js("const field=document.getElementById('okj-shared-batch-input');field.value='舊學'+String.fromCharCode(10)+'國府';document.querySelector('#okj-shared-batch .okj-shared-batch-actions button').click();");
+      await sleep(440);
+      const modernRows=await c.js("return {rows:document.querySelectorAll('#okj-shared-batch tbody tr').length,text:document.querySelector('#okj-shared-batch tbody')?.textContent||''};");
+      if(modernRows.rows!==2||!modernRows.text.includes('旧学')||!modernRows.text.includes('国府'))
+        fail.push('sharedhub/modernizer-run: '+JSON.stringify(modernRows));
+      await c.js("const kind=document.getElementById('okj-shared-batch-kind');kind.value='place';kind.dispatchEvent(new Event('change',{bubbles:true}));document.getElementById('okj-shared-batch-input').value='廣島'+String.fromCharCode(10)+'國府';document.querySelector('#okj-shared-batch .okj-shared-batch-actions button').click();");
+      await sleep(440);
+      const placeRows=await c.js("return {rows:document.querySelectorAll('#okj-shared-batch tbody tr').length,text:document.querySelector('#okj-shared-batch tbody')?.textContent||''};");
+      if(placeRows.rows!==2||!placeRows.text.includes('広')||!placeRows.text.includes('国'))
+        fail.push('sharedhub/place-run: '+JSON.stringify(placeRows));
+      await c.js("const kind=document.getElementById('okj-shared-batch-kind');kind.value='unicode';kind.dispatchEvent(new Event('change',{bubbles:true}));const csv='text'+String.fromCharCode(10)+'𠮷'+String.fromCharCode(10)+'﨑';const file=new File([csv],'batch-input.csv',{type:'text/csv'});const dt=new DataTransfer();dt.items.add(file);document.getElementById('okj-shared-batch-file').files=dt.files;document.getElementById('okj-shared-batch-file').dispatchEvent(new Event('change',{bubbles:true}));document.querySelector('#okj-shared-batch .okj-shared-batch-actions button').click();");
+      await sleep(460);
+      const unicodeRows=await c.js("return {rows:document.querySelectorAll('#okj-shared-batch tbody tr').length,text:document.querySelector('#okj-shared-batch tbody')?.textContent||'',status:document.querySelector('#okj-shared-batch .okj-shared-batch-status')?.textContent||''};");
+      if(unicodeRows.rows!==2||!unicodeRows.text.includes('U+20BB7')||!unicodeRows.text.includes('U+FA11'))
+        fail.push('sharedhub/unicode-csv-run: '+JSON.stringify(unicodeRows));
+      await c.js("window.__sharedDownloads=[];HTMLAnchorElement.prototype.click=function(){window.__sharedDownloads.push(this.download||'');};const buttons=document.querySelectorAll('#okj-shared-batch .okj-shared-batch-actions button');buttons[1].click();buttons[2].click();");
+      await sleep(440);
+      const downloads=await c.js("return window.__sharedDownloads||[];");
+      if(!downloads.includes('old-kanji-unicode-batch.csv')||!downloads.includes('old-kanji-unicode-batch.json'))
+        fail.push('sharedhub/local-downloads: '+JSON.stringify(downloads));
+      await c.js("const kind=document.getElementById('okj-shared-batch-kind');kind.value='ocr';kind.dispatchEvent(new Event('change',{bubbles:true}));");
+      const ocrLink=await c.js("return {to:document.querySelector('#okj-shared-batch .okj-shared-batch-image a')?.getAttribute('href'),inputHidden:document.getElementById('okj-shared-batch-input')?.hidden};");
+      if(ocrLink.to!=='/tools/old-kanji-ocr-scanner/#okj-pro-ocr-phase1'||!ocrLink.inputHidden)
+        fail.push('sharedhub/image-scanner-handoff: '+JSON.stringify(ocrLink));
+    }
+    await c.nav(base+'/tools/kanji-modernizer/');
+    await sleep(400);
+    const sharedShortcut=await c.js("return {panel:!!document.getElementById('okj-shared-batch'),url:document.querySelector('#okj-shared-batch a.okj-shared-batch-home')?.getAttribute('href')||''};");
+    if(!sharedShortcut.panel||sharedShortcut.url!=='/tools/old-kanji-reference/#okj-shared-batch')
+      fail.push('sharedhub/cross-tool-navigation: '+JSON.stringify(sharedShortcut));
+    await c.js("localStorage.setItem('nicheworks:billing:session:okj.toolkit_pro','cs_test_BATCHFEATUREONLY');");
+    await c.nav(base+'/tools/old-kanji-reference/');
+    await sleep(380);
+    if(await c.js("return !!document.getElementById('okj-shared-batch');"))
+      fail.push('sharedhub/featureonly: shared UI must require separate okj.batch grant');
+    await c.nav(base+'/tools/kanji-modernizer/');
+    await sleep(380);
+    if(!await c.js("return !!document.getElementById('okj-multi-batch');"))
+      fail.push('sharedhub/featureonly: existing specific batch UI must remain usable');
     await c.rect(1440,1000);
     await c.js("localStorage.setItem('nicheworks:billing:session:okj.toolkit_pro','cs_test_DENIED');");
     await c.nav(base+'/tools/old-kanji-ocr-scanner/');
@@ -266,6 +315,10 @@ async function main(){
         fail.push('multibatch/denied: unverified Pro panel exposed in '+slug);
       }
     }
+    await c.nav(base+'/tools/old-kanji-reference/');
+    await sleep(380);
+    if(await c.js("return !!document.getElementById('okj-shared-batch');"))
+      fail.push('sharedhub/denied: shared UI exposed without server entitlement');
     await c.js("localStorage.removeItem('nicheworks:billing:session:okj.toolkit_pro');");
     if(fail.length){console.error(`Old Kanji browser UX audit failed: ${fail.length}`);for(const x of fail)console.error('- '+x);process.exitCode=1;}else console.log(`Old Kanji browser UX audit passed: ${tools.length} tools x ${viewports.length} viewports.`);
   }finally{if(c)await c.close().catch(()=>{});proc.kill('SIGTERM');server.close();}
