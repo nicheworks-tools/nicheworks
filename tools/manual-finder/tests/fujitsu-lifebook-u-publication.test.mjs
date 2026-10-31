@@ -56,7 +56,7 @@ assert.equal(new Set(pass.records.map(x=>x.primaryDocumentUrl)).size,78);
 const batches=Array.from(context.window.MANUALFINDER_COVERAGE_PASS_BATCHES||[]);
 assert.ok(batches.includes('manuals.coverage-pass.fujitsu-lifebook-u.js'));
 const combined=Array.from(context.window.MANUALFINDER_BUILD_COVERAGE_PASSES());
-assert.equal(combined.length,717);
+assert.ok(combined.length>=717,'later manufacturer batches must not break Fujitsu scope tests');
 for(const [maker,count] of [['Sony',107],['Panasonic',27],['Apple',31],['Fujifilm',56],['VAIO',82],['Samsung Mobile',89],['dynabook',177],['Fujitsu FMV',148]])
  assert.equal(combined.filter(x=>x.maker===maker).length,count);
 const covered=fs.readFileSync(new URL('../COVERAGE.md',import.meta.url),'utf8');
