@@ -1,0 +1,20 @@
+name: CSV Tidy Pro public deployment readiness
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/ops/check-csv-tidy-pro-public-readiness.mjs'
+      - '.github/workflows/csv-tidy-pro-public-readiness.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate public Pages routes and read-only D1 entitlement lookup
+        run: node scripts/ops/check-csv-tidy-pro-public-readiness.mjs
