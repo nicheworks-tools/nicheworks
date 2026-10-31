@@ -2155,5 +2155,878 @@
     "reduced_motion_fallback_ja": "移動や繰り返しを省き、最終状態を即時表示します。",
     "implementation_notes_en": "Use animate a verified statistic only where it adds clarity. Avoid layout shift, test keyboard focus and media-query reduced motion.",
     "implementation_notes_ja": "確認済み統計値の変化を見せる用途で必要な場面に限り使用します。レイアウトずれ、キーボード操作、動きを減らす設定を確認してください。"
+  },
+  {
+    "id": "motion_burst",
+    "slug": "burst",
+    "name_en": "Burst",
+    "name_ja": "バースト",
+    "aliases_en": [
+      "burst",
+      "burst"
+    ],
+    "aliases_ja": [
+      "バースト",
+      "バーストアニメーション"
+    ],
+    "category": "emphasis",
+    "motion_type": [
+      "scale",
+      "opacity",
+      "sequence"
+    ],
+    "trigger": "on-success",
+    "summary_en": "Small elements shoot outward from a center point, then disappear.",
+    "summary_ja": "中心から小さな要素が外側へ放射状に飛び、消えます。",
+    "beginner_wording_en": [
+      "Make it look like burst",
+      "Small elements shoot outward from a center point, then disappear."
+    ],
+    "beginner_wording_ja": [
+      "バーストのように動かす",
+      "中心から小さな要素が外側へ放射状に飛び、消えます。"
+    ],
+    "practical_intent_en": "Celebrate a completed action briefly",
+    "practical_intent_ja": "成功完了を短く祝う",
+    "use_case_en": [
+      "Celebrate a completed action briefly"
+    ],
+    "use_case_ja": [
+      "成功完了を短く祝う"
+    ],
+    "not_for_en": [
+      "High-frequency alerts or background decoration"
+    ],
+    "not_for_ja": [
+      "頻繁な通知や背景装飾"
+    ],
+    "bad_request_en": "Add a cool animation.",
+    "bad_request_ja": "派手で格好よく動かして。",
+    "better_request_en": "Implement Burst on on-success with a 900ms replayable, finite demo. Small elements shoot outward from a center point, then disappear. Do not autoplay many effects; ensure a static reduced-motion fallback.",
+    "better_request_ja": "on-successでバーストを900msで実装してください。中心から小さな要素が外側へ放射状に飛び、消えます。 大量の自動再生を避け、動きを減らす設定では静止状態を表示してください。",
+    "why_better_en": "Defines the element behavior, trigger, length, replay lifecycle, and accessibility fallback.",
+    "why_better_ja": "見た目、発火条件、時間、再生条件、アクセシビリティ上の代替を指定しています。",
+    "short_ai_prompt_en": "Implement Burst on on-success with a 900ms replayable, finite demo. Small elements shoot outward from a center point, then disappear. Do not autoplay many effects; ensure a static reduced-motion fallback.",
+    "short_ai_prompt_ja": "on-successでバーストを900msで実装してください。中心から小さな要素が外側へ放射状に飛び、消えます。 大量の自動再生を避け、動きを減らす設定では静止状態を表示してください。",
+    "compare_ids": [
+      "motion_particle_burst",
+      "motion_pulse"
+    ],
+    "demo_type": "burst",
+    "demo_config": {
+      "duration_ms": 900,
+      "easing": "ease-out",
+      "distance_px": 40,
+      "loop": false
+    },
+    "intensity": "strong",
+    "speed_feel": "quick",
+    "mobile_fit": "caution",
+    "a11y_load": "medium",
+    "code_hint_css": "/* Create 8 positioned .demo-burst-dot children; assign --bearing (0deg,45deg...) and --distance (40px). */\n@keyframes atlasBurst{0%{opacity:1;transform:rotate(var(--bearing)) translateY(0) scale(.3)}45%{opacity:1}100%{opacity:0;transform:rotate(var(--bearing)) translateY(calc(-1 * var(--distance))) scale(.9)}}\n@media (prefers-reduced-motion:reduce){.motion-target,.motion-target *{animation:none!important}}\n",
+    "reduced_motion_fallback_en": "Show the final, stationary shape immediately; do not run particles or moving child elements.",
+    "reduced_motion_fallback_ja": "粒子や子要素の移動をやめ、最終的な静止形状を即時表示します。",
+    "implementation_notes_en": "Apply sparingly: celebrate a completed action briefly. High-frequency alerts or background decoration are excluded. Limit animation to the replay or intended trigger, and check reduced-motion and mobile display.",
+    "implementation_notes_ja": "成功完了を短く祝うに限定し、頻繁な通知や背景装飾には使用しません。指定時以外の自動再生は避け、スマホと動きを減らす設定を検証します。"
+  },
+  {
+    "id": "motion_line_draw",
+    "slug": "line-draw",
+    "name_en": "Line draw",
+    "name_ja": "ラインドロー",
+    "aliases_en": [
+      "line draw",
+      "line draw"
+    ],
+    "aliases_ja": [
+      "ラインドロー",
+      "ラインドローアニメーション"
+    ],
+    "category": "feedback",
+    "motion_type": [
+      "stroke-draw"
+    ],
+    "trigger": "on-success",
+    "summary_en": "An SVG stroke is revealed progressively along a path, rather than appearing all at once.",
+    "summary_ja": "SVGの線が経路に沿って少しずつ描かれ、一度に表示されません。",
+    "beginner_wording_en": [
+      "Make it look like line draw",
+      "An SVG stroke is revealed progressively along a path, rather than appearing all at once."
+    ],
+    "beginner_wording_ja": [
+      "ラインドローのように動かす",
+      "SVGの線が経路に沿って少しずつ描かれ、一度に表示されません。"
+    ],
+    "practical_intent_en": "Reveal a route, signature, or progress mark",
+    "practical_intent_ja": "経路やサイン、達成印の描画",
+    "use_case_en": [
+      "Reveal a route, signature, or progress mark"
+    ],
+    "use_case_ja": [
+      "経路やサイン、達成印の描画"
+    ],
+    "not_for_en": [
+      "Complex paths requiring real editable vector authoring"
+    ],
+    "not_for_ja": [
+      "編集可能な複雑ベクター図形の代替"
+    ],
+    "bad_request_en": "Add a cool animation.",
+    "bad_request_ja": "派手で格好よく動かして。",
+    "better_request_en": "Implement Line draw on on-success with a 1200ms replayable, finite demo. An SVG stroke is revealed progressively along a path, rather than appearing all at once. Do not autoplay many effects; ensure a static reduced-motion fallback.",
+    "better_request_ja": "on-successでラインドローを1200msで実装してください。SVGの線が経路に沿って少しずつ描かれ、一度に表示されません。 大量の自動再生を避け、動きを減らす設定では静止状態を表示してください。",
+    "why_better_en": "Defines the element behavior, trigger, length, replay lifecycle, and accessibility fallback.",
+    "why_better_ja": "見た目、発火条件、時間、再生条件、アクセシビリティ上の代替を指定しています。",
+    "short_ai_prompt_en": "Implement Line draw on on-success with a 1200ms replayable, finite demo. An SVG stroke is revealed progressively along a path, rather than appearing all at once. Do not autoplay many effects; ensure a static reduced-motion fallback.",
+    "short_ai_prompt_ja": "on-successでラインドローを1200msで実装してください。SVGの線が経路に沿って少しずつ描かれ、一度に表示されません。 大量の自動再生を避け、動きを減らす設定では静止状態を表示してください。",
+    "compare_ids": [
+      "motion_success_check_draw",
+      "motion_mask_reveal"
+    ],
+    "demo_type": "line-draw",
+    "demo_config": {
+      "duration_ms": 1200,
+      "easing": "ease-out",
+      "distance_px": 40,
+      "loop": false
+    },
+    "intensity": "medium",
+    "speed_feel": "calm",
+    "mobile_fit": "good",
+    "a11y_load": "low",
+    "code_hint_css": ".motion-path{stroke:currentColor;fill:none;stroke-dasharray:270;stroke-dashoffset:0;animation:atlasLineDraw 1200ms ease-in-out both}\n@keyframes atlasLineDraw{from{stroke-dashoffset:270}to{stroke-dashoffset:0}}\n@media (prefers-reduced-motion:reduce){.motion-target,.motion-target *{animation:none!important}}\n",
+    "reduced_motion_fallback_en": "Show the final, stationary shape immediately; do not run particles or moving child elements.",
+    "reduced_motion_fallback_ja": "粒子や子要素の移動をやめ、最終的な静止形状を即時表示します。",
+    "implementation_notes_en": "Apply sparingly: reveal a route, signature, or progress mark. Complex paths requiring real editable vector authoring are excluded. Limit animation to the replay or intended trigger, and check reduced-motion and mobile display.",
+    "implementation_notes_ja": "経路やサイン、達成印の描画に限定し、編集可能な複雑ベクター図形の代替には使用しません。指定時以外の自動再生は避け、スマホと動きを減らす設定を検証します。"
+  },
+  {
+    "id": "motion_mask_reveal",
+    "slug": "mask-reveal",
+    "name_en": "Mask reveal",
+    "name_ja": "マスクリビール",
+    "aliases_en": [
+      "mask reveal",
+      "mask reveal"
+    ],
+    "aliases_ja": [
+      "マスクリビール",
+      "マスクリビールアニメーション"
+    ],
+    "category": "entrance",
+    "motion_type": [
+      "clip-mask",
+      "opacity"
+    ],
+    "trigger": "on-open",
+    "summary_en": "Content is uncovered by an animated clipping mask while retaining a stable layout.",
+    "summary_ja": "レイアウトを動かさず、クリップ領域を広げて内容を見せます。",
+    "beginner_wording_en": [
+      "Make it look like mask reveal",
+      "Content is uncovered by an animated clipping mask while retaining a stable layout."
+    ],
+    "beginner_wording_ja": [
+      "マスクリビールのように動かす",
+      "レイアウトを動かさず、クリップ領域を広げて内容を見せます。"
+    ],
+    "practical_intent_en": "Reveal a title or visual inside a fixed frame",
+    "practical_intent_ja": "固定領域内の見出しや画像の表示",
+    "use_case_en": [
+      "Reveal a title or visual inside a fixed frame"
+    ],
+    "use_case_ja": [
+      "固定領域内の見出しや画像の表示"
+    ],
+    "not_for_en": [
+      "Sensitive content that must be immediately accessible"
+    ],
+    "not_for_ja": [
+      "即時に読める必要がある重要情報"
+    ],
+    "bad_request_en": "Add a cool animation.",
+    "bad_request_ja": "派手で格好よく動かして。",
+    "better_request_en": "Implement Mask reveal on on-open with a 850ms replayable, finite demo. Content is uncovered by an animated clipping mask while retaining a stable layout. Do not autoplay many effects; ensure a static reduced-motion fallback.",
+    "better_request_ja": "on-openでマスクリビールを850msで実装してください。レイアウトを動かさず、クリップ領域を広げて内容を見せます。 大量の自動再生を避け、動きを減らす設定では静止状態を表示してください。",
+    "why_better_en": "Defines the element behavior, trigger, length, replay lifecycle, and accessibility fallback.",
+    "why_better_ja": "見た目、発火条件、時間、再生条件、アクセシビリティ上の代替を指定しています。",
+    "short_ai_prompt_en": "Implement Mask reveal on on-open with a 850ms replayable, finite demo. Content is uncovered by an animated clipping mask while retaining a stable layout. Do not autoplay many effects; ensure a static reduced-motion fallback.",
+    "short_ai_prompt_ja": "on-openでマスクリビールを850msで実装してください。レイアウトを動かさず、クリップ領域を広げて内容を見せます。 大量の自動再生を避け、動きを減らす設定では静止状態を表示してください。",
+    "compare_ids": [
+      "motion_line_draw",
+      "motion_fade_in"
+    ],
+    "demo_type": "mask-reveal",
+    "demo_config": {
+      "duration_ms": 850,
+      "easing": "ease-out",
+      "distance_px": 40,
+      "loop": false
+    },
+    "intensity": "low",
+    "speed_feel": "calm",
+    "mobile_fit": "good",
+    "a11y_load": "low",
+    "code_hint_css": ".mask-target{animation:atlasMaskReveal 850ms ease-out both}\n@keyframes atlasMaskReveal{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}\n@media (prefers-reduced-motion:reduce){.motion-target,.motion-target *{animation:none!important}}\n",
+    "reduced_motion_fallback_en": "Show the final, stationary shape immediately; do not run particles or moving child elements.",
+    "reduced_motion_fallback_ja": "粒子や子要素の移動をやめ、最終的な静止形状を即時表示します。",
+    "implementation_notes_en": "Apply sparingly: reveal a title or visual inside a fixed frame. Sensitive content that must be immediately accessible are excluded. Limit animation to the replay or intended trigger, and check reduced-motion and mobile display.",
+    "implementation_notes_ja": "固定領域内の見出しや画像の表示に限定し、即時に読める必要がある重要情報には使用しません。指定時以外の自動再生は避け、スマホと動きを減らす設定を検証します。"
+  },
+  {
+    "id": "motion_kinetic_typography",
+    "slug": "kinetic-typography",
+    "name_en": "Kinetic typography",
+    "name_ja": "キネティックタイポグラフィ",
+    "aliases_en": [
+      "kinetic typography",
+      "kinetic typography"
+    ],
+    "aliases_ja": [
+      "キネティックタイポグラフィ",
+      "キネティックタイポグラフィアニメーション"
+    ],
+    "category": "text-animation",
+    "motion_type": [
+      "text",
+      "sequence",
+      "translate",
+      "rotate"
+    ],
+    "trigger": "on-load",
+    "summary_en": "Letters enter individually with coordinated shifts and rotation to make the text itself expressive.",
+    "summary_ja": "文字を一字ずつずらして回転させ、文字そのものに動きの表情を与えます。",
+    "beginner_wording_en": [
+      "Make it look like kinetic typography",
+      "Letters enter individually with coordinated shifts and rotation to make the text itself expressive."
+    ],
+    "beginner_wording_ja": [
+      "キネティックタイポグラフィのように動かす",
+      "文字を一字ずつずらして回転させ、文字そのものに動きの表情を与えます。"
+    ],
+    "practical_intent_en": "Animate a short campaign heading",
+    "practical_intent_ja": "短いキャッチコピーの演出",
+    "use_case_en": [
+      "Animate a short campaign heading"
+    ],
+    "use_case_ja": [
+      "短いキャッチコピーの演出"
+    ],
+    "not_for_en": [
+      "Long paragraphs, data labels, or repeated autoplay"
+    ],
+    "not_for_ja": [
+      "長文・データラベル・繰り返し自動再生"
+    ],
+    "bad_request_en": "Add a cool animation.",
+    "bad_request_ja": "派手で格好よく動かして。",
+    "better_request_en": "Implement Kinetic typography on on-load with a 860ms replayable, finite demo. Letters enter individually with coordinated shifts and rotation to make the text itself expressive. Do not autoplay many effects; ensure a static reduced-motion fallback.",
+    "better_request_ja": "on-loadでキネティックタイポグラフィを860msで実装してください。文字を一字ずつずらして回転させ、文字そのものに動きの表情を与えます。 大量の自動再生を避け、動きを減らす設定では静止状態を表示してください。",
+    "why_better_en": "Defines the element behavior, trigger, length, replay lifecycle, and accessibility fallback.",
+    "why_better_ja": "見た目、発火条件、時間、再生条件、アクセシビリティ上の代替を指定しています。",
+    "short_ai_prompt_en": "Implement Kinetic typography on on-load with a 860ms replayable, finite demo. Letters enter individually with coordinated shifts and rotation to make the text itself expressive. Do not autoplay many effects; ensure a static reduced-motion fallback.",
+    "short_ai_prompt_ja": "on-loadでキネティックタイポグラフィを860msで実装してください。文字を一字ずつずらして回転させ、文字そのものに動きの表情を与えます。 大量の自動再生を避け、動きを減らす設定では静止状態を表示してください。",
+    "compare_ids": [
+      "motion_typewriter",
+      "motion_stagger_reveal"
+    ],
+    "demo_type": "kinetic-type",
+    "demo_config": {
+      "duration_ms": 860,
+      "easing": "ease-out",
+      "distance_px": 40,
+      "loop": false
+    },
+    "intensity": "strong",
+    "speed_feel": "quick",
+    "mobile_fit": "caution",
+    "a11y_load": "medium",
+    "code_hint_css": "/* Wrap each letter in a span and stagger animation-delay by 60ms per letter. */\n@keyframes atlasKineticLetter{0%{opacity:0;transform:translateY(20px) rotate(-12deg)}65%{opacity:1;transform:translateY(-4px) rotate(3deg)}100%{opacity:1;transform:none}}\n@media (prefers-reduced-motion:reduce){.motion-target,.motion-target *{animation:none!important}}\n",
+    "reduced_motion_fallback_en": "Show the final, stationary shape immediately; do not run particles or moving child elements.",
+    "reduced_motion_fallback_ja": "粒子や子要素の移動をやめ、最終的な静止形状を即時表示します。",
+    "implementation_notes_en": "Apply sparingly: animate a short campaign heading. Long paragraphs, data labels, or repeated autoplay are excluded. Limit animation to the replay or intended trigger, and check reduced-motion and mobile display.",
+    "implementation_notes_ja": "短いキャッチコピーの演出に限定し、長文・データラベル・繰り返し自動再生には使用しません。指定時以外の自動再生は避け、スマホと動きを減らす設定を検証します。"
+  },
+  {
+    "id": "motion_easing_comparison",
+    "slug": "easing-comparison",
+    "name_en": "Easing comparison",
+    "name_ja": "イージング比較",
+    "aliases_en": [
+      "easing comparison",
+      "easing comparison",
+      "ease-in linear ease-out",
+      "animation timing"
+    ],
+    "aliases_ja": [
+      "イージング比較",
+      "イージング比較アニメーション"
+    ],
+    "category": "state-change",
+    "motion_type": [
+      "translate"
+    ],
+    "trigger": "manual-replay",
+    "summary_en": "Three objects travel the same distance with ease-in, linear, and ease-out timing so their acceleration differs.",
+    "summary_ja": "3つの点が同じ距離を移動し、加速型・等速・減速型の時間変化を見比べます。",
+    "beginner_wording_en": [
+      "Make it look like easing comparison",
+      "Three objects travel the same distance with ease-in, linear, and ease-out timing so their acceleration differs."
+    ],
+    "beginner_wording_ja": [
+      "イージング比較のように動かす",
+      "3つの点が同じ距離を移動し、加速型・等速・減速型の時間変化を見比べます。"
+    ],
+    "practical_intent_en": "Choose the timing curve before implementation",
+    "practical_intent_ja": "実装前に時間変化の曲線を比較",
+    "use_case_en": [
+      "Choose the timing curve before implementation"
+    ],
+    "use_case_ja": [
+      "実装前に時間変化の曲線を比較"
+    ],
+    "not_for_en": [
+      "Treating an easing curve as a standalone animation effect"
+    ],
+    "not_for_ja": [
+      "イージングだけを独立した演出として誤用"
+    ],
+    "bad_request_en": "Add a cool animation.",
+    "bad_request_ja": "派手で格好よく動かして。",
+    "better_request_en": "Implement Easing comparison on manual-replay with a 1150ms replayable, finite demo. Three objects travel the same distance with ease-in, linear, and ease-out timing so their acceleration differs. Do not autoplay many effects; ensure a static reduced-motion fallback.",
+    "better_request_ja": "manual-replayでイージング比較を1150msで実装してください。3つの点が同じ距離を移動し、加速型・等速・減速型の時間変化を見比べます。 大量の自動再生を避け、動きを減らす設定では静止状態を表示してください。",
+    "why_better_en": "Defines the element behavior, trigger, length, replay lifecycle, and accessibility fallback.",
+    "why_better_ja": "見た目、発火条件、時間、再生条件、アクセシビリティ上の代替を指定しています。",
+    "short_ai_prompt_en": "Implement Easing comparison on manual-replay with a 1150ms replayable, finite demo. Three objects travel the same distance with ease-in, linear, and ease-out timing so their acceleration differs. Do not autoplay many effects; ensure a static reduced-motion fallback.",
+    "short_ai_prompt_ja": "manual-replayでイージング比較を1150msで実装してください。3つの点が同じ距離を移動し、加速型・等速・減速型の時間変化を見比べます。 大量の自動再生を避け、動きを減らす設定では静止状態を表示してください。",
+    "compare_ids": [
+      "motion_overshoot",
+      "motion_slide_in"
+    ],
+    "demo_type": "easing-comparison",
+    "demo_config": {
+      "duration_ms": 1150,
+      "easing": "ease-out",
+      "distance_px": 40,
+      "loop": false
+    },
+    "intensity": "low",
+    "speed_feel": "calm",
+    "mobile_fit": "good",
+    "a11y_load": "low",
+    "code_hint_css": "/* Apply ease-in, linear and ease-out separately to 3 dots; the displacement and duration remain identical. */\n@keyframes atlasEasingTravel{from{transform:translateX(0)}to{transform:translateX(110px)}}\n@media (prefers-reduced-motion:reduce){.motion-target,.motion-target *{animation:none!important}}\n",
+    "reduced_motion_fallback_en": "Show the final, stationary shape immediately; do not run particles or moving child elements.",
+    "reduced_motion_fallback_ja": "粒子や子要素の移動をやめ、最終的な静止形状を即時表示します。",
+    "implementation_notes_en": "Apply sparingly: choose the timing curve before implementation. Treating an easing curve as a standalone animation effect are excluded. Limit animation to the replay or intended trigger, and check reduced-motion and mobile display.",
+    "implementation_notes_ja": "実装前に時間変化の曲線を比較に限定し、イージングだけを独立した演出として誤用には使用しません。指定時以外の自動再生は避け、スマホと動きを減らす設定を検証します。"
+  },
+  {
+    "id": "motion_overshoot",
+    "slug": "overshoot",
+    "name_en": "Overshoot",
+    "name_ja": "オーバーシュート",
+    "aliases_en": [
+      "overshoot",
+      "overshoot",
+      "pop-in overshoot",
+      "spring pop"
+    ],
+    "aliases_ja": [
+      "オーバーシュート",
+      "オーバーシュートアニメーション"
+    ],
+    "category": "emphasis",
+    "motion_type": [
+      "scale",
+      "physics-like"
+    ],
+    "trigger": "on-open",
+    "summary_en": "An element grows past its intended size, rebounds smaller, then settles exactly at its target size.",
+    "summary_ja": "要素が目標サイズを少し超え、縮み戻ってから目標サイズに落ち着きます。",
+    "beginner_wording_en": [
+      "Make it look like overshoot",
+      "An element grows past its intended size, rebounds smaller, then settles exactly at its target size."
+    ],
+    "beginner_wording_ja": [
+      "オーバーシュートのように動かす",
+      "要素が目標サイズを少し超え、縮み戻ってから目標サイズに落ち着きます。"
+    ],
+    "practical_intent_en": "Introduce playful badges and small confirmations",
+    "practical_intent_ja": "遊びのあるバッジや小さな通知の登場",
+    "use_case_en": [
+      "Introduce playful badges and small confirmations"
+    ],
+    "use_case_ja": [
+      "遊びのあるバッジや小さな通知の登場"
+    ],
+    "not_for_en": [
+      "Serious warnings or high-frequency table updates"
+    ],
+    "not_for_ja": [
+      "重大警告や頻繁に更新される表"
+    ],
+    "bad_request_en": "Add a cool animation.",
+    "bad_request_ja": "派手で格好よく動かして。",
+    "better_request_en": "Implement Overshoot on on-open with a 880ms replayable, finite demo. An element grows past its intended size, rebounds smaller, then settles exactly at its target size. Do not autoplay many effects; ensure a static reduced-motion fallback.",
+    "better_request_ja": "on-openでオーバーシュートを880msで実装してください。要素が目標サイズを少し超え、縮み戻ってから目標サイズに落ち着きます。 大量の自動再生を避け、動きを減らす設定では静止状態を表示してください。",
+    "why_better_en": "Defines the element behavior, trigger, length, replay lifecycle, and accessibility fallback.",
+    "why_better_ja": "見た目、発火条件、時間、再生条件、アクセシビリティ上の代替を指定しています。",
+    "short_ai_prompt_en": "Implement Overshoot on on-open with a 880ms replayable, finite demo. An element grows past its intended size, rebounds smaller, then settles exactly at its target size. Do not autoplay many effects; ensure a static reduced-motion fallback.",
+    "short_ai_prompt_ja": "on-openでオーバーシュートを880msで実装してください。要素が目標サイズを少し超え、縮み戻ってから目標サイズに落ち着きます。 大量の自動再生を避け、動きを減らす設定では静止状態を表示してください。",
+    "compare_ids": [
+      "motion_scale_in",
+      "motion_squash_stretch"
+    ],
+    "demo_type": "overshoot",
+    "demo_config": {
+      "duration_ms": 880,
+      "easing": "ease-out",
+      "distance_px": 40,
+      "loop": false
+    },
+    "intensity": "medium",
+    "speed_feel": "quick",
+    "mobile_fit": "caution",
+    "a11y_load": "medium",
+    "code_hint_css": ".overshoot-target{animation:atlasOvershoot 880ms ease-out both}\n@keyframes atlasOvershoot{0%{opacity:.4;transform:scale(.5)}58%{opacity:1;transform:scale(1.19)}79%{transform:scale(.94)}100%{transform:scale(1)}}\n@media (prefers-reduced-motion:reduce){.motion-target,.motion-target *{animation:none!important}}\n",
+    "reduced_motion_fallback_en": "Show the final, stationary shape immediately; do not run particles or moving child elements.",
+    "reduced_motion_fallback_ja": "粒子や子要素の移動をやめ、最終的な静止形状を即時表示します。",
+    "implementation_notes_en": "Apply sparingly: introduce playful badges and small confirmations. Serious warnings or high-frequency table updates are excluded. Limit animation to the replay or intended trigger, and check reduced-motion and mobile display.",
+    "implementation_notes_ja": "遊びのあるバッジや小さな通知の登場に限定し、重大警告や頻繁に更新される表には使用しません。指定時以外の自動再生は避け、スマホと動きを減らす設定を検証します。"
+  },
+  {
+    "id": "motion_squash_stretch",
+    "slug": "squash-stretch",
+    "name_en": "Squash and stretch",
+    "name_ja": "スクワッシュ＆ストレッチ",
+    "aliases_en": [
+      "squash and stretch",
+      "squash stretch"
+    ],
+    "aliases_ja": [
+      "スクワッシュ＆ストレッチ",
+      "スクワッシュ＆ストレッチアニメーション"
+    ],
+    "category": "emphasis",
+    "motion_type": [
+      "scale",
+      "physics-like"
+    ],
+    "trigger": "on-click",
+    "summary_en": "The object compresses along one axis and elongates along the other to suggest elasticity.",
+    "summary_ja": "一方向につぶれ、もう一方向に伸びることで弾性を表現します。",
+    "beginner_wording_en": [
+      "Make it look like squash and stretch",
+      "The object compresses along one axis and elongates along the other to suggest elasticity."
+    ],
+    "beginner_wording_ja": [
+      "スクワッシュ＆ストレッチのように動かす",
+      "一方向につぶれ、もう一方向に伸びることで弾性を表現します。"
+    ],
+    "practical_intent_en": "Add responsive character to a playful icon",
+    "practical_intent_ja": "遊びのあるアイコンの反応",
+    "use_case_en": [
+      "Add responsive character to a playful icon"
+    ],
+    "use_case_ja": [
+      "遊びのあるアイコンの反応"
+    ],
+    "not_for_en": [
+      "Readability-critical text or realistic rigid objects"
+    ],
+    "not_for_ja": [
+      "可読性が重要な文字や硬い物体の再現"
+    ],
+    "bad_request_en": "Add a cool animation.",
+    "bad_request_ja": "派手で格好よく動かして。",
+    "better_request_en": "Implement Squash and stretch on on-click with a 1050ms replayable, finite demo. The object compresses along one axis and elongates along the other to suggest elasticity. Do not autoplay many effects; ensure a static reduced-motion fallback.",
+    "better_request_ja": "on-clickでスクワッシュ＆ストレッチを1050msで実装してください。一方向につぶれ、もう一方向に伸びることで弾性を表現します。 大量の自動再生を避け、動きを減らす設定では静止状態を表示してください。",
+    "why_better_en": "Defines the element behavior, trigger, length, replay lifecycle, and accessibility fallback.",
+    "why_better_ja": "見た目、発火条件、時間、再生条件、アクセシビリティ上の代替を指定しています。",
+    "short_ai_prompt_en": "Implement Squash and stretch on on-click with a 1050ms replayable, finite demo. The object compresses along one axis and elongates along the other to suggest elasticity. Do not autoplay many effects; ensure a static reduced-motion fallback.",
+    "short_ai_prompt_ja": "on-clickでスクワッシュ＆ストレッチを1050msで実装してください。一方向につぶれ、もう一方向に伸びることで弾性を表現します。 大量の自動再生を避け、動きを減らす設定では静止状態を表示してください。",
+    "compare_ids": [
+      "motion_overshoot",
+      "motion_scale_press"
+    ],
+    "demo_type": "squash-stretch",
+    "demo_config": {
+      "duration_ms": 1050,
+      "easing": "ease-out",
+      "distance_px": 40,
+      "loop": false
+    },
+    "intensity": "strong",
+    "speed_feel": "quick",
+    "mobile_fit": "caution",
+    "a11y_load": "medium",
+    "code_hint_css": ".elastic-target{animation:atlasSquashStretch 1050ms ease-in-out both}\n@keyframes atlasSquashStretch{0%,100%{transform:scale(1,1)}28%{transform:scale(1.28,.70)}52%{transform:scale(.79,1.22)}75%{transform:scale(1.09,.91)}}\n@media (prefers-reduced-motion:reduce){.motion-target,.motion-target *{animation:none!important}}\n",
+    "reduced_motion_fallback_en": "Show the final, stationary shape immediately; do not run particles or moving child elements.",
+    "reduced_motion_fallback_ja": "粒子や子要素の移動をやめ、最終的な静止形状を即時表示します。",
+    "implementation_notes_en": "Apply sparingly: add responsive character to a playful icon. Readability-critical text or realistic rigid objects are excluded. Limit animation to the replay or intended trigger, and check reduced-motion and mobile display.",
+    "implementation_notes_ja": "遊びのあるアイコンの反応に限定し、可読性が重要な文字や硬い物体の再現には使用しません。指定時以外の自動再生は避け、スマホと動きを減らす設定を検証します。"
+  },
+  {
+    "id": "motion_morph",
+    "slug": "morph",
+    "name_en": "Shape morph",
+    "name_ja": "モーフィング",
+    "aliases_en": [
+      "shape morph",
+      "morph"
+    ],
+    "aliases_ja": [
+      "モーフィング",
+      "モーフィングアニメーション"
+    ],
+    "category": "state-change",
+    "motion_type": [
+      "morph",
+      "clip-mask"
+    ],
+    "trigger": "on-click",
+    "summary_en": "A silhouette changes between two defined polygon shapes while staying in one component.",
+    "summary_ja": "1つの要素の輪郭が、定義済みの多角形の形から別の形へ変化します。",
+    "beginner_wording_en": [
+      "Make it look like shape morph",
+      "A silhouette changes between two defined polygon shapes while staying in one component."
+    ],
+    "beginner_wording_ja": [
+      "モーフィングのように動かす",
+      "1つの要素の輪郭が、定義済みの多角形の形から別の形へ変化します。"
+    ],
+    "practical_intent_en": "Transition between two geometric icon states",
+    "practical_intent_ja": "幾何学的なアイコン状態の切り替え",
+    "use_case_en": [
+      "Transition between two geometric icon states"
+    ],
+    "use_case_ja": [
+      "幾何学的なアイコン状態の切り替え"
+    ],
+    "not_for_en": [
+      "Unrelated paths that lack compatible interpolation points"
+    ],
+    "not_for_ja": [
+      "対応する頂点がない異なるパス間の安易な補間"
+    ],
+    "bad_request_en": "Add a cool animation.",
+    "bad_request_ja": "派手で格好よく動かして。",
+    "better_request_en": "Implement Shape morph on on-click with a 1150ms replayable, finite demo. A silhouette changes between two defined polygon shapes while staying in one component. Do not autoplay many effects; ensure a static reduced-motion fallback.",
+    "better_request_ja": "on-clickでモーフィングを1150msで実装してください。1つの要素の輪郭が、定義済みの多角形の形から別の形へ変化します。 大量の自動再生を避け、動きを減らす設定では静止状態を表示してください。",
+    "why_better_en": "Defines the element behavior, trigger, length, replay lifecycle, and accessibility fallback.",
+    "why_better_ja": "見た目、発火条件、時間、再生条件、アクセシビリティ上の代替を指定しています。",
+    "short_ai_prompt_en": "Implement Shape morph on on-click with a 1150ms replayable, finite demo. A silhouette changes between two defined polygon shapes while staying in one component. Do not autoplay many effects; ensure a static reduced-motion fallback.",
+    "short_ai_prompt_ja": "on-clickでモーフィングを1150msで実装してください。1つの要素の輪郭が、定義済みの多角形の形から別の形へ変化します。 大量の自動再生を避け、動きを減らす設定では静止状態を表示してください。",
+    "compare_ids": [
+      "motion_liquid_motion",
+      "motion_mask_reveal"
+    ],
+    "demo_type": "morph",
+    "demo_config": {
+      "duration_ms": 1150,
+      "easing": "ease-out",
+      "distance_px": 40,
+      "loop": false
+    },
+    "intensity": "medium",
+    "speed_feel": "calm",
+    "mobile_fit": "caution",
+    "a11y_load": "medium",
+    "code_hint_css": ".shape-target{animation:atlasMorph 1150ms ease-in-out both}\n@keyframes atlasMorph{0%{clip-path:polygon(20% 0,80% 0,100% 20%,100% 80%,80% 100%,20% 100%,0 80%,0 20%)}52%{clip-path:polygon(50% 0,64% 34%,100% 50%,64% 66%,50% 100%,36% 66%,0 50%,36% 34%)}100%{clip-path:polygon(50% 0,100% 20%,85% 55%,100% 100%,50% 78%,0 100%,15% 55%,0 20%)}}\n@media (prefers-reduced-motion:reduce){.motion-target,.motion-target *{animation:none!important}}\n",
+    "reduced_motion_fallback_en": "Show the final, stationary shape immediately; do not run particles or moving child elements.",
+    "reduced_motion_fallback_ja": "粒子や子要素の移動をやめ、最終的な静止形状を即時表示します。",
+    "implementation_notes_en": "Apply sparingly: transition between two geometric icon states. Unrelated paths that lack compatible interpolation points are excluded. Limit animation to the replay or intended trigger, and check reduced-motion and mobile display.",
+    "implementation_notes_ja": "幾何学的なアイコン状態の切り替えに限定し、対応する頂点がない異なるパス間の安易な補間には使用しません。指定時以外の自動再生は避け、スマホと動きを減らす設定を検証します。"
+  },
+  {
+    "id": "motion_liquid_motion",
+    "slug": "liquid-motion",
+    "name_en": "Liquid motion",
+    "name_ja": "リキッドモーション",
+    "aliases_en": [
+      "liquid motion",
+      "liquid motion"
+    ],
+    "aliases_ja": [
+      "リキッドモーション",
+      "リキッドモーションアニメーション"
+    ],
+    "category": "emphasis",
+    "motion_type": [
+      "morph",
+      "scale",
+      "rotate"
+    ],
+    "trigger": "manual-replay",
+    "summary_en": "An organic blob deforms through changing corner radii and slight rotation; it is a stylized liquid impression.",
+    "summary_ja": "角の曲率と小さな回転を変え、液体のような有機的な塊を表現します。物理シミュレーションではありません。",
+    "beginner_wording_en": [
+      "Make it look like liquid motion",
+      "An organic blob deforms through changing corner radii and slight rotation; it is a stylized liquid impression."
+    ],
+    "beginner_wording_ja": [
+      "リキッドモーションのように動かす",
+      "角の曲率と小さな回転を変え、液体のような有機的な塊を表現します。物理シミュレーションではありません。"
+    ],
+    "practical_intent_en": "Add gentle organic movement to an illustration",
+    "practical_intent_ja": "イラストの有機的な形状変化",
+    "use_case_en": [
+      "Add gentle organic movement to an illustration"
+    ],
+    "use_case_ja": [
+      "イラストの有機的な形状変化"
+    ],
+    "not_for_en": [
+      "Claims of realistic fluid physics or precise data display"
+    ],
+    "not_for_ja": [
+      "本物の流体物理や正確なデータ表示の代替"
+    ],
+    "bad_request_en": "Add a cool animation.",
+    "bad_request_ja": "派手で格好よく動かして。",
+    "better_request_en": "Implement Liquid motion on manual-replay with a 1450ms replayable, finite demo. An organic blob deforms through changing corner radii and slight rotation; it is a stylized liquid impression. Do not autoplay many effects; ensure a static reduced-motion fallback.",
+    "better_request_ja": "manual-replayでリキッドモーションを1450msで実装してください。角の曲率と小さな回転を変え、液体のような有機的な塊を表現します。物理シミュレーションではありません。 大量の自動再生を避け、動きを減らす設定では静止状態を表示してください。",
+    "why_better_en": "Defines the element behavior, trigger, length, replay lifecycle, and accessibility fallback.",
+    "why_better_ja": "見た目、発火条件、時間、再生条件、アクセシビリティ上の代替を指定しています。",
+    "short_ai_prompt_en": "Implement Liquid motion on manual-replay with a 1450ms replayable, finite demo. An organic blob deforms through changing corner radii and slight rotation; it is a stylized liquid impression. Do not autoplay many effects; ensure a static reduced-motion fallback.",
+    "short_ai_prompt_ja": "manual-replayでリキッドモーションを1450msで実装してください。角の曲率と小さな回転を変え、液体のような有機的な塊を表現します。物理シミュレーションではありません。 大量の自動再生を避け、動きを減らす設定では静止状態を表示してください。",
+    "compare_ids": [
+      "motion_morph",
+      "motion_squash_stretch"
+    ],
+    "demo_type": "liquid-motion",
+    "demo_config": {
+      "duration_ms": 1450,
+      "easing": "ease-out",
+      "distance_px": 40,
+      "loop": false
+    },
+    "intensity": "medium",
+    "speed_feel": "slow",
+    "mobile_fit": "caution",
+    "a11y_load": "medium",
+    "code_hint_css": ".blob-target{animation:atlasLiquid 1450ms ease-in-out both}\n@keyframes atlasLiquid{0%{border-radius:58% 42% 59% 41%/44% 57% 43% 56%;transform:rotate(0) scale(1)}35%{border-radius:34% 66% 42% 58%/67% 32% 68% 33%;transform:rotate(14deg) scale(1.08,.92)}72%{border-radius:64% 36% 69% 31%/35% 72% 28% 65%;transform:rotate(-11deg) scale(.93,1.08)}100%{border-radius:58% 42% 59% 41%/44% 57% 43% 56%;transform:none}}\n@media (prefers-reduced-motion:reduce){.motion-target,.motion-target *{animation:none!important}}\n",
+    "reduced_motion_fallback_en": "Show the final, stationary shape immediately; do not run particles or moving child elements.",
+    "reduced_motion_fallback_ja": "粒子や子要素の移動をやめ、最終的な静止形状を即時表示します。",
+    "implementation_notes_en": "Apply sparingly: add gentle organic movement to an illustration. Claims of realistic fluid physics or precise data display are excluded. Limit animation to the replay or intended trigger, and check reduced-motion and mobile display.",
+    "implementation_notes_ja": "イラストの有機的な形状変化に限定し、本物の流体物理や正確なデータ表示の代替には使用しません。指定時以外の自動再生は避け、スマホと動きを減らす設定を検証します。"
+  },
+  {
+    "id": "motion_motion_trail",
+    "slug": "motion-trail",
+    "name_en": "Motion trail",
+    "name_ja": "モーショントレイル",
+    "aliases_en": [
+      "motion trail",
+      "motion trail"
+    ],
+    "aliases_ja": [
+      "モーショントレイル",
+      "モーショントレイルアニメーション"
+    ],
+    "category": "emphasis",
+    "motion_type": [
+      "translate",
+      "sequence",
+      "opacity"
+    ],
+    "trigger": "manual-replay",
+    "summary_en": "Multiple translucent copies follow the moving object with short time offsets, leaving a readable afterimage.",
+    "summary_ja": "半透明の複製が時間差で追従し、移動の残像を見せます。",
+    "beginner_wording_en": [
+      "Make it look like motion trail",
+      "Multiple translucent copies follow the moving object with short time offsets, leaving a readable afterimage."
+    ],
+    "beginner_wording_ja": [
+      "モーショントレイルのように動かす",
+      "半透明の複製が時間差で追従し、移動の残像を見せます。"
+    ],
+    "practical_intent_en": "Explain direction or speed in a playful UI demo",
+    "practical_intent_ja": "楽しいUI見本で方向や速度を伝える",
+    "use_case_en": [
+      "Explain direction or speed in a playful UI demo"
+    ],
+    "use_case_ja": [
+      "楽しいUI見本で方向や速度を伝える"
+    ],
+    "not_for_en": [
+      "Critical controls, readability-sensitive text, or constant loops"
+    ],
+    "not_for_ja": [
+      "重要操作、読みやすさが必要な文字、常時ループ"
+    ],
+    "bad_request_en": "Add a cool animation.",
+    "bad_request_ja": "派手で格好よく動かして。",
+    "better_request_en": "Implement Motion trail on manual-replay with a 1170ms replayable, finite demo. Multiple translucent copies follow the moving object with short time offsets, leaving a readable afterimage. Do not autoplay many effects; ensure a static reduced-motion fallback.",
+    "better_request_ja": "manual-replayでモーショントレイルを1170msで実装してください。半透明の複製が時間差で追従し、移動の残像を見せます。 大量の自動再生を避け、動きを減らす設定では静止状態を表示してください。",
+    "why_better_en": "Defines the element behavior, trigger, length, replay lifecycle, and accessibility fallback.",
+    "why_better_ja": "見た目、発火条件、時間、再生条件、アクセシビリティ上の代替を指定しています。",
+    "short_ai_prompt_en": "Implement Motion trail on manual-replay with a 1170ms replayable, finite demo. Multiple translucent copies follow the moving object with short time offsets, leaving a readable afterimage. Do not autoplay many effects; ensure a static reduced-motion fallback.",
+    "short_ai_prompt_ja": "manual-replayでモーショントレイルを1170msで実装してください。半透明の複製が時間差で追従し、移動の残像を見せます。 大量の自動再生を避け、動きを減らす設定では静止状態を表示してください。",
+    "compare_ids": [
+      "motion_particle_burst",
+      "motion_parallax"
+    ],
+    "demo_type": "motion-trail",
+    "demo_config": {
+      "duration_ms": 1170,
+      "easing": "ease-out",
+      "distance_px": 40,
+      "loop": false
+    },
+    "intensity": "medium",
+    "speed_feel": "quick",
+    "mobile_fit": "caution",
+    "a11y_load": "medium",
+    "code_hint_css": "/* Clone the moving dot three times; apply progressively lower opacity and 70ms,140ms,210ms delays. */\n@keyframes atlasTrail{from{transform:translateX(0)}to{transform:translateX(100px)}}\n@media (prefers-reduced-motion:reduce){.motion-target,.motion-target *{animation:none!important}}\n",
+    "reduced_motion_fallback_en": "Show the final, stationary shape immediately; do not run particles or moving child elements.",
+    "reduced_motion_fallback_ja": "粒子や子要素の移動をやめ、最終的な静止形状を即時表示します。",
+    "implementation_notes_en": "Apply sparingly: explain direction or speed in a playful ui demo. Critical controls, readability-sensitive text, or constant loops are excluded. Limit animation to the replay or intended trigger, and check reduced-motion and mobile display.",
+    "implementation_notes_ja": "楽しいUI見本で方向や速度を伝えるに限定し、重要操作、読みやすさが必要な文字、常時ループには使用しません。指定時以外の自動再生は避け、スマホと動きを減らす設定を検証します。"
+  },
+  {
+    "id": "motion_particle_burst",
+    "slug": "particle-burst",
+    "name_en": "Particles",
+    "name_ja": "パーティクル",
+    "aliases_en": [
+      "particles",
+      "particle burst"
+    ],
+    "aliases_ja": [
+      "パーティクル",
+      "パーティクルアニメーション"
+    ],
+    "category": "feedback",
+    "motion_type": [
+      "translate",
+      "scale",
+      "opacity",
+      "sequence"
+    ],
+    "trigger": "on-success",
+    "summary_en": "Twelve colored dots disperse in different directions as a single finite celebration effect.",
+    "summary_ja": "12個の色付き粒子が異なる方向に広がる、短い一回限りの演出です。",
+    "beginner_wording_en": [
+      "Make it look like particles",
+      "Twelve colored dots disperse in different directions as a single finite celebration effect."
+    ],
+    "beginner_wording_ja": [
+      "パーティクルのように動かす",
+      "12個の色付き粒子が異なる方向に広がる、短い一回限りの演出です。"
+    ],
+    "practical_intent_en": "Mark a rare success or achieved milestone",
+    "practical_intent_ja": "珍しい成功やマイルストーンの達成",
+    "use_case_en": [
+      "Mark a rare success or achieved milestone"
+    ],
+    "use_case_ja": [
+      "珍しい成功やマイルストーンの達成"
+    ],
+    "not_for_en": [
+      "Continuous heavy particle systems or frequent notifications"
+    ],
+    "not_for_ja": [
+      "重い常時粒子演出や頻繁な通知"
+    ],
+    "bad_request_en": "Add a cool animation.",
+    "bad_request_ja": "派手で格好よく動かして。",
+    "better_request_en": "Implement Particles on on-success with a 900ms replayable, finite demo. Twelve colored dots disperse in different directions as a single finite celebration effect. Do not autoplay many effects; ensure a static reduced-motion fallback.",
+    "better_request_ja": "on-successでパーティクルを900msで実装してください。12個の色付き粒子が異なる方向に広がる、短い一回限りの演出です。 大量の自動再生を避け、動きを減らす設定では静止状態を表示してください。",
+    "why_better_en": "Defines the element behavior, trigger, length, replay lifecycle, and accessibility fallback.",
+    "why_better_ja": "見た目、発火条件、時間、再生条件、アクセシビリティ上の代替を指定しています。",
+    "short_ai_prompt_en": "Implement Particles on on-success with a 900ms replayable, finite demo. Twelve colored dots disperse in different directions as a single finite celebration effect. Do not autoplay many effects; ensure a static reduced-motion fallback.",
+    "short_ai_prompt_ja": "on-successでパーティクルを900msで実装してください。12個の色付き粒子が異なる方向に広がる、短い一回限りの演出です。 大量の自動再生を避け、動きを減らす設定では静止状態を表示してください。",
+    "compare_ids": [
+      "motion_burst",
+      "motion_motion_trail"
+    ],
+    "demo_type": "particle-burst",
+    "demo_config": {
+      "duration_ms": 900,
+      "easing": "ease-out",
+      "distance_px": 40,
+      "loop": false
+    },
+    "intensity": "medium",
+    "speed_feel": "quick",
+    "mobile_fit": "caution",
+    "a11y_load": "medium",
+    "code_hint_css": "/* Add 12 dots and distribute --bearing at 30-degree increments; run once. */\n@keyframes atlasBurst{0%{opacity:1;transform:rotate(var(--bearing)) translateY(0) scale(.3)}45%{opacity:1}100%{opacity:0;transform:rotate(var(--bearing)) translateY(calc(-1 * var(--distance))) scale(.9)}}\n@media (prefers-reduced-motion:reduce){.motion-target,.motion-target *{animation:none!important}}\n",
+    "reduced_motion_fallback_en": "Show the final, stationary shape immediately; do not run particles or moving child elements.",
+    "reduced_motion_fallback_ja": "粒子や子要素の移動をやめ、最終的な静止形状を即時表示します。",
+    "implementation_notes_en": "Apply sparingly: mark a rare success or achieved milestone. Continuous heavy particle systems or frequent notifications are excluded. Limit animation to the replay or intended trigger, and check reduced-motion and mobile display.",
+    "implementation_notes_ja": "珍しい成功やマイルストーンの達成に限定し、重い常時粒子演出や頻繁な通知には使用しません。指定時以外の自動再生は避け、スマホと動きを減らす設定を検証します。"
+  },
+  {
+    "id": "motion_parallax",
+    "slug": "parallax",
+    "name_en": "Parallax",
+    "name_ja": "パララックス",
+    "aliases_en": [
+      "parallax",
+      "parallax"
+    ],
+    "aliases_ja": [
+      "パララックス",
+      "パララックスアニメーション"
+    ],
+    "category": "scroll-reveal",
+    "motion_type": [
+      "translate",
+      "sequence"
+    ],
+    "trigger": "manual-replay",
+    "summary_en": "Three overlapping layers move at different distances over the same interval to imply depth.",
+    "summary_ja": "重なった3層が同じ時間で異なる距離を移動し、奥行きを感じさせます。",
+    "beginner_wording_en": [
+      "Make it look like parallax",
+      "Three overlapping layers move at different distances over the same interval to imply depth."
+    ],
+    "beginner_wording_ja": [
+      "パララックスのように動かす",
+      "重なった3層が同じ時間で異なる距離を移動し、奥行きを感じさせます。"
+    ],
+    "practical_intent_en": "Illustrate depth in a card or layered artwork",
+    "practical_intent_ja": "カードや重ねたイラストの奥行きを表現",
+    "use_case_en": [
+      "Illustrate depth in a card or layered artwork"
+    ],
+    "use_case_ja": [
+      "カードや重ねたイラストの奥行きを表現"
+    ],
+    "not_for_en": [
+      "Excessive scroll-jacking or motion-heavy reading surfaces"
+    ],
+    "not_for_ja": [
+      "過剰なスクロール介入や文章中心の画面"
+    ],
+    "bad_request_en": "Add a cool animation.",
+    "bad_request_ja": "派手で格好よく動かして。",
+    "better_request_en": "Implement Parallax on manual-replay with a 1250ms replayable, finite demo. Three overlapping layers move at different distances over the same interval to imply depth. Do not autoplay many effects; ensure a static reduced-motion fallback.",
+    "better_request_ja": "manual-replayでパララックスを1250msで実装してください。重なった3層が同じ時間で異なる距離を移動し、奥行きを感じさせます。 大量の自動再生を避け、動きを減らす設定では静止状態を表示してください。",
+    "why_better_en": "Defines the element behavior, trigger, length, replay lifecycle, and accessibility fallback.",
+    "why_better_ja": "見た目、発火条件、時間、再生条件、アクセシビリティ上の代替を指定しています。",
+    "short_ai_prompt_en": "Implement Parallax on manual-replay with a 1250ms replayable, finite demo. Three overlapping layers move at different distances over the same interval to imply depth. Do not autoplay many effects; ensure a static reduced-motion fallback.",
+    "short_ai_prompt_ja": "manual-replayでパララックスを1250msで実装してください。重なった3層が同じ時間で異なる距離を移動し、奥行きを感じさせます。 大量の自動再生を避け、動きを減らす設定では静止状態を表示してください。",
+    "compare_ids": [
+      "motion_motion_trail",
+      "motion_slide_in"
+    ],
+    "demo_type": "parallax",
+    "demo_config": {
+      "duration_ms": 1250,
+      "easing": "ease-out",
+      "distance_px": 40,
+      "loop": false
+    },
+    "intensity": "medium",
+    "speed_feel": "calm",
+    "mobile_fit": "caution",
+    "a11y_load": "medium",
+    "code_hint_css": "/* Create three positioned layers and assign --travel:7px,24px,50px. */\n@keyframes atlasParallax{from{transform:translateX(0)}to{transform:translateX(var(--travel))}}\n@media (prefers-reduced-motion:reduce){.motion-target,.motion-target *{animation:none!important}}\n",
+    "reduced_motion_fallback_en": "Show the final, stationary shape immediately; do not run particles or moving child elements.",
+    "reduced_motion_fallback_ja": "粒子や子要素の移動をやめ、最終的な静止形状を即時表示します。",
+    "implementation_notes_en": "Apply sparingly: illustrate depth in a card or layered artwork. Excessive scroll-jacking or motion-heavy reading surfaces are excluded. Limit animation to the replay or intended trigger, and check reduced-motion and mobile display.",
+    "implementation_notes_ja": "カードや重ねたイラストの奥行きを表現に限定し、過剰なスクロール介入や文章中心の画面には使用しません。指定時以外の自動再生は避け、スマホと動きを減らす設定を検証します。"
   }
 ]
