@@ -27,7 +27,7 @@ const safetyConflicts = merged.filter((item) => Array.isArray(item.semantic_conf
 const categoryConflicts = merged.filter((item) => Array.isArray(item.semantic_conflicts?.category));
 
 assert.equal(safetyConflicts.length, 16, 'all 16 audited legacy safety conflicts must be explicit at runtime');
-assert.equal(categoryConflicts.length, 72, 'the 2 remaining legacy-only category conflicts plus 70 reviewed verified-primary role conflicts must be explicit at runtime');
+assert.equal(categoryConflicts.length, 83, 'the 2 remaining legacy-only category conflicts plus 81 reviewed verified-primary role conflicts must be explicit at runtime');
 
 for (const item of safetyConflicts) {
   assert.equal(item.safety, undefined, `${item.en}: conflicting legacy safety must not select a runtime winner`);
@@ -105,7 +105,18 @@ const reviewedVerifiedPrimary = new Map([
   ['menthol', { category: 'fragrance', legacy: ['sensory'] }],
   ['beeswax', { category: 'viscosity adjuster', legacy: ['wax'] }],
   ['aluminum starch octenylsuccinate', { category: 'viscosity adjuster', legacy: ['powder'] }],
-  ['isoeugenol', { category: 'fragrance', legacy: ['fragrance allergen'] }]
+  ['isoeugenol', { category: 'fragrance', legacy: ['fragrance allergen'] }],
+  ["hydrolyzed wheat protein", { category: "hair conditioning", legacy: ["protein"] }],
+  ["hydrolyzed rice protein", { category: "hair conditioning", legacy: ["protein"] }],
+  ["hydrolyzed vegetable protein", { category: "hair conditioning", legacy: ["protein"] }],
+  ["hydrolyzed soy protein", { category: "humectant", legacy: ["protein"] }],
+  ["hydrolyzed pea protein", { category: "hair conditioning", legacy: ["protein"] }],
+  ["hydrolyzed elastin", { category: "hair conditioning", legacy: ["protein"] }],
+  ["collagen", { category: "hair conditioning", legacy: ["protein"] }],
+  ["magnesium chloride", { category: "viscosity adjuster", legacy: ["mineral"] }],
+  ["calcium chloride", { category: "viscosity adjuster", legacy: ["mineral"] }],
+  ["aluminum hydroxide", { category: "viscosity adjuster", legacy: ["pigment coating"] }],
+  ["boron nitride", { category: "skin conditioning", legacy: ["powder"] }]
 ]);
 
 for (const item of categoryConflicts) {
