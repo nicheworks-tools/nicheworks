@@ -33,7 +33,7 @@
 .motion-demo[data-demo="particle-burst"] .demo-burst-dot:nth-child(3n){background:#9e6aff}
 .motion-demo[data-demo="particle-burst"] .demo-burst-dot:nth-child(3n + 1){background:#26a9bd}
 .motion-demo.is-replaying[data-demo="burst"] .demo-burst-dot,.motion-demo.is-replaying[data-demo="particle-burst"] .demo-burst-dot{animation:atlasBurst calc(900ms / var(--motion-speed)) ease-out both}
-@keyframes atlasBurst{0%{opacity:1;transform:rotate(var(--bearing)) translateY(0) scale(.3)}45%{opacity:1}100%{opacity:0;transform:rotate(var(--bearing)) translateY(calc(-1 * var(--distance))) scale(.9)}}
+@keyframes atlasBurst{0%{opacity:1;transform:rotate(var(--bearing)) translateY(0) scale(.3)}45%{opacity:1}100%{opacity:0;transform:rotate(var(--bearing)) translateY(calc(0px - var(--distance))) scale(.9)}}
 .motion-demo[data-demo="line-draw"] .demo-shape{width:118px;height:62px;background:transparent;color:#2454e6}
 .motion-demo[data-demo="line-draw"] svg{width:100%;height:100%;overflow:visible}
 .motion-demo[data-demo="line-draw"] path{stroke-dasharray:270;stroke-dashoffset:0}
@@ -97,3 +97,9 @@
 @media(prefers-reduced-motion:reduce){
   .motion-demo .demo-burst-dot,.motion-demo .demo-type-letter,.motion-demo .demo-easing-dot,.motion-demo .demo-trail-dot,.motion-demo .demo-parallax-layer,.motion-demo svg path{animation:none!important}
 }
+
+/* Three timing curves are distinguished by readable text, not just color. */
+.motion-demo[data-demo="easing-comparison"] .demo-easing-dot::before{position:absolute;left:-26px;top:1px;font-size:8px;font-weight:700;color:#263c60}
+.motion-demo[data-demo="easing-comparison"] .demo-easing-dot:nth-child(1)::before{content:"IN"}
+.motion-demo[data-demo="easing-comparison"] .demo-easing-dot:nth-child(2)::before{content:"LIN"}
+.motion-demo[data-demo="easing-comparison"] .demo-easing-dot:nth-child(3)::before{content:"OUT"}
