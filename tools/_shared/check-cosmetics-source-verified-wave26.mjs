@@ -82,9 +82,9 @@ const expected = Object.freeze({
 
 assert.equal(rows.length, 725, 'maintained raw dictionaries must remain unchanged');
 assert.equal(merged.length, 599, 'wave26 must not change the canonical recognition inventory');
-assert.equal(Object.keys(parser.verifiedCategoryEvidence).length, 130, 'wave26 adds exactly eleven reviewed role identities');
-assert.equal(Object.keys(parser.verifiedNoteEvidence).length, 96, 'note wave22 adds exactly eleven verified ingredient notes');
-assert.equal(parser.version, '1.59.0');
+assert.ok(Object.keys(parser.verifiedCategoryEvidence).length >= 130, 'wave26 reviewed roles must remain after later source-backed waves');
+assert.ok(Object.keys(parser.verifiedNoteEvidence).length >= 96, 'note wave22 ingredient notes must remain after later reviewed waves');
+assert.ok(Number(parser.version.split('.')[1]) >= 59, 'wave26 verified data API must be retained');
 
 for (const [key, expectation] of Object.entries(expected)) {
   const category = parser.verifiedCategoryEvidence[key];

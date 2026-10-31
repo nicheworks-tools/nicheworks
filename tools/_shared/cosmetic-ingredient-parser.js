@@ -198,7 +198,19 @@
     "benzyl salicylate": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/1601/benzyl-salicylate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "hydroxycitronellal": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19143/hydroxycitronellal/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "isoeugenol": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/7436/isoeugenol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "amyl cinnamal": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19189/amyl-cinnamal/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "amyl cinnamal": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19189/amyl-cinnamal/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "hydrolyzed wheat protein": Object.freeze({ category: "hair conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/7030/hydrolyzed-wheat-protein/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "hydrolyzed rice protein": Object.freeze({ category: "hair conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6964/hydrolyzed-rice-protein/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "hydrolyzed vegetable protein": Object.freeze({ category: "hair conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/7022/hydrolyzed-vegetable-protein/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "hydrolyzed soy protein": Object.freeze({ category: "humectant", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6993/hydrolyzed-soy-protein/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "hydrolyzed pea protein": Object.freeze({ category: "hair conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6937/hydrolyzed-pea-protein/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "hydrolyzed elastin": Object.freeze({ category: "hair conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6846/hydrolyzed-elastin/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "collagen": Object.freeze({ category: "hair conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/3743/collagen/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "magnesium chloride": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/8518/magnesium-chloride/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "calcium chloride": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2378/calcium-chloride/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "aluminum hydroxide": Object.freeze({ category: "viscosity adjuster", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/767/aluminum-hydroxide/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "boron nitride": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/1864/boron-nitride/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "cinnamyl alcohol": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/3353/cinnamyl-alcohol/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   const VERIFIED_NOTE_EVIDENCE = Object.freeze({
@@ -297,7 +309,19 @@
     "benzyl salicylate": Object.freeze({ note_short: "Benzyl Salicylate serves as a fragrance ingredient and a UV absorber that can help protect the cosmetic formulation.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/1601/benzyl-salicylate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "hydroxycitronellal": Object.freeze({ note_short: "Hydroxycitronellal is used to impart fragrance to cosmetic products.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19143/hydroxycitronellal/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "isoeugenol": Object.freeze({ note_short: "Isoeugenol is a fragrance ingredient; COSMILE Europe also lists a flavouring function.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/7436/isoeugenol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "amyl cinnamal": Object.freeze({ note_short: "Amyl Cinnamal is used to impart fragrance to cosmetic products.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19189/amyl-cinnamal/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "amyl cinnamal": Object.freeze({ note_short: "Amyl Cinnamal is used to impart fragrance to cosmetic products.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/19189/amyl-cinnamal/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "hydrolyzed wheat protein": Object.freeze({ note_short: "Hydrolyzed Wheat Protein is used for hair and skin conditioning; COSMILE Europe also lists an antistatic function.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/7030/hydrolyzed-wheat-protein/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "hydrolyzed rice protein": Object.freeze({ note_short: "Hydrolyzed Rice Protein serves hair and skin conditioning and helps reduce static charge in hair.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6964/hydrolyzed-rice-protein/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "hydrolyzed vegetable protein": Object.freeze({ note_short: "Hydrolyzed Vegetable Protein can condition hair and skin and is also listed for its antistatic function.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/7022/hydrolyzed-vegetable-protein/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "hydrolyzed soy protein": Object.freeze({ note_short: "Hydrolyzed Soy Protein is a moisture-retaining ingredient; COSMILE Europe also lists hair and skin conditioning and antistatic functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6993/hydrolyzed-soy-protein/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "hydrolyzed pea protein": Object.freeze({ note_short: "Hydrolyzed Pea Protein is used for hair conditioning; COSMILE Europe also lists skin conditioning, emollience and antistatic functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6937/hydrolyzed-pea-protein/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "hydrolyzed elastin": Object.freeze({ note_short: "Hydrolyzed Elastin serves hair and skin conditioning; COSMILE Europe also lists emollient use.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6846/hydrolyzed-elastin/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "collagen": Object.freeze({ note_short: "Collagen is listed for hair and skin conditioning and moisturising functions in cosmetics.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/3743/collagen/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "magnesium chloride": Object.freeze({ note_short: "Magnesium Chloride can adjust a cosmetic formulation's viscosity; COSMILE Europe also lists flavouring and fragrance-functional uses.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/8518/magnesium-chloride/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "calcium chloride": Object.freeze({ note_short: "Calcium Chloride is used to control cosmetic formulation viscosity; COSMILE Europe also lists an astringent function.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2378/calcium-chloride/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "aluminum hydroxide": Object.freeze({ note_short: "Aluminum Hydroxide is used for viscosity control, opacifying and skin-protecting functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/767/aluminum-hydroxide/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "boron nitride": Object.freeze({ note_short: "Boron Nitride has skin-conditioning, absorbent and opacifying functions in cosmetics.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/1864/boron-nitride/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "cinnamyl alcohol": Object.freeze({ note_short: "Cinnamyl Alcohol is used as a fragrance ingredient; COSMILE Europe also lists a flavouring function.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/3353/cinnamyl-alcohol/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   function canonicalIdentityKey(value = "") {
@@ -522,7 +546,7 @@
   }
 
   const api = {
-    version: "1.59.0",
+    version: "1.60.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,

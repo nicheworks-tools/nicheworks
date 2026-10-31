@@ -71,8 +71,10 @@ const EXPECTED_WAVE26_LEGACY_CATEGORIES = Object.freeze({
   "isoeugenol": ["fragrance allergen"],
   "amyl cinnamal": []
 });
+const EXPECTED_WAVE27_LEGACY_CATEGORIES = Object.freeze({"hydrolyzed wheat protein":["protein"],"hydrolyzed rice protein":["protein"],"hydrolyzed vegetable protein":["protein"],"hydrolyzed soy protein":["protein"],"hydrolyzed pea protein":["protein"],"hydrolyzed elastin":["protein"],"collagen":["protein"],"magnesium chloride":["mineral"],"calcium chloride":["mineral"],"aluminum hydroxide":["pigment coating"],"boron nitride":["powder"],"cinnamyl alcohol":[]});
+const EXPECTED_WAVE27 = Object.freeze({"hydrolyzed wheat protein":"hair conditioning","hydrolyzed rice protein":"hair conditioning","hydrolyzed vegetable protein":"hair conditioning","hydrolyzed soy protein":"humectant","hydrolyzed pea protein":"hair conditioning","hydrolyzed elastin":"hair conditioning","collagen":"hair conditioning","magnesium chloride":"viscosity adjuster","calcium chloride":"viscosity adjuster","aluminum hydroxide":"viscosity adjuster","boron nitride":"skin conditioning","cinnamyl alcohol":"fragrance"});
 const EXPECTED_WAVE26 = Object.freeze({ "hydrolyzed keratin":"hair conditioning", "hydrolyzed silk":"hair conditioning", "hydrolyzed collagen":"humectant", "menthol":"fragrance", "beeswax":"viscosity adjuster", "aluminum starch octenylsuccinate":"viscosity adjuster", "benzyl benzoate":"fragrance", "benzyl salicylate":"fragrance", "hydroxycitronellal":"fragrance", "isoeugenol":"fragrance", "amyl cinnamal":"fragrance" });
-const EXPECTED_ALL = Object.freeze({ ...EXPECTED_WAVE1, ...EXPECTED_WAVE2, ...EXPECTED_WAVE3, ...EXPECTED_WAVE4, ...EXPECTED_WAVE5, ...EXPECTED_WAVE6, ...EXPECTED_WAVE7, ...EXPECTED_WAVE8, ...EXPECTED_WAVE9, ...EXPECTED_WAVE10, ...EXPECTED_WAVE11, ...EXPECTED_WAVE12, ...EXPECTED_WAVE13, ...EXPECTED_WAVE14, ...EXPECTED_WAVE15, ...EXPECTED_WAVE16, ...EXPECTED_WAVE17, ...EXPECTED_WAVE18, ...EXPECTED_WAVE19, ...EXPECTED_WAVE20, ...EXPECTED_WAVE21, ...EXPECTED_WAVE22, ...EXPECTED_WAVE23, ...EXPECTED_WAVE24, ...EXPECTED_WAVE25, ...EXPECTED_OFFICIAL_LABEL_CLOSURE, ...EXPECTED_STRONG_RUNTIME_CLOSURE, ...EXPECTED_WAVE26 });
+const EXPECTED_ALL = Object.freeze({ ...EXPECTED_WAVE1, ...EXPECTED_WAVE2, ...EXPECTED_WAVE3, ...EXPECTED_WAVE4, ...EXPECTED_WAVE5, ...EXPECTED_WAVE6, ...EXPECTED_WAVE7, ...EXPECTED_WAVE8, ...EXPECTED_WAVE9, ...EXPECTED_WAVE10, ...EXPECTED_WAVE11, ...EXPECTED_WAVE12, ...EXPECTED_WAVE13, ...EXPECTED_WAVE14, ...EXPECTED_WAVE15, ...EXPECTED_WAVE16, ...EXPECTED_WAVE17, ...EXPECTED_WAVE18, ...EXPECTED_WAVE19, ...EXPECTED_WAVE20, ...EXPECTED_WAVE21, ...EXPECTED_WAVE22, ...EXPECTED_WAVE23, ...EXPECTED_WAVE24, ...EXPECTED_WAVE25, ...EXPECTED_OFFICIAL_LABEL_CLOSURE, ...EXPECTED_STRONG_RUNTIME_CLOSURE, ...EXPECTED_WAVE26, ...EXPECTED_WAVE27 });
 
 const EXPECTED_SOURCES = Object.freeze({
   water:'https://www.cosmeticsinfo.org/ingredient/water/', glycerin:'https://www.cosmeticsinfo.org/ingredient/glycerin/', 'propylene glycol':'https://www.cosmeticsinfo.org/ingredient/propylene-glycol/',
@@ -176,7 +178,19 @@ const EXPECTED_SOURCES = Object.freeze({
   "benzyl salicylate":"https://cosmileeurope.eu/inci/detail/1601/benzyl-salicylate/",
   "hydroxycitronellal":"https://cosmileeurope.eu/inci/detail/19143/hydroxycitronellal/",
   "isoeugenol":"https://cosmileeurope.eu/inci/detail/7436/isoeugenol/",
-  "amyl cinnamal":"https://cosmileeurope.eu/inci/detail/19189/amyl-cinnamal/"
+  "amyl cinnamal":"https://cosmileeurope.eu/inci/detail/19189/amyl-cinnamal/",
+  "hydrolyzed wheat protein":"https://cosmileeurope.eu/inci/detail/7030/hydrolyzed-wheat-protein/",
+  "hydrolyzed rice protein":"https://cosmileeurope.eu/inci/detail/6964/hydrolyzed-rice-protein/",
+  "hydrolyzed vegetable protein":"https://cosmileeurope.eu/inci/detail/7022/hydrolyzed-vegetable-protein/",
+  "hydrolyzed soy protein":"https://cosmileeurope.eu/inci/detail/6993/hydrolyzed-soy-protein/",
+  "hydrolyzed pea protein":"https://cosmileeurope.eu/inci/detail/6937/hydrolyzed-pea-protein/",
+  "hydrolyzed elastin":"https://cosmileeurope.eu/inci/detail/6846/hydrolyzed-elastin/",
+  "collagen":"https://cosmileeurope.eu/inci/detail/3743/collagen/",
+  "magnesium chloride":"https://cosmileeurope.eu/inci/detail/8518/magnesium-chloride/",
+  "calcium chloride":"https://cosmileeurope.eu/inci/detail/2378/calcium-chloride/",
+  "aluminum hydroxide":"https://cosmileeurope.eu/inci/detail/767/aluminum-hydroxide/",
+  "boron nitride":"https://cosmileeurope.eu/inci/detail/1864/boron-nitride/",
+  "cinnamyl alcohol":"https://cosmileeurope.eu/inci/detail/3353/cinnamyl-alcohol/"
 });
 const ALLOWED_SOURCE_HOSTS = new Set(['www.cosmeticsinfo.org','health.ec.europa.eu','cosmileeurope.eu','kcia.or.kr','www.kao-kirei.com','eur-lex.europa.eu']);
 
@@ -233,7 +247,7 @@ for(const [canonical,expectedCategory] of Object.entries(EXPECTED_ALL)){
   const hasRawMissing=canonicalRows.some((row)=>!normalizeText(row.category));
   rawCategoryInventory[canonical]=rawCategories;
   if(rawCategories.length===0) newlyClassifiedCanonicalIdentities+=1;
-  if(rawCategories.length>0 && !Object.hasOwn(EXPECTED_WAVE15,canonical) && !Object.hasOwn(EXPECTED_WAVE16,canonical) && !Object.hasOwn(EXPECTED_WAVE18,canonical) && !Object.hasOwn(EXPECTED_WAVE19,canonical) && !Object.hasOwn(EXPECTED_WAVE20,canonical) && !Object.hasOwn(EXPECTED_WAVE21,canonical) && !Object.hasOwn(EXPECTED_WAVE22,canonical) && !Object.hasOwn(EXPECTED_WAVE23,canonical) && !Object.hasOwn(EXPECTED_WAVE24,canonical) && !Object.hasOwn(EXPECTED_WAVE25,canonical) && !Object.hasOwn(EXPECTED_WAVE26,canonical) && !Object.hasOwn(EXPECTED_OFFICIAL_LABEL_CLOSURE,canonical) && !Object.hasOwn(EXPECTED_STRONG_RUNTIME_CLOSURE,canonical)) assert.ok(rawCategories.includes(expectedCategory.toLowerCase()),`${canonical}: verified category conflicts with existing raw category metadata (${rawCategories.join(', ')})`);
+  if(rawCategories.length>0 && !Object.hasOwn(EXPECTED_WAVE15,canonical) && !Object.hasOwn(EXPECTED_WAVE16,canonical) && !Object.hasOwn(EXPECTED_WAVE18,canonical) && !Object.hasOwn(EXPECTED_WAVE19,canonical) && !Object.hasOwn(EXPECTED_WAVE20,canonical) && !Object.hasOwn(EXPECTED_WAVE21,canonical) && !Object.hasOwn(EXPECTED_WAVE22,canonical) && !Object.hasOwn(EXPECTED_WAVE23,canonical) && !Object.hasOwn(EXPECTED_WAVE24,canonical) && !Object.hasOwn(EXPECTED_WAVE25,canonical) && !Object.hasOwn(EXPECTED_WAVE26,canonical) && !Object.hasOwn(EXPECTED_WAVE27,canonical) && !Object.hasOwn(EXPECTED_OFFICIAL_LABEL_CLOSURE,canonical) && !Object.hasOwn(EXPECTED_STRONG_RUNTIME_CLOSURE,canonical)) assert.ok(rawCategories.includes(expectedCategory.toLowerCase()),`${canonical}: verified category conflicts with existing raw category metadata (${rawCategories.join(', ')})`);
 
   if(Object.hasOwn(EXPECTED_WAVE6,canonical)){
     assert.equal(hasRawMissing,true,`${canonical}: wave 6 must resolve at least one raw missing-category row`);
@@ -360,6 +374,10 @@ for(const [canonical,expectedCategory] of Object.entries(EXPECTED_ALL)){
     assert.equal(hasRawMissing,true,`${canonical}: wave 25 must preserve the existing duplicate raw missing-category row alongside fragrance-allergen metadata`);
     assert.deepEqual(rawCategories,EXPECTED_WAVE25_LEGACY_CATEGORIES[canonical],`${canonical}: wave 25 must preserve fragrance-allergen as an auditable legacy label class`);
     wave25Reviewed+=1;
+  }
+  if(Object.hasOwn(EXPECTED_WAVE27,canonical)) {
+    assert.deepEqual(rawCategories, EXPECTED_WAVE27_LEGACY_CATEGORIES[canonical],
+      `${canonical}: wave27 must preserve original raw category hints and missing values without inferred bulk remapping`);
   }
   if(Object.hasOwn(EXPECTED_WAVE26,canonical)) {
     assert.deepEqual(rawCategories, EXPECTED_WAVE26_LEGACY_CATEGORIES[canonical],

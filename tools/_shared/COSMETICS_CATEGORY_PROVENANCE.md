@@ -375,3 +375,19 @@ The user-facing runtime had 78/599 canonical identities without a supported bili
 | `amyl cinnamal` | `fragrance` | FRAGRANCE |
 
 The authoritative HTTPS URLs are stored in the verified parser category overlay, the taxonomy reviewed mapping, and the regression file `check-cosmetics-source-verified-wave26.mjs`. Ingredient roles express possible formulation functions, **not** product-specific concentrations, allergy forecasts or safety determinations. After this wave, runtime supported roles are expected at **532/599**, leaving **67** unresolved. Frozen raw-canonical baseline remains 408/599.
+
+
+## Source-backed category wave 27 (2026-10-31)
+
+Twelve *specific reviewed ingredients* receive verified primary public functions from distinct COSMILE Europe ingredient pages. There is no bulk rule equating all `protein`, `mineral`, `powder` or fragrance-allergen legacy categories with a new public role.
+
+| Canonical identity | Verified role | Official-function basis |
+| --- | --- | --- |
+| Hydrolyzed Wheat Protein, Rice Protein, Vegetable Protein, Pea Protein, Elastin | `hair conditioning` | HAIR CONDITIONING |
+| Hydrolyzed Soy Protein | `humectant` | HUMECTANT |
+| Collagen | `hair conditioning` | HAIR CONDITIONING |
+| Calcium Chloride, Magnesium Chloride, Aluminum Hydroxide | `viscosity adjuster` | VISCOSITY CONTROLLING |
+| Boron Nitride | `skin conditioning` | SKIN CONDITIONING |
+| Cinnamyl Alcohol | `fragrance` | FRAGRANCE |
+
+Exact source URLs are in `cosmetics-category-taxonomy.json` and checked by `check-cosmetics-source-verified-wave27.mjs`. Former raw category hints are retained and tested separately, including the prior unverified Cinnamyl Alcohol note. Runtime target: **544/599 = 90.82%** supported public-role identities, 55 incomplete.
