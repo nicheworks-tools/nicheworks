@@ -25,6 +25,7 @@ requireText(css, '.detail-panel{display:none}', 'desktop detail must hide at mob
 requireText(css, '.phone-row .cell,.phone-row .port-cell{display:none}', 'mobile list must collapse secondary table cells');
 requireText(css, '.bottom-sheet.open{display:block;position:fixed', 'mobile bottom sheet fixed layout missing');
 requireText(css, 'max-height:88vh;overflow:auto', 'mobile bottom sheet vertical scrolling contract missing');
+requireText(css, '.bottom-sheet .detail-title{padding-right:46px}', 'mobile detail badge must reserve space for the overlaid close button');
 requireText(css, 'padding-bottom:env(safe-area-inset-bottom)', 'mobile safe-area padding missing');
 requireText(css, '@media(max-width:600px)', '600px narrow breakpoint missing');
 requireText(css, '@media(max-width:480px)', '480px phone breakpoint missing');

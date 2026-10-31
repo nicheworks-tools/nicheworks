@@ -1,0 +1,16 @@
+.okj-pro-batch{margin:20px 0;padding:16px;border:1px solid #c8d1da;border-radius:10px;background:#f8fafc;color:#17202c}
+.okj-pro-batch h2{font-size:1.2rem;margin:0 0 10px}.okj-pro-batch h3{font-size:1rem}
+.okj-pro-batch .okj-batch-note{color:#475569;line-height:1.55}
+.okj-pro-batch label{display:block;font-weight:600;margin:10px 0 6px}
+.okj-pro-batch textarea{width:100%;min-height:120px;max-width:100%;padding:9px;box-sizing:border-box;resize:vertical;font:inherit;color:#17202c;background:#fff;border:1px solid #64748b;border-radius:6px}
+.okj-pro-batch input[type=file]{display:block;width:100%;max-width:100%}
+.okj-pro-batch .okj-batch-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.okj-pro-batch button{border:1px solid #64748b;background:#fff;color:#102638;border-radius:7px;padding:9px 12px;font:inherit;cursor:pointer}
+.okj-pro-batch button:disabled{opacity:.52;cursor:default}
+.okj-pro-batch .okj-batch-status{min-height:1.4em;font-weight:600}
+.okj-pro-batch .okj-batch-table-wrap{max-width:100%;overflow-x:auto}
+.okj-pro-batch table{border-collapse:collapse;width:100%;font-size:.9rem}
+.okj-pro-batch th,.okj-pro-batch td{border-bottom:1px solid #cbd5e1;padding:8px;text-align:left;vertical-align:top;overflow-wrap:anywhere}
+.okj-pro-batch td.okj-batch-original{white-space:pre-wrap;min-width:100px}
+.okj-pro-batch td p{margin:3px 0}
+@media(max-width:540px){.okj-pro-batch{padding:12px}.okj-pro-batch .okj-batch-actions{display:block}.okj-pro-batch button{display:block;width:100%;margin:8px 0}}

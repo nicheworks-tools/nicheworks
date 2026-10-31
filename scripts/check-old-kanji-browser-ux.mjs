@@ -16,7 +16,16 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 function staticServer() {
   const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.ico':'image/x-icon'};
   const server=http.createServer((req,res)=>{
-    const u=new URL(req.url||'/',base); let p=decodeURIComponent(u.pathname); if(p.endsWith('/'))p+='index.html';
+    const u=new URL(req.url||'/',base);
+    // Local QA-only entitlement fixture; never part of the deployed app.
+    if(u.pathname==='/api/billing/entitlement'){
+      const ok=u.searchParams.get('productId')==='okj.toolkit_pro' &&
+        u.searchParams.get('sessionId')==='cs_test_WORKSPACEQA';
+      res.writeHead(ok?200:403,{'content-type':'application/json;charset=utf-8','cache-control':'no-store'});
+      res.end(JSON.stringify(ok?{ok:true,active:true,features:['okj.workspaces','okj.name.batch','okj.place.batch','okj.reports','okj.advancedExport']}:{ok:false,active:false,error:'not_entitled'}));
+      return;
+    }
+    let p=decodeURIComponent(u.pathname); if(p.endsWith('/'))p+='index.html';
     const f=path.resolve(root,'.'+p), rr=path.resolve(root)+path.sep;
     if(!f.startsWith(rr)||!fs.existsSync(f)||!fs.statSync(f).isFile()){res.writeHead(404).end('Not found');return;}
     res.writeHead(200,{'content-type':mime[path.extname(f)]||'application/octet-stream','cache-control':'no-store'}); fs.createReadStream(f).pipe(res);
@@ -138,6 +147,69 @@ async function main(){
       if(tool==='old-kanji-reference'&&vp.name==='desktop')await referenceExports(c,fail);
       const errs=await c.js('return window.__w15||[]');if(errs.length)fail.push(label+': runtime errors '+JSON.stringify(errs));check(label+'/final',await c.js(scanScript),fail);
     }}
+    // Authenticated Pro UI: prove one workspace survives navigation between two distinct tools.
+    await c.rect(1440,1000);
+    await c.nav(base+'/tools/old-kanji-ocr-scanner/');
+    await c.js("localStorage.setItem('nicheworks:billing:session:okj.toolkit_pro','cs_test_WORKSPACEQA');");
+    await c.nav(base+'/tools/old-kanji-ocr-scanner/');
+    await sleep(450);
+    const proMounted=await c.js("return !!document.getElementById('okj-pro-workspaces');");
+    if(!proMounted)fail.push('workspace/entitled: Pro workspace panel failed to mount');
+    else{
+      await c.js("const panel=document.getElementById('okj-pro-workspaces'); panel.querySelector('.okj-workspace-row input').value='QA historical manuscript'; panel.querySelector('.okj-workspace-row button').click();");
+      await sleep(200);
+      await c.js("const panel=document.getElementById('okj-pro-workspaces'); panel.querySelector('textarea').value='舊學 𠮷 historical text'; panel.querySelectorAll('.okj-workspace-row')[2].querySelector('button').click();");
+      await sleep(250);
+      const count=await c.js("return document.querySelectorAll('#okj-pro-workspaces .okj-workspace-entry').length;");
+      if(count!==1)fail.push('workspace/ocr: expected one stored entry, got '+count);
+      await c.nav(base+'/tools/name-old-kanji-checker/');
+      await sleep(500);
+      const reused=await c.js("const panel=document.getElementById('okj-pro-workspaces'); return {mounted:!!panel,text:panel?.querySelector('.okj-workspace-entry p')?.textContent||''};");
+      if(!reused.mounted||!reused.text.includes('舊學 𠮷'))fail.push('workspace/cross-tool: saved OCR entry missing from Name Checker');
+    }
+    // A real Chrome interaction with the new Pro batch panels and on-site dictionary.
+    await c.js("const batchPanel=document.getElementById('okj-pro-batch'); if(batchPanel){ batchPanel.querySelector('textarea').value=['舊','學'].join(String.fromCharCode(10)); batchPanel.querySelector('.okj-batch-actions button').click(); }");
+    await sleep(350);
+    const checkedName=await c.js("const panel=document.getElementById('okj-pro-batch'); return {mounted:!!panel,rows:panel?.querySelectorAll('tbody tr').length||0,text:panel?.querySelector('tbody')?.textContent||''};");
+    if(!checkedName.mounted || checkedName.rows!==2 || !checkedName.text.includes('旧') || !checkedName.text.includes('学')){
+      fail.push('batch/name: verified name checker did not analyze 舊 and 學: '+JSON.stringify(checkedName));
+    }
+    await c.nav(base+'/tools/place-old-kanji-checker/');
+    await sleep(500);
+    await c.js("const batchPanel=document.getElementById('okj-pro-batch'); if(batchPanel){ batchPanel.querySelector('textarea').value=['廣島','國府'].join(String.fromCharCode(10)); batchPanel.querySelector('.okj-batch-actions button').click(); }");
+    await sleep(350);
+    const checkedPlace=await c.js("const panel=document.getElementById('okj-pro-batch'); return {mounted:!!panel,rows:panel?.querySelectorAll('tbody tr').length||0,text:panel?.querySelector('tbody')?.textContent||''};");
+    if(!checkedPlace.mounted || checkedPlace.rows!==2 || !checkedPlace.text.includes('広') || !checkedPlace.text.includes('国')){
+      fail.push('batch/place: verified place checker did not analyze 廣 and 國: '+JSON.stringify(checkedPlace));
+    }
+    // Verify real browser download actions for Reports and Advanced Export.
+    await c.nav(base+'/tools/old-kanji-ocr-scanner/');
+    await sleep(550);
+    const reportVisible=await c.js("return !!document.getElementById('okj-pro-reports-export');");
+    if(!reportVisible)fail.push('reports/verified: report and export UI missing');
+    else{
+      await c.js("const e=document.getElementById('manual-text'); e.value='舊學'; e.dispatchEvent(new Event('input',{bubbles:true})); window.__okjReportsDownloaded=[]; HTMLAnchorElement.prototype.click=function(){window.__okjReportsDownloaded.push(this.download||'');}; const panel=document.getElementById('okj-pro-reports-export'); panel.querySelector('button[data-report-type=report][data-report-format=md]').click(); panel.querySelector('button[data-report-type=export][data-report-format=csv]').click();");
+      await sleep(500);
+      const downloads=await c.js("return {files:window.__okjReportsDownloaded||[],status:document.querySelector('#okj-pro-reports-export .okj-reports-status')?.textContent||''};");
+      if(!downloads.files.includes('old-kanji-report.md')||!downloads.files.includes('old-kanji-export.csv')){
+        fail.push('reports/browser-download: expected Markdown report and CSV advanced export '+JSON.stringify(downloads));
+      }
+    }
+    await c.js("localStorage.setItem('nicheworks:billing:session:okj.toolkit_pro','cs_test_DENIED');");
+    await c.nav(base+'/tools/old-kanji-ocr-scanner/');
+    await sleep(350);
+    if(await c.js("return !!document.getElementById('okj-pro-reports-export');")){
+      fail.push('reports/denied: report/export UI exposed without verified entitlement');
+    }
+    await c.nav(base+'/tools/name-old-kanji-checker/');
+    await sleep(350);
+    if(await c.js("return !!document.getElementById('okj-pro-batch');")){
+      fail.push('batch/denied: place batch UI exposed without verified entitlement');
+    }
+    if(await c.js("return !!document.getElementById('okj-pro-workspaces');")){
+      fail.push('workspace/denied: Pro UI exposed without verified entitlement');
+    }
+    await c.js("localStorage.removeItem('nicheworks:billing:session:okj.toolkit_pro');");
     if(fail.length){console.error(`Old Kanji browser UX audit failed: ${fail.length}`);for(const x of fail)console.error('- '+x);process.exitCode=1;}else console.log(`Old Kanji browser UX audit passed: ${tools.length} tools x ${viewports.length} viewports.`);
   }finally{if(c)await c.close().catch(()=>{});proc.kill('SIGTERM');server.close();}
 }

@@ -1,0 +1,56 @@
+{
+  "schema": "cta-image-wave7-sources-v2.3",
+  "version": "2026-10-31-reviewed-image-wave7-three-1",
+  "policy": {
+    "runtime_hotlink": false,
+    "source_provider": "Wikimedia Commons",
+    "promotion_rule": "Only three visually reviewed, SHA-1 verified local raster records approved; no automatic promotion from source intake."
+  },
+  "items": [
+    {
+      "entry_id": "multimeter",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/4/43/DT830D_DIGITAL_MULTIMETER.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:DT830D_DIGITAL_MULTIMETER.jpg",
+      "source_filename": "source.jpg",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "author": "Ranjithkumar Murugesan",
+      "attribution": "Ranjithkumar Murugesan / Wikimedia Commons, CC0 1.0",
+      "expected_sha1": "ff22145553196e8b7fe75d30bb8e519441b89a3f",
+      "subject_match": "matched",
+      "review_state": "verified",
+      "review_note": "Inspected original 1840x2453 JPEG and primary 540x720 WebP: digital multimeter with screen, selector knob, electrical measurement ranges and lead ports; single identifiable multimeter.",
+      "source_sha1": "ff22145553196e8b7fe75d30bb8e519441b89a3f"
+    },
+    {
+      "entry_id": "screwdriver",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Screw_driver.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Screw_driver.jpg",
+      "source_filename": "source.jpg",
+      "license": "Public Domain (PD-self)",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-self",
+      "author": "Dmitry G",
+      "attribution": "Dmitry G / Wikimedia Commons, Public Domain",
+      "expected_sha1": "73a6fa3dbbd195bc549a94beb2838158f543cf47",
+      "subject_match": "matched",
+      "review_state": "verified",
+      "review_note": "Inspected original 2736x3648 JPEG and primary 540x720 WebP: one full-length manual cross-head screwdriver, clear handle, shaft and tip, distinct from powered drivers; correct canonical subject.",
+      "source_sha1": "73a6fa3dbbd195bc549a94beb2838158f543cf47"
+    },
+    {
+      "entry_id": "utility_knife",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Utility_knife.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Utility_knife.jpg",
+      "source_filename": "source.jpg",
+      "license": "CC BY-SA 2.5",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.5/",
+      "author": "Matěj Baťha",
+      "attribution": "Matěj Baťha / Wikimedia Commons, CC BY-SA 2.5",
+      "expected_sha1": "d4d42d040c2be9f5764f165590b9700d60753bd7",
+      "subject_match": "matched",
+      "review_state": "verified",
+      "review_note": "Inspected original 1800x1350 JPEG and primary 960x720 WebP: yellow and black retractable segmented-blade construction utility knife shown clearly with spare break-off blade; correct canonical subject.",
+      "source_sha1": "d4d42d040c2be9f5764f165590b9700d60753bd7"
+    }
+  ]
+}

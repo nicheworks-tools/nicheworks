@@ -66,18 +66,21 @@ The original baseline intentionally counted only raw dictionary fields. That rem
 
 Reviewed runtime provenance after source-backed Wave 26 (the raw inventory above remains frozen):
 
-- verified category overlay identities: **130**
-- verified note overlay identities: **96**
-- verified note identities with maintained Japanese naming: **96**
-- strong runtime data identities (supported public role + Japanese name + source-backed verified ingredient-specific note): **96 / 599**
-- runtime public role explanations: **532 / 599 (88.81%)**; **67** identities still incomplete. This is distinct from the frozen 408/599 raw-canonical baseline.
+- verified category overlay identities: **142**
+- verified note overlay identities: **108**
+- verified note identities with maintained Japanese naming: **108**
+- strong runtime data identities (supported public role + Japanese name + source-backed verified ingredient-specific note): **108 / 599**
+- runtime public role explanations: **544 / 599 (90.82%)**; **55** identities still incomplete. This is distinct from the frozen 408/599 raw-canonical baseline.
 
 Accordingly, completion readiness must report raw dictionary debt and runtime verified provenance separately. A raw evidence count of zero must not be interpreted as zero runtime provenance.
 
-The runtime provenance floors are ratcheted at 130 verified categories, 96 verified notes, and 96 strong runtime identities so later changes cannot silently discard completed provenance work. Wave 20 adds source-backed ingredient-specific notes for Glycine, Lactic Acid, PEG-100 Stearate, and Proline.
+The runtime provenance floors are ratcheted at 142 verified categories, 108 verified notes, and 108 strong runtime identities so later changes cannot silently discard completed provenance work. Wave 20 adds source-backed ingredient-specific notes for Glycine, Lactic Acid, PEG-100 Stearate, and Proline.
 
 
 Wave 21 (2026-10-31) verifies three additional common-label notes against COSMILE Europe: 1,2-Hexanediol, Sodium Citrate, and Urea. Raw recognition records remain unchanged; verified runtime strong readiness is 85/599. Historical baseline metrics above remain frozen inventory, not a statement that all 599 identities have complete descriptions.
 
 
 Category Wave 26 / Verified Note Wave 22 (2026-10-31) reviews 11 previously public-role-incomplete identities with named official COSMILE Europe ingredient-function URLs. These are exact per-ingredient evidence mappings, not automatic category generalizations. No raw recognition dictionary was rewritten, and no unsupported category or safety conclusion was invented. The stronger incomplete-note backlog is **503/599**.
+
+
+Category wave27 / note wave23 (2026-10-31): 12 more reviewed source-linked roles and ingredient-specific notes (hydrolyzed proteins, mineral salts, inorganic functions and fragrance) were independently checked against individual COSMILE Europe records. This leaves **55/599** unresolved public role identities and **491/599** identities without the stronger reviewed note. The data inventory is still 725 raw source records / 599 canonical identities; product-safety scoring and raw recognition metadata are unchanged. These are release measurements subject to CI confirmation.

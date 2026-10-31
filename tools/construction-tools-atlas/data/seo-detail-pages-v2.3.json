@@ -12,15 +12,15 @@
     "revenue_priority_policy_version": "2026-09-19-revenue-priority-2",
     "public_content_quality_version": "2026-09-16-q014-identity-closure-1",
     "public_image_inventory_version": "2026-09-16-q014-identity-closure-1",
-    "image_registry_version": "2026-09-19-wave5-promotion-1",
+    "image_registry_version": "2026-10-31-reviewed-image-wave9-four-1",
     "affiliate_offers_version": "2026-09-18-wave6l-affiliate-1"
   },
   "summary": {
     "public_runtime_entries": 870,
-    "published_static_detail_pages": 33,
-    "with_promoted_image": 32,
+    "published_static_detail_pages": 44,
+    "with_promoted_image": 43,
     "image_not_required": 1,
-    "with_active_affiliate_mapping": 33
+    "with_active_affiliate_mapping": 44
   },
   "entries": [
     {
@@ -114,6 +114,12 @@
       "affiliate": "active"
     },
     {
+      "id": "hammer_drill",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/hammer_drill/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
       "id": "hard_hat",
       "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/hard_hat/",
       "image": "promoted",
@@ -138,6 +144,12 @@
       "affiliate": "active"
     },
     {
+      "id": "laser_distance_meter",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/laser_distance_meter/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
       "id": "laser_level",
       "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/laser_level/",
       "image": "promoted",
@@ -150,6 +162,18 @@
       "affiliate": "active"
     },
     {
+      "id": "multimeter",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/multimeter/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "nail_gun",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/nail_gun/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
       "id": "notched_trowel",
       "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/notched_trowel/",
       "image": "promoted",
@@ -158,6 +182,12 @@
     {
       "id": "paint_tray",
       "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/paint_tray/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "pipe_wrench",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/pipe_wrench/",
       "image": "promoted",
       "affiliate": "active"
     },
@@ -218,6 +248,42 @@
     {
       "id": "safety_harness",
       "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/safety_harness/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "screwdriver",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/screwdriver/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "speed_square",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/speed_square/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "tape_measure",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/tape_measure/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "torque_wrench",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/torque_wrench/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "utility_knife",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/utility_knife/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "wire_stripper",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/wire_stripper/",
       "image": "promoted",
       "affiliate": "active"
     }

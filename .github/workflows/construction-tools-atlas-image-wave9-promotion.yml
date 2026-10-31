@@ -1,0 +1,26 @@
+name: Construction Tools Atlas Wave9 Image Provenance Audit
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit-four-reviewed-wave9-images:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify originals SHA-1, attribution, and 44-page SEO cohort
+        run: |
+          echo "24c266f815ea1dbcc49ff7852ef86ad0ce22e49d  tools/construction-tools-atlas/images/laser_distance_meter/source.jpg" | sha1sum -c
+          echo "b5f85461c09515e3d84d8d78843be45a8dcbf2e3  tools/construction-tools-atlas/images/pipe_wrench/source.jpg" | sha1sum -c
+          echo "eb5e49d2d9178131cb173cbd69ff1716ee57345e  tools/construction-tools-atlas/images/speed_square/source.jpg" | sha1sum -c
+          echo "ccf42ce9ccf4d0054b7d2c703efa806249b80663  tools/construction-tools-atlas/images/nail_gun/source.jpg" | sha1sum -c
+          node tools/construction-tools-atlas/scripts/check-image-registry-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/check-image-attribution-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/build-seo-detail-pages-v2.3.cjs --check
+          node tools/construction-tools-atlas/scripts/build-affiliate-image-acquisition-queue-v2.3.cjs --check

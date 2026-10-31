@@ -1,0 +1,44 @@
+name: Phone QuickCheck production smoke
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/phone-quickcheck-production-smoke.yml'
+      - 'scripts/check-phone-quickcheck-production.mjs'
+  push:
+    branches:
+      - main
+    paths:
+      - 'tools/phone-quickcheck/**'
+      - 'scripts/check-phone-quickcheck-production.mjs'
+      - '.github/workflows/phone-quickcheck-production-smoke.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  public-browser-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify Chromium installed on runner
+        run: google-chrome --version
+      - name: Verify deployed HTTP assets and browser behavior at 5 viewports
+        env:
+          CHROME_BIN: google-chrome
+          PHONE_SMOKE_RETRIES: '8'
+          PHONE_SMOKE_RETRY_DELAY_MS: '15000'
+        run: node scripts/check-phone-quickcheck-production.mjs --url=https://nicheworks.app/tools/phone-quickcheck/
+      - name: Save production viewport screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phone-quickcheck-production-screens
+          path: artifacts/phone-quickcheck-production/*.png
+          if-no-files-found: ignore
+          retention-days: 7

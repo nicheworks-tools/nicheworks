@@ -1,0 +1,95 @@
+name: CSV Tidy Pro browser acceptance
+
+on:
+  pull_request:
+    paths:
+      - 'tools/csv-tidy/**'
+      - 'assets/nw-pro-entitlement.js'
+      - 'scripts/ops/csv-tidy-pro-qa-server.py'
+      - '.github/workflows/csv-tidy-pro-browser-acceptance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pro-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Chrome - verified/unverified entitlement, preset and actual ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/ops/csv-tidy-pro-qa-server.py --port 8766 >/tmp/csv-tidy-pro-qa.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" || true' EXIT
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:8766/tools/csv-tidy/ >/dev/null; then break; fi
+            sleep 1
+          done
+
+          CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          if [ -z "$CHROME" ]; then
+            echo "BLOCKED: Chrome is unavailable"
+            exit 2
+          fi
+          export DOWNLOAD_DIR="$RUNNER_TEMP/csv-pro-zip-download"
+          export PROFILE_DIR="$RUNNER_TEMP/csv-pro-qa-profile"
+          mkdir -p "$DOWNLOAD_DIR" "$PROFILE_DIR/Default"
+          python3 - <<'PY'
+          import json,os,pathlib
+          file=pathlib.Path(os.environ['PROFILE_DIR'])/'Default'/'Preferences'
+          file.write_text(json.dumps({'download':{
+            'default_directory':os.environ['DOWNLOAD_DIR'],
+            'prompt_for_download':False,
+            'directory_upgrade':True
+          }}),encoding='utf-8')
+          PY
+
+          "$CHROME" --headless=new --no-sandbox --disable-gpu \
+            --disable-dev-shm-usage --disable-background-networking \
+            --no-first-run --no-default-browser-check \
+            --user-data-dir="$PROFILE_DIR" \
+            --download-default-directory="$DOWNLOAD_DIR" \
+            --window-size=1440,1000 --virtual-time-budget=12000 \
+            --dump-dom http://127.0.0.1:8766/tools/csv-tidy/tests/pro-browser-acceptance.html \
+            >"$RUNNER_TEMP/pro-browser-result.html" 2>"$RUNNER_TEMP/pro-browser-chrome.log" || {
+              tail -80 "$RUNNER_TEMP/pro-browser-chrome.log" || true
+              exit 1
+            }
+
+          python3 - <<'PY'
+          import os,pathlib,re,sys
+          from html import unescape
+          text=(pathlib.Path(os.environ['RUNNER_TEMP'])/'pro-browser-result.html').read_text(encoding='utf-8',errors='replace')
+          match=re.search(r'<pre id="results"[^>]*>(.*?)</pre>',text,re.S)
+          report=unescape(match.group(1)) if match else 'ERROR: no Chrome report'
+          print(report)
+          if 'data-result="PASS"' not in text or not report.startswith('PASS'):
+            sys.exit('Browser test failed or did not finish')
+          PY
+
+          python3 - <<'PY'
+          import base64,csv,io,json,os,pathlib,re,zipfile
+          html=(pathlib.Path(os.environ['RUNNER_TEMP'])/'pro-browser-result.html').read_text(encoding='utf-8')
+          match=re.search(r'<pre id="zipPayload"[^>]*>(.*?)</pre>',html,re.S)
+          assert match and match.group(1).strip(),'Browser-created ZIP Blob missing'
+          payload=base64.b64decode(match.group(1).strip(),validate=True)
+          with zipfile.ZipFile(io.BytesIO(payload)) as z:
+            assert z.testzip() is None,'CRC32 mismatch'
+            assert z.namelist()==[
+              '001-first.tidy.csv',
+              '003-third.tidy.csv',
+              'csv-tidy-report.json'
+            ],z.namelist()
+            one=list(csv.reader(io.StringIO(z.read('001-first.tidy.csv').decode('utf-8-sig'),newline=''),strict=True))
+            two=list(csv.reader(io.StringIO(z.read('003-third.tidy.csv').decode('utf-8-sig'),newline=''),strict=True))
+            assert one==[['code','title'],['003','Carol']],one
+            assert two==[['code','title'],['004','Dan']],two
+            manifest=json.loads(z.read('csv-tidy-report.json'))
+            assert manifest['accepted']==2 and manifest['rejected']==1,manifest
+            assert manifest['files'][1]['code']=='unclosed_quote',manifest
+            print('PASS: Chrome-generated ZIP Blob independently extracted/reparsed; 2 valid / 1 rejected')
+          PY

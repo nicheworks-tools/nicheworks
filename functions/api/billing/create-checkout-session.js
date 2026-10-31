@@ -1,4 +1,5 @@
-import { loadProductsConfig, validateConfiguredProduct } from './product-config.js';
+import { expectedMinorAmount, getProduct, loadProductsConfig, validateConfiguredProduct } from './product-config.js';
+import { oldKanjiLiveReady } from './old-kanji-launch-guard.js';
 
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -67,6 +68,28 @@ function evaluateCheckoutGate(secretKey, env, productId) {
   return { ok: false, error: 'stripe_secret_key_invalid', status: 503 };
 }
 
+async function verifyStripePrice(secretKey, priceId, product, mode) {
+  // Prevent charging a Stripe amount/currency different from the approved public product contract.
+  let response, data;
+  try {
+    response = await fetch('https://api.stripe.com/v1/prices/' + encodeURIComponent(priceId), {
+      method: 'GET',
+      headers: { Authorization: 'Bearer ' + secretKey }
+    });
+    data = await response.json();
+  } catch {
+    return false;
+  }
+  return Boolean(
+    response.ok && data?.active === true &&
+    data?.type === 'one_time' && data?.recurring == null &&
+    data?.livemode === (mode === 'live') &&
+    data?.currency === String(product?.price?.currency || '').toLowerCase() &&
+    Number.isInteger(data?.unit_amount) &&
+    data.unit_amount === expectedMinorAmount(product)
+  );
+}
+
 async function createStripeCheckoutSession({ secretKey, priceId, successUrl, cancelUrl, metadata }) {
   const params = new URLSearchParams();
   params.set('mode', 'payment');
@@ -127,12 +150,27 @@ export async function onRequestPost({ request, env }) {
     return json({ ok: false, error: 'products_config_unavailable' }, 503);
   }
 
-  const productCheck = validateConfiguredProduct(config, productId);
-  if (!productCheck.ok) {
-    const status = productCheck.error === 'unknown_product_id' ? 404 : 409;
-    return json({ ok: false, error: productCheck.error }, status);
+  // The catalog can contain unpriced planning products. Check the explicit launch
+  // gates BEFORE price validation, so all such products fail closed consistently.
+  const listedProduct = getProduct(config, productId);
+  if (!listedProduct) {
+    return json({ ok: false, error: 'unknown_product_id' }, 404);
+  }
+  // Preserve product-specific launch switches added for CSV Tidy and future products.
+  if (listedProduct.checkout && listedProduct.checkout.enabled !== true) {
+    return json({ ok: false, error: 'product_checkout_disabled' }, 403);
+  }
+  // Keep earlier non-OKJ products' error handling stable; only Old Kanji is
+  // subject to this new unpriced-product launch boundary.
+  if (listedProduct.productId === 'okj.toolkit_pro' &&
+      (config.status !== 'active' || listedProduct.stripe?.mode !== 'connected')) {
+    return json({ ok: false, error: 'product_not_on_sale' }, 409);
   }
 
+  const productCheck = validateConfiguredProduct(config, productId);
+  if (!productCheck.ok) {
+    return json({ ok: false, error: productCheck.error }, 409);
+  }
   const { product } = productCheck;
   // An explicitly configured product-level checkout gate is fail-closed.
   // Existing products without checkout settings preserve their legacy behavior.
@@ -148,6 +186,14 @@ export async function onRequestPost({ request, env }) {
 
   const gate = evaluateCheckoutGate(env.STRIPE_SECRET_KEY, env, product.productId);
   if (!gate.ok) return json({ ok: false, error: gate.error }, gate.status);
+  if (product.productId === 'okj.toolkit_pro' && gate.mode === 'live') {
+    if (!(await oldKanjiLiveReady(config, product, env))) {
+      return json({ ok: false, error: 'product_not_on_sale' }, 409);
+    }
+  }
+  if (!(await verifyStripePrice(env.STRIPE_SECRET_KEY, stripePriceId, product, gate.mode))) {
+    return json({ ok: false, error: 'stripe_price_mismatch_or_unavailable' }, 503);
+  }
 
   const origin = buildOrigin(request, env);
   const query = new URLSearchParams({

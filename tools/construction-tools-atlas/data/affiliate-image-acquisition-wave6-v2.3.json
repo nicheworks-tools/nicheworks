@@ -1,6 +1,6 @@
 {
   "schema": "cta-affiliate-image-acquisition-wave6-v2.3",
-  "version": "2026-10-31-affiliate-image-first-acquisition-1",
+  "version": "2026-10-31-reviewed-image-wave9-four-1",
   "policy": {
     "queue_order": "curated source-feasibility work order, NOT empirical market ranking",
     "no_guessed_search_volume": true,
@@ -17,9 +17,9 @@
   },
   "expected": {
     "active_affiliate_mappings": 432,
-    "revenue_ready": 33,
-    "awaiting_source": 399,
-    "first_wave": 12,
+    "revenue_ready": 44,
+    "awaiting_source": 388,
+    "first_wave": 1,
     "source_leads": 3
   },
   "first_wave_ids": [
@@ -81,6 +81,68 @@
       "source_review": "commons_metadata_checked",
       "binary_review": "pending_download_sha1_webp_quality_review",
       "promotion_allowed": false
+    }
+  ],
+  "review_decisions": [
+    {
+      "entry_id": "hammer_drill",
+      "disposition": "promoted",
+      "review": "Original and WebP image visibly match hammer drill; SHA-1 verified, formal image lifecycle completed."
+    },
+    {
+      "entry_id": "tape_measure",
+      "disposition": "promoted",
+      "review": "Original and WebP image visibly match tape measure; SHA-1 verified, formal image lifecycle completed."
+    },
+    {
+      "entry_id": "torque_wrench",
+      "disposition": "promoted",
+      "review": "Original mixed-tool source rejected, replaced with a direct close-up of a single adjustable torque wrench. New Wave8 image verified via original and WebP visual inspection and SHA-1. Inspected original 2560x1920 JPEG and primary 960x720 WebP: a complete torque wrench with torque setting grip and ratchet head is clearly visible; replaces the rejected mixed-tool collection photo."
+    },
+    {
+      "entry_id": "utility_knife",
+      "disposition": "promoted",
+      "review": "Wave7 source and WebP originals directly inspected, exact Commons SHA-1 matched, licensed attribution retained, complete formal lifecycle completed: Inspected original 1800x1350 JPEG and primary 960x720 WebP: yellow and black retractable segmented-blade construction utility knife shown clearly with spare break-off blade; correct canonical subject."
+    },
+    {
+      "entry_id": "screwdriver",
+      "disposition": "promoted",
+      "review": "Wave7 source and WebP originals directly inspected, exact Commons SHA-1 matched, licensed attribution retained, complete formal lifecycle completed: Inspected original 2736x3648 JPEG and primary 540x720 WebP: one full-length manual cross-head screwdriver, clear handle, shaft and tip, distinct from powered drivers; correct canonical subject."
+    },
+    {
+      "entry_id": "multimeter",
+      "disposition": "promoted",
+      "review": "Wave7 source and WebP originals directly inspected, exact Commons SHA-1 matched, licensed attribution retained, complete formal lifecycle completed: Inspected original 1840x2453 JPEG and primary 540x720 WebP: digital multimeter with screen, selector knob, electrical measurement ranges and lead ports; single identifiable multimeter."
+    },
+    {
+      "entry_id": "wire_stripper",
+      "disposition": "promoted",
+      "review": "Inspected original 588x1065 JPEG and primary 398x720 WebP: an automatic wire stripper with visible stripping jaws and red handles is clearly identifiable."
+    },
+    {
+      "entry_id": "reciprocating_saw",
+      "disposition": "rejected_subject_focus",
+      "review": "Wave8 candidate only shows reciprocating saw front and blade actively cutting lumber, with most tool body cropped off; rejected for canonical identification and not promoted. Seek a full-tool original. Wave9 second proposed saw image inspected: saw body and rear grip visible but cutting blade and tool nose absent; still inadequate for canonical illustration; remain awaiting_source."
+    },
+    {
+      "entry_id": "laser_distance_meter",
+      "disposition": "promoted",
+      "review": "Original JPEG / primary WebP visually inspected, Commons API SHA-1 matched verified original, attribution and publication lifecycle completed. Inspected original 750x507 JPEG and 750x507 WebP: complete handheld laser distance meter with screen and controls, clearly recognizable; source file original SHA-1 confirmed through Commons API."
+    },
+    {
+      "entry_id": "pipe_wrench",
+      "disposition": "promoted",
+      "review": "Original JPEG / primary WebP visually inspected, Commons API SHA-1 matched verified original, attribution and publication lifecycle completed. Inspected original 4608x3072 JPEG and 960x640 WebP: full red pipe wrench, adjustable jaw and knurled knob clearly visible in uncluttered foreground."
+    },
+    {
+      "entry_id": "speed_square",
+      "disposition": "promoted",
+      "review": "Original JPEG / primary WebP visually inspected, Commons API SHA-1 matched verified original, attribution and publication lifecycle completed. Inspected original 567x480 JPEG and 567x480 WebP: Swanson triangular speed square with right-angle edges and graduated layout scales; adequate focal tool despite native resolution."
+    },
+    {
+      "entry_id": "nail_gun",
+      "disposition": "promoted",
+      "review": "Original JPEG / primary WebP visually inspected, Commons API SHA-1 matched verified original, attribution and publication lifecycle completed. Inspected original 2816x2112 JPEG and 960x720 WebP: one full pneumatic nail gun shown side-on with barrel, magazine, grip and air fitting; correct canonical subject."
     }
   ]
 }

@@ -1,0 +1,62 @@
+name: Old Kanji Pro browser QA
+
+on:
+  pull_request:
+    paths:
+      - 'tools/old-kanji-reference/**'
+      - 'tools/kanji-modernizer/**'
+      - 'tools/old-kanji-ocr-scanner/**'
+      - 'tools/old-document-kanji-highlighter/**'
+      - 'tools/unicode-kanji-checker/**'
+      - 'tools/variant-kanji-compare/**'
+      - 'tools/place-old-kanji-checker/**'
+      - 'tools/name-old-kanji-checker/**'
+      - 'assets/nw-pro-entitlement.js'
+      - 'assets/old-kanji-pro-sales.js'
+      - 'assets/okj-workspace-*.js'
+      - 'assets/okj-name-place-batch*'
+      - 'assets/okj-workspace.css'
+      - 'assets/old-kanji-pro-sales.css'
+      - 'assets/okj-ocr-pro-ui.js'
+      - 'assets/okj-report-engine.js'
+      - 'assets/okj-export-engine.js'
+      - 'assets/okj-report-export-*'
+      - 'assets/okj-ocr-pro-phase1.css'
+      - 'scripts/check-old-kanji-browser-ux.mjs'
+      - '.github/workflows/old-kanji-pro-browser-qa.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'assets/old-kanji-pro-sales.js'
+      - 'assets/okj-workspace-*.js'
+      - 'assets/okj-name-place-batch*'
+      - 'assets/okj-workspace.css'
+      - 'assets/okj-ocr-pro-ui.js'
+      - 'assets/okj-report-engine.js'
+      - 'assets/okj-export-engine.js'
+      - 'assets/okj-report-export-*'
+      - 'assets/okj-workspace-*.js'
+      - 'assets/okj-name-place-batch*'
+      - 'assets/okj-workspace.css'
+      - 'tools/old-kanji-ocr-scanner/**'
+      - '.github/workflows/old-kanji-pro-browser-qa.yml'
+  workflow_dispatch:
+
+jobs:
+  old-kanji-browser-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
+        with:
+          chrome-version: stable
+          install-chromedriver: true
+      - name: Validate all eight Free paths, contextual Amazon, JP/EN and mobile/desktop
+        env:
+          CHROMEWEBDRIVER: ${{ steps.chrome.outputs.chromedriver-path }}
+        run: node scripts/check-old-kanji-browser-ux.mjs

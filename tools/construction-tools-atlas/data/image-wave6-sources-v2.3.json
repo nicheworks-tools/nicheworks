@@ -1,0 +1,41 @@
+{
+  "schema": "cta-image-wave6-sources-v2.3",
+  "version": "2026-10-31-reviewed-image-wave6-two-1",
+  "policy": {
+    "runtime_hotlink": false,
+    "source_provider": "Wikimedia Commons",
+    "promotion_rule": "Only two subject-reviewed, SHA-1 verified local raster records approved; rejected torque_wrench photo excluded."
+  },
+  "items": [
+    {
+      "entry_id": "hammer_drill",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Hammer_drill-1.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Hammer_drill-1.jpg",
+      "source_filename": "source.jpg",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "author": "Shakespeare (English Wikipedia)",
+      "attribution": "Shakespeare (English Wikipedia) / Wikimedia Commons, CC BY-SA 3.0",
+      "expected_sha1": "3076529a2af3514d64a784177f37c52eb3aed4a1",
+      "subject_match": "matched",
+      "review_state": "verified",
+      "review_note": "Inspected original 800x905 JPEG and 636x720 WebP: corded hammer drill with side handle and masonry drill bit clearly identifiable, not an impact driver or rotary hammer.",
+      "source_sha1": "3076529a2af3514d64a784177f37c52eb3aed4a1"
+    },
+    {
+      "entry_id": "tape_measure",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Centroinstrument_measuring_tape.JPG",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Centroinstrument_measuring_tape.JPG",
+      "source_filename": "source.jpg",
+      "license": "Public Domain (PD-self)",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-self",
+      "author": "Dmitry G",
+      "attribution": "Dmitry G / Wikimedia Commons, Public Domain (PD-self)",
+      "expected_sha1": "dd3e0b24aa589afee0c7986949e18645dd896d0b",
+      "subject_match": "matched",
+      "review_state": "verified",
+      "review_note": "Inspected original 3648x2056 JPEG and 960x541 WebP: identifiable tape housing, ten-metre label and extended ruler; clear tool subject.",
+      "source_sha1": "dd3e0b24aa589afee0c7986949e18645dd896d0b"
+    }
+  ]
+}

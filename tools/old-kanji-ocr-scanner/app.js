@@ -46,7 +46,7 @@ const i18n = {
     proPanelHeading: 'Old Kanji Toolkit Pro',
     proBadge: 'Pro',
     proPanelLead: '一括OCR、履歴保存、トリミングOCR、拡大確認、画像内マーキング、調査レポート出力は Pro 機能として提供予定です。',
-    proPanelPrice: '$4.99 買い切り',
+    proPanelPrice: '価格未定',
     proBatchTitle: '一括OCRは Pro 機能です',
     proBatchText: '複数画像のOCR、連続スキャン、検出結果のまとめ処理は Old Kanji Toolkit Pro で利用できます。',
     proHistoryTitle: '履歴保存は Pro 機能です',
@@ -82,7 +82,7 @@ const i18n = {
     proPanelHeading: 'Old Kanji Toolkit Pro',
     proBadge: 'Pro',
     proPanelLead: 'Batch OCR, saved history, crop OCR, zoom inspection, image marking, and research reports are planned as Pro features.',
-    proPanelPrice: '$4.99 one-time',
+    proPanelPrice: 'Price not decided',
     proBatchTitle: 'Batch OCR is a Pro feature',
     proBatchText: 'Multiple-image OCR, continuous scanning, and grouped detection results are available in Old Kanji Toolkit Pro.',
     proHistoryTitle: 'Saved history is a Pro feature',
@@ -267,8 +267,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   setOcrStatus('ocrIdleText');
   updateDetection();
   syncOkjProRuntimeState();
-  syncLockedFeaturePlaceholder('okj.scanHistory');
-  syncLockedFeaturePlaceholder('okj.oldKanjiCollection');
+  syncLockedFeaturePlaceholder('okj.history');
+  syncLockedFeaturePlaceholder('okj.collections');
 
   document.getElementById('lang-ja').addEventListener('click', () => setLang('ja'));
   document.getElementById('lang-en').addEventListener('click', () => setLang('en'));

@@ -99,3 +99,11 @@ Long source documents benefit from desktop width, while the input/results are ve
 - `tools/old-document-kanji-highlighter/tests/behavior.test.mjs` — detection counts, mechanical modernization, exact converter handoff, compatibility edge cases, dictionary failure/degraded mode, same-site fetch boundary, copy wiring, and public no-Pro-panel contract.
 - `tools/old-document-kanji-highlighter/style.css`
 - `tools/old-kanji-reference/dict.json`
+
+## Toolkit Pro Phase 1 — staged / not on sale
+
+- Shared product ID: `okj.toolkit_pro` (one entitlement covers all eight tools).
+- Current Free guarantee: Single document highlighting, detection, mechanical preview and copy remain Free.
+- Proposed Pro feature IDs: `okj.document.batch`, `okj.history`, `okj.workspaces`, `okj.reports`.
+- The active Free workflow remains unchanged. No purchase CTA/fixed Pro price is allowed until verified checkout, entitlement, restore and browser QA.
+- Canonical definition: `config/old-kanji-toolkit-pro-phase1.json`. Existing contextual Amazon Associates links remain active and independent of Pro; user content must not flow to affiliate URLs or analytics.

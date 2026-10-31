@@ -1207,5 +1207,45 @@ setSegActive(els.hasHeaderOn, els.hasHeaderOff, true);
     try { setHint(state.ui.lang==="ja" ? "CSVを読み込んでください。" : "Please load a CSV."); } catch(_e) {}
   }
 
+  // Read-only bridge for server-entitled CSV Tidy Pro controls.
+  // This does not mutate the Free editor or alter normal CSV handling.
+  window.NicheWorksCsvTidyProBridge = Object.freeze({
+    snapshot(){
+      if (state.load.status !== "valid" || state.data.widthError ||
+          !state.data.rows.length || !state.data.cols.length) return null;
+      return {
+        source: {
+          hasHeader: !!state.input.hasHeader,
+          width: state.data.cols.length,
+          sourceHeaders: state.input.hasHeader ? state.data.rows[0].slice() : null
+        },
+        columns: state.data.cols.map(c => ({
+          srcIndex: c.srcIndex,
+          order: c.order,
+          name: String(c.name ?? ""),
+          excluded: !!c.excluded,
+          cleanApply: c.cleanApply !== false
+        })),
+        input: { encoding: state.input.encoding, delimiter: state.input.delimiter },
+        cleaning: {
+          scope: state.options.cleanScope,
+          trim: state.options.trim,
+          normSpaces: state.options.normSpaces,
+          zenHan: { ...state.options.zenHan }
+        },
+        output: {
+          delimiter: els.outDelimiter.value,
+          quotePolicy: els.quotePolicy.value,
+          newline: state.options.output.newline,
+          bom: state.options.output.bom
+        }
+      };
+    },
+    codec: Object.freeze({
+      guessEncoding, decodeArrayBuffer, guessDelimiter,
+      parseCSV, stringifyCSV, convertZenHan
+    })
+  });
+
   document.addEventListener("DOMContentLoaded", init);
 })();

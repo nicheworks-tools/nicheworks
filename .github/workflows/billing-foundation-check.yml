@@ -5,9 +5,31 @@ on:
     paths:
       - 'functions/api/billing/**'
       - 'assets/nw-pro-entitlement.js'
+      - 'assets/old-kanji-pro-sales.*'
+      - 'assets/okj-history-collection.js'
+      - 'assets/okj-workspace-*.js'
+      - 'assets/okj-name-place-batch*'
+      - 'scripts/check-old-kanji-name-place-batch.mjs'
+      - 'assets/okj-workspace.css'
+      - 'scripts/check-old-kanji-workspaces.mjs'
+      - 'assets/okj-ocr-pro-*.js'
+      - 'assets/okj-report-*.js'
+      - 'assets/okj-report-export.css'
+      - 'assets/okj-export-engine.js'
+      - 'scripts/check-old-kanji-reports-export.mjs'
+      - 'assets/okj-ocr-pro-phase1.css'
+      - 'tools/old-kanji-ocr-scanner/index.html'
+      - 'scripts/check-old-kanji-pro-functional.mjs'
+      - 'scripts/check-old-kanji-checkout-closed.mjs'
+      - 'scripts/check-old-kanji-live-readiness.mjs'
       - 'billing/success.html'
       - 'billing/cancel.html'
       - 'config/billing/products.json'
+      - 'config/old-kanji-toolkit-pro-phase1.json'
+      - 'schema/billing_entitlements.sql'
+      - 'scripts/check-old-kanji-pro-phase1.mjs'
+      - 'tools/OLD_KANJI_CLUSTER.md'
+      - 'tools/**/SPEC.md'
       - 'tools/reconcile/index.html'
       - 'tools/reconcile/refund.html'
       - 'tools/reconcile/SPEC.md'
@@ -19,9 +41,29 @@ on:
     paths:
       - 'functions/api/billing/**'
       - 'assets/nw-pro-entitlement.js'
+      - 'assets/old-kanji-pro-sales.*'
+      - 'assets/okj-history-collection.js'
+      - 'assets/okj-workspace-*.js'
+      - 'assets/okj-name-place-batch*'
+      - 'scripts/check-old-kanji-name-place-batch.mjs'
+      - 'assets/okj-workspace.css'
+      - 'scripts/check-old-kanji-workspaces.mjs'
+      - 'assets/okj-ocr-pro-*.js'
+      - 'assets/okj-report-*.js'
+      - 'assets/okj-report-export.css'
+      - 'assets/okj-export-engine.js'
+      - 'scripts/check-old-kanji-reports-export.mjs'
+      - 'assets/okj-ocr-pro-phase1.css'
+      - 'tools/old-kanji-ocr-scanner/index.html'
+      - 'scripts/check-old-kanji-pro-functional.mjs'
       - 'billing/success.html'
       - 'billing/cancel.html'
       - 'config/billing/products.json'
+      - 'config/old-kanji-toolkit-pro-phase1.json'
+      - 'schema/billing_entitlements.sql'
+      - 'scripts/check-old-kanji-pro-phase1.mjs'
+      - 'tools/OLD_KANJI_CLUSTER.md'
+      - 'tools/**/SPEC.md'
       - 'tools/reconcile/index.html'
       - 'tools/reconcile/refund.html'
       - 'tools/reconcile/SPEC.md'
@@ -41,10 +83,37 @@ jobs:
       - name: Syntax check billing modules
         run: |
           node --check functions/api/billing/product-config.js
+          node --check functions/api/billing/old-kanji-launch-guard.js
+          node --check functions/api/billing/product-availability.js
           node --check functions/api/billing/create-checkout-session.js
           node --check functions/api/billing/entitlement-store.js
           node --check functions/api/billing/entitlement.js
           node --check functions/api/billing/stripe-webhook.js
           node --check assets/nw-pro-entitlement.js
+          node --check assets/old-kanji-pro-sales.js
+          node --check assets/okj-ocr-pro-engine.js
+          node --check assets/okj-ocr-pro-ui.js
+          node --check assets/okj-report-engine.js
+          node --check assets/okj-export-engine.js
+          node --check assets/okj-report-export-ui.js
+          node --check assets/okj-history-collection.js
+          node --check assets/okj-workspace-store.js
+          node --check assets/okj-workspace-ui.js
+          node --check assets/okj-name-place-batch.js
+          node --check assets/okj-name-place-batch-ui.js
       - name: Check billing contract
         run: node scripts/check-billing-foundation.mjs
+      - name: Test fail-closed unpriced and unknown products
+        run: node scripts/check-old-kanji-checkout-closed.mjs
+      - name: Test live launch and pricing guard
+        run: node scripts/check-old-kanji-live-readiness.mjs
+      - name: Check Old Kanji product contract
+        run: node scripts/check-old-kanji-pro-phase1.mjs
+      - name: Test real local OCR Batch and History Pro gate
+        run: node scripts/check-old-kanji-pro-functional.mjs
+      - name: Test cross-tool Pro workspaces with entitlement-specific gates
+        run: node scripts/check-old-kanji-workspaces.mjs
+      - name: Test actual reference-backed Name and Place CSV batch
+        run: node scripts/check-old-kanji-name-place-batch.mjs
+      - name: Test actual OCR reports, advanced exports and CSV formula safety
+        run: node scripts/check-old-kanji-reports-export.mjs

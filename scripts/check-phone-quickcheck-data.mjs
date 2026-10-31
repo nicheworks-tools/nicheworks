@@ -14,7 +14,7 @@ const accessoryPayload = JSON.parse(fs.readFileSync(accessoriesPath, 'utf8'));
 const phones = Array.isArray(phonePayload.phones) ? phonePayload.phones : [];
 const accessories = Array.isArray(accessoryPayload.accessories) ? accessoryPayload.accessories : [];
 
-if (phones.length < 206) fail(`expected at least 205 phones, got ${phones.length}`);
+if (phones.length < 215) fail(`expected at least 215 phones, got ${phones.length}`);
 if (!/^2026-\d{2}-\d{2}$/.test(String(phonePayload.updatedAt || ''))) fail('phones updatedAt must be a 2026 ISO date');
 
 const ids = new Set();
@@ -102,6 +102,10 @@ for (const phone of phones) {
     if (charging[key] !== null && charging[key] !== undefined && !finitePositive(charging[key])) fail(`${label}: invalid charging.${key}`);
   }
   if (charging.protocols !== undefined && !Array.isArray(charging.protocols)) fail(`${label}: charging.protocols must be an array`);
+  if (charging.wirelessStatus != null && charging.wirelessStatus !== 'not_supported') fail(`${label}: unsupported charging.wirelessStatus`);
+  if (charging.wirelessStatus === 'not_supported' && (charging.wirelessStandard != null || charging.wirelessMaxW != null)) {
+    fail(`${label}: not_supported wireless cannot carry a standard or maximum wattage`);
+  }
 
   const battery = charging.battery || {};
   if (String(phone.manufacturer).toLowerCase() === 'apple' && battery.capacityMah !== null && battery.capacityMah !== undefined) {

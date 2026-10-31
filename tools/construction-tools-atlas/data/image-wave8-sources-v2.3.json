@@ -1,0 +1,41 @@
+{
+  "schema": "cta-image-wave8-sources-v2.3",
+  "version": "2026-10-31-reviewed-image-wave8-two-1",
+  "policy": {
+    "runtime_hotlink": false,
+    "source_provider": "Wikimedia Commons",
+    "promotion_rule": "Only two subject-focused, SHA-1 verified tool photographs accepted; cropped reciprocating saw source deliberately rejected for canonical use."
+  },
+  "items": [
+    {
+      "entry_id": "torque_wrench",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/e/e6/1-4%22_5-25Nm.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:1-4%22_5-25Nm.jpg",
+      "source_filename": "source.jpg",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "author": "Sunnyhappy123",
+      "attribution": "Sunnyhappy123 / Wikimedia Commons, CC BY-SA 4.0",
+      "expected_sha1": "616511023ad6dd0c4a13632892c7f1177f623e97",
+      "subject_match": "matched",
+      "review_state": "verified",
+      "review_note": "Inspected original 2560x1920 JPEG and primary 960x720 WebP: a complete torque wrench with torque setting grip and ratchet head is clearly visible; replaces the rejected mixed-tool collection photo.",
+      "source_sha1": "616511023ad6dd0c4a13632892c7f1177f623e97"
+    },
+    {
+      "entry_id": "wire_stripper",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/2/25/Wire_Stripper_Automatic.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Wire_Stripper_Automatic.jpg",
+      "source_filename": "source.jpg",
+      "license": "Public Domain (PD-self)",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-self",
+      "author": "Scott Ehardt",
+      "attribution": "Scott Ehardt / Wikimedia Commons, Public Domain",
+      "expected_sha1": "6906c01a40180712660fdce8df495d96395fab67",
+      "subject_match": "matched",
+      "review_state": "verified",
+      "review_note": "Inspected original 588x1065 JPEG and primary 398x720 WebP: an automatic wire stripper with visible stripping jaws and red handles is clearly identifiable.",
+      "source_sha1": "6906c01a40180712660fdce8df495d96395fab67"
+    }
+  ]
+}

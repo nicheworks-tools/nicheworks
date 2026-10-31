@@ -77,16 +77,16 @@
     return normalizeCollectionRecord(input);
   }
 
-  function isActiveGate(gate) {
-    return !!(gate && gate.active === true);
+  function isActiveGate(gate, featureId) {
+    return !!(gate && gate.active === true && gate.productId === 'okj.toolkit_pro' && gate.featureId === featureId);
   }
 
   function canPersistHistory(gate) {
-    return isActiveGate(gate);
+    return isActiveGate(gate, 'okj.history');
   }
 
   function canPersistCollection(gate) {
-    return isActiveGate(gate);
+    return isActiveGate(gate, 'okj.collections');
   }
 
   function getStorage() {
@@ -117,8 +117,8 @@
     };
   }
 
-  function safeSaveRecord(storageKey, normalizeRecord, input, gate) {
-    if (!isActiveGate(gate)) {
+  function safeSaveRecord(storageKey, normalizeRecord, input, gate, featureId) {
+    if (!isActiveGate(gate, featureId)) {
       return { ok: false, error: 'pro_required' };
     }
 
@@ -144,8 +144,8 @@
     }
   }
 
-  function safeClearRecords(storageKey, gate) {
-    if (!isActiveGate(gate)) {
+  function safeClearRecords(storageKey, gate, featureId) {
+    if (!isActiveGate(gate, featureId)) {
       return { ok: false, error: 'pro_required' };
     }
 
@@ -163,29 +163,29 @@
   }
 
   function saveHistoryRecord(input, gate) {
-    return safeSaveRecord(HISTORY_STORAGE_KEY, normalizeHistoryRecord, input, gate);
+    return safeSaveRecord(HISTORY_STORAGE_KEY, normalizeHistoryRecord, input, gate, 'okj.history');
   }
 
   function saveCollectionRecord(input, gate) {
-    return safeSaveRecord(COLLECTION_STORAGE_KEY, normalizeCollectionRecord, input, gate);
+    return safeSaveRecord(COLLECTION_STORAGE_KEY, normalizeCollectionRecord, input, gate, 'okj.collections');
   }
 
   function listHistoryRecords(gate) {
-    if (!isActiveGate(gate)) return { ok: false, error: 'pro_required', records: [] };
+    if (!isActiveGate(gate, 'okj.history')) return { ok: false, error: 'pro_required', records: [] };
     return safeListRecords(HISTORY_STORAGE_KEY, normalizeHistoryRecord);
   }
 
   function listCollectionRecords(gate) {
-    if (!isActiveGate(gate)) return { ok: false, error: 'pro_required', records: [] };
+    if (!isActiveGate(gate, 'okj.collections')) return { ok: false, error: 'pro_required', records: [] };
     return safeListRecords(COLLECTION_STORAGE_KEY, normalizeCollectionRecord);
   }
 
   function clearHistoryRecords(gate) {
-    return safeClearRecords(HISTORY_STORAGE_KEY, gate);
+    return safeClearRecords(HISTORY_STORAGE_KEY, gate, 'okj.history');
   }
 
   function clearCollectionRecords(gate) {
-    return safeClearRecords(COLLECTION_STORAGE_KEY, gate);
+    return safeClearRecords(COLLECTION_STORAGE_KEY, gate, 'okj.collections');
   }
 
   global.OldKanjiHistoryCollection = {

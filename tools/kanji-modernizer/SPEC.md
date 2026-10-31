@@ -107,3 +107,11 @@ Large input/result blocks and replacement tables benefit from width but can be s
 - `tools/kanji-modernizer/data/`
 - `tools/kanji-modernizer/usage.html`
 - `tools/kanji-modernizer/usage-en.html`
+
+## Toolkit Pro Phase 1 — staged / not on sale
+
+- Shared product ID: `okj.toolkit_pro` (one entitlement covers all eight tools).
+- Current Free guarantee: Single text conversion both directions, conservative/first-candidate, ambiguity review and copy remain Free.
+- Proposed Pro feature IDs: `okj.modernizer.batch`, `okj.history`, `okj.workspaces`, `okj.advancedExport`.
+- The active Free workflow remains unchanged. No purchase CTA/fixed Pro price is allowed until verified checkout, entitlement, restore and browser QA.
+- Canonical definition: `config/old-kanji-toolkit-pro-phase1.json`. Existing contextual Amazon Associates links remain active and independent of Pro; user content must not flow to affiliate URLs or analytics.

@@ -1,0 +1,47 @@
+name: ManualFinder Motorola JP 12-model official Coverage-Pass
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/coverage-passes/motorola/**'
+      - 'tools/manual-finder/scripts/motorola-jp-lineup-review.mjs'
+      - 'tools/manual-finder/scripts/motorola-jp-reconcile-publication.mjs'
+      - 'tools/manual-finder/scripts/motorola-jp-model-guides-probe.mjs'
+      - 'tools/manual-finder/tests/motorola-jp-2026-lineup-review.test.mjs'
+      - 'tools/manual-finder/tests/motorola-jp-2026-lineup-publication.test.mjs'
+      - 'tools/manual-finder/data/manuals.coverage-pass.motorola-jp-lineup.js'
+      - 'tools/manual-finder/data/manuals.coverage-passes.js'
+      - 'tools/manual-finder/COVERAGE.md'
+      - '.github/workflows/manualfinder-motorola-jp-coverage-pass.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  motorola-coverage-pass:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fail-closed manufacturer population and manual identity tests
+        run: |
+          node tools/manual-finder/tests/coverage-pass-pipeline.test.mjs
+          node tools/manual-finder/tests/motorola-jp-2026-lineup-review.test.mjs
+          if test -f tools/manual-finder/tests/motorola-jp-2026-lineup-publication.test.mjs; then
+            node tools/manual-finder/tests/motorola-jp-2026-lineup-publication.test.mjs
+          fi
+      - name: Live-review all manufacturer-listed smartphones for exact HTML guides
+        run: |
+          mkdir -p manualfinder-motorola-jp-review
+          node tools/manual-finder/scripts/motorola-jp-lineup-review.mjs --out manualfinder-motorola-jp-review/review.json
+      - name: Fail-closed comparison of live 12-model states with publication
+        run: |
+          node tools/manual-finder/scripts/motorola-jp-reconcile-publication.mjs \
+            --live manualfinder-motorola-jp-review/review.json
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: manualfinder-motorola-jp-12-model-official-review
+          path: manualfinder-motorola-jp-review/*.json
+          if-no-files-found: warn
