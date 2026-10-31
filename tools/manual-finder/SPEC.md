@@ -71,6 +71,14 @@ Manifest: `coverage-passes/google/pixel-phone-jp-2016-2026.json`. Official sourc
 
 This is a **bounded manufacturer-documented Pixel phone support-information scope**, not complete Google-wide documentation; Pixel Tablet, Watch and all unlisted devices are excluded.
 
+## Motorola Japan current lineup Coverage-Pass (2026-10-31)
+
+The Motorola-owned [Japanese model lineup](https://moto-bu.motorola.co.jp/products/) names 12 smartphones (razr/edge/moto g) in a 13-product H4 list, with `moto pen ultra` explicitly excluded as an accessory. The full source list and ordered exact model-name digest are locked in `coverage-passes/motorola/jp-motobu-2026-smartphone-lineup.json`. No prior or discontinued Motorola models are implied by this 2026 current Japan lineup.
+
+Manufacturer-controlled model-specific operating guides are verified after live HTTP/HTTPS redirects, exact final document titles, and substantial manual operating content. Generated `help.php?m=` URLs are discovery candidates only; the accepted destination is the verified final manufacturer document. The complete population reconciles **12 = 11 direct + 0 shared + 0 support_only + 1 held**. Ten accepted English HTML manuals and one official Japanese `moto g66j 5G` manual are published as 11 precise model records in `data/manuals.coverage-pass.motorola-jp-lineup.js`. Guide language is disclosed in the user-facing record.
+
+The exact Japanese `moto g37j` manufacturer article returned HTTP 403 in GitHub Actions; a global HTML manual titled `moto g37` was explicitly **rejected**, not inferred compatible. The exact Japanese variant remains **held** in the machine-readable complete population and is never silently dropped or represented as a direct manual. Use independent manufacturer-controlled secondary sources for future resolution. CI workflow: `.github/workflows/manualfinder-motorola-jp-coverage-pass.yml`.
+
 ## Coverage expansion workflow
 
 Future model-level expansion is governed by `COVERAGE_PASS_WORKFLOW.md`. Automation may discover candidates at scale, but it cannot promote rows solely because a URL was found or omit rows solely because a scraper missed them. Each manufacturer/category pass must lock an official population, retain every population model through direct/shared/support-only/held review states, escalate negative cases through alternate official discovery channels, and reconcile the entire population before `coverage-pass-complete` is allowed. Machine-readable manifests live under `coverage-passes/` and fail-closed validation lives under `scripts/coverage-pass-lib.mjs` plus `tests/coverage-pass-pipeline.test.mjs`.
