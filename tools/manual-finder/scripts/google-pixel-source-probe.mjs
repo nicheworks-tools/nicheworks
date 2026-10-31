@@ -19,7 +19,8 @@ for(const [key,url] of Object.entries(URLS)){
   const tables=[...html.matchAll(/<table\b[^>]*>([\s\S]*?)<\/table>/gi)].map(x=>x[1]);
   const rows=tables.flatMap((t,i)=>[...t.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)].map(x=>({table:i,cells:[...x[1].matchAll(/<t[dh]\b[^>]*>([\s\S]*?)<\/t[dh]>/gi)].map(z=>clean(z[1]))})));
   const heads=[...html.matchAll(/<h[1-5]\b[^>]*>([\s\S]*?)<\/h[1-5]>/gi)].map(x=>clean(x[1])).filter(Boolean);
-  const result={status,finalUrl:final,htmlBytes:html.length,tableCount:tables.length,tableRows:rows.length,
+  const articleLinks=[...html.matchAll(/<a\\b[^>]*href\\s*=\\s*(["'])(.*?)\\1[^>]*>([\\s\\S]*?)<\\/a>/gi)].map(x=>({href:x[2],text:clean(x[3])})).filter(x=>/Google Pixel (?:11|10|9|8|7|6|5|4|3|2|XL|Fold)|Google Pixel$/.test(x.text)&&x.text.length<90).slice(0,180);
+  const result={status,finalUrl:final,htmlBytes:html.length,tableCount:tables.length,tableRows:rows.length,articleLinks,
    candidateRows:rows.filter(r=>r.cells.length>1&&r.cells[0].includes('Pixel')&&/20\d\d/.test(r.cells[1])),
    headings:heads.slice(0,100),
    mentions:['Google Pixel 11 Pro Fold','Google Pixel 10a','Google Pixel 9 Pro Fold','Google Pixel 6 Pro','Google Pixel 3a XL','Google Pixel XL'].map(m=>({model:m,present:clean(html).includes(m)}))};
