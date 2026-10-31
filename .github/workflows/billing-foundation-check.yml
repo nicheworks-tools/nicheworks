@@ -10,6 +10,8 @@ on:
       - 'assets/okj-workspace-*.js'
       - 'assets/okj-name-place-batch*'
       - 'assets/okj-multi-*'
+      - 'assets/okj-batch-hub*'
+      - 'scripts/check-old-kanji-batch-hub.mjs'
       - 'scripts/check-old-kanji-multitool-batch.mjs'
       - 'scripts/check-old-kanji-name-place-batch.mjs'
       - 'assets/okj-workspace.css'
@@ -51,6 +53,8 @@ on:
       - 'assets/okj-workspace-*.js'
       - 'assets/okj-name-place-batch*'
       - 'assets/okj-multi-*'
+      - 'assets/okj-batch-hub*'
+      - 'scripts/check-old-kanji-batch-hub.mjs'
       - 'scripts/check-old-kanji-multitool-batch.mjs'
       - 'scripts/check-old-kanji-name-place-batch.mjs'
       - 'assets/okj-workspace.css'
@@ -116,6 +120,8 @@ jobs:
           node --check assets/okj-multi-core.js
           node --check assets/okj-multi-batch.js
           node --check assets/okj-multi-batch-ui.js
+          node --check assets/okj-batch-hub.js
+          node --check assets/okj-batch-hub-ui.js
       - name: Check billing contract
         run: node scripts/check-billing-foundation.mjs
       - name: Test fail-closed unpriced and unknown products
@@ -132,6 +138,8 @@ jobs:
         run: node scripts/check-old-kanji-workspaces.mjs
       - name: Test actual reference-backed Name and Place CSV batch
         run: node scripts/check-old-kanji-name-place-batch.mjs
+      - name: Verify shared Batch hub across all seven feature paths
+        run: node scripts/check-old-kanji-batch-hub.mjs
       - name: Test all four real local reference-backed batch processors
         run: node scripts/check-old-kanji-multitool-batch.mjs
       - name: Test actual OCR reports, advanced exports and CSV formula safety
