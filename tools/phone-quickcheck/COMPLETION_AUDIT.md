@@ -152,6 +152,26 @@ Phone QuickCheck v1 is complete under the maintained contract:
 
 Future work is maintenance: new models, source changes, corrections, and evidence upgrades. It is not part of the v1 closure backlog.
 
+## Post-v1 maintenance Wave 18 — 2026-10-31
+
+Backfilled four **existing-maker** Japan-market phones using first-party manufacturer and Japanese carrier sources. Maintained **211 → 215 phones**, **11 manufacturers**, **36 foldables** (no new unreviewed package or water unknown fields). Existing V1 closure baseline of 181 unchanged.
+
+### FCNT arrows We2 M07 (SIM-free, released 2024-08-16)
+[FCNT model-specific SIM-free specifications](https://www.fcnt.com/spec/m07-sim-free/) and [official release notice](https://www.fcnt.com/news/1008/): 155 × 73 × 8.9mm / 179g; 6.1-inch display; 4,500mAh; USB Type-C / USB PD Rev 3.0; IPX5/IPX8 and IP6X. The published in-box list contains only a quick-start guide, supporting cable/adapter not included for M07. Charge wattages, PPS and wireless remain unknown.
+
+### Nothing CMF Phone 2 Pro A001 (Japan carrier, released 2025-07-24)
+[Rakuten carrier SKU specifications](https://network.mobile.rakuten.co.jp/product/smartphone/cmf-phone-2-pro/spec/) and [2025 Japan launch](https://corp.mobile.rakuten.co.jp/news/press/2025/0722_01/): a 5,000mAh phone with 6.77-inch display, IPX4 / IP5X, wireless charging **not supported**, cable included and AC adapter not included. Manufacturer [JP product page](https://jp.nothing.tech/products/cmf-phone-2-pro) states 33W fast charging; Nothing's [manufacturer support](https://support.nothing.tech/hc/ja/categories/32612177779473-CMF-by-Nothing-Phone-2-Pro) gives exact device laboratory dimensions **164.08 × 78.06 × 7.80mm** and weight **185g**. The manufacturer's preference for a PPS-capable charger is not incorrectly promoted to mandatory device PPS support.
+
+### Nothing Phone (3a) Lite A001T (Japan carrier, released 2026-01-15)
+[Rakuten A001T specifications](https://network.mobile.rakuten.co.jp/product/smartphone/phone-3a-lite/spec/) and [official Japanese carrier announcement](https://corp.mobile.rakuten.co.jp/news/press/2026/0107_01/): 6.77-inch display, 5,000mAh, IPX4 / IP5X, source-backed wireless **not supported**, cable included and charger not included. Manufacturer [Japan product page](https://jp.nothing.tech/products/phone-3a-lite) confirms 33W fast charging; [manufacturer support](https://support.nothing.tech/hc/ja/categories/37560459056913-Nothing-Phone-3a-Lite) provides unrounded laboratory dimensions **164.10 × 78.08 × 8.35mm** and **199.2g** (the carrier rounds to 164 × 78 × 8.3mm / 199g).
+
+### Nothing Phone (3) A024 (Japan carrier, released 2025-08-28)
+[Rakuten A024 Japan SKU specification](https://network.mobile.rakuten.co.jp/product/smartphone/phone-3/spec/) and [domestic launch](https://corp.mobile.rakuten.co.jp/news/press/2025/0820_01/) verify 160.6 × 75.59 × 8.99mm, 218g, 6.67-inch display, 5,150mAh, USB-C, IPX8 / IP6X, and **USB-C cable included / AC charger excluded**. [Nothing JP manufacturer product](https://jp.nothing.tech/products/phone-3) expressly supports 15W wireless charging; recorded as "Wireless charging" **without guessing Qi version**. Device wired wattage and PPS remain uncommitted without a source-backed in-schema reference. **Important provenance conflict**: [Nothing generic support](https://support.nothing.tech/hc/ja/categories/34659490954897-Nothing-Phone-3) lists a general box without a cable, but the JP carrier A024 SKU spec expressly includes the Nothing C-to-C cable. Preserve the SKU-specific carrier box fact; do not collapse cross-region packaging.
+
+### Gates
+- Zero new unreviewed actionable package/water unknown fields. Non-Apple battery capacities all official/manufacturer sourced; Apple 34 remain intentionally unknown.
+- CI and post-merge production Chrome HTTP/JSON exact equality for 215 phones and 320/390/414/768/1280px browser behavior are required before declaring public completion.
+
 ## Post-v1 maintenance Wave 17 — 2026-10-31
 
 Strengthened the independent live Cloudflare Pages smoke to verify **whole-file canonical JSON parity**, not merely total phone count, against the GitHub checkout used by CI. Public phones.json must structurally match checked-in data (all device IDs, source facts, attributes, provenance and revision metadata); this detects stale partial deploys or unexpected source changes. Added targeted checks for the three Wave 16 Japan-market models: Alpha M08 bundled adapter, We2 Plus M06 inclusion, Nothing Phone (3a) explicit wireless non-support. Existing Alpha2/Phone (4b) checks and all 5 production browser viewports remain intact.
