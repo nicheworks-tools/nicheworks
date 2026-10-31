@@ -10,6 +10,7 @@ return {ok:true,rows};}
 function lines(text){return typeof text==='string'?validate(text.replace(/^\uFEFF/,'').split(/\r\n|\n|\r/)):{ok:false,error:'invalid_input'};}
 function csv(text,k){if(!FEATURES[k]||typeof text!=='string')return {ok:false,error:'invalid_csv'};
 if(text.length>1048576)return {ok:false,error:'file_too_large'};
+text=text.replace(/^\uFEFF/,'');
 const rows=[];let row=[],cell='',inside=false,closed=false;
 for(let i=0;i<text.length;i++){const c=text[i];
 if(inside){if(c==='"'&&text[i+1]==='"'){cell+='"';i++;}else if(c==='"'){inside=false;closed=true;}else cell+=c;}

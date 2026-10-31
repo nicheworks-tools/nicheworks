@@ -14,6 +14,7 @@ assert.equal(core.lines('舊學\n國府').ok,true);
 assert.equal(core.lines('x\n'.repeat(201)).error,'too_many_rows');
 assert.equal(core.lines('x'.repeat(2001)).error,'row_too_long');
 assert.equal(core.csv('text,other\r\n"舊,學",1\r\n國府,2','modernizer').rows[0],'舊,學');
+assert.equal(core.csv('\uFEFFtext\n舊學','modernizer').rows[0],'舊學');
 assert.equal(core.csv('text\n"bad','unicode').error,'invalid_csv');
 assert.equal(core.csv('a,b\nx,y','unicode').error,'header_required');
 for(const kind of Object.keys(core.FEATURES)){
