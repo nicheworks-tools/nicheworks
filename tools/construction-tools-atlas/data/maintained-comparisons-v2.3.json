@@ -1,0 +1,33 @@
+{
+  "schema": "cta-maintained-comparisons-v2.3",
+  "version": "2026-10-31-first-pair",
+  "policy": {
+    "allow_only_explicit_approved_pairs": true,
+    "no_inferred_confusion_frequency": true,
+    "source": "audited canonical static detail pages produced from quality-loader.js",
+    "no_prices_or_rankings": true
+  },
+  "pairs": [
+    {
+      "slug": "impact-driver-vs-drill-driver",
+      "left": "impact_driver",
+      "right": "drill_driver",
+      "relationship": "maintained_comparison",
+      "status": "approved",
+      "evidence": [
+        {
+          "entry_id": "drill_driver",
+          "language": "ja",
+          "field": "description",
+          "exact": "強い締付にはインパクトドライバーを使い分ける。"
+        },
+        {
+          "entry_id": "drill_driver",
+          "language": "en",
+          "field": "description",
+          "exact": "Use an impact driver for heavier fastening."
+        }
+      ]
+    }
+  ]
+}

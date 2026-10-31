@@ -268,3 +268,8 @@ jobs:
 
       - name: Validate generated static SEO detail pages
         run: node tools/construction-tools-atlas/scripts/build-seo-detail-pages-v2.3.cjs --check
+      - name: Check maintained comparison page generator syntax
+        run: node --check tools/construction-tools-atlas/scripts/build-comparison-pages-v2.3.cjs
+
+      - name: Validate source-backed comparison page, links and sitemap
+        run: node tools/construction-tools-atlas/scripts/build-comparison-pages-v2.3.cjs --check
