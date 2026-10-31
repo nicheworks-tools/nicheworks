@@ -58,7 +58,8 @@ const EXPECTED_WAVE25_LEGACY_CATEGORIES = Object.freeze(Object.fromEntries(Objec
 const EXPECTED_OFFICIAL_LABEL_CLOSURE = Object.freeze({ triethoxycaprylylsilane:'binder', 'p-anisic acid':'fragrance', 'polyquaternium-39':'film former', 'polyquaternium-53':'hair conditioning', 'ppg-5-ceteth-20':'emulsifier', 'snail secretion filtrate':'skin conditioning', 'synthetic beeswax':'viscosity adjuster', 'hexadecyloxy pg hydroxyethyl hexadecanamide':'moisturizer', 'peg-6 caprylic/capric glycerides':'emulsifier', 'sodium lauroyl lactylate':'emulsifier', 'zinc oxide':'uv filter', 'zea mays starch':'viscosity adjuster', 'peg-8':'humectant', 'microcrystalline wax':'viscosity adjuster' });
 const EXPECTED_OFFICIAL_LABEL_CLOSURE_RAW = Object.freeze({ triethoxycaprylylsilane:['general'], 'p-anisic acid':['preservative support'], 'polyquaternium-39':['conditioning polymer'], 'polyquaternium-53':['conditioning polymer'], 'ppg-5-ceteth-20':['general'], 'snail secretion filtrate':['animal extract'], 'synthetic beeswax':['texture agent'], 'hexadecyloxy pg hydroxyethyl hexadecanamide':['barrier lipid'], 'peg-6 caprylic/capric glycerides':['surfactant','emulsifier'], 'sodium lauroyl lactylate':['surfactant','emulsifier'], 'zinc oxide':['uv filter','colorant'], 'zea mays starch':['powder'], 'peg-8':['humectant','solvent'], 'microcrystalline wax':['wax','texture agent'] });
 const EXPECTED_STRONG_RUNTIME_CLOSURE = Object.freeze({ sulfur:'skin conditioning', 'aminobenzoic acid':'uv filter', 'ammonium hydroxide':'buffer' });
-const EXPECTED_ALL = Object.freeze({ ...EXPECTED_WAVE1, ...EXPECTED_WAVE2, ...EXPECTED_WAVE3, ...EXPECTED_WAVE4, ...EXPECTED_WAVE5, ...EXPECTED_WAVE6, ...EXPECTED_WAVE7, ...EXPECTED_WAVE8, ...EXPECTED_WAVE9, ...EXPECTED_WAVE10, ...EXPECTED_WAVE11, ...EXPECTED_WAVE12, ...EXPECTED_WAVE13, ...EXPECTED_WAVE14, ...EXPECTED_WAVE15, ...EXPECTED_WAVE16, ...EXPECTED_WAVE17, ...EXPECTED_WAVE18, ...EXPECTED_WAVE19, ...EXPECTED_WAVE20, ...EXPECTED_WAVE21, ...EXPECTED_WAVE22, ...EXPECTED_WAVE23, ...EXPECTED_WAVE24, ...EXPECTED_WAVE25, ...EXPECTED_OFFICIAL_LABEL_CLOSURE, ...EXPECTED_STRONG_RUNTIME_CLOSURE });
+const EXPECTED_WAVE26 = Object.freeze({ "hydrolyzed keratin":"hair conditioning", "hydrolyzed silk":"hair conditioning", "hydrolyzed collagen":"humectant", "menthol":"fragrance", "beeswax":"viscosity adjuster", "aluminum starch octenylsuccinate":"viscosity adjuster", "benzyl benzoate":"fragrance", "benzyl salicylate":"fragrance", "hydroxycitronellal":"fragrance", "isoeugenol":"fragrance", "amyl cinnamal":"fragrance" });
+const EXPECTED_ALL = Object.freeze({ ...EXPECTED_WAVE1, ...EXPECTED_WAVE2, ...EXPECTED_WAVE3, ...EXPECTED_WAVE4, ...EXPECTED_WAVE5, ...EXPECTED_WAVE6, ...EXPECTED_WAVE7, ...EXPECTED_WAVE8, ...EXPECTED_WAVE9, ...EXPECTED_WAVE10, ...EXPECTED_WAVE11, ...EXPECTED_WAVE12, ...EXPECTED_WAVE13, ...EXPECTED_WAVE14, ...EXPECTED_WAVE15, ...EXPECTED_WAVE16, ...EXPECTED_WAVE17, ...EXPECTED_WAVE18, ...EXPECTED_WAVE19, ...EXPECTED_WAVE20, ...EXPECTED_WAVE21, ...EXPECTED_WAVE22, ...EXPECTED_WAVE23, ...EXPECTED_WAVE24, ...EXPECTED_WAVE25, ...EXPECTED_OFFICIAL_LABEL_CLOSURE, ...EXPECTED_STRONG_RUNTIME_CLOSURE, ...EXPECTED_WAVE26 });
 
 const EXPECTED_SOURCES = Object.freeze({
   water:'https://www.cosmeticsinfo.org/ingredient/water/', glycerin:'https://www.cosmeticsinfo.org/ingredient/glycerin/', 'propylene glycol':'https://www.cosmeticsinfo.org/ingredient/propylene-glycol/',
@@ -151,7 +152,18 @@ const EXPECTED_SOURCES = Object.freeze({
   'microcrystalline wax':'https://cosmileeurope.eu/fr/inci/ingredient/22305/microcrystalline-wax/',
   sulfur:'https://cosmileeurope.eu/inci/detail/15709/sulfur/',
   'aminobenzoic acid':'https://eur-lex.europa.eu/eli/reg/2009/1223',
-  'ammonium hydroxide':'https://cosmileeurope.eu/inci/detail/906/ammonium-hydroxide/'
+  'ammonium hydroxide':'https://cosmileeurope.eu/inci/detail/906/ammonium-hydroxide/',
+  "hydrolyzed keratin":"https://cosmileeurope.eu/inci/detail/6885/hydrolyzed-keratin/",
+  "hydrolyzed silk":"https://cosmileeurope.eu/inci/detail/6982/hydrolyzed-silk/",
+  "hydrolyzed collagen":"https://cosmileeurope.eu/inci/detail/6824/hydrolyzed-collagen/",
+  "menthol":"https://cosmileeurope.eu/inci/detail/8827/menthol/",
+  "beeswax":"https://cosmileeurope.eu/inci/detail/21574/beeswax/",
+  "aluminum starch octenylsuccinate":"https://cosmileeurope.eu/inci/detail/791/aluminum-starch-octenylsuccinate/",
+  "benzyl benzoate":"https://cosmileeurope.eu/inci/detail/1593/benzyl-benzoate/",
+  "benzyl salicylate":"https://cosmileeurope.eu/inci/detail/1601/benzyl-salicylate/",
+  "hydroxycitronellal":"https://cosmileeurope.eu/inci/detail/19143/hydroxycitronellal/",
+  "isoeugenol":"https://cosmileeurope.eu/inci/detail/7436/isoeugenol/",
+  "amyl cinnamal":"https://cosmileeurope.eu/inci/detail/19189/amyl-cinnamal/"
 });
 const ALLOWED_SOURCE_HOSTS = new Set(['www.cosmeticsinfo.org','health.ec.europa.eu','cosmileeurope.eu','kcia.or.kr','www.kao-kirei.com','eur-lex.europa.eu']);
 
