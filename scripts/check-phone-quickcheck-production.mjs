@@ -6,7 +6,8 @@ import path from 'node:path';
 
 const url = new URL(process.argv.find(x => x.startsWith('--url='))?.slice(6) || 'https://nicheworks.app/tools/phone-quickcheck/');
 assert.ok(['https:', 'http:'].includes(url.protocol), 'HTTP(S) URL only');
-const phones = JSON.parse(readFileSync('tools/phone-quickcheck/data/phones.json','utf8')).phones;
+const canonicalPayload = JSON.parse(readFileSync('tools/phone-quickcheck/data/phones.json','utf8'));
+const phones = canonicalPayload.phones;
 const count = phones.length;
 const artifacts = 'artifacts/phone-quickcheck-production';
 mkdirSync(artifacts,{recursive:true});
@@ -29,10 +30,16 @@ async function httpSmoke(){
   assert.ok(data['app.js'].includes("wirelessStatus === 'not_supported'"),'Live JS is stale');
   assert.ok(data['style.css'].includes('.bottom-sheet'),'Live CSS missing');
   assert.ok(data['style.css'].includes('.bottom-sheet .detail-title{padding-right:46px}'),'Live CSS missing mobile close-button collision fix');
-  const live = JSON.parse(data['data/phones.json']).phones;
+  const livePayload = JSON.parse(data['data/phones.json']);
+  const live = livePayload.phones;
   assert.equal(live.length,count,'Public JSON count is stale');
-  assert.ok(live.some(p=>p.id==='fcnt-arrows-alpha2-m10'),'FCNT missing from public JSON');
-  assert.equal(live.find(p=>p.id==='nothing-phone-4b')?.charging?.wirelessStatus,'not_supported','Nothing wireless negative state missing');
+  assert.deepEqual(livePayload,canonicalPayload,'Public JSON differs from the canonical GitHub data (including model facts/provenance)');
+  assert.ok(live.some(p=>p.id==='fcnt-arrows-alpha2-m10'),'FCNT Alpha backfill missing from public JSON');
+  assert.ok(live.some(p=>p.id==='fcnt-arrows-we2-plus-m06'),'FCNT We2 Plus backfill missing from public JSON');
+  assert.equal(live.find(p=>p.id==='nothing-phone-3a')?.charging?.wirelessStatus,'not_supported','Nothing 3a source-backed no-wireless status missing');
+  assert.equal(live.find(p=>p.id==='fcnt-arrows-alpha-m08')?.included?.adapter,'included','FCNT Alpha bundled charger missing from public data');
+  assert.ok(live.some(p=>p.id==='fcnt-arrows-alpha2-m10'),'Existing FCNT Alpha2 missing from public JSON');
+  assert.equal(live.find(p=>p.id==='nothing-phone-4b')?.charging?.wirelessStatus,'not_supported','Existing Nothing 4b wireless negative state missing');
   assert.ok(Array.isArray(JSON.parse(data['data/accessories.json']).accessories),'Accessories JSON missing');
   console.log('HTTP PASS: '+count+' verified public phones, assets and latest records');
 }
