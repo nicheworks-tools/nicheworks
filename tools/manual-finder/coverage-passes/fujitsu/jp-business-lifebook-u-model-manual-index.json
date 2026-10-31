@@ -185,7 +185,7 @@
       "official_document_links",
       "alternate_official_business_support_and_archive"
     ],
-    "notes": "All 148 source-linked exact manual-index destinations and at least one linked PDF per model pass live checks; every direct record includes per-model manual index and one confirmed PDF artifact. Full manufacturer does not mean scope-complete outside U-series.",
+    "notes": "All 148 source-linked exact manual-index destinations and at least one linked PDF per model pass live checks; every direct record includes per-model manual index and one confirmed PDF artifact. Full manufacturer does not mean scope-complete outside U-series. Five archived 2012–2014 models use officially linked year-partitioned PDF folders rather than the current /pdf/ path, with exact URLs positively verified in live review; manifest reconciled to their real archived paths.",
     "liveReview": {
       "workflowRunId": 41172890943,
       "artifactId": 13031374502,
@@ -197,7 +197,14 @@
       "held": 0,
       "distinctPdfUrlsChecked": 78,
       "sourceNameDigest": "dd168f1d183415b13335195d8a66ae85369ee3a435e3a9aae0d49574636a1866",
-      "sourceNameUrlDigest": "4837b50a2aada200e4865d5ee867f10d087794682c479de880f94680a6d3d310"
+      "sourceNameUrlDigest": "4837b50a2aada200e4865d5ee867f10d087794682c479de880f94680a6d3d310",
+      "archiveExceptions": {
+        "LIFEBOOK U904/H": "https://www.fmworld.net/biz/fmv/support/fmvmanual/1310-1403/pdf/B5FK3121.pdf",
+        "LIFEBOOK U772/G": "https://www.fmworld.net/biz/fmv/support/fmvmanual/1304-1309/pdf/B5FK1771.pdf",
+        "LIFEBOOK U772/FW": "https://www.fmworld.net/biz/fmv/support/fmvmanual/1210-1303/pdf/B5FK0591.pdf",
+        "LIFEBOOK U772/F": "https://www.fmworld.net/biz/fmv/support/fmvmanual/1210-1303/pdf/B5FK0591.pdf",
+        "LIFEBOOK U772/E": "https://www.fmworld.net/biz/fmv/support/fmvmanual/1204-1209/pdf/B6FJ9051.pdf"
+      }
     }
   },
   "records": [
@@ -1526,11 +1533,11 @@
       "state": "direct",
       "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u904h.html",
       "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u904h.html",
-      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK3121.pdf",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/1310-1403/pdf/B5FK3121.pdf",
       "evidenceUrls": [
         "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
         "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u904h.html",
-        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK3121.pdf"
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/1310-1403/pdf/B5FK3121.pdf"
       ],
       "verifiedAt": "2026-10-31",
       "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
@@ -1666,11 +1673,11 @@
       "state": "direct",
       "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u772g.html",
       "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u772g.html",
-      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK1771.pdf",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/1304-1309/pdf/B5FK1771.pdf",
       "evidenceUrls": [
         "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
         "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u772g.html",
-        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK1771.pdf"
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/1304-1309/pdf/B5FK1771.pdf"
       ],
       "verifiedAt": "2026-10-31",
       "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
@@ -1686,11 +1693,11 @@
       "state": "direct",
       "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u772fw.html",
       "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u772fw.html",
-      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK0591.pdf",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/1210-1303/pdf/B5FK0591.pdf",
       "evidenceUrls": [
         "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
         "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u772fw.html",
-        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK0591.pdf"
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/1210-1303/pdf/B5FK0591.pdf"
       ],
       "verifiedAt": "2026-10-31",
       "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
@@ -1706,11 +1713,11 @@
       "state": "direct",
       "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u772f.html",
       "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u772f.html",
-      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK0591.pdf",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/1210-1303/pdf/B5FK0591.pdf",
       "evidenceUrls": [
         "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
         "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u772f.html",
-        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B5FK0591.pdf"
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/1210-1303/pdf/B5FK0591.pdf"
       ],
       "verifiedAt": "2026-10-31",
       "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
@@ -1726,11 +1733,11 @@
       "state": "direct",
       "manualUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u772e.html",
       "supportUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u772e.html",
-      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FJ9051.pdf",
+      "primaryDocumentUrl": "https://www.fmworld.net/biz/fmv/support/fmvmanual/1204-1209/pdf/B6FJ9051.pdf",
       "evidenceUrls": [
         "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2.html",
         "https://www.fmworld.net/biz/fmv/support/fmvmanual/lifebook2/u772e.html",
-        "https://www.fmworld.net/biz/fmv/support/fmvmanual/pdf/B6FJ9051.pdf"
+        "https://www.fmworld.net/biz/fmv/support/fmvmanual/1204-1209/pdf/B6FJ9051.pdf"
       ],
       "verifiedAt": "2026-10-31",
       "reviewMethod": "live_official_index_exact_H1_and_verified_PDF_artifact",
