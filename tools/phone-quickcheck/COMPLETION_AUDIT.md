@@ -152,6 +152,14 @@ Phone QuickCheck v1 is complete under the maintained contract:
 
 Future work is maintenance: new models, source changes, corrections, and evidence upgrades. It is not part of the v1 closure backlog.
 
+## Post-v1 maintenance Wave 14 — 2026-10-31
+
+Live deployed Chrome screenshots at 320/390/414px from [PR #1445](https://github.com/nicheworks-tools/nicheworks/pull/1445) revealed the mobile Quick Check badge colliding with the absolutely positioned × close button. Automatic no-overflow and JP/EN checks passed but did not detect the overlap.
+
+At the existing max-width:900px breakpoint, .bottom-sheet .detail-title now reserves 46px to clear the 32px close button positioned 14px from the right, while preserving the close touch target. The responsive contract checks the rule. Model data remains 208 phones / 11 makers / 36 foldables; historical v1 baseline remains unchanged.
+
+Fresh public Chrome screenshots and a bounding-box non-overlap assertion are required before closing this visual defect.
+
 ## Post-v1 maintenance Wave 13 — 2026-10-31
 
 Implemented explicit negative wireless charging state in the Phone QuickCheck runtime and data/source QA: `charging.wirelessStatus: not_supported` requires a manufacturer/carrier primary `sources.wirelessUrl` and forbids coexisting positive `wirelessStandard` or `wirelessMaxW`. The JP/EN detail view now renders **非対応 / Not supported** rather than a dash for a source-backed negative claim. Existing unknowns and affirmative wireless records retain their prior output, and behavioral coverage confirms both languages.
