@@ -1,0 +1,26 @@
+name: ManualFinder dynabook JP 2024-2026 official index probe
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/scripts/dynabook-jp-official-index-probe.mjs'
+      - '.github/workflows/manualfinder-dynabook-jp-coverage-pass.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  dynabook-index-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Enumerate all 2024, 2025 and 2026 official year tables
+        run: node tools/manual-finder/scripts/dynabook-jp-official-index-probe.mjs
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: manualfinder-dynabook-official-2024-2026-index-probe
+          path: manualfinder-dynabook-probe/*.json
+          if-no-files-found: warn
