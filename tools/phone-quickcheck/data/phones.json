@@ -1,6 +1,6 @@
 {
   "version": 8,
-  "updatedAt": "2026-10-31",
+  "updatedAt": "2026-11-01",
   "phones": [
     {
       "id": "apple-iphone-18-pro",
@@ -11307,6 +11307,232 @@
         "waterUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-3/spec/",
         "packageUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-3/spec/",
         "verifiedAt": "2026-10-31"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "nothing-phone-4a",
+      "manufacturer": "Nothing",
+      "model": "Phone (4a)",
+      "aliases": [
+        "Nothing Phone (4a)",
+        "Nothing Phone 4a",
+        "Phone 4a",
+        "フォン4a",
+        "Nothing 4a"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 163.9,
+        "widthMm": 77.5,
+        "depthMm": 8.5
+      },
+      "weightG": 205,
+      "displayInch": 6.78,
+      "waterRating": "IP64",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 50,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5080,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://jp.nothing.tech/products/phone-4a"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://onlineshop.au.com/disp/CSfLastGoodsPage_001.jsp?GOODS_NO=14595&dispNo=001007",
+        "manualUrl": "https://support.nothing.tech/hc/en-us/categories/40129777015569",
+        "releaseUrl": "https://jp.nothing.tech/products/phone-4a",
+        "chargingUrl": "https://jp.nothing.tech/products/phone-4a",
+        "waterUrl": "https://onlineshop.au.com/disp/CSfLastGoodsPage_001.jsp?GOODS_NO=14595&dispNo=001007",
+        "packageUrl": "https://onlineshop.au.com/disp/CSfLastGoodsPage_001.jsp?GOODS_NO=14595&dispNo=001007",
+        "verifiedAt": "2026-11-01"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "nothing-phone-4a-pro",
+      "manufacturer": "Nothing",
+      "model": "Phone (4a) Pro",
+      "aliases": [
+        "Nothing Phone (4a) Pro",
+        "Nothing Phone 4a Pro",
+        "Phone 4a Pro",
+        "A069P",
+        "フォン4a Pro"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 163.6,
+        "widthMm": 76.6,
+        "depthMm": 7.9
+      },
+      "weightG": 210,
+      "displayInch": 6.83,
+      "waterRating": "IPX5 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 50,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStatus": "not_supported",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5080,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-4a-pro/spec/"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-4a-pro/spec/",
+        "manualUrl": "https://support.nothing.tech/hc/en-us/categories/40129794073361-Nothing-Phone-4a-Pro",
+        "releaseUrl": "https://corp.mobile.rakuten.co.jp/news/press/2026/0415_01/",
+        "chargingUrl": "https://jp.nothing.tech/products/phone-4a-pro/",
+        "wirelessUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-4a-pro/spec/",
+        "waterUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-4a-pro/spec/",
+        "packageUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-4a-pro/spec/",
+        "verifiedAt": "2026-11-01"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "nothing-phone-2a",
+      "manufacturer": "Nothing",
+      "model": "Phone (2a)",
+      "aliases": [
+        "Nothing Phone (2a)",
+        "Nothing Phone 2a",
+        "Phone 2a",
+        "フォン2a"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2024,
+      "dimensions": {
+        "heightMm": 161.74,
+        "widthMm": 76.32,
+        "depthMm": 8.55
+      },
+      "weightG": 190,
+      "displayInch": 6.7,
+      "waterRating": "IP54",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 45,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStatus": "not_supported",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://jp.nothing.tech/products/phone-2a"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://jp.nothing.tech/products/phone-2a",
+        "manualUrl": "https://support.nothing.tech/hc/en-us/articles/22960522674321-What-are-the-dimensions-weight-of-Phone-2a",
+        "releaseUrl": "https://jp.nothing.tech/products/phone-2a",
+        "chargingUrl": "https://jp.nothing.tech/products/phone-2a",
+        "wirelessUrl": "https://support.nothing.tech/hc/en-us/articles/22960579342737-Does-Phone-2a-support-wireless-charging",
+        "waterUrl": "https://jp.nothing.tech/products/phone-2a",
+        "packageUrl": "https://jp.nothing.tech/products/phone-2a",
+        "verifiedAt": "2026-11-01"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "nothing-cmf-phone-1",
+      "manufacturer": "Nothing",
+      "model": "CMF Phone 1",
+      "aliases": [
+        "CMF by Nothing Phone 1",
+        "Nothing CMF Phone 1",
+        "CMF Phone1",
+        "シーエムエフ Phone 1"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2024,
+      "dimensions": {
+        "heightMm": 164,
+        "widthMm": 77
+      },
+      "physicalVariants": [
+        {
+          "key": "black-green-standard",
+          "labelJa": "ブラック / ライトグリーン",
+          "labelEn": "Black / Light Green",
+          "depthMm": 8,
+          "weightG": 197
+        },
+        {
+          "key": "orange-vegan-leather",
+          "labelJa": "オレンジ（ヴィーガンレザー）",
+          "labelEn": "Orange (vegan leather)",
+          "depthMm": 9,
+          "weightG": 202
+        }
+      ],
+      "displayInch": 6.67,
+      "waterRating": "IPX2 / IP5X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 33,
+        "protocols": [
+          "PPS"
+        ],
+        "pps": "supported",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://jp.nothing.tech/products/cmf-phone-1"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.iijmio.jp/campaign/device/nothing202410.html",
+        "manualUrl": "https://jp.nothing.tech/pages/contact-support",
+        "releaseUrl": "https://www.iijmio.jp/info/iij/1726809877.html",
+        "chargingUrl": "https://www.iijmio.jp/campaign/device/nothing202410.html",
+        "waterUrl": "https://www.iijmio.jp/campaign/device/nothing202410.html",
+        "packageUrl": "https://www.iijmio.jp/campaign/device/nothing202410.html",
+        "verifiedAt": "2026-11-01"
       },
       "affiliateKeys": []
     }
