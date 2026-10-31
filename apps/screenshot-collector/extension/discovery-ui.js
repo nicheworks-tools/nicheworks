@@ -18,7 +18,7 @@ $("discover").addEventListener("click",async()=>{
       const span=document.createElement("span");span.textContent=" "+(p.title||p.url)+" — "+p.url+(p.error?" ("+p.error+")":"");
       li.append(checkbox,span);list.append(li);
     }
-    progress.textContent=`Discovered ${pages.filter(p=>p.status==="ok").length} HTML pages. Select targets; batch capture is not implemented yet.`;
+    progress.textContent=`Discovered ${pages.filter(p=>p.status==="ok").length} HTML pages. Select targets below and choose Capture selected pages → ZIP.`;
   }catch(e){progress.textContent="Discovery failed: "+String(e.message||e);}
   finally{button.disabled=false;$("stop-discovery").disabled=true;aborter=null;}
 });
