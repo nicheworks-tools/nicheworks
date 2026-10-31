@@ -13,20 +13,44 @@ function links(html,base) {
  }
  return out;
 }
+// Extract balanced HTML elements. Dynabook embeds per-PDF layout tables inside
+// the *outer* product-list table; non-nested <table> regex truncates all but row 1.
+function balanced(html,tag){
+ const regex=new RegExp('<(/?)'+tag+'\\b[^>]*>','gi'),found=[];
+ let depth=0,from=-1,m;
+ while((m=regex.exec(html))){
+  if(m[1]==='/'){
+   if(depth===0)throw Error('unexpected closing '+tag);
+   if(--depth===0)found.push(html.slice(from,regex.lastIndex));
+  }else{if(depth++===0)from=m.index;}
+ }
+ if(depth!==0)throw Error('unterminated '+tag+' nested block');
+ return found;
+}
+function rowCells(raw){
+ const regex=/<(\/?)(td|th)\b[^>]*>/gi;let depth=0,start=-1,cellTag=null,m,cells=[];
+ while((m=regex.exec(raw))){
+  if(m[1]==='/'){if(depth===0)continue;if(--depth===0)cells.push({html:raw.slice(start,regex.lastIndex),inner:raw.slice(start, m.index)})}
+  else {if(depth++===0){start=regex.lastIndex;cellTag=m[2]}}
+ }
+ return cells;
+}
 function inspectYear(html,year,url){
- const tables=[...html.matchAll(/<table\b[^>]*>[\s\S]*?<\/table>/gi)];
- const tableResults=[];let rowCount=0;
- for(const [index,t] of tables.entries()){
-  const trs=[...t[0].matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)];
-  const rows=[];
+ const tables=balanced(html,'table'),tableResults=[];let rowCount=0;
+ for(const [index,table] of tables.entries()){
+  const trs=balanced(table,'tr'),rows=[];
   for(const tr of trs){
-   const cells=[...tr[1].matchAll(/<t[dh]\b[^>]*>([\s\S]*?)<\/t[dh]>/gi)].map(m=>({text:clean(m[1]),links:links(m[1],url)}));
-   if(!cells.length)continue;
+   const cells=rowCells(tr).map(m=>({text:clean(m.inner),links:links(m.inner,url)}));
+   if(cells.length<3)continue;
    const modelCell=cells[0].text;
-   const maybeModel=/^(?:dynabook|dynaDesk|Dynabook Chromebook|教育市場向け)/i.test(modelCell);
-   if(maybeModel){rows.push({name:modelCell,columns:cells.length,release:cells[1]?.text||'',productLinks:cells[0].links,manualLinks:cells.slice(2).flatMap(x=>x.links).filter(x=>!/\[\s*\d+[\d,]*\s*KB\s*\]$/.test(x.label)),lastCellLinks:cells.at(-1)?.links||[],allCellTexts:cells.map(x=>x.text)});rowCount++;}
+   const maybeModel=/^(?:dynabook\b|dynaDesk\b|Dynabook Chromebook\b|教育市場向け\s+(?:dynabook|Dynabook))/i.test(modelCell);
+   if(!maybeModel)continue;
+   const manualCell=cells.at(-1);
+   rows.push({name:modelCell,columns:cells.length,release:cells[1]?.text||'',productLinks:cells[0].links,
+    manualLinks:manualCell.links,allCellTexts:cells.map(x=>x.text)});
+   rowCount++;
   }
-  if(rows.length)tableResults.push({index,header:clean(trs[0]?.[1]||'').slice(0,200),rowCount:rows.length,rows});
+  if(rows.length)tableResults.push({index,header:clean(trs[0]||'').slice(0,200),rowCount:rows.length,rows});
  }
  return{year,url,htmlLength:html.length,tableCount:tables.length,rowCount,tableResults};
 }
