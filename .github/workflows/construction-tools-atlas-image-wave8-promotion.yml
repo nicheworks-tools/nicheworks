@@ -1,0 +1,24 @@
+name: Construction Tools Atlas Wave8 Read-only Image Audit
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit-wave8-reviewed-images:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify pinned source SHA1, attribution and 40 SEO pages
+        run: |
+          echo "616511023ad6dd0c4a13632892c7f1177f623e97  tools/construction-tools-atlas/images/torque_wrench/source.jpg" | sha1sum -c
+          echo "6906c01a40180712660fdce8df495d96395fab67  tools/construction-tools-atlas/images/wire_stripper/source.jpg" | sha1sum -c
+          node tools/construction-tools-atlas/scripts/check-image-registry-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/check-image-attribution-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/build-seo-detail-pages-v2.3.cjs --check
+          node tools/construction-tools-atlas/scripts/build-affiliate-image-acquisition-queue-v2.3.cjs --check

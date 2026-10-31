@@ -55,6 +55,8 @@ For licensed sources, each generated WebP derivative is made available under the
 | `multimeter` | Ranjithkumar Murugesan / Wikimedia Commons, CC0 1.0 | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:DT830D_DIGITAL_MULTIMETER.jpg) | `ff22145553196e8b7fe75d30bb8e519441b89a3f` |
 | `screwdriver` | Dmitry G / Wikimedia Commons, Public Domain | [Public Domain (PD-self)](https://commons.wikimedia.org/wiki/Template:PD-self) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Screw_driver.jpg) | `73a6fa3dbbd195bc549a94beb2838158f543cf47` |
 | `utility_knife` | Matěj Baťha / Wikimedia Commons, CC BY-SA 2.5 | [CC BY-SA 2.5](https://creativecommons.org/licenses/by-sa/2.5/) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Utility_knife.jpg) | `d4d42d040c2be9f5764f165590b9700d60753bd7` |
+| `torque_wrench` | Sunnyhappy123 / Wikimedia Commons, CC BY-SA 4.0 | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:1-4%22_5-25Nm.jpg) | `616511023ad6dd0c4a13632892c7f1177f623e97` |
+| `wire_stripper` | Scott Ehardt / Wikimedia Commons, Public Domain | [Public Domain (PD-self)](https://commons.wikimedia.org/wiki/Template:PD-self) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Wire_Stripper_Automatic.jpg) | `6906c01a40180712660fdce8df495d96395fab67` |
 
-Source ledger versions: `2026-09-14-wave1-1`, `2026-09-14-wave2b-1`, `2026-09-14-wave3a-1`, `2026-09-18-wave4a-1`, `2026-09-19-wave5-promotion-1`, `2026-10-31-reviewed-image-wave6-two-1`, `2026-10-31-reviewed-image-wave7-three-1`.
+Source ledger versions: `2026-09-14-wave1-1`, `2026-09-14-wave2b-1`, `2026-09-14-wave3a-1`, `2026-09-18-wave4a-1`, `2026-09-19-wave5-promotion-1`, `2026-10-31-reviewed-image-wave6-two-1`, `2026-10-31-reviewed-image-wave7-three-1`, `2026-10-31-reviewed-image-wave8-two-1`.
 
