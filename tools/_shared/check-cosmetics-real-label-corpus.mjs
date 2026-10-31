@@ -157,7 +157,7 @@ const PUBLIC_ROLE_CATEGORIES = new Set([
   'surfactant', 'cleanser', 'uv filter', 'sunscreen', 'colorant', 'pigment',
   'antioxidant', 'botanical', 'extract', 'plant extract', 'peptide', 'ferment',
   'thickener', 'emulsifier', 'chelator', 'chelating agent', 'ph', 'ph adjuster',
-  'viscosity adjuster', 'buffer', 'conditioning', 'skin conditioning', 'hair conditioning'
+  'viscosity adjuster', 'buffer', 'conditioning', 'skin conditioning', 'hair conditioning', 'bulking agent'
 ]);
 const runtimeByCanonical = new Map(
   parser.mergeDictionaryRecords(records).map((item) => [canonicalIdentity(item.en), item])

@@ -127,10 +127,10 @@ const expected=Object.freeze({
 assert.equal(raw.length,725,'source review may not rewrite raw dictionary records');
 assert.equal(merged.length,599,'source review may not change canonical recognition inventory');
 assert.equal(Object.keys(expected).length,16);
-assert.equal(Object.keys(parser.verifiedCategoryEvidence).length,190);
-assert.equal(Object.keys(parser.verifiedNoteEvidence).length,156);
-assert.equal(Object.keys(taxonomy.reviewed_mappings).length,190);
-assert.equal(parser.version,'1.63.0');
+assert.ok(Object.keys(parser.verifiedCategoryEvidence).length >= 190, 'wave30 role evidence retained');
+assert.ok(Object.keys(parser.verifiedNoteEvidence).length >= 156, 'wave30 specific notes retained');
+assert.ok(Object.keys(taxonomy.reviewed_mappings).length >= 190, 'wave30 reviewed mappings retained');
+assert.ok(Number(parser.version.split('.')[1]) >= 63, 'wave30 parser contract retained');
 for(const [key,want] of Object.entries(expected)){
   const category=parser.verifiedCategoryEvidence[key];
   const note=parser.verifiedNoteEvidence[key];

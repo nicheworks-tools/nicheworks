@@ -488,3 +488,15 @@ The same 14 individually reviewed ingredients receive provenance-checked neutral
 ## Verified note wave 26 — 16 COSMILE/FDA-backed notes (2026-11-01)
 
 Sixteen further ingredient-specific function descriptions carry exact official source URLs. The three FDA-listed sunscreen actives (Dioxybenzone, Ensulizole, Meradimate) are annotated for UV-filter function without implying a favorable GRASE or product-level safety conclusion. All other notes are tied to specific COSMILE Europe cosmetic-function pages, not to unrelated but similar chemical names. The cumulative strong reviewed note inventory is **156/599 (26.04%)**, leaving **443** identities to investigate individually. Primary bilingual role descriptions remain distinct from optional, source-linked English short notes.
+
+
+## Verified note wave 27 (2026-11-01)
+
+The six Wave 31 reviewed identities also receive source-backed ingredient-level explanatory notes with HTTPS references. These describe chemical/physical formulation functions only. They do not assert individual allergy responses, quality of a specific cosmetic, legal compliance for a product, or a general conclusion on product safety.
+
+- Verified category identities: **196/599**
+- Verified ingredient-specific notes with maintained Japanese naming and supported public role: **162/599 (27.05%)**
+- Remaining missing stronger notes: **437/599**
+- The purposely ambiguous `BHA` is not assigned a note or a role.
+
+Source notes are secondary to the maintained bilingual role copy and use the same provenance checks in Lite and FastScan.

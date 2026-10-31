@@ -258,7 +258,13 @@
     "peg-12": Object.freeze({ category: "humectant", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/10395/peg-12/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "peg-75": Object.freeze({ category: "humectant", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/11036/peg-75/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "ppg-26-buteth-26": Object.freeze({ category: "hair conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12992/ppg-26-buteth-26/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "elastin": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5210/elastin/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "elastin": Object.freeze({ category: "skin conditioning", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5210/elastin/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "disodium edta dihydrate": Object.freeze({ category: "chelating agent", sources: Object.freeze(["https://webprod.hc-sc.gc.ca/nhpid-bdipsn/ingredReq?id=5761"]), authority: "Health Canada / Natural Health Products Ingredients Database" }),
+    "benzyl cinnamate": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://kcia.or.kr/cid/search/ingd_view.php?no=524"]), authority: "Korea Cosmetic Association / Ingredient Dictionary" }),
+    "citrus aurantium bergamia bergamot fruit oil": Object.freeze({ category: "fragrance", sources: Object.freeze(["https://webprod.hc-sc.gc.ca/nhpid-bdipsn/ingredReq?id=4517"]), authority: "Health Canada / Natural Health Products Ingredients Database" }),
+    "talc": Object.freeze({ category: "bulking agent", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15804/talc/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "nylon-6": Object.freeze({ category: "bulking agent", sources: Object.freeze(["https://journals.sagepub.com/doi/10.1177/1091581814563524"]), authority: "Cosmetic Ingredient Review / International Journal of Toxicology" }),
+    "ptfe": Object.freeze({ category: "bulking agent", sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/13392/ptfe/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   const VERIFIED_NOTE_EVIDENCE = Object.freeze({
@@ -417,7 +423,13 @@
     "peg-12": Object.freeze({ note_short: "PEG-12 retains moisture in cosmetic products and is also listed as a solvent and fragrance-functional ingredient.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/10395/peg-12/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "peg-75": Object.freeze({ note_short: "PEG-75 retains moisture and can also bind powdered ingredients or act as a solvent in cosmetics.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/11036/peg-75/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "ppg-26-buteth-26": Object.freeze({ note_short: "PPG-26-Buteth-26 is listed for hair and skin conditioning, with a fragrance-functional role.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/12992/ppg-26-buteth-26/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "elastin": Object.freeze({ note_short: "Elastin is used for skin conditioning and smoothing in cosmetic products.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5210/elastin/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "elastin": Object.freeze({ note_short: "Elastin is used for skin conditioning and smoothing in cosmetic products.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5210/elastin/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "disodium edta dihydrate": Object.freeze({ note_short: "Disodium EDTA Dihydrate binds metal ions (chelating agent); Health Canada lists this exact hydrated ingredient for non-medicinal chelation.", note_sources: Object.freeze(["https://webprod.hc-sc.gc.ca/nhpid-bdipsn/ingredReq?id=5761"]), authority: "Health Canada / Natural Health Products Ingredients Database" }),
+    "benzyl cinnamate": Object.freeze({ note_short: "Benzyl Cinnamate is used for fragrance in cosmetic products; this function does not predict allergy in a particular individual.", note_sources: Object.freeze(["https://kcia.or.kr/cid/search/ingd_view.php?no=524"]), authority: "Korea Cosmetic Association / Ingredient Dictionary" }),
+    "citrus aurantium bergamia bergamot fruit oil": Object.freeze({ note_short: "Citrus Aurantium Bergamia (Bergamot) Fruit Oil is listed by Health Canada for non-medicinal fragrance use; product-specific restrictions and quality still require separate review.", note_sources: Object.freeze(["https://webprod.hc-sc.gc.ca/nhpid-bdipsn/ingredReq?id=4517"]), authority: "Health Canada / Natural Health Products Ingredients Database" }),
+    "talc": Object.freeze({ note_short: "Talc can provide a bulking function in cosmetics; COSMILE Europe also lists absorbent, anticaking, opacifying and slip-modifying functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15804/talc/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "nylon-6": Object.freeze({ note_short: "Nylon-6 belongs to the nylon polymers used mainly as bulking and opacifying agents in cosmetics, according to the Cosmetic Ingredient Review assessment.", note_sources: Object.freeze(["https://journals.sagepub.com/doi/10.1177/1091581814563524"]), authority: "Cosmetic Ingredient Review / International Journal of Toxicology" }),
+    "ptfe": Object.freeze({ note_short: "PTFE is listed by COSMILE Europe for its bulking function in cosmetic formulations; this is not a product safety determination.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/13392/ptfe/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   function canonicalIdentityKey(value = "") {
@@ -642,7 +654,7 @@
   }
 
   const api = {
-    version: "1.63.0",
+    version: "1.64.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,

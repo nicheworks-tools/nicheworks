@@ -26,7 +26,7 @@ const PUBLIC_ROLE_CATEGORIES = new Set([
   'antioxidant', 'botanical', 'extract', 'plant extract', 'peptide', 'ferment',
   'thickener', 'emulsifier', 'chelator', 'chelating agent', 'ph', 'ph adjuster',
   'viscosity adjuster', 'buffer', 'conditioning', 'skin conditioning',
-  'hair conditioning'
+  'hair conditioning', 'bulking agent'
 ]);
 
 // Frozen from main c979c8a06a2a6491d66a0647533cb572a183602d on 2026-09-18 JST.
@@ -52,9 +52,9 @@ const BASELINE_FLOORS = Object.freeze({
 });
 
 const BASELINE_RUNTIME_PROVENANCE_FLOORS = Object.freeze({
-  verified_category_runtime_identities: 190,
-  verified_note_runtime_identities: 156,
-  strong_runtime_data_identities: 156
+  verified_category_runtime_identities: 196,
+  verified_note_runtime_identities: 162,
+  strong_runtime_data_identities: 162
 });
 
 function text(value = '') {

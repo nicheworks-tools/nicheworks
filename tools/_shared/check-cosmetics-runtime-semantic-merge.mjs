@@ -27,7 +27,7 @@ const safetyConflicts = merged.filter((item) => Array.isArray(item.semantic_conf
 const categoryConflicts = merged.filter((item) => Array.isArray(item.semantic_conflicts?.category));
 
 assert.equal(safetyConflicts.length, 16, 'all 16 audited legacy safety conflicts must be explicit at runtime');
-assert.equal(categoryConflicts.length, 117, 'two legacy-only plus 115 reviewed verified-primary role conflicts must remain explicit');
+assert.equal(categoryConflicts.length, 121, 'two legacy-only plus 119 reviewed verified-primary role conflicts must remain explicit');
 
 for (const item of safetyConflicts) {
   assert.equal(item.safety, undefined, `${item.en}: conflicting legacy safety must not select a runtime winner`);
@@ -150,7 +150,11 @@ const reviewedVerifiedPrimary = new Map([
   ["peg-12", { category: "humectant", legacy: ["solvent"] }],
   ["peg-75", { category: "humectant", legacy: ["solvent"] }],
   ["ppg-26-buteth-26", { category: "hair conditioning", legacy: ["solubilizer"] }],
-  ["elastin", { category: "skin conditioning", legacy: ["protein"] }]
+  ["elastin", { category: "skin conditioning", legacy: ["protein"] }],
+  ["citrus aurantium bergamia bergamot fruit oil", { category: "fragrance", legacy: ["essential oil"] }],
+  ["talc", { category: "bulking agent", legacy: ["powder"] }],
+  ["nylon-6", { category: "bulking agent", legacy: ["powder"] }],
+  ["ptfe", { category: "bulking agent", legacy: ["powder"] }]
 ]);
 
 for (const item of categoryConflicts) {

@@ -20,7 +20,7 @@ const liteDescriptions = runtimeObject(liteFile, 'ROLE_DESCRIPTIONS');
 const fastLabels = runtimeObject(scanFile, 'ROLE_LABELS');
 const fastDescriptions = runtimeObject(scanFile, 'ROLE_DESCRIPTIONS');
 
-const categories = ['buffer', 'conditioning', 'skin conditioning', 'hair conditioning', 'plant extract'];
+const categories = ['buffer', 'conditioning', 'skin conditioning', 'hair conditioning', 'plant extract', 'bulking agent'];
 for (const category of categories) {
   for (const lang of ['ja', 'en']) {
     assert.ok(liteLabels[category]?.[lang], `Lite missing ${category} ${lang} label`);
@@ -30,4 +30,4 @@ for (const category of categories) {
   }
 }
 assert.equal(liteLabels.general.en, 'Information incomplete', 'general must not become a supported public role');
-console.log('COSMETICS_ROLE_PARITY=PASS: five bilingual role categories match in Lite and FastScan; general remains incomplete');
+console.log('COSMETICS_ROLE_PARITY=PASS: six bilingual role categories match in Lite and FastScan; general remains incomplete');
