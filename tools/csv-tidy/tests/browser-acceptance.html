@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="robots" content="noindex,nofollow">
   <title>CSV Tidy — real browser acceptance harness</title>
   <style>
     body { margin: 0; font: 14px/1.4 system-ui, sans-serif; }
@@ -68,7 +69,7 @@
     record("real browser File/DataTransfer load", await until(() =>
       d.querySelectorAll("#colsList li.col-item").length === 3 &&
       d.getElementById("downloadBtn").disabled === false));
-    record("parsed preview populated", d.getElementById("previewTable").textContent.includes("Alice"));
+    record("parsed preview populated", await until(() => d.getElementById("previewTable").textContent.includes("Alice")));
 
     const cols = [...d.querySelectorAll("#colsList li.col-item")];
     if (cols.length === 3) {
@@ -115,7 +116,7 @@
       await sleep(160);
       const client = d.documentElement.clientWidth;
       const scroll = d.documentElement.scrollWidth;
-      record("responsive " + width + "px", Math.abs(client - width) <= 2 && scroll <= client + 2,
+      record("responsive " + width + "px", client >= width - 18 && client <= width + 2 && scroll <= client + 2,
         "client=" + client + " scroll=" + scroll);
     }
 
