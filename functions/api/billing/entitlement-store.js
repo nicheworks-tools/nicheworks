@@ -247,7 +247,7 @@ export async function issueEntitlement(env, record) {
   }
 
   try {
-    await storage.binding
+    const insert = await storage.binding
       .prepare(`
         INSERT INTO billing_entitlements (
           entitlement_id,
@@ -262,7 +262,11 @@ export async function issueEntitlement(env, record) {
           created_at,
           updated_at,
           revoked_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ) SELECT ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+        WHERE NOT EXISTS (
+          SELECT 1 FROM billing_payment_revocations
+          WHERE stripe_payment_intent_id = ?
+        )
       `)
       .bind(
         record.entitlementId,
@@ -276,9 +280,12 @@ export async function issueEntitlement(env, record) {
         JSON.stringify(record.features),
         record.createdAt,
         record.updatedAt,
-        record.revokedAt
+        record.revokedAt,
+        record.stripePaymentIntentId
       )
       .run();
+    const changes = Number(insert?.meta?.changes ?? insert?.changes ?? 0);
+    if (changes === 0) return { ok: true, issued: false, revoked: true, idempotent: false };
   } catch (error) {
     if (!isUniqueViolation(error)) {
       return { ok: false, error: 'entitlement_issue_failed' };
