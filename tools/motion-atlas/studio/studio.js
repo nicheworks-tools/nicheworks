@@ -224,6 +224,54 @@ function download(){
  const file=bundle?.find(f=>f.name==="MotionStudioBundle.md");
  if(file)downloadFile(file);
 }
+
+const PURCHASE_PRODUCT="motion_atlas.studio_v1";
+let checkoutReady=false;
+const billingMessage=text=>{$("billing-status").textContent=text;};
+async function loadCheckoutConfiguration(){
+ $("purchase-panel").hidden=true;
+ const code=String(localStorage.getItem(SESSION_KEY)||"");
+ $("restore-link").hidden=!/^cs_(test|live)_[A-Za-z0-9]+$/.test(code);
+ try{
+  const response=await fetch("/config/billing/products.json",{cache:"no-store",credentials:"same-origin"});
+  if(!response.ok)return;
+  const catalog=await response.json();
+  const product=catalog?.products?.find(p=>p.productId===PURCHASE_PRODUCT);
+  const tier=catalog?.priceTiers?.find(t=>t.priceTierId===product?.priceTierId);
+  const amount=product?.price?.amount,currency=product?.price?.currency;
+  if(catalog.status!=="active"||product?.checkout?.enabled!==true||
+     product?.stripe?.mode!=="connected"||!Number.isFinite(amount)||amount<=0||
+     typeof currency!=="string"||!/^[A-Z]{3}$/.test(currency)||
+     !tier||tier.amount!==amount||tier.currency!==currency||
+     tier.type!=="one_time"||product.price?.type!=="one_time")return;
+  const formatted=new Intl.NumberFormat(ja?"ja-JP":"en-US",{style:"currency",currency}).format(amount);
+  $("purchase-price").textContent=(ja?"買い切り価格: ":"One-time price: ")+formatted;
+  checkoutReady=true;
+  $("purchase-panel").hidden=false;
+  $("restore-link").hidden=false;
+ }catch{
+  checkoutReady=false;$("purchase-panel").hidden=true;
+ }
+}
+async function beginCheckout(){
+ if(!checkoutReady)return;
+ const button=$("purchase");button.disabled=true;
+ billingMessage(ja?"Stripeの購入画面を準備しています…":"Preparing Stripe checkout…");
+ try{
+  const response=await fetch("/api/billing/create-checkout-session",{
+   method:"POST",credentials:"same-origin",headers:{"content-type":"application/json"},
+   body:JSON.stringify({productId:PURCHASE_PRODUCT,returnPath:location.pathname})
+  });
+  const data=await response.json();
+  if(!response.ok||!data.ok||data.productId!==PURCHASE_PRODUCT)throw Error("checkout_unavailable");
+  const destination=new URL(data.url);
+  if(destination.protocol!=="https:"||destination.hostname!=="checkout.stripe.com")
+    throw Error("invalid_checkout_url");
+  location.assign(destination.toString());
+ }catch{
+  billingMessage(ja?"決済を開始できません。課金は発生していません。":"Checkout unavailable. No payment was made.");
+ }finally{button.disabled=false;}
+}
 $("target-text").addEventListener("input",createStage);
 $("add-track").addEventListener("click",()=>{
  if(tracks.length>=8){message(WORDS.max);return;}
@@ -238,5 +286,6 @@ $("delete-preset").addEventListener("click",del);
 $("export").addEventListener("click",exportBundle);
 $("export-download").addEventListener("click",download);
 window.matchMedia("(prefers-reduced-motion: reduce)").addEventListener?.("change",()=>{if(animations.length)stop();});
-loadPresets();renderTracks();createStage();
+$("purchase").addEventListener("click",beginCheckout);
+loadPresets();renderTracks();createStage();loadCheckoutConfiguration();
 })();
