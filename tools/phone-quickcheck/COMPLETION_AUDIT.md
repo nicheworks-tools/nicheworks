@@ -152,6 +152,27 @@ Phone QuickCheck v1 is complete under the maintained contract:
 
 Future work is maintenance: new models, source changes, corrections, and evidence upgrades. It is not part of the v1 closure backlog.
 
+## Post-v1 maintenance Wave 28 — 2026-11-02
+
+Catalogue expansion continued, with five more historically marketed **Japan** FCNT phones from original Fujitsu/FMWORLD manufacturer product and *specific standard-package* pages. Data **227 → 232 phones**, FCNT **12 → 17**, still 11 manufacturers / 36 foldables / old 181-phone V1 closure unchanged.
+
+### Separate sales models with overlapping core hardware
+arrows U (SoftBank 801FJ), arrows J (Y!mobile/Japanet 901FJ), arrows RX (Rakuten), and SIM-free arrows M05 use nearly identical listed body size (**149×72×8.8 mm**, **166 g**, **5.8in**, **2,880mAh**, USB-C, IPX5/IPX8/IP6X), but are separately branded Japan-sale models with different carrier, retail and **in-box charging cable**. We do not collapse RX's manufacturer-confirmed **included** Type-C sample cable into the other three *not included* cable packages. Each record has its own product and package URL.
+
+### Official primary evidence
+- **arrows Be F-04K (2018 NTT docomo)**: [FMWORLD specs](https://www.fmworld.net/product/phone/f-04k/spec.html) — **144×72×8.3mm, 146g, 5.0in, 2,580mAh**, IPX5/IPX8/IP6X; [standard box/optional cable/charger](https://www.fmworld.net/product/phone/f-04k/option.html). The manufacturer explicitly places USB Type-C cables and AC adapters under *optional* accessories, not the standard bundle. No device PD/PPS/charging wattage guessed.
+- **arrows U (2019 SoftBank 801FJ)**: [FMWORLD specs](https://www.fmworld.net/product/phone/arrows_u/spec.html) and [manufacturer package](https://www.fmworld.net/product/phone/arrows_u/fuzokuhin.html) — **149×72×8.8mm / 166g**, 5.8in, 2,880mAh, USB Type-C, IPX5/IPX8/IP6X; only SIM pin/guide/notices, no cable or brick. [SoftBank charging support](https://www.softbank.jp/mobile/support/manual/smartphone/arrows-u/detail/32315/) shows use of a USB-PD compatible *optional adapter*, but this alone is **not** treated as a verified handset USB PD revision or wattage.
+- **arrows J (2019 Y!mobile/Japanet 901FJ)**: [FMWORLD specs](https://www.fmworld.net/product/phone/arrows_j/spec.html) / [manufacturer standard package](https://www.fmworld.net/product/phone/arrows_j/fuzokuhin.html) — **149×72×8.8mm, 166g, 5.8in, 2,880mAh, USB-C**, IPX5/IPX8/IP6X, no cable/brick in the manufacturer's **phone box**. Some historical Japanet *sales bundles* added an external power adapter; do not generalize a retailer bundle into the standard manufacturer's in-box list.
+- **arrows RX (2019 Rakuten)**: [FMWORLD specs](https://www.fmworld.net/product/phone/arrows_rx/spec.html) / [manufacturer package](https://www.fmworld.net/product/phone/arrows_rx/fuzokuhin.html) / [Rakuten Japan phone sale and Qi statement](https://network.mobile.rakuten.co.jp/product/smartphone/arrows-rx/) — **149×72×8.8mm, 166g, 5.8in, 2,880mAh, IPX5/IPX8/IP6X**. Crucially **USB-C cable included** as a sample; wall adapter **not included**. Exact domestic carrier expressly says wireless charging not supported; this is source-backed `wirelessStatus:not_supported`.
+- **arrows M05 (2019 SIM-free)**: [FMWORLD specs](https://www.fmworld.net/product/phone/m05/spec.html) / [FMWORLD standard package](https://www.fmworld.net/product/phone/m05/fuzokuhin.html) — **149×72×8.8mm, 166g, 5.8in, 2,880mAh, USB-C**, IPX5/IPX8/IP6X, included SIM pin/guide/papers/warranty only, not USB cable or charger.
+
+### Provenance policy and affiliate coverage
+- Only manufacturer original domain `fmworld.net` (already trusted) plus Japan Rakuten Mobile sale page for RX. FCNT first-party allowlist narrowly expands to `rakuten.co.jp`; no uncontrolled retailer URLs or affiliate links are provenance.
+- No unsupported PD, PPS, handset max W or wattage recommendations. Unknown wireless remains unclaimed except Rakuten RX's explicit unsupported. No new package/water unresolved fields.
+- Existing 22-category dynamic Amazon affiliate system creates USB-C cable and 10,000mAh power-bank *search* opportunities for all five (total +10 possible CTA placements, not purchases or commissions), although RX already bundles a USB-C cable; describe such accessories as optional extras, not prerequisites. Affiliation tag/disclosure unchanged.
+
+CI must pass sources, semantic, data/completion, responsive, affiliate, SEO and runtime. Verify real public **232** canonical JSON parity and mobile/desktop chrome rather than reporting GitHub-only merge as production deployment.
+
 ## Post-v1 maintenance Wave 26 — 2026-11-02
 
 Resumed expanding actual first-party-verified Japan phone coverage in parallel with (not after) qualified-traffic/affiliate measurement. Added four **distinct, historically sold NTT docomo FCNT products**, canonical count **223 → 227**, FCNT **8 → 12**, retained **11 manufacturers / 36 foldables** and original V1 181 baseline. No unsupported protocol/wattage/box claims; all four add a wired USB-C cable and USB-C power-bank dynamic Amazon class; arrows 5G's first-party USB PD2.0 plus charger exclusion additionally resolves the existing generic wattage-unverified USB-PD charger class. These classes use the verified 22-class tagged, disclosed Amazon runtime, not null static URLs.
