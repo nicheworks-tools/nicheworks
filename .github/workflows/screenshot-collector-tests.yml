@@ -1,0 +1,21 @@
+name: Screenshot Collector checks
+on:
+  pull_request:
+    paths:
+      - 'apps/screenshot-collector/**'
+      - '.github/workflows/screenshot-collector-tests.yml'
+permissions:
+  contents: read
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: JavaScript syntax
+        run: |
+          for file in apps/screenshot-collector/extension/*.js; do node --check "$file"; done
+      - name: URL policy and ZIP unit tests
+        run: node --test apps/screenshot-collector/tests/*.test.mjs
