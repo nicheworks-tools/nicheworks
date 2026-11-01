@@ -28,6 +28,19 @@ assert.match(client,/\.animate\(EFFECTS\[track\.effect\]/,"Timeline preview must
 assert.match(client,/localStorage\.setItem\(STORAGE/,"Browser-local preset storage required");
 assert.match(client,/nicheworks:billing:session:motion_atlas\.studio_v1/);
 assert.match(client,/\/api\/motion-atlas\/studio-export/);
+
+const restore=fs.readFileSync(path.resolve(root,"../../billing/restore.html"),"utf8");
+assert.match(restore,/value="motion_atlas\.studio_v1"/,"Generic billing restore form must offer Studio");
+assert.match(restore,/'motion_atlas\.studio_v1': '\/tools\/motion-atlas\/studio\/'/);
+assert.match(restore,/features\.has\('motionAtlas\.studioExport'\)/,"Restore must check Studio export entitlement");
+for(const html of [en,ja]){
+ assert.match(html,/id="export-files"/,"Separate code files need own accessible download controls");
+}
+assert.match(client,/data\.files\.find\(f=>f\.name===name/,"Do not trust unordered server file responses");
+assert.match(client,/exportSignature===JSON\.stringify/,"Stale code outputs must be discarded after editing");
+assert.match(client,/button\.dataset\.exportFile=file\.name/,"Individual CSS/React file buttons required");
+assert.match(client,/anchor\.download=file\.name/,"File download must keep correct filename");
+
 assert.doesNotMatch(client,/function generateStudioFiles|@keyframes nwStudio_/,"Paid generator must remain on server");
 
 
