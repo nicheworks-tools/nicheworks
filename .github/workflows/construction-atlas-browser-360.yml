@@ -1,0 +1,42 @@
+name: Construction Atlas Chromium viewport QA
+
+on:
+  pull_request:
+    paths:
+      - 'tools/construction-tools-atlas/**'
+      - '.github/workflows/construction-atlas-browser-360.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/construction-tools-atlas/**'
+      - '.github/workflows/construction-atlas-browser-360.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dictionary-viewport:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Node 22 with native WebSocket
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify Chrome is available on the runner
+        run: command -v google-chrome || command -v google-chrome-stable || command -v chromium
+      - name: Check local viewport QA syntax
+        run: node --check tools/construction-tools-atlas/scripts/check-browser-viewport-360.mjs
+      - name: Exercise 360px, 390px and desktop dictionary in actual Chrome
+        run: node tools/construction-tools-atlas/scripts/check-browser-viewport-360.mjs
+      - name: Upload Chromium viewport screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: construction-atlas-chromium-viewport
+          path: artifacts/construction-atlas-viewport/*.png
+          if-no-files-found: warn
+          retention-days: 7
