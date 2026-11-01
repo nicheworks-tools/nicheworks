@@ -100,4 +100,22 @@ assert.equal(evaluate(`buildDownloadName('holiday.photo.webp', 'jpeg')`), 'holid
 assert.equal(evaluate(`buildDownloadName('image', 'png')`), 'image-cleaned.png');
 assert.equal(evaluate(`formatFileSize(1536)`), '1.5 KB');
 
+
+assert.equal(evaluate('matchesRequestedCanvasMime({type:"image/jpeg"}, "image/jpeg")'), true);
+assert.equal(evaluate('matchesRequestedCanvasMime({type:"image/webp"}, "image/webp")'), true);
+assert.equal(evaluate('matchesRequestedCanvasMime({type:"image/png"}, "image/webp")'), false,
+  'canvas PNG fallback must not be offered as a mislabeled WebP file');
+assert.equal(evaluate('matchesRequestedCanvasMime({type:"image/png"}, "image/jpeg")'), false);
+assert.equal(evaluate('matchesRequestedCanvasMime({type:""}, "image/jpeg")'), false,
+  'an unknown output format must not be claimed as a supported image type');
+assert.equal(evaluate('matchesRequestedCanvasMime(null, "image/jpeg")'), false);
+assert.ok(source.includes('formatError.code = "OUTPUT_FORMAT_UNSUPPORTED"'));
+assert.ok(source.indexOf('matchesRequestedCanvasMime(blob, mimeType)') < source.indexOf('const downloadName = buildDownloadName('),
+  'MIME must be validated before any download link is created');
+assert.ok(source.includes('document.body.appendChild(a)') && source.includes('URL.revokeObjectURL(blobUrl)'),
+  'temporary object URL must be revoked after the download is triggered');
+const page = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+assert.ok(page.includes('If the browser cannot encode your selected format'));
+assert.ok(page.includes('誤った拡張子で保存せず'));
+
 console.log('EXIF Cleaner Mini behavior test passed.');
