@@ -160,6 +160,12 @@ export async function onRequestPost({ request, env }) {
   if (listedProduct.checkout && listedProduct.checkout.enabled !== true) {
     return json({ ok: false, error: 'product_checkout_disabled' }, 403);
   }
+  // Studio is a separately priced product: require explicit registry activation
+  // before global billing flags or Stripe credentials can authorize checkout.
+  if (listedProduct.productId === 'motion_atlas.studio_v1' &&
+      (config.status !== 'active' || listedProduct.stripe?.mode !== 'connected')) {
+    return json({ ok: false, error: 'product_not_on_sale' }, 409);
+  }
   // Keep earlier non-OKJ products' error handling stable; only Old Kanji is
   // subject to this new unpriced-product launch boundary.
   if (listedProduct.productId === 'okj.toolkit_pro' &&

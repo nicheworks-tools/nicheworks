@@ -81,3 +81,6 @@ assert.match(source, /trackUsage\("copy_result"\)/, "successful handoff copies s
 assert.doesNotMatch(source, /gtag\(['"]event['"]/, "tool must use shared allowlisted event helper");
 
 console.log("Motion Atlas behavior-contract tests passed: 42 bilingual motions, demo wiring, free outputs, safety fallbacks.");
+
+// Include the separately gated Studio tests in the existing tool behavior runner.
+await import("./studio-contract.test.mjs");

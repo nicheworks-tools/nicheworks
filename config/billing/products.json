@@ -109,6 +109,36 @@
         }
       },
       "priceTierId": "nw.one_time.jpy_1980"
+    },
+    {
+      "productId": "motion_atlas.studio_v1",
+      "displayName": {
+        "en": "Motion Atlas Studio",
+        "ja": "Motion Atlas Studio"
+      },
+      "price": {
+        "amount": null,
+        "currency": null,
+        "type": "one_time"
+      },
+      "stripe": {
+        "mode": "not_connected",
+        "priceIdEnv": "STRIPE_PRICE_MOTION_ATLAS_STUDIO_V1"
+      },
+      "checkout": {
+        "enabled": false
+      },
+      "features": [
+        "motionAtlas.studioExport"
+      ],
+      "ui": {
+        "state": "billing-unavailable",
+        "billingUnavailableNote": {
+          "en": "Studio is not on sale. Price approval and Stripe live verification are required.",
+          "ja": "Studioは未販売です。価格確定とStripe本番検証までは購入できません。"
+        }
+      },
+      "priceTierId": null
     }
   ],
   "priceTiers": [
