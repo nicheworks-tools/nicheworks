@@ -14,7 +14,11 @@
     copyNone: isEn ? "No data to copy." : "コピー対象がありません。",
     copyFail: isEn ? "Failed to copy. Please copy manually." : "コピーに失敗しました。手動で選択してください。",
     csvOk: isEn ? "Downloaded CSV mapping." : "CSVを保存しました。",
-    needFiles: isEn ? "Please select or drop files first." : "先にファイルを選択してください。",
+    needFiles: isEn ? "Select files or load a filename list first." : "ファイルを選ぶか、名前一覧を読み込んでください。",
+    pasteEmpty: isEn ? "Enter one filename per line." : "1行に1つずつファイル名を入力してください。",
+    pasteTooMany: isEn ? "The list is limited to 500 filenames." : "入力できるのは500件までです。",
+    pasteTooLarge: isEn ? "Filename list is too large (100,000 characters max)." : "名前一覧が大きすぎます（10万文字まで）。",
+    pasteLoaded: isEn ? "Loaded {count} filenames (no files were accessed)." : "{count}件のファイル名を読み込みました（実ファイルには触れていません）。",
   };
 
   var warningLabels = {
@@ -26,6 +30,9 @@
   };
 
   var fileInput = document.getElementById("fileInput");
+  var namesInput = document.getElementById("namesInput");
+  var loadNamesButton = document.getElementById("loadNamesButton");
+  var pasteStatus = document.getElementById("pasteStatus");
   var fileSelectButton = document.getElementById("fileSelectButton");
   var dropzone = document.getElementById("dropzone");
   var runButton = document.getElementById("runButton");
@@ -53,12 +60,35 @@
   function setFilesFromList(fileList) {
     originalNames = [];
     currentRows = [];
+    if (namesInput) namesInput.value = "";
+    if (pasteStatus) pasteStatus.textContent = "";
     if (!fileList) return;
     for (var i = 0; i < fileList.length; i++) {
       var f = fileList[i];
       if (f && typeof f.name === "string") originalNames.push(f.name);
     }
     renderPreview([]);
+  }
+
+  function parseFilenameLines(text) {
+    if (typeof text !== "string" || text.length > 100000) return { error: "pasteTooLarge" };
+    var names = text.split(/\r\n|\r|\n/).map(function (line) { return line.trim(); }).filter(Boolean);
+    if (!names.length) return { error: "pasteEmpty" };
+    if (names.length > 500) return { error: "pasteTooMany" };
+    return { names: names };
+  }
+
+  function loadPastedNames() {
+    var parsed = parseFilenameLines(namesInput ? namesInput.value : "");
+    if (parsed.error) {
+      if (pasteStatus) pasteStatus.textContent = t[parsed.error];
+      return;
+    }
+    originalNames = parsed.names;
+    currentRows = [];
+    if (fileInput) fileInput.value = "";
+    renderPreview([]);
+    if (pasteStatus) pasteStatus.textContent = t.pasteLoaded.replace("{count}", String(originalNames.length));
   }
 
   function setOutputEnabled(enabled) {
@@ -318,6 +348,8 @@
     setTimeout(function () { URL.revokeObjectURL(url); }, 500);
   }
 
+  if (loadNamesButton) loadNamesButton.addEventListener("click", loadPastedNames);
+
   if (fileSelectButton && fileInput) {
     fileSelectButton.addEventListener("click", function () { fileInput.click(); });
     fileInput.addEventListener("change", function (e) { setFilesFromList(e.target.files); });
@@ -375,6 +407,8 @@
       originalNames = [];
       currentRows = [];
       if (fileInput) fileInput.value = "";
+      if (namesInput) namesInput.value = "";
+      if (pasteStatus) pasteStatus.textContent = "";
       if (resultBody) resultBody.innerHTML = "";
       if (resultWrapper) resultWrapper.classList.add("hidden");
       if (noFilesMessage) {
