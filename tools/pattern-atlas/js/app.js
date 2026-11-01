@@ -8,6 +8,7 @@ import { setupColorEditor } from './color-ui.js';
 import { setupPalettePresets } from './palette-ui.js';
 import { setupSvgExport } from './export-ui.js';
 import { renderPatternSvg } from './renderers/index.js';
+import { setupPatternDeepLinks } from './deep-link.js';
 
 const root = document.querySelector('[data-tool="pattern-atlas"]');
 
@@ -90,4 +91,5 @@ if (root) {
   setupColorEditor({ root, patterns, isJapanese });
   setupPalettePresets({ root, isJapanese });
   setupSvgExport({ root, patterns, isJapanese });
+  setupPatternDeepLinks({ root, patterns });
 }
