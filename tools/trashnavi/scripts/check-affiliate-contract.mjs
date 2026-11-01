@@ -43,7 +43,8 @@ const rootAffiliatePos = root.indexOf('id="trashnaviAmazonAffiliate"');
 check(rootAffiliatePos > root.indexOf('id="results"') && rootAffiliatePos < root.indexOf('class="data-note"'), 'TrashNavi root PR panel must follow official search results and precede bulk directory');
 check(root.includes('自治体ごとの指定・収集ルールへの適合'), 'general supplies must not claim municipal compliance');
 check(runtime.includes('orderedOffers(searchIntent())'), 'closed-set search-intent ranking is required');
-check(runtime.includes('affiliate_impression'), 'visible affiliate impressions must be measurable');
+check(runtime.includes('helper.trackImpression('), 'visible impressions must use the shared Amazon analytics helper');
+check(helper.includes('function trackImpression(') && helper.includes('"affiliate_impression"'), 'shared helper must emit the view event');
 check(runtime.includes('new IntersectionObserver('), 'affiliate impression may only fire when visible');
 check(runtime.includes('config.offers'), 'only fixed approved affiliate offers can be ranked');
 
