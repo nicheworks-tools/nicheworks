@@ -225,6 +225,29 @@
           <div class="flow-step"><strong>7. review-diff</strong>意図した変更と実際の差分を照らし合わせ、何が実装されたかをレビューします。</div>
           <div class="flow-step"><strong>8. post-ship-retro</strong>出荷後に学びを残し、次回以降の変更品質を改善します。</div>
         </div>
+        <div class="handoff-tool" aria-label="Issue-to-release checklist">
+          <h3>作業に持ち出せる8段階チェックリスト</h3>
+          <p>これは記録用テンプレートです。安全性やリリース可能性を自動判定しません。実際の確認結果を記入し、責任者が判断してください。</p>
+          <pre id="handoffTemplate" class="handoff-template">[ ] intake-repo — 対象リポジトリ、影響ファイル、依存関係、制約の確認
+    根拠・担当: __________
+[ ] spec-delta — 現状と変更後の差分・対象範囲
+    根拠・担当: __________
+[ ] plan-change — 作業手順、担当、リスク、ロールバック案
+    根拠・担当: __________
+[ ] define-acceptance — 受入テストと明確な完了条件
+    根拠・担当: __________
+[ ] ship-check — 実行したテスト、安全・プライバシー確認、未解決事項
+    根拠・担当: __________
+[ ] write-release-artifacts — リリースノート、変更履歴、利用者向け説明
+    根拠・担当: __________
+[ ] review-diff — 実際の差分と仕様の照合、レビュー指摘
+    根拠・担当: __________
+[ ] post-ship-retro — 公開後の実測、不具合、次回への学び
+    根拠・担当: __________
+
+判定責任者 / 承認者: __________</pre>
+          <div class="button-row"><button class="btn btn-secondary" type="button" id="copyHandoff">8段階チェックリストをコピー</button><span id="handoffStatus" role="status" aria-live="polite"></span></div>
+        </div>
       </section>
 
       <section id="included">
@@ -334,5 +357,6 @@
       <p>公開元: <a href="https://nicheworks.app/">NicheWorks</a> · <a href="/tools/codex-product-shipping-playbooks/">View in English</a> · <a href="https://github.com/nicheworks-tools/codex-product-shipping-playbooks/tree/main" target="_blank" rel="noopener">GitHub</a></p>
     </div>
   </footer>
+  <script src="../handoff.js" defer></script>
 </body>
 </html>
