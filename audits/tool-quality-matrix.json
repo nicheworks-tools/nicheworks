@@ -2,8 +2,8 @@
   "schema_version": 1,
   "generated_from": "tools/tools-index.json",
   "common_specification": "common-spec/spec-ja.md",
-  "registered_tool_count": 88,
-  "record_count": 88,
+  "registered_tool_count": 89,
+  "record_count": 89,
   "status_enum": [
     "PASS",
     "FIX",
@@ -12,7 +12,7 @@
   ],
   "counts": {
     "PASS": 88,
-    "FIX": 0,
+    "FIX": 1,
     "BLOCKED": 0,
     "NEEDS_DECISION": 0
   },
@@ -6334,6 +6334,86 @@
         "Usage documentation is recommended but absent.",
         "Behavior-level automated tests are absent."
       ]
+    },
+    {
+      "slug": "screenshot-canvas",
+      "display_name": {
+        "ja": "スクショ自由配置・比較",
+        "en": "Screenshot Canvas"
+      },
+      "implementation": "tools/screenshot-canvas/",
+      "active_state": "active",
+      "category": [
+        "screenshot",
+        "image",
+        "compare",
+        "canvas"
+      ],
+      "spec": "tools/screenshot-canvas/SPEC.md",
+      "spec_coverage": "complete",
+      "implementation_exists": true,
+      "layout_class": "hybrid",
+      "language_policy": "bilingual single-page",
+      "functional_completeness": "documented-current-contract",
+      "inputs_summary": "PNG/JPEG/WebP files, drag/drop, paste; canvas size, background, layout, opacity and layer controls.",
+      "outputs_summary": "Local composited PNG download.",
+      "network_dependency": {
+        "status": "not-found",
+        "external_hosts": []
+      },
+      "storage": {
+        "localStorage": false,
+        "sessionStorage": false
+      },
+      "capabilities": {
+        "copy": false,
+        "download": true
+      },
+      "responsive_status": "no-observed-defect",
+      "usage_status": "recommended-and-present",
+      "faq_status": "optional-present",
+      "ga4_status": "not-implemented",
+      "adsense_status": "not-implemented",
+      "canonical_status": "not-implemented",
+      "json_ld_status": "not-implemented",
+      "donation_status": "not-implemented",
+      "privacy_compliance": "documented",
+      "functional_test_status": "behavior-test-missing",
+      "automated_tests": [],
+      "outstanding_issues": [
+        "Browser smoke pending; shared monetization/analytics/canonical shell not yet integrated."
+      ],
+      "final_state": "FIX",
+      "evidence": [
+        "tools/screenshot-canvas/index.html",
+        "tools/screenshot-canvas/app.js",
+        "tools/screenshot-canvas/style.css",
+        "tools/screenshot-canvas/usage.html",
+        "tools/screenshot-canvas/usage-en.html"
+      ],
+      "usage_html_present": true,
+      "usage_en_html_present": true,
+      "common_spec_compliance": "gaps-pending",
+      "obvious_broken_or_incomplete_behavior": [],
+      "help_documentation": {
+        "main_page_summary": "required-and-present",
+        "usage": "recommended-and-present",
+        "faq": "optional-present",
+        "usage_evidence": [
+          "tools/screenshot-stitcher/usage-en.html",
+          "tools/screenshot-stitcher/usage.html"
+        ],
+        "usage_language_coverage": {
+          "ja": true,
+          "en": true
+        }
+      },
+      "test_evidence": [],
+      "decision_gaps": [],
+      "hard_compliance_gaps": [
+        "Shared site monetization/analytics/canonical shell missing."
+      ],
+      "recommendation_only_gaps": []
     },
     {
       "slug": "screenshot-stitcher",
