@@ -141,19 +141,19 @@
           <h3>サマリー</h3>
           <div id="summaryContent"></div>
           <div class="result-actions">
-            <button id="copySummaryBtn" class="secondary-btn small">サマリーをコピー</button>
+            <button id="copySummaryBtn" class="secondary-btn small">サマリーをコピー</button><button id="downloadSummaryBtn" class="secondary-btn small" type="button">テキスト保存</button>
           </div>
         </div>
         <div class="result-card">
           <h3>JSON</h3>
           <pre id="jsonOutput" class="code-block"></pre>
           <div class="result-actions">
-            <button id="copyJsonBtn" class="secondary-btn small">JSONをコピー</button>
+            <button id="copyJsonBtn" class="secondary-btn small">JSONをコピー</button><button id="downloadJsonBtn" class="secondary-btn small" type="button">JSON保存</button>
           </div>
         </div>
       </div>
 
-      <p class="safety-note">形式推定のみ。安全性は未判定です。</p>
+      <p class="safety-note">形式推定のみ。安全性は未判定です。</p><p class="safety-note">保存するレポートには元のファイル名と判定内容が含まれます。第三者と共有する前に内容を確認してください。保存処理はブラウザ内だけで行います。</p>
       <button id="resetBtn" class="secondary-btn">リセット</button>
     </section>
 
