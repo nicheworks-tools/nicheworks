@@ -10,7 +10,13 @@
       "dj": "エアインパクトレンチは、圧縮空気を動力に打撃トルクを発生させ、ボルトやナットを素早く締めたり緩めたりする工具。ソケットの差込角と適合サイズ、必要な空気圧・流量を確認して使う。指定トルクでの最終締付けは別途トルク管理が必要。",
       "de": "An air impact wrench uses compressed air to deliver repeated torque impacts for quickly tightening or loosening nuts and bolts. Use compatible impact-rated sockets and adequate air pressure and flow; critical final tightening torque must be verified by an appropriate specified method.",
       "c": "fastening",
-      "task": "tighten_bolt"
+      "task": "tighten_bolt",
+      "aj": [
+        "エアーインパクト"
+      ],
+      "ae": [
+        "Pneumatic impact wrench"
+      ]
     },
     {
       "id": "q012_ratchet_handle",
@@ -20,7 +26,13 @@
       "dj": "ラチェットハンドルは、ソケットを取り付けてボルトやナットを回す手工具。内部の送り機構により、ハンドルを往復させてもソケットを一方向へ連続して回せるため、狭い場所で作業しやすい。規定トルクを測定する工具ではない。",
       "de": "A ratchet handle is a manual socket wrench handle whose pawl mechanism drives a socket in one direction while allowing the handle to return without removing it. It is useful in restricted spaces but does not measure or guarantee a specified final tightening torque.",
       "c": "fastening",
-      "task": "tighten_bolt"
+      "task": "tighten_bolt",
+      "aj": [
+        "ラチェットレンチ用ハンドル"
+      ],
+      "ae": [
+        "Socket ratchet handle"
+      ]
     },
     {
       "id": "q012_hex_key",
@@ -40,7 +52,13 @@
       "dj": "二面幅に合わせてナットを回す開口レンチ。\n先端が開いた二面幅の口でナットやボルト頭を回す手工具。一般的なレンチ類のうち、ここでは片口・両口などのオープンエンド形状を指す。適合しないサイズや斜め掛けは角を傷めやすいため、二面幅に合うサイズを奥まで掛けて使用する。",
       "de": "Open-ended wrench used on nuts and bolts.\nA hand wrench with an open-ended jaw sized to turn nuts and bolt heads. Within the broader wrench family, this entry refers specifically to open-end spanners, including single- and double-ended forms. Use the correct across-flats size and seat the jaws fully to avoid rounding the fastener.",
       "c": "fastening",
-      "task": "tighten_nut"
+      "task": "tighten_nut",
+      "aj": [
+        "オープンエンドレンチ"
+      ],
+      "ae": [
+        "Open-ended spanner"
+      ]
     },
     {
       "id": "q012_combination_wrench",
@@ -50,7 +68,13 @@
       "dj": "片側がスパナ、片側がめがねのレンチ。\n同じ呼び寸法の開口部（スパナ側）とめがね部を両端に持つ手工具。差し込みやすさが必要な場面では開口側、締結部を多面で囲んで力を掛けたい場面ではめがね側を使い分ける。締結部とレンチ寸法が合わない状態で使用すると角を傷めやすい。",
       "de": "Wrench with an open end and a box end.\nA hand wrench with an open end and a box end of the same nominal size. The open end provides quick side access, while the box end surrounds more of the fastener for more secure engagement. Using the wrong size can round the fastener and damage the wrench.",
       "c": "fastening",
-      "task": "tighten_nut"
+      "task": "tighten_nut",
+      "aj": [
+        "コンビレンチ"
+      ],
+      "ae": [
+        "Combination spanner"
+      ]
     },
     {
       "id": "q012_box_wrench",
@@ -60,7 +84,13 @@
       "dj": "ナットを囲んで力をかけやすいレンチ。\nリング状のめがね部でボルト・ナットの頭を囲み、複数面に力を分散して締緩する手工具。開口レンチより外れにくく大きな力を掛けやすいが、周囲にリングを差し込む空間が必要。寸法違いや浅い掛かりは締結部の角を損傷させる。",
       "de": "Closed-end wrench that grips a nut around its flats.\nA ring-ended wrench that surrounds a bolt head or nut and distributes load across multiple flats. It generally gives more secure engagement than an open-ended wrench but requires clearance to place the ring over the fastener. Incorrect size or partial engagement can damage the fastener.",
       "c": "fastening",
-      "task": "tighten_nut"
+      "task": "tighten_nut",
+      "aj": [
+        "メガネレンチ"
+      ],
+      "ae": [
+        "Ring spanner"
+      ]
     },
     {
       "id": "q012_tap_die_set",
@@ -70,7 +100,13 @@
       "dj": "雌ねじや雄ねじを切る工具セット。\n雌ねじを加工するタップと、雄ねじを加工・修正するダイスを組み合わせたねじ加工工具セット。ねじ規格、呼び径、ピッチ、下穴径を一致させ、工具を軸に対して真っ直ぐ進めることが重要。切りくずを逃がさず無理に回すと刃欠けや折損につながる。",
       "de": "Tool set for cutting internal and external threads.\nA threading set containing taps for internal threads and dies for external threads or thread repair. Thread standard, nominal diameter, pitch, and tap-drill size must match, and the tool must start square to the work. Forcing the tool without clearing chips can damage the cutting edges or break a tap.",
       "c": "metalwork",
-      "task": "cut_thread"
+      "task": "cut_thread",
+      "aj": [
+        "ねじ切りタップ・ダイス"
+      ],
+      "ae": [
+        "Threading tap-and-die set"
+      ]
     },
     {
       "id": "q012_thread_gauge",
@@ -80,7 +116,13 @@
       "dj": "ねじ山のピッチを確認するゲージ。\n複数の歯形ブレードをねじ山へ当て、最も隙間なく一致する形からねじピッチを確認するゲージ。ピッチを識別する道具であり、ねじの呼び径そのものを測定するものではない。メートル・インチなど規格系を混同しないことが重要。",
       "de": "Gauge used to identify thread pitch.\nA leaf gauge with several tooth profiles used to identify thread pitch by matching a blade to the thread form. It identifies pitch rather than the nominal thread diameter. Metric and inch-series gauges or other thread systems must not be confused.",
       "c": "measurement",
-      "task": "check_thread"
+      "task": "check_thread",
+      "aj": [
+        "ピッチゲージ"
+      ],
+      "ae": [
+        "Screw pitch gauge"
+      ]
     },
     {
       "id": "q012_feeler_gauge",
@@ -120,7 +162,13 @@
       "dj": "小さな厚みや外径を高精度で測る工具。\nスピンドルの微小な送り量を利用し、外径や厚さを高い分解能で測定する精密測定工具。測定範囲に合う本体を選び、アンビルとスピンドルの測定面を清潔に保つ。締め付け力のばらつきを抑えるため、ラチェットや定圧機構を備える機種ではその機構を使う。",
       "de": "Precision tool for measuring thickness or outside diameter.\nA precision measuring tool that uses fine spindle movement to measure outside diameter or thickness. Select a micrometer with the appropriate range and keep the anvil and spindle faces clean. Where fitted, use the ratchet or constant-force mechanism to reduce variation from measuring force.",
       "c": "measurement",
-      "task": "measure_precision"
+      "task": "measure_precision",
+      "aj": [
+        "マイクロメータ"
+      ],
+      "ae": [
+        "Micrometer screw gauge"
+      ]
     },
     {
       "id": "q012_depth_gauge",
@@ -130,7 +178,13 @@
       "dj": "穴や段差の深さを測る工具。\n基準面にベースを当て、穴・溝・段差などの底までの距離を測定する工具。基準面のバリや傾きがそのまま測定誤差になるため、ベースを安定して密着させることが重要。測定範囲と測定子形状も対象に合わせる。",
       "de": "Gauge used to measure hole or step depth.\nA gauge that rests on a reference surface and measures the distance to the bottom of a hole, groove, or step. Burrs or tilt at the reference surface directly affect the reading, so the base must sit flat and stable. The range and contact shape must suit the feature being measured.",
       "c": "measurement",
-      "task": "measure_depth"
+      "task": "measure_depth",
+      "aj": [
+        "深さゲージ"
+      ],
+      "ae": [
+        "Depth measuring gauge"
+      ]
     },
     {
       "id": "q012_digital_level",
@@ -140,7 +194,13 @@
       "dj": "傾きや水平を数値で表示する水平器。\n本体の基準面を対象物へ当て、水平・鉛直や傾斜角をデジタル表示する測定工具。気泡管だけでは読み取りにくい微小勾配や角度を数値で確認できる。測定前の校正状態、基準面の清潔さ、ゼロ設定が精度に影響する。",
       "de": "Level that displays slope or level digitally.\nA measuring tool that displays level, plumb, or slope angle digitally when its reference face is placed on a surface. It makes small slopes or angles easier to quantify than a visual bubble alone. Calibration status, a clean reference face, and correct zeroing affect accuracy.",
       "c": "measurement",
-      "task": "check_level"
+      "task": "check_level",
+      "aj": [
+        "電子水平器"
+      ],
+      "ae": [
+        "Electronic spirit level"
+      ]
     },
     {
       "id": "q012_water_level",
@@ -150,7 +210,13 @@
       "dj": "水面の高さを利用して水平を出す道具。\n透明ホース内の水面が両端で同じ高さになる性質を利用し、離れた二点間へ水平基準を移す道具。視線が通らない場所や距離がある場所でも使えるが、ホース内の気泡、折れ、端部の上下動が誤差になる。測定中は両端を安定させて水面が静止してから読む。",
       "de": "Tool that uses water surface height to transfer level.\nA leveling tool that transfers elevation between separated points using the equal free-surface height of water in a clear hose. It can work around obstructions, but trapped air, kinks, and movement of either end cause errors. Both ends should be held stable and read only after the water settles.",
       "c": "layout",
-      "task": "transfer_level"
+      "task": "transfer_level",
+      "aj": [
+        "水盛りホース"
+      ],
+      "ae": [
+        "Hose water level"
+      ]
     },
     {
       "id": "q012_builder_square",
@@ -180,7 +246,13 @@
       "dj": "任意角度を写し取る角度定規。\n可動する刃と台座を任意角度で固定し、既存の角度を別の部材へ写し取る手工具。数値角度を直接読み取る工具ではなく、形状の転写や同じ角度の反復に向く。固定ねじが緩いと移動中に角度が変わる。",
       "de": "Adjustable bevel used to transfer angles.\nA hand tool with an adjustable blade that locks at an arbitrary angle so an existing angle can be transferred to another workpiece. It is primarily an angle-transfer tool rather than a direct numeric angle reader. A loose locking screw can allow the setting to change during handling.",
       "c": "layout",
-      "task": "transfer_angle"
+      "task": "transfer_angle",
+      "aj": [
+        "自由角度定規"
+      ],
+      "ae": [
+        "Adjustable bevel gauge"
+      ]
     },
     {
       "id": "q012_marking_gauge",
@@ -210,7 +282,13 @@
       "dj": "木材表面を削って平滑にする手工具。\n刃を木製の台に仕込み、手前へ引いて木材表面を薄く削る日本式の鉋。仕上げ削りでは刃の研ぎ、刃出し、台直し、木目方向が仕上がりを大きく左右する。無理に深く刃を出すと引き抵抗と逆目の欠けが増える。",
       "de": "Hand plane used to smooth wood surfaces.\nA Japanese-style hand plane with a blade set in a wooden body and normally used by pulling it toward the user. For fine finishing, blade sharpness, blade projection, sole condition, and grain direction strongly affect the result. Excessive blade projection increases cutting force and tear-out.",
       "c": "woodworking",
-      "task": "plane_wood"
+      "task": "plane_wood",
+      "aj": [
+        "かんな"
+      ],
+      "ae": [
+        "Kanna plane"
+      ]
     },
     {
       "id": "q012_pull_saw",
@@ -220,7 +298,13 @@
       "dj": "細かく正確な切断に使う背金付きのこぎり。\n引く動作で切削する細刃のこぎりのうち、背金で刃を補強して精密な直線切断に向く胴付きのこ。背金が刃の剛性を高める一方、切込み深さは背金位置に制限される。細い刃を押し込まず、引きストロークを主体に使う。",
       "de": "Backed pull saw used for precise cuts.\nA fine pull saw with a rigid spine that supports the blade for accurate straight cuts, commonly known as a dozuki saw. The spine improves stiffness but limits cutting depth. The thin blade should not be forced on the push stroke; cutting is primarily on the pull stroke.",
       "c": "woodworking",
-      "task": "precision_cut"
+      "task": "precision_cut",
+      "aj": [
+        "胴付鋸"
+      ],
+      "ae": [
+        "Dozuki backsaw"
+      ]
     },
     {
       "id": "q012_coping_saw",
@@ -240,7 +324,13 @@
       "dj": "薄板に複数径の穴を開ける段付きドリル。\n段階的に径が大きくなる円錐状の刃で、主に薄板へ複数サイズの穴を一つのビットで加工する工具。目的径の段で送りを止める必要があり、厚い材料や深い穴には向かない。材料と径に応じた回転数で、食い付きやバリを管理する。",
       "de": "Stepped bit used for multiple hole sizes in thin material.\nA conical stepped bit that produces several hole diameters with one tool, mainly in sheet material. Feed must stop at the step corresponding to the required diameter, and the tool is not intended for deep holes in thick stock. Speed and feed should suit the material and hole size.",
       "c": "drilling",
-      "task": "drill_sheet_metal"
+      "task": "drill_sheet_metal",
+      "aj": [
+        "タケノコドリル"
+      ],
+      "ae": [
+        "Stepped drill bit"
+      ]
     },
     {
       "id": "q012_countersink_bit",
@@ -250,7 +340,13 @@
       "dj": "皿ねじ頭を収める座ぐりを作る刃物。\n皿頭ねじの頭部を材料表面と同面または指定深さに収めるため、穴口へ円錐状の座面を加工する刃物。ねじ頭の角度と皿取り形状が合うことが重要で、深く削り過ぎると保持面積や仕上がりを損なう。既存穴に対して芯を合わせて加工する。",
       "de": "Bit used to create a countersink for flat-head screws.\nA cutting bit that forms a conical seat at a hole entrance so a flat-head screw can sit flush or at a specified depth. The countersink geometry must match the screw head, and excessive depth can reduce bearing area or spoil the finish. Keep the cutter centered on the existing hole.",
       "c": "drilling",
-      "task": "countersink_hole"
+      "task": "countersink_hole",
+      "aj": [
+        "皿錐"
+      ],
+      "ae": [
+        "Countersink drill bit"
+      ]
     },
     {
       "id": "q012_reamer",
@@ -260,7 +356,13 @@
       "dj": "穴径や仕上げ精度を整える刃物。\nあらかじめ開けた穴へ通し、少量の材料を均一に切削して穴径・真円度・表面状態を仕上げる工具。ドリルの代わりに大きな取り代を一度に削る工具ではない。下穴径、リーマ径、加工材に適した切削条件と芯合わせが必要。",
       "de": "Tool used to finish or slightly enlarge holes.\nA finishing tool passed through a previously drilled or bored hole to remove a small, controlled amount of material and improve diameter, roundness, and surface finish. It is not intended to replace drilling by removing a large allowance in one pass. Correct pre-hole size, alignment, and cutting conditions are required.",
       "c": "metalwork",
-      "task": "finish_hole"
+      "task": "finish_hole",
+      "aj": [
+        "穴仕上げリーマ"
+      ],
+      "ae": [
+        "Hole reamer"
+      ]
     },
     {
       "id": "q012_grinder_disc",
@@ -286,7 +388,13 @@
       "dj": "研削と仕上げを兼ねる羽根状研磨ディスク。\n研磨布片を羽根状に重ねたディスクで、グラインダーに装着して研削と表面ならしを連続して行う研磨材。砥粒種類と粒度により除去量・仕上がりが変わる。局所へ強く押し続けると削り過ぎや過熱、面のうねりを招く。",
       "de": "Layered abrasive disc for grinding and finishing.\nAn abrasive disc made from overlapping coated-abrasive flaps, used on a grinder for stock removal and surface blending. Abrasive type and grit determine cutting rate and finish. Excessive pressure in one location can cause over-grinding, heat buildup, and surface waviness.",
       "c": "finishing",
-      "task": "grind_surface"
+      "task": "grind_surface",
+      "aj": [
+        "羽根付き研磨ディスク"
+      ],
+      "ae": [
+        "Flap sanding disc"
+      ]
     },
     {
       "id": "q012_wire_brush_wheel",
@@ -296,7 +404,13 @@
       "dj": "錆や塗膜を落とす回転ブラシ。\n回転工具に装着した鋼線などのワイヤーで、金属表面の浮き錆、スケール、古い塗膜や付着物をこすり落とすブラシ。切削砥石のように寸法を大きく削る用途ではなく、表面清掃・下地処理が主目的。回転中にワイヤー片が飛散する可能性がある。",
       "de": "Rotary wire brush for removing rust or coating.\nA rotary brush wheel using steel or other wire to remove loose rust, scale, old coating, and surface deposits. Its main purpose is cleaning and surface preparation rather than dimensional cutting like an abrasive wheel. Individual wires can be shed at operating speed.",
       "c": "surface_prep",
-      "task": "remove_rust"
+      "task": "remove_rust",
+      "aj": [
+        "回転ワイヤーブラシ"
+      ],
+      "ae": [
+        "Wire wheel brush"
+      ]
     },
     {
       "id": "q012_diamond_blade",
@@ -342,7 +456,13 @@
       "dj": "大型ハンマードリル用のコンクリートビット。\nSDS Max規格の大型シャンクを持ち、対応する大型ロータリーハンマーでコンクリートなどへ比較的大径・深い孔を穿孔するビット。SDSプラスより大型用途を想定し、工具本体・ビットとも質量と反力が大きくなりやすい。異なるSDS規格を混同しない。",
       "de": "Heavy-duty concrete bit for SDS Max hammers.\nA heavy-duty masonry bit with an SDS Max shank for compatible large rotary hammers, typically used for larger or deeper holes in concrete and similar materials. Compared with SDS Plus equipment, both bit and machine are generally larger and can produce greater reaction forces. Different SDS shank standards must not be mixed.",
       "c": "drilling",
-      "task": "drill_concrete"
+      "task": "drill_concrete",
+      "aj": [
+        "SDSマックス用ビット"
+      ],
+      "ae": [
+        "SDS-max hammer bit"
+      ]
     },
     {
       "id": "q012_chisel_bit",
@@ -352,7 +472,13 @@
       "dj": "はつりや溝切りに使うハンマードリル用刃先。\nハンマードリルや電動ハンマーに装着し、打撃力でコンクリートやモルタルをはつる交換刃。先端形状とシャンク規格で用途が変わるため、機械のチャック規格、対象材、作業幅に合うビットを選ぶ。回転を止めたはつりモードで使う機種では、指定された運転モードと装着方法を守る。",
       "de": "Bit used for chiseling or light demolition.\nA replaceable chisel attachment for rotary hammers or demolition hammers that uses impact energy to chip concrete or mortar. Select the tip shape and shank system to match the machine, material, and required working width. On tools with a dedicated chiseling mode, use the specified non-rotary mode and installation method.",
       "c": "demolition",
-      "task": "chip_concrete"
+      "task": "chip_concrete",
+      "aj": [
+        "ハツリチゼル"
+      ],
+      "ae": [
+        "Demolition chisel bit"
+      ]
     },
     {
       "id": "q012_bull_point",
@@ -362,7 +488,13 @@
       "dj": "一点に力を集中させてはつる尖ったビット。\n先端が一点に尖ったはつり用ビットで、打撃力を狭い範囲へ集中させてコンクリートや硬い材料へ亀裂の起点を作る。面を仕上げる用途より、破砕開始や厚い部分を割る作業に向く。使用する電動ハンマーのシャンク規格と出力に適合するものを選ぶ。",
       "de": "Pointed chisel bit for breaking concrete.\nA pointed demolition bit that concentrates impact energy at one spot to initiate cracks in concrete or other hard material. It is suited to starting break-up work or penetrating thick sections rather than producing a finished flat surface. Match the shank and size to the demolition hammer.",
       "c": "demolition",
-      "task": "break_concrete"
+      "task": "break_concrete",
+      "aj": [
+        "ポイントチゼル"
+      ],
+      "ae": [
+        "Pointed demolition chisel"
+      ]
     },
     {
       "id": "q012_flat_chisel",
@@ -372,7 +504,13 @@
       "dj": "面状にはつるための平たいチゼル。\n幅のある平らな刃先で打撃を面状に伝え、コンクリート表面、モルタル、タイル下地などをはつるビット。ブルポイントより広い範囲を削りやすく、表層除去や溝の拡幅に使われる。シャンク規格、刃幅、対象材を本体と作業に合わせる。",
       "de": "Flat chisel used for surface chiseling.\nA chisel bit with a flat cutting edge that spreads impact across a wider area for chipping concrete surfaces, mortar, or tile bedding. It removes surface material more broadly than a bull point and is useful for stripping or widening channels. Match the shank, blade width, and material to the hammer and task.",
       "c": "demolition",
-      "task": "chip_surface"
+      "task": "chip_surface",
+      "aj": [
+        "平ノミ"
+      ],
+      "ae": [
+        "Flat demolition chisel"
+      ]
     },
     {
       "id": "q012_cold_chisel",
@@ -432,7 +570,13 @@
       "dj": "板金を直線的に折り曲げる機械。\n板金を直線に沿って所定角度へ折り曲げる機械。クランプで材料を保持し、曲げ葉やビームを動かして成形する。機械ごとに最大板厚、曲げ幅、最小フランジ寸法などの能力があるため、材質と寸法を能力範囲内に収める。",
       "de": "Machine used to bend sheet metal.\nA machine used to bend sheet metal along a straight line. The sheet is clamped and a bending leaf or beam forms the bend to the required angle. Each brake has limits for material, thickness, bend width, and minimum flange size that must be respected.",
       "c": "sheet_metal",
-      "task": "bend_sheet_metal"
+      "task": "bend_sheet_metal",
+      "aj": [
+        "板金ベンダー"
+      ],
+      "ae": [
+        "Sheet metal bending brake"
+      ]
     },
     {
       "id": "q012_pop_rivet_gun",
@@ -442,7 +586,13 @@
       "dj": "ブラインドリベットを締結する工具。\nブラインドリベットのマンドレルを引いてリベット本体を変形・締結し、マンドレルを破断させる工具。片側から施工できるのが特徴で、手動・空圧・電動タイプがある。リベット径に合うノーズピースと工具能力を選ぶ。",
       "de": "Tool used to install blind rivets.\nA tool that pulls the mandrel of a blind rivet so the rivet body expands and clamps the joint, after which the mandrel breaks. It enables fastening from one side and is available in manual, pneumatic, and powered versions. Match the nosepiece and tool capacity to the rivet diameter.",
       "c": "fastening",
-      "task": "install_rivet"
+      "task": "install_rivet",
+      "aj": [
+        "ハンドリベッター"
+      ],
+      "ae": [
+        "Blind rivet gun"
+      ]
     },
     {
       "id": "q012_blind_rivet",
@@ -468,7 +618,13 @@
       "dj": "ねじ山を作りながら締め込むビス。\n下穴または適合する母材へねじ込みながら、自身のねじ山で相手材にねじを形成するねじ。先端にドリル刃を持つセルフドリリングねじとは区別が必要で、種類によっては適切な下穴を要する。母材、板厚、下穴径、締付け条件を仕様に合わせる。",
       "de": "Screw that forms its own thread in material.\nA screw that forms mating threads in the work as it is driven into a prepared hole or suitable material. It is distinct from a self-drilling screw with an integral drill point, and many self-tapping types require a correctly sized pilot hole. Match the screw to material, thickness, pilot-hole size, and tightening requirements.",
       "c": "fastening",
-      "task": "fasten_fixture"
+      "task": "fasten_fixture",
+      "aj": [
+        "タッピングねじ"
+      ],
+      "ae": [
+        "Tapping screw"
+      ]
     },
     {
       "id": "q012_washer",
@@ -586,7 +742,13 @@
       "dj": "機器や架台の高さを微調整する脚部材。\n機器や架台の脚部に取り付け、ねじ機構などで高さを微調整して水平を出す支持部品。床への荷重分散や防振要素を兼ねる製品もある。機器重量、ねじ径、調整量、ベース径、固定方法を確認し、調整後はロック機構を確実にする。",
       "de": "Adjustable foot used to level equipment or frames.\nAn adjustable equipment foot or mount used to fine-tune height and level, often by a threaded stem. Some designs also spread floor load or include vibration isolation. Check equipment load, thread size, adjustment range, base size, and anchoring method, and secure the adjustment after leveling.",
       "c": "mep",
-      "task": "level_equipment"
+      "task": "level_equipment",
+      "aj": [
+        "レベリングフット"
+      ],
+      "ae": [
+        "Adjustable leveling foot"
+      ]
     },
     {
       "id": "q012_base_plate",
@@ -616,7 +778,13 @@
       "dj": "高さや隙間を微調整する薄い板。\n部材や機器の据付時に高さ、レベル、隙間を微調整する薄い鋼板。必要厚さを組み合わせて支持状態を整えるが、局部的な点支持や不安定な重ね方を避け、設計・施工要領で指定された位置と範囲に配置する。",
       "de": "Thin plate used to adjust height or gaps.\nA thin steel plate used to make fine adjustments to elevation, level, or clearance during installation of structural members or equipment. Shims may be stacked to obtain the required thickness, but they should provide stable bearing and be placed only at locations permitted by the design or installation procedure.",
       "c": "steel",
-      "task": "adjust_level"
+      "task": "adjust_level",
+      "aj": [
+        "シム板"
+      ],
+      "ae": [
+        "Shim stock plate"
+      ]
     },
     {
       "id": "q012_grout_under_base",
@@ -636,7 +804,13 @@
       "dj": "収縮を抑えた充填用セメント系材料。\nベースプレート下、機器基礎、アンカー周辺などの隙間充填に用いる、硬化時の収縮を抑えるよう設計されたグラウト材。製品ごとに適用厚さ、練混ぜ水量、流動性、可使時間、養生条件が異なるため、指定仕様とメーカー手順に従う。",
       "de": "Cementitious grout designed to minimize shrinkage.\nA grout formulated to limit shrinkage for filling gaps beneath base plates, around equipment bases, or at similar load-transfer locations. Permitted thickness, mixing water, consistency, working time, and curing vary by product, so the project specification and manufacturer instructions govern its use.",
       "c": "grout",
-      "task": "fill_gap"
+      "task": "fill_gap",
+      "aj": [
+        "無収縮モルタル"
+      ],
+      "ae": [
+        "Non-shrink cementitious grout"
+      ]
     },
     {
       "id": "q012_epoxy_anchor_adhesive",
@@ -666,7 +840,13 @@
       "dj": "アンカー孔内の粉じんをこすり落とすブラシ。\nアンカー孔の内壁に付着した切粉や粉じんを機械的に除去する専用ブラシ。孔径に合う指定径のブラシを使い、ブロワー等による吹出しと組み合わせて、接着系アンカーが必要とする孔内清掃状態を作る。",
       "de": "Brush used to clean drilled anchor holes.\nA dedicated brush used to mechanically loosen drilling dust and debris from the wall of an anchor hole. The brush diameter must suit the drilled hole and is typically used with air blowing to achieve the cleaning condition required by the adhesive-anchor system.",
       "c": "anchor",
-      "task": "clean_hole"
+      "task": "clean_hole",
+      "aj": [
+        "アンカー孔清掃ブラシ"
+      ],
+      "ae": [
+        "Anchor hole cleaning brush"
+      ]
     },
     {
       "id": "q012_embed_plate",
