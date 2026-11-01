@@ -164,8 +164,8 @@
       "t": "component",
       "ja": "エルボ",
       "en": "Pipe Elbow",
-      "dj": "配管の方向を曲げるために使う屈曲形状の継手。",
-      "de": "An angled fitting used to change the direction of a pipe run.",
+      "dj": "配管経路の向きを曲げるために使用する屈曲形状の管継手。90度や45度などの角度があり、管材と接続方式、呼び径、使用流体、圧力や温度条件に合う製品を選ぶ。曲がり部では圧力損失や配管の支持位置も確認する。",
+      "de": "An angled pipe fitting used to change the direction of a piping run. Common configurations include 45-degree and 90-degree elbows. Match the fitting to the pipe material, joint method, nominal size, operating fluid, pressure and temperature; consider flow resistance and nearby pipe supports.",
       "c": "plumbing",
       "task": "change_pipe_direction",
       "aj": [
@@ -254,8 +254,8 @@
       "t": "fastener",
       "ja": "アイボルト",
       "en": "Eye Bolt",
-      "dj": "頭部が輪形で、吊り・引張り・連結の取付点として使うボルト。ねじ径、材質、使用荷重、荷重方向、取付母材を確認し、用途に適した規格品を選ぶ。",
-      "de": "A bolt with a looped eye used as an attachment point for lifting, pulling, or connection.\nBolt with a looped eye used as an attachment point for lifting, pulling, or connection. Thread size, material, working load, load direction, and supporting structure must be appropriate to the application.",
+      "dj": "頭部に輪を設け、吊り具や引張り材の取付点として使うボルト。ねじの呼び径、埋込長さ、取付母材、荷重方向、許容荷重を確認し、吊り上げに使う場合はその用途に適合した定格品を使用する。輪付きボルトすべてが吊り荷用とは限らない。",
+      "de": "A threaded bolt with a looped eye used as an attachment point for a line, connector, or lifting equipment. Thread engagement, supporting material, load direction, and rated capacity must suit the application. Not every general-purpose eye bolt is approved for overhead lifting.",
       "c": "fastening",
       "task": "provide_attachment_point"
     },
@@ -418,8 +418,8 @@
       "t": "component",
       "ja": "型枠パネル",
       "en": "Formwork Panel",
-      "dj": "打設するコンクリートの形状を作る面材として組み立てる型枠用パネル。寸法、面材材質、表面状態、剛性、再使用回数、締付け・支持方法を構造と打設条件に合わせる。",
-      "de": "A panel assembled as the face of formwork to shape fresh concrete.\nPanel assembled as the face of formwork to shape fresh concrete. Dimensions, facing material, surface condition, stiffness, reuse condition, and tie or support method must suit the concrete geometry and placing loads.",
+      "dj": "コンクリート打設時に形状や表面を保持するため組み立てる型枠用の面材・パネル。合板や金属製などがあり、面材の剛性、支持・締付け間隔、継ぎ目、打設側圧、取り外し後の再使用条件に応じて選び、漏浆や変形を防ぐ。",
+      "de": "A panel forming the face of temporary formwork that shapes and contains fresh concrete during casting. Plywood and metal systems have different stiffness and reuse properties. Support spacing, ties, joints, and expected concrete pressure must be considered to limit deformation and leakage.",
       "c": "formwork",
       "task": "build_form_face",
       "aj": [
@@ -470,8 +470,8 @@
       "t": "component",
       "ja": "天井吊り金物",
       "en": "Ceiling Hanger",
-      "dj": "上部構造から吊り下げて天井下地や天井部材を支持する吊り材・金物の総称。天井方式、支持荷重、吊り長さ、接続部材、耐震・振れ止め条件を施工仕様に合わせて選ぶ。",
-      "de": "A hanger component used to suspend and support ceiling framing or ceiling members from the structure above.\nHanger component used to suspend and support ceiling framing or ceiling members from the structure above. Hanger type, supported load, suspension length, connections, and any seismic or bracing requirements should match the ceiling system.",
+      "dj": "上部構造から吊り下げ、天井下地や天井材を保持するための吊り金物の総称。吊りボルト用金物や専用ハンガーなど方式があり、支持荷重、吊り長さ、接続部の緩み止め、振れ止め・耐震仕様を天井システムの指示に合わせる。",
+      "de": "A hanger or fitting used to suspend ceiling framing or ceiling members from structural supports above. Different systems use threaded-rod hardware or dedicated hangers. Confirm the supported load, suspension length, connection detailing, and any sway-bracing or seismic requirements of the specified ceiling assembly.",
       "c": "interior",
       "task": "suspend_ceiling",
       "aj": [
