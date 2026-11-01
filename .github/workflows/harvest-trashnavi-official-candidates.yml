@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       shard:
-        description: 'Pending-municipality shard 0..24 (blank = rotating hour)'
+        description: 'Fixed full-ledger shard (blank = rotating hour)'
         required: false
         default: ''
         type: string
@@ -37,27 +37,28 @@ jobs:
         id: shard
         shell: bash
         env:
-          GIVEN_SHARD: ${ inputs.shard }
-          GIVEN_SIZE: ${ inputs.size }
+          GIVEN_SHARD: ${{ inputs.shard }}
+          GIVEN_SIZE: ${{ inputs.size }}
         run: |
           set -euo pipefail
           SIZE="${GIVEN_SIZE:-50}"
           [[ "$SIZE" =~ ^[0-9]+$ ]] && (( SIZE >= 1 && SIZE <= 100 ))
+          SHARD_COUNT="$(node -e 'const l=require("./tools/trashnavi/data/municipality-review-ledger.json"); console.log(Math.ceil(l.municipalities.length/Number(process.env.GIVEN_SIZE||50)))')"
           if [[ -n "$GIVEN_SHARD" ]]; then
             SHARD="$GIVEN_SHARD"
           else
-            SHARD="$(( $(date -u +%s) / 3600 % 25 ))"
+            SHARD="$(( $(date -u +%s) / 3600 % SHARD_COUNT ))"
           fi
-          [[ "$SHARD" =~ ^[0-9]+$ ]] && (( SHARD >= 0 && SHARD < 25 ))
+          [[ "$SHARD" =~ ^[0-9]+$ ]] && (( SHARD >= 0 && SHARD < SHARD_COUNT ))
           printf -v PAD '%02d' "$SHARD"
           echo "value=$SHARD" >> "$GITHUB_OUTPUT"
           echo "pad=$PAD" >> "$GITHUB_OUTPUT"
           echo "size=$SIZE" >> "$GITHUB_OUTPUT"
       - name: Scan official municipal sites without changing reviewed state
         env:
-          SHARD: ${ steps.shard.outputs.value }
-          PAD: ${ steps.shard.outputs.pad }
-          SIZE: ${ steps.shard.outputs.size }
+          SHARD: ${{ steps.shard.outputs.value }}
+          PAD: ${{ steps.shard.outputs.pad }}
+          SIZE: ${{ steps.shard.outputs.size }}
         run: |
           node tools/trashnavi/scripts/harvest-official-candidates.mjs \
             --shard "$SHARD" --size "$SIZE" \
@@ -65,18 +66,18 @@ jobs:
       - name: Save candidate report as downloadable artifact
         uses: actions/upload-artifact@v4
         with:
-          name: trashnavi-official-candidates-shard-${ steps.shard.outputs.pad }
-          path: tools/trashnavi/review-worklists/harvest/official-candidates-shard-${ steps.shard.outputs.pad }.json
+          name: trashnavi-official-candidates-shard-${{ steps.shard.outputs.pad }}
+          path: tools/trashnavi/review-worklists/harvest/official-candidates-shard-${{ steps.shard.outputs.pad }}.json
           retention-days: 30
       - name: Propose candidates in research-only pull request
         id: candidate-pr
         continue-on-error: true
         uses: peter-evans/create-pull-request@v7
         with:
-          token: ${ secrets.GITHUB_TOKEN }
+          token: ${{ secrets.GITHUB_TOKEN }}
           add-paths: tools/trashnavi/review-worklists/harvest/
-          branch: automation/trashnavi-candidates-shard-${ steps.shard.outputs.pad }
-          title: 'research(trashnavi): unverified candidate shard ${ steps.shard.outputs.pad }'
+          branch: automation/trashnavi-candidates-shard-${{ steps.shard.outputs.pad }}
+          title: 'research(trashnavi): unverified candidate shard ${{ steps.shard.outputs.pad }}'
           commit-message: 'research(trashnavi): record official site navigation candidates'
           body: |
             RESEARCH CANDIDATES ONLY: not verified to contain current waste rules.
@@ -85,8 +86,8 @@ jobs:
             Individually verify target contents, region, year and official authority before registering sources.
       - name: Summarize candidate discovery
         env:
-          PAD: ${ steps.shard.outputs.pad }
-          PR_URL: ${ steps.candidate-pr.outputs.pull-request-url }
+          PAD: ${{ steps.shard.outputs.pad }}
+          PR_URL: ${{ steps.candidate-pr.outputs.pull-request-url }}
         run: |
           {
             echo '## TrashNavi official link candidate discovery'
