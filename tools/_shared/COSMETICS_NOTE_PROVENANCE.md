@@ -500,3 +500,12 @@ The six Wave 31 reviewed identities also receive source-backed ingredient-level 
 - The purposely ambiguous `BHA` is not assigned a note or a role.
 
 Source notes are secondary to the maintained bilingual role copy and use the same provenance checks in Lite and FastScan.
+
+
+## Verified ingredient-specific note wave 28 — 19 exact COSMILE sources (2026-11-01)
+
+Nineteen additional *individual* cosmetic ingredient function notes were checked against **exact COSMILE Europe ingredient pages**: Dipropylene Glycol, Propylene Glycol, Tocopheryl Acetate, Trehalose, Sodium Lauryl Sulfate, Sodium Laureth Sulfate, Decyl Glucoside, Lauryl Glucoside, Polysorbate 80, Cetyl Alcohol, Petrolatum, Mineral Oil, Glycolic Acid, Avobenzone (COSMILE named Butyl Methoxydibenzoylmethane), Sodium Cocoyl Isethionate, Sodium Cocoyl Glutamate, Sodium Coco-Sulfate, Isopropyl Palmitate and Sodium Lauroyl Glutamate.
+
+The COSMILE Avobenzone page explicitly names the alias, so this does not infer a chemical identity from a similar spelling. Every source link and precise, neutral statement is pinned to its canonical identity in `check-cosmetics-source-verified-note-wave28.mjs`. No safety score, guaranteed hypoallergenicity, efficacy-at-concentration or product-level regulatory assertion is derived from ingredient function descriptions. Existing category evidence (196), raw recognition (725 rows/599 canonical names) and the role-first UI remain intact; only **optional source-backed notes** are added.
+
+**Target runtime strong note readiness: 181 / 599 (30.22%), 418 remaining**. Primary bilingual role explanation remains at 598/599, with BHA ambiguous. Optional ingredient-specific notes are currently English-only; their Japanese localization still requires separate reviewed translations.
