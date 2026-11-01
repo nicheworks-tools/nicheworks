@@ -62,7 +62,7 @@ assert.equal(rows.filter(x=>x.resolutionState==='shared_manual_page').length,14)
 assert.equal(rows.filter(x=>x.manualUrl.endsWith('.pdf')).length,134);
 assert.equal(rows.filter(x=>x.manualUrl==='https://cam.start.canon/ja/V001/').length,3);
 const coverage=fs.readFileSync(new URL('COVERAGE.md',base),'utf8');
-assert.match(coverage,/2,513 verified model\/caliber rows/);
+assert.match(coverage,/2,521 verified model\/caliber rows/);
 const camera=fs.readFileSync(new URL('CAMERA_ACCESSORY_COVERAGE.md',base),'utf8');
 assert.ok(camera.includes('camera basic 512 = detail 193 + reviewed exclusion 170 + missing 149'));
 console.log('Canon JP lens publication: 137 official manual rows, 137 tagged Amazon model searches, 137 lens exclusions passed.');
