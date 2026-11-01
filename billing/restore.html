@@ -108,8 +108,10 @@
       const features = new Set(Array.isArray(result?.features) ? result.features : []);
       const completeCsvAccess = productId !== 'csv_tidy.pro_v1' ||
         ['csvTidy.savedPresets', 'csvTidy.batchApply', 'csvTidy.batchReport'].every(name => features.has(name));
+      const completeStudioAccess = productId !== 'motion_atlas.studio_v1' ||
+        features.has('motionAtlas.studioExport');
       if (result?.source === 'server' && result?.active === true &&
-          result?.productId === productId && completeCsvAccess) {
+          result?.productId === productId && completeCsvAccess && completeStudioAccess) {
         state.textContent = '復元に成功しました。購入済みの機能をこの端末で利用できます。/ Restored. Paid features are available on this device.';
         code.value = '';
         returnLink.href = destinations[productId];
