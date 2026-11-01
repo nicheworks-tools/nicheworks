@@ -285,5 +285,45 @@
     "status": "active",
     "language": "ja",
     "scope_note": "佐呂間町公式が遠軽町のえんがるクリーンセンター・リサイクルセンターへの直接搬入を案内。知来処分場は2024年6月30日に直接搬入終了。"
+  },
+  {
+    "pref": "北海道",
+    "city": "訓子府町",
+    "name": "ごみ関係（令和8年度地区別収集カレンダー・分別収集のてびき）",
+    "type": "ごみ分別・収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.town.kunneppu.hokkaido.jp/kantan/garbage.html",
+    "lgcode": "015491",
+    "last_checked": "2026-11-01",
+    "status": "active",
+    "language": "ja",
+    "fiscal_year": "2026",
+    "scope_note": "町内会地区と実践会地区で収集日が異なる。令和8年4月から令和9年3月の四半期別カレンダーを掲載。分別収集のてびきは平成26年12月発行であり令和8年版ではない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "遠軽町",
+    "name": "ごみ処分場への直接搬入",
+    "type": "ごみ持込施設",
+    "link_type": "dropoff_facility",
+    "url": "https://engaru.jp/information/page.php?id=1190",
+    "lgcode": "015555",
+    "last_checked": "2026-11-01",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "えんがるクリーンセンター、えんがるリサイクルセンター等の施設別受入品目・時間・料金を案内。遠軽地区広域組合衛生施設課への問い合わせ先を掲載。"
+  },
+  {
+    "pref": "北海道",
+    "city": "湧別町",
+    "name": "ごみの収集日（地区別・令和8年粗大ごみ収集日）",
+    "type": "ごみ収集日",
+    "link_type": "collection_calendar",
+    "url": "https://www.town.yubetsu.lg.jp/administration/life/detail.html?content=162",
+    "lgcode": "015598",
+    "last_checked": "2026-11-01",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "川西・信部内・緑蔭、登栄床、中湧別、上湧別等の地区ごとに曜日と粗大ごみ収集日が異なる。粗大ごみの日付は令和8年として明記。"
   }
 ]
