@@ -1339,56 +1339,56 @@
       "lgcode": "015431",
       "pref": "北海道",
       "municipality": "美幌町",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "standard",
+      "reviewed_at": "2026-11-01",
+      "qualifying_source_count": 4,
+      "distinct_link_type_count": 4,
       "service_provider": null,
-      "review_note": null
+      "review_note": "美幌町公式：分別辞典、自治会・市街/農村地区別収集日程、事前申込制粗大ごみ、2026年4月改定の直接搬入案内を確認。"
     },
     {
       "lgcode": "015440",
       "pref": "北海道",
       "municipality": "津別町",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "limited",
+      "reviewed_at": "2026-11-01",
+      "qualifying_source_count": 2,
+      "distinct_link_type_count": 2,
       "service_provider": null,
-      "review_note": null
+      "review_note": "津別町公式：ごみ分別・直接搬入・粗大ごみの総合実務案内と、令和8年度の西町等地区限定カレンダー。ほかの地区は公式総合ページの別PDFを参照。"
     },
     {
       "lgcode": "015458",
       "pref": "北海道",
       "municipality": "斜里町",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "standard",
+      "reviewed_at": "2026-11-01",
+      "qualifying_source_count": 3,
+      "distinct_link_type_count": 3,
       "service_provider": null,
-      "review_note": null
+      "review_note": "斜里町公式：令和5年作成の分別手引き、令和8年度地区別収集日程、粗大ごみ処理券の料金を確認。粗大ごみ未収集地区を区別。"
     },
     {
       "lgcode": "015466",
       "pref": "北海道",
       "municipality": "清里町",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "limited",
+      "reviewed_at": "2026-11-01",
+      "qualifying_source_count": 2,
+      "distinct_link_type_count": 1,
       "service_provider": null,
-      "review_note": null
+      "review_note": "清里町公式：2026年5月更新の分別・令和8年度地区別収集予定表・粗大ごみ・直接搬入の案内と資源物分別を確認。"
     },
     {
       "lgcode": "015474",
       "pref": "北海道",
       "municipality": "小清水町",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "standard",
+      "reviewed_at": "2026-11-01",
+      "qualifying_source_count": 4,
+      "distinct_link_type_count": 4,
       "service_provider": null,
-      "review_note": null
+      "review_note": "小清水町公式：分別辞典、地区別収集日、事前申込制粗大ごみ、上徳ごみ処理場の直接搬入を確認。"
     },
     {
       "lgcode": "015491",
