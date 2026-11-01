@@ -2,7 +2,7 @@
   const V = "2026-09-13";
   const EPSON_V = "2026-09-14";
   const CANON_V = "2026-09-14";
-  window.MANUALFINDER_WAVE3_BATCHES = ["manuals.wave3.01.js", "manuals.wave3.02.js", "manuals.wave3.04.js", "manuals.wave3.05.js"];
+  window.MANUALFINDER_WAVE3_BATCHES = ["manuals.wave3.01.js", "manuals.wave3.02.js", "manuals.wave3.04.js", "manuals.wave3.05.js", "manuals.wave3.06.js"];
   window.MANUALFINDER_WAVE3_NIKON = window.MANUALFINDER_WAVE3_NIKON || [];
   window.MANUALFINDER_WAVE3_BROTHER = window.MANUALFINDER_WAVE3_BROTHER || [];
   window.MANUALFINDER_WAVE3_EPSON = window.MANUALFINDER_WAVE3_EPSON || [];
@@ -38,19 +38,20 @@
   const brother = () => {
     const supportUrl = "https://support.brother.co.jp/j/b/productsearch.aspx?c=jp&content=ml&lang=ja";
     return lines(window.MANUALFINDER_WAVE3_BROTHER).map((line) => {
-      const [model, manualUrl] = line.split("|");
+      const [model, manualUrl, targetMode] = line.split("|");
+      const shared = targetMode === "shared";
       return {
         id: `wave3-brother-${slug(model)}`,
         brand: "Brother", maker: "Brother", model, family: "Inkjet printer / MFP",
         nameJa: `ブラザー ${model}`, nameEn: `Brother ${model}`,
         category: "プリンター・複合機", country: "Japan", manualUrl, supportUrl,
-        noteJa: "ブラザー公式の機種別製品マニュアルページです。",
-        noteEn: "Official Brother model-specific product manual page.",
+        noteJa: shared ? "ブラザーが2つの型番に共通提供する公式製品マニュアルページです。" : "ブラザー公式の機種別製品マニュアルページです。",
+        noteEn: shared ? "Official Brother vendor-defined shared DN/DWN model user-manual page." : "Official Brother model-specific product manual page.",
         hintJa: `ブラザー Brother ${model} インクジェット プリンター 複合機 取扱説明書`,
         hintEn: `Brother ${model} inkjet printer MFP manual`,
         aliases: ["ブラザー", "Brother", "インクジェット", "プリンター", "複合機", "取扱説明書"],
         sourceType: "official", sourceLevel: "A", verifiedAt: V, evidenceUrl: manualUrl,
-        resolutionState: "direct_manual_page", manualKind: "manual-index", sharedTarget: false,
+        resolutionState: shared ? "shared_manual_page" : "direct_manual_page", manualKind: "manual-index", sharedTarget: shared,
         linkReview: `official Wave 3B target verified ${V}`
       };
     });

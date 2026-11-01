@@ -1,0 +1,118 @@
+{
+  "maker": "Brother",
+  "scopeId": "jp-mfc-j-2026-8-verified",
+  "status": "bounded-review-complete",
+  "region": "JP",
+  "language": "ja",
+  "asOf": "2026-11-02",
+  "scope": "8 manufacturer-confirmed MFC-J inkjet printer model identities, including one vendor-shared DN/DWN manual page; not full Brother portfolio.",
+  "sourceTypes": [
+    "official manufacturer model manual page with online user guide",
+    "official manufacturer exact-model ink/consumables compatibility page"
+  ],
+  "counts": {
+    "direct": 6,
+    "shared": 2,
+    "support_only": 0,
+    "held": 0,
+    "verifiedInkOfferPaths": 16
+  },
+  "records": [
+    {
+      "model": "MFC-J4950DN",
+      "state": "direct",
+      "manualUrl": "https://support.brother.co.jp/j/b/manualtop.aspx?c=jp&lang=ja&pfs=1&prod=mfcj4950dn",
+      "sourceUrl": "https://www.brother.co.jp/product/printer/inkjet/mfcj4950dn/accessory/index.aspx",
+      "offers": [
+        "LC516BK",
+        "LC516XLBK"
+      ],
+      "note": "Manufacturer product manual index lists online user guide, and official model-specific consumable catalog lists these ink product codes.",
+      "verifiedAt": "2026-11-02"
+    },
+    {
+      "model": "MFC-J7110CDW",
+      "state": "direct",
+      "manualUrl": "https://support.brother.co.jp/j/b/manualtop.aspx?c=jp&lang=ja&pfs=1&prod=mfcj7110cdw",
+      "sourceUrl": "https://www.brother.co.jp/product/printer/inkjet/mfcj7110cdw/accessory/index.aspx",
+      "offers": [
+        "LC512-4PK",
+        "LC512XL-4PK"
+      ],
+      "note": "Manufacturer product manual index lists online user guide, and official model-specific consumable catalog lists these ink product codes.",
+      "verifiedAt": "2026-11-02"
+    },
+    {
+      "model": "MFC-J7210CDW",
+      "state": "direct",
+      "manualUrl": "https://support.brother.co.jp/j/b/manualtop.aspx?c=jp&lang=ja&pfs=1&prod=mfcj7210cdw",
+      "sourceUrl": "https://www.brother.co.jp/product/printer/inkjet/mfcj7210cdw/accessory/index.aspx",
+      "offers": [
+        "LC512-4PK",
+        "LC512XL-4PK"
+      ],
+      "note": "Manufacturer product manual index lists online user guide, and official model-specific consumable catalog lists these ink product codes.",
+      "verifiedAt": "2026-11-02"
+    },
+    {
+      "model": "MFC-J7310CDW",
+      "state": "direct",
+      "manualUrl": "https://support.brother.co.jp/j/b/manualtop.aspx?c=jp&lang=ja&pfs=1&prod=mfcj7310cdw",
+      "sourceUrl": "https://www.brother.co.jp/product/printer/inkjet/mfcj7310cdw/accessory/index.aspx",
+      "offers": [
+        "LC512-4PK",
+        "LC512XL-4PK"
+      ],
+      "note": "Manufacturer product manual index lists online user guide, and official model-specific consumable catalog lists these ink product codes.",
+      "verifiedAt": "2026-11-02"
+    },
+    {
+      "model": "MFC-J7510CDW",
+      "state": "direct",
+      "manualUrl": "https://support.brother.co.jp/j/b/manualtop.aspx?c=jp&lang=ja&pfs=1&prod=mfcj7510cdw",
+      "sourceUrl": "https://www.brother.co.jp/product/printer/inkjet/mfcj7510cdw/accessory/index.aspx",
+      "offers": [
+        "LC517XLBK",
+        "LC517XLC"
+      ],
+      "note": "Manufacturer product manual index lists online user guide, and official model-specific consumable catalog lists these ink product codes.",
+      "verifiedAt": "2026-11-02"
+    },
+    {
+      "model": "MFC-J7610CDW",
+      "state": "direct",
+      "manualUrl": "https://support.brother.co.jp/j/b/manualtop.aspx?c=jp&lang=ja&pfs=1&prod=mfcj7610cdw",
+      "sourceUrl": "https://www.brother.co.jp/product/printer/inkjet/mfcj7610cdw/7610accessory/index.aspx",
+      "offers": [
+        "LC517XLBK",
+        "LC517XLC"
+      ],
+      "note": "Manufacturer product manual index lists online user guide, and official model-specific consumable catalog lists these ink product codes.",
+      "verifiedAt": "2026-11-02"
+    },
+    {
+      "model": "MFC-J742DN",
+      "state": "shared",
+      "manualUrl": "https://support.brother.co.jp/j/b/manualtop.aspx?c=jp&lang=ja&pfs=1&prod=mfcj742dn",
+      "sourceUrl": "https://www.brother.co.jp/product/printer/inkjet/mfcj742dn/accessory/index.aspx",
+      "offers": [
+        "LC511-4PK",
+        "LC511BK-2PK"
+      ],
+      "note": "Manufacturer product manual index lists online user guide, and official model-specific consumable catalog lists these ink product codes.",
+      "verifiedAt": "2026-11-02"
+    },
+    {
+      "model": "MFC-J742DWN",
+      "state": "shared",
+      "manualUrl": "https://support.brother.co.jp/j/b/manualtop.aspx?c=jp&lang=ja&pfs=1&prod=mfcj742dn",
+      "sourceUrl": "https://www.brother.co.jp/product/printer/inkjet/mfcj742dn/accessory/index.aspx",
+      "offers": [
+        "LC511-4PK",
+        "LC511BK-2PK"
+      ],
+      "note": "Manufacturer product manual index lists online user guide, and official model-specific consumable catalog lists these ink product codes.",
+      "verifiedAt": "2026-11-02"
+    }
+  ]
+}

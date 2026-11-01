@@ -136,7 +136,7 @@ ManualFinder is an `AFFILIATE` tool, but commerce is an optional next-action lay
 - Consumer and office-printer consumable mappings remain official-evidence backed and exact-model scoped.
 - Public retail codes are retained only when verified; `tonerCodes: []` remains valid when exact applicability is proven but a public retail SKU is not.
 - Every canonical printer with a basic Amazon path must have verified detail or an explicit reviewed exclusion.
-- The current audited printer state is **291 basic = 284 detail + 7 reviewed exclusions + 0 missing detail**.
+- The current audited printer state is **299 basic = 292 detail + 7 reviewed exclusions + 0 missing detail**.
 - Reviewed exclusions remain in `affiliate-printer-detail-exclusions.js`.
 - KYOCERA remains closed at **123 = 120 detail + 3 reviewed exclusions + 0 missing**.
 
@@ -205,7 +205,7 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] Manufacturer-defined shared destinations remain explicit shared targets.
 - [x] Japanese and English canonical pages provide equivalent core behavior and disclaimers.
 - [x] Dynamic Amazon searches are deterministic and generated only from canonical metadata.
-- [x] The printer audit remains **291 basic = 284 detail + 7 reviewed exclusions + 0 missing detail**.
+- [x] The printer audit remains **299 basic = 292 detail + 7 reviewed exclusions + 0 missing detail**.
 - [x] KYOCERA remains **123 = 120 detail + 3 reviewed exclusions + 0 missing**.
 - [x] Nikon camera accessory coverage remains **14 detail + 0 reviewed exclusions + 0 missing**.
 - [x] DJI Waves 1–41 preserve exact reviewed boundaries and do not infer neighboring product names.
@@ -400,3 +400,7 @@ Manual data and supporting pages remain under `tools/manual-finder/data/`, `tool
 ## Canon JP interchangeable-lens manual-index Coverage-Pass (2026-11-01)
 
 The nine manufacturer-listed Japanese lens manual categories on `https://canon.jp/support/manual/ef` produce a bounded **137 distinct exact lens model** population: **123 direct + 14 shared + 0 support_only + 0 held**, comprising 134 official PDF destinations verified by HTTP PDF magic and three manufacturer-defined EOS VR shared online manual-page entries. Grouped multi-lens and non-lens accessories are not part of this population and Canon-wide completion is not claimed. Publication is `data/manuals.coverage-pass.canon-jp-lens.js`; source/evidence manifest is `coverage-passes/canon/jp-lens-manual-index-2026.json`. The existing Amazon exact model-search template with tag `nicheworks09-22` applies to all 137 in the `カメラ・映像` category with affiliate disclosure and coarse click tracking. Battery/charger compatibility is not inferred for lenses: `affiliate-camera-detail-exclusions.js` lists all 137 official-index evidence-backed exclusions separately from the 149 remaining camera-body missing-detail models.
+
+## Brother JP Wave 3F (2026-11-02)
+
+Eight new distinct MFC-J official manufacturer user-guide identities (6 direct, 2 vendor-shared DN/DWN official guide page) have matching manufacturer-only exact-model ink compatibility evidence. The existing eligible model Amazon handoff applies to each; 16 additional two-per-printer ink search handoffs are enabled using the existing tagged Associates configuration, disclosure, and privacy-safe analytics. Printer audit becomes **299 basic = 292 detail + 7 reviewed exclusions + 0 missing detail**. The Wave 3F source review manifest is `coverage-passes/brother/jp-mfcj-8-printer-manual-ink-20261102.json`, the published dataset is `data/manuals.wave3.06.js`; no assumption about combined models other than the explicitly manufacturer-defined 742DN/DWN share.

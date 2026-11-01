@@ -66,6 +66,39 @@
       consumableOffer("lc3139", "Brother LC3139", "Amazonで LC3139 インクを探す", "Find Brother LC3139 ink on Amazon")
     ]),
 
+    consumableRow("Brother", "MFC-J4950DN", "https://www.brother.co.jp/product/printer/inkjet/mfcj4950dn/accessory/index.aspx", "2026-11-02", [
+      consumableOffer("lc516bk", "Brother LC516BK", "Amazonで LC516BK 純正インクを探す", "Find Brother LC516BK genuine ink on Amazon"),
+      consumableOffer("lc516xlbk", "Brother LC516XLBK", "Amazonで LC516XLBK 純正インクを探す", "Find Brother LC516XLBK genuine ink on Amazon")
+    ]),
+    consumableRow("Brother", "MFC-J7110CDW", "https://www.brother.co.jp/product/printer/inkjet/mfcj7110cdw/accessory/index.aspx", "2026-11-02", [
+      consumableOffer("lc512-4pk", "Brother LC512-4PK", "Amazonで LC512-4PK 純正インクを探す", "Find Brother LC512-4PK genuine ink on Amazon"),
+      consumableOffer("lc512xl-4pk", "Brother LC512XL-4PK", "Amazonで LC512XL-4PK 純正インクを探す", "Find Brother LC512XL-4PK genuine ink on Amazon")
+    ]),
+    consumableRow("Brother", "MFC-J7210CDW", "https://www.brother.co.jp/product/printer/inkjet/mfcj7210cdw/accessory/index.aspx", "2026-11-02", [
+      consumableOffer("lc512-4pk", "Brother LC512-4PK", "Amazonで LC512-4PK 純正インクを探す", "Find Brother LC512-4PK genuine ink on Amazon"),
+      consumableOffer("lc512xl-4pk", "Brother LC512XL-4PK", "Amazonで LC512XL-4PK 純正インクを探す", "Find Brother LC512XL-4PK genuine ink on Amazon")
+    ]),
+    consumableRow("Brother", "MFC-J7310CDW", "https://www.brother.co.jp/product/printer/inkjet/mfcj7310cdw/accessory/index.aspx", "2026-11-02", [
+      consumableOffer("lc512-4pk", "Brother LC512-4PK", "Amazonで LC512-4PK 純正インクを探す", "Find Brother LC512-4PK genuine ink on Amazon"),
+      consumableOffer("lc512xl-4pk", "Brother LC512XL-4PK", "Amazonで LC512XL-4PK 純正インクを探す", "Find Brother LC512XL-4PK genuine ink on Amazon")
+    ]),
+    consumableRow("Brother", "MFC-J7510CDW", "https://www.brother.co.jp/product/printer/inkjet/mfcj7510cdw/accessory/index.aspx", "2026-11-02", [
+      consumableOffer("lc517xlbk", "Brother LC517XLBK", "Amazonで LC517XLBK 純正インクを探す", "Find Brother LC517XLBK genuine ink on Amazon"),
+      consumableOffer("lc517xlc", "Brother LC517XLC", "Amazonで LC517XLC 純正インクを探す", "Find Brother LC517XLC genuine ink on Amazon")
+    ]),
+    consumableRow("Brother", "MFC-J7610CDW", "https://www.brother.co.jp/product/printer/inkjet/mfcj7610cdw/7610accessory/index.aspx", "2026-11-02", [
+      consumableOffer("lc517xlbk", "Brother LC517XLBK", "Amazonで LC517XLBK 純正インクを探す", "Find Brother LC517XLBK genuine ink on Amazon"),
+      consumableOffer("lc517xlc", "Brother LC517XLC", "Amazonで LC517XLC 純正インクを探す", "Find Brother LC517XLC genuine ink on Amazon")
+    ]),
+    consumableRow("Brother", "MFC-J742DN", "https://www.brother.co.jp/product/printer/inkjet/mfcj742dn/accessory/index.aspx", "2026-11-02", [
+      consumableOffer("lc511-4pk", "Brother LC511-4PK", "Amazonで LC511-4PK 純正インクを探す", "Find Brother LC511-4PK genuine ink on Amazon"),
+      consumableOffer("lc511bk-2pk", "Brother LC511BK-2PK", "Amazonで LC511BK-2PK 純正インクを探す", "Find Brother LC511BK-2PK genuine ink on Amazon")
+    ]),
+    consumableRow("Brother", "MFC-J742DWN", "https://www.brother.co.jp/product/printer/inkjet/mfcj742dn/accessory/index.aspx", "2026-11-02", [
+      consumableOffer("lc511-4pk", "Brother LC511-4PK", "Amazonで LC511-4PK 純正インクを探す", "Find Brother LC511-4PK genuine ink on Amazon"),
+      consumableOffer("lc511bk-2pk", "Brother LC511BK-2PK", "Amazonで LC511BK-2PK 純正インクを探す", "Find Brother LC511BK-2PK genuine ink on Amazon")
+    ]),
+
     consumableRow("Epson", "EW-056A", "https://www.epson.jp/support/portal/shoumouhin/ew-056a.htm", "2026-09-14", [
       consumableOffer("med-4cl", "Epson MED-4CL", "Amazonで MED-4CL インクを探す", "Find Epson MED-4CL ink on Amazon")
     ]),

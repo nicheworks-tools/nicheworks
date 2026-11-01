@@ -72,7 +72,7 @@ assert.equal(all.filter(x=>x.maker==='Xiaomi').length,59);
 assert.equal(all.filter(x=>x.maker==='ASUS').length,35);
 assert.equal(all.filter(x=>x.maker==='Motorola').length,11);
 const coverage=fs.readFileSync(new URL('../COVERAGE.md',import.meta.url),'utf8');
-assert.ok(coverage.includes('**2,513 verified model/caliber rows**'));
+assert.ok(coverage.includes('**2,521 verified model/caliber rows**'));
 assert.ok(coverage.includes('**44 of the 66 baseline brands are still generic-only**'));
 assert.ok(coverage.includes('| Xiaomi | 59 | expanded, scope-reviewed |'));
 const fake={

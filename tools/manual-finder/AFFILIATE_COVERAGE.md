@@ -10,14 +10,14 @@ The printer-detail audit remains complete for the current canonical printer cata
 
 | Metric | Final audited value |
 | --- | ---: |
-| Printer records with a basic Amazon path | **291** |
-| Printer records with a verified detail handoff | **284** |
+| Printer records with a basic Amazon path | **299** |
+| Printer records with a verified detail handoff | **292** |
 | Reviewed printer-detail exclusions | **7** |
 | Actionable printer records still missing detail | **0** |
 
 Required printer reconciliation:
 
-`printer basic 291 = detail 284 + reviewed exclusion 7 + missing 0`
+`printer basic 299 = detail 292 + reviewed exclusion 7 + missing 0`
 
 The camera accessory audit independently reconciles as:
 
@@ -422,8 +422,8 @@ Unsupported categories, empty models, malformed URLs, wrong makers, wrong catego
 
 Printer-detail remains closed only while:
 
-- printer basic = 291
-- printer detail = 284
+- printer basic = 299
+- printer detail = 292
 - reviewed printer-detail exclusions = 7
 - printer missing detail = 0
 - the three missing-detail diagnostic structures remain empty
@@ -457,3 +457,7 @@ The Fujifilm 56-camera catalog now has 38 compatibility-backed battery/charger d
 ### Canon JP interchangeable-lens publication and commerce (2026-11-01)
 
 Manufacturer official Japan lens manual-index pass adds **137 verified exact Canon lens models**, each in the eligible `カメラ・映像` category and eligible for the **existing** Amazon Associates (`nicheworks09-22`) exact Canon model search template with disclosure and coarse click telemetry. The published review includes 134 PDF-backed lens manual destinations and three Canon-defined shared VR lens manual index destinations. These are **137 new canonical Amazon model-search paths**, not 137 purchases or recorded clicks. Official lens instructions are the primary card action. Camera-body battery/charger detail is explicitly inapplicable to these 137 lenses, hence **512 basic = 193 detail + 170 reviewed exclusions + 149 missing**. No unverified lens-to-camera, filter, lens cap, or battery compatibility is represented.
+
+### Brother MFC-J eight new manuals and exact ink purchase-search handoffs — Wave 3F (2026-11-02)
+
+Eight exact manufacturer-confirmed MFC-J printer model identities were added to official manual search, each with a canonical Amazon model search and **two official compatibility-backed ink SKU purchase searches**: LC516BK/LC516XLBK (MFC-J4950DN); LC512-4PK/LC512XL-4PK (MFC-J7110CDW, MFC-J7210CDW, MFC-J7310CDW); LC517XLBK/LC517XLC (MFC-J7510CDW and MFC-J7610CDW); and LC511-4PK/LC511BK-2PK (MFC-J742DN and MFC-J742DWN). Evidence: manufacturer consumable catalog per model, listed in `coverage-passes/brother/jp-mfcj-8-printer-manual-ink-20261102.json`. **Printer detail reconciliation: 299 basic = 292 verified detail + 7 reviewed exclusion + 0 missing.** These are 16 new tagged query paths, not verified traffic or sales.

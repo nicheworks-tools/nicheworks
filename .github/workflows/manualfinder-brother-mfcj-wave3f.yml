@@ -1,0 +1,25 @@
+name: ManualFinder Brother MFC-J 8 official manuals and 16 ink search paths
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/**'
+      - '.github/workflows/manualfinder-brother-mfcj-wave3f.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  brother-mfcj-wave3f:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify manufacturer evidence, eight manual identities, and sixteen model-compatible ink offers
+        run: |
+          node tools/manual-finder/tests/brother-mfcj-wave3f-publication.test.mjs
+          node tools/manual-finder/tests/affiliate-coverage.test.mjs
+          node tools/manual-finder/tests/affiliate-doc-sync.test.mjs
+          node tools/manual-finder/tests/affiliate-behavior-core.test.mjs
+          node tools/manual-finder/tests/coverage-pass-pipeline.test.mjs
