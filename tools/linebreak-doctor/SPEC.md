@@ -15,6 +15,7 @@ Generate platform-oriented copies of social-post text with adjusted line breaks,
 - Generate platform-specific formatted variants using the current local formatting rules.
 - Support a `platform-safe` policy that may insert zero-width spaces to help preserve blank lines and a `plain-text` policy that does not insert invisible characters.
 - Explain the per-platform formatting rules and warn that platform behavior can change.
+- When an output includes zero-width spaces, offer an optional preview-only toggle that marks their positions as visible `⟦ZWSP⟧` tokens. The original formatted output, clipboard content, character counts, and source text must remain unchanged.
 - Allow the user to review/copy the generated platform result before posting.
 - Reset the current working state.
 - Provide JP/EN UI.
@@ -29,6 +30,7 @@ Generate platform-oriented copies of social-post text with adjusted line breaks,
 
 - Platform-specific formatted post-text variants.
 - Character count, rule explanations, status, and clipboard copies.
+- Optional, non-destructive zero-width-character inspection per platform output.
 
 ## State and persistence
 
@@ -61,6 +63,7 @@ The primary use case is preparing short/medium social text for copying, with a v
 - [ ] Source text can generate the implemented per-platform variants without an application-backend request.
 - [ ] Platform-safe and plain-text policies visibly differ in invisible-character behavior where the formatting rules require it.
 - [ ] Generated variants remain reviewable/copyable and the UI tells users to confirm the actual post preview before publishing.
+- [ ] The invisible-character inspection toggle shows visible markers only in a result preview; copy still uses the exact original generated text including any zero-width spaces, and the control appears only when necessary.
 - [ ] JP/EN switching preserves the formatter, rule explanations, and invisible-character warning.
 
 ## Implementation evidence

@@ -110,4 +110,21 @@ assert.deepEqual(
   'diagnostics should report invisible-character insertion without claiming visible-content change',
 );
 
+
+assert.equal(evaluate('showInvisibleCharacters("alpha\\u200B\\nbeta")'), 'alpha⟦ZWSP⟧\nbeta',
+  'display must mark each invisible zero-width space');
+assert.equal(evaluate('showInvisibleCharacters("plain text")'), 'plain text');
+assert.equal(evaluate('showInvisibleCharacters("")'), '');
+assert.match(source, /formatted\.includes\("\\u200B"\)/,
+  'preview toggle must be shown only when the output contains an invisible character');
+assert.match(source, /pre\.textContent = wasVisible \? formatted : showInvisibleCharacters\(formatted\)/,
+  'toggle changes preview only');
+assert.match(source, /copyButton\.addEventListener\("click", \(\) => copyText\(formatted, sns\.name\)\)/,
+  'copy must keep the original formatted content');
+assert.match(source, /setAttribute\("aria-pressed", String\(!wasVisible\)\)/);
+assert.match(source, /btn_show_invisible: "見えない文字を表示"/);
+assert.match(source, /btn_show_invisible: "Show invisible characters"/);
+const stylesheet = fs.readFileSync(new URL('../style.css', import.meta.url), 'utf8');
+assert.ok(stylesheet.includes('.invisible-preview-btn'));
+
 console.log('LineBreak Doctor behavior test passed.');
