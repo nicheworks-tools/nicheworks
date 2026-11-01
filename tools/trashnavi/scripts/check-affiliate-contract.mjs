@@ -38,6 +38,15 @@ check(runtime.includes('placement: "municipality_supporting_supplies"'), 'coarse
 check(helper.includes('rel = "sponsored noopener"'), 'shared helper must retain sponsored link semantics');
 check(helper.includes('Amazonのアソシエイトとして、NicheWorksは適格販売により収入を得ています。'), 'shared Associates disclosure missing');
 
+const root = read('tools/trashnavi/index.html');
+const rootAffiliatePos = root.indexOf('id="trashnaviAmazonAffiliate"');
+check(rootAffiliatePos > root.indexOf('id="results"') && rootAffiliatePos < root.indexOf('class="data-note"'), 'TrashNavi root PR panel must follow official search results and precede bulk directory');
+check(root.includes('自治体ごとの指定・収集ルールへの適合'), 'general supplies must not claim municipal compliance');
+check(runtime.includes('orderedOffers(searchIntent())'), 'closed-set search-intent ranking is required');
+check(runtime.includes('affiliate_impression'), 'visible affiliate impressions must be measurable');
+check(runtime.includes('new IntersectionObserver('), 'affiliate impression may only fire when visible');
+check(runtime.includes('config.offers'), 'only fixed approved affiliate offers can be ranked');
+
 const affiliatePos = generator.indexOf('id="trashnaviAmazonAffiliate"');
 const officialPos = generator.indexOf('class="municipality-links-section"');
 check(officialPos >= 0 && affiliatePos > officialPos, 'affiliate block must remain downstream of official municipal links');
