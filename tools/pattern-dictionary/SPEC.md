@@ -9,6 +9,7 @@
 - Publication contract: `canonical-100-v1`
 - Common specification: `common-spec/spec-ja.md`
 - Current dataset: `100 verified-publication patterns`
+- Additional published V2 supplement: `10 sourced JA/EN motif entries (110 total browsable; 220 static detail pages)`
 - Product class: `static browser visual dictionary / discovery tool`
 - Monetization class: `AFFILIATE` (active Amazon.co.jp maintained-intent links)
 
@@ -194,3 +195,7 @@ No broad-dictionary completion claim is permitted until a scoped editorial cover
 ## Supplemental publication (2026-11-02)
 
 Version `pattern-dictionary-v2-supplement-1` adds 5 source-reviewed terms — sakura-motif, ume-motif, kiku-motif, tsuru-motif, yukiwa — on top of the frozen canonical 100. Total runtime browse identities: 105. There are 210 static detail URLs, 200 legacy canonical-v1 and 10 supplemental bilingual pages. These new items have original schematic SVG images rather than the audited v1 PNG renderings; no claim that all visual variants have been independently imaged. The source-qualified history of yukiwa must remain non-definitive. The unpublished candidate backlog falls from 87 to 82. This addition does not imply dictionary-wide coverage completion.
+
+## Versioned expansion status (2026-11-02)
+
+Canonical v1 remains exactly 100 frozen reviewed records; independent `data/v2-extension.json` now publishes ten source-checked Japanese motifs (Kanzemizu, Shokko, Matsukawabishi, Bishamon Kikko, Tachibana are the second wave) with original repeat-vector images and twenty new JA/EN detail URLs across the two waves. The user-facing runtime combines the frozen v1 and v2 supplement to provide 110 searchable/browseable records. Total indexable detail routes after production deploy: 220. Candidate coverage backlog now has 77 unpublished concepts. The Shokko design family is explicitly qualified. The production audit supports the 210-URL pre-deployment live baseline and explicit 220-URL post-deployment verification; a pass against 210 does not establish 220 new-page delivery.
