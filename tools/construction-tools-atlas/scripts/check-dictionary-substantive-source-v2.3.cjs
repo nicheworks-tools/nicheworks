@@ -25,7 +25,7 @@ const {runPublicLoader}=require("./audit-public-image-inventory-v2.3.cjs");
  assert.equal(ids.size,870,"published-canonical count must stay fixed during definition work");
  assert.equal(maintained.length,511,"active q011-q017 canonical count changed");
 
- if(process.env.CTA_DIAG_PROMOTIONS==="1"){
+ if(true){
    for(let i=0;i<pending.length;i+=8){
      console.log("CTA_PENDING_SOURCE_"+String(Math.floor(i/8)).padStart(2,"0")+"="+JSON.stringify(pending.slice(i,i+8)));
    }
