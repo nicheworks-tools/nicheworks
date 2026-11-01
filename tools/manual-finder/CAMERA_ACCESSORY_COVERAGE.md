@@ -8,7 +8,7 @@ This document is the audited baseline for compatibility-sensitive camera battery
 
 | Metric | Audited value |
 | --- | ---: |
-| Canonical `カメラ・映像` records | **382** |
+| Canonical `カメラ・映像` records | **519** |
 | Camera records with a basic Amazon path | **512** |
 | Camera records with verified accessory detail | **193** |
 | Reviewed camera-detail exclusions | **170** |
@@ -25,6 +25,7 @@ The active detail ledger contains 14 Nikon, 70 DJI, 37 OM SYSTEM, 12 GoPro, 38 F
 
 | Maker | Basic | Detail | Reviewed exclusion | Missing |
 | --- | ---: | ---: | ---: | ---: |
+| Canon | 137 | 0 | 137 | 0 |
 | Sony | 107 | 22 | 0 | 85 |
 | DJI | 96 | 70 | 26 | 0 |
 | Fujifilm | 56 | 38 | 0 | 18 |
