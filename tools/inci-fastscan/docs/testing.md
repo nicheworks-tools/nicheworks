@@ -127,6 +127,8 @@ mobile-browser QA certification**.
   transcription, actual 360px smartphone photo/OCR operation, curved/glare-rich
   packaging, and evaluation of errors before declaring product completion.
 
+**First measured 12-photo pilot (2026-11-01, [GitHub Actions run 41307444468](https://github.com/nicheworks-tools/nicheworks/actions/runs/41307444468)):** all 12 external real English-language label photos were recognized, with **19.28% pooled strict annotated-ingredient exact recall**, **44.60% pooled CER against the raw transcription**, and **62.05% pooled annotation-only exact-recall control**. These are negative diagnostic results, **not a passed OCR accuracy gate**; strict matching also disagrees with the corpus's own spelling/alias conventions, so raw image OCR and exact-ingredient matching must be debugged separately. Results vary widely by photo. The first run printed valid per-photo numbers but its upload-artifact step skipped the hidden `.qa-external-fastscan-results.json` output; the next workflow revision changes to a visible numeric-only filename and makes a missing artifact a hard failure. No photographed label, OCR text, or ground truth is uploaded. Real smartphone/browser original-versus-preprocessed and Japanese measurements remain outstanding.
+
 The pilot may be triggered manually in GitHub Actions and also runs when its own
 workflow or runner is changed in a pull request. If external image/model downloads
 are unavailable, the job must fail transparently rather than report a made-up
