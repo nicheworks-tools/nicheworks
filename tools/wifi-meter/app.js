@@ -103,6 +103,10 @@ function setButtonsForMeasuring(isMeasuring) {
 }
 
 function setUnsupportedValues() {
+  // Discard stale browser estimates so a later reading cannot be compared
+  // against the last value from a no-longer-supported connection state.
+  prevRTT = null;
+  graphData = [];
   if (rttEl) rttEl.textContent = t("非対応", "Not supported");
   if (fluctEl) fluctEl.textContent = t("非対応", "Not supported");
   if (bwEl) bwEl.textContent = t("非対応", "Not supported");
@@ -186,8 +190,8 @@ function updateValues() {
     return;
   }
 
-  const estRTT = typeof connection.rtt === "number" ? connection.rtt : null;
-  const estBW = typeof connection.downlink === "number" ? connection.downlink : null;
+  const estRTT = Number.isFinite(connection.rtt) && connection.rtt >= 0 ? connection.rtt : null;
+  const estBW = Number.isFinite(connection.downlink) && connection.downlink >= 0 ? connection.downlink : null;
 
   if (estRTT === null && estBW === null) {
     setUnsupportedValues();
@@ -205,7 +209,8 @@ function updateValues() {
   prevRTT = estRTT;
 
   if (rttEl) rttEl.textContent = estRTT !== null ? String(estRTT) : "---";
-  if (fluctEl) fluctEl.textContent = fluct !== null ? String(fluct) : (estRTT !== null ? "0" : "---");
+  // One RTT estimate cannot establish a change from a previous sample.
+  if (fluctEl) fluctEl.textContent = fluct !== null ? String(fluct) : "---";
   if (bwEl) bwEl.textContent = estBW !== null ? String(estBW) : "---";
 
   if (estRTT !== null) {
