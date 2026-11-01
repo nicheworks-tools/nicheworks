@@ -102,6 +102,28 @@ async function httpSmoke(){
   const rx=live.find(x=>x.id==='fcnt-arrows-rx');
   assert.equal(rx?.charging?.wirelessStatus,'not_supported','Rakuten-supported RX no-wireless fact missing');
   assert.match(rx?.sources?.wirelessUrl||'',/^https:\/\/network\.mobile\.rakuten\.co\.jp\//,'RX negative wireless source must be the domestic carrier');
+  // Wave31 original Japan-market variants; check package/protocol and provenance beyond the total count.
+  const wave31=[
+    ['samsung-galaxy-s23-ultra-sc52d',2023,5000,'included','not_included'],
+    ['sony-xperia-1-j9110',2020,3330,'not_included','not_included'],
+    ['sharp-aquos-sense-plus-shm07',2018,3100,'included','included'],
+    ['sharp-aquos-sense3-shm12',2019,4000,'not_included','included'],
+    ['sharp-aquos-sense3-plus-shm11',2019,4000,'not_included','included']
+  ];
+  for(const [id,year,battery,cable,adapter] of wave31){
+    const p=live.find(x=>x.id===id);
+    assert.ok(p,'Wave31 public domestic handset missing: '+id);
+    assert.equal(p.releaseYear,year,id+' release year mismatch');
+    assert.equal(p.charging?.battery?.capacityMah,battery,id+' manufacturer mAh mismatch');
+    assert.equal(p.included?.cable,cable,id+' bundle cable mismatch');
+    assert.equal(p.included?.adapter,adapter,id+' bundle adapter mismatch');
+    assert.equal(p.charging?.wiredMaxW,null,id+' no invented handset maximum watts');
+  }
+  const s23=live.find(x=>x.id==='samsung-galaxy-s23-ultra-sc52d');
+  assert.equal(s23?.charging?.pps,'supported','Samsung source-backed PPS support lost');
+  assert.ok(s23?.charging?.protocols?.some(x=>/3\\.1/.test(x)),'Samsung carrier-verified PD3.1 lost');
+  assert.equal(s23?.charging?.wirelessStandard,'Qi','Samsung docomo verified Qi lost');
+  assert.equal(live.find(x=>x.id==='sony-xperia-1-j9110')?.charging?.wirelessStatus,'not_supported','Sony manufacturer no-wireless statement missing');
   const liveAccessories=JSON.parse(data['data/accessories.json']);
   const localAccessories=JSON.parse(readFileSync('tools/phone-quickcheck/data/accessories.json','utf8'));
   assert.deepEqual(liveAccessories,localAccessories,'Public accessories JSON differs from the canonical GitHub data');
@@ -269,6 +291,24 @@ async function browserSmoke(){
         assert.ok(o.links.every(x=>new URL(x.href).searchParams.get('tag')==='nicheworks09-22'),width+'px Wave30 Amazon tag invalid: '+id);
         if(s.mobile)await evalJs('document.querySelector("#sheetClose").click()');
       }
+      // Wave31: validate the new live domestic phones and exact charging/package evidence.
+      const wave31Cases=[
+        ['samsung-galaxy-s23-ultra-sc52d','Galaxy S23 Ultra (SC-52D)','5000 mAh'],
+        ['sony-xperia-1-j9110','Xperia 1 (J9110)','3330 mAh'],
+        ['sharp-aquos-sense-plus-shm07','AQUOS sense plus (SH-M07)','3100 mAh'],
+        ['sharp-aquos-sense3-shm12','AQUOS sense3 (SH-M12)','4000 mAh'],
+        ['sharp-aquos-sense3-plus-shm11','AQUOS sense3 plus (SH-M11)','4000 mAh']
+      ];
+      for(const [id,name,battery] of wave31Cases){
+        const s=await evalJs('(()=>{const id='+JSON.stringify(id)+';const name='+JSON.stringify(name)+';const inp=document.querySelector("#searchInput");inp.value=name;inp.dispatchEvent(new Event("input",{bubbles:true}));const row=document.querySelector(".phone-row[data-phone-id="+id+"]");if(!row)return {found:false};row.click();const mobile=matchMedia("(max-width: 900px)").matches;const detail=document.querySelector(mobile?"#sheetDetail":"#desktopDetail").textContent;return {found:true,mobile,name:detail.includes(name),battery:detail.includes('+JSON.stringify(battery)+'),pd:detail.includes("PD"),pps:detail.includes("PPS"),wirelessNegative:detail.includes("非対応")};})()');
+        assert.ok(s.found&&s.name&&s.battery,width+'px Wave31 missing live model/battery: '+id+' '+JSON.stringify(s));
+        if(id==='samsung-galaxy-s23-ultra-sc52d')assert.ok(s.pd&&s.pps,width+'px Samsung verified PD/PPS not rendered');
+        if(id==='sony-xperia-1-j9110')assert.ok(s.wirelessNegative,width+'px Sony no-wireless fact not shown');
+        const offers=await until(async()=>{const v=await evalJs(affiliateExpression);return v.links.length?v:null;},8000);
+        assert.ok(offers.links.every(x=>new URL(x.href).searchParams.get('tag')==='nicheworks09-22'),width+'px Wave31 affiliate tracking tag invalid: '+id);
+        if(s.mobile)await evalJs('document.querySelector("#sheetClose").click()');
+      }
+      console.log('Wave31 JP PASS: '+width+'px, five new phones and tagged accessory CTA');
       console.log('Wave30 JP PASS: '+width+'px, four phones and tagged accessory search links');
       console.log('Wave28 FCNT PASS: '+width+'px, five 2018/2019 Japanese models and two tagged links each');
       console.log('Affiliate PASS: '+width+'px, live EN/JA tagged links, sponsored rel and disclosure, generic USB-PD, Alpha2 90W');
