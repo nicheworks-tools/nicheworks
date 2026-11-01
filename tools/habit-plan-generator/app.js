@@ -434,6 +434,8 @@
       <div class="hr"></div>
 
       <div class="output">
+        <h2 class="print-only" data-i18n="ja">習慣プランとチェックリスト</h2>
+        <h2 class="print-only" data-i18n="en" style="display:none;">Habit plan and checklist</h2>
         <div class="output-actions row">
           <button class="btn" id="copyPlanBtn" type="button">
             <span data-i18n="ja">プランをコピー</span>
@@ -446,6 +448,10 @@
           <button class="btn" id="downloadBtn" type="button">
             <span data-i18n="ja">.txt保存</span>
             <span data-i18n="en" style="display:none;">Download .txt</span>
+          </button>
+          <button class="btn" id="printPlanBtn" type="button">
+            <span data-i18n="ja">印刷する・PDF保存</span>
+            <span data-i18n="en" style="display:none;">Print / Save as PDF</span>
           </button>
         </div>
 
@@ -515,6 +521,8 @@
       </div>
     `;
 
+    // initLang runs before toolRoot is populated: apply current language again.
+    window.NW.applyLang(document.documentElement.lang === "en" ? "en" : "ja");
     const debouncedUpdate = window.NW.debounce(updateOutput, 150);
 
     root.querySelectorAll("input, textarea, select").forEach((input) => {
@@ -544,6 +552,11 @@
       const lang = document.documentElement.lang === "ja" ? "ja" : "en";
       const text = buildPlanText(lang, checklistLength);
       window.NW.downloadText(`habit-plan-${lang}.txt`, text);
+    });
+
+    document.getElementById("printPlanBtn").addEventListener("click", () => {
+      updateOutput();
+      window.print();
     });
 
     document.querySelectorAll(".checklist-toggle button").forEach((btn) => {

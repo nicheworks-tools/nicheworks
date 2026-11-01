@@ -16,7 +16,8 @@ Turn a habit goal, available time, preferred days, obstacles, and motivation sty
 - Generate a minimum two-minute action, time/day trigger, recovery plan, and weekly do/rest schedule using deterministic rules.
 - Generate a configurable tracking checklist and text version of the plan.
 - Provide copy and text-download utilities implemented by the tool.
-- Switch the same page between Japanese and English and persist the selected display language in browser localStorage.
+- Support an explicit Print / Save as PDF browser action that refreshes the current plan from the inputs and prints only the selected-language plan, weekly schedule, and chosen 7/14/30-day checklist (not the form, ads, or donation controls).
+- Switch the same page between Japanese and English and persist the selected display language in browser localStorage. Re-apply the selected language after creating the dynamic toolRoot controls, so first-load English is not stuck with Japanese input labels.
 
 ## Inputs
 
@@ -31,6 +32,7 @@ Turn a habit goal, available time, preferred days, obstacles, and motivation sty
 
 - Goal sentence, two-minute minimum action, trigger, recovery plan, weekly schedule, and tracking checklist.
 - Copyable/downloadable habit-plan text.
+- Print/PDF-ready plan and checklist via the native browser print interface, without creating or uploading a document server-side.
 
 ## State and persistence
 
@@ -60,6 +62,8 @@ The planner is a vertical control-and-result workflow designed to remain usable 
 
 ## Acceptance criteria
 
+- [ ] Initial English is correctly applied after dynamic controls render, and native Print/PDF outputs only the active-language plan and checklist (no form/ads/donations).
+
 - [ ] Goal/time/day/obstacle/motivation changes update the generated deterministic plan and weekly schedule.
 - [ ] Each built-in preset populates the corresponding representative inputs and produces a plan without an AI request.
 - [ ] Checklist-length changes are reflected in the visible and copied/downloaded plan.
@@ -69,4 +73,5 @@ The planner is a vertical control-and-result workflow designed to remain usable 
 
 - `tools/habit-plan-generator/index.html`
 - `tools/habit-plan-generator/app.js`
+- `tools/habit-plan-generator/tests/behavior.test.mjs`
 - `tools/habit-plan-generator/style.css`
