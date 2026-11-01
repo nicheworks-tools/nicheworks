@@ -19,6 +19,8 @@
       compareCheckFailed: 'Could not check Pro status. Free compare remains available.',
       unlockPro: 'Unlock NicheWorks Pro — $2.99',
       copied: 'Prompt copied.',
+      linkCopied: 'Pattern link copied.',
+      linkCopyFailed: 'Could not copy. Use the direct link.',
       copyFailed: 'Copy failed. Please copy manually.',
       favoriteOn: '★ Favorited',
       favoriteOff: '☆ Favorite',
@@ -72,6 +74,8 @@
       compareCheckFailed: 'Pro状態を確認できませんでした。無料比較は利用できます。',
       unlockPro: 'NicheWorks Proを購入 — $2.99',
       copied: 'プロンプトをコピーしました。',
+      linkCopied: 'パターンのリンクをコピーしました。',
+      linkCopyFailed: 'コピーできませんでした。直接リンクを利用してください。',
       copyFailed: 'コピーに失敗しました。手動でコピーしてください。',
       favoriteOn: '★ お気に入り済み',
       favoriteOff: '☆ お気に入り',
@@ -593,11 +597,23 @@
     lockBodyScroll();
   }
 
+  function detailUrl(slug) {
+    if (!bySlug.has(slug)) return '';
+    const url = new URL(window.location.pathname, window.location.origin);
+    url.searchParams.set('pattern', slug);
+    return url.pathname + url.search;
+  }
+
   function closeDetailSheet() {
     if (!detailOpen) return;
     detailOpen = false;
     app.classList.remove('detail-open');
     unlockBodyScroll();
+    const url = new URL(window.location.href);
+    if (url.searchParams.has('pattern') && window.history?.replaceState) {
+      url.searchParams.delete('pattern');
+      window.history.replaceState(null, '', url.pathname + url.search + url.hash);
+    }
   }
 
   function compareMarkup() {
@@ -740,6 +756,10 @@
   function openDetail(card) {
     const data = cardData(card);
     currentId = data.id;
+    const link = detailUrl(data.slug);
+    const nativeLink = app.querySelector('[data-detail-permalink]');
+    if (nativeLink && link) nativeLink.href = link;
+    if (link && window.history?.replaceState) window.history.replaceState(null, '', link);
     if (detailEls.content) {
       Object.assign(detailEls.content.dataset, {
         id: data.id,
@@ -784,6 +804,19 @@
     openDetailSheet();
     if (matched) renderSampleSafely(detailEls.sample, matched, true);
     else renderSampleFallback(detailEls.sample, data, true);
+  }
+
+  async function copyPatternLink() {
+    if (!currentId) return;
+    const card = byId.get(currentId);
+    const link = detailUrl(card?.dataset.slug || '');
+    if (!link) return;
+    try {
+      await navigator.clipboard.writeText(new URL(link, window.location.origin).toString());
+      if (copyState) copyState.textContent = t.linkCopied;
+    } catch (_error) {
+      if (copyState) copyState.textContent = t.linkCopyFailed;
+    }
   }
 
   async function copyPrompt() {
@@ -897,6 +930,10 @@
     renderCompare();
     renderFavorites();
     renderRecents();
+    const requested = new URLSearchParams(window.location.search).get('pattern');
+    const selected = bySlug.get(requested);
+    const selectedCard = selected ? byId.get(selected.id) : null;
+    if (selectedCard) openDetail(selectedCard);
   }
 
   categoryChips.forEach((chip) => chip.addEventListener('click', function () {
@@ -915,6 +952,7 @@
   search?.addEventListener('input', applyFilters);
   detailEls.favBtn?.addEventListener('click', toggleFavorite);
   app.querySelector('[data-copy-prompt]')?.addEventListener('click', copyPrompt);
+  app.querySelector('[data-copy-pattern-link]')?.addEventListener('click', copyPatternLink);
   app.querySelector('[data-close-detail]')?.addEventListener('click', closeDetailSheet);
   compareClear?.addEventListener('click', clearCompare);
   compareClearInline?.addEventListener('click', clearCompare);
