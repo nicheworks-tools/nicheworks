@@ -30,12 +30,12 @@
       "lgcode": "012033",
       "pref": "北海道",
       "municipality": "小樽市",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "limited",
+      "reviewed_at": "2026-11-01",
+      "qualifying_source_count": 1,
+      "distinct_link_type_count": 1,
       "service_provider": null,
-      "review_note": null
+      "review_note": "Batch 05: ごみ・資源物の分け方・出し方（市公式、2026-01-05更新）。公式ごみ専用URL1件を独立確認。未検証の収集カレンダー・他サービスを推定せず、追加調査の余地を残す。"
     },
     {
       "lgcode": "012041",
@@ -63,23 +63,23 @@
       "lgcode": "012068",
       "pref": "北海道",
       "municipality": "釧路市",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "limited",
+      "reviewed_at": "2026-11-01",
+      "qualifying_source_count": 1,
+      "distinct_link_type_count": 1,
       "service_provider": null,
-      "review_note": null
+      "review_note": "Batch 05: 粗大ごみ（市公式、2026-08-24更新。釧路・阿寒・音別で申込窓口・収集手順に違いあり）。公式ごみ専用URL1件を独立確認。未検証の収集カレンダー・他サービスを推定せず、追加調査の余地を残す。"
     },
     {
       "lgcode": "012076",
       "pref": "北海道",
       "municipality": "帯広市",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "limited",
+      "reviewed_at": "2026-11-01",
+      "qualifying_source_count": 1,
+      "distinct_link_type_count": 1,
       "service_provider": null,
-      "review_note": null
+      "review_note": "Batch 05: 帯広市ごみ分別パンフレット（市公式、2026-09-29更新、2026年3月発行）。公式ごみ専用URL1件を独立確認。未検証の収集カレンダー・他サービスを推定せず、追加調査の余地を残す。"
     },
     {
       "lgcode": "012084",
