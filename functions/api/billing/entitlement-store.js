@@ -329,20 +329,36 @@ export async function updateEntitlementStatusByPaymentIntent(env, { paymentInten
   }
 
   const timestamp = nowIso();
-  const result = await storage.binding
-    .prepare(`
+  let result;
+  try {
+    // Record the terminal event first, even when the matching checkout has not arrived.
+    await storage.binding.prepare(`
+      INSERT INTO billing_payment_revocations (
+        stripe_payment_intent_id, status, first_seen_at, updated_at
+      ) VALUES (?, ?, ?, ?)
+      ON CONFLICT(stripe_payment_intent_id) DO UPDATE SET
+        status = CASE
+          WHEN billing_payment_revocations.status = 'disputed' OR excluded.status = 'disputed'
+            THEN 'disputed'
+          ELSE excluded.status
+        END,
+        updated_at = excluded.updated_at
+    `).bind(normalizedPaymentIntentId, normalizedStatus, timestamp, timestamp).run();
+    result = await storage.binding.prepare(`
       UPDATE billing_entitlements
       SET status = ?, updated_at = ?, revoked_at = ?
       WHERE stripe_payment_intent_id = ?
         AND status = 'active'
-    `)
-    .bind(normalizedStatus, timestamp, timestamp, normalizedPaymentIntentId)
-    .run();
-
+    `).bind(normalizedStatus, timestamp, timestamp, normalizedPaymentIntentId).run();
+  } catch {
+    // Stripe will retry instead of treating a failed durable write as acknowledged.
+    return { ok: false, error: 'entitlement_update_failed' };
+  }
   const changes = Number(result?.meta?.changes ?? result?.changes ?? 0);
   return {
     ok: true,
     updated: Number.isFinite(changes) ? changes : 0,
+    recorded: true,
     status: normalizedStatus
   };
 }
