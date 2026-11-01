@@ -49,10 +49,10 @@ Use when only 1 or 2 distinct waste-specific qualifying official URLs can be ver
 
 Rules:
 
-- publish the verified links that actually exist;
+- expose all verified links in the main searchable directory; a dedicated municipality page is optional and requires independent user value;
 - do not duplicate one URL under multiple types to reach a threshold;
 - do not invent a missing calendar, bulky-waste, sorting, application, or facility page;
-- the public page must clearly state that official direct-link coverage is limited.
+- if a dedicated municipality page is selectively published, it must clearly state that official direct-link coverage is limited.
 
 ### `joint_service`
 
@@ -63,7 +63,7 @@ Rules:
 - require evidence tying the municipality to that public body/service area;
 - links from the official joint body are allowed as qualifying sources;
 - preserve the municipality identity separately from the service provider identity;
-- the public page must explain that the waste information is provided through the joint public service body.
+- if a dedicated municipality page is selectively published, it must explain that the waste information is provided through the joint public service body.
 
 ### `reviewed_no_direct`
 
@@ -96,20 +96,25 @@ Do not use commercial aggregation, unofficial reposts, scraped mirrors, search-r
 
 A source URL may represent only what the source actually supports. Do not classify a single page as multiple independent URLs.
 
-## 6. Publication rules
+## 6. Publication rules — data first, selective pages
 
-Publication eligibility is state-based, not a universal 3-URL gate:
+**Review completion, official-link data publication, and independent landing-page publication are separate decisions.** A finalized municipality must not be forced into the page manifest merely because it has at least one verified waste-specific URL.
 
-- `standard`: publish;
-- `limited`: publish with limited-coverage disclosure;
-- `joint_service`: publish with joint-service disclosure;
-- `reviewed_no_direct`: reviewed and complete, but not a normal published detail page under the current policy;
-- `pending_review`: do not publish.
+- **Data publication:** verified waste-specific official links for `standard`, `limited`, and `joint_service` belong in the searchable source datasets, regardless of whether a landing page exists.
+- **`standard`:** eligible for a standalone page, but not automatically published.
+- **`limited`:** normally data-only. A standalone page requires an expressly documented additional benefit; one ordinary direct link alone is insufficient.
+- **`joint_service`:** data-only by default; a standalone page is optional when it genuinely clarifies municipal membership, divided districts, service jurisdiction, or another material user problem.
+- **`reviewed_no_direct`:** final review state with evidence and no ordinary standalone page.
+- **`pending_review`:** not completed; no independent page.
+
+The original SPEC.md remains the selection reference: **2+ independently verified waste-specific link types** are a first-pass landing-page candidate, **3+ types** are preferred. Meeting the threshold does not itself authorize publication. Also require distinct utility versus the main search results, such as clear search demand, local-year/district guidance or documented joint-service responsibilities.
+
+The manifest is an **explicit, curated allowlist**, not a mirror of all reviewed municipalities. Keep already indexed municipality pages and their links in place pending a separate content/SEO audit; do not mass-delete or create 404s as a side effect of this policy alignment.
 
 The existing exact-source behavior remains mandatory:
 
 - use only verified official links;
-- retain `last_checked`;
+- retain `last_checked` where verified;
 - preserve explicit `link_type`;
 - never infer an annual calendar callout unless the source record explicitly identifies the applicable fiscal/calendar year;
 - avoid municipality-wide claims from a source that applies only to one district.
