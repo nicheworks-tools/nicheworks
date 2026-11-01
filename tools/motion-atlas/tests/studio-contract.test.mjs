@@ -5,6 +5,8 @@ import vm from "node:vm";
 import { fileURLToPath } from "node:url";
 import { generateStudioFiles, validateComposition, STUDIO_PRODUCT_ID, STUDIO_FEATURE_ID } from "../../../functions/api/motion-atlas/studio-core.mjs";
 import { onRequestPost, onRequestGet } from "../../../functions/api/motion-atlas/studio-export.js";
+import { onRequestPost as createCheckout } from "../../../functions/api/billing/create-checkout-session.js";
+import { validateConfiguredProduct } from "../../../functions/api/billing/product-config.js";
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),"..");
 const read=path=>fs.readFileSync(path,"utf8");
@@ -27,6 +29,30 @@ assert.match(client,/localStorage\.setItem\(STORAGE/,"Browser-local preset stora
 assert.match(client,/nicheworks:billing:session:motion_atlas\.studio_v1/);
 assert.match(client,/\/api\/motion-atlas\/studio-export/);
 assert.doesNotMatch(client,/function generateStudioFiles|@keyframes nwStudio_/,"Paid generator must remain on server");
+
+
+const config=JSON.parse(fs.readFileSync(path.resolve(root,"../../config/billing/products.json"),"utf8"));
+const studioProduct=config.products.find(p=>p.productId===STUDIO_PRODUCT_ID);
+assert.ok(studioProduct,"Studio must be registered as separate billing product");
+assert.equal(studioProduct.checkout?.enabled,false,"Studio checkout must remain off before price approval");
+assert.equal(studioProduct.price.amount,null,"Do not invent approved Studio price");
+assert.equal(studioProduct.price.currency,null);
+assert.equal(studioProduct.priceTierId,null,"No price tier before approval");
+assert.equal(studioProduct.stripe.mode,"not_connected");
+assert.equal(studioProduct.stripe.priceIdEnv,"STRIPE_PRICE_MOTION_ATLAS_STUDIO_V1");
+assert.deepEqual(studioProduct.features,[STUDIO_FEATURE_ID]);
+assert.equal(validateConfiguredProduct(config,STUDIO_PRODUCT_ID).ok,false);
+const billingRequest=new Request("https://nicheworks.app/api/billing/create-checkout-session",{
+ method:"POST",headers:{"content-type":"application/json"},
+ body:JSON.stringify({productId:STUDIO_PRODUCT_ID,returnPath:"/tools/motion-atlas/studio/"})
+});
+const billingResponse=await createCheckout({request:billingRequest,env:{
+ // No secret key or Stripe network access may be needed to decline this sale.
+ ASSETS:{fetch:async()=>new Response(JSON.stringify(config),{status:200})},
+ BILLING_LIVE_CHECKOUT_ENABLED:"true",BILLING_TEST_CHECKOUT_ENABLED:"true"
+}});
+assert.equal(billingResponse.status,403,"Explicit checkout gate must reject even when global flags are on");
+assert.equal((await billingResponse.json()).error,"product_checkout_disabled");
 
 const base={text:"Motion",tracks:[
  {effect:"fade-up",delay:0,duration:750,easing:"ease-out"},
