@@ -11535,6 +11535,219 @@
         "verifiedAt": "2026-11-01"
       },
       "affiliateKeys": []
+    },
+    {
+      "id": "fcnt-arrows-we3-m09",
+      "manufacturer": "FCNT",
+      "model": "arrows We3 M09",
+      "aliases": [
+        "arrows We3",
+        "arrows We3 SIMフリー",
+        "arrows We3 M09 SIM-free",
+        "アローズ ウィースリー",
+        "M09"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 156,
+        "widthMm": 73,
+        "depthMm": 9
+      },
+      "weightG": 189,
+      "displayInch": 6.1,
+      "waterRating": "IPX6/IPX8/IPX9 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 3.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.fcnt.com/spec/m09-sim-free/"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.fcnt.com/spec/m09-sim-free/",
+        "manualUrl": "https://www.fcnt.com/product/arrows/m09-sim-free/",
+        "releaseUrl": "https://www.fcnt.com/news/33202/",
+        "chargingUrl": "https://www.fcnt.com/spec/m09-sim-free/",
+        "waterUrl": "https://www.fcnt.com/spec/m09-sim-free/",
+        "packageUrl": "https://www.fcnt.com/spec/m09-sim-free/",
+        "verifiedAt": "2026-11-01"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "fcnt-arrows-n-f51c",
+      "manufacturer": "FCNT",
+      "model": "arrows N F-51C",
+      "aliases": [
+        "arrows N",
+        "FCNT arrows N",
+        "arrows N docomo",
+        "F-51C",
+        "アローズ エヌ"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2023,
+      "dimensions": {
+        "heightMm": 155,
+        "widthMm": 72,
+        "depthMm": 8.6
+      },
+      "weightG": 171,
+      "displayInch": 6.24,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 2.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 4600,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.fcnt.com/spec/f-51c/"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.fcnt.com/spec/f-51c/",
+        "manualUrl": "https://www.fcnt.com/product/arrows/f-51c/",
+        "chargingUrl": "https://www.fcnt.com/spec/f-51c/",
+        "waterUrl": "https://www.fcnt.com/spec/f-51c/",
+        "packageUrl": "https://www.fcnt.com/spec/f-51c/",
+        "verifiedAt": "2026-11-01"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "fcnt-arrows-we-f51b",
+      "manufacturer": "FCNT",
+      "model": "arrows We F-51B",
+      "aliases": [
+        "arrows We",
+        "FCNT arrows We",
+        "arrows We docomo",
+        "F-51B",
+        "アローズ ウィー"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2021,
+      "dimensions": {
+        "heightMm": 147,
+        "widthMm": 71,
+        "depthMm": 9.4
+      },
+      "weightG": 172,
+      "displayInch": 5.7,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 3.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 4000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.fcnt.com/spec/f-51b/"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.fcnt.com/spec/f-51b/",
+        "manualUrl": "https://www.fcnt.com/product/arrows/f-51b/",
+        "chargingUrl": "https://www.fcnt.com/spec/f-51b/",
+        "waterUrl": "https://www.fcnt.com/spec/f-51b/",
+        "packageUrl": "https://www.fcnt.com/spec/f-51b/",
+        "verifiedAt": "2026-11-01"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "fcnt-arrows-nx9-f52a",
+      "manufacturer": "FCNT",
+      "model": "arrows NX9 F-52A",
+      "aliases": [
+        "arrows NX9",
+        "FCNT arrows NX9",
+        "arrows NX9 docomo",
+        "F-52A",
+        "アローズ エヌエックスナイン"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2020,
+      "dimensions": {
+        "heightMm": 152,
+        "widthMm": 72,
+        "depthMm": 8.5
+      },
+      "weightG": 162,
+      "displayInch": 6.3,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 2.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 3600,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.fcnt.com/spec/f-52a/"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.fcnt.com/spec/f-52a/",
+        "manualUrl": "https://www.fcnt.com/product/arrows/f-52a/",
+        "chargingUrl": "https://www.fcnt.com/spec/f-52a/",
+        "waterUrl": "https://www.fcnt.com/spec/f-52a/",
+        "packageUrl": "https://www.fcnt.com/spec/f-52a/",
+        "verifiedAt": "2026-11-01"
+      },
+      "affiliateKeys": []
     }
   ]
 }
