@@ -39,7 +39,7 @@ assert.equal(Object.keys(noteSources).length, 20, 'the exact twenty reviewed ide
 assert.equal(Object.keys(parser.verifiedCategoryEvidence).length, 196, 'note-only wave cannot promote categories');
 assert.equal(Object.keys(taxonomy.reviewed_mappings).length, 196, 'authoritative category taxonomy unchanged');
 assert.ok(Object.keys(parser.verifiedNoteEvidence).length >= 222, 'wave30 cumulative source-note floor must remain');
-assert.equal(parser.version, '1.67.0', 'note-wave30 public shared parser version');
+assert.ok(Number(parser.version.split('.')[1]) >= 67, 'note-wave30 parser contract must remain available');
 const uniqueNotes = new Set();
 for (const [canonical, exactUrl] of Object.entries(noteSources)) {
   const evidence = parser.verifiedNoteEvidence[canonical];
