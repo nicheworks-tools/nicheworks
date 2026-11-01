@@ -489,7 +489,7 @@
     "disodium phosphate": Object.freeze({ note_short: "Disodium Phosphate helps buffer the pH of cosmetic formulas and is also listed for an anticorrosive function.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5003/disodium-phosphate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "sodium acetylated hyaluronate": Object.freeze({ note_short: "Sodium Acetylated Hyaluronate is listed as a humectant that helps retain moisture in cosmetic products.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/14518/sodium-acetylated-hyaluronate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "hydroxyethyl urea": Object.freeze({ note_short: "Hydroxyethyl Urea is used to retain moisture; COSMILE Europe also lists skin- and hair-conditioning functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/7106/hydroxyethyl-urea/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "sodium bicarbonate": Object.freeze({ note_short: "Sodium Bicarbonate can buffer cosmetic pH; COSMILE Europe also lists deodorant, abrasive and skin-protecting functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/14564/sodium-bicarbonate/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "butylparaben": Object.freeze({ note_short: "Butylparaben is used as a preservative to help protect cosmetic products from microbial spoilage; this is a function description, not a finished-product safety judgment.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2044/butylparaben/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   function canonicalIdentityKey(value = "") {
