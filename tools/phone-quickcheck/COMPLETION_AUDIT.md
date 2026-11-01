@@ -152,6 +152,14 @@ Phone QuickCheck v1 is complete under the maintained contract:
 
 Future work is maintenance: new models, source changes, corrections, and evidence upgrades. It is not part of the v1 closure backlog.
 
+## Post-v1 maintenance Wave 25 — 2026-11-01
+
+Added independently runnable public Chrome verification of **actual rendered** Amazon Associates purchase links, not just static `affiliateKeys` or unpopulated `amazonUrl` fields. Public accessory JSON must exactly match the canonical GitHub file (**22 classes**) alongside existing **223-phone** exact parity. The two new charger classes must be live.
+
+At 320/390/414/768/1280px the live page must show **three Amazon links** in arrows We3 M09 detail, including the source-aware generic USB-PD class with unknown wattage, and correct EN/JA links and NicheWorks Associates disclosure. Each actual visible anchor must lead to HTTPS Amazon Japan with maintained `tag=nicheworks09-22`, fixed classification search string (not the user-entered phone query), and sponsored/noopener plus a new-tab target. Source-backed arrows Alpha2 M10 must show its specific **90W+** charger search class. No user click is simulated and no automatic Amazon navigation occurs.
+
+Success verifies opportunity placement, not clicks, purchases, commission, approval of an affiliate account or other monetary outcomes.
+
 ## Post-v1 maintenance Wave 24 — 2026-11-01
 
 Audited the actual Phone QuickCheck monetization path rather than inferring link availability from empty `affiliateKeys` or null `amazonUrl` records. Amazon Associate destinations are generated dynamically from `accessoryKeysFor` and `affiliate-config.js` (maintained tag `nicheworks09-22`), and rendered through the shared affiliate helper with explicit disclosure in desktop detail/mobile sheet. The baseline 223-phone dataset resolves to **719 possible CTA placements** (not clicks, impressions, affiliate earnings or product-level recommendations). Four latest FCNT devices previously had **two** CTA categories each: USB-C cable and 10,000mAh USB-C power bank.

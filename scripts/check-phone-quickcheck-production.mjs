@@ -79,7 +79,13 @@ async function httpSmoke(){
     assert.equal(phone.charging?.wiredMaxW,null,id+' handset max W must remain unknown');
     assert.equal(phone.charging?.pps,'unknown',id+' PPS must remain unknown');
   }
-  assert.ok(Array.isArray(JSON.parse(data['data/accessories.json']).accessories),'Accessories JSON missing');
+  const liveAccessories=JSON.parse(data['data/accessories.json']);
+  const localAccessories=JSON.parse(readFileSync('tools/phone-quickcheck/data/accessories.json','utf8'));
+  assert.deepEqual(liveAccessories,localAccessories,'Public accessories JSON differs from the canonical GitHub data');
+  assert.equal(liveAccessories.accessories.length,22,'Expected 22 published affiliate accessory categories');
+  for(const key of ['charger-pd-check-wattage','charger-pd-90w']){
+    assert.ok(liveAccessories.accessories.some(x=>x.key===key),'Public accessory category missing: '+key);
+  }
   console.log('HTTP PASS: '+count+' verified public phones, assets and latest records');
 }
 async function until(check,ms){
@@ -185,7 +191,31 @@ async function browserSmoke(){
       // FCNT We3 live user journey: search, select, manufacturer-backed PD revision, mobile close.
       const fcntRender=await evalJs('(()=>{const input=document.querySelector("#searchInput");input.value="arrows We3 M09";input.dispatchEvent(new Event("input",{bubbles:true}));const row=document.querySelector(".phone-row[data-phone-id=fcnt-arrows-we3-m09]");if(!row)return {found:false};row.click();const mobile=matchMedia("(max-width: 900px)").matches;const detail=document.querySelector(mobile?"#sheetDetail":"#desktopDetail").textContent;return {found:true,mobile,model:detail.includes("arrows We3 M09"),pd:detail.includes("USB PD 3.0")};})()');
       assert.ok(fcntRender.found&&fcntRender.model&&fcntRender.pd,width+'px FCNT We3 M09 search/detail or PD rendering failed: '+JSON.stringify(fcntRender));
+      // Verify actually rendered Amazon handoffs, not merely config or JSON placeholders.
+      const affiliateExpression='(()=>{const mobile=matchMedia("(max-width: 900px)").matches;const root=document.querySelector(mobile?"#sheetDetail":"#desktopDetail");const links=[...root.querySelectorAll(".affiliate-btn.amazon-cta")].map(a=>({label:a.textContent,href:a.href,rel:a.rel,target:a.target,visible:a.getClientRects().length>0}));return {links,disclosure:root.querySelector(".amazon-disclosure")?.textContent||"",lang:document.documentElement.lang};})()';
+      const enOffers=await until(async()=>{const o=await evalJs(affiliateExpression);return o.links.length===3?o:null;},9000);
+      assert.equal(enOffers.lang,'en',width+'px: expected English affiliate text');
+      assert.ok(enOffers.links.some(a=>a.label.includes('Find USB-PD chargers')&&a.label.includes('verify wattage')),width+'px: missing source-aware generic USB-PD offer');
+      assert.ok(enOffers.disclosure.includes('As an Amazon Associate'),width+'px: English Associates disclosure missing');
+      for(const link of enOffers.links){
+        const u=new URL(link.href);
+        assert.equal(u.hostname,'www.amazon.co.jp',width+'px: wrong merchant host');
+        assert.equal(u.searchParams.get('tag'),'nicheworks09-22',width+'px: missing Associates tracking tag');
+        assert.ok(u.searchParams.get('k')&&!u.searchParams.get('k').includes('arrows We3'),width+'px: destination query must not include phone/user search');
+        assert.ok(link.rel.includes('sponsored')&&link.rel.includes('noopener'),width+'px: affiliate rel must be sponsored noopener');
+        assert.equal(link.target,'_blank',width+'px: affiliate target should be blank');
+        assert.ok(link.visible,width+'px: Amazon CTA is not visible');
+      }
+      await evalJs('document.querySelector("button[data-lang=ja]").click()');
+      const jaOffers=await until(async()=>{const o=await evalJs(affiliateExpression);return o.lang==='ja'&&o.links.length===3&&o.links.some(a=>a.label.includes('AmazonでUSB-PD充電器を探す'))?o:null;},8000);
+      assert.ok(jaOffers.disclosure.includes('Amazonのアソシエイトとして'),width+'px: Japanese Associates disclosure missing');
       if(fcntRender.mobile) await evalJs('document.querySelector("#sheetClose").click()');
+      const alphaFound=await evalJs('(()=>{const input=document.querySelector("#searchInput");input.value="arrows Alpha2 M10";input.dispatchEvent(new Event("input",{bubbles:true}));const row=document.querySelector(".phone-row[data-phone-id=fcnt-arrows-alpha2-m10]");if(!row)return false;row.click();return true;})()');
+      assert.ok(alphaFound,width+'px: Alpha2 search row missing');
+      const alphaOffers=await until(async()=>{const o=await evalJs(affiliateExpression);return o.links.length===3&&o.links.some(a=>a.label.includes('90W以上'))?o:null;},9000);
+      assert.ok(alphaOffers.links.every(a=>new URL(a.href).searchParams.get('tag')==='nicheworks09-22'),width+'px: Alpha2 affiliate tracking tag missing');
+      if(fcntRender.mobile) await evalJs('document.querySelector("#sheetClose").click()');
+      console.log('Affiliate PASS: '+width+'px, live EN/JA tagged links, sponsored rel and disclosure, generic USB-PD, Alpha2 90W');
       console.log('Chrome PASS: '+width+'px, no overflow, search, JP/EN, '+(jp.mobile?'mobile sheet':'desktop detail'));
     }
   }finally{
