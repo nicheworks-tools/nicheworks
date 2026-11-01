@@ -5,6 +5,7 @@ import {fileURLToPath} from 'node:url';
 
 const toolRoot=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const patterns=JSON.parse(fs.readFileSync(path.join(toolRoot,'data','patterns.json'),'utf8'));
+const v2=JSON.parse(fs.readFileSync(path.join(toolRoot,'data','v2-extension.json'),'utf8'));
 const origin='https://nicheworks.app';
 const toolPath='/tools/pattern-dictionary/';
 const sitemapUrl=`${origin}/sitemap.xml`;
@@ -13,9 +14,11 @@ const concurrency=Math.max(1,Math.min(16,Number(process.env.PATTERN_DICTIONARY_P
 const timeoutMs=Math.max(5000,Number(process.env.PATTERN_DICTIONARY_PRODUCTION_SEO_TIMEOUT_MS||20000));
 const retries=Math.max(0,Math.min(3,Number(process.env.PATTERN_DICTIONARY_PRODUCTION_SEO_RETRIES||2)));
 
-if(patterns.length!==100)throw new Error(`Expected canonical 100 patterns, got ${patterns.length}`);
+if(patterns.length!==100||v2.entries.length!==5)throw new Error(`Expected 100 baseline and 5 supplemental patterns, got ${patterns.length}/${v2.entries.length}`);
+const allPublished=[...patterns,...v2.entries.map(e=>({id:e.id}))];
+if(new Set(allPublished.map(p=>p.id)).size!==105)throw new Error('Duplicate or unexpected published pattern identity');
 
-const detailTargets=patterns.flatMap(({id})=>[
+const detailTargets=allPublished.flatMap(({id})=>[
   {id,lang:'ja',url:`${origin}${toolPath}patterns/${encodeURIComponent(id)}/`},
   {id,lang:'en',url:`${origin}${toolPath}en/patterns/${encodeURIComponent(id)}/`}
 ]);
@@ -147,7 +150,7 @@ try{
   if(fetched.response.status!==200)sitemap.issues.push(`http-status:${fetched.response.status}`);
   if(fetched.response.status>=300&&fetched.response.status<400)sitemap.issues.push(`redirect-location:${fetched.response.headers.get('location')||'(missing)'}`);
   if(!/xml/i.test(contentType))sitemap.issues.push(`content-type:${contentType||'(missing)'}`);
-  if(sitemap.patternDetailLocCount!==200)sitemap.issues.push(`pattern-detail-loc-count:${sitemap.patternDetailLocCount}`);
+  if(sitemap.patternDetailLocCount!==detailTargets.length)sitemap.issues.push(`pattern-detail-loc-count:${sitemap.patternDetailLocCount};expected:${detailTargets.length}`);
   sitemap.ok=sitemap.issues.length===0;
 }catch(error){
   sitemap.issues.push(`fetch-error:${error?.name||'Error'}:${error?.message||String(error)}`);
@@ -174,5 +177,5 @@ if(!sitemap.ok||failed.length){
   console.error(`Production SEO audit failed: sitemapOk=${sitemap.ok}, detailFailures=${failed.length}`);
   process.exitCode=1;
 }else{
-  console.log('OK: production sitemap is healthy and all 200 Pattern Dictionary detail URLs return direct HTTP 200 with exact canonical, index/follow, reciprocal JA/EN hreflang, and sitemap coverage.');
+  console.log('OK: production sitemap is healthy and all ${detailTargets.length} Pattern Dictionary detail URLs return direct HTTP 200 with exact canonical, index/follow, reciprocal JA/EN hreflang, and sitemap coverage.');
 }
