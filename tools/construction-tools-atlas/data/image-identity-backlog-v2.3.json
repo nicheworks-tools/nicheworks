@@ -242,7 +242,12 @@
         "hand plane"
       ],
       "src": "./images/pilot/hand-plane.svg?v=20260513-asset-5",
-      "candidates": []
+      "candidates": [
+        {
+          "id": "q012_japanese_plane",
+          "score": 4
+        }
+      ]
     },
     {
       "manifest": "image-pilots-003.json",
