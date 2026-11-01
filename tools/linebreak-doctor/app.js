@@ -26,6 +26,9 @@ const translations = {
     char_count_label: "文字数：",
     btn_format: "整形する",
     btn_reset: "リセット",
+    btn_show_invisible: "見えない文字を表示",
+    btn_hide_invisible: "通常表示に戻す",
+    invisible_preview_note: "※確認用の表示です。コピーには元の整形テキストを使います。",
     rules_title: "SNS別の整形内容",
     rules_notice: "SNS側の仕様変更により、表示結果が変わる場合があります。投稿前に必ず各SNSの投稿画面で確認してください。",
     faq_title: "よくある質問",
@@ -76,6 +79,9 @@ const translations = {
     char_count_label: "Characters:",
     btn_format: "Format",
     btn_reset: "Reset",
+    btn_show_invisible: "Show invisible characters",
+    btn_hide_invisible: "Show normal text",
+    invisible_preview_note: "Preview only. Copy still uses the original formatted text.",
     rules_title: "Formatting by Platform",
     rules_notice: "Rendering may change due to platform updates. Always verify in the official app before posting.",
     faq_title: "FAQ",
@@ -412,6 +418,10 @@ async function copyText(text, snsName) {
 /* ===============================
    Result Rendering
 ================================= */
+function showInvisibleCharacters(text) {
+  return String(text || "").replace(/\u200B/g, "⟦ZWSP⟧");
+}
+
 function buildResultCard(sns, formatted, diag) {
   const t = translations[currentLang];
   const block = document.createElement("section");
@@ -439,7 +449,25 @@ function buildResultCard(sns, formatted, diag) {
   copyButton.textContent = t.btn_copy.replace("{name}", sns.name);
   copyButton.addEventListener("click", () => copyText(formatted, sns.name));
 
-  block.append(heading, pre, diagEl, copyButton);
+  block.append(heading, pre, diagEl);
+  if (formatted.includes("\u200B")) {
+    const showButton = document.createElement("button");
+    showButton.type = "button";
+    showButton.className = "invisible-preview-btn";
+    showButton.setAttribute("aria-pressed", "false");
+    showButton.textContent = t.btn_show_invisible;
+    const note = document.createElement("p");
+    note.className = "invisible-preview-note";
+    note.textContent = t.invisible_preview_note;
+    showButton.addEventListener("click", () => {
+      const wasVisible = showButton.getAttribute("aria-pressed") === "true";
+      pre.textContent = wasVisible ? formatted : showInvisibleCharacters(formatted);
+      showButton.setAttribute("aria-pressed", String(!wasVisible));
+      showButton.textContent = wasVisible ? t.btn_show_invisible : t.btn_hide_invisible;
+    });
+    block.append(showButton, note);
+  }
+  block.append(copyButton);
   return block;
 }
 
