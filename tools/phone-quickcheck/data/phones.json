@@ -11958,6 +11958,256 @@
         "verifiedAt": "2026-11-02"
       },
       "affiliateKeys": []
+    },
+    {
+      "id": "fcnt-arrows-be-f04k",
+      "manufacturer": "FCNT",
+      "model": "arrows Be F-04K",
+      "aliases": [
+        "arrows Be",
+        "arrows Be F04K",
+        "F-04K",
+        "アローズ ビー",
+        "arrows Be (2018)"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2018,
+      "dimensions": {
+        "heightMm": 144,
+        "widthMm": 72,
+        "depthMm": 8.3
+      },
+      "weightG": 146,
+      "displayInch": 5,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 2580,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.fmworld.net/product/phone/f-04k/spec.html"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.fmworld.net/product/phone/f-04k/spec.html",
+        "manualUrl": "https://www.fmworld.net/product/phone/f-04k/",
+        "waterUrl": "https://www.fmworld.net/product/phone/f-04k/spec.html",
+        "packageUrl": "https://www.fmworld.net/product/phone/f-04k/option.html",
+        "verifiedAt": "2026-11-02"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "fcnt-arrows-u-801fj",
+      "manufacturer": "FCNT",
+      "model": "arrows U",
+      "aliases": [
+        "arrows U 801FJ",
+        "FCNT arrows U",
+        "801FJ",
+        "arrows ユー",
+        "SoftBank arrows U"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2019,
+      "dimensions": {
+        "heightMm": 149,
+        "widthMm": 72,
+        "depthMm": 8.8
+      },
+      "weightG": 166,
+      "displayInch": 5.8,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 2880,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.fmworld.net/product/phone/arrows_u/spec.html"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.fmworld.net/product/phone/arrows_u/spec.html",
+        "manualUrl": "https://www.fmworld.net/product/phone/arrows_u/",
+        "waterUrl": "https://www.fmworld.net/product/phone/arrows_u/spec.html",
+        "packageUrl": "https://www.fmworld.net/product/phone/arrows_u/fuzokuhin.html",
+        "verifiedAt": "2026-11-02"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "fcnt-arrows-j-901fj",
+      "manufacturer": "FCNT",
+      "model": "arrows J",
+      "aliases": [
+        "arrows J 901FJ",
+        "FCNT arrows J",
+        "901FJ",
+        "アローズ ジェイ",
+        "Y!mobile arrows J"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2019,
+      "dimensions": {
+        "heightMm": 149,
+        "widthMm": 72,
+        "depthMm": 8.8
+      },
+      "weightG": 166,
+      "displayInch": 5.8,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 2880,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.fmworld.net/product/phone/arrows_j/spec.html"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.fmworld.net/product/phone/arrows_j/spec.html",
+        "manualUrl": "https://www.fmworld.net/product/phone/arrows_j/",
+        "waterUrl": "https://www.fmworld.net/product/phone/arrows_j/spec.html",
+        "packageUrl": "https://www.fmworld.net/product/phone/arrows_j/fuzokuhin.html",
+        "verifiedAt": "2026-11-02"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "fcnt-arrows-rx",
+      "manufacturer": "FCNT",
+      "model": "arrows RX",
+      "aliases": [
+        "FCNT arrows RX",
+        "arrows RX 楽天モバイル",
+        "楽天 arrows RX",
+        "アローズ アールエックス"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2019,
+      "dimensions": {
+        "heightMm": 149,
+        "widthMm": 72,
+        "depthMm": 8.8
+      },
+      "weightG": 166,
+      "displayInch": 5.8,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStatus": "not_supported",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 2880,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.fmworld.net/product/phone/arrows_rx/spec.html"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.fmworld.net/product/phone/arrows_rx/spec.html",
+        "manualUrl": "https://www.fmworld.net/product/phone/arrows_rx/",
+        "wirelessUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/arrows-rx/",
+        "waterUrl": "https://www.fmworld.net/product/phone/arrows_rx/spec.html",
+        "packageUrl": "https://www.fmworld.net/product/phone/arrows_rx/fuzokuhin.html",
+        "verifiedAt": "2026-11-02"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "fcnt-arrows-m05",
+      "manufacturer": "FCNT",
+      "model": "arrows M05",
+      "aliases": [
+        "FCNT arrows M05",
+        "arrows M05 SIMフリー",
+        "M05",
+        "アローズ エムゼロファイブ"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2019,
+      "dimensions": {
+        "heightMm": 149,
+        "widthMm": 72,
+        "depthMm": 8.8
+      },
+      "weightG": 166,
+      "displayInch": 5.8,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 2880,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.fmworld.net/product/phone/m05/spec.html"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.fmworld.net/product/phone/m05/spec.html",
+        "manualUrl": "https://www.fmworld.net/product/phone/m05/",
+        "waterUrl": "https://www.fmworld.net/product/phone/m05/spec.html",
+        "packageUrl": "https://www.fmworld.net/product/phone/m05/fuzokuhin.html",
+        "verifiedAt": "2026-11-02"
+      },
+      "affiliateKeys": []
     }
   ]
 }
