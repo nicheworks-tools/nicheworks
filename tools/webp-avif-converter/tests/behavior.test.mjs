@@ -125,7 +125,7 @@ assert.ok(revokedUrls.length >= 1, 'local source URLs must be revoked');
 
 const wrongFormat = evaluate('convertImage("jpeg")');
 imageQueue.shift().onload();
-await Promise.resolve();
+await new Promise(setImmediate);
 assert.equal(blobQueue.length, 1);
 assert.equal(blobQueue[0].mime, 'image/jpeg');
 blobQueue.shift().callback(new Blob(['image'], { type: 'image/png' }));
@@ -135,7 +135,7 @@ assert.match(errorBox.textContent, /different image type|different output image 
 
 const correctFormat = evaluate('convertImage("jpeg")');
 imageQueue.shift().onload();
-await Promise.resolve();
+await new Promise(setImmediate);
 blobQueue.shift().callback(new Blob(['image'], { type: 'image/jpeg' }));
 await correctFormat;
 assert.equal(evaluate('convertedBlob.type'), 'image/jpeg');
@@ -144,7 +144,7 @@ assert.equal(evaluate('currentOutputExt'), 'jpg');
 // A reset while Canvas work is pending invalidates the old operation.
 const pendingReset = evaluate('convertImage("png")');
 imageQueue.shift().onload();
-await Promise.resolve();
+await new Promise(setImmediate);
 evaluate('conversionRevision++; loadedFile = null; convertedBlob = null; isConverting = false;');
 blobQueue.shift().callback(new Blob(['image'], { type: 'image/png' }));
 await pendingReset;
