@@ -325,5 +325,57 @@
     "status": "active",
     "language": "ja",
     "scope_note": "川西・信部内・緑蔭、登栄床、中湧別、上湧別等の地区ごとに曜日と粗大ごみ収集日が異なる。粗大ごみの日付は令和8年として明記。"
+  },
+  {
+    "pref": "北海道",
+    "city": "滝上町",
+    "name": "滝上町ごみの分別便利帳",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://town.takinoue.hokkaido.jp/kurashi/gomi/20200827-01.html",
+    "lgcode": "015601",
+    "last_checked": "2026-11-01",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "令和4年度作成の分別便利帳を町公式ページから提供。2026年度版とは扱わない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "滝上町",
+    "name": "収集日（地区別）",
+    "type": "ごみ収集日",
+    "link_type": "collection_calendar",
+    "url": "https://town.takinoue.hokkaido.jp/kurashi/gomi/shushubi.html",
+    "lgcode": "015601",
+    "last_checked": "2026-11-01",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "旭町・濁川と栄町・幸町・元町・滝美町・あけぼの町で曜日が異なる。農家地区の水曜日の収集周期も別記。"
+  },
+  {
+    "pref": "北海道",
+    "city": "滝上町",
+    "name": "クリーンセンター受入日",
+    "type": "ごみ持込施設",
+    "link_type": "dropoff_facility",
+    "url": "https://town.takinoue.hokkaido.jp/kurashi/gomi/cleancenter.html",
+    "lgcode": "015601",
+    "last_checked": "2026-11-01",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "日・月・火・金が受入日、水・木・土は休み。受入品目はこのページに明記されていない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "興部町",
+    "name": "興部町のごみの処理について",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.okoppe.lg.jp/cms/section/juumin/nbm3tm0000000avn.html",
+    "lgcode": "015610",
+    "last_checked": "2026-11-01",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "令和4年3月改訂の分別ガイド、令和7年4月改訂の品目早見表を掲載。西紋別地区環境衛生施設組合の案内もある。"
   }
 ]
