@@ -13,6 +13,7 @@ export async function oldKanjiLiveReady(config, product, env) {
   try {
     // Ensure the migrations ran and the D1 binding can actually read entitlements.
     await env.BILLING_DB.prepare('SELECT entitlement_id FROM billing_entitlements LIMIT 1').first();
+    await env.BILLING_DB.prepare('SELECT stripe_payment_intent_id FROM billing_payment_revocations LIMIT 1').first();
     return true;
   } catch {
     return false;

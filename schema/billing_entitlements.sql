@@ -16,3 +16,12 @@ CREATE TABLE IF NOT EXISTS billing_entitlements (
 );
 CREATE INDEX IF NOT EXISTS idx_billing_entitlements_product_status ON billing_entitlements(product_id,status);
 CREATE INDEX IF NOT EXISTS idx_billing_entitlements_payment_intent ON billing_entitlements(stripe_payment_intent_id);
+
+-- Terminal Stripe payment events are recorded before checkout fulfillment may arrive.
+-- Only Stripe IDs and revocation metadata; no personal or tool content.
+CREATE TABLE IF NOT EXISTS billing_payment_revocations (
+  stripe_payment_intent_id TEXT PRIMARY KEY,
+  status TEXT NOT NULL CHECK (status IN ('revoked', 'refunded', 'disputed')),
+  first_seen_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL
+);
