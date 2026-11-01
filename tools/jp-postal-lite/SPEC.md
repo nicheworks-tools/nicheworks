@@ -15,6 +15,7 @@ Search Japanese postal-code reference data by prefecture and partial address, co
 - Require a prefecture and at least two address characters, with light normalization for full-width digits/spaces and hyphen variants.
 - Return up to 50 matching postal-code/address candidates and show data-load failures rather than treating empty/corrupt data as valid.
 - Allow result rows to be copied or added to an output list.
+- Allow adding only the currently visible search results (at most 50 records) in one action, deduplicating on postal code plus address against existing output rows; repeated bulk-add is idempotent.
 - Allow output-list rows to be removed/cleared and download `postal_code,address` CSV.
 - Display dataset coverage/check-date information without claiming that the NicheWorks check date is the official address-change effective date.
 
@@ -23,11 +24,13 @@ Search Japanese postal-code reference data by prefecture and partial address, co
 - Prefecture selection.
 - Partial Japanese address query.
 - Result-row actions and output-list management.
+- Optional 'add visible results' action, disabled for empty, loading, or failed searches.
 
 ## Outputs
 
 - Matching postal-code/address candidates.
 - Selected output list.
+- Capped batch addition of the visible candidates to that same output list.
 - User-triggered CSV download.
 
 ## State and persistence
@@ -61,6 +64,7 @@ Prefecture/query controls, result cards, and output list are designed as a stack
 
 - [ ] Selecting a loaded prefecture and entering at least two address characters returns matching bundled-data candidates or a clear no-result/load-error state.
 - [ ] Result rows can be added to and removed from the output list without modifying source postal data.
+- [ ] Bulk-add includes no more than the visible first 50 search results, prevents duplicate postal-code/address rows, and never reuses results from an earlier search while a new search is loading.
 - [ ] CSV download contains the selected rows in `postal_code,address` form.
 - [ ] The UI keeps the official-information disclaimer and does not claim external backup JSON retrieval.
 
@@ -68,4 +72,5 @@ Prefecture/query controls, result cards, and output list are designed as a stack
 
 - `tools/jp-postal-lite/index.html`
 - `tools/jp-postal-lite/app.js`
+- `tools/jp-postal-lite/tests/behavior.test.mjs`
 - `tools/jp-postal-lite/data/`
