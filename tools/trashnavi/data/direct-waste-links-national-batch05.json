@@ -1,0 +1,40 @@
+[
+  {
+    "pref": "北海道",
+    "city": "小樽市",
+    "name": "ごみ・資源物の分け方・出し方",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.city.otaru.lg.jp/docs/2020102100499/",
+    "lgcode": "012033",
+    "last_checked": "2026-11-01",
+    "status": "active",
+    "language": "ja"
+  },
+  {
+    "pref": "北海道",
+    "city": "釧路市",
+    "name": "粗大ごみ（釧路・阿寒・音別の地域別申込案内）",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.city.kushiro.lg.jp/kurashi/gomi/1004217/1004221.html",
+    "lgcode": "012068",
+    "last_checked": "2026-11-01",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "釧路地域・阿寒地域・音別地域の申込方法に違いあり"
+  },
+  {
+    "pref": "北海道",
+    "city": "帯広市",
+    "name": "帯広市ごみ分別パンフレット（2026年3月発行）",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.city.obihiro.hokkaido.jp/kurashi/gomi/1002716.html",
+    "lgcode": "012076",
+    "last_checked": "2026-11-01",
+    "status": "active",
+    "language": "ja",
+    "fiscal_year": "2026"
+  }
+]
