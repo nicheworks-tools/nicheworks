@@ -255,6 +255,21 @@ async function browserSmoke(){
         assert.ok(!offer.links.some(x=>x.label.includes('USB-PD')),width+'px '+modelId+' unsupported PD offer incorrectly displayed');
         if(result.mobile)await evalJs('document.querySelector("#sheetClose").click()');
       }
+      // Wave30 — four additional domestically marketed models, source-backed battery and live affiliate destinations.
+      const wave30Cases=[
+        ['sony-xperia-5-j9260','Xperia 5 (J9260)','3140 mAh'],
+        ['sharp-aquos-sense4-lite','AQUOS sense4 lite','4570 mAh'],
+        ['sharp-aquos-sense4-plus-shm16','AQUOS sense4 plus (SH-M16)','4120 mAh'],
+        ['samsung-galaxy-a25-5g-au','Galaxy A25 5G (au)','5000 mAh']
+      ];
+      for(const [id,name,battery] of wave30Cases){
+        const s=await evalJs('(()=>{const id='+JSON.stringify(id)+';const q='+JSON.stringify(name)+';const i=document.querySelector("#searchInput");i.value=q;i.dispatchEvent(new Event("input",{bubbles:true}));const r=document.querySelector(".phone-row[data-phone-id="+id+"]");if(!r)return {found:false};r.click();const mobile=matchMedia("(max-width: 900px)").matches;const detail=document.querySelector(mobile?"#sheetDetail":"#desktopDetail").textContent;return {found:true,mobile,name:detail.includes(q),battery:detail.includes('+JSON.stringify(battery)+')};})()');
+        assert.ok(s.found&&s.name&&s.battery,width+'px Wave30 model content not rendered: '+id+' '+JSON.stringify(s));
+        const o=await until(async()=>{const v=await evalJs(affiliateExpression);return v.links.length>0?v:null;},8000);
+        assert.ok(o.links.every(x=>new URL(x.href).searchParams.get('tag')==='nicheworks09-22'),width+'px Wave30 Amazon tag invalid: '+id);
+        if(s.mobile)await evalJs('document.querySelector("#sheetClose").click()');
+      }
+      console.log('Wave30 JP PASS: '+width+'px, four phones and tagged accessory search links');
       console.log('Wave28 FCNT PASS: '+width+'px, five 2018/2019 Japanese models and two tagged links each');
       console.log('Affiliate PASS: '+width+'px, live EN/JA tagged links, sponsored rel and disclosure, generic USB-PD, Alpha2 90W');
       console.log('Chrome PASS: '+width+'px, no overflow, search, JP/EN, '+(jp.mobile?'mobile sheet':'desktop detail'));
