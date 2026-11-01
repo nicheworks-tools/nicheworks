@@ -89,4 +89,66 @@ context.twoFiles = [{ name: 'a.webp', type: 'image/webp' }, { name: 'b.webp', ty
 evaluate(`handleFileList(twoFiles)`);
 assert.ok(errorBox.textContent.includes('one image at a time'), 'multiple-file selection should be rejected explicitly');
 
+
+// Conversion races: selecting a new source must invalidate earlier decode/encode.
+const imageQueue = [];
+const blobQueue = [];
+const revokedUrls = [];
+let nextUrl = 0;
+context.URL = {
+  createObjectURL() { return 'blob:fake-' + (++nextUrl); },
+  revokeObjectURL(url) { revokedUrls.push(url); }
+};
+context.Image = class {
+  naturalWidth = 20;
+  naturalHeight = 15;
+  set src(url) { this.source = url; imageQueue.push(this); }
+};
+documentStub.createElement = (tag) => tag === 'canvas'
+  ? { width: 0, height: 0,
+      getContext() { return { fillRect() {}, drawImage() {} }; },
+      toBlob(callback, mime) { blobQueue.push({ callback, mime }); } }
+  : makeElement();
+
+context.fileA = { name: 'one.webp', type: 'image/webp', size: 1200 };
+context.fileB = { name: 'two.avif', type: 'image/avif', size: 1400 };
+evaluate('handleFile(fileA)');
+const staleConversion = evaluate('convertImage("png")');
+assert.equal(imageQueue.length, 1);
+evaluate('handleFile(fileB)');
+imageQueue.shift().onload();
+await staleConversion;
+assert.equal(evaluate('loadedFile.name'), 'two.avif');
+assert.equal(evaluate('convertedBlob'), null, 'old image must not complete after new selection');
+assert.equal(blobQueue.length, 0, 'obsolete decode must not reach canvas encoder');
+assert.ok(revokedUrls.length >= 1, 'local source URLs must be revoked');
+
+const wrongFormat = evaluate('convertImage("jpeg")');
+imageQueue.shift().onload();
+await Promise.resolve();
+assert.equal(blobQueue.length, 1);
+assert.equal(blobQueue[0].mime, 'image/jpeg');
+blobQueue.shift().callback(new Blob(['image'], { type: 'image/png' }));
+await wrongFormat;
+assert.equal(evaluate('convertedBlob'), null, 'canvas PNG fallback cannot appear as a JPEG');
+assert.match(errorBox.textContent, /different image type|different output image type/);
+
+const correctFormat = evaluate('convertImage("jpeg")');
+imageQueue.shift().onload();
+await Promise.resolve();
+blobQueue.shift().callback(new Blob(['image'], { type: 'image/jpeg' }));
+await correctFormat;
+assert.equal(evaluate('convertedBlob.type'), 'image/jpeg');
+assert.equal(evaluate('currentOutputExt'), 'jpg');
+
+// A reset while Canvas work is pending invalidates the old operation.
+const pendingReset = evaluate('convertImage("png")');
+imageQueue.shift().onload();
+await Promise.resolve();
+evaluate('conversionRevision++; loadedFile = null; convertedBlob = null; isConverting = false;');
+blobQueue.shift().callback(new Blob(['image'], { type: 'image/png' }));
+await pendingReset;
+assert.equal(evaluate('convertedBlob'), null);
+assert.ok(source.includes('resetBtn.addEventListener("click", () => {\n  ++conversionRevision;'));
+
 console.log('WebP/AVIF Converter behavior test passed.');
