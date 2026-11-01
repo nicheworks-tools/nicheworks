@@ -3,9 +3,9 @@ const fs=require("node:fs"),path=require("node:path"),assert=require("node:asser
 const root=path.resolve(__dirname,".."),read=p=>fs.readFileSync(path.join(root,p),"utf8");
 const html=read("index.html"),runtime=read("app.runtime.js"),css=read("style.css");
 const loader=read("data/quality-loader.js");
-for(const versioned of ["style.css?v=20261101-dictionary-ux-2","app.runtime.js?v=20261101-curated-definitions-1","quality-loader.js?v=20261101-source-backed-145-1"])
+for(const versioned of ["style.css?v=20261101-dictionary-ux-2","app.runtime.js?v=20261101-curated-definitions-1","quality-loader.js?v=20261102-reviewed-aliases-1"])
   assert(html.includes(versioned),"production HTML still references a stale cached dictionary asset: "+versioned);
-assert(loader.includes('DEFINITION_PROMOTIONS_VERSION = "20261101-source-backed-145-1"') && loader.includes('REVIEWED_DEFINITION_SOURCE_VERSION = "20261101-reviewed-definitions-16"'),"quality loader must refresh revised dictionary sources");
+assert(loader.includes('DEFINITION_PROMOTIONS_VERSION = "20261101-source-backed-145-1"') && loader.includes('REVIEWED_DEFINITION_SOURCE_VERSION = "20261102-reviewed-aliases-1"'),"quality loader must refresh revised dictionary sources");
 assert(loader.includes("REVIEWED_DEFINITION_PACKS.has(baseName)"),"original compact definition source packs need versioned fetches");
 
 const before=(token)=>html.indexOf(token);
