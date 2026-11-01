@@ -442,5 +442,44 @@
     "status": "active",
     "language": "ja",
     "scope_note": "町公式のごみ専用案内。分別、収集、粗大ごみ、自己搬入を同一URLで説明。室蘭の西いぶりエコファクトリーへの自己搬入を案内。1 URL/1 link_typeとして計上しstandardに水増ししない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "豊浦町",
+    "name": "令和8年度 ごみ収集予定日（地区別・大型ごみ申込日）",
+    "type": "ごみ収集日",
+    "link_type": "collection_calendar",
+    "url": "https://www.town.toyoura.hokkaido.jp/hotnews/detail/00005824.html",
+    "lgcode": "015717",
+    "last_checked": "2026-11-02",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "令和8年度（2026年4月〜2027年3月）。線路下町・線路上町・豊泉大岸礼文華・北部方面で収集日が異なる。大型ごみは申込期限あり。全町共通日として扱わない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "豊浦町",
+    "name": "令和8年度 資源ごみ収集予定日（地区別）",
+    "type": "ごみ収集日",
+    "link_type": "collection_calendar",
+    "url": "https://www.town.toyoura.hokkaido.jp/hotnews/detail/00005823.html",
+    "lgcode": "015717",
+    "last_checked": "2026-11-02",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "令和8年度の缶・びん・ペットボトル地区別収集日。新聞等の自治会回収は団体ごとに異なる。"
+  },
+  {
+    "pref": "北海道",
+    "city": "豊浦町",
+    "name": "危険ごみの分別収集について",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.toyoura.hokkaido.jp/hotnews/detail/00004273.html",
+    "lgcode": "015717",
+    "last_checked": "2026-11-02",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "スプレー缶・ライター・電池・小型充電式製品等の分別方法。危険ごみの収集日は地域別カレンダーを参照。"
   }
 ]
