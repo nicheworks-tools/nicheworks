@@ -758,7 +758,9 @@
     currentId = data.id;
     const link = detailUrl(data.slug);
     const nativeLink = app.querySelector('[data-detail-permalink]');
-    if (nativeLink && link) nativeLink.href = link;
+    if (nativeLink) { nativeLink.href = link || '#'; nativeLink.hidden = !link; }
+    const copyLinkBtn = app.querySelector('[data-copy-pattern-link]');
+    if (copyLinkBtn) copyLinkBtn.disabled = !link;
     if (link && window.history?.replaceState) window.history.replaceState(null, '', link);
     if (detailEls.content) {
       Object.assign(detailEls.content.dataset, {
