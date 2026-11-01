@@ -429,5 +429,18 @@
     "status": "active",
     "language": "ja",
     "scope_note": "2023年3月31日更新。分別冊子と区分表を提供。収集日は毎月の生活カレンダー参照と明記。2026年度版とは扱わない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "壮瞥町",
+    "name": "ごみ・リサイクル（分別・収集・粗大ごみ・自己搬入）",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.sobetsu.lg.jp/kurashi/joho/gomi.html",
+    "lgcode": "015750",
+    "last_checked": "2026-11-02",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "町公式のごみ専用案内。分別、収集、粗大ごみ、自己搬入を同一URLで説明。室蘭の西いぶりエコファクトリーへの自己搬入を案内。1 URL/1 link_typeとして計上しstandardに水増ししない。"
   }
 ]
