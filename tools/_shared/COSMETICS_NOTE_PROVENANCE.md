@@ -500,3 +500,12 @@ The six Wave 31 reviewed identities also receive source-backed ingredient-level 
 - The purposely ambiguous `BHA` is not assigned a note or a role.
 
 Source notes are secondary to the maintained bilingual role copy and use the same provenance checks in Lite and FastScan.
+
+
+## Verified ingredient note wave 28 — 23 common cosmetic ingredients (2026-11-01)
+
+Twenty-three maintained canonical identities gain neutral, individually evidenced note overlays derived from their respective COSMILE Europe ingredient pages: Hyaluronic Acid, Zinc Oxide, Titanium Dioxide, Petrolatum, Retinol, Ascorbic Acid, Cetyl Alcohol, Glycolic Acid, Polysorbate 80, Benzyl Alcohol, Glucose, Methylparaben, Sorbitol, Propylene Glycol, Maltitol, Sorbic Acid, Xylitol, Sodium Phosphate, Mannitol, Potassium Citrate, Propylparaben, Ethylparaben and Disodium Phosphate.
+
+Every note includes the *specific* COSMILE HTTPS ingredient URL, cites only source-listed cosmetic functions or described application and avoids assertions of finished-product safety, SPF or product-level efficacy. For Glycolic Acid, COSMILE's formally listed function is `BUFFERING`; the separate descriptive background mentions peeling products. It is **not** silently reclassified as a clinically established treatment. Existing verified categories and public bilingual role copy are unchanged.
+
+Exact identity/URL, note evidence, Japanese names, runtime merge, ambiguity guard, inventory floors and unsafe-word checks are validated by `check-cosmetics-source-verified-note-wave28.mjs` in CI. The release target is **185/599 (30.88%)** strongly reviewed notes, leaving **414** without ingredient-specific verified notes. This does not qualify real-photo OCR accuracy.
