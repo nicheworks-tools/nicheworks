@@ -94,7 +94,7 @@ api.setLanguage('en');
 
 api.updateValues();
 assert.equal(elements.get('rttValue').textContent, '50');
-assert.equal(elements.get('fluctValue').textContent, '0');
+assert.equal(elements.get('fluctValue').textContent, '---', 'first estimate has no previous RTT for a difference');
 assert.equal(elements.get('bwValue').textContent, '25');
 assert.equal(levelEn.textContent, 'Connection Estimate: Low load');
 assert.equal(api.runtime().graphColor, '#4caf50');
@@ -120,8 +120,23 @@ assert.equal(elements.get('fluctValue').textContent, 'Not supported');
 assert.equal(elements.get('bwValue').textContent, 'Not supported');
 assert.equal(levelEn.textContent, 'Connection Estimate: Not supported');
 assert.match(elements.get('statusMessage').textContent, /does not provide estimated RTT or downlink values/);
+assert.equal(api.runtime().prevRTT, null, 'stale RTT must be dropped when unsupported');
+assert.equal(api.runtime().graphData.length, 0, 'unsupported reading must clear stale history');
+
+connection.rtt = NaN;
+connection.downlink = -10;
+api.updateValues();
+assert.equal(elements.get('rttValue').textContent, 'Not supported', 'NaN must not become a reading');
+assert.equal(elements.get('bwValue').textContent, 'Not supported', 'negative bandwidth must be rejected');
+connection.rtt = Infinity;
+connection.downlink = undefined;
+api.updateValues();
+assert.equal(elements.get('rttValue').textContent, 'Not supported', 'infinite RTT must be rejected');
 
 connection.downlink = 10;
+connection.rtt = 90;
+api.updateValues();
+assert.equal(elements.get('fluctValue').textContent, '---', 'first valid RTT after unsupported must start fresh');
 for (let i = 0; i < 55; i += 1) {
   connection.rtt = 90 + i;
   api.updateValues();
