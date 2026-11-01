@@ -999,29 +999,33 @@
       "id": "story_pole",
       "expected_ja": "仕上がり高さや基準寸法をまとめて記録する棒。繰り返し作業でミスを減らす。 具体例：どの工程で使うか、何と一緒に使うか、失敗しやすいポイントを押さえる。 具体例：どの工程で使うか、何と一緒に使うか、失敗しやすいポイントを押さえる。",
       "expected_en": "A marked stick that records key dimensions to repeat layouts consistently.",
-      "definition_ja": "仕上がり高さや基準寸法をまとめて記録する棒。繰り返し作業でミスを減らす。 具体例：どの工程で使うか、何と一緒に使うか、失敗しやすいポイントを押さえる。 具体例：どの工程で使うか、何と一緒に使うか、失敗しやすいポイントを押さえる。",
-      "definition_en": "A marked stick that records key dimensions to repeat layouts consistently.\nA marked stick used to carry repeated elevations, positions, and layout dimensions so the same reference can be reproduced across a job. It is useful for finish heights, shelving, masonry courses, and repeated layouts."
+      "definition_ja": "仕上がり高さや基準寸法をまとめて記録する棒。繰り返し作業でミスを減らす。\n繰り返し使う高さ・位置・割付寸法を一本の棒へ写し取り、現場で同じ基準を再現する寸法棒。仕上げ高さ、棚位置、ブロック段数などの転記に使う。",
+      "definition_en": "A marked stick that records key dimensions to repeat layouts consistently.\nA marked stick used to carry repeated elevations, positions, and layout dimensions so the same reference can be reproduced across a job. It is useful for finish heights, shelving, masonry courses, and repeated layouts.",
+      "browse_ja": "仕上がり高さや基準寸法をまとめて記録する棒。繰り返し作業でミスを減らす。"
     },
     {
       "id": "vapor_barrier",
       "expected_ja": "湿気の侵入を抑えるシート。施工方向や継ぎ目処理で性能が変わる。 具体例：どの工程で使うか、何と一緒に使うか、失敗しやすいポイントを押さえる。 具体例：どの工程で使うか、何と一緒に使うか、失敗しやすいポイントを押さえる。",
       "expected_en": "Sheet that limits moisture migration; performance depends on overlaps and taping.",
-      "definition_ja": "湿気の侵入を抑えるシート。施工方向や継ぎ目処理で性能が変わる。 具体例：どの工程で使うか、何と一緒に使うか、失敗しやすいポイントを押さえる。 具体例：どの工程で使うか、何と一緒に使うか、失敗しやすいポイントを押さえる。",
-      "definition_en": "Sheet that limits moisture migration; performance depends on overlaps and taping.\nA vapor-control layer used in wall, floor, or ceiling assemblies to limit water-vapor migration. Correct location depends on climate and assembly design, so continuity and placement must follow the specified system."
+      "definition_ja": "湿気の侵入を抑えるシート。施工方向や継ぎ目処理で性能が変わる。\n壁・床・天井などで水蒸気の移動を抑える防湿層。気候、断熱構成、室内外条件により適切な位置が異なるため、設計仕様に従って連続させる。",
+      "definition_en": "Sheet that limits moisture migration; performance depends on overlaps and taping.\nA vapor-control layer used in wall, floor, or ceiling assemblies to limit water-vapor migration. Correct location depends on climate and assembly design, so continuity and placement must follow the specified system.",
+      "browse_ja": "湿気の侵入を抑えるシート。施工方向や継ぎ目処理で性能が変わる。"
     },
     {
       "id": "glasswool",
       "expected_ja": "断熱材。厚み・密度・防湿処理で効果が変わる。 具体例：どの工程で使うか、何と一緒に使うか、失敗しやすいポイントを押さえる。 具体例：どの工程で使うか、何と一緒に使うか、失敗しやすいポイントを押さえる。",
       "expected_en": "Insulation material; performance depends on thickness/density and vapor control.",
-      "definition_ja": "断熱材。厚み・密度・防湿処理で効果が変わる。 具体例：どの工程で使うか、何と一緒に使うか、失敗しやすいポイントを押さえる。 具体例：どの工程で使うか、何と一緒に使うか、失敗しやすいポイントを押さえる。",
-      "definition_en": "Insulation material; performance depends on thickness/density and vapor control.\nFiberglass insulation made from fine glass fibers for thermal and acoustic performance. Thickness, density, thermal resistance, and facing should match the design, with gaps and excessive compression avoided."
+      "definition_ja": "断熱材。厚み・密度・防湿処理で効果が変わる。\nガラス繊維を綿状に成形した断熱・吸音材。厚さ、密度、熱抵抗、防湿層の有無を設計性能に合わせ、隙間や過度な圧縮を避けて施工する。",
+      "definition_en": "Insulation material; performance depends on thickness/density and vapor control.\nFiberglass insulation made from fine glass fibers for thermal and acoustic performance. Thickness, density, thermal resistance, and facing should match the design, with gaps and excessive compression avoided.",
+      "browse_ja": "断熱材。厚み・密度・防湿処理で効果が変わる。"
     },
     {
       "id": "dust_control_008",
       "expected_ja": "切断・研磨の粉塵を抑える対策。集じん・養生・換気を組み合わせる。 具体例：どの工程で使うか、何と一緒に使うか、失敗しやすいポイントを押さえる。",
       "expected_en": "Measures to reduce dust during cutting/grinding using extraction, masking, and ventilation.",
-      "definition_ja": "切断・研磨の粉塵を抑える対策。集じん・養生・換気を組み合わせる。 具体例：どの工程で使うか、何と一緒に使うか、失敗しやすいポイントを押さえる。",
-      "definition_en": "Measures to reduce dust during cutting/grinding using extraction, masking, and ventilation.\nDust control is the combination of measures used to reduce dust generation and prevent worker or area exposure during cutting, grinding, demolition, and similar work. Wet methods, local extraction, isolation, ventilation, cleanup, and respiratory protection may be combined."
+      "definition_ja": "切断・研磨の粉塵を抑える対策。集じん・養生・換気を組み合わせる。\n切断・研磨・解体などで発生する粉じんを発生源で減らし、作業者や周囲への拡散を抑える対策の総称。湿式化、局所集じん、隔離、換気、清掃、呼吸用保護具を組み合わせる。",
+      "definition_en": "Measures to reduce dust during cutting/grinding using extraction, masking, and ventilation.\nDust control is the combination of measures used to reduce dust generation and prevent worker or area exposure during cutting, grinding, demolition, and similar work. Wet methods, local extraction, isolation, ventilation, cleanup, and respiratory protection may be combined.",
+      "browse_ja": "切断・研磨の粉塵を抑える対策。集じん・養生・換気を組み合わせる。"
     }
   ]
 }
