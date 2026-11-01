@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "kind": "UNVERIFIED_OFFICIAL_SITE_LINK_CANDIDATES",
+  "generated_at": "2026-11-01T11:47:22.021Z",
+  "shard": 13,
+  "size": 50,
+  "warning": "Do not mark as reviewed or publish these candidates. Verify target page contents, year, scope and authority. Empty candidates do not mean source absence.",
+  "counts": {
+    "scanned": 0,
+    "with_candidates": 0,
+    "candidate_urls": 0,
+    "not_scanned": 0
+  },
+  "results": []
+}
