@@ -144,7 +144,7 @@ ManualFinder is an `AFFILIATE` tool, but commerce is an optional next-action lay
 
 Every actionable `カメラ・映像` row with a basic Amazon path must reconcile to verified accessory detail, a reviewed exclusion, or explicit missing-accessory diagnostic state.
 
-The current camera state is **375 basic = 193 detail + 33 reviewed exclusions + 149 missing accessory detail** across 382 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator. The camera audit now loads published coverage-pass batches exactly as the runtime does, so Sony, Panasonic, and Fujifilm camera expansions cannot bypass compatibility-sensitive accessory accounting.
+The current camera state is **512 basic = 193 detail + 170 reviewed exclusions + 149 missing accessory detail** across 519 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator. The camera audit now loads published coverage-pass batches exactly as the runtime does, so Sony, Panasonic, and Fujifilm camera expansions cannot bypass compatibility-sensitive accessory accounting.
 
 Nikon Waves 1–2 remain closed at **14 detail + 0 reviewed exclusions + 0 missing**.
 
@@ -240,7 +240,7 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] GoPro Wave 4 activates exactly MAX and MAX2 with separate official Enduro battery evidence.
 - [x] GoPro Wave 5 reviews exactly seven built-in/integrated-battery cameras as evidence-backed exclusions with no generic USB charger handoff.
 - [x] GoPro currently reconciles to **31 basic = 12 detail + 7 reviewed exclusions + 12 missing accessory detail**.
-- [x] The catalog-wide camera audit reconciles to **375 basic = 193 detail + 33 reviewed exclusions + 149 missing accessory detail** while seven maker/index rows remain non-actionable, and published coverage-pass camera batches are included in the denominator.
+- [x] The catalog-wide camera audit reconciles to **512 basic = 193 detail + 170 reviewed exclusions + 149 missing accessory detail** while seven maker/index rows remain non-actionable, and published coverage-pass camera batches are included in the denominator.
 - [x] Missing-model maker diagnostics and documentation sync remain machine-readable drift guards.
 - [x] Sony Japan α E-mount coverage-pass population reconciles at **107 = 104 direct + 0 shared + 3 support-only + 0 held** and the reviewed rows are loaded into the public directory through the coverage-pass batch loader.
 - [x] Panasonic Japan LUMIX S/G/compact camera-body sitemap scope reconciles at **27 = 27 direct + 0 shared + 0 support-only + 0 held** and the reviewed rows are loaded through the same reusable coverage-pass batch loader.
@@ -396,3 +396,7 @@ Camera accessory tests and audit gates:
 - `tools/manual-finder/tests/behavior.test.mjs`
 
 Manual data and supporting pages remain under `tools/manual-finder/data/`, `tools/manual-finder/howto/`, `tools/manual-finder/COVERAGE.md`, `tools/manual-finder/usage.html`, and `tools/manual-finder/usage-en.html`.
+
+## Canon JP interchangeable-lens manual-index Coverage-Pass (2026-11-01)
+
+The nine manufacturer-listed Japanese lens manual categories on `https://canon.jp/support/manual/ef` produce a bounded **137 distinct exact lens model** population: **123 direct + 14 shared + 0 support_only + 0 held**, comprising 134 official PDF destinations verified by HTTP PDF magic and three manufacturer-defined EOS VR shared online manual-page entries. Grouped multi-lens and non-lens accessories are not part of this population and Canon-wide completion is not claimed. Publication is `data/manuals.coverage-pass.canon-jp-lens.js`; source/evidence manifest is `coverage-passes/canon/jp-lens-manual-index-2026.json`. The existing Amazon exact model-search template with tag `nicheworks09-22` applies to all 137 in the `カメラ・映像` category with affiliate disclosure and coarse click tracking. Battery/charger compatibility is not inferred for lenses: `affiliate-camera-detail-exclusions.js` lists all 137 official-index evidence-backed exclusions separately from the 149 remaining camera-body missing-detail models.
