@@ -43,7 +43,13 @@
       "dj": "木質系の床仕上げ材。住宅や内装仕上げに使う。\n住宅や内装で仕上げ床として使う木質系の床材。無垢材・複合材などの構成、樹種、厚さ、表面仕上げ、下地条件、固定方法を確認して選定・施工する。",
       "de": "Wood-based floor finishing board used in interiors.\nWood-based finish flooring used in residential and interior work. Material construction, species, thickness, surface finish, substrate condition, and fastening method must be coordinated before installation.",
       "c": "floor",
-      "task": "install_flooring"
+      "task": "install_flooring",
+      "aj": [
+        "木質フローリング"
+      ],
+      "ae": [
+        "Timber flooring board"
+      ]
     },
     {
       "id": "q016_laminate_flooring",
@@ -63,7 +69,13 @@
       "dj": "床下地材は、仕上げ床材の下に設けて支持・高さ調整・緩衝・防音・防湿などを補助する下地層または下敷き材。用途と製品によって役割が異なるため、仕上げ床との適合、厚さ、圧縮性、継ぎ目や立上りの処理を確認して使用する。",
       "de": "Floor underlayment is a supporting or intermediate layer beneath finished flooring, used for functions such as leveling, cushioning, sound reduction or moisture management. Its composition and role vary by product; compatibility, thickness, compressibility and joint details must suit the floor system.",
       "c": "floor",
-      "task": "prepare_floor"
+      "task": "prepare_floor",
+      "aj": [
+        "床用下地材"
+      ],
+      "ae": [
+        "Subfloor underlay"
+      ]
     },
     {
       "id": "q016_floor_adhesive",
@@ -73,7 +85,13 @@
       "dj": "床仕上げ材を下地に接着する材料。\nビニル床材、木質床材などを下地へ接着する床施工用接着剤。床材と下地の材質、オープンタイム、貼付可能時間、塗布量、温湿度条件を確認して使用する。",
       "de": "Adhesive used to bond floor finishes to substrates.\nFlooring adhesive used to bond vinyl, wood, or other floor finishes to a substrate. Flooring and substrate compatibility, open time, working time, spread rate, temperature, and humidity must be checked before use.",
       "c": "floor",
-      "task": "bond_floor_finish"
+      "task": "bond_floor_finish",
+      "aj": [
+        "床材接着剤"
+      ],
+      "ae": [
+        "Flooring glue"
+      ]
     },
     {
       "id": "q016_floor_weld_rod",
@@ -83,7 +101,13 @@
       "dj": "長尺シートの継ぎ目を熱溶接する棒材。\n長尺ビニル床シートなどの継ぎ目を熱溶接して一体化するための棒状材料。床材との材質・色の適合、溝加工寸法、溶接温度、施工速度を合わせて使用する。",
       "de": "Rod used to heat-weld seams in vinyl sheet flooring.\nRod material used to heat-weld seams in resilient sheet flooring. Material and color compatibility, groove dimensions, welding temperature, and travel speed must match the floor covering system.",
       "c": "floor",
-      "task": "weld_floor_seam"
+      "task": "weld_floor_seam",
+      "aj": [
+        "床シート溶接棒"
+      ],
+      "ae": [
+        "Vinyl floor welding rod"
+      ]
     },
     {
       "id": "q016_floor_joint_strip",
@@ -127,7 +151,13 @@
       "dj": "床材を壁際まで立ち上げて清掃性を高める納まり。\n床材を壁際で立ち上げ、床と壁の取合いを曲面または連続面として納める巾木仕上げ。清掃性や防水性が求められる場所で、立上り高さ、下地形状、コーブ材、継ぎ目処理を確認する。",
       "de": "Base finish where flooring turns up the wall for cleanability.\nCoved base detail where flooring turns up the wall to form a continuous or radiused wall-to-floor junction. Common in cleanable or wet areas, it requires coordinated upturn height, backing profile, cove former, and seam treatment.",
       "c": "floor",
-      "task": "finish_floor_edge"
+      "task": "finish_floor_edge",
+      "aj": [
+        "床材巻上げ巾木"
+      ],
+      "ae": [
+        "Integral cove skirting"
+      ]
     },
     {
       "id": "q016_carpet_adhesive",
@@ -137,7 +167,13 @@
       "dj": "カーペットやタイルカーペットを固定する接着剤。\nタイルカーペットや接着施工するカーペットを下地へ固定する接着剤。床材の裏面材、下地、再剥離性の要否、塗布量、乾燥時間を確認して使う。",
       "de": "Adhesive used to install carpet or carpet tiles.\nAdhesive used to secure carpet tile or glue-down carpet to a substrate. Carpet backing, substrate, required removability, spread rate, and drying or tack time must be matched to the installation system.",
       "c": "floor",
-      "task": "install_carpet"
+      "task": "install_carpet",
+      "aj": [
+        "カーペット接着剤"
+      ],
+      "ae": [
+        "Carpet glue"
+      ]
     },
     {
       "id": "q016_tack_strip",
@@ -147,7 +183,13 @@
       "dj": "カーペットの端部を引っ掛けて張力を保持する、斜めのピンを植えた細長いグリッパー材。壁際などに固定して使用し、下地と固定方法、ピンの向き、カーペット厚に合わせた納まりを確認する。",
       "de": "A narrow carpet gripper strip fitted with angled pins that hold the edges of stretched carpet. It is fixed near the room perimeter and must suit the subfloor, fixing method, carpet construction, and orientation of its gripping pins.",
       "c": "floor",
-      "task": "install_carpet"
+      "task": "install_carpet",
+      "aj": [
+        "カーペットグリッパー"
+      ],
+      "ae": [
+        "Carpet gripper strip"
+      ]
     },
     {
       "id": "q016_floor_sander",
@@ -157,7 +199,13 @@
       "dj": "木床や下地面を研磨する機械。\n木床や床下地の研磨に使う床面用研磨機。研磨方式、番手、集じん性能、床材の残厚、進行方向を確認し、削り過ぎや局部研磨を避けて使用する。",
       "de": "Machine used to sand wood floors or substrates.\nFloor sanding machine used to abrade wood flooring or floor substrates. Machine type, abrasive grit, dust extraction, remaining material thickness, and sanding direction must be controlled to prevent over-sanding or gouging.",
       "c": "floor",
-      "task": "sand_floor"
+      "task": "sand_floor",
+      "aj": [
+        "床研磨機"
+      ],
+      "ae": [
+        "Floor sanding machine"
+      ]
     },
     {
       "id": "q016_floor_scraper",
@@ -167,7 +215,13 @@
       "dj": "古い床仕上げ材や接着剤の残り、付着物を床面から削り落とすためのヘラ状の工具。手持ち式や長柄式があり、刃の角度と材質を下地に合わせ、下地を傷めないように作業する。既存材の有害物質の有無は別途確認する。",
       "de": "A scraper with a blade for removing old floor coverings, adhesive residue, or attached material. Handheld and long-handle versions use different leverage. Select an appropriate blade and angle to avoid damage to the subfloor; assess hazardous existing materials separately before disturbance.",
       "c": "floor",
-      "task": "remove_floor_finish"
+      "task": "remove_floor_finish",
+      "aj": [
+        "フロアスクレーパー"
+      ],
+      "ae": [
+        "Flooring scraper"
+      ]
     },
     {
       "id": "q016_wallpaper",
@@ -235,7 +289,13 @@
       "dj": "壁紙を下地へ貼る際に空気を押し出し、端部や入隅などを押さえて密着させるための薄いヘラ。柔らかい刃と硬い刃を仕上げ材に応じて使い分け、表面に傷や折れ目を付けない力加減で作業する。",
       "de": "A slim spatula or smoothing blade used during wallpaper installation to press the covering against the substrate and work air toward the edges. Choose a blade stiffness appropriate to the covering and use controlled pressure around corners and edges to avoid creases or surface damage.",
       "c": "wall",
-      "task": "hang_wallpaper"
+      "task": "hang_wallpaper",
+      "aj": [
+        "壁紙ヘラ"
+      ],
+      "ae": [
+        "Wallpaper smoothing spatula"
+      ]
     },
     {
       "id": "q016_wallpaper_cutting_guide",
@@ -245,7 +305,13 @@
       "dj": "壁紙の端部を切る時のガイドに使うヘラ。\n壁紙の余分をカッターで切り落とす際に、直線ガイドとして当てる幅広の地ベラ。刃を安定させ、巾木・枠・入隅などで仕上がり線をそろえるために使う。",
       "de": "Guide used when trimming wallpaper edges.\nA wide wallpaper trimming guide placed against edges so a knife can cut excess wallcovering in a straight, controlled line. It is used around baseboards, frames, and corners.",
       "c": "wall",
-      "task": "trim_wallpaper"
+      "task": "trim_wallpaper",
+      "aj": [
+        "クロス地ベラ"
+      ],
+      "ae": [
+        "Wallpaper trimming guide"
+      ]
     },
     {
       "id": "q016_wall_putty",
@@ -271,7 +337,13 @@
       "dj": "石膏ボード継ぎ目を平滑に仕上げる材料。\n石膏ボード継ぎ目やビス頭を処理し、テープと組み合わせて平滑な面を作る仕上げ材。下塗り・上塗りの用途、可使時間、乾燥条件、研磨性を確認して使用する。",
       "de": "Compound used to finish drywall joints.\nCompound used with joint tape to finish gypsum-board joints and fastener heads into a smooth surface. Grade, working time, drying conditions, and sanding characteristics should match the joint-finishing stage.",
       "c": "drywall",
-      "task": "finish_joint"
+      "task": "finish_joint",
+      "aj": [
+        "ボードジョイントパテ"
+      ],
+      "ae": [
+        "Drywall joint compound"
+      ]
     },
     {
       "id": "q016_corner_tape",
@@ -281,7 +353,13 @@
       "dj": "入隅や出隅を補強して直線を出すテープ材。\n石膏ボードの入隅・出隅を補強し、直線性のある角を作るためのテープ材。紙・樹脂・金属補強入りなどがあり、角部形状と仕上げ方法に合わせて選ぶ。",
       "de": "Tape used to reinforce and straighten drywall corners.\nTape used to reinforce drywall inside or outside corners and create a straight corner line. Paper, plastic, and metal-reinforced types are selected to suit the corner geometry and finishing system.",
       "c": "drywall",
-      "task": "finish_corner"
+      "task": "finish_corner",
+      "aj": [
+        "コーナー補強テープ"
+      ],
+      "ae": [
+        "Corner reinforcing tape"
+      ]
     },
     {
       "id": "q016_ceiling_tile",
@@ -301,7 +379,13 @@
       "dj": "音を吸収する性能を持つ天井材。\n室内の反射音を抑えるため吸音性能を持たせた天井板。吸音率、厚さ、表面仕上げ、防火性能、湿度条件、支持グリッドとの適合を確認して使用する。",
       "de": "Ceiling tile with sound absorption properties.\nCeiling tile designed to absorb reflected sound in interior spaces. Acoustic rating, thickness, surface finish, fire performance, humidity limits, and grid compatibility should be verified.",
       "c": "ceiling",
-      "task": "install_ceiling"
+      "task": "install_ceiling",
+      "aj": [
+        "吸音天井パネル"
+      ],
+      "ae": [
+        "Acoustic ceiling panel"
+      ]
     },
     {
       "id": "q016_suspended_ceiling_grid",
@@ -311,7 +395,13 @@
       "dj": "天井板を支持する格子状の吊り天井部材。\n天井板を載せるため、メインTバー・クロスTバー・周辺材などで構成する吊り天井の格子下地。割付、レベル、吊り間隔、荷重条件、設備との取合いを管理する。",
       "de": "Grid system that supports suspended ceiling panels.\nSuspended ceiling support grid made from main tees, cross tees, perimeter members, and hangers. Layout, level, hanger spacing, loading, and coordination with building services are critical.",
       "c": "ceiling",
-      "task": "install_ceiling_grid"
+      "task": "install_ceiling_grid",
+      "aj": [
+        "吊り天井グリッド"
+      ],
+      "ae": [
+        "Suspended ceiling framing grid"
+      ]
     },
     {
       "id": "q016_main_tee",
@@ -321,7 +411,13 @@
       "dj": "システム天井のグリッドを構成する主方向のT形支持材。上部構造からの吊り線などで支持され、交差するクロスTバーや天井板を受ける。吊り位置、継手、端部の支持条件は使用する天井システムの仕様に従う。",
       "de": "A principal T-shaped rail running along a suspended ceiling grid. It is supported by hangers from the structure and provides connection points for cross tees and ceiling panels. Hanger spacing, splices, and perimeter supports must follow the specified ceiling system.",
       "c": "ceiling",
-      "task": "install_ceiling_grid"
+      "task": "install_ceiling_grid",
+      "aj": [
+        "メインTランナー"
+      ],
+      "ae": [
+        "Main tee runner"
+      ]
     },
     {
       "id": "q016_cross_tee",
@@ -331,7 +427,13 @@
       "dj": "システム天井グリッドを構成する交差材。\nメインTバー間へ直交して接続し、天井グリッドのモジュールを形成する副T形部材。長さ、接続方式、割付寸法を合わせて天井板を支持する。",
       "de": "Secondary grid member in a suspended ceiling system.\nSecondary T-shaped member connected perpendicular between main tees to form the ceiling grid module. Length, connection type, and module spacing must match the panel layout.",
       "c": "ceiling",
-      "task": "install_ceiling_grid"
+      "task": "install_ceiling_grid",
+      "aj": [
+        "クロスTランナー"
+      ],
+      "ae": [
+        "Cross tee runner"
+      ]
     },
     {
       "id": "q016_ceiling_hanger_wire",
@@ -341,7 +443,13 @@
       "dj": "吊り天井のTバーや下地を上部構造から保持するための金属製吊り線。天井材や設備の荷重に対応する線径と取付間隔、上部側の固定金具、線の曲げと緩みの処理を天井システムの仕様に合わせて施工する。",
       "de": "Metal suspension wire used to support ceiling grid members or framing from the building structure above. Its gauge, spacing, connection to structural anchors, and wire bends must suit the ceiling system and supported loads. It is not interchangeable with arbitrary light-duty tying wire.",
       "c": "ceiling",
-      "task": "hang_ceiling"
+      "task": "hang_ceiling",
+      "aj": [
+        "天井吊りワイヤー"
+      ],
+      "ae": [
+        "Ceiling suspension wire"
+      ]
     },
     {
       "id": "q016_access_ceiling_panel",
@@ -367,7 +475,13 @@
       "dj": "内装塗装の前に壁・天井などの下地へ塗り、上塗りの密着性や吸い込みの均一性を整える下塗り材。石膏ボード、パテ面、既存塗膜などの状態に適合する種類を選び、汚れや粉じんを除去して規定乾燥時間を確保する。",
       "de": "An undercoat applied to interior surfaces before finish painting to improve adhesion and even out substrate absorption. Choose a primer compatible with gypsum board, fillers, or existing coatings as appropriate, and follow the preparation, coverage, and drying requirements of the paint system.",
       "c": "paint",
-      "task": "prime_surface"
+      "task": "prime_surface",
+      "aj": [
+        "内装下塗り剤"
+      ],
+      "ae": [
+        "Interior paint primer"
+      ]
     },
     {
       "id": "q016_interior_paint",
@@ -377,7 +491,13 @@
       "dj": "室内の壁や天井などの表面を着色・保護するために使う仕上げ塗料。水性や溶剤系、つやの違いなどがあり、下地材、必要な洗浄性、におい、換気条件に応じて製品を選び、下塗りと塗り重ね時間を守る。",
       "de": "A finish coating for the surfaces of interior walls and ceilings, providing color and a protective surface. Paints differ in binder, sheen, washability, and emissions. Select the system for the substrate and room conditions, with appropriate ventilation, primer, and recoating intervals.",
       "c": "paint",
-      "task": "paint_interior"
+      "task": "paint_interior",
+      "aj": [
+        "室内用塗料"
+      ],
+      "ae": [
+        "Indoor wall paint"
+      ]
     },
     {
       "id": "q016_water_based_paint",
@@ -387,7 +507,13 @@
       "dj": "水を主な希釈材とする塗料。\n水を主な分散媒として使う建築用塗料。臭気や乾燥性の扱いやすさから内装を中心に広く使われ、下地、用途、艶、耐水・耐汚染性能、塗装間隔を確認して選定する。",
       "de": "Paint that uses water as the main carrier or thinner.\nArchitectural paint using water as the primary carrier. Common in interior work because of handling and odor characteristics, with substrate, sheen, durability, moisture resistance, and recoat interval selected for the application.",
       "c": "paint",
-      "task": "paint_surface"
+      "task": "paint_surface",
+      "aj": [
+        "水系塗料"
+      ],
+      "ae": [
+        "Waterborne paint"
+      ]
     },
     {
       "id": "q016_oil_based_paint",
@@ -407,7 +533,13 @@
       "dj": "塗装前の凹みや傷を埋める材料。\n塗装前の下地にある凹み、傷、継ぎ目などを埋めて平滑にする補修材。下地と塗料への適合、充填可能厚さ、乾燥・硬化時間、研磨性を確認して使う。",
       "de": "Filler used to repair dents or defects before painting.\nFiller used to level dents, scratches, joints, and other defects before painting. Compatibility with the substrate and coating, allowable fill depth, drying or curing time, and sandability determine proper use.",
       "c": "paint",
-      "task": "prepare_surface"
+      "task": "prepare_surface",
+      "aj": [
+        "塗装用下地パテ"
+      ],
+      "ae": [
+        "Painter's filler"
+      ]
     },
     {
       "id": "q016_paint_roller_cover",
@@ -417,7 +549,13 @@
       "dj": "塗料を含ませて塗るローラーの交換部材。\nローラーハンドルに装着して塗料を含ませ、壁・天井などへ塗布する交換式の筒。毛丈、材質、幅を塗料種類、下地の粗さ、求める仕上がりに合わせて選ぶ。",
       "de": "Replaceable sleeve used on a paint roller.\nReplaceable sleeve fitted to a roller frame for applying paint to walls, ceilings, and similar surfaces. Nap length, fiber type, and width are selected for the coating, substrate texture, and desired finish.",
       "c": "paint",
-      "task": "paint_surface"
+      "task": "paint_surface",
+      "aj": [
+        "ローラー替え筒"
+      ],
+      "ae": [
+        "Paint roller sleeve"
+      ]
     },
     {
       "id": "q016_paint_extension_pole",
@@ -427,7 +565,13 @@
       "dj": "高い壁や天井を塗るための延長柄。\n塗装ローラーなどに接続して高い壁や天井へ届かせる延長柄。長さ、伸縮機構、接続ねじ、重量、作業姿勢を確認し、足場や脚立を減らせる範囲で安全に使う。",
       "de": "Extension pole used for painting high walls or ceilings.\nExtension pole attached to a paint roller or similar tool to reach high walls and ceilings. Length, locking mechanism, thread compatibility, weight, and working posture must be considered for safe use.",
       "c": "paint",
-      "task": "paint_high_area"
+      "task": "paint_high_area",
+      "aj": [
+        "塗装用延長棒"
+      ],
+      "ae": [
+        "Roller extension pole"
+      ]
     },
     {
       "id": "q016_drop_cloth",
@@ -463,7 +607,13 @@
       "dj": "タイル施工の下地として使う耐水性ボード。\nタイル仕上げの下地として使うセメント系などの板材。耐水性、厚さ、下地架構、固定ピッチ、継ぎ目処理、防水層との取合いを確認して施工する。",
       "de": "Board used as a stable substrate for tile installation.\nCementitious or similar board used as a stable substrate for tile finishes. Water resistance, thickness, framing, fastener spacing, joint treatment, and integration with waterproofing must be coordinated.",
       "c": "tile",
-      "task": "prepare_tile_substrate"
+      "task": "prepare_tile_substrate",
+      "aj": [
+        "タイル用下地板"
+      ],
+      "ae": [
+        "Tile backing board"
+      ]
     },
     {
       "id": "q016_tile_leveling_clip",
@@ -473,7 +623,13 @@
       "dj": "タイルの段差を抑えるための施工補助部材。\n隣り合うタイル間の段差を抑えるため、目地部に差し込んでくさびなどと組み合わせる施工補助部材。タイル厚、目地幅、システム適合、撤去方法を確認して使う。",
       "de": "Clip used to reduce lippage between tiles.\nInstallation clip placed in tile joints and used with wedges or caps to reduce lippage between adjacent tiles. Tile thickness, joint width, system compatibility, and removal method must match the installation.",
       "c": "tile",
-      "task": "set_tile"
+      "task": "set_tile",
+      "aj": [
+        "タイル高さ調整クリップ"
+      ],
+      "ae": [
+        "Tile leveling spacer clip"
+      ]
     },
     {
       "id": "q016_tile_wedge",
@@ -493,7 +649,13 @@
       "dj": "タイルの細かい切欠きや端部を割り取る工具。\nタイル端部を少量ずつ割り取り、曲線や小さな切欠きを作る手工具。タイル材質・厚さに合う刃形を使い、割れの進行と飛散片に注意して加工する。",
       "de": "Tool used to nip small cuts or edges from tile.\nHand tool used to nibble small amounts from tile edges for curves and small notches. Jaw type must suit the tile material and thickness, with control of crack propagation and flying fragments.",
       "c": "tile",
-      "task": "trim_tile"
+      "task": "trim_tile",
+      "aj": [
+        "タイル食切り"
+      ],
+      "ae": [
+        "Tile cutting nippers"
+      ]
     },
     {
       "id": "q016_wet_tile_saw",
@@ -519,7 +681,13 @@
       "dj": "目地詰め後に余分な目地材を拭き取るスポンジ。\nタイル目地材を充填した後、タイル表面の余分な目地材を拭き取り、目地形状を整える高吸水性スポンジ。目の細かさ、保水性、角形状を作業に合わせて使う。",
       "de": "Sponge used to clean excess grout after application.\nHigh-absorbency sponge used after grouting to remove excess grout from tile faces and shape the joint surface. Cell structure, water retention, and edge shape affect cleaning performance.",
       "c": "tile",
-      "task": "clean_grout"
+      "task": "clean_grout",
+      "aj": [
+        "タイル目地拭きスポンジ"
+      ],
+      "ae": [
+        "Tile grout sponge"
+      ]
     },
     {
       "id": "q016_grout_sealer",
@@ -529,7 +697,13 @@
       "dj": "目地の汚れや吸水を抑える保護材。\nセメント系など吸水性のあるタイル目地へ塗布し、水分や汚れの浸透を抑える保護材。目地材との適合、乾燥・養生期間、塗布量、再塗布周期を確認して使う。",
       "de": "Sealer used to protect grout from stains and water absorption.\nProtective sealer applied to absorbent grout, commonly cementitious, to reduce penetration of water and staining. Grout compatibility, cure time, coverage, and maintenance interval must be verified.",
       "c": "tile",
-      "task": "seal_grout"
+      "task": "seal_grout",
+      "aj": [
+        "目地保護シーラー"
+      ],
+      "ae": [
+        "Grout sealing treatment"
+      ]
     },
     {
       "id": "q016_plaster",
@@ -539,7 +713,13 @@
       "dj": "石灰を主成分とする左官仕上げ材。\n消石灰など石灰質材料を主成分とする左官仕上げ材で、壁や天井へこて塗りして仕上げる。下地、調合済み製品の仕様、塗厚、乾燥条件、ひび割れ対策を確認して施工する。",
       "de": "Lime-based plaster used for wall finishes.\nLime-based plaster finish, commonly formulated from hydrated lime and other constituents, troweled onto walls or ceilings. Substrate preparation, product mix, coat thickness, drying conditions, and crack control affect performance.",
       "c": "plaster",
-      "task": "apply_plaster"
+      "task": "apply_plaster",
+      "aj": [
+        "しっくい"
+      ],
+      "ae": [
+        "Slaked lime plaster"
+      ]
     },
     {
       "id": "q016_plaster_base",
@@ -549,7 +729,13 @@
       "dj": "仕上げ左官材の下に塗る下地材。\n仕上げ左官材の付着性や面精度を確保するため、躯体・ボードなどの下地上へ施工する下塗り・中塗り材。下地種類、吸水性、塗厚、補強材との組合せ、養生条件を確認して使用する。",
       "de": "Base coat applied before finish plaster.\nBase or undercoat plaster applied over concrete, board, or other substrates to provide adhesion and a controlled surface for finish plaster. Substrate type, suction, coat thickness, reinforcement, and curing conditions must be coordinated.",
       "c": "plaster",
-      "task": "prepare_plaster"
+      "task": "prepare_plaster",
+      "aj": [
+        "左官用下塗り材"
+      ],
+      "ae": [
+        "Plaster basecoat"
+      ]
     },
     {
       "id": "q016_plaster_mesh",
@@ -559,7 +745,13 @@
       "dj": "ひび割れ抑制や補強に使うメッシュ材。\n左官層のひび割れ抑制や異種下地の取合い補強に埋め込むガラス繊維・樹脂などのメッシュ。目合い、耐アルカリ性、重ね幅、埋込み位置を左官材料と下地条件に合わせる。",
       "de": "Mesh used to reinforce plaster and reduce cracking.\nFiberglass, polymer, or similar mesh embedded in plaster to control cracking and reinforce transitions between substrates. Mesh size, alkali resistance, lap width, and embedment depth must suit the plaster system.",
       "c": "plaster",
-      "task": "reinforce_plaster"
+      "task": "reinforce_plaster",
+      "aj": [
+        "左官補強メッシュ"
+      ],
+      "ae": [
+        "Render reinforcing mesh"
+      ]
     },
     {
       "id": "q016_skim_coat",
@@ -569,7 +761,13 @@
       "dj": "薄く塗って表面を平滑にする仕上げ作業。\n壁や天井の微細な不陸・気泡・傷を薄く覆い、塗装や左官仕上げ前に平滑面を作る薄塗り調整材。下地適合、最大塗厚、乾燥性、研磨可否を確認して施工する。",
       "de": "Thin coat applied to create a smooth surface.\nThin leveling compound used to cover minor irregularities, pinholes, and scratches on walls or ceilings before paint or decorative finishes. Substrate compatibility, maximum build, drying, and sandability govern use.",
       "c": "plaster",
-      "task": "finish_surface"
+      "task": "finish_surface",
+      "aj": [
+        "しごき塗り"
+      ],
+      "ae": [
+        "Skim plaster coat"
+      ]
     },
     {
       "id": "q016_plaster_hawk",
@@ -615,7 +813,13 @@
       "dj": "表面をならしながら模様や質感を整える鏝。\nスポンジ面を持つ左官用の浮きで、モルタルや塗り材の表面を湿らせながら均し、こて跡や細かな不陸を整える。スポンジ硬さ、水量、使用タイミングを仕上げ仕様に合わせる。",
       "de": "Float used to smooth and texture plaster or mortar surfaces.\nPlastering float with a sponge face used to level and texture mortar or plaster while lightly moistening the surface. Sponge density, water content, and timing determine the resulting finish.",
       "c": "plaster",
-      "task": "finish_surface"
+      "task": "finish_surface",
+      "aj": [
+        "スポンジゴテ"
+      ],
+      "ae": [
+        "Sponge finishing float"
+      ]
     },
     {
       "id": "q016_repair_patch",

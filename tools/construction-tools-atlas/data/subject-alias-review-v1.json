@@ -1,0 +1,2072 @@
+{
+  "schema": "cta-subject-alias-review-v1",
+  "version": "2026-11-02-bilingual-search-wave1",
+  "policy": {
+    "scope": "Only existing public canonical entries; no generated filler or redirected source records",
+    "source": "Curated practical Japanese trade expressions and English alternate terms; not aliases inferred from ID tokens",
+    "qa": "Exact alias strings checked against canonical term names and other curated terms; pairs must remain nonempty"
+  },
+  "entries": [
+    {
+      "id": "q011_mortar_mixer",
+      "ja": [
+        "モルタル練り機"
+      ],
+      "en": [
+        "Mortar mixing machine"
+      ]
+    },
+    {
+      "id": "q011_chair_bar",
+      "ja": [
+        "鉄筋馬"
+      ],
+      "en": [
+        "Rebar chair"
+      ]
+    },
+    {
+      "id": "q011_wire_twister",
+      "ja": [
+        "鉄筋ハッカー"
+      ],
+      "en": [
+        "Rebar tying hook"
+      ]
+    },
+    {
+      "id": "q011_grout_float",
+      "ja": [
+        "目地詰めゴテ"
+      ],
+      "en": [
+        "Rubber grout float"
+      ]
+    },
+    {
+      "id": "q011_thinset_mortar",
+      "ja": [
+        "タイル張り用モルタル"
+      ],
+      "en": [
+        "Thin-set mortar"
+      ]
+    },
+    {
+      "id": "q011_bitumen_membrane",
+      "ja": [
+        "改質アスファルト防水シート"
+      ],
+      "en": [
+        "Modified bitumen sheet"
+      ]
+    },
+    {
+      "id": "q011_drainage_mat",
+      "ja": [
+        "排水用マット"
+      ],
+      "en": [
+        "Drainage composite mat"
+      ]
+    },
+    {
+      "id": "q011_knockout_punch",
+      "ja": [
+        "盤用ノックアウト工具"
+      ],
+      "en": [
+        "Panel knockout punch"
+      ]
+    },
+    {
+      "id": "q011_terminal_block",
+      "ja": [
+        "端子ブロック"
+      ],
+      "en": [
+        "Terminal strip"
+      ]
+    },
+    {
+      "id": "q011_clamp_meter",
+      "ja": [
+        "クランプ式電流計"
+      ],
+      "en": [
+        "Clamp ammeter"
+      ]
+    },
+    {
+      "id": "q011_insulation_tester",
+      "ja": [
+        "メガー"
+      ],
+      "en": [
+        "Insulation resistance tester"
+      ]
+    },
+    {
+      "id": "q011_check_valve",
+      "ja": [
+        "逆流防止弁"
+      ],
+      "en": [
+        "Non-return valve"
+      ]
+    },
+    {
+      "id": "q011_union_joint",
+      "ja": [
+        "ユニオン"
+      ],
+      "en": [
+        "Pipe union fitting"
+      ]
+    },
+    {
+      "id": "q011_honeycomb_concrete",
+      "ja": [
+        "豆板"
+      ],
+      "en": [
+        "Concrete honeycombing"
+      ]
+    },
+    {
+      "id": "q011_laitance",
+      "ja": [
+        "レイタンス層"
+      ],
+      "en": [
+        "Cement laitance"
+      ]
+    },
+    {
+      "id": "q011_epoxy_putty",
+      "ja": [
+        "エポキシ樹脂パテ"
+      ],
+      "en": [
+        "Two-part epoxy putty"
+      ]
+    },
+    {
+      "id": "q011_repair_mortar",
+      "ja": [
+        "補修用モルタル"
+      ],
+      "en": [
+        "Mortar for concrete repair"
+      ]
+    },
+    {
+      "id": "q011_rust_inhibitive_primer",
+      "ja": [
+        "防錆下塗り材"
+      ],
+      "en": [
+        "Anti-corrosion primer"
+      ]
+    },
+    {
+      "id": "q011_anti_slip_tape",
+      "ja": [
+        "ノンスリップテープ"
+      ],
+      "en": [
+        "Safety grip tape"
+      ]
+    },
+    {
+      "id": "q012_air_impact_wrench",
+      "ja": [
+        "エアーインパクト"
+      ],
+      "en": [
+        "Pneumatic impact wrench"
+      ]
+    },
+    {
+      "id": "q012_ratchet_handle",
+      "ja": [
+        "ラチェットレンチ用ハンドル"
+      ],
+      "en": [
+        "Socket ratchet handle"
+      ]
+    },
+    {
+      "id": "q012_spanner",
+      "ja": [
+        "オープンエンドレンチ"
+      ],
+      "en": [
+        "Open-ended spanner"
+      ]
+    },
+    {
+      "id": "q012_combination_wrench",
+      "ja": [
+        "コンビレンチ"
+      ],
+      "en": [
+        "Combination spanner"
+      ]
+    },
+    {
+      "id": "q012_box_wrench",
+      "ja": [
+        "リングレンチ"
+      ],
+      "en": [
+        "Ring spanner"
+      ]
+    },
+    {
+      "id": "q012_tap_die_set",
+      "ja": [
+        "ねじ切りタップ・ダイス"
+      ],
+      "en": [
+        "Threading tap-and-die set"
+      ]
+    },
+    {
+      "id": "q012_thread_gauge",
+      "ja": [
+        "ピッチゲージ"
+      ],
+      "en": [
+        "Screw pitch gauge"
+      ]
+    },
+    {
+      "id": "q012_micrometer",
+      "ja": [
+        "マイクロメータ"
+      ],
+      "en": [
+        "Micrometer screw gauge"
+      ]
+    },
+    {
+      "id": "q012_depth_gauge",
+      "ja": [
+        "深さゲージ"
+      ],
+      "en": [
+        "Depth measuring gauge"
+      ]
+    },
+    {
+      "id": "q012_digital_level",
+      "ja": [
+        "電子水平器"
+      ],
+      "en": [
+        "Electronic spirit level"
+      ]
+    },
+    {
+      "id": "q012_water_level",
+      "ja": [
+        "水盛りホース"
+      ],
+      "en": [
+        "Hose water level"
+      ]
+    },
+    {
+      "id": "q012_sliding_bevel",
+      "ja": [
+        "自由角度定規"
+      ],
+      "en": [
+        "Adjustable bevel gauge"
+      ]
+    },
+    {
+      "id": "q012_japanese_plane",
+      "ja": [
+        "かんな"
+      ],
+      "en": [
+        "Kanna plane"
+      ]
+    },
+    {
+      "id": "q012_pull_saw",
+      "ja": [
+        "胴付鋸"
+      ],
+      "en": [
+        "Dozuki backsaw"
+      ]
+    },
+    {
+      "id": "q012_step_drill",
+      "ja": [
+        "タケノコドリル"
+      ],
+      "en": [
+        "Stepped drill bit"
+      ]
+    },
+    {
+      "id": "q012_countersink_bit",
+      "ja": [
+        "皿錐"
+      ],
+      "en": [
+        "Countersink drill bit"
+      ]
+    },
+    {
+      "id": "q012_reamer",
+      "ja": [
+        "穴仕上げリーマ"
+      ],
+      "en": [
+        "Hole reamer"
+      ]
+    },
+    {
+      "id": "q012_flap_disc",
+      "ja": [
+        "羽根付き研磨ディスク"
+      ],
+      "en": [
+        "Flap sanding disc"
+      ]
+    },
+    {
+      "id": "q012_wire_brush_wheel",
+      "ja": [
+        "回転ワイヤーブラシ"
+      ],
+      "en": [
+        "Wire wheel brush"
+      ]
+    },
+    {
+      "id": "q012_sds_max_bit",
+      "ja": [
+        "SDSマックス用ビット"
+      ],
+      "en": [
+        "SDS-max hammer bit"
+      ]
+    },
+    {
+      "id": "q012_chisel_bit",
+      "ja": [
+        "ハツリチゼル"
+      ],
+      "en": [
+        "Demolition chisel bit"
+      ]
+    },
+    {
+      "id": "q012_bull_point",
+      "ja": [
+        "ポイントチゼル"
+      ],
+      "en": [
+        "Pointed demolition chisel"
+      ]
+    },
+    {
+      "id": "q012_flat_chisel",
+      "ja": [
+        "平ノミ"
+      ],
+      "en": [
+        "Flat demolition chisel"
+      ]
+    },
+    {
+      "id": "q012_sheet_metal_brake",
+      "ja": [
+        "板金ベンダー"
+      ],
+      "en": [
+        "Sheet metal bending brake"
+      ]
+    },
+    {
+      "id": "q012_pop_rivet_gun",
+      "ja": [
+        "ハンドリベッター"
+      ],
+      "en": [
+        "Blind rivet gun"
+      ]
+    },
+    {
+      "id": "q012_self_tapping_screw",
+      "ja": [
+        "タッピングねじ"
+      ],
+      "en": [
+        "Tapping screw"
+      ]
+    },
+    {
+      "id": "q012_leveling_mount",
+      "ja": [
+        "レベリングフット"
+      ],
+      "en": [
+        "Adjustable leveling foot"
+      ]
+    },
+    {
+      "id": "q012_shim_plate",
+      "ja": [
+        "シム板"
+      ],
+      "en": [
+        "Shim stock plate"
+      ]
+    },
+    {
+      "id": "q012_non_shrink_grout",
+      "ja": [
+        "無収縮モルタル"
+      ],
+      "en": [
+        "Non-shrink cementitious grout"
+      ]
+    },
+    {
+      "id": "q012_hole_brush",
+      "ja": [
+        "アンカー孔清掃ブラシ"
+      ],
+      "en": [
+        "Anchor hole cleaning brush"
+      ]
+    },
+    {
+      "id": "q013_scaffold_board",
+      "ja": [
+        "足場用踏板"
+      ],
+      "en": [
+        "Scaffold board"
+      ]
+    },
+    {
+      "id": "q013_scaffold_clamp",
+      "ja": [
+        "単管クランプ"
+      ],
+      "en": [
+        "Tube and coupler clamp"
+      ]
+    },
+    {
+      "id": "q013_base_jack",
+      "ja": [
+        "ジャッキベース金具"
+      ],
+      "en": [
+        "Adjustable scaffold base jack"
+      ]
+    },
+    {
+      "id": "q013_ladder_frame",
+      "ja": [
+        "枠組足場建枠"
+      ],
+      "en": [
+        "Scaffold frame upright"
+      ]
+    },
+    {
+      "id": "q013_cross_brace",
+      "ja": [
+        "交差筋かい"
+      ],
+      "en": [
+        "Scaffold cross-brace"
+      ]
+    },
+    {
+      "id": "q013_wall_tie",
+      "ja": [
+        "足場壁つなぎ"
+      ],
+      "en": [
+        "Scaffold wall tie"
+      ]
+    },
+    {
+      "id": "q013_lifting_sling",
+      "ja": [
+        "玉掛けスリング"
+      ],
+      "en": [
+        "Lifting strap"
+      ]
+    },
+    {
+      "id": "q013_wire_rope_sling",
+      "ja": [
+        "ワイヤー吊り具"
+      ],
+      "en": [
+        "Wire rope lifting sling"
+      ]
+    },
+    {
+      "id": "q013_chain_sling",
+      "ja": [
+        "チェーン吊り具"
+      ],
+      "en": [
+        "Chain lifting sling"
+      ]
+    },
+    {
+      "id": "q013_beam_clamp",
+      "ja": [
+        "梁クランプ"
+      ],
+      "en": [
+        "Girder clamp"
+      ]
+    },
+    {
+      "id": "q013_trolley_hoist",
+      "ja": [
+        "吊りトロリー"
+      ],
+      "en": [
+        "Hoist beam trolley"
+      ]
+    },
+    {
+      "id": "q013_material_cart",
+      "ja": [
+        "資材運搬台車"
+      ],
+      "en": [
+        "Material trolley"
+      ]
+    },
+    {
+      "id": "q013_mix_bucket",
+      "ja": [
+        "モルタル練りバケツ"
+      ],
+      "en": [
+        "Mortar mixing bucket"
+      ]
+    },
+    {
+      "id": "q013_paddle_mixer",
+      "ja": [
+        "電動撹拌機"
+      ],
+      "en": [
+        "Power paddle mixer"
+      ]
+    },
+    {
+      "id": "q013_concrete_rake",
+      "ja": [
+        "生コンレーキ"
+      ],
+      "en": [
+        "Concrete placing rake"
+      ]
+    },
+    {
+      "id": "q013_bull_float",
+      "ja": [
+        "コンクリートブルフロート"
+      ],
+      "en": [
+        "Concrete bull float"
+      ]
+    },
+    {
+      "id": "q013_edger_trowel",
+      "ja": [
+        "コンクリート面取り鏝"
+      ],
+      "en": [
+        "Concrete edging trowel"
+      ]
+    },
+    {
+      "id": "q013_groover_trowel",
+      "ja": [
+        "溝切り鏝"
+      ],
+      "en": [
+        "Grooving trowel"
+      ]
+    },
+    {
+      "id": "q013_power_trowel",
+      "ja": [
+        "コンクリートトロウェル"
+      ],
+      "en": [
+        "Power float machine"
+      ]
+    },
+    {
+      "id": "q013_joint_cutter",
+      "ja": [
+        "コンクリート目地カッター"
+      ],
+      "en": [
+        "Concrete joint saw"
+      ]
+    },
+    {
+      "id": "q013_ram_compactor",
+      "ja": [
+        "ランマー転圧機"
+      ],
+      "en": [
+        "Jumping jack compactor"
+      ]
+    },
+    {
+      "id": "q013_weed_barrier",
+      "ja": [
+        "防草マット"
+      ],
+      "en": [
+        "Weed-control fabric"
+      ]
+    },
+    {
+      "id": "q013_perforated_pipe",
+      "ja": [
+        "穴あき排水管"
+      ],
+      "en": [
+        "Perforated drain pipe"
+      ]
+    },
+    {
+      "id": "q013_manhole_cover",
+      "ja": [
+        "マンホールふた"
+      ],
+      "en": [
+        "Manhole lid"
+      ]
+    },
+    {
+      "id": "q013_trench_box",
+      "ja": [
+        "トレンチボックス"
+      ],
+      "en": [
+        "Trench shield"
+      ]
+    },
+    {
+      "id": "q013_shoring",
+      "ja": [
+        "山留め支保工"
+      ],
+      "en": [
+        "Excavation shoring"
+      ]
+    },
+    {
+      "id": "q013_h_pile",
+      "ja": [
+        "H形鋼杭"
+      ],
+      "en": [
+        "Steel H-pile"
+      ]
+    },
+    {
+      "id": "q013_strut",
+      "ja": [
+        "土留め切梁"
+      ],
+      "en": [
+        "Excavation strut"
+      ]
+    },
+    {
+      "id": "q013_waler",
+      "ja": [
+        "腹起し材"
+      ],
+      "en": [
+        "Waler beam"
+      ]
+    },
+    {
+      "id": "q013_theodolite",
+      "ja": [
+        "経緯儀"
+      ],
+      "en": [
+        "Surveying theodolite"
+      ]
+    },
+    {
+      "id": "q013_prism_pole",
+      "ja": [
+        "測量プリズムポール"
+      ],
+      "en": [
+        "Survey prism pole"
+      ]
+    },
+    {
+      "id": "q013_survey_prism",
+      "ja": [
+        "反射プリズム"
+      ],
+      "en": [
+        "Survey reflector prism"
+      ]
+    },
+    {
+      "id": "q013_grade_stake",
+      "ja": [
+        "丁張り杭"
+      ],
+      "en": [
+        "Grade marker stake"
+      ]
+    },
+    {
+      "id": "q013_drywall_rasp",
+      "ja": [
+        "石膏ボードやすり"
+      ],
+      "en": [
+        "Plasterboard rasp"
+      ]
+    },
+    {
+      "id": "q013_board_cutter",
+      "ja": [
+        "石膏ボードカッター"
+      ],
+      "en": [
+        "Gypsum board cutter"
+      ]
+    },
+    {
+      "id": "q014_galvalume_roof",
+      "ja": [
+        "ガルバ屋根"
+      ],
+      "en": [
+        "Galvalume roofing sheets"
+      ]
+    },
+    {
+      "id": "q014_standing_seam_roof",
+      "ja": [
+        "立平屋根"
+      ],
+      "en": [
+        "Standing seam metal roofing"
+      ]
+    },
+    {
+      "id": "q014_corrugated_roof_sheet",
+      "ja": [
+        "屋根用波板"
+      ],
+      "en": [
+        "Corrugated roofing panel"
+      ]
+    },
+    {
+      "id": "q014_eave_flashing",
+      "ja": [
+        "軒先板金"
+      ],
+      "en": [
+        "Eaves flashing"
+      ]
+    },
+    {
+      "id": "q014_snow_guard",
+      "ja": [
+        "雪止め"
+      ],
+      "en": [
+        "Roof snow retention bracket"
+      ]
+    },
+    {
+      "id": "q014_roof_sealant",
+      "ja": [
+        "屋根用コーキング材"
+      ],
+      "en": [
+        "Roof caulk"
+      ]
+    },
+    {
+      "id": "q014_roof_screw",
+      "ja": [
+        "屋根固定ビス"
+      ],
+      "en": [
+        "Roofing fastener screw"
+      ]
+    },
+    {
+      "id": "q014_roofing_nail",
+      "ja": [
+        "屋根用釘"
+      ],
+      "en": [
+        "Roof nail"
+      ]
+    },
+    {
+      "id": "q014_bitumen_primer",
+      "ja": [
+        "アスファルト系プライマー"
+      ],
+      "en": [
+        "Bituminous primer"
+      ]
+    },
+    {
+      "id": "q014_sheet_membrane",
+      "ja": [
+        "防水シート工法"
+      ],
+      "en": [
+        "Sheet-applied waterproofing"
+      ]
+    },
+    {
+      "id": "q014_waterproof_topcoat",
+      "ja": [
+        "防水層保護トップコート"
+      ],
+      "en": [
+        "Waterproof protective topcoat"
+      ]
+    },
+    {
+      "id": "q014_drain_strainer",
+      "ja": [
+        "ドレンごみ受け"
+      ],
+      "en": [
+        "Drain debris strainer"
+      ]
+    },
+    {
+      "id": "q014_roof_drain",
+      "ja": [
+        "屋上ドレン"
+      ],
+      "en": [
+        "Roof drainage outlet"
+      ]
+    },
+    {
+      "id": "q014_overflow_drain",
+      "ja": [
+        "オーバーフロー排水口"
+      ],
+      "en": [
+        "Emergency overflow drain"
+      ]
+    },
+    {
+      "id": "q014_parapet_cap",
+      "ja": [
+        "パラペット笠木"
+      ],
+      "en": [
+        "Parapet coping"
+      ]
+    },
+    {
+      "id": "q014_coping_joint",
+      "ja": [
+        "笠木継ぎ目"
+      ],
+      "en": [
+        "Parapet coping joint"
+      ]
+    },
+    {
+      "id": "q014_fiber_cement_siding",
+      "ja": [
+        "窯業サイディング"
+      ],
+      "en": [
+        "Cement-fiber siding"
+      ]
+    },
+    {
+      "id": "q014_metal_siding",
+      "ja": [
+        "金属系サイディング"
+      ],
+      "en": [
+        "Metal cladding panel"
+      ]
+    },
+    {
+      "id": "q014_siding_starter",
+      "ja": [
+        "サイディングスターター"
+      ],
+      "en": [
+        "Siding starter track"
+      ]
+    },
+    {
+      "id": "q014_siding_clip",
+      "ja": [
+        "外壁留付金具"
+      ],
+      "en": [
+        "Siding fixing clip"
+      ]
+    },
+    {
+      "id": "q014_siding_joint",
+      "ja": [
+        "外壁板目地"
+      ],
+      "en": [
+        "Cladding joint"
+      ]
+    },
+    {
+      "id": "q014_vented_rainscreen",
+      "ja": [
+        "通気胴縁下地"
+      ],
+      "en": [
+        "Ventilation batten"
+      ]
+    },
+    {
+      "id": "q014_housewrap_tape",
+      "ja": [
+        "透湿防水テープ"
+      ],
+      "en": [
+        "Housewrap seam tape"
+      ]
+    },
+    {
+      "id": "q014_fascia_board",
+      "ja": [
+        "屋根破風板"
+      ],
+      "en": [
+        "Roof fascia"
+      ]
+    },
+    {
+      "id": "q014_soffit_vent",
+      "ja": [
+        "軒裏換気口"
+      ],
+      "en": [
+        "Soffit ventilation grille"
+      ]
+    },
+    {
+      "id": "q014_aluminum_sash",
+      "ja": [
+        "アルミ窓枠"
+      ],
+      "en": [
+        "Aluminium window frame"
+      ]
+    },
+    {
+      "id": "q014_resin_sash",
+      "ja": [
+        "塩ビサッシ"
+      ],
+      "en": [
+        "uPVC window frame"
+      ]
+    },
+    {
+      "id": "q014_sill_pan",
+      "ja": [
+        "窓下防水皿"
+      ],
+      "en": [
+        "Window sill flashing pan"
+      ]
+    },
+    {
+      "id": "q014_door_leaf",
+      "ja": [
+        "扉本体"
+      ],
+      "en": [
+        "Door panel"
+      ]
+    },
+    {
+      "id": "q014_door_stop",
+      "ja": [
+        "ドアストッパー"
+      ],
+      "en": [
+        "Door stopper"
+      ]
+    },
+    {
+      "id": "q014_door_lockset",
+      "ja": [
+        "扉用錠前"
+      ],
+      "en": [
+        "Door lockset"
+      ]
+    },
+    {
+      "id": "q014_cylinder_lock",
+      "ja": [
+        "鍵シリンダー"
+      ],
+      "en": [
+        "Cylinder lock mechanism"
+      ]
+    },
+    {
+      "id": "q014_sliding_door_rail",
+      "ja": [
+        "引き戸レール"
+      ],
+      "en": [
+        "Sliding door track"
+      ]
+    },
+    {
+      "id": "q014_door_roller",
+      "ja": [
+        "引戸戸車"
+      ],
+      "en": [
+        "Sliding door roller"
+      ]
+    },
+    {
+      "id": "q014_glazing_gasket",
+      "ja": [
+        "ガラス押さえゴム"
+      ],
+      "en": [
+        "Glass glazing gasket"
+      ]
+    },
+    {
+      "id": "q014_glazing_bead",
+      "ja": [
+        "ガラス押縁"
+      ],
+      "en": [
+        "Glazing stop bead"
+      ]
+    },
+    {
+      "id": "q014_expansion_foam",
+      "ja": [
+        "ウレタンフォーム充填材"
+      ],
+      "en": [
+        "PU expanding foam"
+      ]
+    },
+    {
+      "id": "q014_sealer_coat",
+      "ja": [
+        "下塗りシーラー"
+      ],
+      "en": [
+        "Paint sealer coat"
+      ]
+    },
+    {
+      "id": "q014_filler_coat",
+      "ja": [
+        "下地調整フィラー"
+      ],
+      "en": [
+        "Undercoat filler"
+      ]
+    },
+    {
+      "id": "q014_scaffold_sheet",
+      "ja": [
+        "仮設足場メッシュシート"
+      ],
+      "en": [
+        "Scaffold debris mesh"
+      ]
+    },
+    {
+      "id": "q014_poly_curing_sheet",
+      "ja": [
+        "養生ポリシート"
+      ],
+      "en": [
+        "Polyethylene protection sheet"
+      ]
+    },
+    {
+      "id": "q014_corner_guard",
+      "ja": [
+        "コーナー保護材"
+      ],
+      "en": [
+        "Corner protector"
+      ]
+    },
+    {
+      "id": "q015_cable_ladder",
+      "ja": [
+        "梯子型ケーブルラック"
+      ],
+      "en": [
+        "Cable ladder tray"
+      ]
+    },
+    {
+      "id": "q015_ladder_rack_connector",
+      "ja": [
+        "ラックジョイント金具"
+      ],
+      "en": [
+        "Cable ladder splice connector"
+      ]
+    },
+    {
+      "id": "q015_cable_tray_cover",
+      "ja": [
+        "ケーブルラックカバー"
+      ],
+      "en": [
+        "Cable tray lid"
+      ]
+    },
+    {
+      "id": "q015_cable_gland",
+      "ja": [
+        "電線引込グランド"
+      ],
+      "en": [
+        "Cable entry gland"
+      ]
+    },
+    {
+      "id": "q015_cable_lug",
+      "ja": [
+        "圧着ラグ"
+      ],
+      "en": [
+        "Crimp cable lug"
+      ]
+    },
+    {
+      "id": "q015_ferrule_terminal",
+      "ja": [
+        "棒端子"
+      ],
+      "en": [
+        "Bootlace ferrule"
+      ]
+    },
+    {
+      "id": "q015_wire_marker",
+      "ja": [
+        "電線マーカー"
+      ],
+      "en": [
+        "Wire identification marker"
+      ]
+    },
+    {
+      "id": "q015_cable_label",
+      "ja": [
+        "ケーブル識別札"
+      ],
+      "en": [
+        "Cable identification tag"
+      ]
+    },
+    {
+      "id": "q015_pull_box",
+      "ja": [
+        "通線ボックス"
+      ],
+      "en": [
+        "Conduit pull box"
+      ]
+    },
+    {
+      "id": "q015_switch_box",
+      "ja": [
+        "スイッチ取付箱"
+      ],
+      "en": [
+        "Electrical switch box"
+      ]
+    },
+    {
+      "id": "q015_grounding_busbar",
+      "ja": [
+        "アースバー"
+      ],
+      "en": [
+        "Earth bar"
+      ]
+    },
+    {
+      "id": "q015_ground_rod",
+      "ja": [
+        "アース棒"
+      ],
+      "en": [
+        "Earthing rod"
+      ]
+    },
+    {
+      "id": "q015_light_fixture",
+      "ja": [
+        "照明設備"
+      ],
+      "en": [
+        "Luminaire"
+      ]
+    },
+    {
+      "id": "q015_led_downlight",
+      "ja": [
+        "LED埋込ダウンライト"
+      ],
+      "en": [
+        "Recessed LED downlight"
+      ]
+    },
+    {
+      "id": "q015_emergency_light",
+      "ja": [
+        "非常用照明器具"
+      ],
+      "en": [
+        "Emergency lighting fixture"
+      ]
+    },
+    {
+      "id": "q015_exit_sign",
+      "ja": [
+        "避難誘導灯"
+      ],
+      "en": [
+        "Emergency exit sign"
+      ]
+    },
+    {
+      "id": "q015_occupancy_sensor",
+      "ja": [
+        "在室検知センサー"
+      ],
+      "en": [
+        "Presence detector"
+      ]
+    },
+    {
+      "id": "q015_photoelectric_sensor",
+      "ja": [
+        "明るさセンサー"
+      ],
+      "en": [
+        "Photocell sensor"
+      ]
+    },
+    {
+      "id": "q015_magnetic_contactor",
+      "ja": [
+        "マグネットコンタクター"
+      ],
+      "en": [
+        "Electromagnetic contactor"
+      ]
+    },
+    {
+      "id": "q015_control_relay",
+      "ja": [
+        "制御用リレー"
+      ],
+      "en": [
+        "Control circuit relay"
+      ]
+    },
+    {
+      "id": "q015_sump_pump",
+      "ja": [
+        "ピット排水ポンプ"
+      ],
+      "en": [
+        "Sump drainage pump"
+      ]
+    },
+    {
+      "id": "q015_booster_pump",
+      "ja": [
+        "増圧ポンプ"
+      ],
+      "en": [
+        "Pressure booster pump"
+      ]
+    },
+    {
+      "id": "q015_pressure_switch",
+      "ja": [
+        "圧力作動スイッチ"
+      ],
+      "en": [
+        "Pressure-activated switch"
+      ]
+    },
+    {
+      "id": "q015_flexible_joint",
+      "ja": [
+        "フレキ継手"
+      ],
+      "en": [
+        "Flexible pipe coupling"
+      ]
+    },
+    {
+      "id": "q015_expansion_joint_pipe",
+      "ja": [
+        "配管伸縮継手"
+      ],
+      "en": [
+        "Pipe expansion coupling"
+      ]
+    },
+    {
+      "id": "q015_strainer",
+      "ja": [
+        "配管ストレーナー"
+      ],
+      "en": [
+        "Line strainer"
+      ]
+    },
+    {
+      "id": "q015_y_strainer",
+      "ja": [
+        "Y型ストレーナー"
+      ],
+      "en": [
+        "Y-type strainer"
+      ]
+    },
+    {
+      "id": "q015_solenoid_valve",
+      "ja": [
+        "電磁操作弁"
+      ],
+      "en": [
+        "Electrically actuated solenoid valve"
+      ]
+    },
+    {
+      "id": "q015_globe_valve",
+      "ja": [
+        "グローブ弁"
+      ],
+      "en": [
+        "Globe stop valve"
+      ]
+    },
+    {
+      "id": "q015_butterfly_valve",
+      "ja": [
+        "バタ弁"
+      ],
+      "en": [
+        "Butterfly isolation valve"
+      ]
+    },
+    {
+      "id": "q015_mixer_faucet",
+      "ja": [
+        "混合栓"
+      ],
+      "en": [
+        "Mixer tap"
+      ]
+    },
+    {
+      "id": "q015_washbasin",
+      "ja": [
+        "洗面ボウル"
+      ],
+      "en": [
+        "Washbasin"
+      ]
+    },
+    {
+      "id": "q015_toilet_bowl",
+      "ja": [
+        "トイレットボウル"
+      ],
+      "en": [
+        "Toilet pan"
+      ]
+    },
+    {
+      "id": "q015_trap_primer",
+      "ja": [
+        "トラップ封水補給装置"
+      ],
+      "en": [
+        "Trap seal primer"
+      ]
+    },
+    {
+      "id": "q015_cleanout_plug",
+      "ja": [
+        "排水掃除口栓"
+      ],
+      "en": [
+        "Drain cleanout plug"
+      ]
+    },
+    {
+      "id": "q015_pipe_insulation",
+      "ja": [
+        "配管断熱材"
+      ],
+      "en": [
+        "Pipe lagging"
+      ]
+    },
+    {
+      "id": "q015_glass_wool_pipe_cover",
+      "ja": [
+        "グラスウール配管保温材"
+      ],
+      "en": [
+        "Glass wool pipe insulation"
+      ]
+    },
+    {
+      "id": "q015_polyethylene_pipe_cover",
+      "ja": [
+        "PEフォーム保温筒"
+      ],
+      "en": [
+        "PE foam pipe insulation"
+      ]
+    },
+    {
+      "id": "q015_aluminum_jacket",
+      "ja": [
+        "配管アルミジャケット"
+      ],
+      "en": [
+        "Aluminum cladding jacket"
+      ]
+    },
+    {
+      "id": "q015_duct",
+      "ja": [
+        "空調ダクト"
+      ],
+      "en": [
+        "Air duct"
+      ]
+    },
+    {
+      "id": "q015_duct_flange",
+      "ja": [
+        "ダクト接続フランジ"
+      ],
+      "en": [
+        "Air duct flange"
+      ]
+    },
+    {
+      "id": "q015_duct_hanger",
+      "ja": [
+        "ダクト支持吊り金物"
+      ],
+      "en": [
+        "Air duct hanger"
+      ]
+    },
+    {
+      "id": "q015_volume_damper",
+      "ja": [
+        "風量調整ダンパ"
+      ],
+      "en": [
+        "Volume control damper"
+      ]
+    },
+    {
+      "id": "q015_grille",
+      "ja": [
+        "空調ガラリ"
+      ],
+      "en": [
+        "Air grille"
+      ]
+    },
+    {
+      "id": "q015_diffuser",
+      "ja": [
+        "空気吹出口"
+      ],
+      "en": [
+        "Supply air diffuser"
+      ]
+    },
+    {
+      "id": "q015_return_air_grille",
+      "ja": [
+        "還気ガラリ"
+      ],
+      "en": [
+        "Return grille"
+      ]
+    },
+    {
+      "id": "q015_exhaust_fan",
+      "ja": [
+        "排気ファン"
+      ],
+      "en": [
+        "Ventilation exhaust fan"
+      ]
+    },
+    {
+      "id": "q015_inline_fan",
+      "ja": [
+        "ダクト用中間ファン"
+      ],
+      "en": [
+        "Inline ventilation fan"
+      ]
+    },
+    {
+      "id": "q015_sirocco_fan",
+      "ja": [
+        "多翼送風機"
+      ],
+      "en": [
+        "Forward-curved centrifugal fan"
+      ]
+    },
+    {
+      "id": "q015_air_handling_unit",
+      "ja": [
+        "AHU"
+      ],
+      "en": [
+        "Air handler"
+      ]
+    },
+    {
+      "id": "q015_fan_coil_unit",
+      "ja": [
+        "FCU"
+      ],
+      "en": [
+        "Fan coil"
+      ]
+    },
+    {
+      "id": "q015_outdoor_unit",
+      "ja": [
+        "エアコン室外ユニット"
+      ],
+      "en": [
+        "Air conditioner outdoor unit"
+      ]
+    },
+    {
+      "id": "q016_flooring_board",
+      "ja": [
+        "木質フローリング"
+      ],
+      "en": [
+        "Timber flooring board"
+      ]
+    },
+    {
+      "id": "q016_floor_underlayment",
+      "ja": [
+        "床用下地材"
+      ],
+      "en": [
+        "Subfloor underlay"
+      ]
+    },
+    {
+      "id": "q016_floor_adhesive",
+      "ja": [
+        "床材接着剤"
+      ],
+      "en": [
+        "Flooring glue"
+      ]
+    },
+    {
+      "id": "q016_floor_weld_rod",
+      "ja": [
+        "床シート溶接棒"
+      ],
+      "en": [
+        "Vinyl floor welding rod"
+      ]
+    },
+    {
+      "id": "q016_cove_base",
+      "ja": [
+        "床材巻上げ巾木"
+      ],
+      "en": [
+        "Integral cove skirting"
+      ]
+    },
+    {
+      "id": "q016_carpet_adhesive",
+      "ja": [
+        "カーペット接着剤"
+      ],
+      "en": [
+        "Carpet glue"
+      ]
+    },
+    {
+      "id": "q016_tack_strip",
+      "ja": [
+        "カーペットグリッパー"
+      ],
+      "en": [
+        "Carpet gripper strip"
+      ]
+    },
+    {
+      "id": "q016_floor_sander",
+      "ja": [
+        "床研磨機"
+      ],
+      "en": [
+        "Floor sanding machine"
+      ]
+    },
+    {
+      "id": "q016_floor_scraper",
+      "ja": [
+        "フロアスクレーパー"
+      ],
+      "en": [
+        "Flooring scraper"
+      ]
+    },
+    {
+      "id": "q016_wallpaper_spatula",
+      "ja": [
+        "壁紙ヘラ"
+      ],
+      "en": [
+        "Wallpaper smoothing spatula"
+      ]
+    },
+    {
+      "id": "q016_wallpaper_cutting_guide",
+      "ja": [
+        "クロス地ベラ"
+      ],
+      "en": [
+        "Wallpaper trimming guide"
+      ]
+    },
+    {
+      "id": "q016_joint_compound",
+      "ja": [
+        "ボードジョイントパテ"
+      ],
+      "en": [
+        "Drywall joint compound"
+      ]
+    },
+    {
+      "id": "q016_corner_tape",
+      "ja": [
+        "コーナー補強テープ"
+      ],
+      "en": [
+        "Corner reinforcing tape"
+      ]
+    },
+    {
+      "id": "q016_acoustic_ceiling_tile",
+      "ja": [
+        "吸音天井パネル"
+      ],
+      "en": [
+        "Acoustic ceiling panel"
+      ]
+    },
+    {
+      "id": "q016_suspended_ceiling_grid",
+      "ja": [
+        "吊り天井グリッド"
+      ],
+      "en": [
+        "Suspended ceiling framing grid"
+      ]
+    },
+    {
+      "id": "q016_main_tee",
+      "ja": [
+        "メインTランナー"
+      ],
+      "en": [
+        "Main tee runner"
+      ]
+    },
+    {
+      "id": "q016_cross_tee",
+      "ja": [
+        "クロスTランナー"
+      ],
+      "en": [
+        "Cross tee runner"
+      ]
+    },
+    {
+      "id": "q016_ceiling_hanger_wire",
+      "ja": [
+        "天井吊りワイヤー"
+      ],
+      "en": [
+        "Ceiling suspension wire"
+      ]
+    },
+    {
+      "id": "q016_paint_primer_interior",
+      "ja": [
+        "内装下塗り剤"
+      ],
+      "en": [
+        "Interior paint primer"
+      ]
+    },
+    {
+      "id": "q016_interior_paint",
+      "ja": [
+        "室内用塗料"
+      ],
+      "en": [
+        "Indoor wall paint"
+      ]
+    },
+    {
+      "id": "q016_water_based_paint",
+      "ja": [
+        "水系塗料"
+      ],
+      "en": [
+        "Waterborne paint"
+      ]
+    },
+    {
+      "id": "q016_paint_putty",
+      "ja": [
+        "塗装用下地パテ"
+      ],
+      "en": [
+        "Painter's filler"
+      ]
+    },
+    {
+      "id": "q016_paint_roller_cover",
+      "ja": [
+        "ローラー替え筒"
+      ],
+      "en": [
+        "Paint roller sleeve"
+      ]
+    },
+    {
+      "id": "q016_paint_extension_pole",
+      "ja": [
+        "塗装用延長棒"
+      ],
+      "en": [
+        "Roller extension pole"
+      ]
+    },
+    {
+      "id": "q016_tile_backer_board",
+      "ja": [
+        "タイル用下地板"
+      ],
+      "en": [
+        "Tile backing board"
+      ]
+    },
+    {
+      "id": "q016_tile_leveling_clip",
+      "ja": [
+        "タイル高さ調整クリップ"
+      ],
+      "en": [
+        "Tile leveling spacer clip"
+      ]
+    },
+    {
+      "id": "q016_tile_nipper",
+      "ja": [
+        "タイル食切り"
+      ],
+      "en": [
+        "Tile cutting nippers"
+      ]
+    },
+    {
+      "id": "q016_grout_sponge",
+      "ja": [
+        "タイル目地拭きスポンジ"
+      ],
+      "en": [
+        "Tile grout sponge"
+      ]
+    },
+    {
+      "id": "q016_grout_sealer",
+      "ja": [
+        "目地保護シーラー"
+      ],
+      "en": [
+        "Grout sealing treatment"
+      ]
+    },
+    {
+      "id": "q016_plaster",
+      "ja": [
+        "しっくい"
+      ],
+      "en": [
+        "Slaked lime plaster"
+      ]
+    },
+    {
+      "id": "q016_plaster_base",
+      "ja": [
+        "左官用下塗り材"
+      ],
+      "en": [
+        "Plaster basecoat"
+      ]
+    },
+    {
+      "id": "q016_plaster_mesh",
+      "ja": [
+        "左官補強メッシュ"
+      ],
+      "en": [
+        "Render reinforcing mesh"
+      ]
+    },
+    {
+      "id": "q016_skim_coat",
+      "ja": [
+        "しごき塗り"
+      ],
+      "en": [
+        "Skim plaster coat"
+      ]
+    },
+    {
+      "id": "q016_sponge_float",
+      "ja": [
+        "スポンジゴテ"
+      ],
+      "en": [
+        "Sponge finishing float"
+      ]
+    },
+    {
+      "id": "q017_sealant_joint",
+      "ja": [
+        "コーキング目地"
+      ],
+      "en": [
+        "Sealant-filled joint"
+      ]
+    },
+    {
+      "id": "q017_wood_rasp",
+      "ja": [
+        "木工用粗目やすり"
+      ],
+      "en": [
+        "Woodworking rasp"
+      ]
+    },
+    {
+      "id": "q017_cable_tie_tool",
+      "ja": [
+        "ケーブルタイ工具"
+      ],
+      "en": [
+        "Cable tie tensioning tool"
+      ]
+    },
+    {
+      "id": "q017_pipe_threader",
+      "ja": [
+        "配管ねじ切り機"
+      ],
+      "en": [
+        "Pipe threading machine"
+      ]
+    },
+    {
+      "id": "q017_pipe_deburrer",
+      "ja": [
+        "配管バリ取り器"
+      ],
+      "en": [
+        "Pipe deburring tool"
+      ]
+    },
+    {
+      "id": "q017_pipe_coupling",
+      "ja": [
+        "管用ソケット継手"
+      ],
+      "en": [
+        "Pipe coupler"
+      ]
+    },
+    {
+      "id": "q017_eye_bolt",
+      "ja": [
+        "輪付きボルト"
+      ],
+      "en": [
+        "Eyebolt fastener"
+      ]
+    },
+    {
+      "id": "q017_conduit_coupling",
+      "ja": [
+        "電線管用カップリング"
+      ],
+      "en": [
+        "Electrical conduit coupling"
+      ]
+    },
+    {
+      "id": "q017_conduit_connector",
+      "ja": [
+        "電線管接続コネクタ"
+      ],
+      "en": [
+        "Conduit fitting connector"
+      ]
+    },
+    {
+      "id": "q017_wire_duct",
+      "ja": [
+        "配線用ダクト"
+      ],
+      "en": [
+        "Wiring duct"
+      ]
+    },
+    {
+      "id": "q017_barricade_bar",
+      "ja": [
+        "立入禁止バー"
+      ],
+      "en": [
+        "Safety barricade bar"
+      ]
+    },
+    {
+      "id": "q017_abrasive_block",
+      "ja": [
+        "手研磨ブロック"
+      ],
+      "en": [
+        "Sanding block"
+      ]
+    },
+    {
+      "id": "q017_adhesive_spreader",
+      "ja": [
+        "接着剤塗布ヘラ"
+      ],
+      "en": [
+        "Glue spreader"
+      ]
+    },
+    {
+      "id": "q017_flooring_pull_bar",
+      "ja": [
+        "フロア施工用引き寄せ金具"
+      ],
+      "en": [
+        "Flooring pull tool"
+      ]
+    },
+    {
+      "id": "q017_floor_edge_pad",
+      "ja": [
+        "床材当て木"
+      ],
+      "en": [
+        "Flooring tapping block"
+      ]
+    },
+    {
+      "id": "q017_form_clamp",
+      "ja": [
+        "型枠締付クランプ"
+      ],
+      "en": [
+        "Formwork clamp"
+      ]
+    },
+    {
+      "id": "q017_flooring_roller",
+      "ja": [
+        "床圧着ローラー"
+      ],
+      "en": [
+        "Flooring pressure roller"
+      ]
+    }
+  ]
+}

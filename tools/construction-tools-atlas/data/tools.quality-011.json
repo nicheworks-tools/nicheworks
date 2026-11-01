@@ -40,7 +40,13 @@
       "dj": "モルタルミキサーは、モルタル・グラウト・補修材などを一定量ずつ均一に練り混ぜるための機械。ドラム式やパン式などがあり、材料の粘度・一回の練り量に合う方式を選び、混練時間や投入順序は材料の仕様に従う。",
       "de": "A mortar mixer is a machine for mixing mortar, grout and repair compounds into consistent batches. Drum and pan mixers suit different material viscosities and batch sizes; loading sequence and mixing duration should follow the material specification.",
       "c": "mortar",
-      "task": "mix_mortar"
+      "task": "mix_mortar",
+      "aj": [
+        "モルタル練り機"
+      ],
+      "ae": [
+        "Mortar mixing machine"
+      ]
     },
     {
       "id": "q011_joint_tape",
@@ -189,7 +195,13 @@
       "dj": "上端筋などの高さを保つ支持材。\nスラブなどで上端筋の高さを保持するために配置する鉄筋製の支持材。配筋中だけでなく、歩行や打設時にも所定位置を保てるよう、形状・高さ・配置間隔を配筋計画に合わせる。",
       "de": "Support used to hold upper reinforcement height.\nA reinforcing-steel support used to hold upper reinforcement at the required elevation, commonly in slabs. Its height, shape, and spacing are coordinated with the reinforcement layout so the bars remain positioned during placing and construction traffic.",
       "c": "rebar",
-      "task": "support_rebar"
+      "task": "support_rebar",
+      "aj": [
+        "鉄筋馬"
+      ],
+      "ae": [
+        "Rebar chair"
+      ]
     },
     {
       "id": "q011_tie_wire",
@@ -215,7 +227,13 @@
       "dj": "結束線をねじる鉄筋結束用工具。\n鉄筋の交点などに掛けた結束線を、先端のフックで引っ掛けてねじる手工具。現場ではハッカーなどと呼ばれ、配筋を所定位置に保持するための結束作業に使う。",
       "de": "Tool for twisting rebar tie wire.\nA hand tool with a hooked end for twisting tie wire around reinforcement intersections. Often used for manual rebar tying, it helps hold bars in their intended position during reinforcement work.",
       "c": "rebar",
-      "task": "tie_rebar"
+      "task": "tie_rebar",
+      "aj": [
+        "鉄筋ハッカー"
+      ],
+      "ae": [
+        "Rebar tying hook"
+      ]
     },
     {
       "id": "q011_tile_spacer",
@@ -245,7 +263,13 @@
       "dj": "タイル目地材を押し込むゴム系工具。\nタイル目地材を目地へ押し込み、表面へ広げるためのゴム面を持つ工具。硬い金属鏝よりタイル表面へ追従しやすく、目地を充填した後の余分な材料をかき取る作業にも使う。",
       "de": "Rubber tool used to apply grout.\nA rubber-faced hand tool used to press tile grout into joints and spread it across the tile surface. Its resilient face follows the surface better than a rigid metal trowel and also helps remove excess grout after filling.",
       "c": "tile",
-      "task": "apply_grout"
+      "task": "apply_grout",
+      "aj": [
+        "目地詰めゴテ"
+      ],
+      "ae": [
+        "Rubber grout float"
+      ]
     },
     {
       "id": "q011_grout",
@@ -265,7 +289,13 @@
       "dj": "タイルを下地に接着するモルタル。\nタイルや石材を下地へ薄い接着層で張り付けるためのセメント系接着モルタル。製品ごとに対応下地、タイル種類、塗布厚、可使時間が異なるため、対象条件に合う材料を選ぶ。",
       "de": "Mortar used to bond tile to a substrate.\nA cementitious bonding mortar used to set tile or stone in a relatively thin adhesive bed. Products differ in suitable substrates, tile types, bed thickness, and open or working time, so selection must match the installation conditions.",
       "c": "tile",
-      "task": "set_tile"
+      "task": "set_tile",
+      "aj": [
+        "タイル張り用モルタル"
+      ],
+      "ae": [
+        "Thin-set mortar"
+      ]
     },
     {
       "id": "q011_screed",
@@ -321,7 +351,13 @@
       "dj": "アスファルト系シートで作る防水層。\nアスファルトにポリマーなどを加えて性能を調整したシート状防水材。屋根や地下外壁などの防水層に使われ、工法によりトーチ、粘着、接着など施工方式が異なる。",
       "de": "Waterproofing membrane made from modified bitumen sheets.\nA sheet waterproofing material made from asphalt modified with polymers or similar additives. It is used in roof and below-grade waterproofing systems, with installation methods varying by product, including torch-applied, self-adhered, or bonded systems.",
       "c": "waterproofing",
-      "task": "install_membrane"
+      "task": "install_membrane",
+      "aj": [
+        "改質アスファルト防水シート"
+      ],
+      "ae": [
+        "Modified bitumen sheet"
+      ]
     },
     {
       "id": "q011_drainage_mat",
@@ -331,7 +367,13 @@
       "dj": "水を逃がす排水層を作るマット材。\n壁面や床下などで水を排水先へ導く空隙層をつくるマット材。防水層の外側や保護層と組み合わせて使われ、圧力を受けても排水経路が連続するよう納める。",
       "de": "Mat that creates a drainage layer.\nA mat that creates a voided drainage layer to route water toward an outlet, often used outside waterproofing or with protection layers. The drainage path must remain continuous and functional under the expected loading and surrounding construction.",
       "c": "waterproofing",
-      "task": "drain_water"
+      "task": "drain_water",
+      "aj": [
+        "排水用マット"
+      ],
+      "ae": [
+        "Drainage composite mat"
+      ]
     },
     {
       "id": "q011_firestop_sealant",
@@ -383,7 +425,13 @@
       "dj": "盤やボックスに丸穴を開ける工具。\n分電盤、ボックス、薄板などに配管・配線用の丸穴を開けるパンチとダイスの工具。下穴へ軸を通して締め込み、板をせん断して比較的きれいな開口を作る。手動式と油圧式などがある。",
       "de": "Tool for punching holes in boxes or panels.\nA punch-and-die tool for making round conduit or cable-entry holes in panels, boxes, and sheet material. A draw stud passes through a pilot hole and pulls the punch through the sheet; manual and hydraulic versions are common.",
       "c": "electrical",
-      "task": "make_hole"
+      "task": "make_hole",
+      "aj": [
+        "盤用ノックアウト工具"
+      ],
+      "ae": [
+        "Panel knockout punch"
+      ]
     },
     {
       "id": "q011_terminal_block",
@@ -393,7 +441,13 @@
       "dj": "電線を接続・分岐する端子部品。\n複数の電線を端子で接続・中継・分岐するための絶縁された端子部品。ねじ式、ばね式など接続方式があり、盤内配線や制御回路で配線を整理し、保守しやすくするために使う。",
       "de": "Component for connecting or branching wires.\nAn insulated terminal assembly used to connect, terminate, or distribute conductors. Screw-clamp and spring-clamp styles are common, and terminal blocks are widely used to organize panel and control wiring for installation and maintenance.",
       "c": "electrical",
-      "task": "connect_wire"
+      "task": "connect_wire",
+      "aj": [
+        "端子ブロック"
+      ],
+      "ae": [
+        "Terminal strip"
+      ]
     },
     {
       "id": "q011_clamp_meter",
@@ -403,7 +457,13 @@
       "dj": "電線を挟んで電流を測る計測器。\n導体をクランプで囲み、回路を切り離さずに電流を測定できる計測器。機種によって交流・直流電流のほか、電圧、抵抗、周波数などを測れる。測定方式と定格は機種ごとに異なる。",
       "de": "Meter that measures current by clamping a conductor.\nA meter that measures current by clamping around a conductor without opening the circuit. Depending on the model it may measure AC and/or DC current as well as voltage, resistance, frequency, and other quantities; measurement method and ratings vary by instrument.",
       "c": "electrical",
-      "task": "measure_current"
+      "task": "measure_current",
+      "aj": [
+        "クランプ式電流計"
+      ],
+      "ae": [
+        "Clamp ammeter"
+      ]
     },
     {
       "id": "q011_insulation_tester",
@@ -413,7 +473,13 @@
       "dj": "配線や機器の絶縁状態を測る計器。\n配線や電気機器の絶縁抵抗を確認するため、規定の試験電圧を印加して抵抗値を測る計測器。一般の抵抗計とは用途と試験電圧が異なり、設備条件に合う試験方法を選ぶ必要がある。",
       "de": "Tester for measuring insulation resistance.\nAn instrument that applies a specified test voltage to measure insulation resistance of wiring and electrical equipment. It differs from an ordinary resistance meter in purpose and test voltage, so the test method must suit the equipment and applicable requirements.",
       "c": "electrical",
-      "task": "test_insulation"
+      "task": "test_insulation",
+      "aj": [
+        "メガー"
+      ],
+      "ae": [
+        "Insulation resistance tester"
+      ]
     },
     {
       "id": "q011_distribution_board",
@@ -443,7 +509,13 @@
       "dj": "逆止弁は、配管内の水やその他の流体を原則として一方向に流し、ポンプ停止時などの逆流を自動的に抑える弁。スイング式・リフト式・ばね式などがあり、流れ方向、圧力、取付姿勢、流体の性質に合わせて選ぶ。",
       "de": "A check valve is a one-way valve that automatically restricts reverse flow in piping, such as when a pump stops. Swing, lift and spring-loaded types differ in operation; selection depends on flow direction, fluid, pressure and installation orientation.",
       "c": "plumbing",
-      "task": "prevent_backflow"
+      "task": "prevent_backflow",
+      "aj": [
+        "逆流防止弁"
+      ],
+      "ae": [
+        "Non-return valve"
+      ]
     },
     {
       "id": "q011_flange",
@@ -469,7 +541,13 @@
       "dj": "配管を分解しやすくする継手。\n配管の途中を分解しやすくするため、中央のナット状部を緩めて両側を切り離せる継手。長い配管全体を回転させずに着脱できるため、機器まわりや保守が必要な箇所に使われる。",
       "de": "Fitting that allows piping to be disconnected.\nA detachable pipe fitting that can be separated by loosening its central union nut, allowing a line to be disconnected without rotating long pipe runs. It is commonly used near equipment and locations expected to require maintenance.",
       "c": "plumbing",
-      "task": "maintain_pipe"
+      "task": "maintain_pipe",
+      "aj": [
+        "ユニオン"
+      ],
+      "ae": [
+        "Pipe union fitting"
+      ]
     },
     {
       "id": "q011_pipe_sleeve",
@@ -529,7 +607,13 @@
       "dj": "充填不足で粗骨材が露出した欠陥部。\n硬化したコンクリート表面や内部に空隙が残り、粗骨材が蜂の巣状に露出して見える欠陥。材料分離、締固め不足、型枠からのモルタル漏れ、打込み条件など複数の要因で生じる。程度により補修方法や評価が異なる。",
       "de": "Concrete defect with voids and exposed aggregate.\nA concrete defect in which voids remain and coarse aggregate is visibly exposed in a honeycomb-like pattern. It can result from poor consolidation, segregation, grout loss through formwork, or placing conditions; assessment and repair depend on severity and location.",
       "c": "concrete",
-      "task": "repair_concrete"
+      "task": "repair_concrete",
+      "aj": [
+        "豆板"
+      ],
+      "ae": [
+        "Concrete honeycombing"
+      ]
     },
     {
       "id": "q011_laitance",
@@ -539,7 +623,13 @@
       "dj": "表面に浮いた脆弱なセメント微粒分の層。\nコンクリートやモルタルの表面に生じる、セメント微粒分などを多く含む脆弱な薄層。ブリーディングなどに伴って形成されることがあり、そのまま上塗り・接着・打継ぎを行うと付着性能を妨げる場合がある。",
       "de": "Weak surface layer of cement fines.\nA weak, fine-rich surface layer that can form on concrete or mortar, often associated with bleeding and settlement. If left in place it may interfere with adhesion of coatings, bonded toppings, repair materials, or subsequent concrete work.",
       "c": "concrete",
-      "task": "remove_laitance"
+      "task": "remove_laitance",
+      "aj": [
+        "レイタンス層"
+      ],
+      "ae": [
+        "Cement laitance"
+      ]
     },
     {
       "id": "q011_epoxy_putty",
@@ -549,7 +639,13 @@
       "dj": "補修や接着に使うエポキシ系硬化材。\nエポキシ樹脂を主成分とする、充填・成形・接着補修用のパテ状材料。一般に主剤と硬化剤を混合して使用し、欠損部の充填、すき間調整、部材補修などに用いる。製品によって硬化時間や対応下地が大きく異なる。",
       "de": "Epoxy-based repair and bonding putty.\nA putty-like epoxy material used for filling, shaping, bonding, and repair. Many products use a resin and hardener mixed before application and are used for void filling, gap adjustment, and localized repairs; cure time and compatible substrates vary substantially by product.",
       "c": "repair",
-      "task": "repair_surface"
+      "task": "repair_surface",
+      "aj": [
+        "エポキシ樹脂パテ"
+      ],
+      "ae": [
+        "Two-part epoxy putty"
+      ]
     },
     {
       "id": "q011_repair_mortar",
@@ -559,7 +655,13 @@
       "dj": "欠けや断面修復に使う補修用モルタル。\nコンクリートやモルタルの欠け、はつり跡、断面欠損などを埋めて形状を復旧するためのモルタル系補修材。補修材全般を指すRepair Patchより対象をモルタル系材料へ限定し、施工厚、下地状態、付着、収縮、養生条件を製品仕様に合わせて確認する。",
       "de": "Mortar used for patching and section repair.\nA mortar-based repair material used to rebuild chipped, removed, or otherwise lost sections of concrete or mortar. It is narrower than a generic repair patch material and requires product-specific control of repair depth, substrate preparation, bond, shrinkage behavior, and curing.",
       "c": "repair",
-      "task": "patch_concrete"
+      "task": "patch_concrete",
+      "aj": [
+        "補修用モルタル"
+      ],
+      "ae": [
+        "Mortar for concrete repair"
+      ]
     },
     {
       "id": "q011_rust_inhibitive_primer",
@@ -569,7 +671,13 @@
       "dj": "鉄部の錆を抑える下塗り塗料。\n鉄鋼面の腐食を抑え、上塗り塗装の下地をつくるための防錆性を持つ下塗り塗料。さび転換材とは別の材料で、要求される素地調整、膜厚、上塗りとの組合せは塗装仕様によって決まる。",
       "de": "Primer used to inhibit rust on steel.\nA corrosion-inhibiting primer applied to ferrous surfaces before subsequent coating. It is distinct from a rust converter; required surface preparation, film build, and compatibility with topcoats are defined by the coating system.",
       "c": "paint",
-      "task": "prime_steel"
+      "task": "prime_steel",
+      "aj": [
+        "防錆下塗り材"
+      ],
+      "ae": [
+        "Anti-corrosion primer"
+      ]
     },
     {
       "id": "q011_anti_slip_tape",
@@ -579,7 +687,13 @@
       "dj": "階段や床の滑りを抑えるざらつきテープ。\n表面に砥粒や凹凸を持たせ、階段踏面や床の滑りを抑える粘着テープ。既存床へ後施工しやすい一方、下地の汚れ・水分・凹凸や端部の浮きが接着耐久性に影響する。",
       "de": "Rough tape used to reduce slipping.\nA self-adhesive tape with an abrasive or textured surface used to increase traction on stair treads and floors. It is easy to retrofit, but contamination, moisture, surface irregularity, and lifting edges can reduce adhesion and service life.",
       "c": "safety",
-      "task": "prevent_slip"
+      "task": "prevent_slip",
+      "aj": [
+        "ノンスリップテープ"
+      ],
+      "ae": [
+        "Safety grip tape"
+      ]
     },
     {
       "id": "q011_safety_harness",

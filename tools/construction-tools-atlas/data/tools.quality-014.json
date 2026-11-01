@@ -20,7 +20,13 @@
       "dj": "アルミ亜鉛めっき鋼板を使う金属屋根。\nアルミニウム・亜鉛系の合金めっきを施した鋼板を用いる金属屋根。軽量で加工しやすく、立平葺きなど複数の納まりに使われる。切断端部、異種金属との接触、傷や固定部の処理は耐久性に影響する。",
       "de": "Metal roofing made from aluminum-zinc coated steel sheet.\nMetal roofing made from steel sheet coated with an aluminum-zinc alloy. It is lightweight, formable, and used in several roof profiles including standing-seam systems. Cut edges, dissimilar-metal contact, surface damage, and fastening details can affect durability.",
       "c": "roof",
-      "task": "install_roofing"
+      "task": "install_roofing",
+      "aj": [
+        "ガルバ屋根"
+      ],
+      "ae": [
+        "Galvalume roofing sheets"
+      ]
     },
     {
       "id": "q014_standing_seam_roof",
@@ -30,7 +36,13 @@
       "dj": "縦方向のはぜで接合する金属屋根工法。\n金属屋根材を屋根の流れ方向に並べ、縦方向のはぜや成形された継手で連結する屋根工法。長尺材を使いやすく継手を少なくできる一方、熱伸縮、軒先・棟・壁際などの端部納まり、はぜの確実な成形が重要になる。",
       "de": "Metal roofing system joined by raised vertical seams.\nA metal-roofing system in which panels run in the direction of drainage and are joined by raised longitudinal seams or formed joints. Long panels can reduce transverse joints, but thermal movement, perimeter flashing, and reliable seam formation remain critical.",
       "c": "roof",
-      "task": "install_metal_roof"
+      "task": "install_metal_roof",
+      "aj": [
+        "立平屋根"
+      ],
+      "ae": [
+        "Standing seam metal roofing"
+      ]
     },
     {
       "id": "q014_corrugated_roof_sheet",
@@ -40,7 +52,13 @@
       "dj": "波形断面の軽量屋根・外装材。\n波形断面によって薄板の剛性を高めた屋根・外装用シート。金属、樹脂、繊維強化材など製品種類があり、重ね代と固定位置を正しく取って下地へ留める。穴あけ位置や締付け過多は割れ、変形、漏水の原因になる。",
       "de": "Corrugated sheet used for lightweight roofing or cladding.\nA roofing or cladding sheet formed with corrugations to increase stiffness. Products may be metal, plastic, or fiber-reinforced, and depend on correct lap dimensions and fastening locations. Poor hole placement or excessive tightening can lead to cracking, distortion, or leaks.",
       "c": "roof",
-      "task": "install_roof_sheet"
+      "task": "install_roof_sheet",
+      "aj": [
+        "屋根用波板"
+      ],
+      "ae": [
+        "Corrugated roofing panel"
+      ]
     },
     {
       "id": "q014_roof_batten",
@@ -60,7 +78,13 @@
       "dj": "軒先で雨水を外へ逃がす金属部材。\n屋根の軒先で下葺き材や屋根面を流れてきた水を外側へ導き、鼻隠しや下地への回り込みを抑える水切り金物。下葺き材との重なり順序、軒樋との位置関係、継手の重ね方向を誤ると排水経路が途切れる。",
       "de": "Flashing at the eave that directs rainwater outward.\nFlashing installed at the eave to direct water from the roof covering or underlayment outward and reduce water running back onto fascia or substrate. The lap sequence with underlayment, relationship to the gutter, and direction of flashing joints determine whether drainage remains continuous.",
       "c": "roof",
-      "task": "install_flashing"
+      "task": "install_flashing",
+      "aj": [
+        "軒先板金"
+      ],
+      "ae": [
+        "Eaves flashing"
+      ]
     },
     {
       "id": "q014_valley_flashing",
@@ -90,7 +114,13 @@
       "dj": "屋根からの落雪を抑える金具。\n積雪が屋根面から一度に滑落するのを抑えるため、屋根材や下地へ取り付ける金具・部材。雪荷重を受けるため、屋根材に適合した形状、取付位置、数量、固定方法が必要で、任意位置へ追加するだけの部材ではない。",
       "de": "Roof hardware that reduces sudden snow sliding.\nRoof hardware intended to reduce sudden sliding of accumulated snow. Because it transfers snow loads into the roof system, its shape, spacing, quantity, and fastening method must match the roof covering and supporting construction rather than being added arbitrarily.",
       "c": "roof",
-      "task": "snow_protection"
+      "task": "snow_protection",
+      "aj": [
+        "雪止め"
+      ],
+      "ae": [
+        "Roof snow retention bracket"
+      ]
     },
     {
       "id": "q014_roof_vent",
@@ -116,7 +146,13 @@
       "dj": "屋根の取り合いやビス周りを止水する材料。\n屋根の板金継手、役物、固定部、取り合い部などで補助的に止水・気密を取るシーリング材。材料相性、接着面の清掃と乾燥、適正な目地形状が必要で、設計された一次防水納まりの代用として大量に塗ればよいものではない。",
       "de": "Sealant used around roof joints and fasteners.\nSealant used as a supplementary weather seal at roof-sheet joints, flashings, fasteners, and interfaces. Compatibility, clean and dry bonding surfaces, and proper joint geometry are important; sealant should not substitute for the roof's primary drainage and flashing design.",
       "c": "roof",
-      "task": "seal_roof"
+      "task": "seal_roof",
+      "aj": [
+        "屋根用コーキング材"
+      ],
+      "ae": [
+        "Roof caulk"
+      ]
     },
     {
       "id": "q014_roof_screw",
@@ -126,7 +162,13 @@
       "dj": "金属屋根や外装材を固定する防水座金付きビス。\n金属屋根や屋根パネルを下地へ固定するためのビスで、防水座金や耐食性表面処理を持つ製品が多い。径・長さ・ねじ形状・下地への有効かかりを選定し、座金をつぶし過ぎず止水できる締付けが必要。",
       "de": "Screw with sealing washer used for roofing sheets.\nA screw used to fasten metal roofing or roof panels to the supporting substrate, commonly supplied with a sealing washer and corrosion-resistant finish. Diameter, length, thread form, and effective embedment must suit the substrate, and tightening must seal the washer without crushing it.",
       "c": "roof",
-      "task": "fasten_roof"
+      "task": "fasten_roof",
+      "aj": [
+        "屋根固定ビス"
+      ],
+      "ae": [
+        "Roofing fastener screw"
+      ]
     },
     {
       "id": "q014_roofing_nail",
@@ -136,7 +178,13 @@
       "dj": "屋根材や下葺き材を固定する釘。\n屋根材、ルーフィング、板金などを下地へ留める用途に使う釘の総称。頭径、軸形状、長さ、材質は用途によって異なり、屋根システムや下地条件に応じた打込み位置・本数・かかり長さを守る必要がある。",
       "de": "Nail used to fasten roof materials or underlayment.\nA general class of nails used to secure roofing materials, underlayment, or flashing to a substrate. Head size, shank profile, length, and material vary by application, so fastening position, quantity, and penetration must follow the roof system and substrate requirements.",
       "c": "roof",
-      "task": "fasten_roof"
+      "task": "fasten_roof",
+      "aj": [
+        "屋根用釘"
+      ],
+      "ae": [
+        "Roof nail"
+      ]
     },
     {
       "id": "q014_bitumen_primer",
@@ -146,7 +194,13 @@
       "dj": "アスファルト防水材の密着を高める下塗り材。\nアスファルト系防水材を施工する前に下地へ塗布し、下地表面を整えて接着性を確保しやすくするプライマー。製品ごとに適用下地、塗布量、乾燥時間が定められており、未乾燥のまま次工程へ進むと接着不良につながる。",
       "de": "Primer used to improve adhesion of bituminous waterproofing.\nA primer applied to a substrate before bituminous waterproofing to condition the surface and promote reliable adhesion. Acceptable substrates, application rate, and drying time are product-specific, and covering uncured primer can lead to poor bonding.",
       "c": "waterproofing",
-      "task": "prime_substrate"
+      "task": "prime_substrate",
+      "aj": [
+        "アスファルト系プライマー"
+      ],
+      "ae": [
+        "Bituminous primer"
+      ]
     },
     {
       "id": "q014_urethane_waterproofing",
@@ -188,7 +242,13 @@
       "dj": "防水シートを貼って作る防水工法。\n工場製造された防水シートを下地へ接着または機械固定し、シート同士の接合部と端末を処理して連続した防水層を作る工法。塩ビ系やゴム系などがあり、シート本体だけでなく継手、ディスク・アンカー、立上り端末の納まりが重要。",
       "de": "Waterproofing made by laying membrane sheets.\nA waterproofing system using factory-made membrane sheets that are adhered or mechanically fastened to the substrate and joined into a continuous layer. PVC and rubber-based systems are common, and seam welding or bonding, fasteners, and perimeter terminations are as important as the sheet itself.",
       "c": "waterproofing",
-      "task": "install_membrane"
+      "task": "install_membrane",
+      "aj": [
+        "防水シート工法"
+      ],
+      "ae": [
+        "Sheet-applied waterproofing"
+      ]
     },
     {
       "id": "q014_torch_on_membrane",
@@ -214,7 +274,13 @@
       "dj": "防水層を紫外線や摩耗から守る仕上げ塗膜。\n露出防水層の表面へ塗布し、紫外線や摩耗、汚れなどから防水層を保護する仕上げ塗料。防水層そのものを新たに作る材料とは限らず、既存防水材との適合性、塗替え時期、歩行条件に合う製品選定が必要。",
       "de": "Protective coating applied over waterproofing membranes.\nA finish coating applied over exposed waterproofing to protect the membrane from ultraviolet exposure, wear, and contamination. It is not necessarily the primary waterproofing layer, so compatibility with the membrane, recoating interval, and expected foot traffic must be considered.",
       "c": "waterproofing",
-      "task": "protect_membrane"
+      "task": "protect_membrane",
+      "aj": [
+        "防水層保護トップコート"
+      ],
+      "ae": [
+        "Waterproof protective topcoat"
+      ]
     },
     {
       "id": "q014_drain_strainer",
@@ -224,7 +290,13 @@
       "dj": "屋上ドレンにごみが入るのを防ぐ部材。\n屋上やバルコニーの排水口に取り付け、落葉やごみなど大きな異物がルーフドレンや排水管へ流入するのを抑える防塵・ごみ受け部材。詰まり自体を完全に防ぐものではないため、排水能力を維持するには定期清掃が必要。",
       "de": "Screen used to keep debris out of roof drains.\nA debris guard fitted over a roof or balcony drain to reduce the entry of leaves and larger debris into the drain body or pipe. It does not eliminate clogging, so periodic inspection and cleaning are necessary to preserve drainage capacity.",
       "c": "waterproofing",
-      "task": "protect_drain"
+      "task": "protect_drain",
+      "aj": [
+        "ドレンごみ受け"
+      ],
+      "ae": [
+        "Drain debris strainer"
+      ]
     },
     {
       "id": "q014_roof_drain",
@@ -234,7 +306,13 @@
       "dj": "屋上やバルコニーの雨水を排水する部材。\n屋上やバルコニーの雨水を防水層から排水管へ導く排水金物。防水層との接続部は漏水リスクが高いため、ドレン本体の固定、周囲の勾配、防水層の納まり、排水管接続を一体で施工する。",
       "de": "Drain fitting used to discharge water from roofs or balconies.\nA drainage fitting that transfers rainwater from a roof or balcony surface through the waterproofing into the drainage pipe. Because the membrane-to-drain interface is leakage-sensitive, the drain body, local falls, membrane termination, and pipe connection must be detailed as one system.",
       "c": "waterproofing",
-      "task": "drain_roof"
+      "task": "drain_roof",
+      "aj": [
+        "屋上ドレン"
+      ],
+      "ae": [
+        "Roof drainage outlet"
+      ]
     },
     {
       "id": "q014_overflow_drain",
@@ -244,7 +322,13 @@
       "dj": "排水不良時に水位上昇を逃がす予備排水口。\n主排水口が詰まった場合や設計を超える降雨時に、水位が過度に上昇する前に外部へ逃がすための補助排水口・オーバーフロー管。通常のルーフドレンの代替ではなく、設定高さと排水先を明確にした二次的な排水経路として扱う。",
       "de": "Secondary drain used when primary drainage is blocked.\nA secondary drain or overflow outlet intended to discharge water before the roof water level becomes excessive if primary drainage is blocked or overwhelmed. It does not replace the main roof drain; its elevation and discharge path must be deliberately set as an emergency drainage route.",
       "c": "waterproofing",
-      "task": "drain_overflow"
+      "task": "drain_overflow",
+      "aj": [
+        "オーバーフロー排水口"
+      ],
+      "ae": [
+        "Emergency overflow drain"
+      ]
     },
     {
       "id": "q014_parapet_cap",
@@ -254,7 +338,13 @@
       "dj": "パラペットや手すり壁の上端を保護する部材。\n屋上パラペットの上端を覆い、上面からの雨水浸入を抑えて外側へ排水する笠木・キャップ部材。金属製などでは継手と固定部、熱伸縮、端部の水切り、下の防水立上りとの取り合いが重要になる。",
       "de": "Cap installed on parapet tops to protect the edge.\nA cap or coping covering the top of a roof parapet to limit rainwater entry and shed water away from the wall. With metal systems, joints, fixings, thermal movement, drip edges, and the interface with the waterproofing upstand are critical details.",
       "c": "exterior",
-      "task": "cap_parapet"
+      "task": "cap_parapet",
+      "aj": [
+        "パラペット笠木"
+      ],
+      "ae": [
+        "Parapet coping"
+      ]
     },
     {
       "id": "q014_coping_joint",
@@ -264,7 +354,13 @@
       "dj": "笠木同士の接続部。止水と伸縮処理が必要。\nパラペット笠木や金属キャップ同士の接続部。長尺金物は温度変化で伸縮するため、単純に突き付けて完全固定するのではなく、ジョイント部材、重ね、シールなど製品ごとの方法で水密性と動きを両立させる。",
       "de": "Joint between coping caps requiring sealing and movement allowance.\nThe connection between adjacent parapet coping or cap sections. Long metal sections expand and contract with temperature, so joints typically use system-specific sleeves, laps, seals, or other details that allow movement while limiting water entry.",
       "c": "exterior",
-      "task": "seal_joint"
+      "task": "seal_joint",
+      "aj": [
+        "笠木継ぎ目"
+      ],
+      "ae": [
+        "Parapet coping joint"
+      ]
     },
     {
       "id": "q014_exterior_siding",
@@ -284,7 +380,13 @@
       "dj": "セメント質と繊維を主材とする外壁板。\nセメント質原料と繊維質原料などを成形した外壁用板材で、日本の住宅外壁で広く使われる窯業系サイディング。釘留めや専用金具留めなどの工法があり、透湿防水層、通気層、目地、開口部水切りと組み合わせて雨仕舞を構成する。",
       "de": "Exterior board made from cementitious and fiber materials.\nExterior cladding boards formed primarily from cementitious and fiber materials, widely used in Japanese residential construction as fiber-cement siding. Systems may be face-nailed or clip-fastened and work together with the weather-resistive barrier, drainage or ventilation cavity, joints, and opening flashings.",
       "c": "exterior",
-      "task": "install_siding"
+      "task": "install_siding",
+      "aj": [
+        "窯業サイディング"
+      ],
+      "ae": [
+        "Cement-fiber siding"
+      ]
     },
     {
       "id": "q014_metal_siding",
@@ -294,7 +396,13 @@
       "dj": "断熱材付き鋼板などの外壁パネル。\n成形した金属板を表面材とする外壁用サイディングで、断熱材を一体化した製品もある。軽量で長尺施工に向くが、切断端部の防錆、熱伸縮、異種金属接触、固定部、開口や土台まわりの雨仕舞を考慮する。",
       "de": "Metal wall siding panel, often with insulation backing.\nExterior siding made from formed metal panels, sometimes manufactured with an integrated insulation core. It is lightweight and suited to long panels, but cut-edge corrosion protection, thermal movement, dissimilar-metal contact, fastening, and weather detailing at bases and openings must be considered.",
       "c": "exterior",
-      "task": "install_siding"
+      "task": "install_siding",
+      "aj": [
+        "金属系サイディング"
+      ],
+      "ae": [
+        "Metal cladding panel"
+      ]
     },
     {
       "id": "q014_siding_starter",
@@ -304,7 +412,13 @@
       "dj": "サイディングの最下段を受ける開始部材。\nサイディングの最下段や所定の開始位置で、最初の板を正しい高さ・水平に保持するためのスターター金物。張り始めの基準になるため、土台水切りとの離れや通気経路を確保しながら水平精度と固定を確認する。",
       "de": "Starter strip used to support the first siding course.\nA starter profile used at the lowest course or designated starting point of siding to support and align the first panel. Because it establishes the reference for subsequent courses, level, secure fixing, clearance from base flashing, and the ventilation or drainage path are important.",
       "c": "exterior",
-      "task": "install_siding"
+      "task": "install_siding",
+      "aj": [
+        "サイディングスターター"
+      ],
+      "ae": [
+        "Siding starter track"
+      ]
     },
     {
       "id": "q014_siding_clip",
@@ -314,7 +428,13 @@
       "dj": "サイディングを下地へ留める専用金物。\nサイディング板の実や裏面を保持して下地へ固定する専用留め金具。表面へ釘頭を出さずに支持できる製品があり、板厚、通気層厚、張り方向に応じた金具を選び、保持力のある下地へ指定間隔で固定する。",
       "de": "Clip used to fasten siding panels to the substrate.\nA proprietary clip that engages the edge or back of a siding panel and transfers it to the supporting substrate. Clip systems can conceal face fasteners, but the clip type must suit panel thickness, cavity depth, and orientation and be fixed to a substrate with adequate holding capacity at the specified spacing.",
       "c": "exterior",
-      "task": "fasten_siding"
+      "task": "fasten_siding",
+      "aj": [
+        "外壁留付金具"
+      ],
+      "ae": [
+        "Siding fixing clip"
+      ]
     },
     {
       "id": "q014_siding_joint",
@@ -324,7 +444,13 @@
       "dj": "サイディング板同士の継ぎ目。防水処理が必要。\nサイディング板同士が接する継ぎ目。製品によって合いじゃくり、突付け＋シーリング、ジョイナーなど納まりが異なり、板の伸縮や下地位置、防水層との関係を考慮して雨水を壁内へ導かない構成にする。",
       "de": "Joint between siding panels that requires weather sealing.\nThe joint where adjacent siding panels meet. Depending on the system it may use shiplap edges, a sealed butt joint, or a proprietary joiner, and must account for panel movement, framing support, and the underlying weather-resistive layer so water is not directed into the wall.",
       "c": "exterior",
-      "task": "seal_siding"
+      "task": "seal_siding",
+      "aj": [
+        "外壁板目地"
+      ],
+      "ae": [
+        "Cladding joint"
+      ]
     },
     {
       "id": "q014_vented_rainscreen",
@@ -334,7 +460,13 @@
       "dj": "外壁裏に通気層を作る下地材。\n外装材の背面に連続した通気・排水用の空間を設け、外装の裏へ入った水分や壁体側からの湿気を外へ逃がしやすくする外壁構成。外装材だけで止水する考え方ではなく、透湿防水層と通気層を組み合わせて二段階で雨仕舞を行う。",
       "de": "Batten used to create a ventilated cavity behind cladding.\nAn exterior-wall assembly with a continuous cavity behind the cladding that provides a path for drainage and ventilation. Rather than relying on the cladding alone for weather protection, it combines the outer cladding with a weather-resistive layer and a ventilated drainage space.",
       "c": "exterior",
-      "task": "vent_wall"
+      "task": "vent_wall",
+      "aj": [
+        "通気胴縁下地"
+      ],
+      "ae": [
+        "Ventilation batten"
+      ]
     },
     {
       "id": "q014_weather_barrier",
@@ -354,7 +486,13 @@
       "dj": "透湿防水シートの重ねや開口部を処理するテープ。\n透湿防水シートの重ね部、開口部、貫通部などを処理し、二次防水層の連続性を確保するための防水テープ。シートやサッシ枠など相手材との接着適合性が必要で、しわ・浮き・汚れ・濡れ面は接着不良の原因になる。",
       "de": "Tape used to seal laps and openings in housewrap.\nWaterproof flashing tape used at weather-resistive barrier laps, openings, and penetrations to maintain continuity of the secondary water-control layer. Adhesion must be compatible with the sheet, window frame, and other substrates, and wrinkles, dirt, moisture, or lifting can compromise the bond.",
       "c": "exterior",
-      "task": "seal_weather_barrier"
+      "task": "seal_weather_barrier",
+      "aj": [
+        "透湿防水テープ"
+      ],
+      "ae": [
+        "Housewrap seam tape"
+      ]
     },
     {
       "id": "q014_exterior_corner_trim",
@@ -374,7 +512,13 @@
       "dj": "屋根端部に取り付ける横板状部材。\n屋根の軒先で垂木端部などを覆い、軒樋金物や軒先仕上げの支持面にもなる板状部材。屋外へ露出するため耐候性が必要で、軒先水切り、屋根防水、軒天、軒樋との取り合いを一体として雨仕舞する。",
       "de": "Board installed along roof edges.\nA board at the roof edge that covers rafter ends and may provide a fixing or backing surface for gutter hardware and eave finishes. Because it is exposed to weather, it must be coordinated with the eave flashing, roof water-control layers, soffit, and gutter detailing.",
       "c": "exterior",
-      "task": "finish_eave"
+      "task": "finish_eave",
+      "aj": [
+        "屋根破風板"
+      ],
+      "ae": [
+        "Roof fascia"
+      ]
     },
     {
       "id": "q014_soffit_board",
@@ -394,7 +538,13 @@
       "dj": "軒天から小屋裏へ空気を入れる換気部材。\n軒天や軒裏に設け、屋根通気層や小屋裏へ外気を取り入れる、または構成によって排気を行う換気部材。棟換気など高所側の換気口と組み合わせる場合は、途中の通気経路を連続させ、虫や雨の侵入を抑えながら必要な開口を確保する。",
       "de": "Vent installed in soffits to admit attic air.\nA vent installed in a soffit or eave to admit outdoor air into an attic or roof ventilation cavity, or to serve as an outlet in systems designed that way. When paired with higher-level vents such as ridge vents, the airflow path must remain continuous while the opening is protected against insects and weather entry.",
       "c": "exterior",
-      "task": "vent_eave"
+      "task": "vent_eave",
+      "aj": [
+        "軒裏換気口"
+      ],
+      "ae": [
+        "Soffit ventilation grille"
+      ]
     },
     {
       "id": "q014_window_sash",
@@ -414,7 +564,13 @@
       "dj": "アルミ製の窓枠・建具。\n主にアルミ形材で枠・框を構成する窓サッシ。強度を確保しやすく耐候性にも優れる一方、アルミは熱を伝えやすいため、断熱性能はガラス仕様だけでなく枠構造や熱遮断の有無にも左右される。開口部では枠の水平・垂直と外周防水の施工が重要。",
       "de": "Aluminum window sash or frame.\nA window sash and frame system made primarily from extruded aluminum profiles. Aluminum offers strength and weather resistance, but it conducts heat readily, so thermal performance depends on the frame construction and any thermal break as well as the glazing. Accurate frame alignment and perimeter water management are important at installation.",
       "c": "opening",
-      "task": "install_window"
+      "task": "install_window",
+      "aj": [
+        "アルミ窓枠"
+      ],
+      "ae": [
+        "Aluminium window frame"
+      ]
     },
     {
       "id": "q014_resin_sash",
@@ -424,7 +580,13 @@
       "dj": "断熱性の高い樹脂製サッシ。\n主に樹脂形材で枠・框を構成する窓サッシ。アルミに比べて熱を伝えにくい枠材で、複層ガラスやLow-E複層ガラスと組み合わせて開口部の断熱性向上に用いられる。取付け時は枠の変形を避け、指定された固定と外周防水を行う。",
       "de": "Vinyl window frame with higher thermal performance.\nA window system whose frame and sash members are primarily made from resin, commonly PVC. The frame material has lower thermal conductivity than aluminum and is often paired with insulating or Low-E glazing to improve opening thermal performance. Installation must avoid frame distortion and follow the specified fixing and perimeter flashing method.",
       "c": "opening",
-      "task": "install_window"
+      "task": "install_window",
+      "aj": [
+        "塩ビサッシ"
+      ],
+      "ae": [
+        "uPVC window frame"
+      ]
     },
     {
       "id": "q014_double_glazing",
@@ -476,7 +638,13 @@
       "dj": "窓下端から侵入した水を外へ逃がす部材。\n窓開口の下端に設け、サッシまわりへ入り込んだ偶発的な水を受けて室外側へ排出するための受け皿状・シート状の二次防水部材。透湿防水シートや防水テープと連続させ、下枠部で水を壁内へ閉じ込めず外へ逃がす納まりにする。",
       "de": "Flashing pan that drains water at the window sill.\nA pan- or membrane-shaped secondary flashing at the bottom of a window opening that collects incidental water and directs it back to the exterior. It is integrated with the weather-resistive barrier and flashing tape so water at the sill can drain outward rather than becoming trapped in the wall.",
       "c": "opening",
-      "task": "drain_window"
+      "task": "drain_window",
+      "aj": [
+        "窓下防水皿"
+      ],
+      "ae": [
+        "Window sill flashing pan"
+      ]
     },
     {
       "id": "q014_door_leaf",
@@ -486,7 +654,13 @@
       "dj": "開閉する板状の建具本体。\n開口部を開閉するドア本体の板状部分。木製、鋼製、アルミ製などがあり、枠・丁番・錠・クローザなどと組み合わせて建具として機能する。用途に応じて寸法、重量、防火・遮音・断熱などの条件が異なるため、対応する枠と金物を一体で選定する。",
       "de": "The movable panel of a door assembly.\nThe moving panel of a door assembly. Door leaves may be wood, steel, aluminum, or other constructions and operate together with the frame, hinges, lock hardware, and closer. Size, weight, fire, acoustic, and thermal requirements vary by application, so compatible frames and hardware must be selected as a system.",
       "c": "opening",
-      "task": "install_door"
+      "task": "install_door",
+      "aj": [
+        "扉本体"
+      ],
+      "ae": [
+        "Door panel"
+      ]
     },
     {
       "id": "q014_door_hinge",
@@ -529,7 +703,13 @@
       "dj": "扉の開きすぎや壁への衝突を防ぐ金物。\n扉の開き過ぎを制限し、扉・ハンドル・壁・周辺設備の衝突を防ぐための戸当り。床付け、壁付け、扉付けなどがあり、必要な開き角度と衝突位置を確認して設置する。",
       "de": "Hardware that stops a door from over-opening.\nA stop that limits door travel to prevent the leaf, handle, wall, or nearby equipment from colliding. Floor-, wall-, and door-mounted types are used according to the required opening angle and impact location.",
       "c": "hardware",
-      "task": "install_door_hardware"
+      "task": "install_door_hardware",
+      "aj": [
+        "ドアストッパー"
+      ],
+      "ae": [
+        "Door stopper"
+      ]
     },
     {
       "id": "q014_door_lockset",
@@ -539,7 +719,13 @@
       "dj": "扉を施錠・解錠する金物一式。\nラッチ、錠ケース、シリンダー、サムターン、ハンドルなどを組み合わせて扉の保持・施錠を行う建具金物一式。扉厚、バックセット、開き勝手、用途に対応する製品を選び、ストライクとの位置を正確に合わせる。",
       "de": "Door hardware set used for locking and latching.\nA coordinated set of door hardware used for latching and locking, commonly including a latch or lock case, cylinder, thumbturn, and operating trim. It must match door thickness, backset, handing, and intended use, with accurate alignment to the strike.",
       "c": "hardware",
-      "task": "install_lock"
+      "task": "install_lock",
+      "aj": [
+        "扉用錠前"
+      ],
+      "ae": [
+        "Door lockset"
+      ]
     },
     {
       "id": "q014_cylinder_lock",
@@ -549,7 +735,13 @@
       "dj": "鍵で回す円筒形の施錠部品。\n鍵を差し込んで回すことで錠ケースの施解錠機構を操作するシリンダー部品。錠ケースの型式、扉厚、取付方式に適合する製品を使用し、交換時はシリンダーだけでなく錠本体との互換性を確認する。",
       "de": "Key-operated cylindrical lock component.\nThe keyed cylinder component that operates the locking mechanism in a door lock case. Replacement cylinders must match the lock case, door thickness, and mounting system, so compatibility with the complete lock assembly must be confirmed.",
       "c": "hardware",
-      "task": "install_lock"
+      "task": "install_lock",
+      "aj": [
+        "鍵シリンダー"
+      ],
+      "ae": [
+        "Cylinder lock mechanism"
+      ]
     },
     {
       "id": "q014_door_handle",
@@ -589,7 +781,13 @@
       "dj": "引戸を走らせるためのレール。\n引戸を直線移動させるために戸車や吊車が走行するレール。床側・上吊り側など方式があり、水平・直線精度、固定強度、継手段差、端部ストッパーが走行性に影響する。",
       "de": "Rail that guides a sliding door.\nA track on which sliding-door rollers or hangers travel. Floor-track and top-hung systems are common, and level, straightness, fixing strength, joint transitions, and end stops directly affect door movement.",
       "c": "hardware",
-      "task": "install_sliding_door"
+      "task": "install_sliding_door",
+      "aj": [
+        "引き戸レール"
+      ],
+      "ae": [
+        "Sliding door track"
+      ]
     },
     {
       "id": "q014_door_roller",
@@ -599,7 +797,13 @@
       "dj": "引戸を滑らかに動かす車輪部品。\n引戸や移動建具の荷重を受け、レール上を転がって扉を移動させる戸車・ローラー部品。扉重量とレール形状に適合する製品を使い、高さ調整機構がある場合は扉の建付けを見ながら左右を調整する。",
       "de": "Roller used to move a sliding door smoothly.\nA roller assembly that carries a sliding door or movable panel and runs along its track. The roller must suit the door weight and rail profile, and adjustable units are set on both sides to establish proper door alignment.",
       "c": "hardware",
-      "task": "install_sliding_door"
+      "task": "install_sliding_door",
+      "aj": [
+        "引戸戸車"
+      ],
+      "ae": [
+        "Sliding door roller"
+      ]
     },
     {
       "id": "q014_threshold",
@@ -619,7 +823,13 @@
       "dj": "ガラスと枠の隙間を保持・止水するゴム材。\nガラスとサッシ・枠の間に入れ、ガラスを弾性的に保持しながら接触部を保護し、必要な水密・気密を補助するガスケット。グレチャンなど製品ごとに断面形状と適合ガラス厚が決まっている。",
       "de": "Rubber gasket used between glass and frame.\nA resilient gasket placed between glazing and the frame to cushion and retain the glass while contributing to the required air and water seal. Profiles such as glazing channels are sized for specific frame grooves and glass thicknesses.",
       "c": "opening",
-      "task": "install_glazing"
+      "task": "install_glazing",
+      "aj": [
+        "ガラス押さえゴム"
+      ],
+      "ae": [
+        "Glass glazing gasket"
+      ]
     },
     {
       "id": "q014_glazing_bead",
@@ -629,7 +839,13 @@
       "dj": "ガラスを枠に押さえる細長い部材。\n枠に入れたガラスを所定位置へ保持するため、ガラス周囲に取り付ける押縁部材。金属、樹脂、木などがあり、ガラスを直接強く点押しせず、セッティングブロックやガスケットと組み合わせて保持する。",
       "de": "Strip that holds glazing in a frame.\nA removable or fixed bead installed around glazing to retain the glass within its frame. Beads may be metal, resin, or wood and work with setting blocks and gaskets so the glass is retained without harmful point pressure.",
       "c": "opening",
-      "task": "secure_glass"
+      "task": "secure_glass",
+      "aj": [
+        "ガラス押縁"
+      ],
+      "ae": [
+        "Glazing stop bead"
+      ]
     },
     {
       "id": "q014_expansion_foam",
@@ -639,7 +855,13 @@
       "dj": "隙間充填や断熱補助に使う発泡材。\n缶などから吐出した材料が発泡・膨張して硬化し、隙間の充填や断熱補助に使われる発泡ウレタン系フォーム。製品によって発泡倍率、硬化条件、耐候性、用途が異なり、膨張圧で枠材を変形させない施工量と養生が必要。",
       "de": "Expanding foam used to fill gaps or improve insulation.\nExpanding polyurethane foam dispensed from a can or gun to fill gaps and provide supplementary insulation or sealing. Expansion ratio, cure conditions, weather resistance, and intended uses vary by product, and application quantity must avoid distorting frames through expansion pressure.",
       "c": "opening",
-      "task": "fill_gap"
+      "task": "fill_gap",
+      "aj": [
+        "ウレタンフォーム充填材"
+      ],
+      "ae": [
+        "PU expanding foam"
+      ]
     },
     {
       "id": "q014_exterior_paint",
@@ -669,7 +891,13 @@
       "dj": "下地の吸い込みを抑え密着を高める下塗り材。\nモルタル、コンクリート、サイディングなどの吸い込みを調整し、上塗り材の密着を助ける下塗り材。透明系や着色系、水性・溶剤系などがあり、下地と上塗りの組み合わせに適合する製品を選ぶ。",
       "de": "Base coat used to seal porous substrates and improve adhesion.\nA primer coat used to regulate absorption in porous substrates such as mortar, concrete, and siding and to improve adhesion of subsequent coatings. Products vary by resin, solvent type, and opacity, so compatibility with both substrate and finish coat must be checked.",
       "c": "paint",
-      "task": "prime_surface"
+      "task": "prime_surface",
+      "aj": [
+        "下塗りシーラー"
+      ],
+      "ae": [
+        "Paint sealer coat"
+      ]
     },
     {
       "id": "q014_filler_coat",
@@ -679,7 +907,13 @@
       "dj": "外壁下地の細かな凹凸を埋める下塗り材。\n外壁下地の細かな凹凸やヘアクラックをならし、上塗り前の面を整える厚膜型の下塗り材。微弾性フィラーなどが代表的で、下地調整と下塗りの役割を兼ねる場合がある。",
       "de": "Coating used to fill minor surface irregularities.\nA relatively high-build undercoat used to level minor surface irregularities and fine cracking before exterior finish coats. Products such as flexible fillers can combine surface conditioning and priming functions depending on the specified coating system.",
       "c": "paint",
-      "task": "prepare_surface"
+      "task": "prepare_surface",
+      "aj": [
+        "下地調整フィラー"
+      ],
+      "ae": [
+        "Undercoat filler"
+      ]
     },
     {
       "id": "q014_spray_gun",
@@ -721,7 +955,13 @@
       "dj": "足場外周に張る飛散防止用シート。\n足場外周へ張り、塗料ミスト、粉じん、小片などの外部飛散を抑えるメッシュ状の養生材。風を完全には遮らないが面積が大きいため風荷重を受け、足場計画と取付方法に影響する。",
       "de": "Mesh sheet attached to scaffolding to contain debris or dust.\nMesh sheeting fixed around scaffolding to reduce the escape of paint mist, dust, and small debris. Although porous, it presents a large area to wind and therefore affects wind loading, scaffold planning, and attachment requirements.",
       "c": "temporary_work",
-      "task": "protect_site"
+      "task": "protect_site",
+      "aj": [
+        "仮設足場メッシュシート"
+      ],
+      "ae": [
+        "Scaffold debris mesh"
+      ]
     },
     {
       "id": "q014_poly_curing_sheet",
@@ -731,7 +971,13 @@
       "dj": "養生や防湿に使う薄い樹脂シート。\nポリエチレンなどの薄い樹脂フィルムで、コンクリート養生、防湿、塗装・内装時の汚れ防止など幅広く使うシート材。厚さと幅、透明・着色、用途により必要性能が異なる。",
       "de": "Plastic sheet used for curing, protection, or moisture control.\nThin polyethylene or similar plastic sheeting used for concrete curing, moisture separation, and protection from dust or coating contamination. Required thickness, width, and material properties vary with the intended use.",
       "c": "curing",
-      "task": "protect_surface"
+      "task": "protect_surface",
+      "aj": [
+        "養生ポリシート"
+      ],
+      "ae": [
+        "Polyethylene protection sheet"
+      ]
     },
     {
       "id": "q014_floor_protection_board",
@@ -751,7 +997,13 @@
       "dj": "柱や壁角を衝撃から守る保護材。\n壁や柱の出隅を、搬入物や台車の接触による欠け・傷から守る保護材。工事中の仮設養生用と、建物に常設する樹脂・金属製品があり、用途を区別して選ぶ。",
       "de": "Protector installed on wall or column corners.\nA protector fitted to exposed wall or column corners to reduce chipping and impact damage from carts or moved materials. Temporary construction protection and permanent plastic or metal guards serve different purposes and should be selected accordingly.",
       "c": "hardware",
-      "task": "protect_corner"
+      "task": "protect_corner",
+      "aj": [
+        "コーナー保護材"
+      ],
+      "ae": [
+        "Corner protector"
+      ]
     },
     {
       "id": "q014_handrail",
