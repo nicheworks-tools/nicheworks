@@ -104,4 +104,36 @@ assert.equal(evaluate(`csvCell('plain')`), 'plain');
 assert.equal(evaluate(`csvCell('a,b')`), '"a,b"');
 assert.equal(evaluate(`csvCell('a"b')`), '"a""b"');
 
+
+const page = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+assert.equal(page.split('id="add-visible-btn"').length - 1, 1);
+assert.match(page, /表示中の住所をまとめて追加（最大50件）/);
+assert.ok(source.includes('visibleRows = []') && source.includes('addVisibleBtn.disabled = true'),
+  'new/invalid searches must clear the old bulk-add selection');
+assert.ok(source.includes('addVisibleBtn.addEventListener("click", addVisibleResults)'));
+
+const candidates = [
+  { postal_hyphen: '100-0005', full: '東京都千代田区丸の内' },
+  { postal_hyphen: '100-0005', full: '東京都千代田区丸の内' },
+  { postal_hyphen: '163-8001', full: '東京都新宿区西新宿' },
+];
+context.bulkCandidates = candidates;
+const unique = JSON.parse(evaluate('JSON.stringify(mergePostalRows([], bulkCandidates))'));
+assert.equal(unique.added, 2, 'duplicated visible results must not duplicate CSV rows');
+assert.equal(unique.rows.length, 2);
+context.existingRows = unique.rows;
+const repeated = JSON.parse(evaluate('JSON.stringify(mergePostalRows(existingRows, bulkCandidates))'));
+assert.equal(repeated.added, 0, 'running again must be idempotent');
+assert.equal(repeated.rows.length, 2);
+
+context.bulkCandidates = Array.from({ length: 60 }, (_, i) => ({
+  postal_hyphen: '100-' + String(i).padStart(4, '0'),
+  full: '東京都例町' + i
+}));
+const capped = JSON.parse(evaluate('JSON.stringify(mergePostalRows([], bulkCandidates))'));
+assert.equal(capped.added, 50);
+assert.equal(capped.rows.length, 50, 'only currently displayed maximum 50 matches are added');
+const preserved = JSON.parse(evaluate('JSON.stringify(mergePostalRows([{ postal_hyphen: "150-0001", full: "東京都渋谷区神宮前" }], []))'));
+assert.equal(preserved.rows.length, 1, 'empty search leaves prior export list intact');
+
 console.log('JP Postal Lite behavior test passed.');
