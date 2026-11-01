@@ -36,7 +36,7 @@ jobs:
           node tools/pattern-dictionary/tests/search-test.mjs
           node tools/pattern-dictionary/tests/seo-detail-test.mjs
 
-      - name: Audit 200 production detail URLs
+      - name: Audit 210 production detail URLs
         env:
           PATTERN_DICTIONARY_PRODUCTION_SEO_REPORT: pattern-dictionary-production-seo-report.json
           PATTERN_DICTIONARY_PRODUCTION_SEO_CONCURRENCY: '8'
