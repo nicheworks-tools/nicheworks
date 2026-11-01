@@ -147,6 +147,22 @@ try{
   assert.equal(result.ok,true,lang+" "+width+": "+JSON.stringify(result));
   assert.equal(result.width,width,lang+" CSS viewport width mismatch");
   console.log("PASS",lang,width+"px",JSON.stringify(result));
+
+  // Exercise the free dictionary -> localized Studio preview journey at an exact CDP viewport.
+  const freePath=lang==="ja"?"/tools/motion-atlas/ja/":"/tools/motion-atlas/";
+  const freeUrl="http://127.0.0.1:"+port+freePath;
+  await call("Page.navigate",{url:freeUrl});
+  await eventually(async()=>await evaluate("location.href==="+JSON.stringify(freeUrl)+"&&document.querySelectorAll('.motion-card').length===42"));
+  const discovery=await evaluate("(()=>{const a=document.querySelector('a[data-studio-preview]');return {found:!!a,path:a?new URL(a.href).pathname:'',width:window.innerWidth,overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,visible:!!a&&getComputedStyle(a).display!=='none'}})()");
+  assert.equal(discovery.found,true,"Free Motion Atlas missing Studio link: "+lang);
+  assert.equal(discovery.visible,true,"Studio discovery link is hidden: "+lang);
+  assert.equal(discovery.path,page,"Studio discovery link goes to wrong language: "+lang);
+  assert.equal(discovery.width,width,"Free Motion Atlas CSS viewport width mismatch");
+  assert.ok(discovery.overflow<=8,lang+" "+width+": free page overflow "+discovery.overflow+"px");
+  await evaluate("document.querySelector('a[data-studio-preview]').click();true");
+  await eventually(async()=>await evaluate("location.pathname==="+JSON.stringify(page)+"&&document.querySelectorAll('.track').length===2"));
+  console.log("DISCOVERY PASS",lang,width+"px",JSON.stringify(discovery));
+
  }
  console.log("Motion Atlas Studio browser smoke passed.");
 }finally{
