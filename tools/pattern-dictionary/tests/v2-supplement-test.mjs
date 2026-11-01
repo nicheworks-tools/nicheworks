@@ -7,13 +7,13 @@ const v2=JSON.parse(fs.readFileSync(path.join(root,'data/v2-extension.json'),'ut
 const backlog=JSON.parse(fs.readFileSync(path.join(root,'data/coverage-backlog.json'),'utf8'));
 const sitemap=fs.readFileSync(path.resolve(root,'..','..','sitemap.xml'),'utf8');
 const app=fs.readFileSync(path.join(root,'app.js'),'utf8');
-const expected=['sakura-motif','ume-motif','kiku-motif','tsuru-motif','yukiwa'];
+const expected=["sakura-motif","ume-motif","kiku-motif","tsuru-motif","yukiwa","kanzemizu","shokko","matsukawabishi","bishamon-kikko","tachibana-motif"];
 const assert=(ok,s)=>{if(!ok)throw new Error(s)};
 assert(base.length===100,'v1 canonical source must remain frozen');
-assert(v2.schema_version==='pattern-dictionary-v2-supplement-1','v2 supplement schema mismatch');
-assert(v2.entries.length===5,'five supplemental entries required');
-assert(new Set(v2.entries.map(x=>x.id)).size===5,'duplicate supplement IDs');
-assert(backlog.candidates.length===82,'remaining backlog count mismatch');
+assert(v2.schema_version==='pattern-dictionary-v2-supplement-2','v2 supplement schema mismatch');
+assert(v2.entries.length===10,'ten supplemental entries required');
+assert(new Set(v2.entries.map(x=>x.id)).size===10,'duplicate supplement IDs');
+assert(backlog.candidates.length===77,'remaining backlog count mismatch');
 for(const e of v2.entries){
  assert(expected.includes(e.id)&&!base.some(x=>x.id===e.id),'supplement ID unexpectedly overlaps v1 '+e.id);
  assert(e.production?.definition?.ja&&e.production?.definition?.en,'missing bilingual definition '+e.id);
@@ -41,5 +41,7 @@ for(const e of v2.entries){
 const yukiwa=v2.entries.find(x=>x.id==='yukiwa');
 assert(yukiwa.source.verification_state==='qualified'&&yukiwa.production.qualification?.ja&&yukiwa.production.qualification?.en,'yukiwa origin uncertainty must be preserved');
 assert(app.includes('fetch(V2)')&&app.includes('reference_path')&&app.includes('sourceMap[p.id]'),'runtime must use v2, original drawings and provenance');
-for(const [lang,file] of [['ja','index.html'],['en','en/index.html']])assert(fs.readFileSync(path.join(root,file),'utf8').includes('105'),lang+' homepage count not updated');
-console.log('OK: 105 browseable records, five source-backed supplemental motifs, 11 source links, five 1536 SVG references, 10 static bilingual detail URLs and 82 remaining unpublished concepts.');
+for(const [lang,file] of [['ja','index.html'],['en','en/index.html']])assert(fs.readFileSync(path.join(root,file),'utf8').includes('110'),lang+' homepage count not updated');
+const cited=v2.entries.reduce((n,e)=>n+e.source.sources.length,0);
+assert(cited===23,'source-link count mismatch '+cited);
+console.log('OK: 110 browseable records, ten source-backed supplemental motifs, '+cited+' attribution links, ten 1536 SVG references, 20 static bilingual detail URLs and 77 remaining unpublished concepts.');
