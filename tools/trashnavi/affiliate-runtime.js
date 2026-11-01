@@ -47,12 +47,11 @@
     const observer = new IntersectionObserver((entries) => {
       if (!entries.some((entry) => entry.isIntersecting)) return;
       if (section.hidden || typeof window.gtag !== "function") return;
-      window.gtag("event", "affiliate_impression", {
-        tool_slug: "trashnavi",
+      helper.trackImpression({
+        container: section,
         placement: "municipality_supporting_supplies",
-        merchant: "amazon",
-        offer_count: section.querySelectorAll(".trashnavi-affiliate-link").length,
-        intent_bucket: searchIntent()
+        offerCount: section.querySelectorAll(".trashnavi-affiliate-link").length,
+        intentBucket: searchIntent()
       });
       observer.disconnect();
     }, { threshold: 0.25 });
