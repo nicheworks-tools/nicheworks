@@ -4,7 +4,8 @@
 - English name: `Pattern Dictionary`
 - Slug: `pattern-dictionary`
 - Public URL: `https://nicheworks.app/tools/pattern-dictionary/`
-- Specification status: `published bounded canonical-v1; comprehensive dictionary incomplete`
+- Specification status: `complete`
+- Completion scope: `bounded canonical-100-v1 publication only; comprehensive dictionary incomplete`
 - Publication contract: `canonical-100-v1`
 - Common specification: `common-spec/spec-ja.md`
 - Current dataset: `100 verified-publication patterns`
