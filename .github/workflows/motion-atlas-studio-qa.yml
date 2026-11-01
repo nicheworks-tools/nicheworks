@@ -28,3 +28,5 @@ jobs:
         run: node tools/motion-atlas/tests/studio-browser.test.mjs
       - name: Paid export contract and secure entitlement test
         run: node tools/motion-atlas/tests/studio-contract.test.mjs
+      - name: Signed Stripe-shaped webhook and refund lifecycle (test SQLite)
+        run: node tools/motion-atlas/tests/studio-billing-lifecycle.test.mjs
