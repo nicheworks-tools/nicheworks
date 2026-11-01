@@ -111,4 +111,35 @@ assert.ok(searchText.includes('gentle wash'));
 
 assert.ok(evaluate(`cautionText()` ).includes('JIS L 0001:2024'), 'safety guidance should identify the current standard');
 
+
+// The static 43-number guide must match the same official data as the interactive grid.
+const htmlSource = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+const indexStart = htmlSource.indexOf('<section class="symbol-reference"');
+const indexEnd = htmlSource.indexOf('<section class="faq-section"', indexStart);
+assert.ok(indexStart > -1 && indexEnd > indexStart, 'static index must appear before FAQ');
+const indexHtml = htmlSource.slice(indexStart, indexEnd);
+const linkedNumbers = [...indexHtml.matchAll(/href="\?jis=(\d{3})"/g)].map(m => m[1]);
+assert.equal(linkedNumbers.length, 43, 'all 43 symbols must be linked for crawlers');
+assert.equal(new Set(linkedNumbers).size, 43, 'no duplicate static symbol links');
+assert.deepEqual([...linkedNumbers].sort(), [...symbols.map(s => s.jis)].sort(),
+  'static index must agree exactly with canonical symbol numbers');
+for (const symbol of symbols) {
+  assert.ok(indexHtml.includes(symbol.ja.summary), 'missing Japanese static meaning: ' + symbol.jis);
+  assert.ok(indexHtml.includes(symbol.en.summary), 'missing English static meaning: ' + symbol.jis);
+}
+assert.equal(htmlSource.split('id="nwAmazonAffiliate"').length - 1, 1,
+  'retain exactly one Amazon accessories mount');
+assert.ok(htmlSource.indexOf('id="nwAmazonAffiliate"') < htmlSource.indexOf('<section class="faq-section"'),
+  'general accessories should appear before FAQ');
+assert.match(htmlSource, /id="resultShare"/, 'share action must be visible on symbol detail');
+
+// Link generation must only allow canonical, fixed three-digit JIS numbers.
+sandbox.window.location = { origin: 'https://nicheworks.app', search: '?jis=141' };
+assert.equal(evaluate("symbolLink(window.SYMBOLS.find(s => s.jis === '141'))"),
+  'https://nicheworks.app/tools/laundry-code-decode/?jis=141');
+assert.equal(evaluate("symbolLink({jis:'999'})"), '', 'unknown JIS must not be shared');
+assert.equal(evaluate("symbolLink({jis:'141&x=1'})"), '', 'untrusted characters must not become links');
+assert.equal(evaluate("symbolLink(null)"), '', 'empty result must not produce a link');
+assert.match(appSource, /restoreSymbolFromUrl\(\);/, 'URL restoration must be wired on load');
+
 console.log('Laundry Code Decode JIS L 0001:2024 behavior/data contract passed.');

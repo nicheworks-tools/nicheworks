@@ -24,7 +24,8 @@
     "film former": { "authority_functions": ["film forming"] },
     "hair conditioning": { "authority_functions": ["hair conditioning"] },
     "moisturizer": { "authority_functions": ["保湿"] },
-    "colorant": { "authority_functions": ["colorant"] }
+    "colorant": { "authority_functions": ["colorant"] },
+    "bulking agent": { "authority_functions": ["bulking"] }
   },
   "reviewed_mappings": {
     "water": {"category":"solvent","source_functions":["solvent"],"authority":"Personal Care Products Council / Cosmetics Info","sources":["https://www.cosmeticsinfo.org/ingredient/water/"],"runtime_verified":true},
@@ -200,6 +201,28 @@
     "citrus limon lemon peel oil": {"category":"fragrance","source_functions":["fragrance"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/18168/citrus-limon-peel-oil/"],"runtime_verified":true},
     "mentha piperita peppermint oil": {"category":"fragrance","source_functions":["fragrance"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/18166/mentha-piperita-oil/"],"runtime_verified":true},
     "evernia prunastri extract": {"category":"fragrance","source_functions":["fragrance"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/19229/evernia-prunastri-extract/"],"runtime_verified":true},
-    "evernia furfuracea extract": {"category":"fragrance","source_functions":["fragrance"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/19227/evernia-furfuracea-extract/"],"runtime_verified":true}
+    "evernia furfuracea extract": {"category":"fragrance","source_functions":["fragrance"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/19227/evernia-furfuracea-extract/"],"runtime_verified":true},
+    "dioxybenzone": {"category":"uv filter","source_functions":["uv filter"],"authority":"U.S. Food and Drug Administration (FDA)","sources":["https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun"],"runtime_verified":true},
+    "ensulizole": {"category":"uv filter","source_functions":["uv filter"],"authority":"U.S. Food and Drug Administration (FDA)","sources":["https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun"],"runtime_verified":true},
+    "meradimate": {"category":"uv filter","source_functions":["uv filter"],"authority":"U.S. Food and Drug Administration (FDA)","sources":["https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun"],"runtime_verified":true},
+    "3-o-ethyl ascorbic acid": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/25166/3-o-ethyl-ascorbic-acid/"],"runtime_verified":true},
+    "trametes versicolor extract": {"category":"hair conditioning","source_functions":["hair conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/16277/trametes-versicolor-extract/"],"runtime_verified":true},
+    "madecassic acid": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/8503/madecassic-acid/"],"runtime_verified":true},
+    "asiatic acid": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/1251/asiatic-acid/"],"runtime_verified":true},
+    "anisyl alcohol": {"category":"fragrance","source_functions":["fragrance"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/19193/anise-alcohol/"],"runtime_verified":true},
+    "isoamyl salicylate": {"category":"fragrance","source_functions":["fragrance"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/26150/isoamyl-salicylate/"],"runtime_verified":true},
+    "lavandula angustifolia lavender oil": {"category":"fragrance","source_functions":["fragrance"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/8190/lavandula-angustifolia-oil/"],"runtime_verified":true},
+    "copernicia cerifera carnauba wax": {"category":"film former","source_functions":["film forming"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/3787/copernicia-cerifera-cera/"],"runtime_verified":true},
+    "euphorbia cerifera candelilla wax": {"category":"film former","source_functions":["film forming"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/17595/euphorbia-cerifera-cera/"],"runtime_verified":true},
+    "peg-12": {"category":"humectant","source_functions":["humectant"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/10395/peg-12/"],"runtime_verified":true},
+    "peg-75": {"category":"humectant","source_functions":["humectant"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/11036/peg-75/"],"runtime_verified":true},
+    "ppg-26-buteth-26": {"category":"hair conditioning","source_functions":["hair conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/12992/ppg-26-buteth-26/"],"runtime_verified":true},
+    "elastin": {"category":"skin conditioning","source_functions":["skin conditioning"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/5210/elastin/"],"runtime_verified":true},
+    "disodium edta dihydrate": {"category":"chelating agent","source_functions":["chelating agent"],"authority":"Health Canada / Natural Health Products Ingredients Database","sources":["https://webprod.hc-sc.gc.ca/nhpid-bdipsn/ingredReq?id=5761"],"runtime_verified":true},
+    "benzyl cinnamate": {"category":"fragrance","source_functions":["fragrance"],"authority":"Korea Cosmetic Association / Ingredient Dictionary","sources":["https://kcia.or.kr/cid/search/ingd_view.php?no=524"],"runtime_verified":true},
+    "citrus aurantium bergamia bergamot fruit oil": {"category":"fragrance","source_functions":["fragrance"],"authority":"Health Canada / Natural Health Products Ingredients Database","sources":["https://webprod.hc-sc.gc.ca/nhpid-bdipsn/ingredReq?id=4517"],"runtime_verified":true},
+    "talc": {"category":"bulking agent","source_functions":["bulking"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/15804/talc/"],"runtime_verified":true},
+    "nylon-6": {"category":"bulking agent","source_functions":["bulking"],"authority":"Cosmetic Ingredient Review / International Journal of Toxicology","sources":["https://journals.sagepub.com/doi/10.1177/1091581814563524"],"runtime_verified":true},
+    "ptfe": {"category":"bulking agent","source_functions":["bulking"],"authority":"Cosmetics Europe / COSMILE Europe","sources":["https://cosmileeurope.eu/inci/detail/13392/ptfe/"],"runtime_verified":true}
   }
 }

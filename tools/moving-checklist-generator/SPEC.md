@@ -29,6 +29,7 @@ Checklist state MUST NOT be used to infer that a user must buy a product. The to
 - Accept an optional print-only memo up to 40 characters.
 - Generate reference tasks spanning preparation before the move through post-move follow-up.
 - Keep a crawlable static overview of the move timeline from 30 days before through post-move follow-up so the page's core planning intent is available before checklist generation.
+- Show a separate, optional bilingual pre-packing supply checklist with four temporary, non-persistent boxes, with explicit reuse-first and non-mandatory purchase guidance. Keep it outside printed official checklist tasks and place existing general Amazon offers next to that guide.
 - Track completion state and show progress for the current condition set.
 - Save checkbox state keyed by the identifying conditions: move date, household type, and home type.
 - Do not persist the optional print memo.
@@ -43,10 +44,12 @@ Checklist state MUST NOT be used to infer that a user must buy a product. The to
 - Home type: rental or owned.
 - Optional 40-character print memo.
 - Checklist completion toggles.
+- Optional temporary packing-supply checkboxes, not used to infer any purchase need or store a new checklist state.
 
 ## Outputs
 
 - Chronological checklist.
+- Separate general packing-supplies readiness list that does not change the dated task list.
 - Progress/completion summary.
 - Print-friendly checklist including the optional memo when provided.
 - Browser print/PDF flow.
@@ -87,6 +90,8 @@ The core interaction is a compact form followed by a chronological checklist; a 
 - [ ] Public metadata describes the broad 30-days-before-through-post-move timeline rather than presenting this as the dedicated lease-exit final check.
 - [ ] The initial HTML exposes the major timeline stages (30 days, 14 days, 7 days, 3 days, day before, moving day, post-move) without requiring a generated checklist.
 - [ ] The page links to `moving-lease-final-check` as the dedicated final-stage companion.
+- [ ] Four temporary bilingual packing-supply checks appear beside general affiliate links, explicitly separate from date/state and municipal or contractual obligations.
+- [ ] The packing readiness checkboxes are not persisted, not printed and never used to select Amazon destinations.
 - [ ] The active Amazon block uses only fixed general moving/packing-supply queries and the shared `nicheworks09-22` tagged-search template.
 - [ ] Affiliate content remains limited to general moving/packing supplies and never represents an official checklist requirement.
 
@@ -96,3 +101,4 @@ The core interaction is a compact form followed by a chronological checklist; a 
 - `tools/moving-checklist-generator/app.js`
 - `tools/moving-checklist-generator/style.css`
 - `tools/moving-checklist-generator/affiliate-config.js`
+- `tools/moving-checklist-generator/tests/behavior.test.mjs`

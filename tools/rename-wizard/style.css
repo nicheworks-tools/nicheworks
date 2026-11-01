@@ -473,3 +473,28 @@ body {
     padding: 4px 3px;
   }
 }
+
+
+/* Optional filename-only paste input; no file access or upload. */
+.filename-paste {
+  margin: 14px 0 20px;
+  padding: 12px;
+  border: 1px solid #d9dee7;
+  border-radius: 10px;
+  background: #fafbfc;
+}
+.filename-paste .section-title { display: block; margin-bottom: 4px; font-size: 15px; }
+.names-input {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-height: 115px;
+  resize: vertical;
+  padding: 10px 12px;
+  margin: 8px 0;
+  border: 1px solid #bbc4d2;
+  border-radius: 8px;
+  font: 13px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  overflow-wrap: anywhere;
+}
+.filename-paste .copy-status { min-height: 18px; margin-top: 8px; }

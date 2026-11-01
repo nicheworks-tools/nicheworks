@@ -141,12 +141,12 @@
   }
 
   function computeDryScore(input) {
-    const { temp, humidity, wind, precipitation, cloud, target, drying } = input;
+    const { temp, humidity, wind, precipitation, cloud, target, drying, source } = input;
     const tempAdjust = clamp((temp - 15) * 1.25, -25, 25);
     const humidityAdjust = clamp((55 - humidity) * 0.65, -35, 35);
     const windAdjust = clamp(wind * 3.2, 0, 28);
-    const precipAdjust = state.source === "weather" ? clamp(-(precipitation || 0) * 26, -35, 0) : 0;
-    const cloudAdjust = state.source === "weather" ? clamp(-((cloud || 0) - 45) * 0.18, -15, 8) : 0;
+    const precipAdjust = source === "weather" ? clamp(-(precipitation || 0) * 26, -35, 0) : 0;
+    const cloudAdjust = source === "weather" ? clamp(-((cloud || 0) - 45) * 0.18, -15, 8) : 0;
     const targetAdjust = target === "bedding" ? -16 : target === "thick" ? -9 : 0;
     const dryingAdjust = drying === "indoor" ? -8 : 0;
     const score = Math.round(clamp(50 + tempAdjust + humidityAdjust + windAdjust + precipAdjust + cloudAdjust + targetAdjust + dryingAdjust, 0, 100));
@@ -318,6 +318,15 @@
     applyLang(currentLang);
   }
 
+  // Editing any weather-derived reading makes the whole set of conditions manual.
+  // Weather-only precipitation and cloud adjustments must not survive that edit.
+  function switchToManualInputs() {
+    state.source = "manual";
+    state.fetchedAt = null;
+    state.precipitation = 0;
+    state.cloud = 0;
+  }
+
   function setWeatherStatus(message, busy = false) {
     const el = $("#weatherStatus");
     if (!el) return;
@@ -444,17 +453,16 @@
     const tempEl = $("#temp");
     const humidityEl = $("#humidity");
     const windEl = $("#wind");
-    tempEl?.addEventListener("input", () => { state.temp = clamp(parseInt(tempEl.value, 10), -10, 45); state.source = state.source === "weather" ? "weather" : "manual"; renderResult(); });
-    humidityEl?.addEventListener("input", () => { state.humidity = clamp(parseInt(humidityEl.value, 10), 0, 100); renderResult(); });
-    windEl?.addEventListener("input", () => { state.wind = round1(clamp(parseFloat(windEl.value), 0, 15)); renderResult(); });
+    tempEl?.addEventListener("input", () => { state.temp = clamp(parseInt(tempEl.value, 10), -10, 45); switchToManualInputs(); renderResult(); });
+    humidityEl?.addEventListener("input", () => { state.humidity = clamp(parseInt(humidityEl.value, 10), 0, 100); switchToManualInputs(); renderResult(); });
+    windEl?.addEventListener("input", () => { state.wind = round1(clamp(parseFloat(windEl.value), 0, 15)); switchToManualInputs(); renderResult(); });
 
     $$('.preset-btn').forEach((button) => button.addEventListener("click", () => {
       const preset = button.dataset.preset;
       if (preset === "winter-indoor") { state.temp = 5; state.humidity = 55; state.wind = 1; state.precipitation = 0; state.cloud = 70; state.drying = "indoor"; }
       if (preset === "humid-day") { state.temp = 18; state.humidity = 88; state.wind = 2; state.precipitation = 0.2; state.cloud = 90; state.drying = "indoor"; }
       if (preset === "dry-breezy") { state.temp = 26; state.humidity = 45; state.wind = 5.5; state.precipitation = 0; state.cloud = 25; state.drying = "outdoor"; }
-      state.source = "manual";
-      state.fetchedAt = null;
+      switchToManualInputs();
       renderResult();
     }));
 

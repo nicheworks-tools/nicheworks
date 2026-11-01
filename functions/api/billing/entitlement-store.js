@@ -119,6 +119,9 @@ export function validateEntitlementRecord(record) {
   if (normalizeEntitlementStatus(record.status) !== record.status) {
     return { ok: false, error: 'entitlement_record_invalid_status' };
   }
+  if (record.source === 'stripe_webhook' && record.status === 'active' && !record.stripePaymentIntentId) {
+    return { ok: false, error: 'entitlement_payment_intent_id_required' };
+  }
 
   return { ok: true };
 }
@@ -198,6 +201,7 @@ export async function getActiveEntitlementByCheckoutSession(env, { productId, se
       WHERE stripe_checkout_session_id = ?
         AND product_id = ?
         AND status = 'active'
+        AND NOT EXISTS (SELECT 1 FROM billing_payment_revocations WHERE billing_payment_revocations.stripe_payment_intent_id = billing_entitlements.stripe_payment_intent_id)
       LIMIT 1
     `)
     .bind(normalizedSessionId, normalizedProductId)
@@ -236,14 +240,14 @@ export async function issueEntitlement(env, record) {
   if (existing.found && existing.entitlement) {
     return {
       ok: true,
-      issued: true,
+      issued: existing.entitlement.status === 'active',
       idempotent: true,
       entitlement: existing.entitlement
     };
   }
 
   try {
-    await storage.binding
+    const insert = await storage.binding
       .prepare(`
         INSERT INTO billing_entitlements (
           entitlement_id,
@@ -258,7 +262,11 @@ export async function issueEntitlement(env, record) {
           created_at,
           updated_at,
           revoked_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ) SELECT ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+        WHERE NOT EXISTS (
+          SELECT 1 FROM billing_payment_revocations
+          WHERE stripe_payment_intent_id = ?
+        )
       `)
       .bind(
         record.entitlementId,
@@ -272,9 +280,12 @@ export async function issueEntitlement(env, record) {
         JSON.stringify(record.features),
         record.createdAt,
         record.updatedAt,
-        record.revokedAt
+        record.revokedAt,
+        record.stripePaymentIntentId
       )
       .run();
+    const changes = Number(insert?.meta?.changes ?? insert?.changes ?? 0);
+    if (changes === 0) return { ok: true, issued: false, revoked: true, idempotent: false };
   } catch (error) {
     if (!isUniqueViolation(error)) {
       return { ok: false, error: 'entitlement_issue_failed' };
@@ -287,7 +298,7 @@ export async function issueEntitlement(env, record) {
 
     return {
       ok: true,
-      issued: true,
+      issued: dup.entitlement.status === 'active',
       idempotent: true,
       entitlement: dup.entitlement
     };
@@ -318,20 +329,36 @@ export async function updateEntitlementStatusByPaymentIntent(env, { paymentInten
   }
 
   const timestamp = nowIso();
-  const result = await storage.binding
-    .prepare(`
+  let result;
+  try {
+    // Record the terminal event first, even when the matching checkout has not arrived.
+    await storage.binding.prepare(`
+      INSERT INTO billing_payment_revocations (
+        stripe_payment_intent_id, status, first_seen_at, updated_at
+      ) VALUES (?, ?, ?, ?)
+      ON CONFLICT(stripe_payment_intent_id) DO UPDATE SET
+        status = CASE
+          WHEN billing_payment_revocations.status = 'disputed' OR excluded.status = 'disputed'
+            THEN 'disputed'
+          ELSE excluded.status
+        END,
+        updated_at = excluded.updated_at
+    `).bind(normalizedPaymentIntentId, normalizedStatus, timestamp, timestamp).run();
+    result = await storage.binding.prepare(`
       UPDATE billing_entitlements
       SET status = ?, updated_at = ?, revoked_at = ?
       WHERE stripe_payment_intent_id = ?
         AND status = 'active'
-    `)
-    .bind(normalizedStatus, timestamp, timestamp, normalizedPaymentIntentId)
-    .run();
-
+    `).bind(normalizedStatus, timestamp, timestamp, normalizedPaymentIntentId).run();
+  } catch {
+    // Stripe will retry instead of treating a failed durable write as acknowledged.
+    return { ok: false, error: 'entitlement_update_failed' };
+  }
   const changes = Number(result?.meta?.changes ?? result?.changes ?? 0);
   return {
     ok: true,
     updated: Number.isFinite(changes) ? changes : 0,
+    recorded: true,
     status: normalizedStatus
   };
 }

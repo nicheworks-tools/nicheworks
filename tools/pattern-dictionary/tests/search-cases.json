@@ -1580,5 +1580,117 @@
     "query": "scattered aggregate chip pattern",
     "expected": "terrazzo",
     "top1": true
+  },
+  {
+    "lang": "en",
+    "query": "what is pinstripe",
+    "expected": "pinstripe",
+    "top1": true,
+    "source": "gsc-2026-10-02-to-2026-10-29"
+  },
+  {
+    "lang": "en",
+    "query": "pin stripe pattern",
+    "expected": "pinstripe",
+    "top1": true,
+    "source": "gsc-2026-10-02-to-2026-10-29"
+  },
+  {
+    "lang": "en",
+    "query": "pin striped",
+    "expected": "pinstripe",
+    "top1": true,
+    "source": "gsc-2026-10-02-to-2026-10-29"
+  },
+  {
+    "lang": "en",
+    "query": "pinstripe meaning",
+    "expected": "pinstripe",
+    "top1": true,
+    "source": "gsc-2026-10-02-to-2026-10-29"
+  },
+  {
+    "lang": "en",
+    "query": "bengal stripes",
+    "expected": "bengal-stripe",
+    "top1": true,
+    "source": "gsc-2026-10-02-to-2026-10-29"
+  },
+  {
+    "lang": "en",
+    "query": "regimental stripe pattern",
+    "expected": "regimental-stripe",
+    "top1": true,
+    "source": "gsc-2026-10-02-to-2026-10-29"
+  },
+  {
+    "lang": "en",
+    "query": "glen check vs prince of wales check",
+    "expected": "prince-of-wales-check",
+    "top1": true,
+    "source": "gsc-2026-10-02-to-2026-10-29"
+  },
+  {
+    "lang": "en",
+    "query": "scallop pattern",
+    "expected": "scallop",
+    "top1": true,
+    "source": "gsc-2026-10-02-to-2026-10-29"
+  },
+  {
+    "lang": "en",
+    "query": "diamond pattern name",
+    "expected": "diamond",
+    "top1": true,
+    "source": "gsc-2026-10-02-to-2026-10-29"
+  },
+  {
+    "lang": "en",
+    "query": "tattersall pattern",
+    "expected": "tattersall",
+    "top1": true,
+    "source": "gsc-2026-10-02-to-2026-10-29"
+  },
+  {
+    "lang": "en",
+    "query": "shepherd's check pattern",
+    "expected": "shepherd-check",
+    "top1": true,
+    "source": "gsc-2026-10-02-to-2026-10-29"
+  },
+  {
+    "lang": "en",
+    "query": "zebra patterned",
+    "expected": "zebra-print",
+    "top1": true,
+    "source": "gsc-2026-10-02-to-2026-10-29"
+  },
+  {
+    "lang": "en",
+    "query": "kente pattern meanings",
+    "expected": "kente",
+    "top1": true,
+    "source": "gsc-2026-10-02-to-2026-10-29"
+  },
+  {
+    "lang": "en",
+    "query": "geometric kilim pattern",
+    "expected": "kilim",
+    "top1": true,
+    "source": "gsc-2026-10-02-to-2026-10-29"
+  },
+  {
+    "lang": "en",
+    "query": "swiss dot pattern",
+    "expected": "swiss-dot",
+    "top1": true,
+    "source": "gsc-2026-10-02-to-2026-10-29"
+  },
+  {
+    "lang": "en",
+    "query": "windowpane check",
+    "expected": "windowpane-check",
+    "top1": true,
+    "source": "gsc-2026-10-02-to-2026-10-29"
   }
 ]

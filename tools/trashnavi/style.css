@@ -86,6 +86,8 @@ html,body{background:#fff;color:#111;margin:0;font-family:system-ui,-apple-syste
 .trashnavi-affiliate-section{margin-top:16px;padding:16px;border:1px solid #e5e7eb;border-radius:14px;background:#fafafa}
 .trashnavi-affiliate-section h2{margin:0 0 8px;font-size:1.08rem;color:#111827}
 .trashnavi-affiliate-section>p{margin:0 0 12px;color:#4b5563;font-size:.86rem}
+.trashnavi-affiliate-choice-note{padding:10px 12px;border-left:3px solid #64748b;background:#f1f5f9;border-radius:4px;font-weight:500;line-height:1.55}
+.trashnavi-affiliate-offer-note{margin:6px 2px 4px;font-size:.78rem;line-height:1.55;color:#475569}
 .trashnavi-affiliate-grid{display:grid;grid-template-columns:1fr;gap:8px}
 .trashnavi-affiliate-slot{min-width:0}
 .trashnavi-affiliate-link{display:block;padding:10px 12px;border:1px solid #d1d5db;border-radius:10px;background:#fff;color:#1d4ed8;text-decoration:none;font-size:.84rem;font-weight:600}
@@ -93,3 +95,23 @@ html,body{background:#fff;color:#111;margin:0;font-family:system-ui,-apple-syste
 .trashnavi-amazon-disclosure{margin-top:10px;color:#6b7280;font-size:.72rem}
 .trashnavi-amazon-disclosure p{margin:0}
 @media(min-width:720px){.trashnavi-affiliate-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Compact searchable directory: avoid rendering thousands of tall cards. */
+.results-list{display:flex;flex-direction:column;gap:0;margin-top:8px;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden}
+.results-list:empty{display:none}
+.result-row{display:flex;justify-content:space-between;align-items:center;gap:12px;min-width:0;padding:10px 12px;border-bottom:1px solid #e5e7eb;background:#fff;color:#111827;text-decoration:none}
+.result-row:last-child{border-bottom:0}
+.result-row:hover,.result-row:focus-visible{background:#eff6ff;text-decoration:none}
+.result-row-main{display:flex;flex-direction:column;gap:1px;min-width:0;flex:1}
+.result-row-city{font-size:.86rem;font-weight:650;line-height:1.35}
+.result-row-name{font-size:.78rem;color:#4b5563;overflow-wrap:anywhere;line-height:1.4}
+.result-row-side{display:flex;align-items:center;gap:7px;flex-shrink:0}
+.result-row-type{font-size:.72rem;color:#1d4ed8;border-radius:6px;background:#eff6ff;padding:3px 6px;white-space:nowrap}
+.result-row-arrow{font-size:1.1rem;color:#2563eb}
+.result-more{display:block;width:100%;padding:12px;border:0;background:#f8fafc;color:#1d4ed8;font-size:.85rem;font-weight:600;cursor:pointer}
+.result-more:hover,.result-more:focus-visible{background:#eff6ff}
+.municipality-directory{margin-top:8px}
+.municipality-directory>summary{cursor:pointer;color:#1d4ed8;font-size:.86rem;font-weight:600;padding:9px 0}
+.municipality-directory:not([open]) .municipality-related-links{display:none}
+.municipality-directory .municipality-related-links{margin-top:12px}
+@media(max-width:480px){.result-row{padding:9px 10px;gap:8px}.result-row-city{font-size:.82rem}.result-row-name{font-size:.76rem}.result-row-type{font-size:.68rem;padding:2px 5px}.result-row-side{gap:5px}.quick-prefectures{gap:5px}.quick-pref{padding:5px 8px}.privacy-note{font-size:.8rem;margin-top:10px}.current-conditions{margin-top:10px;padding:8px}}

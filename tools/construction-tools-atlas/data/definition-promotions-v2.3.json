@@ -1,0 +1,1031 @@
+{
+  "schema": "cta-definition-promotions-v2.3",
+  "version": "2026-11-01-source-backed-145",
+  "policy": {
+    "source": "Existing public canonical bilingual definition and maintained subject-specific detail; no synthetic generated copy",
+    "scope": "Only 145 previously short canonical definitions with eligible explanatory context",
+    "expected_source_guard": "Do not overwrite a definition when its source text differs from the audited original",
+    "list_summary": "Preserve the concise source summary for browse-list readability"
+  },
+  "entries": [
+    {
+      "id": "waterproof_sheet",
+      "expected_ja": "水の浸入を防ぐために床、屋根、外壁、バルコニーなどに使うシート状の防水材。重ね、立上り、端部処理、貫通部処理が重要。",
+      "expected_en": "A sheet membrane used to prevent water intrusion in floors, roofs, exterior walls, and balconies. Laps, upstands, edge treatment, and penetrations are critical.",
+      "definition_ja": "水の浸入を防ぐために床、屋根、外壁、バルコニーなどに使うシート状の防水材。重ね、立上り、端部処理、貫通部処理が重要。\n下地の不陸や突起物を処理してから施工する。重ね幅が不足すると漏水リスクが上がる。立上りやドレン、入隅、出隅は特に不具合が出やすい。",
+      "definition_en": "A sheet membrane used to prevent water intrusion in floors, roofs, exterior walls, and balconies. Laps, upstands, edge treatment, and penetrations are critical."
+    },
+    {
+      "id": "roof_tile",
+      "expected_ja": "屋根を覆う瓦材。粘土瓦、セメント瓦などがあり、雨仕舞と外観を担う。割れ、ずれ、固定、棟部や谷部の納まりに注意する。",
+      "expected_en": "A tile material covering a roof. Clay and cement tiles are common and provide weather protection and appearance. Cracks, displacement, fixing, ridges, and valleys need attention.",
+      "definition_ja": "屋根を覆う瓦材。粘土瓦、セメント瓦などがあり、雨仕舞と外観を担う。割れ、ずれ、固定、棟部や谷部の納まりに注意する。\n瓦自体は水を完全に止めるのではなく、下葺き材と組み合わせて雨仕舞する。踏み割れやズレが漏水の入口になる。強風地域では固定方法も確認する。",
+      "definition_en": "A tile material covering a roof. Clay and cement tiles are common and provide weather protection and appearance. Cracks, displacement, fixing, ridges, and valleys need attention."
+    },
+    {
+      "id": "metal_roof_panel",
+      "expected_ja": "鋼板やアルミなどの金属で作られた屋根材。軽量で施工性が高いが、熱伸縮、結露、固定ビス、異種金属接触に注意する。",
+      "expected_en": "Roofing made from steel, aluminum, or other metals. It is lightweight and practical to install, but thermal movement, condensation, fixing screws, and dissimilar-metal contact require attention.",
+      "definition_ja": "鋼板やアルミなどの金属で作られた屋根材。軽量で施工性が高いが、熱伸縮、結露、固定ビス、異種金属接触に注意する。\nビス穴まわりのパッキン劣化や締め過ぎは漏水の原因になる。長尺材では伸縮を逃がす納まりが必要。裏面結露対策や断熱材との組み合わせも確認する。",
+      "definition_en": "Roofing made from steel, aluminum, or other metals. It is lightweight and practical to install, but thermal movement, condensation, fixing screws, and dissimilar-metal contact require attention."
+    },
+    {
+      "id": "siding",
+      "expected_ja": "外壁を覆う板状の外装材。窯業系、金属系、樹脂系などがある。目地シーリング、釘・ビス固定、通気層、反りや割れを確認する。",
+      "expected_en": "Panel-like exterior cladding used to cover walls. Fiber-cement, metal, and vinyl types are common. Check sealant joints, nail or screw fixing, ventilation cavity, warping, and cracks.",
+      "definition_ja": "外壁を覆う板状の外装材。窯業系、金属系、樹脂系などがある。目地シーリング、釘・ビス固定、通気層、反りや割れを確認する。\nサイディング自体の防水だけでなく、裏側の透湿防水シートと通気層が重要。目地シーリングが劣化すると雨水が入りやすい。端部や開口まわりの納まりも確認する。",
+      "definition_en": "Panel-like exterior cladding used to cover walls. Fiber-cement, metal, and vinyl types are common. Check sealant joints, nail or screw fixing, ventilation cavity, warping, and cracks."
+    },
+    {
+      "id": "housewrap",
+      "expected_ja": "外壁仕上げの裏に張り、雨水の侵入を抑えながら湿気を逃がすシート。サッシまわり、重ね方向、破れ、タッカー穴処理が重要。",
+      "expected_en": "A membrane installed behind exterior cladding to resist rainwater while allowing vapor to escape. Window details, lap direction, tears, and staple holes are important.",
+      "definition_ja": "外壁仕上げの裏に張り、雨水の侵入を抑えながら湿気を逃がすシート。サッシまわり、重ね方向、破れ、タッカー穴処理が重要。\n水下側を下にして重ね、水が外へ流れるように張る。サッシまわりの先張り・後張り順序を間違えると漏水しやすい。破れは専用テープで補修する。",
+      "definition_en": "A membrane installed behind exterior cladding to resist rainwater while allowing vapor to escape. Window details, lap direction, tears, and staple holes are important."
+    },
+    {
+      "id": "base_trim",
+      "expected_ja": "床材の端部や異なる仕上げ材の境目を納める部材。段差処理、端部保護、見た目の整理に使う。高さ差、固定方法、つまずきに注意する。",
+      "expected_en": "A trim used at flooring edges or finish transitions. It protects edges and hides gaps. Check height difference, fixing, and trip risk.",
+      "definition_ja": "床材の端部や異なる仕上げ材の境目を納める部材。段差処理、端部保護、見た目の整理に使う。高さ差、固定方法、つまずきに注意する。",
+      "definition_en": "A trim used at flooring edges or finish transitions. It protects edges and hides gaps. Check height difference, fixing, and trip risk.\nProjections or height changes in walking routes create hazards. Choose adhesive, screw, or snap-in fixing. Check durability and level difference where carts pass."
+    },
+    {
+      "id": "compressor",
+      "expected_ja": "圧縮空気を作り、釘打機、エア工具、清掃などに使う機器。圧力、吐出量、タンク容量、ドレン抜き、ホース接続を確認する。",
+      "expected_en": "Equipment that produces compressed air for nailers, pneumatic tools, and cleaning. Check pressure, air delivery, tank size, drain, and hose connections.",
+      "definition_ja": "圧縮空気を作り、釘打機、エア工具、清掃などに使う機器。圧力、吐出量、タンク容量、ドレン抜き、ホース接続を確認する。\n工具に必要な圧力と吐出量が不足すると正常に動かない。タンク内の水は定期的に抜く。ホース抜けや破裂を防ぐため接続部と耐圧を確認する。",
+      "definition_en": "Equipment that produces compressed air for nailers, pneumatic tools, and cleaning. Check pressure, air delivery, tank size, drain, and hose connections."
+    },
+    {
+      "id": "soundness_test_hammer",
+      "expected_ja": "外壁タイル、モルタル、コンクリート表面を軽く叩き、浮きや空洞を音で確認する工具。検査者の経験と周囲騒音に影響される。",
+      "expected_en": "A tool used to tap tile, mortar, or concrete surfaces and judge hollowness or delamination by sound. Results depend on inspector experience and ambient noise.",
+      "definition_ja": "外壁タイル、モルタル、コンクリート表面を軽く叩き、浮きや空洞を音で確認する工具。検査者の経験と周囲騒音に影響される。\n強く叩きすぎると仕上げを傷める。結果はマーキングし、必要に応じて赤外線調査や部分撤去で確認する。高所外壁では安全な作業足場も必要。",
+      "definition_en": "A tool used to tap tile, mortar, or concrete surfaces and judge hollowness or delamination by sound. Results depend on inspector experience and ambient noise."
+    },
+    {
+      "id": "circular_saw",
+      "expected_ja": "回転刃で木材や合板を切断する電動工具。 刃や刃物部の取り扱いに注意する。 直線切り・曲線切りなど用途に合わせて選ぶ。",
+      "expected_en": "A power saw with a spinning blade used to cut wood and sheet goods. Choose the blade/tooling and method to match straight or curved cuts.",
+      "definition_ja": "回転刃で木材や合板を切断する電動工具。 刃や刃物部の取り扱いに注意する。 直線切り・曲線切りなど用途に合わせて選ぶ。\n円形の回転刃で木材や合板などを直線切断する電動工具。材料と切断深さに合う刃径・刃種を選び、ベースの角度や切込み深さを調整して使う。",
+      "definition_en": "A power saw with a spinning blade used to cut wood and sheet goods. Choose the blade/tooling and method to match straight or curved cuts."
+    },
+    {
+      "id": "reciprocating_saw",
+      "expected_ja": "刃を前後に往復させて解体や粗切りに使う電動ノコギリ。 刃や刃物部の取り扱いに注意する。",
+      "expected_en": "A demolition-oriented saw with a push-pull reciprocating blade. Choose the blade/tooling and method to match straight or curved cuts. Handle sharp edges and moving blades with care.",
+      "definition_ja": "刃を前後に往復させて解体や粗切りに使う電動ノコギリ。 刃や刃物部の取り扱いに注意する。\n細長い刃を前後に往復させ、解体や粗切り、狭所の切断に使う電動ノコギリ。木材・金属・樹脂など対象に合う刃長と刃種を選び、切断裏側の障害物を確認して使う。",
+      "definition_en": "A demolition-oriented saw with a push-pull reciprocating blade. Choose the blade/tooling and method to match straight or curved cuts. Handle sharp edges and moving blades with care."
+    },
+    {
+      "id": "utility_knife",
+      "expected_ja": "替刃式の刃物で、シート材や梱包材の切断に使う。 刃や刃物部の取り扱いに注意する。",
+      "expected_en": "A retractable blade knife for cutting sheet materials and packaging. Choose the blade/tooling and method to match straight or curved cuts.",
+      "definition_ja": "替刃式の刃物で、シート材や梱包材の切断に使う。 刃や刃物部の取り扱いに注意する。\n交換式・収納式の刃でシート材、梱包材、薄い仕上げ材などを切断する手工具。対象材に合う刃形状と突出量を選び、定規や下敷きを併用して切る。",
+      "definition_en": "A retractable blade knife for cutting sheet materials and packaging. Choose the blade/tooling and method to match straight or curved cuts."
+    },
+    {
+      "id": "orbital_sander",
+      "expected_ja": "細かい振動で木材表面を平滑に仕上げる電動サンダー。 粉塵対策（マスク/集じん）を行う。 粗さは段階的に上げるときれいに仕上がる。",
+      "expected_en": "A sander that vibrates in small orbits for smooth surface finishing. Step through grits/steps progressively for better results.",
+      "definition_ja": "細かい振動で木材表面を平滑に仕上げる電動サンダー。 粉塵対策（マスク/集じん）を行う。 粗さは段階的に上げるときれいに仕上がる。",
+      "definition_en": "A sander that vibrates in small orbits for smooth surface finishing. Step through grits/steps progressively for better results.\nPower sander that moves an abrasive pad in small orbital motions to smooth wood, coatings, and prepared surfaces. Abrasive grit should match the material and progress from coarse preparation to finer finishing as needed."
+    },
+    {
+      "id": "pry_bar",
+      "expected_ja": "てこの原理でこじ開けや釘抜き、解体に使う。 周辺を養生して飛散を防ぐ。 解体や撤去に使う。",
+      "expected_en": "A lever tool used for prying, pulling nails, and demolition. Avoid damaging structural members or hidden wiring.",
+      "definition_ja": "てこの原理でこじ開けや釘抜き、解体に使う。 周辺を養生して飛散を防ぐ。 解体や撤去に使う。\nてこの原理で部材をこじ開け、引き離し、釘を抜く解体・調整用の手工具。長さ、先端形状、曲がり、材質を必要なてこ力と作業空間に合わせて選ぶ。",
+      "definition_en": "A lever tool used for prying, pulling nails, and demolition. Avoid damaging structural members or hidden wiring.\nLever hand tool used for prying components apart, lifting edges, pulling nails, and demolition. Length, tip shape, bend, and material should match the required leverage and working space."
+    },
+    {
+      "id": "tape_measure",
+      "expected_ja": "長さを素早く測るための巻き取り式スケール。 基準線を揃えると精度が出る。 読み違いを防ぐため単位/目盛り確認をする。",
+      "expected_en": "A retractable tape for quickly measuring lengths. Double-check units and markings to avoid mistakes. Align to reference edges for accuracy.",
+      "definition_ja": "長さを素早く測るための巻き取り式スケール。 基準線を揃えると精度が出る。 読み違いを防ぐため単位/目盛り確認をする。\n巻き取り式の目盛り付きテープで長さや位置を素早く測る工具。テープ長、幅、目盛り仕様、先端フック、ロック機構を作業距離と必要精度に合わせて選ぶ。",
+      "definition_en": "A retractable tape for quickly measuring lengths. Double-check units and markings to avoid mistakes. Align to reference edges for accuracy."
+    },
+    {
+      "id": "spirit_level",
+      "expected_ja": "気泡管で水平・垂直を確認する工具。 短い距離と長い距離で道具を使い分ける。 当て方で誤差が出るので面を清掃して測る。",
+      "expected_en": "A tool with bubble vials to check level and plumb. Surface debris can skew readings—clean contact points.",
+      "definition_ja": "気泡管で水平・垂直を確認する工具。 短い距離と長い距離で道具を使い分ける。 当て方で誤差が出るので面を清掃して測る。",
+      "definition_en": "A tool with bubble vials to check level and plumb. Surface debris can skew readings—clean contact points.\nMeasuring tool with bubble vials used to check level and plumb. Tool length, vial arrangement, accuracy, and optional magnetic features should match the workpiece and span."
+    },
+    {
+      "id": "square_tool",
+      "expected_ja": "直角の確認や墨付けに使う工具。 基準線を揃えると精度が出る。",
+      "expected_en": "A tool for checking and marking right angles. Double-check units and markings to avoid mistakes. Used for measurement and layout.",
+      "definition_ja": "直角の確認や墨付けに使う工具。 基準線を揃えると精度が出る。\n直角確認や寸法移し、墨付けに使うL形・直角基準の測定工具。差し金、スコヤなど形状により用途が異なり、長さや目盛り仕様を作業に合わせて選ぶ。",
+      "definition_en": "A tool for checking and marking right angles. Double-check units and markings to avoid mistakes. Used for measurement and layout.\nRight-angle measuring and layout tool used to check square, transfer dimensions, and mark cuts. Carpenter's squares, try squares, and related forms vary in length and scale for different tasks."
+    },
+    {
+      "id": "plumb_bob",
+      "expected_ja": "重りを糸で吊り、重力で垂直を確認する。 当て方で誤差が出るので面を清掃して測る。",
+      "expected_en": "A weight on a string used to check vertical alignment. Surface debris can skew readings—clean contact points.",
+      "definition_ja": "重りを糸で吊り、重力で垂直を確認する。 当て方で誤差が出るので面を清掃して測る。",
+      "definition_en": "A weight on a string used to check vertical alignment. Surface debris can skew readings—clean contact points.\nTool consisting of a weight suspended from a line to establish a true vertical reference by gravity. Weight, line length, and point shape should suit the height and environmental conditions."
+    },
+    {
+      "id": "cordless_drill",
+      "expected_ja": "穴あけやネジ締めに使う充電式の電動工具。 材質に合うビットを選ぶと仕上がりが安定する。 回転体に巻き込まれないよう手袋や袖に注意。",
+      "expected_en": "A battery-powered tool for drilling holes and driving screws. Keep loose clothing and gloves away from rotating parts.",
+      "definition_ja": "穴あけやネジ締めに使う充電式の電動工具。 材質に合うビットを選ぶと仕上がりが安定する。 回転体に巻き込まれないよう手袋や袖に注意。",
+      "definition_en": "A battery-powered tool for drilling holes and driving screws. Keep loose clothing and gloves away from rotating parts.\nBattery-powered drill/driver used for drilling and screwdriving. Chuck capacity, speed range, clutch settings, torque, and battery platform should suit the application."
+    },
+    {
+      "id": "drill_bit_set",
+      "expected_ja": "ドリルに装着して穴あけを行う先端工具。材質により種類が異なる。 材質に合うビットを選ぶと仕上がりが安定する。",
+      "expected_en": "A cutting tool attachment for drilling holes; types vary by material. Pick the right bit for the material for cleaner results. Used for pilot holes and holes for anchors/fasteners.",
+      "definition_ja": "ドリルに装着して穴あけを行う先端工具。材質により種類が異なる。 材質に合うビットを選ぶと仕上がりが安定する。\nドリルへ装着して材料を切削し、穴を開ける先端工具。木工、金属、コンクリートなど材質ごとに刃形状・材質・シャンクが異なり、穴径と工具規格に合わせて選ぶ。",
+      "definition_en": "A cutting tool attachment for drilling holes; types vary by material. Pick the right bit for the material for cleaner results. Used for pilot holes and holes for anchors/fasteners."
+    },
+    {
+      "id": "screwdriver",
+      "expected_ja": "手作業でネジを締めたり緩めたりする工具。 用途に応じて締付けトルクや長さを選ぶ。 部材同士を固定してガタつきを防ぐ。",
+      "expected_en": "A hand tool for tightening or loosening screws. Over-tightening can strip or crack materials. Select length and torque appropriate for the job.",
+      "definition_ja": "手作業でネジを締めたり緩めたりする工具。 用途に応じて締付けトルクや長さを選ぶ。 部材同士を固定してガタつきを防ぐ。\nねじを手作業で締めたり緩めたりする工具。プラス、マイナス、トルクスなど先端規格とサイズをねじ頭に合わせ、柄の形状や軸長を作業空間に応じて選ぶ。",
+      "definition_en": "A hand tool for tightening or loosening screws. Over-tightening can strip or crack materials. Select length and torque appropriate for the job."
+    },
+    {
+      "id": "socket_wrench",
+      "expected_ja": "ソケットを付け替えてボルト・ナットを効率よく回す。 用途に応じて締付けトルクや長さを選ぶ。 部材同士を固定してガタつきを防ぐ。",
+      "expected_en": "Uses interchangeable sockets with a ratchet to turn fasteners efficiently. Over-tightening can strip or crack materials.",
+      "definition_ja": "ソケットを付け替えてボルト・ナットを効率よく回す。 用途に応じて締付けトルクや長さを選ぶ。 部材同士を固定してガタつきを防ぐ。",
+      "definition_en": "Uses interchangeable sockets with a ratchet to turn fasteners efficiently. Over-tightening can strip or crack materials.\nTool system using interchangeable sockets and a ratchet handle to turn hex bolts and nuts efficiently. Drive size, socket size and depth, and ratchet mechanism should suit the fastener and access."
+    },
+    {
+      "id": "pliers",
+      "expected_ja": "つかむ・曲げる・切るなど多用途に使う把持工具。 先端の摩耗や緩みを点検する。",
+      "expected_en": "A multi-purpose gripping tool for holding, bending, and cutting wire. Technique affects both accuracy and safety. A basic tool used without power.",
+      "definition_ja": "つかむ・曲げる・切るなど多用途に使う把持工具。 先端の摩耗や緩みを点検する。\n部材や線材をつかむ、曲げる、保持するほか、種類によっては切断にも使う汎用把持工具。あご形状、切断刃、全長、グリップ仕様を対象に合わせて選ぶ。",
+      "definition_en": "A multi-purpose gripping tool for holding, bending, and cutting wire. Technique affects both accuracy and safety. A basic tool used without power."
+    },
+    {
+      "id": "wire_stripper",
+      "expected_ja": "電線の被覆を傷つけずに剥く工具。 規格や資格要件がある作業もある。",
+      "expected_en": "A tool for removing insulation from electrical wires without damage. Some tasks require codes compliance or certification. De-energize and verify before touching conductors.",
+      "definition_ja": "電線の被覆を傷つけずに剥く工具。 規格や資格要件がある作業もある。\n電線導体を傷つけずに被覆を所定長さだけ除去するための工具。電線サイズ、単線・より線、自動調整式か穴径式かなどを対象ケーブルに合わせて選ぶ。",
+      "definition_en": "A tool for removing insulation from electrical wires without damage. Some tasks require codes compliance or certification. De-energize and verify before touching conductors."
+    },
+    {
+      "id": "multimeter",
+      "expected_ja": "電圧・電流・抵抗などを測定する計測器。 規格や資格要件がある作業もある。",
+      "expected_en": "An instrument for measuring voltage, current, resistance, and more. De-energize and verify before touching conductors.",
+      "definition_ja": "電圧・電流・抵抗などを測定する計測器。 規格や資格要件がある作業もある。",
+      "definition_en": "An instrument for measuring voltage, current, resistance, and more. De-energize and verify before touching conductors.\nElectrical measuring instrument for voltage, resistance, continuity, and related measurements. Measurement category, maximum rating, range, and probes must suit the circuit and test."
+    },
+    {
+      "id": "trowel",
+      "expected_ja": "モルタルやコンクリ表面を塗り付け・均し・仕上げする。 粉塵やアルカリによる刺激に注意。 打設・ならし・切断などコンクリート工程で使う。",
+      "expected_en": "Used to place, smooth, and finish mortar or concrete surfaces. Timing around curing is critical.",
+      "definition_ja": "モルタルやコンクリ表面を塗り付け・均し・仕上げする。 粉塵やアルカリによる刺激に注意。 打設・ならし・切断などコンクリート工程で使う。",
+      "definition_en": "Used to place, smooth, and finish mortar or concrete surfaces. Timing around curing is critical.\nHand finishing tool used to place, spread, and finish mortar or concrete. Shape, material, blade thickness, and size should match the material and finishing stage."
+    },
+    {
+      "id": "float",
+      "expected_ja": "コンクリやモルタルの表面をならして密実にする工具。 硬化タイミングを見て作業するのが重要。",
+      "expected_en": "A tool for smoothing and compacting the surface of mortar or concrete. Watch for dust and caustic exposure; protect skin and lungs. Used for pouring, finishing, or cutting concrete.",
+      "definition_ja": "コンクリやモルタルの表面をならして密実にする工具。 硬化タイミングを見て作業するのが重要。\nコンクリートやモルタルの表面をならし、凹凸を整える仕上げ工具。木、樹脂、マグネシウムなど材質により作用が異なるため工程に合わせて選ぶ。",
+      "definition_en": "A tool for smoothing and compacting the surface of mortar or concrete. Watch for dust and caustic exposure; protect skin and lungs. Used for pouring, finishing, or cutting concrete."
+    },
+    {
+      "id": "wheelbarrow",
+      "expected_ja": "土砂や資材を運搬する手押し運搬具。 重量物は分担・補助具で事故を減らす。 資材や機材の運搬に使う。",
+      "expected_en": "A hand-pushed carrier for transporting soil, debris, or materials. Use help or aids for heavy loads. Keep pathways clear and manage steps/ledges.",
+      "definition_ja": "土砂や資材を運搬する手押し運搬具。 重量物は分担・補助具で事故を減らす。 資材や機材の運搬に使う。\n土砂、コンクリート、資材などを人力で運搬する一輪式または類似の手押し運搬具。荷台容量、タイヤ、フレーム強度を荷物と路面に合わせて使う。",
+      "definition_en": "A hand-pushed carrier for transporting soil, debris, or materials. Use help or aids for heavy loads. Keep pathways clear and manage steps/ledges."
+    },
+    {
+      "id": "shovel",
+      "expected_ja": "土砂の掘削やすくい取り、移動に使う。 埋設物の確認をしてから掘る。 崩落や転倒に注意して足元を固める。",
+      "expected_en": "Used for digging, scooping, and moving soil or aggregate. Check for buried utilities before excavation.",
+      "definition_ja": "土砂の掘削やすくい取り、移動に使う。 埋設物の確認をしてから掘る。 崩落や転倒に注意して足元を固める。",
+      "definition_en": "Used for digging, scooping, and moving soil or aggregate. Check for buried utilities before excavation.\nHand tool used to dig, scoop, and move soil, gravel, and similar materials. Blade shape, width, and handle length should match the ground and task."
+    },
+    {
+      "id": "pickaxe",
+      "expected_ja": "硬い地盤や岩を砕いて掘削する工具。 埋設物の確認をしてから掘る。",
+      "expected_en": "A tool for breaking hard ground or rock during excavation. Check for buried utilities before excavation. Used for digging and grading.",
+      "definition_ja": "硬い地盤や岩を砕いて掘削する工具。 埋設物の確認をしてから掘る。",
+      "definition_en": "A tool for breaking hard ground or rock during excavation. Check for buried utilities before excavation. Used for digging and grading.\nHand tool used to break hard ground, compacted soil, or rock by striking. Head shape, weight, and handle length should suit the material and work space."
+    },
+    {
+      "id": "tamper",
+      "expected_ja": "地盤や砕石を押し固めて締固める。 埋設物の確認をしてから掘る。 掘削や整地など土工に使う。",
+      "expected_en": "Compacts soil or gravel by repeated tamping. Check for buried utilities before excavation. Watch footing and collapse hazards.",
+      "definition_ja": "地盤や砕石を押し固めて締固める。 埋設物の確認をしてから掘る。 掘削や整地など土工に使う。",
+      "definition_en": "Compacts soil or gravel by repeated tamping. Check for buried utilities before excavation. Watch footing and collapse hazards.\nManual compaction tool used to repeatedly tamp soil or aggregate. Base area, weight, and handle length should suit the material and work area."
+    },
+    {
+      "id": "ladder",
+      "expected_ja": "高所作業のための昇降用具。安定設置が重要。 安定した足場を確保して使う。 無理な体勢は事故の元。",
+      "expected_en": "A climbing device for working at height; proper placement is critical. Use on stable footing. Avoid overreaching to prevent falls.",
+      "definition_ja": "高所作業のための昇降用具。安定設置が重要。 安定した足場を確保して使う。 無理な体勢は事故の元。",
+      "definition_en": "A climbing device for working at height; proper placement is critical. Use on stable footing. Avoid overreaching to prevent falls.\nLadder used for access to elevated locations. Straight and extension types vary in length, material, duty rating, and setup requirements that should suit the work height and environment."
+    },
+    {
+      "id": "step_ladder",
+      "expected_ja": "自立する梯子。屋内外の軽作業で使う。 無理な体勢は事故の元。",
+      "expected_en": "A self-supporting ladder commonly used for light work. Use on stable footing.",
+      "definition_ja": "自立する梯子。屋内外の軽作業で使う。 無理な体勢は事故の元。",
+      "definition_en": "A self-supporting ladder commonly used for light work. Use on stable footing.\nSelf-supporting A-frame step ladder. Platform height, number of steps, duty rating, and spreader-lock mechanism should match the task and required reach."
+    },
+    {
+      "id": "scaffold",
+      "expected_ja": "高所作業の作業床を確保する仮設構造。 転落防止の二重三重の対策を取る。 高所作業のための足場や安全用品。",
+      "expected_en": "A temporary structure providing platforms for work at height. Use redundant fall protection measures. Ensure level setup and secure anchoring.",
+      "definition_ja": "高所作業の作業床を確保する仮設構造。 転落防止の二重三重の対策を取る。 高所作業のための足場や安全用品。\n高所作業用の作業床と昇降・支持部材で構成する仮設構造。方式、許容荷重、作業床幅、壁つなぎ・控え、手すり等を現場条件と法令・施工計画に合わせる。",
+      "definition_en": "A temporary structure providing platforms for work at height. Use redundant fall protection measures. Ensure level setup and secure anchoring."
+    },
+    {
+      "id": "safety_harness",
+      "expected_ja": "高所作業時の墜落を防ぐための安全装備。 無理な姿勢や単独作業を避ける。 作業前に危険源を確認して共有する。",
+      "expected_en": "Safety equipment to prevent falls when working at height. Avoid unsafe postures and working alone when risky. Protective gear or procedures to reduce accidents.",
+      "definition_ja": "高所作業時の墜落を防ぐための安全装備。 無理な姿勢や単独作業を避ける。 作業前に危険源を確認して共有する。\n高所作業で墜落時の身体保持と制止に用いるフルハーネス型墜落制止用器具。サイズ、ランヤード方式、接続器具、使用条件を作業方法と規則に合わせる。",
+      "definition_en": "Safety equipment to prevent falls when working at height. Avoid unsafe postures and working alone when risky. Protective gear or procedures to reduce accidents."
+    },
+    {
+      "id": "hard_hat",
+      "expected_ja": "落下物や衝撃から頭部を保護する。 作業前に危険源を確認して共有する。 無理な姿勢や単独作業を避ける。",
+      "expected_en": "Protects the head from impact and falling objects. Avoid unsafe postures and working alone when risky. Protective gear or procedures to reduce accidents.",
+      "definition_ja": "落下物や衝撃から頭部を保護する。 作業前に危険源を確認して共有する。 無理な姿勢や単独作業を避ける。\n落下物や飛来物、頭部の衝突などから頭を保護するための保護帽。用途区分、衝撃吸収性能、あご紐、内装体、サイズ調整機構を作業環境と規則に合わせて選ぶ。",
+      "definition_en": "Protects the head from impact and falling objects. Avoid unsafe postures and working alone when risky. Protective gear or procedures to reduce accidents."
+    },
+    {
+      "id": "safety_glasses",
+      "expected_ja": "粉じんや飛散物から目を守る保護具。 作業前に危険源を確認して共有する。 無理な姿勢や単独作業を避ける。",
+      "expected_en": "Protective eyewear against dust and flying debris. Avoid unsafe postures and working alone when risky. Protective gear or procedures to reduce accidents.",
+      "definition_ja": "粉じんや飛散物から目を守る保護具。 作業前に危険源を確認して共有する。 無理な姿勢や単独作業を避ける。\n切断、研削、穴あけなどで発生する飛散物や粉じんから目を保護する保護めがね。レンズ材質、側面保護、防曇性、遮光性能などを作業リスクに合わせて選ぶ。",
+      "definition_en": "Protective eyewear against dust and flying debris. Avoid unsafe postures and working alone when risky. Protective gear or procedures to reduce accidents."
+    },
+    {
+      "id": "work_gloves",
+      "expected_ja": "擦過や切創、汚れから手を保護する。用途により種類がある。 無理な姿勢や単独作業を避ける。 作業前に危険源を確認して共有する。",
+      "expected_en": "Protects hands from abrasion and cuts; types vary by task. Avoid unsafe postures and working alone when risky.",
+      "definition_ja": "擦過や切創、汚れから手を保護する。用途により種類がある。 無理な姿勢や単独作業を避ける。 作業前に危険源を確認して共有する。",
+      "definition_en": "Protects hands from abrasion and cuts; types vary by task. Avoid unsafe postures and working alone when risky.\nWork gloves used to reduce hand exposure to abrasion, dirt, minor cuts, and other task-specific hazards. Material, cut resistance, heat resistance, chemical resistance, and grip should suit the work."
+    },
+    {
+      "id": "respirator_mask",
+      "expected_ja": "粉じんや有害粒子の吸入を低減する保護具。 作業前に危険源を確認して共有する。 無理な姿勢や単独作業を避ける。",
+      "expected_en": "Reduces inhalation of dust and hazardous particles. Identify hazards and communicate before starting work. Protective gear or procedures to reduce accidents.",
+      "definition_ja": "粉じんや有害粒子の吸入を低減する保護具。 作業前に危険源を確認して共有する。 無理な姿勢や単独作業を避ける。\n粉じん、ミスト、ガス・蒸気などの吸入ばく露を低減する呼吸用保護具。対象物質、フィルター・吸収缶、面体形式、フィット性をリスク評価と使用条件に合わせる。",
+      "definition_en": "Reduces inhalation of dust and hazardous particles. Identify hazards and communicate before starting work. Protective gear or procedures to reduce accidents."
+    },
+    {
+      "id": "paint_roller",
+      "expected_ja": "広い面を均一に塗装するための道具。 塗料/素材に合う道具を選ぶとムラが減る。 塗装や下地処理など仕上げ工程で使う。",
+      "expected_en": "A tool for evenly applying paint over large surfaces. Follow drying times and ventilation guidance.",
+      "definition_ja": "広い面を均一に塗装するための道具。 塗料/素材に合う道具を選ぶとムラが減る。 塗装や下地処理など仕上げ工程で使う。",
+      "definition_en": "A tool for evenly applying paint over large surfaces. Follow drying times and ventilation guidance.\nRoller tool used to apply paint uniformly over broad surfaces. Roller width, nap length, cover material, and paint compatibility should match the substrate texture and finish requirement."
+    },
+    {
+      "id": "paint_brush",
+      "expected_ja": "細部や角などを塗装するための刷毛。 乾燥時間と換気を守る。 塗装や下地処理など仕上げ工程で使う。",
+      "expected_en": "A brush for painting edges, corners, and detail areas. Follow drying times and ventilation guidance.",
+      "definition_ja": "細部や角などを塗装するための刷毛。 乾燥時間と換気を守る。 塗装や下地処理など仕上げ工程で使う。",
+      "definition_en": "A brush for painting edges, corners, and detail areas. Follow drying times and ventilation guidance.\nBrush used to apply paint to edges, details, profiles, and uneven areas. Bristle material, width, thickness, and shape should suit the coating and application area."
+    },
+    {
+      "id": "putty_knife",
+      "expected_ja": "パテの塗り付けや古い塗膜の軽い剥離に使う。 粗さは段階的に上げるときれいに仕上がる。 表面の整形やならし、仕上げに使う。",
+      "expected_en": "Used for applying putty and light scraping of old coatings. Manage dust with a mask and extraction where possible.",
+      "definition_ja": "パテの塗り付けや古い塗膜の軽い剥離に使う。 粗さは段階的に上げるときれいに仕上がる。 表面の整形やならし、仕上げに使う。",
+      "definition_en": "Used for applying putty and light scraping of old coatings. Manage dust with a mask and extraction where possible.\nThin-bladed hand tool used to apply and feather putty and for light scraping of coatings or residue. Blade width, stiffness, and material should suit the repair and compound."
+    },
+    {
+      "id": "caulking_gun",
+      "expected_ja": "カートリッジ式のシーリング材を押し出して充填する道具。 粉塵対策（マスク/集じん）を行う。",
+      "expected_en": "Dispenses sealant from a cartridge for filling joints and gaps. Manage dust with a mask and extraction where possible.",
+      "definition_ja": "カートリッジ式のシーリング材を押し出して充填する道具。 粉塵対策（マスク/集じん）を行う。\nカートリッジ入りのシーリング材や接着剤を押し出して連続吐出する工具。カートリッジ規格、押出比、ロッド機構を材料粘度と施工量に合わせて選ぶ。",
+      "definition_en": "Dispenses sealant from a cartridge for filling joints and gaps. Manage dust with a mask and extraction where possible.\nDispensing tool used to extrude sealant or adhesive from cartridges in a controlled bead. Cartridge format, thrust ratio, and rod mechanism should suit material viscosity and application volume."
+    },
+    {
+      "id": "pipe_wrench",
+      "expected_ja": "配管の丸物をしっかり掴んで回すためのレンチ。 接着/シール材は硬化時間を守る。 漏れ防止のため下処理と締付けが重要。",
+      "expected_en": "A wrench with serrated jaws designed to grip and turn pipes. Respect cure times for sealants/adhesives. Used for plumbing connections.",
+      "definition_ja": "配管の丸物をしっかり掴んで回すためのレンチ。 接着/シール材は硬化時間を守る。 漏れ防止のため下処理と締付けが重要。",
+      "definition_en": "A wrench with serrated jaws designed to grip and turn pipes. Respect cure times for sealants/adhesives. Used for plumbing connections.\nPlumbing wrench with toothed jaws used to grip and turn round metal pipe and threaded fittings. Jaw capacity, handle length, and tooth condition should suit pipe size and required torque."
+    },
+    {
+      "id": "pipe_cutter",
+      "expected_ja": "配管を回しながら刃を締めて切断する工具。 漏れ防止のため下処理と締付けが重要。",
+      "expected_en": "Cuts pipe by rotating around it while tightening a cutting wheel. Prep and correct tightening prevent leaks.",
+      "definition_ja": "配管を回しながら刃を締めて切断する工具。 漏れ防止のため下処理と締付けが重要。",
+      "definition_en": "Cuts pipe by rotating around it while tightening a cutting wheel. Prep and correct tightening prevent leaks.\nDedicated cutter used to sever copper, plastic, or other pipe with a controlled circumferential cut. Cutting method, material compatibility, and diameter capacity should match the pipe."
+    },
+    {
+      "id": "bolt_cutter",
+      "expected_ja": "太い針金やボルト等をてこの力で切断する。 直線切り・曲線切りなど用途に合わせて選ぶ。",
+      "expected_en": "Cuts thick wire, bolts, and rods using leverage. Handle sharp edges and moving blades with care.",
+      "definition_ja": "太い針金やボルト等をてこの力で切断する。 直線切り・曲線切りなど用途に合わせて選ぶ。",
+      "definition_en": "Cuts thick wire, bolts, and rods using leverage. Handle sharp edges and moving blades with care.\nLong-handled cutter that uses leverage to sever bolts, rod, chain, and similar metal items. Jaw capacity, allowable material hardness, and handle length must suit the workpiece."
+    },
+    {
+      "id": "clamp_bar",
+      "expected_ja": "材料を固定して加工や接着を行いやすくする。 集じん/防塵を行う。",
+      "expected_en": "Holds materials in place for cutting, drilling, or gluing. Use dust control and protection.",
+      "definition_ja": "材料を固定して加工や接着を行いやすくする。 集じん/防塵を行う。",
+      "definition_en": "Holds materials in place for cutting, drilling, or gluing. Use dust control and protection.\nBar-type clamp with adjustable jaws used to hold parts during gluing, assembly, or positioning. Capacity, clamping force, and jaw shape should suit the workpiece."
+    },
+    {
+      "id": "nail_gun",
+      "expected_ja": "圧縮空気や電動で釘を高速に打ち込む工具。 締め過ぎは破損の原因になる。",
+      "expected_en": "Drives nails rapidly using pneumatic or electric power. Select length and torque appropriate for the job. Fixes parts together to prevent movement.",
+      "definition_ja": "圧縮空気や電動で釘を高速に打ち込む工具。 締め過ぎは破損の原因になる。\n圧縮空気、ガス、電池などの動力で釘を連続的に打ち込む工具。対応釘、打込み深さ、作動方式、電源・エア圧を母材と用途に合わせて設定する。",
+      "definition_en": "Drives nails rapidly using pneumatic or electric power. Select length and torque appropriate for the job. Fixes parts together to prevent movement."
+    },
+    {
+      "id": "staple_gun",
+      "expected_ja": "ステープルでシート材や薄板を固定する。 用途に応じて締付けトルクや長さを選ぶ。 締め過ぎは破損の原因になる。",
+      "expected_en": "Fastens materials using staples, useful for sheets and thin boards. Over-tightening can strip or crack materials. Fixes parts together to prevent movement.",
+      "definition_ja": "ステープルでシート材や薄板を固定する。 用途に応じて締付けトルクや長さを選ぶ。 締め過ぎは破損の原因になる。\nステープルを材料へ打ち込み、シート材や薄板、内装材などを固定する工具。手動・電動・空圧式があり、対応ステープル寸法と打込み力を母材に合わせる。",
+      "definition_en": "Fastens materials using staples, useful for sheets and thin boards. Over-tightening can strip or crack materials. Fixes parts together to prevent movement."
+    },
+    {
+      "id": "anchor_bolt",
+      "expected_ja": "コンクリート等に固定するためのアンカー付きボルト。 締め過ぎは破損の原因になる。 部材同士を固定してガタつきを防ぐ。",
+      "expected_en": "A bolt/anchor system used to fasten items to concrete or masonry. Over-tightening can strip or crack materials.",
+      "definition_ja": "コンクリート等に固定するためのアンカー付きボルト。 締め過ぎは破損の原因になる。 部材同士を固定してガタつきを防ぐ。\n構造物や設備をコンクリート等へ固定するためのアンカーボルト。方式、径、埋込み長さ、母材強度、端距離を必要荷重と施工条件に合わせる。",
+      "definition_en": "A bolt/anchor system used to fasten items to concrete or masonry. Over-tightening can strip or crack materials.\nAnchor bolt used to secure structures or equipment to concrete or similar substrates. Anchor type, diameter, embedment, concrete strength, and edge distance must suit the design load and installation conditions."
+    },
+    {
+      "id": "rebar_cutter",
+      "expected_ja": "鉄筋を所定の長さに切断する機械。 粉塵やアルカリによる刺激に注意。",
+      "expected_en": "Cuts reinforcing bar to length. Timing around curing is critical. Used for pouring, finishing, or cutting concrete.",
+      "definition_ja": "鉄筋を所定の長さに切断する機械。 粉塵やアルカリによる刺激に注意。",
+      "definition_en": "Cuts reinforcing bar to length. Timing around curing is critical. Used for pouring, finishing, or cutting concrete.\nTool or machine used to cut reinforcing bar to length. Rated diameter, steel grade, and cutting method must match the rebar and work conditions."
+    },
+    {
+      "id": "rebar_bender",
+      "expected_ja": "鉄筋を指定角度に曲げ加工する。 粉塵やアルカリによる刺激に注意。 打設・ならし・切断などコンクリート工程で使う。",
+      "expected_en": "Bends reinforcing bar to specified angles. Watch for dust and caustic exposure; protect skin and lungs.",
+      "definition_ja": "鉄筋を指定角度に曲げ加工する。 粉塵やアルカリによる刺激に注意。 打設・ならし・切断などコンクリート工程で使う。",
+      "definition_en": "Bends reinforcing bar to specified angles. Watch for dust and caustic exposure; protect skin and lungs.\nTool or machine used to bend reinforcing bar to specified angles and radii. Rated bar diameter, bending former, and angle setting should match the reinforcement specification and bending schedule."
+    },
+    {
+      "id": "rebar_tying_tool",
+      "expected_ja": "結束線で鉄筋を素早く結束するための工具。 硬化タイミングを見て作業するのが重要。",
+      "expected_en": "A tool for quickly tying rebar with wire. Watch for dust and caustic exposure; protect skin and lungs.",
+      "definition_ja": "結束線で鉄筋を素早く結束するための工具。 硬化タイミングを見て作業するのが重要。",
+      "definition_en": "A tool for quickly tying rebar with wire. Watch for dust and caustic exposure; protect skin and lungs.\nTool used to secure reinforcing-bar intersections with tie wire. Manual hooks and powered tying tools vary by wire size and tying method."
+    },
+    {
+      "id": "masonry_chisel",
+      "expected_ja": "石材・コンクリ・タイルなどを割ったり欠いたりする。 皮膚刺激がある材料は保護具を使う。 水分量と養生で仕上がりが大きく変わる。",
+      "expected_en": "Used to chip or split masonry, concrete, and tile. Mix ratio and curing affect results significantly.",
+      "definition_ja": "石材・コンクリ・タイルなどを割ったり欠いたりする。 皮膚刺激がある材料は保護具を使う。 水分量と養生で仕上がりが大きく変わる。",
+      "definition_en": "Used to chip or split masonry, concrete, and tile. Mix ratio and curing affect results significantly.\nChisel used to split or remove brick, block, mortar, and related masonry. Blade width, length, and material should suit the workpiece and striking method."
+    },
+    {
+      "id": "tile_cutter",
+      "expected_ja": "タイルにスコアを入れて割り、所定サイズに切る。 水分量と養生で仕上がりが大きく変わる。 モルタルや石材、ブロックなどに使う。",
+      "expected_en": "Scores and snaps tile to size. Wear protection for caustic materials.",
+      "definition_ja": "タイルにスコアを入れて割り、所定サイズに切る。 水分量と養生で仕上がりが大きく変わる。 モルタルや石材、ブロックなどに使う。",
+      "definition_en": "Scores and snaps tile to size. Wear protection for caustic materials.\nTool used to cut ceramic and similar tile, commonly by manual score-and-snap or powered cutting. Tile material, thickness, and cut length must be within the tool's capability."
+    },
+    {
+      "id": "spade_bit",
+      "expected_ja": "木材に大径の穴を開けるための平刃ビット。 回転体に巻き込まれないよう手袋や袖に注意。 下穴やアンカー用の穴あけに使う。",
+      "expected_en": "A flat woodworking bit used to drill larger diameter holes in wood. Pick the right bit for the material for cleaner results.",
+      "definition_ja": "木材に大径の穴を開けるための平刃ビット。 回転体に巻き込まれないよう手袋や袖に注意。 下穴やアンカー用の穴あけに使う。",
+      "definition_en": "A flat woodworking bit used to drill larger diameter holes in wood. Pick the right bit for the material for cleaner results.\nFlat-bladed drill bit used to bore relatively large holes in wood. Shank size, cutting diameter, and point design should match the drill and required hole size."
+    },
+    {
+      "id": "caulking_sealant",
+      "expected_ja": "隙間を埋めて防水・気密を確保する材料。 粗さは段階的に上げるときれいに仕上がる。 粉塵対策（マスク/集じん）を行う。",
+      "expected_en": "A material used to seal gaps for waterproofing and airtightness. Manage dust with a mask and extraction where possible.",
+      "definition_ja": "隙間を埋めて防水・気密を確保する材料。 粗さは段階的に上げるときれいに仕上がる。 粉塵対策（マスク/集じん）を行う。\n目地や取合い部の隙間を充填し、水・空気・ほこりの侵入を抑えるシーリング材。材質、変成能力、塗装可否、使用温度を施工部位に合わせる。",
+      "definition_en": "A material used to seal gaps for waterproofing and airtightness. Manage dust with a mask and extraction where possible.\nSealant used to fill joints and interfaces to limit entry of water, air, and dust. Chemistry, movement capability, paintability, and service temperature should match the joint and substrate."
+    },
+    {
+      "id": "rebar",
+      "expected_ja": "コンクリートを補強するための鋼棒。 硬化タイミングを見て作業するのが重要。 打設・ならし・切断などコンクリート工程で使う。",
+      "expected_en": "Steel reinforcing bar used to strengthen concrete. Watch for dust and caustic exposure; protect skin and lungs.",
+      "definition_ja": "コンクリートを補強するための鋼棒。 硬化タイミングを見て作業するのが重要。 打設・ならし・切断などコンクリート工程で使う。",
+      "definition_en": "Steel reinforcing bar used to strengthen concrete. Watch for dust and caustic exposure; protect skin and lungs.\nReinforcing steel placed in concrete to carry tensile forces. Bar diameter, grade, length, bends, cover, and splices must follow the structural drawings and specification."
+    },
+    {
+      "id": "cement",
+      "expected_ja": "コンクリートやモルタルの結合材となる粉体。 粉塵やアルカリによる刺激に注意。 打設・ならし・切断などコンクリート工程で使う。",
+      "expected_en": "A binder powder used in concrete and mortar. Timing around curing is critical. Used for pouring, finishing, or cutting concrete.",
+      "definition_ja": "コンクリートやモルタルの結合材となる粉体。 粉塵やアルカリによる刺激に注意。 打設・ならし・切断などコンクリート工程で使う。",
+      "definition_en": "A binder powder used in concrete and mortar. Timing around curing is critical. Used for pouring, finishing, or cutting concrete.\nPowdered hydraulic binder that reacts with water and forms the binding phase in mortar and concrete. Type, storage condition, mix proportion, and shelf life should suit the required performance."
+    },
+    {
+      "id": "concrete",
+      "expected_ja": "セメント・骨材・水を混ぜた構造材料。 硬化タイミングを見て作業するのが重要。",
+      "expected_en": "A structural material made of cement, aggregate, and water. Timing around curing is critical. Used for pouring, finishing, or cutting concrete.",
+      "definition_ja": "セメント・骨材・水を混ぜた構造材料。 硬化タイミングを見て作業するのが重要。\nセメント、水、細骨材、粗骨材などを練り混ぜて硬化させる構造材料。強度、スランプ、空気量、配合、打込み・締固め・養生条件を管理する。",
+      "definition_en": "A structural material made of cement, aggregate, and water. Timing around curing is critical. Used for pouring, finishing, or cutting concrete."
+    },
+    {
+      "id": "voltage_tester",
+      "expected_ja": "「検電器」：建設現場で使う用語。文脈により意味が変わることがある。 無理な姿勢や単独作業を避ける。 作業前に危険源を確認して共有する。",
+      "expected_en": "A construction term. Meaning may vary by context. Avoid unsafe postures and working alone when risky.",
+      "definition_ja": "「検電器」：建設現場で使う用語。文脈により意味が変わることがある。 無理な姿勢や単独作業を避ける。 作業前に危険源を確認して共有する。",
+      "definition_en": "A construction term. Meaning may vary by context. Avoid unsafe postures and working alone when risky.\nTester used to determine whether voltage is present on a conductor or circuit. Contact and non-contact types differ in measurement category, voltage rating, and detection method."
+    },
+    {
+      "id": "plywood",
+      "expected_ja": "「合板」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。",
+      "expected_en": "A material/building supply term. Specs vary by product. Pick based on use case and environment.",
+      "definition_ja": "「合板」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。",
+      "definition_en": "A material/building supply term. Specs vary by product. Pick based on use case and environment.\nWood panel made by bonding veneer layers with alternating grain directions. Thickness, grade, bond durability, face quality, and structural rating should match the application."
+    },
+    {
+      "id": "pvc_pipe",
+      "expected_ja": "「塩ビ管」：建材・資材の呼び方。用途や規格は製品で異なる。 保管条件で性能が変わることがある。 用途と環境（屋内/屋外）で選定する。",
+      "expected_en": "A material/building supply term. Specs vary by product. Pick based on use case and environment. A construction material or consumable.",
+      "definition_ja": "「塩ビ管」：建材・資材の呼び方。用途や規格は製品で異なる。 保管条件で性能が変わることがある。 用途と環境（屋内/屋外）で選定する。",
+      "definition_en": "A material/building supply term. Specs vary by product. Pick based on use case and environment. A construction material or consumable.\nPVC piping material used for drainage, venting, and related services. Pipe class, nominal size, wall thickness, and jointing method should match the applicable standard and installation conditions."
+    },
+    {
+      "id": "forklift",
+      "expected_ja": "「フォークリフト」：建設現場で使う用語。文脈により意味が変わることがある。 周囲の立入管理が重要。 点検・安全装置の確認をしてから使う。",
+      "expected_en": "A construction term. Meaning may vary by context. Inspect and verify safety guards before use.",
+      "definition_ja": "「フォークリフト」：建設現場で使う用語。文脈により意味が変わることがある。 周囲の立入管理が重要。 点検・安全装置の確認をしてから使う。",
+      "definition_en": "A construction term. Meaning may vary by context. Inspect and verify safety guards before use.\nPowered industrial truck that lifts and transports loads with forks. Rated capacity, load center, lift height, surface conditions, and pedestrian traffic must be considered in operation."
+    },
+    {
+      "id": "excavator",
+      "expected_ja": "「油圧ショベル」：建設現場で使う用語。文脈により意味が変わることがある。 周囲の立入管理が重要。",
+      "expected_en": "A construction term. Meaning may vary by context. Inspect and verify safety guards before use. A machine that reduces manual labor.",
+      "definition_ja": "「油圧ショベル」：建設現場で使う用語。文脈により意味が変わることがある。 周囲の立入管理が重要。\nブーム・アーム・バケットなどを油圧で動かし、掘削や積込みを行う建設機械。機体重量、作業半径、地盤、埋設物、旋回範囲を施工条件に合わせて管理する。",
+      "definition_en": "A construction term. Meaning may vary by context. Inspect and verify safety guards before use. A machine that reduces manual labor.\nHydraulic construction machine using a boom, arm, and bucket for excavation and loading. Machine weight, working radius, ground conditions, buried services, and swing area must be managed for the task."
+    },
+    {
+      "id": "backhoe_loader",
+      "expected_ja": "「バックホー（ローダー）」：建設現場で使う用語。文脈により意味が変わることがある。 周囲の立入管理が重要。",
+      "expected_en": "A construction term. Meaning may vary by context. Inspect and verify safety guards before use. A machine that reduces manual labor.",
+      "definition_ja": "「バックホー（ローダー）」：建設現場で使う用語。文脈により意味が変わることがある。 周囲の立入管理が重要。\n前部ローダーバケットと後部バックホーを備え、積込みと掘削を一台で行える建設機械。作業側、アウトリガー、周囲スペース、地盤条件を確認して使う。",
+      "definition_en": "A construction term. Meaning may vary by context. Inspect and verify safety guards before use. A machine that reduces manual labor.\nConstruction machine combining a front loader bucket with a rear backhoe for loading and excavation. Working side, stabilizers, clearance, and ground conditions must be checked before use."
+    },
+    {
+      "id": "dump_truck",
+      "expected_ja": "「ダンプ」：建設現場で使う用語。文脈により意味が変わることがある。 点検・安全装置の確認をしてから使う。 作業を省力化する機械。",
+      "expected_en": "A construction term. Meaning may vary by context. Inspect and verify safety guards before use. A machine that reduces manual labor.",
+      "definition_ja": "「ダンプ」：建設現場で使う用語。文脈により意味が変わることがある。 点検・安全装置の確認をしてから使う。 作業を省力化する機械。",
+      "definition_en": "A construction term. Meaning may vary by context. Inspect and verify safety guards before use. A machine that reduces manual labor.\nTruck with a tipping body used to transport and discharge soil, aggregate, and similar bulk materials. Payload, load distribution, route, overhead hazards, and dumping-ground stability require control."
+    },
+    {
+      "id": "tarpaulin_tarp",
+      "expected_ja": "「ブルーシート」：建材・資材の呼び方。用途や規格は製品で異なる。 保管条件で性能が変わることがある。 施工に使う材料や消耗材。",
+      "expected_en": "A material/building supply term. Specs vary by product. Pick based on use case and environment.",
+      "definition_ja": "「ブルーシート」：建材・資材の呼び方。用途や規格は製品で異なる。 保管条件で性能が変わることがある。 施工に使う材料や消耗材。",
+      "definition_en": "A material/building supply term. Specs vary by product. Pick based on use case and environment.\nFlexible sheet used to temporarily cover materials, surfaces, or openings against rain, dirt, and debris. Size, thickness, waterproofing, weather resistance, eyelets, and fastening method should suit the task."
+    },
+    {
+      "id": "masking_tape",
+      "expected_ja": "「マスキングテープ」：建材・資材の呼び方。用途や規格は製品で異なる。 保管条件で性能が変わることがある。 用途と環境（屋内/屋外）で選定する。",
+      "expected_en": "A material/building supply term. Specs vary by product. Storage conditions can affect performance.",
+      "definition_ja": "「マスキングテープ」：建材・資材の呼び方。用途や規格は製品で異なる。 保管条件で性能が変わることがある。 用途と環境（屋内/屋外）で選定する。",
+      "definition_en": "A material/building supply term. Specs vary by product. Storage conditions can affect performance.\nLow-tack adhesive tape used for paint edges, sealant work, and temporary holding. Adhesion, heat resistance, outdoor suitability, and allowable dwell time should match the substrate and process."
+    },
+    {
+      "id": "drop_cloth",
+      "expected_ja": "「養生シート」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。",
+      "expected_en": "A material/building supply term. Specs vary by product. Pick based on use case and environment.",
+      "definition_ja": "「養生シート」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。",
+      "definition_en": "A material/building supply term. Specs vary by product. Pick based on use case and environment.\nProtective sheet used to shield floors and finished surfaces from paint, dust, and damage. Material, absorbency, slip resistance, thickness, and reusability should suit the work."
+    },
+    {
+      "id": "safety_meeting",
+      "expected_ja": "「朝礼（安全ミーティング）」：現場スラング。意味は状況や職種で揺れやすい。 地域や会社で意味が微妙に違うことがある。",
+      "expected_en": "Job-site slang. Meaning can vary by context. Meaning can vary by company or region.",
+      "definition_ja": "「朝礼（安全ミーティング）」：現場スラング。意味は状況や職種で揺れやすい。 地域や会社で意味が微妙に違うことがある。\n作業開始前などに当日の作業内容、危険箇所、役割、連絡方法を共有する安全ミーティング。会社や現場により朝礼、TBM、ツールボックストークなど呼称や進め方が異なる。",
+      "definition_en": "Job-site slang. Meaning can vary by context. Meaning can vary by company or region.\nPre-work safety meeting used to share the day's tasks, hazards, responsibilities, and communication methods. Names and formats vary by company and site, including morning briefings, TBMs, and toolbox talks."
+    },
+    {
+      "id": "ky_hazard_prediction",
+      "expected_ja": "「KY（危険予知）」：現場スラング。意味は状況や職種で揺れやすい。 地域や会社で意味が微妙に違うことがある。",
+      "expected_en": "Job-site slang. Meaning can vary by context. Meaning can vary by company or region. A shorthand term used on jobsites.",
+      "definition_ja": "「KY（危険予知）」：現場スラング。意味は状況や職種で揺れやすい。 地域や会社で意味が微妙に違うことがある。\nKY（危険予知）は、作業前に起こり得る危険を洗い出し、重点危険と対策を作業者間で共有する現場の安全確認手法。運用方法や記録様式は会社・現場で異なる。",
+      "definition_en": "Job-site slang. Meaning can vary by context. Meaning can vary by company or region. A shorthand term used on jobsites.\nKY, or hazard prediction, is a jobsite safety practice in which workers identify possible hazards before work, agree on priority risks, and share controls. Methods and documentation vary by company and site."
+    },
+    {
+      "id": "kiken_watch_out",
+      "expected_ja": "「危険（あぶない合図）」：現場スラング。意味は状況や職種で揺れやすい。 地域や会社で意味が微妙に違うことがある。 誤解が出ないよう言い換えや確認をする。",
+      "expected_en": "Job-site slang. Meaning can vary by context. Clarify intent to avoid misunderstandings.",
+      "definition_ja": "「危険（あぶない合図）」：現場スラング。意味は状況や職種で揺れやすい。 地域や会社で意味が微妙に違うことがある。 誤解が出ないよう言い換えや確認をする。",
+      "definition_en": "Job-site slang. Meaning can vary by context. Clarify intent to avoid misunderstandings.\nA jobsite warning such as \"kiken\" or \"watch out\" used to alert others to immediate danger. Signals vary by company and trade, so a common warning method should be agreed before work."
+    },
+    {
+      "id": "youshi_protection",
+      "expected_ja": "「養生（ようじょう）」：現場スラング。意味は状況や職種で揺れやすい。 地域や会社で意味が微妙に違うことがある。 現場で使われる略語や合図の言い方。",
+      "expected_en": "Job-site slang. Meaning can vary by context. Clarify intent to avoid misunderstandings. Meaning can vary by company or region.",
+      "definition_ja": "「養生（ようじょう）」：現場スラング。意味は状況や職種で揺れやすい。 地域や会社で意味が微妙に違うことがある。 現場で使われる略語や合図の言い方。",
+      "definition_en": "Job-site slang. Meaning can vary by context. Clarify intent to avoid misunderstandings. Meaning can vary by company or region.\n\"Yojou\" (protection/curing) is a jobsite term that can mean protecting existing finishes from damage and dirt, or maintaining proper conditions for newly placed materials. The intended meaning should be clear from context."
+    },
+    {
+      "id": "cleanup_katazuke",
+      "expected_ja": "「片付け」：現場スラング。意味は状況や職種で揺れやすい。 誤解が出ないよう言い換えや確認をする。 現場で使われる略語や合図の言い方。",
+      "expected_en": "Job-site slang. Meaning can vary by context. Meaning can vary by company or region. A shorthand term used on jobsites.",
+      "definition_ja": "「片付け」：現場スラング。意味は状況や職種で揺れやすい。 誤解が出ないよう言い換えや確認をする。 現場で使われる略語や合図の言い方。",
+      "definition_en": "Job-site slang. Meaning can vary by context. Meaning can vary by company or region. A shorthand term used on jobsites.\n\"Katazuke\" refers to jobsite cleanup and housekeeping: organizing tools and materials, removing waste, and restoring safe access at the end of work or a work phase. Scope and sorting rules vary by site."
+    },
+    {
+      "id": "spotter",
+      "expected_ja": "「誘導員」：建設現場で使う用語。文脈により意味が変わることがある。 作業前に危険源を確認して共有する。 事故を防ぐための保護具や安全手順。",
+      "expected_en": "A construction term. Meaning may vary by context. Identify hazards and communicate before starting work.",
+      "definition_ja": "「誘導員」：建設現場で使う用語。文脈により意味が変わることがある。 作業前に危険源を確認して共有する。 事故を防ぐための保護具や安全手順。",
+      "definition_en": "A construction term. Meaning may vary by context. Identify hazards and communicate before starting work.\nA designated person who helps guide vehicles, machinery, or lifting operations by covering blind spots and signaling movement, stopping, and clearance. Signals and responsibilities should be agreed before work."
+    },
+    {
+      "id": "ear_protection",
+      "expected_ja": "「耳栓・イヤーマフ」：建設現場で使う用語。文脈により意味が変わることがある。 無理な姿勢や単独作業を避ける。 事故を防ぐための保護具や安全手順。",
+      "expected_en": "A construction term. Meaning may vary by context. Avoid unsafe postures and working alone when risky.",
+      "definition_ja": "「耳栓・イヤーマフ」：建設現場で使う用語。文脈により意味が変わることがある。 無理な姿勢や単独作業を避ける。 事故を防ぐための保護具や安全手順。",
+      "definition_en": "A construction term. Meaning may vary by context. Avoid unsafe postures and working alone when risky.\nHearing protection such as earplugs or earmuffs used to reduce noise exposure. Selection should consider noise level, fit, compatibility with other PPE, and the need to hear alarms or communication."
+    },
+    {
+      "id": "first_aid_kit",
+      "expected_ja": "「救急箱」：建設現場で使う用語。文脈により意味が変わることがある。 無理な姿勢や単独作業を避ける。",
+      "expected_en": "A construction term. Meaning may vary by context. Avoid unsafe postures and working alone when risky.",
+      "definition_ja": "「救急箱」：建設現場で使う用語。文脈により意味が変わることがある。 無理な姿勢や単独作業を避ける。",
+      "definition_en": "A construction term. Meaning may vary by context. Avoid unsafe postures and working alone when risky.\nA first-aid kit containing supplies for immediate care of cuts, abrasions, and similar injuries. Contents and quantity should suit the workforce and work hazards and remain readily accessible."
+    },
+    {
+      "id": "fire_extinguisher",
+      "expected_ja": "「消火器」：建設現場で使う用語。文脈により意味が変わることがある。 無理な姿勢や単独作業を避ける。 作業前に危険源を確認して共有する。",
+      "expected_en": "A construction term. Meaning may vary by context. Avoid unsafe postures and working alone when risky.",
+      "definition_ja": "「消火器」：建設現場で使う用語。文脈により意味が変わることがある。 無理な姿勢や単独作業を避ける。 作業前に危険源を確認して共有する。",
+      "definition_en": "A construction term. Meaning may vary by context. Avoid unsafe postures and working alone when risky.\nPortable fire-fighting equipment intended for incipient-stage fires. The extinguisher type, rating, and placement should suit the expected fire hazards and applicable site or regulatory requirements."
+    },
+    {
+      "id": "marker",
+      "expected_ja": "「マーカー」：建設現場で使う用語。文脈により意味が変わることがある。 基準線を揃えると精度が出る。 読み違いを防ぐため単位/目盛り確認をする。",
+      "expected_en": "A construction term. Meaning may vary by context. Align to reference edges for accuracy. Used for measurement and layout.",
+      "definition_ja": "「マーカー」：建設現場で使う用語。文脈により意味が変わることがある。 基準線を揃えると精度が出る。 読み違いを防ぐため単位/目盛り確認をする。",
+      "definition_en": "A construction term. Meaning may vary by context. Align to reference edges for accuracy. Used for measurement and layout.\nA marker used to place layout, dimension, or identification marks on materials and finished surfaces. Ink type and permanence should suit the substrate and whether the mark must resist water or later be removed."
+    },
+    {
+      "id": "string_line",
+      "expected_ja": "「水糸」：建設現場で使う用語。文脈により意味が変わることがある。 読み違いを防ぐため単位/目盛り確認をする。",
+      "expected_en": "A construction term. Meaning may vary by context. Double-check units and markings to avoid mistakes. Align to reference edges for accuracy.",
+      "definition_ja": "「水糸」：建設現場で使う用語。文脈により意味が変わることがある。 読み違いを防ぐため単位/目盛り確認をする。\n基準となる直線・通り・高さを目視確認するために張る糸。基礎、組積、外構、木工などで両端を固定して張力を与え、部材の位置合わせに使う。",
+      "definition_en": "A construction term. Meaning may vary by context. Double-check units and markings to avoid mistakes. Align to reference edges for accuracy."
+    },
+    {
+      "id": "joist",
+      "expected_ja": "「根太（ねだ）」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。 保管条件で性能が変わることがある。",
+      "expected_en": "A material/building supply term. Specs vary by product. Pick based on use case and environment.",
+      "definition_ja": "「根太（ねだ）」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。 保管条件で性能が変わることがある。",
+      "definition_en": "A material/building supply term. Specs vary by product. Pick based on use case and environment.\nA repeated horizontal framing member used to support floors or ceilings. Joists may be timber or steel, and section size, spacing, bearing, and loading should follow the structural design or specification."
+    },
+    {
+      "id": "beam",
+      "expected_ja": "「梁（はり）」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。",
+      "expected_en": "A material/building supply term. Specs vary by product. Storage conditions can affect performance.",
+      "definition_ja": "「梁（はり）」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。\n柱や壁などの間に架け、床・屋根・上部構造などの荷重を支える主な横架材。木、鉄骨、鉄筋コンクリートなど構造形式により納まりと接合方法が異なる。",
+      "definition_en": "A material/building supply term. Specs vary by product. Storage conditions can affect performance.\nA primary horizontal structural member spanning between columns, walls, or other supports and carrying floor, roof, or superstructure loads. Detailing and connections vary with timber, steel, concrete, and other systems."
+    },
+    {
+      "id": "osb",
+      "expected_ja": "「OSB合板」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。 施工に使う材料や消耗材。",
+      "expected_en": "A material/building supply term. Specs vary by product. Pick based on use case and environment. A construction material or consumable.",
+      "definition_ja": "「OSB合板」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。 施工に使う材料や消耗材。",
+      "definition_en": "A material/building supply term. Specs vary by product. Pick based on use case and environment. A construction material or consumable.\nAn engineered wood panel made from oriented wood strands bonded and pressed in layers. OSB is used for wall, floor, and roof sheathing, with thickness, grade, moisture resistance, and exposure class selected for the application."
+    },
+    {
+      "id": "form_tie",
+      "expected_ja": "「フォームタイ（型枠締付）」：建設現場で使う用語。文脈により意味が変わることがある。 材質や屋内外で種類を使い分ける。",
+      "expected_en": "A construction term. Meaning may vary by context. Choose types based on material and indoor/outdoor use.",
+      "definition_ja": "「フォームタイ（型枠締付）」：建設現場で使う用語。文脈により意味が変わることがある。 材質や屋内外で種類を使い分ける。\nコンクリート打設時の側圧に対して、向かい合う型枠パネルの間隔を保持する締結部材。セパレーター、フォームタイ、座金などを組み合わせる方式があり、型枠計画に応じて選ぶ。",
+      "definition_en": "A construction term. Meaning may vary by context. Choose types based on material and indoor/outdoor use.\nA formwork fastening component used to hold opposing form faces at the required spacing against fresh-concrete pressure. Systems may combine separators, ties, cones, and plates selected for the formwork design."
+    },
+    {
+      "id": "primer",
+      "expected_ja": "「下塗り（プライマー）」：建材・資材の呼び方。用途や規格は製品で異なる。 保管条件で性能が変わることがある。 用途と環境（屋内/屋外）で選定する。",
+      "expected_en": "A material/building supply term. Specs vary by product. Storage conditions can affect performance.",
+      "definition_ja": "「下塗り（プライマー）」：建材・資材の呼び方。用途や規格は製品で異なる。 保管条件で性能が変わることがある。 用途と環境（屋内/屋外）で選定する。",
+      "definition_en": "A material/building supply term. Specs vary by product. Storage conditions can affect performance.\nA preparatory coating applied before finish coats. Primers may improve adhesion, control porosity, inhibit corrosion, or block stains, so the product must be compatible with the substrate and coating system."
+    },
+    {
+      "id": "touch_up",
+      "expected_ja": "「タッチアップ」：現場スラング。意味は状況や職種で揺れやすい。 地域や会社で意味が微妙に違うことがある。 誤解が出ないよう言い換えや確認をする。",
+      "expected_en": "Job-site slang. Meaning can vary by context. Clarify intent to avoid misunderstandings. A shorthand term used on jobsites.",
+      "definition_ja": "「タッチアップ」：現場スラング。意味は状況や職種で揺れやすい。 地域や会社で意味が微妙に違うことがある。 誤解が出ないよう言い換えや確認をする。",
+      "definition_en": "Job-site slang. Meaning can vary by context. Clarify intent to avoid misunderstandings. A shorthand term used on jobsites.\nA local finish repair for small scratches, missed coating, color variation, or similar defects after the main work. Touch-up materials, color, sheen, and preparation should match the existing finish."
+    },
+    {
+      "id": "rafter",
+      "expected_ja": "「垂木（たるき）」：建材・資材の呼び方。用途や規格は製品で異なる。 保管条件で性能が変わることがある。",
+      "expected_en": "A material/building supply term. Specs vary by product. Storage conditions can affect performance. Pick based on use case and environment.",
+      "definition_ja": "「垂木（たるき）」：建材・資材の呼び方。用途や規格は製品で異なる。 保管条件で性能が変わることがある。\n屋根面の勾配方向に配置し、野地板や屋根荷重を支持する構造・下地部材。木造では垂木と呼ばれ、断面、間隔、支点、接合方法は屋根構成と構造仕様に従う。",
+      "definition_en": "A material/building supply term. Specs vary by product. Storage conditions can affect performance. Pick based on use case and environment."
+    },
+    {
+      "id": "roofing_felt",
+      "expected_ja": "「ルーフィング」：建材・資材の呼び方。用途や規格は製品で異なる。 保管条件で性能が変わることがある。",
+      "expected_en": "A material/building supply term. Specs vary by product. Pick based on use case and environment. A construction material or consumable.",
+      "definition_ja": "「ルーフィング」：建材・資材の呼び方。用途や規格は製品で異なる。 保管条件で性能が変わることがある。\n屋根仕上げ材の下に施工する防水・二次防水層の総称。アスファルトルーフィングや改質系などがあり、屋根材、勾配、下地、露出条件に合う製品と重ね寸法を選ぶ。",
+      "definition_en": "A material/building supply term. Specs vary by product. Pick based on use case and environment. A construction material or consumable.\nRoof underlayment installed beneath the finished roof covering as a secondary water-shedding layer. Product type, lap dimensions, substrate, roof slope, and exposure limits must suit the roof system."
+    },
+    {
+      "id": "shingle",
+      "expected_ja": "「シングル材」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。 保管条件で性能が変わることがある。",
+      "expected_en": "A material/building supply term. Specs vary by product. Pick based on use case and environment.",
+      "definition_ja": "「シングル材」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。 保管条件で性能が変わることがある。",
+      "definition_en": "A material/building supply term. Specs vary by product. Pick based on use case and environment.\nAn overlapping roof-covering unit such as an asphalt shingle. Exposure, lap, fastener location, pattern, and permitted roof slope are product-specific and must be followed."
+    },
+    {
+      "id": "flashing",
+      "expected_ja": "「板金（フラッシング）」：建材・資材の呼び方。用途や規格は製品で異なる。 保管条件で性能が変わることがある。 用途と環境（屋内/屋外）で選定する。",
+      "expected_en": "A material/building supply term. Specs vary by product. Pick based on use case and environment.",
+      "definition_ja": "「板金（フラッシング）」：建材・資材の呼び方。用途や規格は製品で異なる。 保管条件で性能が変わることがある。 用途と環境（屋内/屋外）で選定する。",
+      "definition_en": "A material/building supply term. Specs vary by product. Pick based on use case and environment.\nSheet-metal or membrane detailing used at roof, wall, and opening transitions to direct water outward and prevent intrusion. Flashing must be integrated continuously with surrounding weather-resistive layers."
+    },
+    {
+      "id": "punch_list",
+      "expected_ja": "「手直しリスト」：現場スラング。意味は状況や職種で揺れやすい。 誤解が出ないよう言い換えや確認をする。 現場で使われる略語や合図の言い方。",
+      "expected_en": "Job-site slang. Meaning can vary by context. Meaning can vary by company or region. Clarify intent to avoid misunderstandings.",
+      "definition_ja": "「手直しリスト」：現場スラング。意味は状況や職種で揺れやすい。 誤解が出ないよう言い換えや確認をする。 現場で使われる略語や合図の言い方。",
+      "definition_en": "Job-site slang. Meaning can vary by context. Meaning can vary by company or region. Clarify intent to avoid misunderstandings.\nA list of incomplete, defective, or adjustment items identified during completion inspections before handover. Each item is normally tracked by location, description, responsible party, due date, and closure status."
+    },
+    {
+      "id": "handover",
+      "expected_ja": "「引き渡し」：現場スラング。意味は状況や職種で揺れやすい。 地域や会社で意味が微妙に違うことがある。 現場で使われる略語や合図の言い方。",
+      "expected_en": "Job-site slang. Meaning can vary by context. Clarify intent to avoid misunderstandings.",
+      "definition_ja": "「引き渡し」：現場スラング。意味は状況や職種で揺れやすい。 地域や会社で意味が微妙に違うことがある。 現場で使われる略語や合図の言い方。",
+      "definition_en": "Job-site slang. Meaning can vary by context. Clarify intent to avoid misunderstandings.\nThe process of transferring a completed building or system to the owner or operator. It commonly includes confirming inspections and corrections and delivering keys, operating information, as-built records, warranties, and maintenance documents."
+    },
+    {
+      "id": "as_built",
+      "expected_ja": "「竣工図（アズビルト）」：現場スラング。意味は状況や職種で揺れやすい。 誤解が出ないよう言い換えや確認をする。 現場で使われる略語や合図の言い方。",
+      "expected_en": "Job-site slang. Meaning can vary by context. Meaning can vary by company or region.",
+      "definition_ja": "「竣工図（アズビルト）」：現場スラング。意味は状況や職種で揺れやすい。 誤解が出ないよう言い換えや確認をする。 現場で使われる略語や合図の言い方。",
+      "definition_en": "Job-site slang. Meaning can vary by context. Meaning can vary by company or region.\nAs-built drawings or records showing the installed condition at completion, including actual locations, dimensions, routes, systems, and approved deviations from the design. They support future operation, maintenance, and alteration work."
+    },
+    {
+      "id": "rfis",
+      "expected_ja": "「質疑（RFI）」：現場スラング。意味は状況や職種で揺れやすい。 誤解が出ないよう言い換えや確認をする。 現場で使われる略語や合図の言い方。",
+      "expected_en": "Job-site slang. Meaning can vary by context. Clarify intent to avoid misunderstandings.",
+      "definition_ja": "「質疑（RFI）」：現場スラング。意味は状況や職種で揺れやすい。 誤解が出ないよう言い換えや確認をする。 現場で使われる略語や合図の言い方。",
+      "definition_en": "Job-site slang. Meaning can vary by context. Clarify intent to avoid misunderstandings.\nAn RFI (Request for Information) is a formal query used to obtain clarification of drawings, specifications, or conflicting site conditions. The question, references, response, impact, and status should remain traceable."
+    },
+    {
+      "id": "change_order",
+      "expected_ja": "「変更（チェンジ）」：現場スラング。意味は状況や職種で揺れやすい。 地域や会社で意味が微妙に違うことがある。 誤解が出ないよう言い換えや確認をする。",
+      "expected_en": "Job-site slang. Meaning can vary by context. Meaning can vary by company or region.",
+      "definition_ja": "「変更（チェンジ）」：現場スラング。意味は状況や職種で揺れやすい。 地域や会社で意味が微妙に違うことがある。 誤解が出ないよう言い換えや確認をする。",
+      "definition_en": "Job-site slang. Meaning can vary by context. Meaning can vary by company or region.\nA formal change to contracted scope, price, schedule, or related obligations after award. Terminology and procedure vary by contract, so authorization authority and the condition under which a change becomes effective must be clear."
+    },
+    {
+      "id": "caliper",
+      "expected_ja": "「ノギス」：建設現場で使う用語。文脈により意味が変わることがある。 読み違いを防ぐため単位/目盛り確認をする。 寸法の測定や位置出しに使う。",
+      "expected_en": "A construction term. Meaning may vary by context. Align to reference edges for accuracy.",
+      "definition_ja": "「ノギス」：建設現場で使う用語。文脈により意味が変わることがある。 読み違いを防ぐため単位/目盛り確認をする。 寸法の測定や位置出しに使う。",
+      "definition_en": "A construction term. Meaning may vary by context. Align to reference edges for accuracy.\nA caliper used to measure external dimensions, internal dimensions, steps, and depth. Vernier, dial, and digital types are selected according to the required resolution and measurement range."
+    },
+    {
+      "id": "dial_gauge",
+      "expected_ja": "「ダイヤルゲージ」：建設現場で使う用語。文脈により意味が変わることがある。 基準線を揃えると精度が出る。 読み違いを防ぐため単位/目盛り確認をする。",
+      "expected_en": "A construction term. Meaning may vary by context. Double-check units and markings to avoid mistakes. Used for measurement and layout.",
+      "definition_ja": "「ダイヤルゲージ」：建設現場で使う用語。文脈により意味が変わることがある。 基準線を揃えると精度が出る。 読み違いを防ぐため単位/目盛り確認をする。",
+      "definition_en": "A construction term. Meaning may vary by context. Double-check units and markings to avoid mistakes. Used for measurement and layout.\nA comparator instrument that displays small displacement of a contact point. Dial indicators are used for runout, steps, movement, alignment, and comparative checks when mounted rigidly against a reference."
+    },
+    {
+      "id": "heat_shrink_tubing",
+      "expected_ja": "「熱収縮チューブ」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。 施工に使う材料や消耗材。",
+      "expected_en": "A material/building supply term. Specs vary by product. Storage conditions can affect performance.",
+      "definition_ja": "「熱収縮チューブ」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。 施工に使う材料や消耗材。",
+      "definition_en": "A material/building supply term. Specs vary by product. Storage conditions can affect performance.\nPolymer tubing that shrinks when heated and is used to insulate, protect, or identify wire joints and terminals. Expanded/recovered diameter, shrink ratio, temperature rating, voltage suitability, and flame performance should match the application."
+    },
+    {
+      "id": "cable_tie",
+      "expected_ja": "「結束バンド」：建設現場で使う用語。文脈により意味が変わることがある。 下穴や防錆を考えると失敗が減る。",
+      "expected_en": "A construction term. Meaning may vary by context. Choose types based on material and indoor/outdoor use. Consider pilot holes and corrosion resistance.",
+      "definition_ja": "「結束バンド」：建設現場で使う用語。文脈により意味が変わることがある。 下穴や防錆を考えると失敗が減る。\nケーブルや細い部材を束ねて固定する結束バンド。材質、幅、引張強度、耐候性、耐熱性、難燃性などが異なり、屋内外や電気設備の条件に合わせて選ぶ。",
+      "definition_en": "A construction term. Meaning may vary by context. Choose types based on material and indoor/outdoor use. Consider pilot holes and corrosion resistance."
+    },
+    {
+      "id": "temporary_fixing_kari",
+      "expected_ja": "「仮止め」：現場スラング。意味は状況や職種で揺れやすい。 誤解が出ないよう言い換えや確認をする。 現場で使われる略語や合図の言い方。",
+      "expected_en": "Job-site slang. Meaning can vary by context. Clarify intent to avoid misunderstandings. Meaning can vary by company or region.",
+      "definition_ja": "「仮止め」：現場スラング。意味は状況や職種で揺れやすい。 誤解が出ないよう言い換えや確認をする。 現場で使われる略語や合図の言い方。",
+      "definition_en": "Job-site slang. Meaning can vary by context. Clarify intent to avoid misunderstandings. Meaning can vary by company or region.\nTemporary fixing used to hold a component in position before permanent fastening so alignment, fit, and layout can be checked. It must be clearly distinguished from final fixing and be adequate for temporary loads."
+    },
+    {
+      "id": "allen_key",
+      "expected_ja": "「六角レンチ」：建設現場で使う用語。文脈により意味が変わることがある。 力のかけ方で精度と安全性が変わる。 先端の摩耗や緩みを点検する。",
+      "expected_en": "A construction term. Meaning may vary by context. Technique affects both accuracy and safety. A basic tool used without power.",
+      "definition_ja": "「六角レンチ」：建設現場で使う用語。文脈により意味が変わることがある。 力のかけ方で精度と安全性が変わる。 先端の摩耗や緩みを点検する。",
+      "definition_en": "A construction term. Meaning may vary by context. Technique affects both accuracy and safety. A basic tool used without power.\nA hexagonal hand tool used to turn socket-head screws and set screws. Metric and inch sizes and different end forms exist, so the key must fit the socket correctly."
+    },
+    {
+      "id": "nails",
+      "expected_ja": "「釘」：建設現場で使う用語。文脈により意味が変わることがある。 下穴や防錆を考えると失敗が減る。 材質や屋内外で種類を使い分ける。",
+      "expected_en": "A construction term. Meaning may vary by context. Consider pilot holes and corrosion resistance. A fastener used to join materials.",
+      "definition_ja": "「釘」：建設現場で使う用語。文脈により意味が変わることがある。 下穴や防錆を考えると失敗が減る。 材質や屋内外で種類を使い分ける。",
+      "definition_en": "A construction term. Meaning may vary by context. Consider pilot holes and corrosion resistance. A fastener used to join materials.\nDriven fasteners used primarily to join timber and sheet materials. Length, diameter, head, shank form, material, and coating should suit member thickness, required holding capacity, and exposure conditions."
+    },
+    {
+      "id": "grout",
+      "expected_ja": "「目地材（グラウト）」：建材・資材の呼び方。用途や規格は製品で異なる。 保管条件で性能が変わることがある。 用途と環境（屋内/屋外）で選定する。",
+      "expected_en": "A material/building supply term. Specs vary by product. Pick based on use case and environment. A construction material or consumable.",
+      "definition_ja": "「目地材（グラウト）」：建材・資材の呼び方。用途や規格は製品で異なる。 保管条件で性能が変わることがある。 用途と環境（屋内/屋外）で選定する。",
+      "definition_en": "A material/building supply term. Specs vary by product. Pick based on use case and environment. A construction material or consumable.\nIn this entry, grout primarily means material used to fill joints between tiles. Cementitious and resin-based products vary in suitable joint width, exposure, stain resistance, water resistance, and tile compatibility."
+    },
+    {
+      "id": "five_s_5s",
+      "expected_ja": "「5S（整理・整頓・清掃・清潔・しつけ）」：現場スラング。意味は状況や職種で揺れやすい。 地域や会社で意味が微妙に違うことがある。 現場で使われる略語や合図の言い方。",
+      "expected_en": "Job-site slang. Meaning can vary by context. Meaning can vary by company or region. Clarify intent to avoid misunderstandings.",
+      "definition_ja": "「5S（整理・整頓・清掃・清潔・しつけ）」：現場スラング。意味は状況や職種で揺れやすい。 地域や会社で意味が微妙に違うことがある。 現場で使われる略語や合図の言い方。",
+      "definition_en": "Job-site slang. Meaning can vary by context. Meaning can vary by company or region. Clarify intent to avoid misunderstandings.\n5S is a workplace organization practice built around sort, set in order, shine, standardize, and sustain. It aims to keep tools, materials, waste, and access routes orderly so abnormalities and hazards are easier to see."
+    },
+    {
+      "id": "generator",
+      "expected_ja": "「発電機」：建設現場で使う用語。文脈により意味が変わることがある。 周囲の立入管理が重要。",
+      "expected_en": "A construction term. Meaning may vary by context. Control the area to keep bystanders away. A machine that reduces manual labor.",
+      "definition_ja": "「発電機」：建設現場で使う用語。文脈により意味が変わることがある。 周囲の立入管理が重要。\nエンジンなどで発電し、現場の電動工具・照明・仮設設備へ電力を供給する発電機。出力容量、電圧、接地・保護方式、燃料、排気、騒音条件を用途に合わせる。",
+      "definition_en": "A construction term. Meaning may vary by context. Control the area to keep bystanders away. A machine that reduces manual labor.\nA generator supplies temporary electrical power for tools, lighting, and site equipment. Output capacity, voltage, grounding/protection arrangement, fuel, exhaust, and noise requirements must suit the application."
+    },
+    {
+      "id": "angle_finder",
+      "expected_ja": "「角度計」：建設現場で使う用語。文脈により意味が変わることがある。 基準線を揃えると精度が出る。",
+      "expected_en": "A construction term. Meaning may vary by context. Align to reference edges for accuracy. Used for measurement and layout.",
+      "definition_ja": "「角度計」：建設現場で使う用語。文脈により意味が変わることがある。 基準線を揃えると精度が出る。",
+      "definition_en": "A construction term. Meaning may vary by context. Align to reference edges for accuracy. Used for measurement and layout.\nA measuring tool used to determine angles or slopes of surfaces and components. Mechanical, digital, and magnetic types are used for roof pitch, cutting angles, and installation checks."
+    },
+    {
+      "id": "fish_tape",
+      "expected_ja": "「通線ワイヤー」：建設現場で使う用語。文脈により意味が変わることがある。 先端の摩耗や緩みを点検する。 電源なしで使う基本工具。",
+      "expected_en": "A construction term. Meaning may vary by context. Technique affects both accuracy and safety.",
+      "definition_ja": "「通線ワイヤー」：建設現場で使う用語。文脈により意味が変わることがある。 先端の摩耗や緩みを点検する。 電源なしで使う基本工具。",
+      "definition_en": "A construction term. Meaning may vary by context. Technique affects both accuracy and safety.\nA pulling tool fed through conduit or concealed pathways to draw conductors or pull strings. Steel, polymer, and fiberglass types vary in stiffness, length, and electrical properties."
+    },
+    {
+      "id": "ptfe_tape",
+      "expected_ja": "「シールテープ」：建材・資材の呼び方。用途や規格は製品で異なる。 保管条件で性能が変わることがある。",
+      "expected_en": "A material/building supply term. Specs vary by product. Storage conditions can affect performance. A construction material or consumable.",
+      "definition_ja": "「シールテープ」：建材・資材の呼び方。用途や規格は製品で異なる。 保管条件で性能が変わることがある。\nテーパねじなどのねじ込み配管接続で、ねじ部のシール補助に使うPTFE製テープ。流体、温度、ねじ形式、材質に対する適合性を確認して使用する。",
+      "definition_en": "A material/building supply term. Specs vary by product. Storage conditions can affect performance. A construction material or consumable."
+    },
+    {
+      "id": "high_visibility_vest",
+      "expected_ja": "「反射ベスト」：建設現場で使う用語。文脈により意味が変わることがある。 無理な姿勢や単独作業を避ける。 事故を防ぐための保護具や安全手順。",
+      "expected_en": "A construction term. Meaning may vary by context. Identify hazards and communicate before starting work.",
+      "definition_ja": "「反射ベスト」：建設現場で使う用語。文脈により意味が変わることがある。 無理な姿勢や単独作業を避ける。 事故を防ぐための保護具や安全手順。",
+      "definition_en": "A construction term. Meaning may vary by context. Identify hazards and communicate before starting work.\nA high-visibility vest uses fluorescent material and retroreflective trim to make the wearer easier to see, especially around moving vehicles, machinery, low light, or night work."
+    },
+    {
+      "id": "backer_rod",
+      "expected_ja": "「バックアップ材」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。",
+      "expected_en": "A material/building supply term. Specs vary by product. Storage conditions can affect performance. A construction material or consumable.",
+      "definition_ja": "「バックアップ材」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。\nシーリング目地へ充填してシーリング材の深さ・断面形状を調整する発泡体のバックアップ材。目地幅、必要な圧縮、シーリング材との適合、屋内外条件に合わせて径と材質を選ぶ。",
+      "definition_en": "A material/building supply term. Specs vary by product. Storage conditions can affect performance. A construction material or consumable."
+    },
+    {
+      "id": "receptacle_outlet",
+      "expected_ja": "「コンセント」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。 施工に使う材料や消耗材。",
+      "expected_en": "A material/building supply term. Specs vary by product. Pick based on use case and environment. A construction material or consumable.",
+      "definition_ja": "「コンセント」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。 施工に使う材料や消耗材。",
+      "definition_en": "A material/building supply term. Specs vary by product. Pick based on use case and environment. A construction material or consumable.\nA receptacle or outlet provides plug-in power to equipment. Voltage, current rating, pole arrangement, grounding, and environmental or protective features must match the circuit and installation location."
+    },
+    {
+      "id": "wire_connector",
+      "expected_ja": "「ワイヤーナット（配線コネクタ）」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。 保管条件で性能が変わることがある。",
+      "expected_en": "A material/building supply term. Specs vary by product. Pick based on use case and environment.",
+      "definition_ja": "「ワイヤーナット（配線コネクタ）」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。 保管条件で性能が変わることがある。",
+      "definition_en": "A material/building supply term. Specs vary by product. Pick based on use case and environment.\nA connector used to join electrical conductors. Twist-on, push-in, crimp, and other types have limits for conductor material, size, count, voltage, and temperature that must be followed."
+    },
+    {
+      "id": "p_trap",
+      "expected_ja": "「排水トラップ（Pトラップ）」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。 施工に使う材料や消耗材。",
+      "expected_en": "A material/building supply term. Specs vary by product. Pick based on use case and environment.",
+      "definition_ja": "「排水トラップ（Pトラップ）」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。 施工に使う材料や消耗材。",
+      "definition_en": "A material/building supply term. Specs vary by product. Pick based on use case and environment.\nA P-shaped drain trap that retains a water seal to reduce sewer-gas entry through a fixture drain. Size, orientation, slope, cleanability, and venting must suit the plumbing arrangement."
+    },
+    {
+      "id": "pipe_joint_compound",
+      "expected_ja": "「配管用シール剤」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。",
+      "expected_en": "A material/building supply term. Specs vary by product. Storage conditions can affect performance.",
+      "definition_ja": "「配管用シール剤」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。\nねじ込み配管継手の微小な隙間をシールするために塗布する配管用ねじシール剤。流体、配管材、温度・圧力、ねじ種類に適合する製品を選ぶ。",
+      "definition_en": "A material/building supply term. Specs vary by product. Storage conditions can affect performance.\nA paste or compound applied to compatible threaded pipe joints to help seal small clearances. The product must be suitable for the service fluid, pipe material, pressure, temperature, and thread type."
+    },
+    {
+      "id": "paint_sprayer",
+      "expected_ja": "「塗装スプレーガン」：建設現場で使う用語。文脈により意味が変わることがある。 反動や巻き込みに注意する。 電動で作業を効率化する工具。",
+      "expected_en": "A construction term. Meaning may vary by context. Settings and bits/blades affect finish quality. A powered tool that speeds up work.",
+      "definition_ja": "「塗装スプレーガン」：建設現場で使う用語。文脈により意味が変わることがある。 反動や巻き込みに注意する。 電動で作業を効率化する工具。",
+      "definition_en": "A construction term. Meaning may vary by context. Settings and bits/blades affect finish quality. A powered tool that speeds up work.\nA paint sprayer atomizes coating for efficient application over larger surfaces. Airless, HVLP, and other systems require tip, pressure, flow, and coating viscosity settings appropriate for the material and finish."
+    },
+    {
+      "id": "job_hazard_analysis",
+      "expected_ja": "「作業手順書（JSA/JHA）」：現場スラング。意味は状況や職種で揺れやすい。 誤解が出ないよう言い換えや確認をする。",
+      "expected_en": "Job-site slang. Meaning can vary by context. Clarify intent to avoid misunderstandings. A shorthand term used on jobsites.",
+      "definition_ja": "「作業手順書（JSA/JHA）」：現場スラング。意味は状況や職種で揺れやすい。 誤解が出ないよう言い換えや確認をする。\nJHA/JSAは、作業を手順ごとに分けて危険源を洗い出し、必要な対策・責任・確認事項を作業前に整理する安全管理手法。書式や承認方法は会社・現場で異なる。",
+      "definition_en": "Job-site slang. Meaning can vary by context. Clarify intent to avoid misunderstandings. A shorthand term used on jobsites.\nA JHA or JSA breaks a task into steps, identifies hazards at each step, and records controls, responsibilities, and checks before work. Forms and approval processes vary by organization and site."
+    },
+    {
+      "id": "temporary_power",
+      "expected_ja": "「仮設電源」：現場スラング。意味は状況や職種で揺れやすい。 誤解が出ないよう言い換えや確認をする。",
+      "expected_en": "Job-site slang. Meaning can vary by context. Meaning can vary by company or region. A shorthand term used on jobsites.",
+      "definition_ja": "「仮設電源」：現場スラング。意味は状況や職種で揺れやすい。 誤解が出ないよう言い換えや確認をする。\n工事期間中に照明・工具・仮設設備へ供給する一時的な電源・配電設備。仮設盤、ケーブル、接地・漏電保護、分岐回路などを現場条件に合わせて計画する。",
+      "definition_en": "Job-site slang. Meaning can vary by context. Meaning can vary by company or region. A shorthand term used on jobsites.\nTemporary power is the short-term electrical distribution used during construction for lighting, tools, and temporary equipment. Panels, cables, grounding, residual-current protection, and branch circuits must be designed for site conditions."
+    },
+    {
+      "id": "hot_work",
+      "expected_ja": "「火気作業」：現場スラング。意味は状況や職種で揺れやすい。 地域や会社で意味が微妙に違うことがある。",
+      "expected_en": "Job-site slang. Meaning can vary by context. Clarify intent to avoid misunderstandings. Meaning can vary by company or region.",
+      "definition_ja": "「火気作業」：現場スラング。意味は状況や職種で揺れやすい。 地域や会社で意味が微妙に違うことがある。\n溶接、溶断、ろう付け、火花を出す研削など、火炎・高熱・火花で着火源を生じる作業。周囲の可燃物、火災監視、消火設備、換気、許可手順を確認して実施する。",
+      "definition_en": "Job-site slang. Meaning can vary by context. Clarify intent to avoid misunderstandings. Meaning can vary by company or region.\nHot work includes welding, cutting, brazing, and spark-producing grinding or similar tasks that introduce flame, heat, or ignition sources. Combustibles, fire watch, extinguishing equipment, ventilation, and permit controls must be addressed."
+    },
+    {
+      "id": "permit_to_work",
+      "expected_ja": "「作業許可（PTW）」：現場スラング。意味は状況や職種で揺れやすい。 地域や会社で意味が微妙に違うことがある。 現場で使われる略語や合図の言い方。",
+      "expected_en": "Job-site slang. Meaning can vary by context. Meaning can vary by company or region.",
+      "definition_ja": "「作業許可（PTW）」：現場スラング。意味は状況や職種で揺れやすい。 地域や会社で意味が微妙に違うことがある。 現場で使われる略語や合図の言い方。",
+      "definition_en": "Job-site slang. Meaning can vary by context. Meaning can vary by company or region.\nA permit-to-work (PTW) system formally authorizes defined higher-risk work after scope, hazards, isolations, controls, responsible persons, and validity period are confirmed. The permit documents controls but does not replace them."
+    },
+    {
+      "id": "wrench",
+      "expected_ja": "「レンチ」：建設現場で使う用語。文脈により意味が変わることがある。 力のかけ方で精度と安全性が変わる。 先端の摩耗や緩みを点検する。",
+      "expected_en": "A construction term. Meaning may vary by context. Technique affects both accuracy and safety. A basic tool used without power.",
+      "definition_ja": "「レンチ」：建設現場で使う用語。文脈により意味が変わることがある。 力のかけ方で精度と安全性が変わる。 先端の摩耗や緩みを点検する。",
+      "definition_en": "A construction term. Meaning may vary by context. Technique affects both accuracy and safety. A basic tool used without power.\nA general hand tool for tightening or loosening nuts and bolts. Open-end, box-end, combination, and adjustable types should be selected to match fastener size and available working space."
+    },
+    {
+      "id": "formwork",
+      "expected_ja": "「型枠」：建設現場で使う用語。文脈により意味が変わることがある。 粉塵やアルカリによる刺激に注意。 硬化タイミングを見て作業するのが重要。",
+      "expected_en": "A construction term. Meaning may vary by context. Watch for dust and caustic exposure; protect skin and lungs.",
+      "definition_ja": "「型枠」：建設現場で使う用語。文脈により意味が変わることがある。 粉塵やアルカリによる刺激に注意。 硬化タイミングを見て作業するのが重要。",
+      "definition_en": "A construction term. Meaning may vary by context. Watch for dust and caustic exposure; protect skin and lungs.\nA temporary system that holds fresh concrete to the required shape and dimensions until sufficient strength develops. Panels, walers, braces, shores, ties, and connections must be designed for construction loads and concrete pressure."
+    },
+    {
+      "id": "metal_stud",
+      "expected_ja": "「軽量鉄骨スタッド」：建材・資材の呼び方。用途や規格は製品で異なる。 保管条件で性能が変わることがある。 施工に使う材料や消耗材。",
+      "expected_en": "A material/building supply term. Specs vary by product. Pick based on use case and environment.",
+      "definition_ja": "「軽量鉄骨スタッド」：建材・資材の呼び方。用途や規格は製品で異なる。 保管条件で性能が変わることがある。 施工に使う材料や消耗材。",
+      "definition_en": "A material/building supply term. Specs vary by product. Pick based on use case and environment.\nA light-gauge steel stud used for interior wall and ceiling framing. Studs work with tracks or runners, with size, gauge, spacing, and opening reinforcement selected to suit the partition specification."
+    },
+    {
+      "id": "concrete_pump",
+      "expected_ja": "「コンクリートポンプ車」：建設現場で使う用語。文脈により意味が変わることがある。 周囲の立入管理が重要。",
+      "expected_en": "A construction term. Meaning may vary by context. Inspect and verify safety guards before use.",
+      "definition_ja": "「コンクリートポンプ車」：建設現場で使う用語。文脈により意味が変わることがある。 周囲の立入管理が重要。\n生コンクリートを配管・ホースを通して打設位置へ圧送するコンクリートポンプ・ポンプ車。ブーム、配管、アウトリガー、圧送圧力、周囲の架空線や人員動線を管理して使用する。",
+      "definition_en": "A construction term. Meaning may vary by context. Inspect and verify safety guards before use.\nA concrete pump or pump truck conveys fresh concrete through pipework and hose to the placement point. Boom movement, pipeline pressure, outriggers, overhead hazards, and personnel exclusion require control."
+    },
+    {
+      "id": "genba_site",
+      "expected_ja": "「現場」：現場スラング。意味は状況や職種で揺れやすい。 誤解が出ないよう言い換えや確認をする。 現場で使われる略語や合図の言い方。",
+      "expected_en": "Job-site slang. Meaning can vary by context. Clarify intent to avoid misunderstandings.",
+      "definition_ja": "「現場」：現場スラング。意味は状況や職種で揺れやすい。 誤解が出ないよう言い換えや確認をする。 現場で使われる略語や合図の言い方。",
+      "definition_en": "Job-site slang. Meaning can vary by context. Clarify intent to avoid misunderstandings.\n“Genba” means the actual work site or field location where construction, renovation, or installation takes place. Depending on context, it may mean the whole project, a specific work area, or the job assignment itself."
+    },
+    {
+      "id": "hand_signal",
+      "expected_ja": "「合図（手合図）」：建設現場で使う用語。文脈により意味が変わることがある。 無理な姿勢や単独作業を避ける。 作業前に危険源を確認して共有する。",
+      "expected_en": "A construction term. Meaning may vary by context. Identify hazards and communicate before starting work.",
+      "definition_ja": "「合図（手合図）」：建設現場で使う用語。文脈により意味が変わることがある。 無理な姿勢や単独作業を避ける。 作業前に危険源を確認して共有する。",
+      "definition_en": "A construction term. Meaning may vary by context. Identify hazards and communicate before starting work.\nHand signals are visual commands used between spotters, operators, and workers during vehicle, machinery, or lifting operations. Signal meanings, the designated signaler, and stop signals should be agreed before work."
+    },
+    {
+      "id": "stud",
+      "expected_ja": "「間柱（まばしら）」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。",
+      "expected_en": "A material/building supply term. Specs vary by product. Storage conditions can affect performance. A construction material or consumable.",
+      "definition_ja": "「間柱（まばしら）」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。\n壁下地で上下の横架材・ランナー間に立てる縦材。木製・鋼製があり、壁の種類、荷重、仕上げ材、開口部に応じて寸法・ピッチ・補強を決める。",
+      "definition_en": "A material/building supply term. Specs vary by product. Storage conditions can affect performance. A construction material or consumable."
+    },
+    {
+      "id": "screed",
+      "expected_ja": "「トンボ（ならし）」：建設現場で使う用語。文脈により意味が変わることがある。 硬化タイミングを見て作業するのが重要。",
+      "expected_en": "A construction term. Meaning may vary by context. Watch for dust and caustic exposure; protect skin and lungs.",
+      "definition_ja": "「トンボ（ならし）」：建設現場で使う用語。文脈により意味が変わることがある。 硬化タイミングを見て作業するのが重要。\n打設直後のコンクリートやモルタル表面を所定高さへならす定規・ならし工具、またはその作業。直線材や専用スクリードを基準へ当て、余分な材料を移動させて平坦性を整える。",
+      "definition_en": "A construction term. Meaning may vary by context. Watch for dust and caustic exposure; protect skin and lungs.\nA screed is a straightedge or specialized tool, and the associated process, used to strike off fresh concrete or mortar to the required elevation and flatness."
+    },
+    {
+      "id": "joint_compound",
+      "expected_ja": "「パテ」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。",
+      "expected_en": "A material/building supply term. Specs vary by product. Storage conditions can affect performance.",
+      "definition_ja": "「パテ」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。\n石膏ボードの継ぎ目、ビス頭、表面不陸などを埋めて平滑にするジョイントコンパウンド・パテ。テープ処理用、仕上げ用、速硬化型など用途に応じた種類がある。",
+      "definition_en": "A material/building supply term. Specs vary by product. Storage conditions can affect performance.\nJoint compound is used to fill and smooth drywall joints, fastener heads, and minor surface irregularities. Taping, finishing, lightweight, and setting-type products have different purposes and working characteristics."
+    },
+    {
+      "id": "torque_wrench",
+      "expected_ja": "「トルクレンチ」：建設現場で使う用語。文脈により意味が変わることがある。 力のかけ方で精度と安全性が変わる。",
+      "expected_en": "A construction term. Meaning may vary by context. Technique affects both accuracy and safety.",
+      "definition_ja": "「トルクレンチ」：建設現場で使う用語。文脈により意味が変わることがある。 力のかけ方で精度と安全性が変わる。\nボルト・ナットを指定トルクで締め付けるための測定機能付きレンチ。クリック式、プレート式、デジタル式などがあり、必要トルク範囲と精度に合うものを使う。",
+      "definition_en": "A construction term. Meaning may vary by context. Technique affects both accuracy and safety.\nA torque wrench applies and indicates a controlled tightening torque to nuts and bolts. Click, beam, dial, and digital types should be selected for the required torque range and accuracy."
+    },
+    {
+      "id": "hammer_tacker",
+      "expected_ja": "「ハンマータッカー」：建設現場で使う用語。文脈により意味が変わることがある。 力のかけ方で精度と安全性が変わる。 先端の摩耗や緩みを点検する。",
+      "expected_en": "A construction term. Meaning may vary by context. Check tips and joints for wear or looseness.",
+      "definition_ja": "「ハンマータッカー」：建設現場で使う用語。文脈により意味が変わることがある。 力のかけ方で精度と安全性が変わる。 先端の摩耗や緩みを点検する。",
+      "definition_en": "A construction term. Meaning may vary by context. Check tips and joints for wear or looseness.\nA manual stapling tool driven with a hammering motion for rapid fastening of underlayment, insulation facing, sheeting, and similar light materials. Staple type and length must match the tool and application."
+    },
+    {
+      "id": "anchor_plastic_plug",
+      "expected_ja": "「プラグ（アンカー）」：建設現場で使う用語。文脈により意味が変わることがある。 下穴や防錆を考えると失敗が減る。 部材を留めるための締結材。",
+      "expected_en": "A construction term. Meaning may vary by context. Choose types based on material and indoor/outdoor use.",
+      "definition_ja": "「プラグ（アンカー）」：建設現場で使う用語。文脈により意味が変わることがある。 下穴や防錆を考えると失敗が減る。 部材を留めるための締結材。",
+      "definition_en": "A construction term. Meaning may vary by context. Choose types based on material and indoor/outdoor use.\nA plastic wall plug inserted into a drilled hole in masonry and expanded by a screw to provide light-duty anchorage. Plug type, hole diameter, screw size, base material, and load should be compatible."
+    },
+    {
+      "id": "silicone_sealant",
+      "expected_ja": "「シリコンシーラント」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。 保管条件で性能が変わることがある。",
+      "expected_en": "A material/building supply term. Specs vary by product. Storage conditions can affect performance.",
+      "definition_ja": "「シリコンシーラント」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。 保管条件で性能が変わることがある。",
+      "definition_en": "A material/building supply term. Specs vary by product. Storage conditions can affect performance.\nAn elastic sealant used at joints and interfaces around glazing, metal, tile, and fixtures. Cure chemistry, substrate compatibility, paintability, weathering, and mildew resistance vary by product."
+    },
+    {
+      "id": "concrete_saw",
+      "expected_ja": "「コンクリートカッター」：建設現場で使う用語。文脈により意味が変わることがある。 設定と刃/ビットの選定で仕上がりが変わる。",
+      "expected_en": "A construction term. Meaning may vary by context. Beware kickback and entanglement. A powered tool that speeds up work.",
+      "definition_ja": "「コンクリートカッター」：建設現場で使う用語。文脈により意味が変わることがある。 設定と刃/ビットの選定で仕上がりが変わる。",
+      "definition_en": "A construction term. Meaning may vary by context. Beware kickback and entanglement. A powered tool that speeds up work.\nA high-powered saw using diamond or abrasive blades to cut concrete, asphalt, or masonry. Handheld and walk-behind types require blades matched to material, cutting depth, speed, and wet/dry use."
+    },
+    {
+      "id": "drywall_tape",
+      "expected_ja": "「ジョイントテープ」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。 施工に使う材料や消耗材。",
+      "expected_en": "A material/building supply term. Specs vary by product. Storage conditions can affect performance.",
+      "definition_ja": "「ジョイントテープ」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。 施工に使う材料や消耗材。",
+      "definition_en": "A material/building supply term. Specs vary by product. Storage conditions can affect performance.\nTape used with joint compound to reinforce drywall seams and reduce cracking. Paper and mesh products have different installation methods and compound compatibility."
+    },
+    {
+      "id": "gfci_rcd",
+      "expected_ja": "「漏電遮断器（GFCI/RCD）」：建設現場で使う用語。文脈により意味が変わることがある。 無理な姿勢や単独作業を避ける。 作業前に危険源を確認して共有する。",
+      "expected_en": "A construction term. Meaning may vary by context. Avoid unsafe postures and working alone when risky.",
+      "definition_ja": "「漏電遮断器（GFCI/RCD）」：建設現場で使う用語。文脈により意味が変わることがある。 無理な姿勢や単独作業を避ける。 作業前に危険源を確認して共有する。",
+      "definition_en": "A construction term. Meaning may vary by context. Avoid unsafe postures and working alone when risky.\nA protective device that detects leakage or residual current and disconnects a circuit when specified conditions are exceeded. GFCI and RCD terminology and ratings vary by region and application."
+    },
+    {
+      "id": "plumber_s_putty",
+      "expected_ja": "「配管パテ」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。",
+      "expected_en": "A material/building supply term. Specs vary by product. Storage conditions can affect performance.",
+      "definition_ja": "「配管パテ」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。\n水栓、排水金具、シンク部品などのフランジ下で隙間を埋める非硬化性の配管用パテ。製品により石材・樹脂への適否が異なり、圧力配管のねじシール用途には使わない。",
+      "definition_en": "A material/building supply term. Specs vary by product. Storage conditions can affect performance.\nA non-hardening putty used beneath flanges on faucets, drains, sinks, and similar plumbing fixtures. Compatibility with stone and plastics varies, and it is not a substitute for thread sealant on pressurized pipe joints."
+    },
+    {
+      "id": "concrete_screw",
+      "expected_ja": "「コンクリートビス」：建設現場で使う用語。文脈により意味が変わることがある。 材質や屋内外で種類を使い分ける。",
+      "expected_en": "A construction term. Meaning may vary by context. Consider pilot holes and corrosion resistance. Choose types based on material and indoor/outdoor use.",
+      "definition_ja": "「コンクリートビス」：建設現場で使う用語。文脈により意味が変わることがある。 材質や屋内外で種類を使い分ける。\nコンクリートや組積材へ専用下穴をあけ、ねじ山を食い込ませて直接固定するコンクリート用ねじ。下地強度、径、埋込み深さ、穴径、端距離を製品仕様に合わせる。",
+      "definition_en": "A construction term. Meaning may vary by context. Consider pilot holes and corrosion resistance. Choose types based on material and indoor/outdoor use."
+    },
+    {
+      "id": "drywall_screw",
+      "expected_ja": "「ボードビス」：建設現場で使う用語。文脈により意味が変わることがある。 材質や屋内外で種類を使い分ける。",
+      "expected_en": "A construction term. Meaning may vary by context. Consider pilot holes and corrosion resistance.",
+      "definition_ja": "「ボードビス」：建設現場で使う用語。文脈により意味が変わることがある。 材質や屋内外で種類を使い分ける。\n石膏ボードを木下地・軽量鉄骨下地へ固定するための皿頭ねじ。下地材に応じてねじ山形状・長さを選び、頭をボード紙面を破らない位置まで沈める。",
+      "definition_en": "A construction term. Meaning may vary by context. Consider pilot holes and corrosion resistance.\nA bugle-head screw used to fasten gypsum board to timber or light-gauge steel framing. Thread type and length should match the substrate, and the head should sit below the surface without tearing the face paper."
+    },
+    {
+      "id": "drywall_lift",
+      "expected_ja": "「ボードリフター」：建設現場で使う用語。文脈により意味が変わることがある。 点検・安全装置の確認をしてから使う。",
+      "expected_en": "A construction term. Meaning may vary by context. Control the area to keep bystanders away.",
+      "definition_ja": "「ボードリフター」：建設現場で使う用語。文脈により意味が変わることがある。 点検・安全装置の確認をしてから使う。\n石膏ボードを天井や高い壁位置まで持ち上げ、固定中に保持するボードリフター。昇降機構、支えアーム、キャスターなどを点検し、定格内で使用する。",
+      "definition_en": "A construction term. Meaning may vary by context. Control the area to keep bystanders away.\nA panel lift used to raise and hold drywall sheets at ceilings or high wall positions while they are fastened. The lifting mechanism, support arms, wheels, and rated capacity must be checked before use."
+    },
+    {
+      "id": "caulk_finisher",
+      "expected_ja": "「シーリングならしヘラ」：建設現場で使う用語。文脈により意味が変わることがある。 先端の摩耗や緩みを点検する。",
+      "expected_en": "A construction term. Meaning may vary by context. Check tips and joints for wear or looseness. A basic tool used without power.",
+      "definition_ja": "「シーリングならしヘラ」：建設現場で使う用語。文脈により意味が変わることがある。 先端の摩耗や緩みを点検する。\nシーリング材を押さえて表面形状を整えるならしヘラ。目地幅や仕上げ形状に合う先端寸法を選び、材料を十分に目地へ押し付けながら仕上げる。",
+      "definition_en": "A construction term. Meaning may vary by context. Check tips and joints for wear or looseness. A basic tool used without power.\nA hand tool used to tool and smooth sealant joints. The profile should suit joint width and desired finish while pressing sealant into proper contact with the joint faces."
+    },
+    {
+      "id": "spotter_vehicle",
+      "expected_ja": "「誘導（車両誘導）」：現場スラング。意味は状況や職種で揺れやすい。 地域や会社で意味が微妙に違うことがある。",
+      "expected_en": "Job-site slang. Meaning can vary by context. Clarify intent to avoid misunderstandings. A shorthand term used on jobsites.",
+      "definition_ja": "「誘導（車両誘導）」：現場スラング。意味は状況や職種で揺れやすい。 地域や会社で意味が微妙に違うことがある。",
+      "definition_en": "Job-site slang. Meaning can vary by context. Clarify intent to avoid misunderstandings. A shorthand term used on jobsites.\nA vehicle spotter guides reversing, turning, and confined vehicle movements by covering blind spots and signaling stop or travel direction. Positioning and signals should be agreed before movement begins."
+    },
+    {
+      "id": "story_pole",
+      "expected_ja": "仕上がり高さや基準寸法をまとめて記録する棒。繰り返し作業でミスを減らす。 具体例：どの工程で使うか、何と一緒に使うか、失敗しやすいポイントを押さえる。 具体例：どの工程で使うか、何と一緒に使うか、失敗しやすいポイントを押さえる。",
+      "expected_en": "A marked stick that records key dimensions to repeat layouts consistently.",
+      "definition_ja": "仕上がり高さや基準寸法をまとめて記録する棒。繰り返し作業でミスを減らす。\n繰り返し使う高さ・位置・割付寸法を一本の棒へ写し取り、現場で同じ基準を再現する寸法棒。仕上げ高さ、棚位置、ブロック段数などの転記に使う。",
+      "definition_en": "A marked stick that records key dimensions to repeat layouts consistently.\nA marked stick used to carry repeated elevations, positions, and layout dimensions so the same reference can be reproduced across a job. It is useful for finish heights, shelving, masonry courses, and repeated layouts.",
+      "browse_ja": "仕上がり高さや基準寸法をまとめて記録する棒。繰り返し作業でミスを減らす。"
+    },
+    {
+      "id": "vapor_barrier",
+      "expected_ja": "湿気の侵入を抑えるシート。施工方向や継ぎ目処理で性能が変わる。 具体例：どの工程で使うか、何と一緒に使うか、失敗しやすいポイントを押さえる。 具体例：どの工程で使うか、何と一緒に使うか、失敗しやすいポイントを押さえる。",
+      "expected_en": "Sheet that limits moisture migration; performance depends on overlaps and taping.",
+      "definition_ja": "湿気の侵入を抑えるシート。施工方向や継ぎ目処理で性能が変わる。\n壁・床・天井などで水蒸気の移動を抑える防湿層。気候、断熱構成、室内外条件により適切な位置が異なるため、設計仕様に従って連続させる。",
+      "definition_en": "Sheet that limits moisture migration; performance depends on overlaps and taping.\nA vapor-control layer used in wall, floor, or ceiling assemblies to limit water-vapor migration. Correct location depends on climate and assembly design, so continuity and placement must follow the specified system.",
+      "browse_ja": "湿気の侵入を抑えるシート。施工方向や継ぎ目処理で性能が変わる。"
+    },
+    {
+      "id": "glasswool",
+      "expected_ja": "断熱材。厚み・密度・防湿処理で効果が変わる。 具体例：どの工程で使うか、何と一緒に使うか、失敗しやすいポイントを押さえる。 具体例：どの工程で使うか、何と一緒に使うか、失敗しやすいポイントを押さえる。",
+      "expected_en": "Insulation material; performance depends on thickness/density and vapor control.",
+      "definition_ja": "断熱材。厚み・密度・防湿処理で効果が変わる。\nガラス繊維を綿状に成形した断熱・吸音材。厚さ、密度、熱抵抗、防湿層の有無を設計性能に合わせ、隙間や過度な圧縮を避けて施工する。",
+      "definition_en": "Insulation material; performance depends on thickness/density and vapor control.\nFiberglass insulation made from fine glass fibers for thermal and acoustic performance. Thickness, density, thermal resistance, and facing should match the design, with gaps and excessive compression avoided.",
+      "browse_ja": "断熱材。厚み・密度・防湿処理で効果が変わる。"
+    },
+    {
+      "id": "dust_control_008",
+      "expected_ja": "切断・研磨の粉塵を抑える対策。集じん・養生・換気を組み合わせる。 具体例：どの工程で使うか、何と一緒に使うか、失敗しやすいポイントを押さえる。",
+      "expected_en": "Measures to reduce dust during cutting/grinding using extraction, masking, and ventilation.",
+      "definition_ja": "切断・研磨の粉塵を抑える対策。集じん・養生・換気を組み合わせる。\n切断・研磨・解体などで発生する粉じんを発生源で減らし、作業者や周囲への拡散を抑える対策の総称。湿式化、局所集じん、隔離、換気、清掃、呼吸用保護具を組み合わせる。",
+      "definition_en": "Measures to reduce dust during cutting/grinding using extraction, masking, and ventilation.\nDust control is the combination of measures used to reduce dust generation and prevent worker or area exposure during cutting, grinding, demolition, and similar work. Wet methods, local extraction, isolation, ventilation, cleanup, and respiratory protection may be combined.",
+      "browse_ja": "切断・研磨の粉塵を抑える対策。集じん・養生・換気を組み合わせる。"
+    }
+  ]
+}

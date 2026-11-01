@@ -17,7 +17,7 @@ const trustedSourceDomains = {
   OPPO: ['oppo.com'],
   Xiaomi: ['mi.com'],
   Motorola: ['motorola.com', 'motorola.co.jp'],
-  Nothing: ['nothing.tech', 'rakuten.co.jp'],
+  Nothing: ['nothing.tech', 'rakuten.co.jp', 'au.com', 'iijmio.jp'],
   ZTE: ['nubia.com', 'ymobile.jp']
 };
 

@@ -176,6 +176,12 @@
         <div class="lc-metric"><div class="k">Cast (C)</div><div id="exCast" class="v">-</div></div>
         <div class="lc-metric"><div class="k">Contrast (S)</div><div id="exContrast" class="v">-</div></div>
         <div class="lc-metric"><div class="k">Stability / F</div><div id="exFlicker" class="v">-</div></div>
+        <div class="lc-baseline-actions" aria-label="Relative lighting comparison">
+          <button id="btnBaseline" class="lc-btn" type="button" disabled><span data-i18n="ja">基準を記録</span><span data-i18n="en">Save baseline</span></button>
+          <button id="btnClearBaseline" class="lc-btn" type="button" disabled><span data-i18n="ja">基準を解除</span><span data-i18n="en">Clear baseline</span></button>
+        </div>
+        <p id="baselineSummary" class="lc-baseline-summary"><span data-i18n="ja">基準未記録。開始後に基準を保存できます。</span><span data-i18n="en">No baseline. Save a reference after starting the camera.</span></p>
+        <p class="lc-baseline-caution"><span data-i18n="ja">同じカメラ・構図で照明を変える前後を比較します。カメラを停止・反転・モード変更すると基準は消えます。映像は保存しません。値は相対指標であり、照度・フリッカー等の実測値ではありません。</span><span data-i18n="en">Compare before/after lighting with the same camera and framing. Stopping, flipping or changing camera mode clears the baseline. No video is stored. The indicators are relative, not calibrated lux or flicker measurements.</span></p>
         <button id="btnCopyResults" class="lc-btn" type="button"><span data-i18n="ja">結果をコピー</span><span data-i18n="en">Copy results</span></button>
         <div class="lc-advice" id="adviceBox"><div class="lc-adviceTitle"><span data-i18n="ja">改善のヒント</span><span data-i18n="en">Suggestions</span></div><div id="adviceText" class="lc-adviceText">-</div></div>
       </div>

@@ -78,6 +78,19 @@
       <p class="hint" data-i18n="timelineBoundary">退去立会い・鍵返却・メーター写真・原状回復など「退去直前だけ」を詳しく確認したい場合は、専用の Moving / Lease Final Check を使ってください。</p>
     </section>
 
+    <section class="panel packing-readiness no-print" aria-label="Packing supply readiness">
+      <h2 class="result-title" data-i18n="packingTitle">梱包前の用品チェック</h2>
+      <p class="hint" data-i18n="packingIntro">まず手元にある物を確認してください。使える箱や袋は再利用できます。下のチェックはこの画面だけの一時メモで、引っ越し手続きの完了状況には影響しません。</p>
+      <ul class="packing-list">
+        <li><label><input type="checkbox" name="packingReady" value="boxes"><span data-i18n="packingBoxes">箱・段ボール：丈夫さと持ち上げやすい重さを確認</span></label></li>
+        <li><label><input type="checkbox" name="packingReady" value="tape"><span data-i18n="packingTape">梱包テープ：箱の底や継ぎ目をしっかり固定</span></label></li>
+        <li><label><input type="checkbox" name="packingReady" value="cushion"><span data-i18n="packingCushion">緩衝材：割れ物や精密機器の保護に使用</span></label></li>
+        <li><label><input type="checkbox" name="packingReady" value="clothes"><span data-i18n="packingClothes">衣類用の袋：衣類の種類に合わせて必要なら準備</span></label></li>
+      </ul>
+      <p class="hint" data-i18n="packingDisclaimer">下のAmazonリンクは一般的な梱包用品を探すためのものです。チェックした物の購入が必要という意味ではありません。行政・転居・契約の手続きを代行するものでもありません。</p>
+    </section>
+    <div id="nwAmazonAffiliate" class="nw-amazon-mount no-print" hidden></div>
+
     <section class="panel no-print" aria-label="Generator form">
       <div class="form-grid">
         <label class="field"><span class="label" data-i18n="movingDate">引っ越し日</span><input id="moveDate" type="date" /></label>
@@ -125,8 +138,6 @@
     </section>
 
     <div class="nw-links" aria-label="Related tools"><a href="/tools/moving-lease-final-check/">Moving / Lease Final Check</a><a href="/tools/jp-postal-lite/">JP Postal Lite</a><a href="/tools/pdf-page-tools-mini/">PDF Page Tools Mini</a><a href="/tools/screenshot-stitcher/">Screenshot Stitcher</a></div>
-
-        <div id="nwAmazonAffiliate" class="nw-amazon-mount" hidden></div>
 
 <div class="nw-donate"><p class="nw-donate-text" data-i18n="donateText">このツールが役に立ったら、開発継続のためのご支援をいただけると嬉しいです。</p><div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div></div>
   </main>

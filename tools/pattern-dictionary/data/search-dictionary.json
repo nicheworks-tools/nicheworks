@@ -3490,6 +3490,21 @@
       "ids": [
         "terrazzo"
       ]
+    },
+    "pin striped": {
+      "ids": [
+        "pinstripe"
+      ]
+    },
+    "shepherd's check": {
+      "ids": [
+        "shepherd-check"
+      ]
+    },
+    "swiss dot": {
+      "ids": [
+        "swiss-dot"
+      ]
     }
   }
 }

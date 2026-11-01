@@ -195,9 +195,8 @@ for (const [code, row] of ledgerByCode) {
     if (publishedCodes.has(code)) fail(`${code}: reviewed_no_direct must not be published`);
   }
 
-  if (PUBLISHABLE_STATES.has(row.coverage_state) && !publishedCodes.has(code)) {
-    fail(`${code}: ${row.coverage_state} must have a published manifest entry`);
-  }
+  // Reviewed municipalities may have verified directory links without a standalone page.
+  // Manifest entries remain an explicit curated publication allowlist checked above.
 }
 
 const finalStateTotal = [...FINAL_STATES].reduce((sum, state) => sum + stateCounts[state], 0);

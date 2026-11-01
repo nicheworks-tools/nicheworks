@@ -12,17 +12,19 @@ Generate batch filename cleanup candidates from selected local file names withou
 ## Current functional contract
 
 - Accept multiple local files through picker or drag-and-drop and use their file names only.
+- Alternatively accept up to 500 newline-separated filenames as paste-only text (maximum 100,000 characters); this mode never requires access to any physical file or file content.
 - Generate candidate names using configurable rules including Unicode NFKC width normalization, whitespace→underscore, lowercase extension, optional lowercase base name, separator collapse, edge trimming, and forbidden-character replacement.
 - Detect candidate-name collisions and optionally append `_2`, `_3`, and later suffixes.
 - Warn about Windows reserved names and problematic filename shapes such as excessive length, leading dots, trailing dots, or trailing spaces.
 - Show an original→candidate preview table with status/warnings.
-- Copy the mapping as TSV and download it as CSV.
+- Copy the mapping as TSV and download it as CSV from both Japanese and English public pages, including the paste-only workflow.
 - Do not rename the actual selected files and do not generate execution commands in the current version.
 - Provide separate Japanese and English public tool pages.
 
 ## Inputs
 
 - Multiple local file selections.
+- Optional pasted list of filename strings, one per line, which replaces any prior file selection without reading file contents.
 - Filename cleanup rule toggles.
 
 ## Outputs
@@ -62,6 +64,8 @@ Multiple-file controls and the original/candidate/status/warning table are most 
 ## Acceptance criteria
 
 - [ ] Selecting files reads file names for preview without reading/uploading file contents as part of rename logic.
+- [ ] Pasting up to 500 names loads the exact supported filename list into the same normalization/preview/export engine, while empty or oversize inputs report errors without silently clipping.
+- [ ] Both JA and EN forms have the same core controls, including TSV copy, CSV download, deduplication, results summary and filename paste.
 - [ ] Enabled normalization rules deterministically change candidate names and disabled rules do not silently apply.
 - [ ] Duplicate candidate names are detected and can be disambiguated with sequential suffixes.
 - [ ] TSV/CSV export contains the preview mapping and does not modify the selected local files.
@@ -74,3 +78,4 @@ Multiple-file controls and the original/candidate/status/warning table are most 
 - `tools/rename-wizard/en/index.html`
 - `tools/rename-wizard/en/app.js`
 - `tools/rename-wizard/style.css`
+- `tools/rename-wizard/tests/behavior.test.mjs`

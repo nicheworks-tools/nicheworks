@@ -377,3 +377,45 @@ body {
   .ocr-controls button,
   .secondary-btn { width: 100%; }
 }
+
+/* Canonical care-symbol reference: indexable copy and mobile-first navigation. */
+.symbol-reference {
+  margin: 16px 0;
+  padding: 14px 12px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #fff;
+}
+.symbol-reference h2 { margin: 0 0 8px; font-size: 17px; }
+.symbol-reference > p { color: var(--muted2); line-height: 1.7; font-size: 12px; }
+.reference-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 255px), 1fr));
+  gap: 12px;
+}
+.reference-group { min-width: 0; }
+.reference-group h3 { font-size: 14px; margin: 10px 0 6px; }
+.reference-group ul { margin: 0; padding: 0; list-style: none; }
+.reference-group li + li { border-top: 1px solid var(--border); }
+.reference-group a {
+  display: flex;
+  gap: 9px;
+  align-items: start;
+  padding: 8px 3px;
+  min-height: 36px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 12px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.reference-group a:hover,
+.reference-group a:focus-visible { text-decoration: underline; background: var(--bg-soft); }
+.reference-number { font-weight: 700; flex: 0 0 3ch; font-variant-numeric: tabular-nums; }
+.reference-source a { color: var(--muted2); }
+.affiliate-separation {
+  margin: 12px 0 4px;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--muted2);
+}

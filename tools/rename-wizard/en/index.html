@@ -121,6 +121,14 @@
         <input id="fileInput" type="file" multiple class="file-input" />
       </div>
 
+      <div class="filename-paste">
+        <label class="section-title" for="namesInput">Or paste a list of filenames</label>
+        <p class="section-desc">One filename per line, up to 500. Preview names without selecting files. No file contents are read, changed or uploaded.</p>
+        <textarea id="namesInput" class="names-input" rows="5" maxlength="100000" placeholder="Invoice October 2026.PDF&#10;Photo 001.JPG"></textarea>
+        <button id="loadNamesButton" class="btn btn-ghost" type="button">Load filename list</button>
+        <p id="pasteStatus" class="copy-status" role="status" aria-live="polite"></p>
+      </div>
+
       <div class="options">
         <h3 class="options-title">Rename Rules</h3>
         <label class="option-item">
@@ -151,11 +159,13 @@
           <input type="checkbox" id="optRemoveForbidden" checked />
           Remove forbidden characters / \ : * ? " &lt; &gt; |
         </label>
+        <label class="option-item"><input type="checkbox" id="optDeduplicate" checked />Add _2, _3 suffixes to duplicate candidates</label>
       </div>
 
       <div class="actions">
         <button id="runButton" class="btn btn-primary">Normalize file names</button>
-        <button id="copyButton" class="btn btn-ghost" disabled>Copy mapping list</button>
+        <button id="copyTsvButton" class="btn btn-ghost" disabled>Copy TSV</button>
+        <button id="downloadCsvButton" class="btn btn-ghost" disabled>Download CSV</button>
         <button id="clearButton" class="btn btn-ghost">Reset</button>
       </div>
     </section>
@@ -167,6 +177,7 @@
         Use the copied mapping for your own batch scripts.
       </p>
 
+      <div id="summaryBox" class="summary-box">Selected: 0 files</div>
       <div id="noFilesMessage" class="empty-state">
         No files selected yet.
       </div>
@@ -179,6 +190,7 @@
               <th>Original filename</th>
               <th>Normalized filename</th>
               <th>Status</th>
+              <th>Warnings</th>
             </tr>
           </thead>
           <tbody id="resultBody"></tbody>

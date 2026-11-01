@@ -1,0 +1,1251 @@
+{
+  "schema_version": 1,
+  "batch": "national-batch04",
+  "phase1_target": 1741,
+  "phase2_wards_excluded": 175,
+  "planned_count": 50,
+  "source_base_commit": "96920a212c41fb8acb667d2f0b50f4442e428aca",
+  "status": "research_complete_ready_for_implementation",
+  "source_policy": "Official municipality or officially responsible joint-service sources only; do not count a candidate as verified until the actual content, scope and relationship are checked. Do not invent 3 URLs, calendar years, district scope, or providers. reviewed_no_direct is a valid completed state after documented research; pending_review is the only incomplete state.",
+  "continuation": "Read tools/trashnavi/NATIONAL_COMPLETION_POLICY.md first. For every one of these 50 municipalities, verify and assign exactly one final state, generate/publish only where sources support it, and complete strict audits, PR and merge. Preserve other tools' sitemap entries. Treat 50 reviewed, not 50 published, as the batch completion gate.",
+  "work_items": [
+    {
+      "lgcode": "173860",
+      "pref": "石川県",
+      "municipality": "宝達志水町",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.hodatsushimizu.jp/gyosei/kurashi_tetsuzuki/2/4/index.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.hodatsushimizu.jp/gyosei/kurashi_tetsuzuki/2/4/index.html",
+          "title": "ごみの分け方・出し方",
+          "link_type": "waste_sorting"
+        },
+        {
+          "url": "https://www.hodatsushimizu.jp/soshiki/kankyo/2_1/4/4860.html",
+          "title": "令和8年度ごみ収集カレンダー",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "174076",
+      "pref": "石川県",
+      "municipality": "中能登町",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.town.nakanoto.ishikawa.jp/soshiki/seikatsukankyou/1/3/4/10108.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.town.nakanoto.ishikawa.jp/soshiki/seikatsukankyou/1/3/4/10108.html",
+          "title": "令和8年度ごみ収集カレンダー",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "174611",
+      "pref": "石川県",
+      "municipality": "穴水町",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.town.anamizu.lg.jp/page/100066.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.town.anamizu.lg.jp/page/100066.html",
+          "title": "ごみの分け方・出し方",
+          "link_type": "waste_sorting"
+        },
+        {
+          "url": "https://www.town.anamizu.lg.jp/page/108453.html",
+          "title": "令和8年度ごみ収集カレンダー",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "174637",
+      "pref": "石川県",
+      "municipality": "能登町",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.town.noto.lg.jp/kakuka/1001/gyomu/1/3/1780.html",
+      "verification_status": "verified_official_source",
+      "notes": "Calendar link is explicitly for Noto area; it is not generalized to other collection districts.",
+      "sources": [
+        {
+          "url": "https://www.town.noto.lg.jp/kakuka/1001/gyomu/1/3/1780.html",
+          "title": "家庭ごみの分け方",
+          "link_type": "waste_sorting"
+        },
+        {
+          "url": "https://www.town.noto.lg.jp/kakuka/1001/gyomu/1/3/5176.html",
+          "title": "能登町ごみ収集カレンダー（能登地区）",
+          "link_type": "collection_calendar"
+        },
+        {
+          "url": "https://www.town.noto.lg.jp/kurashi-tetsuzuki/gomi/3/index.html",
+          "title": "家庭ごみ情報",
+          "link_type": "waste_sorting"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "182028",
+      "pref": "福井県",
+      "municipality": "敦賀市",
+      "coverage_state": "standard",
+      "candidate_official_waste_url": "https://www.city.tsuruga.lg.jp/site/seisou/14862.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.city.tsuruga.lg.jp/site/seisou/14862.html",
+          "title": "令和8年度ごみ収集カレンダー",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        },
+        {
+          "url": "https://www.city.tsuruga.lg.jp/site/seisou/1157.html",
+          "title": "ごみの分別にご協力ください",
+          "link_type": "waste_sorting"
+        },
+        {
+          "url": "https://www.city.tsuruga.lg.jp/site/seisou/4810.html",
+          "title": "粗大ごみの出し方",
+          "link_type": "bulky_waste"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "182044",
+      "pref": "福井県",
+      "municipality": "小浜市",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www1.city.obama.fukui.jp/kurashi/eisei-kankyo/gominokaishu-dashikata/p006769.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www1.city.obama.fukui.jp/kurashi/eisei-kankyo/gominokaishu-dashikata/p006769.html",
+          "title": "令和8年度ごみ収集カレンダー",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        },
+        {
+          "url": "https://www1.city.obama.fukui.jp/kurashi/eisei-kankyo/gominokaishu-dashikata/p006652.html",
+          "title": "ごみの分け方・出し方",
+          "link_type": "waste_sorting"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "182052",
+      "pref": "福井県",
+      "municipality": "大野市",
+      "coverage_state": "standard",
+      "candidate_official_waste_url": "https://www.city.ono.fukui.jp/kurashi/kankyo-sumai/gomi-recycle/gomikarenda.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.city.ono.fukui.jp/kurashi/kankyo-sumai/gomi-recycle/gomikarenda.html",
+          "title": "ごみ収集カレンダー",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        },
+        {
+          "url": "https://www.city.ono.fukui.jp/kurashi/kankyo-sumai/gomi-recycle/gominowakekata.html",
+          "title": "ごみの分け方・出し方",
+          "link_type": "waste_sorting"
+        },
+        {
+          "url": "https://www.city.ono.fukui.jp/kurashi/kankyo-sumai/gomi-recycle/info.html",
+          "title": "ごみ・リサイクルのお知らせ",
+          "link_type": "special_disposal"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "182061",
+      "pref": "福井県",
+      "municipality": "勝山市",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.city.katsuyama.fukui.jp/site/shinsei-navi/35866.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.city.katsuyama.fukui.jp/site/shinsei-navi/35866.html",
+          "title": "令和8年度ごみ収集カレンダー",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        },
+        {
+          "url": "https://www.city.katsuyama.fukui.jp/soshiki/5/27661.html",
+          "title": "ごみの分け方・出し方",
+          "link_type": "waste_sorting"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "182079",
+      "pref": "福井県",
+      "municipality": "鯖江市",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www5.city.sabae.fukui.jp/kurashi_tetsuduki/gomi_risaikuru/kateigomi/syuusyuubi.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www5.city.sabae.fukui.jp/kurashi_tetsuduki/gomi_risaikuru/kateigomi/syuusyuubi.html",
+          "title": "ごみ収集日",
+          "link_type": "collection_calendar"
+        },
+        {
+          "url": "https://www3.city.sabae.fukui.jp/kurashi_tetsuduki/gomi_risaikuru/kateigomi/gominobunbetsu.html",
+          "title": "ごみの分別",
+          "link_type": "waste_sorting"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "182087",
+      "pref": "福井県",
+      "municipality": "あわら市",
+      "coverage_state": "standard",
+      "candidate_official_waste_url": "https://www.city.awara.lg.jp/mokuteki/life/life03/life0302/p014650.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.city.awara.lg.jp/mokuteki/life/life03/life0302/p014650.html",
+          "title": "令和8年度ごみ収集カレンダー",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        },
+        {
+          "url": "https://www.city.awara.lg.jp/mokuteki/life/life03/life0302/p001154.html",
+          "title": "ごみの分け方・出し方",
+          "link_type": "waste_sorting"
+        },
+        {
+          "url": "https://www.city.awara.lg.jp/mokuteki/life/life03/life0302/p007468.html",
+          "title": "ごみ分別アプリができました",
+          "link_type": "waste_app"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "182095",
+      "pref": "福井県",
+      "municipality": "越前市",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.city.echizen.lg.jp/office/kankyounourin/051/gomirecycle/dasikata-wakekata.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.city.echizen.lg.jp/office/kankyounourin/051/gomirecycle/dasikata-wakekata.html",
+          "title": "ごみの出し方・分け方",
+          "link_type": "waste_sorting"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "182109",
+      "pref": "福井県",
+      "municipality": "坂井市",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://anshinanzen.city.fukui-sakai.lg.jp/kankyou/kurashi/gomi/shushubi/calendar.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://anshinanzen.city.fukui-sakai.lg.jp/kankyou/kurashi/gomi/shushubi/calendar.html",
+          "title": "令和8年度ごみ収集カレンダー",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        },
+        {
+          "url": "https://anshinanzen.city.fukui-sakai.lg.jp/kankyou/kurashi/gomi/",
+          "title": "ごみの分け方・出し方",
+          "link_type": "waste_sorting"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "183229",
+      "pref": "福井県",
+      "municipality": "永平寺町",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://town.eiheiji.lg.jp/200/206/216/217/p011878.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://town.eiheiji.lg.jp/200/206/216/217/p011878.html",
+          "title": "令和8年度ごみ分別・収集カレンダー",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        },
+        {
+          "url": "https://www.town.eiheiji.lg.jp/200/206/216/217/p001320.html",
+          "title": "ごみの分け方",
+          "link_type": "waste_sorting"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "183822",
+      "pref": "福井県",
+      "municipality": "池田町",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.town.ikeda.fukui.jp/kurashi/anzen/1361/p001241.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.town.ikeda.fukui.jp/kurashi/anzen/1361/p001241.html",
+          "title": "ごみの分け方・出し方",
+          "link_type": "waste_sorting"
+        },
+        {
+          "url": "https://www.town.ikeda.fukui.jp/faq/seikatsufaq/5201/p002183.html",
+          "title": "粗大ごみの出し方",
+          "link_type": "bulky_waste"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "184047",
+      "pref": "福井県",
+      "municipality": "南越前町",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.town.minamiechizen.lg.jp/kurasi/101/116/p001929.html",
+      "verification_status": "verified_official_source",
+      "notes": "公式ページで地域別の収集日を確認。粗大ごみは令和8年度日程表を別リンクで記録し、地区間で収集場所・日程を一般化しない。",
+      "sources": [
+        {
+          "url": "https://www.town.minamiechizen.lg.jp/kurasi/101/116/p001929.html",
+          "title": "ごみの分け方・出し方",
+          "link_type": "waste_sorting"
+        },
+        {
+          "url": "https://www.town.minamiechizen.lg.jp/kurasi/101/116/p003566.html",
+          "title": "令和8年度粗大ごみの収集日程表",
+          "link_type": "bulky_waste"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "184233",
+      "pref": "福井県",
+      "municipality": "越前町",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.town.echizen.fukui.jp/kurashi/05/01/p005382.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.town.echizen.fukui.jp/kurashi/05/01/p005382.html",
+          "title": "令和8年度ごみ収集カレンダー",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        },
+        {
+          "url": "https://www.town.echizen.fukui.jp/kurashi/05/01/p000477.html",
+          "title": "ごみ分別ガイド",
+          "link_type": "waste_sorting"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "184420",
+      "pref": "福井県",
+      "municipality": "美浜町",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.town.fukui-mihama.lg.jp/site/gomi/7497.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.town.fukui-mihama.lg.jp/site/gomi/7497.html",
+          "title": "ごみの出し方・分け方",
+          "link_type": "waste_sorting"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "184811",
+      "pref": "福井県",
+      "municipality": "高浜町",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.town.takahama.fukui.jp/page/jyuminseikatu/p007845.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.town.takahama.fukui.jp/page/jyuminseikatu/p007845.html",
+          "title": "ごみの分け方と出し方",
+          "link_type": "waste_sorting"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "184837",
+      "pref": "福井県",
+      "municipality": "おおい町",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.town.ohi.fukui.jp/1001/1204/27/p13817.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.town.ohi.fukui.jp/1001/1204/27/p13817.html",
+          "title": "ごみの分け方・出し方",
+          "link_type": "waste_sorting"
+        },
+        {
+          "url": "https://www.town.ohi.fukui.jp/calendar/trash/index.html",
+          "title": "ごみ収集日カレンダー",
+          "link_type": "collection_calendar"
+        },
+        {
+          "url": "https://www.town.ohi.fukui.jp/calendar/trash/p10209.html",
+          "title": "燃やせるごみの出し方",
+          "link_type": "waste_sorting"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "185019",
+      "pref": "福井県",
+      "municipality": "若狭町",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.town.fukui-wakasa.lg.jp/soshiki/kankyoanzenka/gyomuannai/1/3/3855.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.town.fukui-wakasa.lg.jp/soshiki/kankyoanzenka/gyomuannai/1/3/3855.html",
+          "title": "令和8年度ごみ収集カレンダー",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        },
+        {
+          "url": "https://www.town.fukui-wakasa.lg.jp/soshiki/kankyoanzenka/gyomuannai/1/466.html",
+          "title": "家庭ごみの分け方・出し方",
+          "link_type": "waste_sorting"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "192023",
+      "pref": "山梨県",
+      "municipality": "富士吉田市",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.city.fujiyoshida.yamanashi.jp/page/10920.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.city.fujiyoshida.yamanashi.jp/page/10920.html",
+          "title": "ごみ収集日程",
+          "link_type": "collection_calendar"
+        },
+        {
+          "url": "https://www.city.fujiyoshida.yamanashi.jp/page/1606.html",
+          "title": "ごみの分別・出し方",
+          "link_type": "waste_sorting"
+        },
+        {
+          "url": "https://www.city.fujiyoshida.yamanashi.jp/page/10796.html",
+          "title": "ごみ分別ガイドブック",
+          "link_type": "waste_sorting"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "192040",
+      "pref": "山梨県",
+      "municipality": "都留市",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.city.tsuru.yamanashi.jp/soshiki/chiikikankyou/kankyouseisaku_t/1/1311.html",
+      "verification_status": "verified_official_source",
+      "notes": "Collection calendar page found is dated R7; current-year claim omitted; combined guide/search links retained as official general guidance.",
+      "sources": [
+        {
+          "url": "https://www.city.tsuru.yamanashi.jp/soshiki/chiikikankyou/kankyouseisaku_t/1/1311.html",
+          "title": "ごみの分別・出し方・収集カレンダー",
+          "link_type": "waste_sorting"
+        },
+        {
+          "url": "https://www.city.tsuru.yamanashi.jp/benri_service/garbage_search/index.html",
+          "title": "ごみ分別検索",
+          "link_type": "waste_search"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "192058",
+      "pref": "山梨県",
+      "municipality": "山梨市",
+      "coverage_state": "standard",
+      "candidate_official_waste_url": "https://www.city.yamanashi.yamanashi.jp/site/shinsei-navi/7014.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.city.yamanashi.yamanashi.jp/site/shinsei-navi/7014.html",
+          "title": "令和8年度ごみ収集カレンダー",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        },
+        {
+          "url": "https://www.city.yamanashi.yamanashi.jp/soshiki/15/1093.html",
+          "title": "ごみの分け方・出し方",
+          "link_type": "waste_sorting"
+        },
+        {
+          "url": "https://www.city.yamanashi.yamanashi.jp/soshiki/15/1102.html",
+          "title": "家庭ごみの持ち込み",
+          "link_type": "dropoff_facility"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "192066",
+      "pref": "山梨県",
+      "municipality": "大月市",
+      "coverage_state": "standard",
+      "candidate_official_waste_url": "https://www.city.otsuki.yamanashi.jp/kurashi/gomi/gomi_dashikata_wakekata.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.city.otsuki.yamanashi.jp/kurashi/gomi/gomi_dashikata_wakekata.html",
+          "title": "ごみの出し方・分け方",
+          "link_type": "waste_sorting"
+        },
+        {
+          "url": "https://www.city.otsuki.yamanashi.jp/kurashi/gomi/sodaigomi.html",
+          "title": "粗大ごみの出し方",
+          "link_type": "bulky_waste"
+        },
+        {
+          "url": "https://www.city.otsuki.yamanashi.jp/kurashi/gomi/marutanomori.html",
+          "title": "ごみ処理施設",
+          "link_type": "dropoff_facility"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "192074",
+      "pref": "山梨県",
+      "municipality": "韮崎市",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.city.nirasaki.lg.jp/soshikiichiran/shiminseikatsuka/seikatsukankyotanto/1_2/kateigomi/8988.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.city.nirasaki.lg.jp/soshikiichiran/shiminseikatsuka/seikatsukankyotanto/1_2/kateigomi/8988.html",
+          "title": "令和8年度ごみ収集日程",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        },
+        {
+          "url": "https://www.city.nirasaki.lg.jp/soshikiichiran/shiminseikatsuka/seikatsukankyotanto/1_2/kateigomi/1251.html",
+          "title": "家庭ごみの分け方・出し方",
+          "link_type": "waste_sorting"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "192082",
+      "pref": "山梨県",
+      "municipality": "南アルプス市",
+      "coverage_state": "standard",
+      "candidate_official_waste_url": "https://www.city.minami-alps.yamanashi.jp/docs/1098.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.city.minami-alps.yamanashi.jp/docs/1098.html",
+          "title": "令和8年度ごみ収集カレンダー",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        },
+        {
+          "url": "https://www.city.minami-alps.yamanashi.jp/docs/1092.html",
+          "title": "ごみの分別・出し方",
+          "link_type": "waste_sorting"
+        },
+        {
+          "url": "https://www.city.minami-alps.yamanashi.jp/docs/4852.html",
+          "title": "ごみ分別ガイド（50音検索）",
+          "link_type": "waste_search"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "192091",
+      "pref": "山梨県",
+      "municipality": "北杜市",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.city.hokuto.yamanashi.jp/docs/17333.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.city.hokuto.yamanashi.jp/docs/17333.html",
+          "title": "令和8年度ごみ収集カレンダー",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        },
+        {
+          "url": "https://www.city.hokuto.yamanashi.jp/docs/1475.html",
+          "title": "ごみの分け方・出し方",
+          "link_type": "waste_sorting"
+        },
+        {
+          "url": "https://www.city.hokuto.yamanashi.jp/docs/2029.html",
+          "title": "ごみ・リサイクル情報",
+          "link_type": "waste_sorting"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "192104",
+      "pref": "山梨県",
+      "municipality": "甲斐市",
+      "coverage_state": "standard",
+      "candidate_official_waste_url": "https://www.city.kai.yamanashi.jp/page/4096.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.city.kai.yamanashi.jp/page/4096.html",
+          "title": "令和8年度ごみカレンダー",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        },
+        {
+          "url": "https://www.city.kai.yamanashi.jp/page/4057.html",
+          "title": "ごみの分別方法",
+          "link_type": "waste_sorting"
+        },
+        {
+          "url": "https://www.city.kai.yamanashi.jp/page/4053.html",
+          "title": "家庭ごみの出し方",
+          "link_type": "special_disposal"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "192112",
+      "pref": "山梨県",
+      "municipality": "笛吹市",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.city.fuefuki.yamanashi.jp/kankyosuishin/kurashi/risaikuru/gomibunnbetuhyoutosyuusyuubi.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.city.fuefuki.yamanashi.jp/kankyosuishin/kurashi/risaikuru/gomibunnbetuhyoutosyuusyuubi.html",
+          "title": "ごみ分別表と収集日",
+          "link_type": "waste_sorting"
+        },
+        {
+          "url": "https://www.city.fuefuki.yamanashi.jp/kurashi/risaikuru/index.html",
+          "title": "ごみ・リサイクル情報",
+          "link_type": "waste_search"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "192121",
+      "pref": "山梨県",
+      "municipality": "上野原市",
+      "coverage_state": "standard",
+      "candidate_official_waste_url": "https://www.city.uenohara.yamanashi.jp/page/1663.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.city.uenohara.yamanashi.jp/page/1663.html",
+          "title": "令和8年度ごみ収集カレンダー",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        },
+        {
+          "url": "https://www.city.uenohara.yamanashi.jp/page/1962.html",
+          "title": "ごみの分別・出し方",
+          "link_type": "waste_sorting"
+        },
+        {
+          "url": "https://www.city.uenohara.yamanashi.jp/page/1010170.html",
+          "title": "粗大ごみの出し方",
+          "link_type": "bulky_waste"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "192139",
+      "pref": "山梨県",
+      "municipality": "甲州市",
+      "coverage_state": "standard",
+      "candidate_official_waste_url": "https://www.city.koshu.yamanashi.jp/category/hayawakari/gomi_recycle/",
+      "verification_status": "verified_official_source",
+      "notes": "Calendar is explicitly for Katsunuma/Yamato; do not generalize that district calendar to Shioyama.",
+      "sources": [
+        {
+          "url": "https://www.city.koshu.yamanashi.jp/category/hayawakari/gomi_recycle/",
+          "title": "ごみ・リサイクル情報",
+          "link_type": "waste_sorting"
+        },
+        {
+          "url": "https://www.city.koshu.yamanashi.jp/docs/2020051500098/",
+          "title": "令和8年度収集カレンダー（勝沼・大和地区）",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        },
+        {
+          "url": "https://www.city.koshu.yamanashi.jp/docs/2024031900038/",
+          "title": "令和8年度粗大ごみ収集",
+          "link_type": "bulky_waste",
+          "fiscal_year": "2026"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "192147",
+      "pref": "山梨県",
+      "municipality": "中央市",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.city.chuo.yamanashi.jp/soshiki/siminnkannkyouka/kankyoutantou/kankyou/393.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.city.chuo.yamanashi.jp/soshiki/siminnkannkyouka/kankyoutantou/kankyou/393.html",
+          "title": "令和8年度ごみ収集カレンダー",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        },
+        {
+          "url": "https://www.city.chuo.yamanashi.jp/soshiki/siminnkannkyouka/kankyoutantou/kankyou/index.html",
+          "title": "ごみ・リサイクル案内",
+          "link_type": "waste_sorting"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "193461",
+      "pref": "山梨県",
+      "municipality": "市川三郷町",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.town.ichikawamisato.yamanashi.jp/20life/20discretion/2026-0218-0902-23.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official page labels the schedule as Reiwa 7; no current-year calendar claim is made.",
+      "sources": [
+        {
+          "url": "https://www.town.ichikawamisato.yamanashi.jp/20life/20discretion/2026-0218-0902-23.html",
+          "title": "家庭ごみの分別と出し方",
+          "link_type": "waste_sorting"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "193640",
+      "pref": "山梨県",
+      "municipality": "早川町",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.town.hayakawa.yamanashi.jp/people/garbage/2018-1016-1503-23.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.town.hayakawa.yamanashi.jp/people/garbage/2018-1016-1503-23.html",
+          "title": "ごみ収集案内",
+          "link_type": "waste_sorting"
+        },
+        {
+          "url": "https://www.town.hayakawa.yamanashi.jp/people/garbage/images/R8A.pdf",
+          "title": "令和8年度ごみカレンダー A地区",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        },
+        {
+          "url": "https://www.town.hayakawa.yamanashi.jp/people/garbage/images/R8B.pdf",
+          "title": "令和8年度ごみカレンダー B地区",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "193658",
+      "pref": "山梨県",
+      "municipality": "身延町",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.town.minobu.lg.jp/page/1368.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.town.minobu.lg.jp/page/1368.html",
+          "title": "ごみの分け方・出し方",
+          "link_type": "waste_sorting"
+        },
+        {
+          "url": "https://www.town.minobu.lg.jp/page/1380.html",
+          "title": "粗大ごみの収集",
+          "link_type": "bulky_waste"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "193666",
+      "pref": "山梨県",
+      "municipality": "南部町",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.town.nanbu.yamanashi.jp/news/2026-0417-0858-1.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.town.nanbu.yamanashi.jp/news/2026-0417-0858-1.html",
+          "title": "令和8年度ごみ収集日程",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        },
+        {
+          "url": "https://www.town.nanbu.yamanashi.jp/kakuka/kankyoucenter/gominittei.html",
+          "title": "ごみ収集について",
+          "link_type": "waste_sorting"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "193682",
+      "pref": "山梨県",
+      "municipality": "富士川町",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.town.fujikawa.yamanashi.jp/docs/2023082400122/",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.town.fujikawa.yamanashi.jp/docs/2023082400122/",
+          "title": "令和8年度ごみ収集カレンダー",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        },
+        {
+          "url": "https://www.town.fujikawa.yamanashi.jp/docs/2023082400160/",
+          "title": "ごみ分別辞典",
+          "link_type": "waste_sorting"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "193844",
+      "pref": "山梨県",
+      "municipality": "昭和町",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.town.showa.yamanashi.jp/site/gomi/",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.town.showa.yamanashi.jp/site/gomi/",
+          "title": "ごみの分け方・出し方",
+          "link_type": "waste_sorting"
+        },
+        {
+          "url": "https://www.town.showa.yamanashi.jp/life/1/9/",
+          "title": "ごみ・リサイクル情報",
+          "link_type": "waste_search"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "194221",
+      "pref": "山梨県",
+      "municipality": "道志村",
+      "coverage_state": "joint_service",
+      "candidate_official_waste_url": "https://www.vill.doshi.lg.jp/upload/file/1_%E9%81%93%E5%BF%97%E6%9D%91%E5%9C%B0%E5%9F%9F%E9%98%B2%E7%81%BD%E8%A8%88%E7%94%BB-%E6%9C%AC%E7%B7%A8%28R3_3_31%E4%BF%AE%E6%AD%A3%E7%89%88%29-.pdf",
+      "verification_status": "verified_official_source",
+      "notes": "Village site was unavailable during review. Village disaster-plan PDF states waste treatment via the regional union; village ordinance assigns disposal instructions to the mayor. Joint provider relation is recorded; municipal collection calendar not claimed.",
+      "sources": [
+        {
+          "url": "https://www.vill.doshi.lg.jp/upload/file/1_%E9%81%93%E5%BF%97%E6%9D%91%E5%9C%B0%E5%9F%9F%E9%98%B2%E7%81%BD%E8%A8%88%E7%94%BB-%E6%9C%AC%E7%B7%A8%28R3_3_31%E4%BF%AE%E6%AD%A3%E7%89%88%29-.pdf",
+          "title": "道志村地域防災計画（一般廃棄物処理）",
+          "link_type": "special_disposal"
+        },
+        {
+          "url": "https://www1.g-reiki.net/doshi/reiki_honbun/e655RG00000241.html",
+          "title": "廃棄物の処理及び清掃に関する条例",
+          "link_type": "special_disposal"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": "大月都留広域事務組合（村の公式地域防災計画で一般廃棄物処理を記載）"
+    },
+    {
+      "lgcode": "194239",
+      "pref": "山梨県",
+      "municipality": "西桂町",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.town.nishikatsura.yamanashi.jp/info/660",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.town.nishikatsura.yamanashi.jp/info/660",
+          "title": "令和8年度ごみ収集カレンダー",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        },
+        {
+          "url": "https://www.town.nishikatsura.yamanashi.jp/info/1227",
+          "title": "ごみ分別アプリ",
+          "link_type": "waste_app"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "194247",
+      "pref": "山梨県",
+      "municipality": "忍野村",
+      "coverage_state": "standard",
+      "candidate_official_waste_url": "https://www.vill.oshino.lg.jp/page/1543.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.vill.oshino.lg.jp/page/1487.html",
+          "title": "可燃ごみ・不燃ごみの分け方",
+          "link_type": "waste_sorting"
+        },
+        {
+          "url": "https://www.vill.oshino.lg.jp/page/1543.html",
+          "title": "令和8年度ごみ収集カレンダー",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        },
+        {
+          "url": "https://www.vill.oshino.lg.jp/page/1493.html",
+          "title": "粗大ごみ・電池の収集",
+          "link_type": "bulky_waste"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "194255",
+      "pref": "山梨県",
+      "municipality": "山中湖村",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.vill.yamanakako.lg.jp/info/622",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.vill.yamanakako.lg.jp/info/622",
+          "title": "ごみ収集ルール変更",
+          "link_type": "waste_sorting"
+        },
+        {
+          "url": "https://www.vill.yamanakako.lg.jp/menu/81",
+          "title": "ごみ・リサイクル案内",
+          "link_type": "waste_search"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "194298",
+      "pref": "山梨県",
+      "municipality": "鳴沢村",
+      "coverage_state": "standard",
+      "candidate_official_waste_url": "https://www.vill.narusawa.yamanashi.jp/gyosei/soshikikarasagasu/juminka/gomi_recycle/428.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.vill.narusawa.yamanashi.jp/gyosei/soshikikarasagasu/juminka/gomi_recycle/428.html",
+          "title": "ごみの分別・出し方",
+          "link_type": "waste_sorting"
+        },
+        {
+          "url": "https://www.vill.narusawa.yamanashi.jp/gyosei/gomi/index.html",
+          "title": "ごみ情報",
+          "link_type": "waste_search"
+        },
+        {
+          "url": "https://www.vill.narusawa.yamanashi.jp/gyosei/gomi/1362.html",
+          "title": "ごみ分別検索",
+          "link_type": "waste_app"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "194301",
+      "pref": "山梨県",
+      "municipality": "富士河口湖町",
+      "coverage_state": "standard",
+      "candidate_official_waste_url": "https://www.town.fujikawaguchiko.lg.jp/trash/index.php?mode=1",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.town.fujikawaguchiko.lg.jp/trash/index.php?mode=1",
+          "title": "ごみ収集カレンダー（地区選択）",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        },
+        {
+          "url": "https://www.town.fujikawaguchiko.lg.jp/ka/info.php?if_id=7116&ka_id=16",
+          "title": "ごみ分別表",
+          "link_type": "waste_sorting"
+        },
+        {
+          "url": "https://www.town.fujikawaguchiko.lg.jp/relation/info.php?if_id=6799&rt_id=439",
+          "title": "ごみ分別アプリ",
+          "link_type": "waste_app"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "194425",
+      "pref": "山梨県",
+      "municipality": "小菅村",
+      "coverage_state": "joint_service",
+      "candidate_official_waste_url": "https://page.line.me/000sccrc",
+      "verification_status": "verified_official_source",
+      "notes": "Official LINE publishes/request routes for village garbage calendar. Uenohara official regulation distinguishes Kosuge village collection from Uenohara treatment; Uenohara sorting rules are not generalized to Kosuge.",
+      "sources": [
+        {
+          "url": "https://page.line.me/000sccrc",
+          "title": "公式LINEでごみカレンダーを配信",
+          "link_type": "waste_app"
+        },
+        {
+          "url": "https://www1.g-reiki.net/uenohara/reiki_honbun/r175RG00000686.html",
+          "title": "上野原市・小菅村一般廃棄物事務委託規約",
+          "link_type": "special_disposal"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": "上野原市（一般廃棄物処理受託。小菅村が村内収集を実施）"
+    },
+    {
+      "lgcode": "194433",
+      "pref": "山梨県",
+      "municipality": "丹波山村",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.vill.tabayama.yamanashi.jp/kurashi/trush.html",
+      "verification_status": "verified_official_source",
+      "notes": "The calendar landing page is general and older; source is not represented as a current-year calendar.",
+      "sources": [
+        {
+          "url": "https://www.vill.tabayama.yamanashi.jp/kurashi/trush.html",
+          "title": "ごみの分け方・出し方",
+          "link_type": "waste_sorting"
+        },
+        {
+          "url": "https://www.vill.tabayama.yamanashi.jp/calender/",
+          "title": "ごみ収集カレンダー",
+          "link_type": "collection_calendar"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "202037",
+      "pref": "長野県",
+      "municipality": "上田市",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.city.ueda.nagano.jp/soshiki/haiki/53555.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.city.ueda.nagano.jp/soshiki/haiki/53555.html",
+          "title": "令和8年度ごみ収集カレンダー",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "202045",
+      "pref": "長野県",
+      "municipality": "岡谷市",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.city.okaya.lg.jp/soshikikarasagasu/kankyoka/gomirisaikuru/karendagaido/30331.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.city.okaya.lg.jp/soshikikarasagasu/kankyoka/gomirisaikuru/karendagaido/30331.html",
+          "title": "令和8年度ごみ収集カレンダー",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "202053",
+      "pref": "長野県",
+      "municipality": "飯田市",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.city.iida.lg.jp/site/gomi/gomi-recycle-calendar-reiwa8.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.city.iida.lg.jp/site/gomi/gomi-recycle-calendar-reiwa8.html",
+          "title": "令和8年度ごみ収集カレンダー",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        },
+        {
+          "url": "https://cms.city.iida.lg.jp/site/gomi/",
+          "title": "ごみ・リサイクル案内",
+          "link_type": "waste_sorting"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    },
+    {
+      "lgcode": "202061",
+      "pref": "長野県",
+      "municipality": "諏訪市",
+      "coverage_state": "limited",
+      "candidate_official_waste_url": "https://www.city.suwa.lg.jp/soshiki/10/80644.html",
+      "verification_status": "verified_official_source",
+      "notes": "Official municipality waste-information page(s) checked; local-area distinctions and calendar scope are retained as stated by the source.",
+      "sources": [
+        {
+          "url": "https://www.city.suwa.lg.jp/soshiki/10/80644.html",
+          "title": "令和8年度ごみカレンダー",
+          "link_type": "collection_calendar",
+          "fiscal_year": "2026"
+        },
+        {
+          "url": "https://www.city.suwa.lg.jp/soshiki/10/54072.html",
+          "title": "ごみ分別ガイドブック",
+          "link_type": "waste_sorting"
+        },
+        {
+          "url": "https://www.city.suwa.lg.jp/soshiki/10/2127.html",
+          "title": "ごみの分け方・出し方",
+          "link_type": "waste_sorting"
+        }
+      ],
+      "research_method": "Official municipality/public authority waste pages and linked page content checked; commercial/aggregator sources excluded.",
+      "service_provider": null
+    }
+  ],
+  "completed_at": "2026-10-31"
+}

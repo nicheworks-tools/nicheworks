@@ -84,14 +84,17 @@
       `${destinationKey}_${placement}`
     );
 
-    window.gtag("event", "affiliate_outbound", {
+    const payload = {
       tool_slug: stableToken(state.tool, "unknown"),
       affiliate_id: affiliateId,
       placement,
       merchant: state.merchant,
       destination_key: destinationKey,
       language: resolveLanguage(options.container, options.language)
-    });
+    };
+    const allowedIntent = new Set(["general", "sorting", "collection", "cleanup"]);
+    if (allowedIntent.has(options.intentBucket)) payload.intent_bucket = options.intentBucket;
+    window.gtag("event", "affiliate_outbound", payload);
   }
 
   function mountLink(container, target, url, options = {}) {
@@ -146,11 +149,30 @@
     return true;
   }
 
+  // Centralized, privacy-bucketed view event; unlike outbound clicks this
+  // only fires when a participating tool reports a visible sponsored panel.
+  function trackImpression(options = {}) {
+    if (!hasAnyActiveTarget() || typeof window.gtag !== "function") return false;
+    const allowed = new Set(["general", "sorting", "collection", "cleanup"]);
+    const bucket = allowed.has(options.intentBucket) ? options.intentBucket : "general";
+    const count = Number.isInteger(options.offerCount) ? Math.max(0, Math.min(options.offerCount, 20)) : 0;
+    window.gtag("event", "affiliate_impression", {
+      tool_slug: stableToken(state.tool, "unknown"),
+      placement: stableToken(options.placement, "unspecified"),
+      merchant: state.merchant,
+      offer_count: count,
+      intent_bucket: bucket,
+      language: resolveLanguage(options.container, options.language)
+    });
+    return true;
+  }
+
   const api = Object.freeze({
     configure,
     isActive,
     mount,
     mountUrl,
+    trackImpression,
     renderDisclosure
   });
 

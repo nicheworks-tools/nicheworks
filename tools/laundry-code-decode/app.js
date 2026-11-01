@@ -5,6 +5,7 @@ const result = document.getElementById("result");
 const summaryEl = document.getElementById("resultSummary");
 const detailEl = document.getElementById("resultDetail");
 const copyBtn = document.getElementById("resultCopy");
+const shareBtn = document.getElementById("resultShare");
 
 const candGrid = document.getElementById("ocrCandidatesGrid");
 const ocrFile = document.getElementById("ocrFile");
@@ -125,6 +126,7 @@ function applyLang(lang) {
   });
 
   if (copyBtn) copyBtn.textContent = currentLang === "ja" ? "結果をコピー" : "Copy result";
+  if (shareBtn) shareBtn.textContent = currentLang === "ja" ? "記号へのリンクをコピー" : "Copy symbol link";
   if (lastSymbol) showResult(lastSymbol, false);
   renderSymbols();
 }
@@ -147,13 +149,38 @@ function cautionText() {
     : "Note: This reference follows JIS L 0001:2024 used in Japan from August 20, 2024. Prioritize the actual garment label, maker instructions, fabric notes, and professional cleaner guidance. Older and overseas labels may differ.";
 }
 
-function showResult(sym, doScroll = true) {
+function symbolLink(sym) {
+  // Only canonical JIS numbers from the local official-symbol set may become links.
+  if (!sym || !/^\d{3}$/.test(String(sym.jis || ""))) return "";
+  if (!(window.SYMBOLS || []).some((entry) => entry.jis === sym.jis)) return "";
+  const url = new URL("/tools/laundry-code-decode/", window.location.origin);
+  url.searchParams.set("jis", sym.jis);
+  return url.toString();
+}
+
+function restoreSymbolFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const requested = params.get("jis");
+  if (!/^\d{3}$/.test(requested || "")) return;
+  const symbol = (window.SYMBOLS || []).find((entry) => entry.jis === requested);
+  if (!symbol) return;
+  if (qEl) qEl.value = "";
+  if (searchAllEl) searchAllEl.checked = false;
+  setCategory(symbol.cat);
+  showResult(symbol, false, false);
+}
+
+function showResult(sym, doScroll = true, updateUrl = true) {
   if (!result || !summaryEl || !detailEl) return;
   lastSymbol = sym;
   const t = getSymbolText(sym);
   summaryEl.textContent = t.summary;
   detailEl.textContent = sym.jis ? `${t.detail} ${currentLang === "ja" ? "記号番号" : "Symbol No."}: ${sym.jis}` : t.detail;
   result.classList.remove("hidden");
+  if (updateUrl && window.history?.replaceState) {
+    const link = symbolLink(sym);
+    if (link) window.history.replaceState(null, "", link);
+  }
   if (doScroll) result.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
@@ -501,6 +528,16 @@ ocrFile?.addEventListener("change", (e) => handleImageFile(e.target.files?.[0]))
 ocrRun?.addEventListener("click", runPhotoCandidates);
 ocrClear?.addEventListener("click", clearPhotoCandidateState);
 
+shareBtn?.addEventListener("click", async () => {
+  if (!lastSymbol) return;
+  const link = symbolLink(lastSymbol);
+  if (!link) return;
+  const ok = await copyText(link);
+  toast(ok
+    ? (currentLang === "ja" ? "記号へのリンクをコピーしました。" : "Symbol link copied.")
+    : (currentLang === "ja" ? "コピーできませんでした。" : "Could not copy the link."));
+});
+
 copyBtn?.addEventListener("click", async () => {
   if (!lastSymbol) return;
   const t = getSymbolText(lastSymbol);
@@ -524,4 +561,5 @@ document.addEventListener("DOMContentLoaded", () => {
   applyLang(currentLang);
   setCategory(currentCat);
   renderSymbols();
+  restoreSymbolFromUrl();
 });

@@ -1,1 +1,1285 @@
-{"schema":"cta-compact-v1","quality_batch":"015","rows":[{"id":"q015_cable_ladder","t":"component","ja":"ケーブルラック","en":"Cable Ladder","dj":"多数の電線やケーブルを支持して配線経路を作るラック。","de":"Ladder-style support used to route and support many cables.","c":"electrical","task":"route_cable"},{"id":"q015_ladder_rack_connector","t":"hardware","ja":"ラック接続金具","en":"Cable Rack Connector","dj":"ケーブルラック同士を接続する金物。","de":"Hardware used to connect cable rack sections.","c":"electrical","task":"connect_cable_rack"},{"id":"q015_cable_tray_cover","t":"component","ja":"ケーブルトレイカバー","en":"Cable Tray Cover","dj":"ケーブルトレイ内の配線を保護するカバー。","de":"Cover used to protect cables inside a cable tray.","c":"electrical","task":"protect_cable"},{"id":"q015_cable_gland","t":"component","ja":"ケーブルグランド","en":"Cable Gland","dj":"盤や機器のケーブル引込部を固定・保護する部品。","de":"Fitting that secures and seals cable entry into equipment.","c":"electrical","task":"terminate_cable"},{"id":"q015_cable_lug","t":"component","ja":"圧着端子","en":"Cable Lug","dj":"ケーブル端部を端子台や機器に接続する圧着部品。","de":"Crimped terminal used to connect cable ends to equipment.","c":"electrical","task":"terminate_cable"},{"id":"q015_ring_terminal","t":"component","ja":"丸形端子","en":"Ring Terminal","dj":"ねじ端子へ確実に接続する丸穴付き端子。","de":"Ring-shaped terminal used under screw connections.","c":"electrical","task":"terminate_wire"},{"id":"q015_spade_terminal","t":"component","ja":"Y形端子","en":"Spade Terminal","dj":"端子ねじへ差し込みやすいY字形の圧着端子。","de":"Fork-shaped terminal used for screw terminals.","c":"electrical","task":"terminate_wire"},{"id":"q015_ferrule_terminal","t":"component","ja":"フェルール端子","en":"Wire Ferrule","dj":"より線端部をまとめて端子へ差し込むための部品。","de":"Sleeve terminal used to prepare stranded wire ends.","c":"electrical","task":"terminate_wire"},{"id":"q015_heat_shrink_tube","t":"material","ja":"熱収縮チューブ","en":"Heat Shrink Tube","dj":"加熱で縮めて配線接続部を絶縁・保護するチューブ。","de":"Tube that shrinks with heat to insulate and protect wire joints.","c":"electrical","task":"insulate_joint"},{"id":"q015_wire_marker","t":"material","ja":"線名札","en":"Wire Marker","dj":"配線の番号や行き先を表示する識別材。","de":"Marker used to identify wire numbers or destinations.","c":"electrical","task":"label_wire"},{"id":"q015_cable_label","t":"material","ja":"ケーブルタグ","en":"Cable Tag","dj":"ケーブル名や回路名を表示するタグ。","de":"Tag used to identify cable name or circuit.","c":"electrical","task":"label_cable"},{"id":"q015_junction_box","t":"component","ja":"ジョイントボックス","en":"Junction Box","dj":"配線の接続や分岐を収める箱。","de":"Box used to contain wire joints or branches.","c":"electrical","task":"connect_wire"},{"id":"q015_pull_box","t":"component","ja":"プルボックス","en":"Pull Box","dj":"通線や配線引き回しを容易にする中継箱。","de":"Box used to assist cable pulling and routing.","c":"electrical","task":"pull_wire"},{"id":"q015_switch_box","t":"component","ja":"スイッチボックス","en":"Switch Box","dj":"壁スイッチを納める取付箱。","de":"Box used to house a wall switch.","c":"electrical","task":"install_switch"},{"id":"q015_grounding_busbar","t":"component","ja":"接地銅バー","en":"Grounding Busbar","dj":"接地線を集約して接続する銅バー。","de":"Copper bar used to collect and connect grounding conductors.","c":"electrical","task":"ground_equipment"},{"id":"q015_ground_rod","t":"component","ja":"接地棒","en":"Ground Rod","dj":"大地へ接地電流を流すために打ち込む金属棒。","de":"Metal rod driven into earth for grounding.","c":"electrical","task":"install_ground"},{"id":"q015_ground_wire","t":"material","ja":"接地線","en":"Ground Wire","dj":"機器や盤を大地へ接続する保護導体。","de":"Protective conductor connecting equipment to earth.","c":"electrical","task":"ground_equipment"},{"id":"q015_light_fixture","t":"component","ja":"照明器具","en":"Light Fixture","dj":"室内外を照らすために設置する器具。","de":"Fixture installed to provide lighting.","c":"electrical","task":"install_lighting"},{"id":"q015_led_downlight","t":"component","ja":"LEDダウンライト","en":"LED Downlight","dj":"天井に埋め込んで下向きに照らすLED照明。","de":"Recessed LED light that illuminates downward.","c":"electrical","task":"install_lighting"},{"id":"q015_emergency_light","t":"component","ja":"非常灯","en":"Emergency Light","dj":"停電時に避難経路を照らす照明。","de":"Light that operates during power failure for evacuation.","c":"electrical","task":"install_safety_lighting"},{"id":"q015_exit_sign","t":"component","ja":"誘導灯","en":"Exit Sign","dj":"避難口や避難方向を示す照明表示器具。","de":"Illuminated sign indicating exits or evacuation routes.","c":"electrical","task":"install_safety_lighting"},{"id":"q015_occupancy_sensor","t":"component","ja":"人感センサー","en":"Occupancy Sensor","dj":"人の有無を検知して照明などを制御するセンサー。","de":"Sensor that detects occupancy to control lighting or equipment.","c":"electrical","task":"control_lighting"},{"id":"q015_photoelectric_sensor","t":"component","ja":"照度センサー","en":"Photoelectric Sensor","dj":"明るさを検知して照明制御に使うセンサー。","de":"Sensor that detects light level for control.","c":"electrical","task":"control_lighting"},{"id":"q015_earth_leakage_breaker","t":"component","ja":"漏電遮断器","en":"Earth Leakage Breaker","dj":"漏電を検出して回路を遮断する安全装置。","de":"Breaker that detects leakage current and disconnects the circuit.","c":"electrical","task":"protect_circuit"},{"id":"q015_mccb","t":"component","ja":"配線用遮断器","en":"Molded Case Circuit Breaker","dj":"低圧回路の過電流保護に使う遮断器。","de":"Breaker used for overcurrent protection in low-voltage circuits.","c":"electrical","task":"protect_circuit"},{"id":"q015_magnetic_contactor","t":"component","ja":"電磁接触器","en":"Magnetic Contactor","dj":"モーターなどの負荷を電磁的に開閉する機器。","de":"Electromagnetic device used to switch loads such as motors.","c":"electrical","task":"control_motor"},{"id":"q015_control_relay","t":"component","ja":"制御リレー","en":"Control Relay","dj":"小電流の制御信号で回路を切り替える部品。","de":"Relay used to switch circuits with control signals.","c":"electrical","task":"control_circuit"},{"id":"q015_transformer","t":"component","ja":"変圧器","en":"Transformer","dj":"電圧を変換する電気機器。","de":"Electrical device that changes voltage levels.","c":"electrical","task":"supply_power"},{"id":"q015_pump","t":"equipment","ja":"ポンプ","en":"Pump","dj":"水や液体を送る機械。","de":"Machine used to move water or other fluids.","c":"plumbing","task":"move_water"},{"id":"q015_sump_pump","t":"equipment","ja":"排水ポンプ","en":"Sump Pump","dj":"ピットや低所の水を汲み上げて排水するポンプ。","de":"Pump used to remove water from pits or low areas.","c":"plumbing","task":"drain_water"},{"id":"q015_booster_pump","t":"equipment","ja":"加圧ポンプ","en":"Booster Pump","dj":"給水圧を高めるためのポンプ。","de":"Pump used to increase water pressure.","c":"plumbing","task":"boost_pressure"},{"id":"q015_pressure_gauge","t":"tool","ja":"圧力計","en":"Pressure Gauge","dj":"配管や機器内の圧力を示す計器。","de":"Gauge that displays pressure in piping or equipment.","c":"plumbing","task":"measure_pressure"},{"id":"q015_pressure_switch","t":"component","ja":"圧力スイッチ","en":"Pressure Switch","dj":"圧力変化で接点を開閉する制御部品。","de":"Switch that operates based on pressure change.","c":"plumbing","task":"control_pressure"},{"id":"q015_flexible_joint","t":"component","ja":"フレキシブルジョイント","en":"Flexible Joint","dj":"振動や変位を吸収する可とう継手。","de":"Flexible joint that absorbs vibration or movement.","c":"plumbing","task":"connect_pipe"},{"id":"q015_expansion_joint_pipe","t":"component","ja":"伸縮継手","en":"Pipe Expansion Joint","dj":"配管の熱伸縮や変位を吸収する継手。","de":"Pipe fitting that absorbs thermal expansion or movement.","c":"plumbing","task":"absorb_movement"},{"id":"q015_strainer","t":"component","ja":"ストレーナー","en":"Strainer","dj":"配管内の異物を捕集する部品。","de":"Fitting that captures debris in piping.","c":"plumbing","task":"protect_equipment"},{"id":"q015_y_strainer","t":"component","ja":"Y形ストレーナー","en":"Y Strainer","dj":"Y形の本体で異物を除去する配管部品。","de":"Y-shaped strainer used to remove debris from piping.","c":"plumbing","task":"protect_equipment"},{"id":"q015_pressure_reducing_valve","t":"component","ja":"減圧弁","en":"Pressure Reducing Valve","dj":"配管圧力を所定値に下げる弁。","de":"Valve that reduces pressure to a set value.","c":"plumbing","task":"control_pressure"},{"id":"q015_solenoid_valve","t":"component","ja":"電磁弁","en":"Solenoid Valve","dj":"電気信号で流体の開閉を行う弁。","de":"Valve operated by an electrical solenoid.","c":"plumbing","task":"control_flow"},{"id":"q015_gate_valve","t":"component","ja":"仕切弁","en":"Gate Valve","dj":"流路を全開・全閉するための弁。","de":"Valve used mainly for full open or full close service.","c":"plumbing","task":"shut_off_water"},{"id":"q015_globe_valve","t":"component","ja":"玉形弁","en":"Globe Valve","dj":"流量調整に使いやすい弁。","de":"Valve suitable for throttling and flow control.","c":"plumbing","task":"control_flow"},{"id":"q015_butterfly_valve","t":"component","ja":"バタフライ弁","en":"Butterfly Valve","dj":"円盤状の弁体で流れを開閉する弁。","de":"Valve using a rotating disc to open or close flow.","c":"plumbing","task":"shut_off_water"},{"id":"q015_faucet","t":"fixture","ja":"水栓","en":"Faucet","dj":"給水を出し止めする器具。","de":"Fixture used to discharge and stop water flow.","c":"sanitary","task":"install_fixture"},{"id":"q015_mixer_faucet","t":"fixture","ja":"混合水栓","en":"Mixer Faucet","dj":"湯と水を混合して吐水する水栓。","de":"Faucet that mixes hot and cold water.","c":"sanitary","task":"install_fixture"},{"id":"q015_washbasin","t":"fixture","ja":"洗面器","en":"Wash Basin","dj":"手洗いや洗面に使う衛生器具。","de":"Sanitary fixture used for handwashing or washing.","c":"sanitary","task":"install_fixture"},{"id":"q015_toilet_bowl","t":"fixture","ja":"便器","en":"Toilet Bowl","dj":"排泄物を受けて排水する衛生器具。","de":"Sanitary fixture used for toilet waste discharge.","c":"sanitary","task":"install_fixture"},{"id":"q015_urinal","t":"fixture","ja":"小便器","en":"Urinal","dj":"男性用の排尿専用衛生器具。","de":"Sanitary fixture used for urination.","c":"sanitary","task":"install_fixture"},{"id":"q015_floor_drain","t":"component","ja":"床排水金物","en":"Floor Drain","dj":"床面の水を排水する金物。","de":"Drain fitting used to remove water from a floor surface.","c":"sanitary","task":"drain_floor"},{"id":"q015_trap_primer","t":"component","ja":"トラップ給水装置","en":"Trap Primer","dj":"排水トラップの封水切れを防ぐ装置。","de":"Device that maintains water seal in a drain trap.","c":"sanitary","task":"maintain_trap"},{"id":"q015_cleanout_plug","t":"component","ja":"掃除口プラグ","en":"Cleanout Plug","dj":"配管掃除口を塞ぐ取り外し可能な栓。","de":"Removable plug that closes a pipe cleanout.","c":"sanitary","task":"maintain_pipe"},{"id":"q015_pipe_insulation","t":"material","ja":"配管保温材","en":"Pipe Insulation","dj":"配管の熱損失や結露を抑える保温材。","de":"Insulation used to reduce heat loss or condensation on pipes.","c":"insulation","task":"insulate_pipe"},{"id":"q015_glass_wool_pipe_cover","t":"material","ja":"グラスウール保温筒","en":"Glass Wool Pipe Cover","dj":"グラスウール製の配管保温カバー。","de":"Glass wool insulation cover for piping.","c":"insulation","task":"insulate_pipe"},{"id":"q015_polyethylene_pipe_cover","t":"material","ja":"ポリエチレン保温材","en":"Polyethylene Pipe Insulation","dj":"発泡ポリエチレン製の配管保温材。","de":"Foamed polyethylene insulation used for pipes.","c":"insulation","task":"insulate_pipe"},{"id":"q015_aluminum_jacket","t":"material","ja":"アルミ外装材","en":"Aluminum Jacket","dj":"保温材を保護するアルミ製の外装材。","de":"Aluminum covering used to protect insulation.","c":"insulation","task":"protect_insulation"},{"id":"q015_insulation_tape","t":"material","ja":"保温テープ","en":"Insulation Tape","dj":"保温材の継ぎ目や端部を処理するテープ。","de":"Tape used to seal insulation joints and ends.","c":"insulation","task":"finish_insulation"},{"id":"q015_duct","t":"component","ja":"ダクト","en":"Duct","dj":"空気を送るための通風路。","de":"Air passage used to convey ventilation or conditioned air.","c":"hvac","task":"route_air"},{"id":"q015_spiral_duct","t":"component","ja":"スパイラルダクト","en":"Spiral Duct","dj":"らせん状の補強を持つ丸ダクト。","de":"Round duct with spiral seam reinforcement.","c":"hvac","task":"route_air"},{"id":"q015_flexible_duct","t":"component","ja":"フレキシブルダクト","en":"Flexible Duct","dj":"曲げやすい蛇腹状の空調・換気ダクト。","de":"Bendable duct used for HVAC or ventilation connections.","c":"hvac","task":"connect_duct"},{"id":"q015_duct_flange","t":"component","ja":"ダクトフランジ","en":"Duct Flange","dj":"ダクト同士を接続するための縁部材。","de":"Flange used to connect duct sections.","c":"hvac","task":"connect_duct"},{"id":"q015_duct_hanger","t":"component","ja":"ダクト吊り金物","en":"Duct Hanger","dj":"ダクトを天井から支持する金物。","de":"Hardware used to suspend ductwork.","c":"hvac","task":"support_duct"},{"id":"q015_volume_damper","t":"component","ja":"風量調整ダンパー","en":"Volume Damper","dj":"ダクト内の風量を調整する羽根付き部品。","de":"Damper used to adjust airflow in a duct.","c":"hvac","task":"balance_air"},{"id":"q015_fire_damper","t":"component","ja":"防火ダンパー","en":"Fire Damper","dj":"火災時にダクトを閉じて延焼を抑える部品。","de":"Damper that closes during fire to limit spread through ducts.","c":"hvac","task":"fire_protection"},{"id":"q015_smoke_damper","t":"component","ja":"防煙ダンパー","en":"Smoke Damper","dj":"煙の流入や拡散を抑えるダクト部品。","de":"Damper used to control smoke movement in ductwork.","c":"hvac","task":"smoke_control"},{"id":"q015_grille","t":"component","ja":"ガラリ","en":"Grille","dj":"空気の出入口に取り付ける格子状部材。","de":"Louvered or grid component used at air openings.","c":"hvac","task":"install_air_terminal"},{"id":"q015_diffuser","t":"component","ja":"吹出口","en":"Air Diffuser","dj":"空調空気を室内へ拡散して吹き出す部材。","de":"Air terminal that distributes supply air into a room.","c":"hvac","task":"supply_air"},{"id":"q015_return_air_grille","t":"component","ja":"吸込口","en":"Return Air Grille","dj":"室内空気を空調機へ戻す吸込み部材。","de":"Grille that returns room air to HVAC equipment.","c":"hvac","task":"return_air"},{"id":"q015_exhaust_fan","t":"equipment","ja":"換気扇","en":"Exhaust Fan","dj":"室内の空気を外へ排出する送風機。","de":"Fan used to exhaust indoor air outdoors.","c":"ventilation","task":"exhaust_air"},{"id":"q015_inline_fan","t":"equipment","ja":"中間ダクトファン","en":"Inline Duct Fan","dj":"ダクト途中に設置して空気を送るファン。","de":"Fan installed within a duct run to move air.","c":"ventilation","task":"move_air"},{"id":"q015_sirocco_fan","t":"equipment","ja":"シロッコファン","en":"Sirocco Fan","dj":"多翼羽根で空気を送る遠心送風機。","de":"Centrifugal fan with multiple forward-curved blades.","c":"ventilation","task":"move_air"},{"id":"q015_air_handling_unit","t":"equipment","ja":"空調機","en":"Air Handling Unit","dj":"空気の温度、湿度、清浄度を調整して送る機械。","de":"Unit that conditions and distributes air.","c":"hvac","task":"condition_air"},{"id":"q015_fan_coil_unit","t":"equipment","ja":"ファンコイルユニット","en":"Fan Coil Unit","dj":"コイルとファンで室内空気を冷暖房する機器。","de":"Unit that heats or cools room air using a coil and fan.","c":"hvac","task":"condition_air"},{"id":"q015_outdoor_unit","t":"equipment","ja":"室外機","en":"Outdoor Unit","dj":"空調機の熱交換を屋外で行う機器。","de":"Outdoor HVAC unit that rejects or absorbs heat.","c":"hvac","task":"install_air_conditioner"},{"id":"q015_refrigerant_pipe","t":"material","ja":"冷媒管","en":"Refrigerant Pipe","dj":"空調機の冷媒を流す銅管などの配管。","de":"Pipe that carries refrigerant in air-conditioning systems.","c":"hvac","task":"install_refrigerant_pipe"},{"id":"q015_drain_up_piping","t":"component","ja":"ドレン配管","en":"Condensate Drain Pipe","dj":"空調機から出る結露水を排水する配管。","de":"Pipe used to drain condensate from HVAC equipment.","c":"hvac","task":"drain_condensate"},{"id":"q015_condensate_pump","t":"equipment","ja":"ドレンアップポンプ","en":"Condensate Pump","dj":"自然勾配で流せない結露水を送るポンプ。","de":"Pump used to lift and discharge condensate.","c":"hvac","task":"drain_condensate"},{"id":"q015_drain_trap_hvac","t":"component","ja":"空調ドレントラップ","en":"HVAC Drain Trap","dj":"空調ドレン管の空気逆流や臭気を防ぐトラップ。","de":"Trap used in HVAC condensate drains to prevent air or odor backflow.","c":"hvac","task":"drain_condensate"},{"id":"q015_pipe_sleeve_firestop","t":"component","ja":"防火区画貫通スリーブ","en":"Fire-Rated Pipe Sleeve","dj":"防火区画を貫通する配管用スリーブ。","de":"Sleeve used where piping penetrates fire-rated assemblies.","c":"penetration","task":"set_sleeve"},{"id":"q015_wall_sleeve","t":"component","ja":"壁貫通スリーブ","en":"Wall Sleeve","dj":"壁を通す配管やダクト用に設けるスリーブ。","de":"Sleeve provided for pipe or duct penetrations through walls.","c":"penetration","task":"set_sleeve"},{"id":"q015_floor_sleeve","t":"component","ja":"床貫通スリーブ","en":"Floor Sleeve","dj":"床を通す配管やダクト用に設けるスリーブ。","de":"Sleeve used for pipe or duct penetrations through floors.","c":"penetration","task":"set_sleeve"},{"id":"q015_sleeve_ring","t":"component","ja":"スリーブリング","en":"Sleeve Ring","dj":"スリーブ端部や開口部を整えるリング部材。","de":"Ring used to finish or reinforce a sleeve opening.","c":"penetration","task":"finish_sleeve"},{"id":"q015_firestop_mortar","t":"material","ja":"耐火モルタル","en":"Firestop Mortar","dj":"防火区画貫通部を埋める耐火性モルタル。","de":"Fire-rated mortar used to seal penetrations.","c":"firestop","task":"seal_penetration"},{"id":"q015_firestop_board","t":"material","ja":"耐火ボード","en":"Firestop Board","dj":"貫通部や区画処理に使う耐火板材。","de":"Board used in firestopping and rated assemblies.","c":"firestop","task":"seal_penetration"},{"id":"q015_intumescent_wrap","t":"material","ja":"膨張材巻付け材","en":"Intumescent Wrap","dj":"火災時に膨張して隙間を塞ぐ巻付け材。","de":"Wrap that expands in fire to close gaps around penetrations.","c":"firestop","task":"seal_penetration"},{"id":"q015_firestop_coller","t":"component","ja":"耐火カラー","en":"Firestop Collar","dj":"樹脂管まわりに取り付ける膨張材入りの耐火部材。","de":"Collar installed around plastic pipes for firestopping.","c":"firestop","task":"seal_penetration"},{"id":"q015_pipe_support","t":"component","ja":"配管支持金物","en":"Pipe Support","dj":"配管を所定位置に保持する支持部材。","de":"Support used to hold piping in position.","c":"support","task":"support_pipe"},{"id":"q015_trapeze_hanger","t":"component","ja":"門型吊り金物","en":"Trapeze Hanger","dj":"複数の配管やラックを吊る門型支持金物。","de":"Hanger assembly used to support multiple pipes or trays.","c":"support","task":"hang_services"},{"id":"q015_clevis_hanger","t":"component","ja":"クレビスハンガー","en":"Clevis Hanger","dj":"配管を一本ずつ吊るU字形の支持金物。","de":"U-shaped hanger used to suspend a single pipe.","c":"support","task":"hang_pipe"},{"id":"q015_pipe_shoe","t":"component","ja":"パイプシュー","en":"Pipe Shoe","dj":"配管を架台上で支持し荷重を伝える部材。","de":"Support that transfers pipe load to a structure.","c":"support","task":"support_pipe"},{"id":"q015_u_bolt_pipe","t":"fastener","ja":"Uボルト","en":"U-Bolt","dj":"配管を架台や支持材へ固定するU字形ボルト。","de":"U-shaped bolt used to fasten pipe to supports.","c":"support","task":"fix_pipe"},{"id":"q015_pipe_saddle","t":"component","ja":"サドルバンド","en":"Pipe Saddle Clamp","dj":"配管を壁や床へ押さえて固定する金物。","de":"Clamp used to secure pipe to a wall or floor.","c":"support","task":"fix_pipe"},{"id":"q015_riser_clamp","t":"component","ja":"立管バンド","en":"Riser Clamp","dj":"立て配管を支持するためのバンド金物。","de":"Clamp used to support vertical piping.","c":"support","task":"support_riser"},{"id":"q015_anti_vibration_hanger","t":"component","ja":"防振吊り金物","en":"Vibration Isolation Hanger","dj":"設備の振動伝達を抑える吊り支持金物。","de":"Hanger that reduces vibration transfer from equipment or piping.","c":"support","task":"isolate_vibration"},{"id":"q015_equipment_anchor","t":"fastener","ja":"設備アンカー","en":"Equipment Anchor","dj":"機器を床や基礎へ固定するアンカー。","de":"Anchor used to fix equipment to floors or foundations.","c":"support","task":"anchor_equipment"},{"id":"q015_equipment_pad","t":"component","ja":"機器基礎パッド","en":"Equipment Pad","dj":"空調機やポンプを載せる基礎台。","de":"Pad or base used to support equipment.","c":"support","task":"set_equipment"},{"id":"q015_access_door_mep","t":"component","ja":"設備点検口","en":"MEP Access Door","dj":"配管・ダクト・バルブ点検用の開口扉。","de":"Access door used to inspect piping, ducts, or valves.","c":"access","task":"inspect_services"},{"id":"q015_balancing_valve","t":"component","ja":"バランシングバルブ","en":"Balancing Valve","dj":"水量を調整して系統バランスを取る弁。","de":"Valve used to balance water flow in a system.","c":"plumbing","task":"balance_flow"},{"id":"q015_air_vent_valve","t":"component","ja":"空気抜き弁","en":"Air Vent Valve","dj":"配管内の空気を抜くための弁。","de":"Valve used to release trapped air from piping.","c":"plumbing","task":"remove_air"},{"id":"q015_drain_valve","t":"component","ja":"ドレン弁","en":"Drain Valve","dj":"配管や機器内の水を抜くための弁。","de":"Valve used to drain water from piping or equipment.","c":"plumbing","task":"drain_system"},{"id":"q015_temperature_gauge","t":"tool","ja":"温度計","en":"Temperature Gauge","dj":"配管や機器の温度を表示する計器。","de":"Gauge that displays temperature in piping or equipment.","c":"plumbing","task":"measure_temperature"},{"id":"q015_flow_meter","t":"tool","ja":"流量計","en":"Flow Meter","dj":"配管内の流量を測る計器。","de":"Meter used to measure flow rate in piping.","c":"plumbing","task":"measure_flow"},{"id":"q015_test_plug","t":"tool","ja":"テストプラグ","en":"Test Plug","dj":"排水管などの水張り試験で一時的に塞ぐ器具。","de":"Temporary plug used for water or pressure testing.","c":"plumbing","task":"test_pipe"},{"id":"q015_pressure_test_pump","t":"tool","ja":"水圧試験ポンプ","en":"Pressure Test Pump","dj":"配管へ圧力をかけて漏れを確認するポンプ。","de":"Pump used to pressurize piping for leak testing.","c":"plumbing","task":"test_pipe"},{"id":"q015_leak_detector","t":"tool","ja":"漏水検知器","en":"Leak Detector","dj":"配管や設備の漏水を検知する機器。","de":"Device used to detect water leaks in piping or equipment.","c":"inspection","task":"detect_leak"},{"id":"q015_smoke_tester","t":"tool","ja":"発煙試験器","en":"Smoke Tester","dj":"ダクトや排水系統の漏れや流れを確認する試験器。","de":"Tester that uses smoke to check leakage or airflow.","c":"inspection","task":"test_leakage"},{"id":"q015_anemometer","t":"tool","ja":"風速計","en":"Anemometer","dj":"吹出口やダクトの風速を測る計器。","de":"Meter used to measure air velocity.","c":"hvac","task":"measure_airflow"},{"id":"q015_airflow_hood","t":"tool","ja":"風量測定フード","en":"Airflow Capture Hood","dj":"吹出口や吸込口の風量を測るフード型計器。","de":"Hood used to measure airflow at air terminals.","c":"hvac","task":"measure_airflow"},{"id":"q015_manometer","t":"tool","ja":"マノメーター","en":"Manometer","dj":"空気や水の圧力差を測る計器。","de":"Instrument used to measure pressure difference.","c":"hvac","task":"measure_pressure"},{"id":"q015_filter_unit","t":"component","ja":"エアフィルター","en":"Air Filter","dj":"空気中の粉じんを捕集するフィルター。","de":"Filter that captures dust and particles from air.","c":"hvac","task":"filter_air"},{"id":"q015_filter_frame","t":"component","ja":"フィルター枠","en":"Filter Frame","dj":"エアフィルターを保持する枠部材。","de":"Frame used to hold an air filter.","c":"hvac","task":"install_filter"},{"id":"q015_access_panel_duct","t":"component","ja":"ダクト点検口","en":"Duct Access Panel","dj":"ダクト内の清掃や点検に使う開口パネル。","de":"Panel used to inspect or clean inside ductwork.","c":"hvac","task":"inspect_duct"},{"id":"q015_louver","t":"component","ja":"ルーバー","en":"Louver","dj":"外気や排気の開口部に付ける羽根付き部材。","de":"Slatted air opening used for intake or exhaust.","c":"ventilation","task":"install_air_terminal"},{"id":"q015_weather_louver","t":"component","ja":"防雨ルーバー","en":"Weather Louver","dj":"雨の侵入を抑えながら通気する外部ルーバー。","de":"Exterior louver designed to limit rain entry while ventilating.","c":"ventilation","task":"weatherproof_opening"},{"id":"q015_backdraft_damper","t":"component","ja":"逆流防止ダンパー","en":"Backdraft Damper","dj":"外気や排気の逆流を抑えるダンパー。","de":"Damper that prevents reverse airflow.","c":"ventilation","task":"prevent_backdraft"},{"id":"q015_silencer_duct","t":"component","ja":"消音チャンバー","en":"Duct Silencer","dj":"ダクト内の騒音を低減する部材。","de":"Component used to reduce noise in ductwork.","c":"hvac","task":"reduce_noise"},{"id":"q015_flexible_connector","t":"component","ja":"キャンバス継手","en":"Flexible Duct Connector","dj":"機器振動をダクトへ伝えにくくする可とう継手。","de":"Flexible connector used to isolate equipment vibration from ductwork.","c":"hvac","task":"connect_duct"}]}
+{
+  "schema": "cta-compact-v1",
+  "quality_batch": "015",
+  "rows": [
+    {
+      "id": "q015_cable_ladder",
+      "t": "component",
+      "ja": "ケーブルラック",
+      "en": "Cable Ladder",
+      "dj": "多数の電線やケーブルを支持して配線経路を作るラック。\n多数の電線・ケーブルを建物内外で支持し、まとまった配線経路を形成する梯子状のケーブルラック。ケーブル重量、支持間隔、曲がり・分岐、接地、防食条件を含めてシステムとして選定する。",
+      "de": "Ladder-style support used to route and support many cables.\nLadder-style cable support system used to route groups of cables through a building or plant. Selection considers cable load, support spacing, bends and branches, bonding, and corrosion exposure as a complete system.",
+      "c": "electrical",
+      "task": "route_cable"
+    },
+    {
+      "id": "q015_ladder_rack_connector",
+      "t": "hardware",
+      "ja": "ラック接続金具",
+      "en": "Cable Rack Connector",
+      "dj": "ケーブルラック同士を接続する金物。\nケーブルラックの直線部や継ぎ目を機械的に連結し、荷重と位置関係を次の区間へ伝える接続金具。ラックシリーズ・板厚・ボルト仕様に適合する純正または指定金物を使い、必要に応じて電気的連続性も確保する。",
+      "de": "Hardware used to connect cable rack sections.\nConnector hardware joining adjacent cable-rack sections and transferring alignment and mechanical load through the run. It must match the rack system, material thickness, and fastener specification, with electrical continuity provided where required.",
+      "c": "electrical",
+      "task": "connect_cable_rack"
+    },
+    {
+      "id": "q015_cable_tray_cover",
+      "t": "component",
+      "ja": "ケーブルトレイカバー",
+      "en": "Cable Tray Cover",
+      "dj": "ケーブルトレイ内の配線を保護するカバー。\nケーブルトレイやラック上部を覆い、落下物、粉じん、日射、飛沫などから配線を保護するカバー。必要な保護レベルと放熱条件を両立させ、風荷重や振動で外れない固定方法を選ぶ。",
+      "de": "Cover used to protect cables inside a cable tray.\nCover fitted over cable tray or rack to protect wiring from falling objects, dust, sunlight, or splash. Protection needs must be balanced against heat dissipation, with fastening selected to resist wind and vibration.",
+      "c": "electrical",
+      "task": "protect_cable"
+    },
+    {
+      "id": "q015_cable_gland",
+      "t": "component",
+      "ja": "ケーブルグランド",
+      "en": "Cable Gland",
+      "dj": "ケーブルグランドは、制御盤や電気機器の開口部でケーブルを固定し、引張や曲げから保護する引込部品。製品によっては防水・防塵シールも担う。ケーブル外径、取付ねじ・穴径、必要な保護等級や材質に適合させて選ぶ。",
+      "de": "A cable gland is a cable-entry fitting that secures a cable where it enters an electrical enclosure and provides strain relief. Some designs also seal against water and dust; selection must match cable diameter, enclosure thread or opening, material and required ingress-protection rating.",
+      "c": "electrical",
+      "task": "terminate_cable"
+    },
+    {
+      "id": "q015_cable_lug",
+      "t": "component",
+      "ja": "圧着端子",
+      "en": "Cable Lug",
+      "dj": "ケーブル端部を端子台や機器に接続する圧着部品。\n太い電線・ケーブル端部を圧着し、ボルト端子や機器端子へ接続するための端子。導体サイズ、導体材質、端子穴径に合う製品と専用ダイスを使用し、規定された圧着位置・回数で施工する。",
+      "de": "Crimped terminal used to connect cable ends to equipment.\nCrimp lug fitted to a cable end for connection to bolted terminals or equipment. Lug size, conductor material, stud hole, and crimp die must match, with crimp positions and count applied as specified.",
+      "c": "electrical",
+      "task": "terminate_cable"
+    },
+    {
+      "id": "q015_ring_terminal",
+      "t": "component",
+      "ja": "丸形端子",
+      "en": "Ring Terminal",
+      "dj": "ねじ端子へ確実に接続する丸穴付き端子。\n先端が閉じた丸穴形状の圧着端子で、ねじやボルトを端子穴へ通して固定する。ねじが緩んでも端子が容易に抜けにくく、制御盤や機器配線の確実な接続に使う。",
+      "de": "Ring-shaped terminal used under screw connections.\nCrimp terminal with a closed ring eye that fits over a screw or stud. Because it cannot easily slip out under a loosened screw, it is widely used for secure control-panel and equipment wiring.",
+      "c": "electrical",
+      "task": "terminate_wire",
+      "aj": [
+        "丸端子",
+        "リング端子"
+      ],
+      "ae": [
+        "Ring lug"
+      ]
+    },
+    {
+      "id": "q015_spade_terminal",
+      "t": "component",
+      "ja": "Y形端子",
+      "en": "Spade Terminal",
+      "dj": "端子ねじへ差し込みやすいY字形の圧着端子。\n先端がY字・フォーク形状の圧着端子で、端子ねじを完全に抜かずに横から差し込んで接続できる。施工性が高い一方、ねじの緩みで抜ける可能性があるため、適用箇所と締付管理が重要。",
+      "de": "Fork-shaped terminal used for screw terminals.\nFork-shaped crimp terminal that can be inserted under a screw without fully removing the screw. It speeds wiring but can slip free if the connection loosens, so application and tightening control matter.",
+      "c": "electrical",
+      "task": "terminate_wire",
+      "aj": [
+        "Y端子",
+        "先開形端子"
+      ],
+      "ae": [
+        "Fork terminal"
+      ]
+    },
+    {
+      "id": "q015_ferrule_terminal",
+      "t": "component",
+      "ja": "フェルール端子",
+      "en": "Wire Ferrule",
+      "dj": "より線端部をまとめて端子へ差し込むための部品。\nより線の先端へかぶせて圧着し、ばらける素線を一体化して端子台へ差し込みやすくする筒状端子。導体断面積と端子台仕様に合うサイズを選び、フェルール専用工具で均一に圧着する。",
+      "de": "Sleeve terminal used to prepare stranded wire ends.\nSleeve terminal crimped onto stranded wire to consolidate the strands for insertion into terminal blocks. Ferrule size must match conductor cross-section and terminal requirements, using a ferrule crimper for uniform compression.",
+      "c": "electrical",
+      "task": "terminate_wire"
+    },
+    {
+      "id": "q015_heat_shrink_tube",
+      "t": "material",
+      "ja": "熱収縮チューブ",
+      "en": "Heat Shrink Tube",
+      "dj": "加熱で縮めて配線接続部を絶縁・保護するチューブ。\n加熱すると径が縮み、電線接続部や端子部を覆って絶縁・保護・識別に使う樹脂チューブ。収縮前後径、収縮率、耐熱・難燃性能を用途に合わせ、母材を傷めない温度で均一に加熱する。",
+      "de": "Tube that shrinks with heat to insulate and protect wire joints.\nPolymer tubing that shrinks when heated and is used to insulate, protect, or identify wire joints and terminals. Initial and recovered diameter, shrink ratio, temperature rating, and flame performance must suit the application, with even heating that does not damage the cable.",
+      "c": "electrical",
+      "task": "insulate_joint",
+      "aj": [
+        "熱収縮スリーブ"
+      ],
+      "ae": [
+        "Heat-shrink tubing"
+      ]
+    },
+    {
+      "id": "q015_wire_marker",
+      "t": "material",
+      "ja": "線名札",
+      "en": "Wire Marker",
+      "dj": "配線の番号や行き先を表示する識別材。\n個々の電線へ線番号、端子番号、行先などを表示し、施工・試験・保守時に配線を識別できるようにするマーキング材。スリーブ式、クリップ式、印字式などがあり、線径と表示ルールに合わせて選ぶ。",
+      "de": "Marker used to identify wire numbers or destinations.\nIdentification marker applied to individual wires to show wire number, terminal reference, destination, or other circuit information for installation, testing, and maintenance. Sleeve, clip-on, and printed systems are selected for wire size and project labeling rules.",
+      "c": "electrical",
+      "task": "label_wire"
+    },
+    {
+      "id": "q015_cable_label",
+      "t": "material",
+      "ja": "ケーブルタグ",
+      "en": "Cable Tag",
+      "dj": "ケーブル名や回路名を表示するタグ。\nケーブル単位で名称、回路、行先、盤番号などを表示するタグ・ラベル。両端や分岐点など保守時に確認できる位置へ取り付け、屋外や高温部では環境に合う材質・印字方式を選ぶ。",
+      "de": "Tag used to identify cable name or circuit.\nTag or label identifying a complete cable by name, circuit, destination, panel, or similar reference. Labels are fitted at accessible points such as ends and branches, with material and printing chosen for environmental exposure.",
+      "c": "electrical",
+      "task": "label_cable"
+    },
+    {
+      "id": "q015_junction_box",
+      "t": "component",
+      "ja": "ジョイントボックス",
+      "en": "Junction Box",
+      "dj": "配線の接続や分岐を収める箱。\n電線・ケーブルの接続や分岐部を収め、充電部と接続部を機械的・環境的に保護する箱。設置場所、配線方式、収容する接続数、必要な防水・防塵性能に合わせて寸法と材質を選ぶ。",
+      "de": "Box used to contain wire joints or branches.\nEnclosure containing wire or cable joints and branches to protect live parts and connections mechanically and environmentally. Size and material are selected for location, wiring method, number of connections, and required ingress protection.",
+      "c": "electrical",
+      "task": "connect_wire",
+      "aj": [
+        "電線接続箱"
+      ],
+      "ae": [
+        "Electrical junction box"
+      ]
+    },
+    {
+      "id": "q015_pull_box",
+      "t": "component",
+      "ja": "プルボックス",
+      "en": "Pull Box",
+      "dj": "通線や配線引き回しを容易にする中継箱。\n長い配管経路や曲がりの多い電線管で、通線作業の中継・引張り方向変更・点検をしやすくするために設ける箱。収容電線の曲げ余裕、管の接続位置、保守アクセス、設置環境に合う寸法と材質を選ぶ。",
+      "de": "Box used to assist cable pulling and routing.\nIntermediate box installed in long or heavily bent conduit runs to assist cable pulling, change pulling direction, and provide access. Box size and material must suit conductor bending space, conduit entries, maintenance access, and environment.",
+      "c": "electrical",
+      "task": "pull_wire"
+    },
+    {
+      "id": "q015_switch_box",
+      "t": "component",
+      "ja": "スイッチボックス",
+      "en": "Switch Box",
+      "dj": "壁スイッチを納める取付箱。\n壁スイッチや一部の配線器具を納め、器具を固定しつつ配線接続部を保護する取付箱。壁材、埋込深さ、器具数、電線本数に合わせて種類と深さを選ぶ。",
+      "de": "Box used to house a wall switch.\nMounting box that houses wall switches and related wiring devices while supporting the device and protecting wiring connections. Type and depth are selected for wall construction, device count, and conductor fill.",
+      "c": "electrical",
+      "task": "install_switch"
+    },
+    {
+      "id": "q015_grounding_busbar",
+      "t": "component",
+      "ja": "接地銅バー",
+      "en": "Grounding Busbar",
+      "dj": "接地線を集約して接続する銅バー。\n盤内や接地設備で複数の接地線・ボンディング線を集約して接続する導電バー。接続本数、導体サイズ、材質、取付絶縁、接地方式に合わせて選定する。",
+      "de": "Copper bar used to collect and connect grounding conductors.\nConductive bar used in panels or grounding systems to consolidate grounding and bonding conductors. Selection depends on connection count, conductor size, bar material, mounting insulation, and grounding scheme.",
+      "c": "electrical",
+      "task": "ground_equipment"
+    },
+    {
+      "id": "q015_ground_rod",
+      "t": "component",
+      "ja": "接地棒",
+      "en": "Ground Rod",
+      "dj": "大地へ接地電流を流すために打ち込む金属棒。\n地中へ打ち込み、大地との電気的接触を確保するための棒状接地極。材質、長さ、径、接地抵抗目標、土質、腐食環境を考慮し、必要に応じて複数本を適切な間隔で施工する。",
+      "de": "Metal rod driven into earth for grounding.\nRod-type grounding electrode driven into soil to establish electrical contact with earth. Material, length, diameter, target resistance, soil conditions, and corrosion exposure determine the required installation.",
+      "c": "electrical",
+      "task": "install_ground"
+    },
+    {
+      "id": "q015_ground_wire",
+      "t": "material",
+      "ja": "接地線",
+      "en": "Ground Wire",
+      "dj": "機器や盤を大地へ接続する保護導体。\n機器筐体、盤、接地極などを接続し、故障電流を安全に流すための保護導体。導体サイズ、被覆色、配線方式、機械的保護、接続端子を回路条件に合わせて選ぶ。",
+      "de": "Protective conductor connecting equipment to earth.\nProtective conductor connecting equipment, enclosures, panels, and grounding electrodes so fault current can return safely. Conductor size, identification, routing, mechanical protection, and terminations must suit the circuit.",
+      "c": "electrical",
+      "task": "ground_equipment",
+      "aj": [
+        "アース線"
+      ],
+      "ae": [
+        "Earthing conductor"
+      ]
+    },
+    {
+      "id": "q015_light_fixture",
+      "t": "component",
+      "ja": "照明器具",
+      "en": "Light Fixture",
+      "dj": "室内外を照らすために設置する器具。\nランプ・LED光源・反射板・電源部・筐体などを一体化し、室内外を照らすために設置する照明器具。用途、明るさ、配光、電圧、設置環境、防水防塵性能、取付方法を確認して選定する。",
+      "de": "Fixture installed to provide lighting.\nLighting assembly combining light source, optics, driver, and enclosure for interior or exterior illumination. Selection depends on application, output, distribution, voltage, environment, ingress protection, and mounting method.",
+      "c": "electrical",
+      "task": "install_lighting"
+    },
+    {
+      "id": "q015_led_downlight",
+      "t": "component",
+      "ja": "LEDダウンライト",
+      "en": "LED Downlight",
+      "dj": "天井の開口に器具本体を埋め込み、下向きに光を照射するLED照明。器具ごとの埋込穴径、天井裏の必要空間、断熱材との取り合い、調光の可否、湿気の多い場所での使用条件を確認し、指定された取付方法に従って設置する。",
+      "de": "A recessed ceiling light that directs LED illumination downward. Check the fixture's cutout diameter, required space above the ceiling, insulation-clearance requirements, dimming compatibility, and suitability for damp locations before installation according to the manufacturer's instructions.",
+      "c": "electrical",
+      "task": "install_lighting"
+    },
+    {
+      "id": "q015_emergency_light",
+      "t": "component",
+      "ja": "非常灯",
+      "en": "Emergency Light",
+      "dj": "停電時に避難経路を照らす照明。\n停電や通常電源喪失時に内蔵電池や非常電源で点灯し、避難経路や必要場所の照度を確保する非常用照明。法令・設計で求める設置場所、点灯時間、光量、電源方式を満たす認定・適合品を選ぶ。",
+      "de": "Light that operates during power failure for evacuation.\nEmergency luminaire that operates from battery or emergency power when normal supply fails to illuminate evacuation routes or designated areas. Product certification, location, duration, output, and power arrangement must meet the applicable design and code requirements.",
+      "c": "electrical",
+      "task": "install_safety_lighting"
+    },
+    {
+      "id": "q015_exit_sign",
+      "t": "component",
+      "ja": "誘導灯",
+      "en": "Exit Sign",
+      "dj": "避難口や避難方向を示す照明表示器具。\n避難口や避難方向を常時または非常時に明示する表示照明。設置区分、表示面、矢印方向、視認距離、非常電源、認定条件を建物用途と設計に合わせて選ぶ。",
+      "de": "Illuminated sign indicating exits or evacuation routes.\nIlluminated sign identifying an exit or evacuation direction during normal or emergency conditions. Sign type, face, arrow direction, viewing distance, emergency power, and certification must suit the building and design requirements.",
+      "c": "electrical",
+      "task": "install_safety_lighting"
+    },
+    {
+      "id": "q015_occupancy_sensor",
+      "t": "component",
+      "ja": "人感センサー",
+      "en": "Occupancy Sensor",
+      "dj": "人の有無を検知して照明などを制御するセンサー。\n人の存在・動きを検知し、照明や設備を自動制御するセンサー。赤外線、超音波、複合方式などがあり、検知範囲、天井高、死角、負荷方式、遅延時間を用途に合わせる。",
+      "de": "Sensor that detects occupancy to control lighting or equipment.\nSensor that detects presence or movement to control lighting or equipment automatically. PIR, ultrasonic, and dual-technology types are selected according to coverage, mounting height, blind spots, load type, and timeout behavior.",
+      "c": "electrical",
+      "task": "control_lighting"
+    },
+    {
+      "id": "q015_photoelectric_sensor",
+      "t": "component",
+      "ja": "照度センサー",
+      "en": "Photoelectric Sensor",
+      "dj": "明るさを検知して照明制御に使うセンサー。\n周囲の明るさを検知し、外灯や照明制御へ入力する照度・明暗センサー。設定照度、ヒステリシス、取付方向、日射や照明器具からの回り込みを考慮して設置する。",
+      "de": "Sensor that detects light level for control.\nLight-level sensor used to control exterior or interior lighting according to ambient brightness. Setpoint, hysteresis, orientation, direct sunlight, and feedback from nearby luminaires must be considered.",
+      "c": "electrical",
+      "task": "control_lighting"
+    },
+    {
+      "id": "q015_earth_leakage_breaker",
+      "t": "component",
+      "ja": "漏電遮断器",
+      "en": "Earth Leakage Breaker",
+      "dj": "漏電を検出して回路を遮断する安全装置。\n漏電電流を検出し、設定値を超える異常時に回路を遮断する保護機器。定格電圧・電流、感度電流、動作時間、極数、遮断容量、接地方式を回路条件へ適合させる必要がある。",
+      "de": "Breaker that detects leakage current and disconnects the circuit.\nProtective breaker that detects residual or leakage current and disconnects the circuit when the threshold is exceeded. Rated voltage, current, sensitivity, operating time, pole count, interrupting capacity, and grounding arrangement must match the circuit.",
+      "c": "electrical",
+      "task": "protect_circuit",
+      "aj": [
+        "漏電ブレーカー"
+      ],
+      "ae": [
+        "Earth leakage circuit breaker"
+      ]
+    },
+    {
+      "id": "q015_mccb",
+      "t": "component",
+      "ja": "配線用遮断器",
+      "en": "Molded Case Circuit Breaker",
+      "dj": "低圧回路の過電流保護に使う遮断器。\n低圧回路の過負荷・短絡保護に使う配線用遮断器で、モールドケース内に開閉機構と保護機能を収めた機器。定格電流、フレーム、遮断容量、極数、トリップ特性、取付方式を回路に合わせる。",
+      "de": "Breaker used for overcurrent protection in low-voltage circuits.\nMolded-case circuit breaker used for overload and short-circuit protection in low-voltage circuits. Current rating, frame size, interrupting capacity, pole count, trip characteristics, and mounting arrangement must match the system.",
+      "c": "electrical",
+      "task": "protect_circuit",
+      "aj": [
+        "MCCB"
+      ],
+      "ae": [
+        "MCCB"
+      ]
+    },
+    {
+      "id": "q015_magnetic_contactor",
+      "t": "component",
+      "ja": "電磁接触器",
+      "en": "Magnetic Contactor",
+      "dj": "モーターなどの負荷を電磁的に開閉する機器。\n電磁コイルで主接点を開閉し、モーターやヒーターなどの負荷を遠隔・自動制御する電磁接触器。主回路容量、コイル電圧、使用カテゴリ、補助接点、機械寿命を用途に合わせる。",
+      "de": "Electromagnetic device used to switch loads such as motors.\nElectromagnetic contactor that switches power contacts to control motors, heaters, and other loads remotely or automatically. Main-contact rating, coil voltage, utilization category, auxiliary contacts, and duty must suit the application.",
+      "c": "electrical",
+      "task": "control_motor"
+    },
+    {
+      "id": "q015_control_relay",
+      "t": "component",
+      "ja": "制御リレー",
+      "en": "Control Relay",
+      "dj": "小電流の制御信号で回路を切り替える部品。\n小電流の制御信号で複数接点を切り替え、インターロック、信号中継、状態保持などに使う制御用リレー。コイル電圧、接点構成、接点容量、ソケット、動作方式を回路図に合わせる。",
+      "de": "Relay used to switch circuits with control signals.\nControl relay that uses a low-power coil signal to switch contacts for interlocking, signal isolation, logic, or status functions. Coil voltage, contact arrangement, contact rating, socket, and operating mode must match the control circuit.",
+      "c": "electrical",
+      "task": "control_circuit"
+    },
+    {
+      "id": "q015_transformer",
+      "t": "component",
+      "ja": "変圧器",
+      "en": "Transformer",
+      "dj": "電圧を変換する電気機器。\n交流電圧を用途に必要な電圧へ変換する電気機器。一次・二次電圧、容量、周波数、相数、結線方式、絶縁種別、設置環境を負荷と電源条件に合わせて選ぶ。",
+      "de": "Electrical device that changes voltage levels.\nElectrical device that converts AC voltage to the level required by the load. Primary and secondary voltage, capacity, frequency, phase, winding configuration, insulation, and installation environment must match the system.",
+      "c": "electrical",
+      "task": "supply_power",
+      "aj": [
+        "トランス"
+      ],
+      "ae": [
+        "Electrical transformer"
+      ]
+    },
+    {
+      "id": "q015_pump",
+      "t": "equipment",
+      "ja": "ポンプ",
+      "en": "Pump",
+      "dj": "ポンプは、モーターなどの動力で水や液体にエネルギーを与え、配管や設備へ送り出す機械。給排水・循環・排水など用途に応じて、必要な流量と揚程、吸込条件、流体の温度や性質、接液部の材質を確認して選定する。",
+      "de": "A pump is a machine that adds energy to water or another liquid to move it through piping or equipment. For supply, drainage or circulation systems, selection depends on required flow and head, suction conditions, fluid temperature and compatibility of wetted materials.",
+      "c": "plumbing",
+      "task": "move_water"
+    },
+    {
+      "id": "q015_sump_pump",
+      "t": "equipment",
+      "ja": "排水ポンプ",
+      "en": "Sump Pump",
+      "dj": "ピットや低所の水を汲み上げて排水するポンプ。\nピット、地下室、低所などに溜まった水を自動または手動で排出する排水ポンプ。固形物通過径、揚程、吐出量、フロート方式、電源、防水構造を排水条件に合わせる。",
+      "de": "Pump used to remove water from pits or low areas.\nDrainage pump used to remove accumulated water from pits, basements, and low areas. Solids handling, head, discharge rate, float control, power supply, and submersible rating must suit the application.",
+      "c": "plumbing",
+      "task": "drain_water"
+    },
+    {
+      "id": "q015_booster_pump",
+      "t": "equipment",
+      "ja": "加圧ポンプ",
+      "en": "Booster Pump",
+      "dj": "給水圧を高めるためのポンプ。\n給水圧が不足する系統で圧力を高め、必要な吐出圧を維持する加圧ポンプまたは加圧ユニット。必要流量、吸込圧、目標圧力、制御方式、タンク容量、電源条件を確認する。",
+      "de": "Pump used to increase water pressure.\nBooster pump or package used where incoming water pressure is insufficient and a target discharge pressure must be maintained. Required flow, inlet pressure, target pressure, control method, tank capacity, and power supply determine selection.",
+      "c": "plumbing",
+      "task": "boost_pressure"
+    },
+    {
+      "id": "q015_pressure_gauge",
+      "t": "tool",
+      "ja": "圧力計",
+      "en": "Pressure Gauge",
+      "dj": "配管や圧力容器、ポンプなどの内部圧力を目盛や表示値で確認する計器。測定範囲と接続ねじ、流体・温度への適合、振動や脈動の影響を考慮して選び、読み取りや交換ができる位置に設置する。",
+      "de": "A measuring instrument that displays pressure in pipes, vessels, pumps, or similar equipment. Select a suitable pressure range, process connection, fluid compatibility, and temperature rating, and account for vibration or pressure pulsation when locating the gauge for readable and serviceable access.",
+      "c": "plumbing",
+      "task": "measure_pressure",
+      "aj": [
+        "圧力ゲージ"
+      ],
+      "ae": [
+        "Pressure indicator"
+      ]
+    },
+    {
+      "id": "q015_pressure_switch",
+      "t": "component",
+      "ja": "圧力スイッチ",
+      "en": "Pressure Switch",
+      "dj": "圧力変化で接点を開閉する制御部品。\n配管や機器の圧力が設定値へ到達すると電気接点を開閉し、ポンプや警報などを制御する部品。設定範囲、復帰差、耐圧、接点容量、流体適合、接続ねじを確認する。",
+      "de": "Switch that operates based on pressure change.\nPressure-operated switch that changes electrical contacts at a set pressure to control pumps, alarms, or other equipment. Set range, differential, pressure rating, contact capacity, fluid compatibility, and connection must match the application.",
+      "c": "plumbing",
+      "task": "control_pressure"
+    },
+    {
+      "id": "q015_flexible_joint",
+      "t": "component",
+      "ja": "フレキシブルジョイント",
+      "en": "Flexible Joint",
+      "dj": "振動や変位を吸収する可とう継手。\nポンプや機器の振動、芯ずれ、微小な変位を吸収して配管へ伝わる応力を減らす可とう継手。口径、接続方式、許容変位、使用圧力、温度、流体、材質を確認する。",
+      "de": "Flexible joint that absorbs vibration or movement.\nFlexible connector used to absorb vibration, minor misalignment, and movement so loads are not transferred directly into piping. Size, end connection, allowable movement, pressure, temperature, fluid, and materials must be compatible.",
+      "c": "plumbing",
+      "task": "connect_pipe"
+    },
+    {
+      "id": "q015_expansion_joint_pipe",
+      "t": "component",
+      "ja": "伸縮継手",
+      "en": "Pipe Expansion Joint",
+      "dj": "配管の熱伸縮や変位を吸収する継手。\n温度変化による配管の伸縮や建物変位を吸収する伸縮継手。必要伸縮量、軸方向・横方向変位、圧力、温度、接続形式、配管支持条件を計算して選ぶ。",
+      "de": "Pipe fitting that absorbs thermal expansion or movement.\nExpansion joint used to absorb thermal growth or structural movement in piping. Required axial/lateral movement, pressure, temperature, end connection, anchors, and guides must be considered in selection.",
+      "c": "plumbing",
+      "task": "absorb_movement"
+    },
+    {
+      "id": "q015_strainer",
+      "t": "component",
+      "ja": "ストレーナー",
+      "en": "Strainer",
+      "dj": "配管内の異物を捕集する部品。\n配管中のゴミや錆などをスクリーンで捕集し、弁・ポンプ・熱交換器など下流機器を保護する除塵部品。口径、メッシュ、圧力損失、材質、清掃方式を確認する。",
+      "de": "Fitting that captures debris in piping.\nPiping component that traps debris and rust with a screen to protect downstream valves, pumps, and equipment. Size, mesh, pressure drop, materials, and cleaning method must suit the service.",
+      "c": "plumbing",
+      "task": "protect_equipment"
+    },
+    {
+      "id": "q015_y_strainer",
+      "t": "component",
+      "ja": "Y形ストレーナー",
+      "en": "Y Strainer",
+      "dj": "Y形の本体で異物を除去する配管部品。\n本体がY字形で、枝部のスクリーンに異物を捕集する配管用ストレーナー。比較的コンパクトで、給水・温水・蒸気など多様な系統に使われる。流向とスクリーン位置を守って施工する。",
+      "de": "Y-shaped strainer used to remove debris from piping.\nCompact Y-shaped pipeline strainer that collects debris in a screen located in the branch leg. It is used in water, hot-water, steam, and other services and must be installed with correct flow direction and screen orientation.",
+      "c": "plumbing",
+      "task": "protect_equipment"
+    },
+    {
+      "id": "q015_pressure_reducing_valve",
+      "t": "component",
+      "ja": "減圧弁",
+      "en": "Pressure Reducing Valve",
+      "dj": "配管圧力を所定値に下げる弁。\n高い一次側圧力を所定の二次側圧力へ下げ、流量変動があっても下流圧を一定範囲に保つ減圧弁。口径、一次圧、設定圧、流量、温度、材質を系統条件へ合わせる。",
+      "de": "Valve that reduces pressure to a set value.\nValve that reduces a higher inlet pressure to a controlled downstream pressure over a range of flow. Size, inlet pressure, set pressure, flow capacity, temperature, and materials must match the system.",
+      "c": "plumbing",
+      "task": "control_pressure",
+      "aj": [
+        "減圧バルブ"
+      ],
+      "ae": [
+        "PRV"
+      ]
+    },
+    {
+      "id": "q015_solenoid_valve",
+      "t": "component",
+      "ja": "電磁弁",
+      "en": "Solenoid Valve",
+      "dj": "電気信号で流体の開閉を行う弁。\n電磁コイルへの通電で弁を開閉し、流体の自動制御を行う電磁弁。電源電圧、常開・常閉、口径、圧力差、流体、温度、接続方式、シール材を確認して選ぶ。",
+      "de": "Valve operated by an electrical solenoid.\nElectrically actuated valve that opens or closes flow using a solenoid coil. Supply voltage, normally-open/closed function, size, differential pressure, fluid, temperature, connection, and seal material must match the application.",
+      "c": "plumbing",
+      "task": "control_flow"
+    },
+    {
+      "id": "q015_gate_valve",
+      "t": "component",
+      "ja": "仕切弁",
+      "en": "Gate Valve",
+      "dj": "流路に対して弁体を上下に動かして、配管を主に全開または全閉にする仕切弁。途中開度での流量調整は通常の主用途ではなく、流体、圧力・温度条件、弁軸の操作空間、開閉状態の確認方法を考慮して選ぶ。",
+      "de": "A gate valve raises or lowers a closure element across the flow path, primarily for fully open or fully closed service. It is not generally the preferred valve for throttling. Check the fluid, pressure and temperature ratings, operation clearance, and means of verifying valve position.",
+      "c": "plumbing",
+      "task": "shut_off_water"
+    },
+    {
+      "id": "q015_globe_valve",
+      "t": "component",
+      "ja": "玉形弁",
+      "en": "Globe Valve",
+      "dj": "流量調整に使いやすい弁。\n弁体を弁座へ押し付けて流路断面を変え、遮断だけでなく流量調整にも使いやすい玉形弁。流れの抵抗は仕切弁より大きいため圧力損失を考慮する。",
+      "de": "Valve suitable for throttling and flow control.\nGlobe valve that moves a disc toward or away from a seat, making it suitable for both shutoff and throttling. It generally creates more pressure loss than a gate valve and must be sized accordingly.",
+      "c": "plumbing",
+      "task": "control_flow"
+    },
+    {
+      "id": "q015_butterfly_valve",
+      "t": "component",
+      "ja": "バタフライ弁",
+      "en": "Butterfly Valve",
+      "dj": "円盤状の弁体で流れを開閉する弁。\n円盤状の弁体を約90度回転させて流路を開閉・調整するバタフライ弁。大口径でも比較的軽量・コンパクトで、レバー式やギヤ式、電動・空圧駆動がある。",
+      "de": "Valve using a rotating disc to open or close flow.\nQuarter-turn valve using a rotating disc to isolate or regulate flow. It is compact and relatively light even at larger sizes and may use lever, gear, electric, or pneumatic actuation.",
+      "c": "plumbing",
+      "task": "shut_off_water"
+    },
+    {
+      "id": "q015_faucet",
+      "t": "fixture",
+      "ja": "水栓",
+      "en": "Faucet",
+      "dj": "給水配管の末端で水を出し止めし、製品によっては流量や温度も調節する水栓器具。単水栓と混合水栓などの方式があり、取付穴・接続口径・使用水圧・吐水位置・保守できる空間を設置条件と照合する。",
+      "de": "A terminal plumbing fitting that opens or shuts off water flow and, on some models, controls flow rate or water temperature. Single-supply and mixer arrangements differ. Match the mounting opening, connection sizes, supply pressure, spout position, and service access to the installation.",
+      "c": "sanitary",
+      "task": "install_fixture",
+      "aj": [
+        "蛇口"
+      ],
+      "ae": [
+        "Water tap"
+      ]
+    },
+    {
+      "id": "q015_mixer_faucet",
+      "t": "fixture",
+      "ja": "混合水栓",
+      "en": "Mixer Faucet",
+      "dj": "湯と水を混合して吐水する水栓。\n給湯と給水を混合し、温度と流量を調整して吐水する混合水栓。単栓式、シングルレバー、サーモスタット式などがあり、給水・給湯条件と取付寸法を合わせる。",
+      "de": "Faucet that mixes hot and cold water.\nFaucet that mixes hot and cold supplies to control outlet temperature and flow. Common types include dual-handle, single-lever, and thermostatic mixers, all of which must match supply and mounting conditions.",
+      "c": "sanitary",
+      "task": "install_fixture"
+    },
+    {
+      "id": "q015_washbasin",
+      "t": "fixture",
+      "ja": "洗面器",
+      "en": "Wash Basin",
+      "dj": "手洗いや洗面に使う衛生器具。\n手洗い・洗面用のボウル状衛生器具。壁掛け、カウンター、ベッセルなどの形式があり、寸法、取付下地、給排水位置、水栓方式、オーバーフロー有無を設計へ合わせる。",
+      "de": "Sanitary fixture used for handwashing or washing.\nSanitary basin used for handwashing and washing. Wall-hung, countertop, and vessel configurations require coordination of size, support, supply and waste locations, faucet arrangement, and overflow provisions.",
+      "c": "sanitary",
+      "task": "install_fixture"
+    },
+    {
+      "id": "q015_toilet_bowl",
+      "t": "fixture",
+      "ja": "便器",
+      "en": "Toilet Bowl",
+      "dj": "汚物を受け、洗浄水によって排水管へ流す衛生器具。床排水・壁排水などの方式や排水芯位置、給水条件、便座・洗浄装置との組合せ、床や壁への固定方法を確認し、接続部の漏水や悪臭を防ぐ納まりが必要になる。",
+      "de": "A sanitary bowl that receives toilet waste and flushes it into the drainage system. Floor-outlet and wall-outlet models require different connections. Confirm the drain location, water supply, compatibility with seats or flushing components, mounting method, and sealing of the drain connection.",
+      "c": "sanitary",
+      "task": "install_fixture"
+    },
+    {
+      "id": "q015_urinal",
+      "t": "fixture",
+      "ja": "小便器",
+      "en": "Urinal",
+      "dj": "主に立位での排尿に使う専用の衛生器具。洗浄水を使う方式と無水式などがあり、給水の有無、排水トラップ、壁への固定、清掃性と防臭の条件が異なるため、機器の仕様と配管位置を照合する。",
+      "de": "A sanitary fixture intended primarily for urination. Flushed and waterless models have different plumbing and maintenance requirements. Verify whether a supply is needed, the drainage and trap arrangement, wall mounting, cleaning access, and measures for odor control.",
+      "c": "sanitary",
+      "task": "install_fixture"
+    },
+    {
+      "id": "q015_floor_drain",
+      "t": "component",
+      "ja": "床排水金物",
+      "en": "Floor Drain",
+      "dj": "床面に流れた水を排水管へ導く排水金物。床勾配と排水量に合う開口・目皿を選び、防水層との接続、トラップの有無、清掃や点検のしやすさ、床仕上げ面との高さを確認して施工する。",
+      "de": "A drain fitting that collects water from the finished floor and directs it to drainage piping. Match the inlet and grate capacity to the floor slope and expected flow. Check the waterproofing connection, trap arrangement if required, cleaning access, and installed elevation relative to the floor finish.",
+      "c": "sanitary",
+      "task": "drain_floor",
+      "aj": [
+        "床ドレン"
+      ],
+      "ae": [
+        "Floor waste"
+      ]
+    },
+    {
+      "id": "q015_trap_primer",
+      "t": "component",
+      "ja": "トラップ給水装置",
+      "en": "Trap Primer",
+      "dj": "排水トラップの封水切れを防ぐ装置。\n使用頻度の低い床排水などへ少量の水を補給し、排水トラップの封水蒸発による臭気逆流を防ぐ装置。給水圧、接続径、作動方式、補給先数を確認する。",
+      "de": "Device that maintains water seal in a drain trap.\nDevice that supplies small amounts of water to infrequently used drain traps to maintain the water seal and prevent sewer-gas entry. Supply pressure, connection size, operating method, and number of served traps must be verified.",
+      "c": "sanitary",
+      "task": "maintain_trap"
+    },
+    {
+      "id": "q015_cleanout_plug",
+      "t": "component",
+      "ja": "掃除口プラグ",
+      "en": "Cleanout Plug",
+      "dj": "配管掃除口を塞ぐ取り外し可能な栓。\n排水管の掃除口を通常時に密閉し、点検・清掃時に取り外せるねじ込み式などのプラグ。ねじ規格、口径、材質、シール方法を既設掃除口へ合わせる。",
+      "de": "Removable plug that closes a pipe cleanout.\nRemovable threaded or fitted plug that seals a drainage cleanout during normal service and can be opened for inspection or cleaning. Thread standard, size, material, and sealing method must match the cleanout body.",
+      "c": "sanitary",
+      "task": "maintain_pipe"
+    },
+    {
+      "id": "q015_pipe_insulation",
+      "t": "material",
+      "ja": "配管保温材",
+      "en": "Pipe Insulation",
+      "dj": "配管の熱損失や結露を抑える保温材。\n配管からの熱損失・熱取得を抑え、表面結露や凍結を防ぐために巻く・被せる保温材。配管温度、周囲条件、必要厚さ、熱伝導率、防湿性能、屋外保護を確認する。",
+      "de": "Insulation used to reduce heat loss or condensation on pipes.\nInsulation applied around piping to reduce heat loss or gain and help prevent condensation or freezing. Service temperature, ambient conditions, thickness, thermal conductivity, vapor control, and weather protection determine the system.",
+      "c": "insulation",
+      "task": "insulate_pipe"
+    },
+    {
+      "id": "q015_glass_wool_pipe_cover",
+      "t": "material",
+      "ja": "グラスウール保温筒",
+      "en": "Glass Wool Pipe Cover",
+      "dj": "ガラス繊維を成形した筒状の配管保温材で、温水・冷水などの配管周囲を覆い熱損失を抑える。管径と厚さ、使用温度に合う製品を選び、冷水系では結露対策として防湿層や継ぎ目処理の仕様を確認する。",
+      "de": "A preformed glass-wool insulation section placed around pipes to reduce heat transfer on hot- or cold-water services. Choose a product with the correct pipe size, thickness, and temperature rating. For chilled services, check the required vapor barrier and sealing of insulation joints to limit condensation.",
+      "c": "insulation",
+      "task": "insulate_pipe"
+    },
+    {
+      "id": "q015_polyethylene_pipe_cover",
+      "t": "material",
+      "ja": "ポリエチレン保温材",
+      "en": "Polyethylene Pipe Insulation",
+      "dj": "発泡ポリエチレン製の配管保温材。\n発泡ポリエチレンなどで作られた軽量な筒状配管保温材。給水・給湯・空調配管の保温や結露対策に使い、対応温度、厚さ、内径、防湿性を確認する。",
+      "de": "Foamed polyethylene insulation used for pipes.\nLightweight preformed pipe insulation made from polyethylene foam or similar material. It is used on water and HVAC piping for thermal and condensation control, subject to temperature, thickness, bore, and vapor-resistance limits.",
+      "c": "insulation",
+      "task": "insulate_pipe"
+    },
+    {
+      "id": "q015_aluminum_jacket",
+      "t": "material",
+      "ja": "アルミ外装材",
+      "en": "Aluminum Jacket",
+      "dj": "保温材を保護するアルミ製の外装材。\n屋外や機械室の配管保温材を雨水、紫外線、衝撃から保護するアルミ製外装材。板厚、成形径、継目方向、固定方法、異種金属腐食への配慮が必要。",
+      "de": "Aluminum covering used to protect insulation.\nAluminum jacketing used to protect pipe insulation from weather, UV, and mechanical damage. Gauge, formed diameter, seam orientation, fastening, and galvanic-corrosion considerations are part of the installation.",
+      "c": "insulation",
+      "task": "protect_insulation"
+    },
+    {
+      "id": "q015_insulation_tape",
+      "t": "material",
+      "ja": "保温テープ",
+      "en": "Insulation Tape",
+      "dj": "保温材の継ぎ目や端部を処理するテープ。\n配管保温材の継目、外被、防湿層などを固定・密閉するためのテープ。アルミテープ、防湿テープ、保温材専用品などがあり、下地と温度・湿気条件へ適合するものを使う。",
+      "de": "Tape used to seal insulation joints and ends.\nTape used to secure and seal insulation joints, jackets, or vapor-control layers. Aluminum foil, vapor-barrier, and insulation-specific tapes must be selected for the substrate and service temperature/moisture conditions.",
+      "c": "insulation",
+      "task": "finish_insulation"
+    },
+    {
+      "id": "q015_duct",
+      "t": "component",
+      "ja": "ダクト",
+      "en": "Duct",
+      "dj": "空気を送るための通風路。\n空調・換気設備で空気を搬送する管路の総称。風量、風速、圧力損失、騒音、断面形状、材質、気密等級、防火区画条件を基に寸法と仕様を決める。",
+      "de": "Air passage used to convey ventilation or conditioned air.\nAir-distribution passage used in HVAC and ventilation systems. Size and construction are determined from airflow, velocity, pressure loss, noise, cross-section, material, leakage class, and fire-compartment requirements.",
+      "c": "hvac",
+      "task": "route_air"
+    },
+    {
+      "id": "q015_spiral_duct",
+      "t": "component",
+      "ja": "スパイラルダクト",
+      "en": "Spiral Duct",
+      "dj": "らせん状の補強を持つ丸ダクト。\n薄鋼板などをらせん状に巻いて成形した円形ダクト。剛性と施工性に優れ、空調・換気の露出配管や天井内配管に広く使われる。径、板厚、継手、支持間隔、気密処理を確認する。",
+      "de": "Round duct with spiral seam reinforcement.\nRound duct formed by spirally locking sheet metal, widely used for exposed and concealed HVAC/ventilation runs. Diameter, gauge, fittings, support spacing, and sealing requirements must be coordinated.",
+      "c": "hvac",
+      "task": "route_air",
+      "aj": [
+        "スパイラル管"
+      ],
+      "ae": [
+        "Spiral air duct"
+      ]
+    },
+    {
+      "id": "q015_flexible_duct",
+      "t": "component",
+      "ja": "フレキシブルダクト",
+      "en": "Flexible Duct",
+      "dj": "曲げやすい蛇腹状の空調・換気ダクト。\n曲げやすい蛇腹状の空調・換気用ダクト。機器や吹出口への短い接続に使い、内径、長さ、断熱有無、耐熱温度、圧力、最小曲げ半径を系統条件へ合わせる。",
+      "de": "Bendable duct used for HVAC or ventilation connections.\nFlexible corrugated duct used for short HVAC or ventilation connections to equipment and air terminals. Diameter, length, insulation, temperature rating, pressure, and minimum bend radius must suit the system.",
+      "c": "hvac",
+      "task": "connect_duct"
+    },
+    {
+      "id": "q015_duct_flange",
+      "t": "component",
+      "ja": "ダクトフランジ",
+      "en": "Duct Flange",
+      "dj": "ダクト同士を接続するための縁部材。\n角ダクトや機器接続部の縁に設け、ダクト同士をボルト等で接続するフランジ部材。ダクト寸法、板厚、接続方式、ガスケット、気密等級を合わせる。",
+      "de": "Flange used to connect duct sections.\nFlange component fitted to duct edges or equipment connections so duct sections can be bolted together. Duct dimensions, gauge, joint system, gasket, and leakage requirements must match.",
+      "c": "hvac",
+      "task": "connect_duct"
+    },
+    {
+      "id": "q015_duct_hanger",
+      "t": "component",
+      "ja": "ダクト吊り金物",
+      "en": "Duct Hanger",
+      "dj": "ダクトを天井から支持する金物。\nダクトを天井や構造体から吊って所定高さに支持する金物。ダクト重量、断面寸法、吊り間隔、アンカー能力、振動条件を考慮して選定・配置する。",
+      "de": "Hardware used to suspend ductwork.\nHardware used to suspend ductwork from the structure at the required elevation. Duct weight, size, hanger spacing, anchor capacity, and vibration conditions determine the support arrangement.",
+      "c": "hvac",
+      "task": "support_duct"
+    },
+    {
+      "id": "q015_volume_damper",
+      "t": "component",
+      "ja": "風量調整ダンパー",
+      "en": "Volume Damper",
+      "dj": "ダクト内の羽根の角度を変えて風量や系統ごとの空気配分を調整する部品。送風・還気系統のバランス調整に使い、羽根の操作・固定方法、点検口の位置、ダクト抵抗や風切り音への影響を確認する。防火ダンパーとは用途が異なる。",
+      "de": "A blade-equipped duct device used to adjust airflow and balance supply or return branches. Confirm how the blades are operated and locked, the accessibility of the adjustment point, and the effect on pressure loss and noise. A balancing damper has a different function from a fire damper.",
+      "c": "hvac",
+      "task": "balance_air"
+    },
+    {
+      "id": "q015_fire_damper",
+      "t": "component",
+      "ja": "防火ダンパー",
+      "en": "Fire Damper",
+      "dj": "火災時にダクトを閉じて延焼を抑える部品。\n防火区画を貫通するダクト等に設け、火災時に自動閉鎖して火炎や熱の拡大を抑える防火設備。認定・法令、設置位置、作動温度、耐火性能、点検方法を設計条件へ合わせる。",
+      "de": "Damper that closes during fire to limit spread through ducts.\nFire-protection damper installed at rated duct penetrations to close automatically during fire conditions and limit spread of flame and heat. Listing, code requirements, location, activation temperature, rating, and inspection access are critical.",
+      "c": "hvac",
+      "task": "fire_protection",
+      "aj": [
+        "FD",
+        "防火用ダンパー"
+      ],
+      "ae": [
+        "Fire shutoff damper"
+      ]
+    },
+    {
+      "id": "q015_smoke_damper",
+      "t": "component",
+      "ja": "防煙ダンパー",
+      "en": "Smoke Damper",
+      "dj": "煙の流入や拡散を抑えるダクト部品。\n火災時に煙の移動を抑えるためダクトを閉鎖・制御する防煙ダンパー。法令・認定、漏煙性能、駆動方式、火災信号との連動、復帰方式、点検性を確認する。",
+      "de": "Damper used to control smoke movement in ductwork.\nSmoke-control damper used to restrict smoke movement through ductwork. Listing, leakage rating, actuator, fire-alarm interface, reset method, and service access must comply with the designed smoke-control system.",
+      "c": "hvac",
+      "task": "smoke_control",
+      "aj": [
+        "SD"
+      ],
+      "ae": [
+        "Smoke control damper"
+      ]
+    },
+    {
+      "id": "q015_grille",
+      "t": "component",
+      "ja": "ガラリ",
+      "en": "Grille",
+      "dj": "空調・換気用の給気口や吸込口などに取り付ける格子状の開口部材。羽根の向きや有効開口面積によって空気の流れや圧力損失が変わるため、必要風量、設置場所、汚れの清掃方法を確認する。",
+      "de": "A framed grille with bars or louvers fitted to an HVAC supply, return, or transfer opening. Blade direction and free area affect air movement and pressure loss. Select it for the required airflow and location and allow for cleaning where dust can collect.",
+      "c": "hvac",
+      "task": "install_air_terminal"
+    },
+    {
+      "id": "q015_diffuser",
+      "t": "component",
+      "ja": "吹出口",
+      "en": "Air Diffuser",
+      "dj": "空調ダクトなどから室内へ供給する空気を、所定の方向へ広げて分配する吹出口部材。天井型や壁型などがあり、必要風量、到達距離、気流による不快感、騒音、結露の条件を考慮して選定する。",
+      "de": "An air terminal designed to spread conditioned supply air into a room in a controlled pattern. Ceiling and wall diffusers have different throw and distribution characteristics. Select them for airflow, throw distance, occupant comfort, noise, and condensation considerations.",
+      "c": "hvac",
+      "task": "supply_air"
+    },
+    {
+      "id": "q015_return_air_grille",
+      "t": "component",
+      "ja": "吸込口",
+      "en": "Return Air Grille",
+      "dj": "室内空気を還気ダクトや空調機側へ戻すための吸込開口に取り付ける格子状部材。必要風量に対して有効開口面積が足りないと吸込音や圧力損失が増えるため、配置・清掃性・フィルターの有無を確認する。",
+      "de": "A grille at an air-return opening through which room air travels back toward an air-handling system. Insufficient free area can raise air velocity, pressure drop, and noise. Check sizing, placement, access for cleaning, and whether a filter is incorporated.",
+      "c": "hvac",
+      "task": "return_air"
+    },
+    {
+      "id": "q015_exhaust_fan",
+      "t": "equipment",
+      "ja": "換気扇",
+      "en": "Exhaust Fan",
+      "dj": "トイレ、厨房、作業室などの室内空気を屋外へ排出するための送風機。必要排気量に対するダクト抵抗と静圧、騒音、電源、外気の給気経路を検討し、清掃や点検ができる位置へ設置する。",
+      "de": "A fan that removes air from an enclosed space and discharges it outdoors, as in toilets, kitchens, or work areas. Match the required exhaust airflow to duct resistance and fan static-pressure capability; also consider noise, power, replacement-air paths, and maintenance access.",
+      "c": "ventilation",
+      "task": "exhaust_air"
+    },
+    {
+      "id": "q015_inline_fan",
+      "t": "equipment",
+      "ja": "中間ダクトファン",
+      "en": "Inline Duct Fan",
+      "dj": "空調や換気のダクト途中に組み込んで、空気を搬送・排出する送風機。ダクト径、必要風量、静圧、設置姿勢、振動・騒音対策を確認し、羽根やモーターを点検できる場所に配置する。",
+      "de": "A fan installed in-line within a ventilation or HVAC duct to move air along the duct system. Select it for duct size, required airflow, static pressure, and permitted orientation. Provide suitable support, noise or vibration control, and access to the fan and motor for inspection.",
+      "c": "ventilation",
+      "task": "move_air"
+    },
+    {
+      "id": "q015_sirocco_fan",
+      "t": "equipment",
+      "ja": "シロッコファン",
+      "en": "Sirocco Fan",
+      "dj": "多翼羽根で空気を送る遠心送風機。\n多翼の前向き羽根を持つ遠心送風機で、比較的コンパクトに風量と静圧を得る用途に使う。風量、静圧、回転数、電源、モーター容量、振動・騒音を確認する。",
+      "de": "Centrifugal fan with multiple forward-curved blades.\nForward-curved centrifugal fan used where useful airflow and static pressure are required in a compact package. Airflow, static pressure, speed, power supply, motor capacity, vibration, and noise must be checked.",
+      "c": "ventilation",
+      "task": "move_air"
+    },
+    {
+      "id": "q015_air_handling_unit",
+      "t": "equipment",
+      "ja": "空調機",
+      "en": "Air Handling Unit",
+      "dj": "空気の温度、湿度、清浄度を調整して送る機械。\nフィルター、熱交換コイル、送風機等を組み合わせ、空気の温度・湿度・清浄度を調整して送風する大型空調機。設計風量、外気量、冷暖房能力、静圧、制御、搬入・保守条件を総合して選定する。",
+      "de": "Unit that conditions and distributes air.\nPackaged air-handling equipment combining filters, coils, fans, and controls to condition and distribute air. Design airflow, outdoor air, heating/cooling capacity, static pressure, controls, delivery route, and maintenance requirements must be engineered together.",
+      "c": "hvac",
+      "task": "condition_air"
+    },
+    {
+      "id": "q015_fan_coil_unit",
+      "t": "equipment",
+      "ja": "ファンコイルユニット",
+      "en": "Fan Coil Unit",
+      "dj": "コイルとファンで室内空気を冷暖房する機器。\nコイルとファンで室内空気を循環させ、冷温水等を用いて冷暖房する末端空調機。能力、風量、水量、配管方式、ドレン、電源、点検スペースを確認する。",
+      "de": "Unit that heats or cools room air using a coil and fan.\nTerminal HVAC unit using a fan and coil to recirculate and heat or cool room air, typically with chilled or hot water. Capacity, airflow, water flow, piping arrangement, condensate drain, power, and access must be coordinated.",
+      "c": "hvac",
+      "task": "condition_air"
+    },
+    {
+      "id": "q015_outdoor_unit",
+      "t": "equipment",
+      "ja": "室外機",
+      "en": "Outdoor Unit",
+      "dj": "空調機の熱交換を屋外で行う機器。\n空調機の冷媒回路で屋外側の熱交換・圧縮等を担う室外機。対応する室内機、冷媒種類、能力、配管長、高低差、電源、設置離隔、排熱・騒音条件を確認する。",
+      "de": "Outdoor HVAC unit that rejects or absorbs heat.\nOutdoor HVAC unit that performs heat exchange and refrigeration-cycle functions. Matching indoor units, refrigerant, capacity, piping length/elevation, power, clearances, heat rejection, and noise constraints must be verified.",
+      "c": "hvac",
+      "task": "install_air_conditioner"
+    },
+    {
+      "id": "q015_refrigerant_pipe",
+      "t": "material",
+      "ja": "冷媒管",
+      "en": "Refrigerant Pipe",
+      "dj": "空調機の冷媒を流す銅管などの配管。\n空調機の室内機と室外機の間で冷媒を循環させる配管。主に銅管が使われ、冷媒種、管径、肉厚、最高使用圧力、継手方式、断熱仕様を機器指定に合わせる。",
+      "de": "Pipe that carries refrigerant in air-conditioning systems.\nPiping that circulates refrigerant between indoor and outdoor HVAC equipment. Copper tubing is common, and refrigerant type, tube size, wall thickness, pressure rating, joint method, and insulation must match the equipment requirements.",
+      "c": "hvac",
+      "task": "install_refrigerant_pipe",
+      "aj": [
+        "冷媒配管"
+      ],
+      "ae": [
+        "Refrigerant tubing"
+      ]
+    },
+    {
+      "id": "q015_drain_up_piping",
+      "t": "component",
+      "ja": "ドレン配管",
+      "en": "Condensate Drain Pipe",
+      "dj": "空調機から出る結露水を排水する配管。\n空調機で発生した結露水を排水するドレン配管。自然排水では連続した下り勾配を確保し、口径、材質、保温、支持、掃除性を機器条件と経路に合わせる。",
+      "de": "Pipe used to drain condensate from HVAC equipment.\nCondensate drain piping that removes water generated by HVAC equipment. Gravity drains need continuous fall, with pipe size, material, insulation, support, and cleanability coordinated to the equipment and route.",
+      "c": "hvac",
+      "task": "drain_condensate"
+    },
+    {
+      "id": "q015_condensate_pump",
+      "t": "equipment",
+      "ja": "ドレンアップポンプ",
+      "en": "Condensate Pump",
+      "dj": "自然勾配で流せない結露水を送るポンプ。\n重力だけでは排水できない空調結露水を持ち上げて送る小型ポンプ。揚程、排水量、電源、運転音、タンク容量、フロート制御、逆流防止を機器と配管経路に合わせる。",
+      "de": "Pump used to lift and discharge condensate.\nSmall pump used to lift HVAC condensate where gravity drainage is not possible. Head, flow capacity, power supply, noise, reservoir size, float control, and backflow prevention must suit the equipment and discharge route.",
+      "c": "hvac",
+      "task": "drain_condensate"
+    },
+    {
+      "id": "q015_drain_trap_hvac",
+      "t": "component",
+      "ja": "空調ドレントラップ",
+      "en": "HVAC Drain Trap",
+      "dj": "空調ドレン管の空気逆流や臭気を防ぐトラップ。\n空調機のドレン配管に水封を作り、機内圧力による空気の吸込み・吹出しや臭気の逆流を抑えるトラップ。静圧、必要封水深さ、清掃性、凍結条件を考慮する。",
+      "de": "Trap used in HVAC condensate drains to prevent air or odor backflow.\nTrap installed in HVAC condensate piping to maintain a water seal and limit air movement or odor backflow caused by unit pressure. Static pressure, required seal depth, cleanability, and freezing conditions must be considered.",
+      "c": "hvac",
+      "task": "drain_condensate"
+    },
+    {
+      "id": "q015_pipe_sleeve_firestop",
+      "t": "component",
+      "ja": "防火区画貫通スリーブ",
+      "en": "Fire-Rated Pipe Sleeve",
+      "dj": "防火区画を貫通する配管用スリーブ。\n防火区画を貫通する配管のために設けるスリーブ。貫通材、壁・床構造、開口寸法、防火区画性能に対応する認定済み防火区画貫通処理システムと一体で施工する。",
+      "de": "Sleeve used where piping penetrates fire-rated assemblies.\nSleeve provided where piping penetrates a fire-rated wall or floor. It must be installed as part of a listed or approved firestop system matching the penetrant, assembly, opening size, and required fire-resistance rating.",
+      "c": "penetration",
+      "task": "set_sleeve"
+    },
+    {
+      "id": "q015_wall_sleeve",
+      "t": "component",
+      "ja": "壁貫通スリーブ",
+      "en": "Wall Sleeve",
+      "dj": "壁を通す配管やダクト用に設けるスリーブ。\n壁を貫通する配管や小型ダクトのために先行設置する筒状部材。貫通物径、壁厚、仕上げ厚、止水・気密・防火条件、将来の差し替え余裕を考慮して寸法と材質を決める。",
+      "de": "Sleeve provided for pipe or duct penetrations through walls.\nTubular sleeve installed in advance for piping or small ducts passing through a wall. Size and material depend on penetrant diameter, wall thickness, finishes, water/air sealing, fire requirements, and allowance for installation or replacement.",
+      "c": "penetration",
+      "task": "set_sleeve"
+    },
+    {
+      "id": "q015_floor_sleeve",
+      "t": "component",
+      "ja": "床貫通スリーブ",
+      "en": "Floor Sleeve",
+      "dj": "コンクリート床や床スラブを配管・ダクトが貫通する位置に設ける筒状の開口保持材。配管径と保温厚、貫通位置、床の防水・遮音・防火区画条件を確認し、貫通後の隙間処理を施工仕様に合わせる。",
+      "de": "A cylindrical sleeve or former provided where a pipe or duct passes through a floor or slab. Its size and location must account for the service, insulation thickness, and clearance. The surrounding opening may require specified firestopping, acoustic, or waterproof sealing depending on the floor assembly.",
+      "c": "penetration",
+      "task": "set_sleeve"
+    },
+    {
+      "id": "q015_sleeve_ring",
+      "t": "component",
+      "ja": "スリーブリング",
+      "en": "Sleeve Ring",
+      "dj": "スリーブ端部や開口部を整えるリング部材。\nスリーブ端部や貫通開口の縁を整え、必要に応じて補強・仕上げに使うリング状部材。スリーブ径、仕上げ厚、固定方法、周囲シールとの納まりを合わせる。",
+      "de": "Ring used to finish or reinforce a sleeve opening.\nRing-shaped component used to finish or reinforce the edge of a sleeve or penetration opening. Sleeve diameter, finish thickness, fixing method, and surrounding seal details must be coordinated.",
+      "c": "penetration",
+      "task": "finish_sleeve"
+    },
+    {
+      "id": "q015_firestop_mortar",
+      "t": "material",
+      "ja": "耐火モルタル",
+      "en": "Firestop Mortar",
+      "dj": "防火区画貫通部を埋める耐火性モルタル。\n防火区画の比較的大きな貫通開口を埋め、所定の耐火性能を復旧するために使う耐火モルタル。認定されたシステムの開口条件、下地、厚さ、混合比、充填方法を厳守する。",
+      "de": "Fire-rated mortar used to seal penetrations.\nFirestop mortar used to fill relatively large penetrations and restore the required fire-resistance rating. Opening conditions, substrate, depth, mix ratio, and placement method must follow the approved firestop system.",
+      "c": "firestop",
+      "task": "seal_penetration"
+    },
+    {
+      "id": "q015_firestop_board",
+      "t": "material",
+      "ja": "耐火ボード",
+      "en": "Firestop Board",
+      "dj": "貫通部や区画処理に使う耐火板材。\n大きな設備開口や複数貫通部の防火処理に用いる耐火ボード。ボード材質、枚数・厚さ、固定方法、継ぎ目処理、周囲シールを認定仕様どおりに組み合わせる。",
+      "de": "Board used in firestopping and rated assemblies.\nFirestop board used in large service openings or multiple-penetrant firestop assemblies. Board type, layers or thickness, fixing, joints, and perimeter seals must match the approved system.",
+      "c": "firestop",
+      "task": "seal_penetration"
+    },
+    {
+      "id": "q015_intumescent_wrap",
+      "t": "material",
+      "ja": "膨張材巻付け材",
+      "en": "Intumescent Wrap",
+      "dj": "火災時に膨張して隙間を塞ぐ巻付け材。\n樹脂管などの可燃性貫通物の周囲に巻き、火災時の加熱で膨張して溶融・焼失した管の隙間を閉塞する耐火巻付け材。管材、径、巻数、埋込み位置、壁・床構造を認定条件に合わせる。",
+      "de": "Wrap that expands in fire to close gaps around penetrations.\nIntumescent wrap installed around combustible penetrants such as plastic pipe. It expands under fire exposure to help close the void left as the pipe softens or burns away. Pipe material, diameter, wrap layers, position, and wall/floor assembly must match the approved system.",
+      "c": "firestop",
+      "task": "seal_penetration"
+    },
+    {
+      "id": "q015_firestop_coller",
+      "t": "component",
+      "ja": "耐火カラー",
+      "en": "Firestop Collar",
+      "dj": "樹脂管まわりに取り付ける膨張材入りの耐火部材。\n樹脂管などの可燃性配管の周囲に固定し、内部の膨張材が火災時に膨張して貫通部を閉塞する耐火カラー。管材・径、壁床構造、取付面、固定本数を認定仕様に合わせる。",
+      "de": "Collar installed around plastic pipes for firestopping.\nFirestop collar fastened around combustible pipe so its intumescent insert expands during fire exposure and closes the penetration. Pipe material and diameter, wall/floor assembly, mounting side, and fastener pattern must match the approved system.",
+      "c": "firestop",
+      "task": "seal_penetration"
+    },
+    {
+      "id": "q015_pipe_support",
+      "t": "component",
+      "ja": "配管支持金物",
+      "en": "Pipe Support",
+      "dj": "配管を所定位置に保持する支持部材。\n配管の自重、流体重量、熱伸縮、振動などを受けて所定位置に保持する支持部材の総称。管径、材質、支持間隔、荷重、温度、保温、防振条件から支持形式を決める。",
+      "de": "Support used to hold piping in position.\nGeneral term for components that hold piping in position while carrying pipe weight, contents, thermal movement, and vibration. Support type is selected from pipe size and material, spacing, load, temperature, insulation, and vibration conditions.",
+      "c": "support",
+      "task": "support_pipe"
+    },
+    {
+      "id": "q015_trapeze_hanger",
+      "t": "component",
+      "ja": "門型吊り金物",
+      "en": "Trapeze Hanger",
+      "dj": "複数の配管やラックを吊る門型支持金物。\n複数の配管やケーブルラックを横架材の上にまとめて吊る門型支持。吊りボルト、横架材、アンカー、クランプで構成し、総荷重、スパン、たわみ、耐震条件を確認する。",
+      "de": "Hanger assembly used to support multiple pipes or trays.\nTrapeze-style support that suspends multiple pipes or cable trays from a shared cross member. Threaded rods, cross member, anchors, and clamps are sized for total load, span, deflection, and seismic requirements.",
+      "c": "support",
+      "task": "hang_services"
+    },
+    {
+      "id": "q015_clevis_hanger",
+      "t": "component",
+      "ja": "クレビスハンガー",
+      "en": "Clevis Hanger",
+      "dj": "配管を一本ずつ吊るU字形の支持金物。\n水平配管を一本ずつ吊るためのU字形・クレビス形支持金物。管径、荷重、温度、保温厚さ、吊りボルト径を合わせ、配管の移動や保温材への食い込みを考慮する。",
+      "de": "U-shaped hanger used to suspend a single pipe.\nU-shaped clevis hanger used to suspend an individual horizontal pipe. Hanger size, load, temperature, insulation thickness, and rod diameter must match, with allowance for pipe movement and protection of insulation.",
+      "c": "support",
+      "task": "hang_pipe"
+    },
+    {
+      "id": "q015_pipe_shoe",
+      "t": "component",
+      "ja": "パイプシュー",
+      "en": "Pipe Shoe",
+      "dj": "配管を架台上で支持し荷重を伝える部材。\n配管の自重や運転荷重を架台へ伝えつつ、必要に応じて配管の熱伸縮を許容する支持部材。管径、荷重、温度、保温厚さ、固定・滑動条件に合わせて高さや接触面を選ぶ。",
+      "de": "Support that transfers pipe load to a structure.\nSupport that transfers pipe weight and operating loads to a structure while allowing thermal movement where required. Height and bearing details depend on pipe size, load, temperature, insulation, and anchor or sliding conditions.",
+      "c": "support",
+      "task": "support_pipe"
+    },
+    {
+      "id": "q015_u_bolt_pipe",
+      "t": "fastener",
+      "ja": "Uボルト",
+      "en": "U-Bolt",
+      "dj": "配管を架台や支持材へ固定するU字形ボルト。\n配管を架台や形鋼へ押さえて固定・案内するU字形ボルト。呼び径、ねじ径、材質、表面処理、締付け量を配管材と環境に合わせ、過締付けで管を変形させない。",
+      "de": "U-shaped bolt used to fasten pipe to supports.\nU-shaped bolt used to clamp or guide piping on structural supports. Nominal size, thread diameter, material, coating, and tightening must suit the pipe and environment without distorting the pipe.",
+      "c": "support",
+      "task": "fix_pipe",
+      "aj": [
+        "U字ボルト"
+      ],
+      "ae": [
+        "U bolt"
+      ]
+    },
+    {
+      "id": "q015_pipe_saddle",
+      "t": "component",
+      "ja": "サドルバンド",
+      "en": "Pipe Saddle Clamp",
+      "dj": "配管を壁面や床面の下地へ押さえて取り付けるサドル形の支持金物。管径と材質、固定ねじの寸法、支持間隔、熱伸縮や防振の条件を踏まえ、管をつぶしたり保温材を傷めたりしない形で固定する。",
+      "de": "A saddle-shaped clamp used to fasten piping to a wall, floor, or other supporting surface. Match the clamp to pipe diameter, material, fasteners, and support spacing. Consider thermal movement, vibration, and insulation so the mounting does not damage or distort the pipe.",
+      "c": "support",
+      "task": "fix_pipe"
+    },
+    {
+      "id": "q015_riser_clamp",
+      "t": "component",
+      "ja": "立管バンド",
+      "en": "Riser Clamp",
+      "dj": "立て配管を支持するためのバンド金物。\n立て配管の重量を床や支持構造へ受け渡すため、管を両側から挟む支持金物。管径、立管荷重、階高、支持位置、保温や防火処理との干渉を確認する。",
+      "de": "Clamp used to support vertical piping.\nClamp that grips vertical piping and transfers riser weight to floors or support structures. Pipe size, riser load, story height, support location, insulation, and firestop clearances must be coordinated.",
+      "c": "support",
+      "task": "support_riser"
+    },
+    {
+      "id": "q015_anti_vibration_hanger",
+      "t": "component",
+      "ja": "防振吊り金物",
+      "en": "Vibration Isolation Hanger",
+      "dj": "設備の振動伝達を抑える吊り支持金物。\nばねや防振ゴムなどを介して配管・ダクト・機器を吊り、振動が建物側へ伝わるのを抑える支持金物。支持荷重、固有振動数、たわみ量、取付方向、周囲クリアランスを確認する。",
+      "de": "Hanger that reduces vibration transfer from equipment or piping.\nHanger using springs, elastomers, or similar isolators to reduce vibration transmission from piping, ductwork, or equipment to the building. Load, natural frequency, deflection, orientation, and clearances must be checked.",
+      "c": "support",
+      "task": "isolate_vibration"
+    },
+    {
+      "id": "q015_equipment_anchor",
+      "t": "fastener",
+      "ja": "設備アンカー",
+      "en": "Equipment Anchor",
+      "dj": "機器を床や基礎へ固定するアンカー。\n空調機・ポンプ・盤などの設備をコンクリート床や基礎へ固定するアンカー。機器重量、地震・転倒荷重、母材強度、端あき、埋込み深さ、ボルト径を設計条件に合わせる。",
+      "de": "Anchor used to fix equipment to floors or foundations.\nAnchor used to secure HVAC units, pumps, panels, and other equipment to concrete floors or foundations. Equipment weight, seismic or overturning load, substrate strength, edge distance, embedment, and bolt size must match design requirements.",
+      "c": "support",
+      "task": "anchor_equipment"
+    },
+    {
+      "id": "q015_equipment_pad",
+      "t": "component",
+      "ja": "機器基礎パッド",
+      "en": "Equipment Pad",
+      "dj": "空調機やポンプを載せる基礎台。\n空調機・ポンプ・受水槽周辺機器などを所定高さで支持する機器用基礎台。機器重量、アンカー配置、排水・防水、振動、保守空間を踏まえて寸法・高さ・強度を決める。",
+      "de": "Pad or base used to support equipment.\nEquipment base or pad that supports HVAC units, pumps, and similar equipment at the required elevation. Dimensions, height, and strength are determined from equipment load, anchor layout, drainage, waterproofing, vibration, and service clearances.",
+      "c": "support",
+      "task": "set_equipment"
+    },
+    {
+      "id": "q015_access_door_mep",
+      "t": "component",
+      "ja": "設備点検口",
+      "en": "MEP Access Door",
+      "dj": "配管・ダクト・バルブ点検用の開口扉。\n天井や壁の内部にあるバルブ、ダンパー、継手、点検対象へアクセスするための開閉式点検口。必要開口寸法、仕上げ、耐火・遮音条件、点検対象との位置関係を合わせる。",
+      "de": "Access door used to inspect piping, ducts, or valves.\nOpening with a removable or hinged door that provides access to valves, dampers, joints, and other concealed services. Opening size, finish, fire or acoustic requirements, and alignment with the service point must be coordinated.",
+      "c": "access",
+      "task": "inspect_services"
+    },
+    {
+      "id": "q015_balancing_valve",
+      "t": "component",
+      "ja": "バランシングバルブ",
+      "en": "Balancing Valve",
+      "dj": "水量を調整して系統バランスを取る弁。\n空調・給湯などの水配管で枝系統の流量を調整し、設計流量へバランスさせる弁。口径、流量範囲、圧力損失、測定口の有無、設定方法を系統条件に合わせる。",
+      "de": "Valve used to balance water flow in a system.\nValve used in hydronic or domestic-water systems to adjust branch flow toward the design flow rate. Size, flow range, pressure loss, test ports, and setting method must suit the system conditions.",
+      "c": "plumbing",
+      "task": "balance_flow"
+    },
+    {
+      "id": "q015_air_vent_valve",
+      "t": "component",
+      "ja": "空気抜き弁",
+      "en": "Air Vent Valve",
+      "dj": "配管内の空気を抜くための弁。\n温水・冷水配管などに溜まった空気を排出する弁。自動式・手動式があり、使用圧力、温度、流体、接続口径、取付姿勢、漏水時の排水対策を確認する。",
+      "de": "Valve used to release trapped air from piping.\nValve used to release trapped air from water piping. Automatic and manual types are available, and working pressure, temperature, fluid, connection size, installation orientation, and drainage for possible leakage must be checked.",
+      "c": "plumbing",
+      "task": "remove_air"
+    },
+    {
+      "id": "q015_drain_valve",
+      "t": "component",
+      "ja": "ドレン弁",
+      "en": "Drain Valve",
+      "dj": "配管や機器内の水を抜くための弁。\n配管・機器内の水や流体を保守時に抜くため、系統の低所などへ設ける弁。口径、圧力、温度、流体適合、排水先、ホース接続の要否を確認する。",
+      "de": "Valve used to drain water from piping or equipment.\nValve installed at low points or equipment drains to remove water or other fluid during service. Size, pressure, temperature, fluid compatibility, discharge destination, and hose connection requirements must be checked.",
+      "c": "plumbing",
+      "task": "drain_system"
+    },
+    {
+      "id": "q015_temperature_gauge",
+      "t": "tool",
+      "ja": "温度計",
+      "en": "Temperature Gauge",
+      "dj": "配管や機器の運転温度を目盛や表示値で確認する計器。測定範囲と精度、感温部の取付位置、流体との接触条件、保温材との取り合いを確認し、運転中でも表示を読める場所に設ける。",
+      "de": "A measuring instrument that displays process temperature in piping or equipment. Check the required range, accuracy, sensing element location, and exposure to the process fluid. Allow for pipe insulation, thermometer wells where used, and a position from which operators can read the indication.",
+      "c": "plumbing",
+      "task": "measure_temperature"
+    },
+    {
+      "id": "q015_flow_meter",
+      "t": "tool",
+      "ja": "流量計",
+      "en": "Flow Meter",
+      "dj": "配管内の流量を測る計器。\n配管を流れる水や流体の流量を測定・表示する計器。測定原理、口径、流量範囲、圧力・温度、流体性状、必要直管長、出力信号を用途に合わせる。",
+      "de": "Meter used to measure flow rate in piping.\nInstrument used to measure and display fluid flow in piping. Measurement principle, pipe size, flow range, pressure and temperature, fluid properties, straight-run requirements, and output signals must suit the application.",
+      "c": "plumbing",
+      "task": "measure_flow"
+    },
+    {
+      "id": "q015_test_plug",
+      "t": "tool",
+      "ja": "テストプラグ",
+      "en": "Test Plug",
+      "dj": "排水管などの水張り試験で一時的に塞ぐ器具。\n排水管などの試験区間を一時的に閉塞し、水張り・漏れ試験を行うためのプラグ。適用管径、許容試験圧力、管内面状態、固定方式を確認し、加圧中の抜け出しに備える。",
+      "de": "Temporary plug used for water or pressure testing.\nTemporary plug used to isolate a drain or pipe section for water-fill or leak testing. Pipe size, allowable test pressure, pipe surface condition, and restraint method must be verified, with precautions against plug ejection under pressure.",
+      "c": "plumbing",
+      "task": "test_pipe"
+    },
+    {
+      "id": "q015_pressure_test_pump",
+      "t": "tool",
+      "ja": "水圧試験ポンプ",
+      "en": "Pressure Test Pump",
+      "dj": "配管へ圧力をかけて漏れを確認するポンプ。\n給水・空調・冷媒などの配管へ試験圧力を加え、圧力保持や漏れを確認する手動または電動ポンプ。最大圧力、吐出量、試験媒体、圧力計精度、接続ねじを試験仕様に合わせる。",
+      "de": "Pump used to pressurize piping for leak testing.\nManual or powered pump used to pressurize water, HVAC, refrigerant, or similar piping for pressure-hold and leak tests. Maximum pressure, output, test medium, gauge accuracy, and connection threads must match the test procedure.",
+      "c": "plumbing",
+      "task": "test_pipe"
+    },
+    {
+      "id": "q015_leak_detector",
+      "t": "tool",
+      "ja": "漏水検知器",
+      "en": "Leak Detector",
+      "dj": "給排水配管や設備の周囲に生じた漏水を検知して、警報や設備監視の信号として知らせる装置。点検箇所に置く接触センサーや検知ケーブルなど方式があり、想定漏水経路、電源、通報先、試験方法を確認する。ガス漏れ検知器とは別用途である。",
+      "de": "A device that detects unwanted water around plumbing or equipment and can report an alarm to local or building monitoring systems. Spot sensors and sensing cables suit different areas. Verify the expected water path, supply power, alarm interface, and test method; it is not a refrigerant or gas leak detector.",
+      "c": "inspection",
+      "task": "detect_leak"
+    },
+    {
+      "id": "q015_smoke_tester",
+      "t": "tool",
+      "ja": "発煙試験器",
+      "en": "Smoke Tester",
+      "dj": "ダクトや排水系統の漏れや流れを確認する試験器。\n煙や可視ミストを発生させ、空気の流れ、漏気、吸込み・吹出し方向などを目視確認する試験器具。火災報知設備を誤作動させないよう使用場所と煙量を管理する。",
+      "de": "Tester that uses smoke to check leakage or airflow.\nTest device that produces smoke or visible vapor to reveal airflow direction, leakage, intake, or discharge behavior. Use must be controlled to avoid unwanted alarm activation or contamination.",
+      "c": "inspection",
+      "task": "test_leakage"
+    },
+    {
+      "id": "q015_anemometer",
+      "t": "tool",
+      "ja": "風速計",
+      "en": "Anemometer",
+      "dj": "吹出口やダクトの風速を測る計器。\n吹出口・吸込口やダクト内の風速を測定する計器。測定範囲、センサー形式、測定位置、流れの乱れを考慮し、必要に応じて複数点を平均する。",
+      "de": "Meter used to measure air velocity.\nInstrument used to measure air velocity at outlets, inlets, or inside ductwork. Range, sensor type, measurement position, and turbulence must be considered, with multiple readings averaged where appropriate.",
+      "c": "hvac",
+      "task": "measure_airflow",
+      "aj": [
+        "風速測定器"
+      ],
+      "ae": [
+        "Air velocity meter"
+      ]
+    },
+    {
+      "id": "q015_airflow_hood",
+      "t": "tool",
+      "ja": "風量測定フード",
+      "en": "Airflow Capture Hood",
+      "dj": "吹出口や吸込口の風量を測るフード型計器。\n吹出口や吸込口をフードで覆い、通過風量を直接測定する計測器。開口寸法に合うフードを密着させ、逆流や偏流、測定レンジを確認して使う。",
+      "de": "Hood used to measure airflow at air terminals.\nMeasuring hood placed over a supply or return opening to measure volumetric airflow directly. The hood must fit the opening and account for leakage, reverse flow, uneven flow, and instrument range.",
+      "c": "hvac",
+      "task": "measure_airflow",
+      "aj": [
+        "風量フード"
+      ],
+      "ae": [
+        "Flow hood"
+      ]
+    },
+    {
+      "id": "q015_manometer",
+      "t": "tool",
+      "ja": "マノメーター",
+      "en": "Manometer",
+      "dj": "空気や水の圧力差を測る計器。\nダクト・フィルタ・ファン周辺などの微差圧を測定する計器。測定範囲、正負圧、配管接続、ゼロ調整を確認し、静圧・差圧の測定目的に合わせて使う。",
+      "de": "Instrument used to measure pressure difference.\nInstrument used to measure low pressure or differential pressure across ducts, filters, fans, and related equipment. Range, pressure polarity, tubing connections, and zero adjustment must match the measurement objective.",
+      "c": "hvac",
+      "task": "measure_pressure"
+    },
+    {
+      "id": "q015_filter_unit",
+      "t": "component",
+      "ja": "エアフィルター",
+      "en": "Air Filter",
+      "dj": "空気中の粉じんを捕集するフィルター。\n空調・換気系統で粉じんや粒子を捕集するフィルタを収めたユニット。要求清浄度、処理風量、初期・最終圧力損失、交換方法、気密性に合わせて選定する。",
+      "de": "Filter that captures dust and particles from air.\nHVAC or ventilation unit containing filters that capture dust and particles. Selection depends on required cleanliness, airflow, initial and final pressure drop, replacement method, and casing tightness.",
+      "c": "hvac",
+      "task": "filter_air"
+    },
+    {
+      "id": "q015_filter_frame",
+      "t": "component",
+      "ja": "フィルター枠",
+      "en": "Filter Frame",
+      "dj": "エアフィルターを保持する枠部材。\n空調フィルタを所定位置に保持し、周囲からのバイパス漏れを抑える枠部材。フィルタ寸法、厚さ、固定方式、パッキン、交換作業性を合わせる。",
+      "de": "Frame used to hold an air filter.\nFrame that supports HVAC filters in position and limits bypass leakage around their edges. Filter dimensions, thickness, retention method, gasket details, and service access must be coordinated.",
+      "c": "hvac",
+      "task": "install_filter"
+    },
+    {
+      "id": "q015_access_panel_duct",
+      "t": "component",
+      "ja": "ダクト点検口",
+      "en": "Duct Access Panel",
+      "dj": "ダクト内の清掃や点検に使う開口パネル。\nダクト内部の清掃、ダンパーやセンサーの点検を行うための開閉式点検口。必要開口寸法、気密性、断熱、防火性能、点検対象への到達性を確認する。",
+      "de": "Panel used to inspect or clean inside ductwork.\nAccess panel in ductwork used for cleaning and inspection of dampers, sensors, and internal components. Opening size, airtightness, insulation, fire requirements, and reach to the service point must be coordinated.",
+      "c": "hvac",
+      "task": "inspect_duct"
+    },
+    {
+      "id": "q015_louver",
+      "t": "component",
+      "ja": "ルーバー",
+      "en": "Louver",
+      "dj": "外気や排気の開口部に付ける羽根付き部材。\n外壁や機械室開口などで空気を通しながら視線や雨水の侵入を抑える羽根付き部材。必要風量、面風速、圧力損失、開口率、防鳥網などを確認する。",
+      "de": "Slatted air opening used for intake or exhaust.\nBladed opening used at walls or mechanical spaces to pass air while limiting direct sight and weather entry. Required airflow, face velocity, pressure drop, free area, and bird screen must be considered.",
+      "c": "ventilation",
+      "task": "install_air_terminal"
+    },
+    {
+      "id": "q015_weather_louver",
+      "t": "component",
+      "ja": "防雨ルーバー",
+      "en": "Weather Louver",
+      "dj": "雨の侵入を抑えながら通気する外部ルーバー。\n外気取入れ・排気開口で雨水の吹込みを抑えることを重視した外部用ルーバー。風速、雨水侵入性能、圧力損失、排水経路、設置方位を考慮して選定する。",
+      "de": "Exterior louver designed to limit rain entry while ventilating.\nExterior louver designed with emphasis on limiting rain penetration at outdoor-air or exhaust openings. Face velocity, rain resistance, pressure drop, drainage, and exposure orientation must be considered.",
+      "c": "ventilation",
+      "task": "weatherproof_opening"
+    },
+    {
+      "id": "q015_backdraft_damper",
+      "t": "component",
+      "ja": "逆流防止ダンパー",
+      "en": "Backdraft Damper",
+      "dj": "換気ダクトなどで空気が逆方向に流れることを抑える逆流防止用のダンパー。通常は順方向の送風で羽根が開き、停止時や逆圧時に閉じる構造が多い。流向、取付姿勢、圧力損失、点検できる位置を確認する。",
+      "de": "A duct damper intended to limit airflow in the reverse direction. Common gravity or spring-operated designs open under forward flow and close when flow stops or reverses. Confirm the specified flow direction, mounting orientation, pressure loss, and service accessibility.",
+      "c": "ventilation",
+      "task": "prevent_backdraft",
+      "aj": [
+        "逆止ダンパー"
+      ],
+      "ae": [
+        "Non-return damper"
+      ]
+    },
+    {
+      "id": "q015_silencer_duct",
+      "t": "component",
+      "ja": "消音チャンバー",
+      "en": "Duct Silencer",
+      "dj": "ダクト内の騒音を低減する部材。\nダクト系統を伝わる送風機騒音や気流音を減衰させる消音器・消音ダクト。必要減音量、風量、圧力損失、周波数特性、設置長さを合わせて設計する。",
+      "de": "Component used to reduce noise in ductwork.\nDuct silencer or attenuator used to reduce fan and airflow noise transmitted through ductwork. Required attenuation, airflow, pressure drop, frequency performance, and installation length must be coordinated.",
+      "c": "hvac",
+      "task": "reduce_noise",
+      "aj": [
+        "ダクト消音器"
+      ],
+      "ae": [
+        "Duct attenuator"
+      ]
+    },
+    {
+      "id": "q015_flexible_connector",
+      "t": "component",
+      "ja": "キャンバス継手",
+      "en": "Flexible Duct Connector",
+      "dj": "機器振動をダクトへ伝えにくくする可とう継手。\nファンや空調機とダクトの間に入れ、機器振動がダクトへ伝わるのを抑える可とう接続材。寸法、耐熱・耐候性、気密、取付余裕、過度なたるみを確認する。",
+      "de": "Flexible connector used to isolate equipment vibration from ductwork.\nFlexible connection installed between fans or air-handling equipment and ductwork to limit vibration transmission. Dimensions, temperature or weather resistance, airtightness, installation slack, and excessive sag must be checked.",
+      "c": "hvac",
+      "task": "connect_duct"
+    }
+  ]
+}

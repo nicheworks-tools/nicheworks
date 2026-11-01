@@ -2,19 +2,19 @@ let MUNICIPALITIES=[];
 let currentLang="ja";
 const PREF_ORDER=["北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県","茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県","新潟県","富山県","石川県","福井県","山梨県","長野県","岐阜県","静岡県","愛知県","三重県","滋賀県","京都府","大阪府","兵庫県","奈良県","和歌山県","鳥取県","島根県","岡山県","広島県","山口県","徳島県","香川県","愛媛県","高知県","福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県"];
 const TYPE_OPTIONS=["すべて","自治体公式ページ","ごみ分別ページ","収集カレンダー","粗大ごみ","粗大ごみ申込み","検索ページ","持込施設","ごみ分別アプリ"];
-const DIRECT_LINK_FILES=["data/direct-waste-links.json","data/direct-waste-links-pref-capitals-extra.json","data/direct-waste-links-bulky-tokyo.json","data/direct-waste-links-demand-wave1.json","data/direct-waste-links-tokyo-calendar-wave2.json","data/direct-waste-links-demand-wave3.json","data/direct-waste-links-demand-wave4.json","data/direct-waste-links-demand-wave5.json","data/direct-waste-links-demand-wave6.json","data/direct-waste-links-supply-wave7.json","data/direct-waste-links-supply-wave8.json","data/direct-waste-links-supply-wave9.json","data/direct-waste-links-supply-wave10.json","data/direct-waste-links-supply-wave11.json","data/direct-waste-links-supply-wave12.json","data/direct-waste-links-supply-wave13.json","data/direct-waste-links-supply-wave14.json","data/direct-waste-links-supply-wave15.json","data/direct-waste-links-supply-wave16.json","data/direct-waste-links-supply-wave17.json","data/direct-waste-links-supply-wave18.json","data/direct-waste-links-supply-wave19.json","data/direct-waste-links-supply-wave20.json","data/direct-waste-links-supply-wave21.json","data/direct-waste-links-supply-wave22.json","data/direct-waste-links-supply-wave23.json","data/direct-waste-links-supply-wave24.json","data/direct-waste-links-supply-wave25.json","data/direct-waste-links-supply-wave26.json","data/direct-waste-links-supply-wave27.json","data/direct-waste-links-supply-wave28.json","data/direct-waste-links-supply-wave29.json","data/direct-waste-links-supply-wave30.json","data/direct-waste-links-supply-wave31.json","data/direct-waste-links-supply-wave32.json","data/direct-waste-links-supply-wave33.json","data/direct-waste-links-supply-wave34.json","data/direct-waste-links-supply-wave35.json","data/direct-waste-links-supply-wave36.json","data/direct-waste-links-supply-wave37.json","data/direct-waste-links-supply-wave38.json","data/direct-waste-links-supply-wave39.json","data/direct-waste-links-supply-wave40.json","data/direct-waste-links-supply-wave41.json","data/direct-waste-links-supply-wave42.json","data/direct-waste-links-supply-wave43.json","data/direct-waste-links-supply-wave44.json","data/direct-waste-links-supply-wave45.json","data/direct-waste-links-supply-wave46.json","data/direct-waste-links-supply-wave47.json","data/direct-waste-links-supply-wave48.json","data/direct-waste-links-supply-wave49.json","data/direct-waste-links-supply-wave50.json","data/direct-waste-links-supply-wave51.json","data/direct-waste-links-national-batch01.json","data/direct-waste-links-national-batch02.json","data/direct-waste-links-national-batch03.json"];
+const DIRECT_LINK_FILES=["data/direct-waste-links.json","data/direct-waste-links-pref-capitals-extra.json","data/direct-waste-links-bulky-tokyo.json","data/direct-waste-links-demand-wave1.json","data/direct-waste-links-tokyo-calendar-wave2.json","data/direct-waste-links-demand-wave3.json","data/direct-waste-links-demand-wave4.json","data/direct-waste-links-demand-wave5.json","data/direct-waste-links-demand-wave6.json","data/direct-waste-links-supply-wave7.json","data/direct-waste-links-supply-wave8.json","data/direct-waste-links-supply-wave9.json","data/direct-waste-links-supply-wave10.json","data/direct-waste-links-supply-wave11.json","data/direct-waste-links-supply-wave12.json","data/direct-waste-links-supply-wave13.json","data/direct-waste-links-supply-wave14.json","data/direct-waste-links-supply-wave15.json","data/direct-waste-links-supply-wave16.json","data/direct-waste-links-supply-wave17.json","data/direct-waste-links-supply-wave18.json","data/direct-waste-links-supply-wave19.json","data/direct-waste-links-supply-wave20.json","data/direct-waste-links-supply-wave21.json","data/direct-waste-links-supply-wave22.json","data/direct-waste-links-supply-wave23.json","data/direct-waste-links-supply-wave24.json","data/direct-waste-links-supply-wave25.json","data/direct-waste-links-supply-wave26.json","data/direct-waste-links-supply-wave27.json","data/direct-waste-links-supply-wave28.json","data/direct-waste-links-supply-wave29.json","data/direct-waste-links-supply-wave30.json","data/direct-waste-links-supply-wave31.json","data/direct-waste-links-supply-wave32.json","data/direct-waste-links-supply-wave33.json","data/direct-waste-links-supply-wave34.json","data/direct-waste-links-supply-wave35.json","data/direct-waste-links-supply-wave36.json","data/direct-waste-links-supply-wave37.json","data/direct-waste-links-supply-wave38.json","data/direct-waste-links-supply-wave39.json","data/direct-waste-links-supply-wave40.json","data/direct-waste-links-supply-wave41.json","data/direct-waste-links-supply-wave42.json","data/direct-waste-links-supply-wave43.json","data/direct-waste-links-supply-wave44.json","data/direct-waste-links-supply-wave45.json","data/direct-waste-links-supply-wave46.json","data/direct-waste-links-supply-wave47.json","data/direct-waste-links-supply-wave48.json","data/direct-waste-links-supply-wave49.json","data/direct-waste-links-supply-wave50.json","data/direct-waste-links-supply-wave51.json","data/direct-waste-links-national-batch01.json","data/direct-waste-links-national-batch02.json","data/direct-waste-links-national-batch03.json","data/direct-waste-links-national-batch04.json","data/direct-waste-links-national-batch05.json","data/direct-waste-links-national-batch06.json","data/direct-waste-links-national-batch07.json","data/direct-waste-links-national-batch08.json"];
 const TEXT={ja:{searchButton:"検索する",resetButton:"条件クリア",placeholder:"例：分別、カレンダー、粗大ごみ",allOption:"すべて / All",allType:"すべて",found:n=>`該当リンク：${n}件`,noResult:"該当するリンクが見つかりませんでした。都道府県のみ、リンク種別なし、またはキーワードなしで再検索してください。",loadError:"データの読み込みに失敗しました。時間をおいて再度お試しください。",conditionAll:"現在の条件：すべて",condition:v=>{const p=[];if(v.pref)p.push(`都道府県：${v.pref}`);if(v.city)p.push(`市区町村：${v.city}`);if(v.type)p.push(`種別：${v.type}`);if(v.keyword)p.push(`キーワード：${v.keyword}`);return p.length?`現在の条件：${p.join(" / ")}`:"現在の条件：すべて"},openOfficial:"公式ページを開く",site:"外部サイト",note:"リンク先の自治体公式サイトで最新情報を確認してください。",url:"URL",emptyTitle:"見つかりませんでした",emptyHint:"都道府県だけを選ぶ、またはリンク種別・キーワードを空にして再検索してください。"},en:{searchButton:"Search",resetButton:"Reset",placeholder:"e.g. sorting, calendar, bulky waste",allOption:"All",allType:"All",found:n=>`${n} links`,noResult:"No matching link found. Try selecting only a prefecture, all link types, or removing the keyword.",loadError:"Failed to load data. Please try again later.",conditionAll:"Current filters: All",condition:v=>{const p=[];if(v.pref)p.push(`Prefecture: ${v.pref}`);if(v.city)p.push(`Municipality: ${v.city}`);if(v.type)p.push(`Type: ${v.type}`);if(v.keyword)p.push(`Keyword: ${v.keyword}`);return p.length?`Current filters: ${p.join(" / ")}`:"Current filters: All"},openOfficial:"Open official page",site:"External site",note:"Confirm the latest information on the linked official municipal site.",url:"URL",emptyTitle:"No results found",emptyHint:"Try selecting only a prefecture, all link types, or clearing the keyword."}};
 
 document.addEventListener("DOMContentLoaded",()=>{
   const el={pref:$("prefSelect"),city:$("citySelect"),type:$("typeSelect"),kw:$("keywordInput"),search:$("searchButton"),reset:$("resetButton"),results:$("results"),summary:$("resultSummary"),cond:$("currentConditions"),count:$("municipalityCount"),countEn:$("municipalityCountEn")};
   initI18n(el);initTypeOptions(el.type);
-  loadMunicipalities().then(data=>{MUNICIPALITIES=normalizeMunicipalities(data);initPrefOptions(el.pref,MUNICIPALITIES);if(el.count)el.count.textContent=`${MUNICIPALITIES.length}件`;if(el.countEn)el.countEn.textContent=String(MUNICIPALITIES.length);updateConditions(el);renderResults(MUNICIPALITIES,el.results,el.summary);}).catch(e=>{console.error(e);el.summary.textContent=TEXT[currentLang].loadError;el.results.innerHTML="";});
+  loadMunicipalities().then(data=>{MUNICIPALITIES=normalizeMunicipalities(data);initPrefOptions(el.pref,MUNICIPALITIES);if(el.count)el.count.textContent=`${MUNICIPALITIES.length}件`;if(el.countEn)el.countEn.textContent=String(MUNICIPALITIES.length);updateConditions(el);renderInitialState(el.results,el.summary);}).catch(e=>{console.error(e);el.summary.textContent=TEXT[currentLang].loadError;el.results.innerHTML="";});
   el.pref.addEventListener("change",()=>{updateCityOptions(el.pref,el.city,MUNICIPALITIES);runSearch(el);});
   el.city.addEventListener("change",()=>runSearch(el));
   el.type.addEventListener("change",()=>runSearch(el));
-  el.search.addEventListener("click",()=>runSearch(el));
+  el.search.addEventListener("click",()=>runSearch(el,true));
   el.kw.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();el.search.click();}});
-  el.reset.addEventListener("click",()=>{el.pref.value="";el.city.innerHTML=`<option value="">${TEXT[currentLang].allOption}</option>`;el.city.disabled=true;el.type.value="";el.kw.value="";updateConditions(el);renderResults(MUNICIPALITIES,el.results,el.summary);});
+  el.reset.addEventListener("click",()=>{el.pref.value="";el.city.innerHTML=`<option value="">${TEXT[currentLang].allOption}</option>`;el.city.disabled=true;el.type.value="";el.kw.value="";updateConditions(el);renderInitialState(el.results,el.summary);});
   document.querySelectorAll(".quick-pref").forEach(b=>b.addEventListener("click",()=>{el.pref.value=b.dataset.pref||"";updateCityOptions(el.pref,el.city,MUNICIPALITIES);el.city.value="";runSearch(el);}));
 });
 function $(id){return document.getElementById(id)}
@@ -26,8 +26,59 @@ function updateSelectPlaceholders(pref,city){if(pref&&pref.options.length)pref.o
 function initTypeOptions(select){if(!select)return;const value=select.value;select.innerHTML=`<option value="">${TEXT[currentLang].allType}</option>`;TYPE_OPTIONS.filter(t=>t!=="すべて").forEach(type=>{const o=document.createElement("option");o.value=type;o.textContent=type;select.appendChild(o)});select.value=value&&TYPE_OPTIONS.includes(value)?value:""}
 function initPrefOptions(select,data){select.innerHTML=`<option value="">${TEXT[currentLang].allOption}</option>`;[...new Set(data.map(x=>x.pref).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"ja")).forEach(pref=>{const o=document.createElement("option");o.value=pref;o.textContent=pref;select.appendChild(o)})}
 function updateCityOptions(prefSelect,citySelect,data){const pref=prefSelect.value,cities=[...new Set(data.filter(x=>!pref||x.pref===pref).map(x=>x.city).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"ja"));citySelect.innerHTML=`<option value="">${TEXT[currentLang].allOption}</option>`;citySelect.disabled=!cities.length;cities.forEach(city=>{const o=document.createElement("option");o.value=city;o.textContent=city;citySelect.appendChild(o)})}
-function runSearch(el){const list=filterMunicipalities({pref:el.pref.value,city:el.city.value,type:el.type.value,keyword:el.kw.value});updateConditions(el);renderResults(list,el.results,el.summary)}
+function runSearch(el,showAll=false){
+  updateConditions(el);
+  if(!showAll&&!el.pref.value&&!el.city.value&&!el.type.value&&!el.kw.value.trim()){
+    renderInitialState(el.results,el.summary);
+    return;
+  }
+  const list=filterMunicipalities({pref:el.pref.value,city:el.city.value,type:el.type.value,keyword:el.kw.value});
+  renderResults(list,el.results,el.summary);
+}
 function updateConditions(el){if(!el.cond)return;el.cond.textContent=TEXT[currentLang].condition({pref:el.pref.value,city:el.city.value,type:el.type.value,keyword:el.kw.value.trim()})}
 function filterMunicipalities({pref,city,type,keyword}){const kw=(keyword||"").trim().toLowerCase();return MUNICIPALITIES.filter(x=>{if(pref&&x.pref!==pref)return false;if(city&&x.city!==city)return false;if(type&&x.type!==type)return false;if(!kw)return true;return[x.pref,x.city,x.name,x.type,x.url,x.lgcode].join(" ").toLowerCase().includes(kw)})}
 function typeLabel(type,lang){if(lang==="en"){if(type==="ごみ分別ページ")return"Waste sorting";if(type==="収集カレンダー")return"Pickup calendar";if(type==="粗大ごみ")return"Bulky waste";if(type==="粗大ごみ申込み")return"Bulky waste application";if(type==="検索ページ")return"Search page";if(type==="持込施設")return"Drop-off facility";if(type==="ごみ分別アプリ")return"Waste app";return"Official municipal page"}return type||"自治体公式ページ"}
-function renderResults(list,container,summary){container.innerHTML="";if(!Array.isArray(list)||!list.length){summary.textContent=TEXT[currentLang].noResult;const e=document.createElement("div");e.className="empty-state";const t=document.createElement("p");t.className="empty-title";t.textContent=TEXT[currentLang].emptyTitle;const h=document.createElement("p");h.className="empty-hint";h.textContent=TEXT[currentLang].emptyHint;e.append(t,h);container.appendChild(e);return}summary.textContent=TEXT[currentLang].found(list.length);list.forEach(x=>{const c=document.createElement("div");c.className="result-card";const title=document.createElement("p");title.className="result-title";title.textContent=`${x.pref} ${x.city}`;const meta=document.createElement("p");meta.className="result-meta";meta.textContent=x.name;const tag=document.createElement("span");tag.className="result-tag";tag.textContent=typeLabel(x.type,currentLang);const note=document.createElement("p");note.className="result-note";note.textContent=TEXT[currentLang].note;const a=document.createElement("a");a.className="result-button";a.href=x.url;a.target="_blank";a.rel="noopener noreferrer";a.textContent=TEXT[currentLang].openOfficial;const ext=document.createElement("span");ext.className="external-label";ext.textContent=TEXT[currentLang].site;a.appendChild(ext);const url=document.createElement("p");url.className="result-url";url.textContent=`${TEXT[currentLang].url}: ${x.url}`;c.append(title,meta,tag,note,a,url);container.appendChild(c)})}
+const RESULTS_PAGE_SIZE=20;
+function renderInitialState(container,summary){
+  container.replaceChildren();
+  summary.textContent=currentLang==="ja"?"都道府県・市区町村、またはキーワードを指定してください。":"Choose a prefecture, municipality, or keyword to find official links.";
+}
+function renderResults(list,container,summary){
+  container.replaceChildren();
+  if(!Array.isArray(list)||!list.length){
+    summary.textContent=TEXT[currentLang].noResult;
+    const e=document.createElement("div");e.className="empty-state";
+    const t=document.createElement("p");t.className="empty-title";t.textContent=TEXT[currentLang].emptyTitle;
+    const h=document.createElement("p");h.className="empty-hint";h.textContent=TEXT[currentLang].emptyHint;
+    e.append(t,h);container.appendChild(e);return;
+  }
+  let displayed=0;
+  const more=document.createElement("button");more.type="button";more.className="result-more";
+  more.addEventListener("click",showNext);
+  function showNext(){
+    more.remove();
+    const fragment=document.createDocumentFragment();
+    for(const x of list.slice(displayed,displayed+RESULTS_PAGE_SIZE)){
+      const a=document.createElement("a");a.className="result-row";a.href=x.url;a.target="_blank";a.rel="noopener noreferrer";
+      a.setAttribute("aria-label",`${x.pref} ${x.city}: ${x.name} (${typeLabel(x.type,currentLang)})`);
+      const main=document.createElement("span");main.className="result-row-main";
+      const city=document.createElement("strong");city.className="result-row-city";city.textContent=`${x.pref} ${x.city}`;
+      const name=document.createElement("span");name.className="result-row-name";name.textContent=x.name;
+      main.append(city,name);
+      const side=document.createElement("span");side.className="result-row-side";
+      const type=document.createElement("span");type.className="result-row-type";type.textContent=typeLabel(x.type,currentLang);
+      const arrow=document.createElement("span");arrow.className="result-row-arrow";arrow.setAttribute("aria-hidden","true");arrow.textContent="↗";
+      side.append(type,arrow);a.append(main,side);fragment.appendChild(a);
+    }
+    displayed=Math.min(displayed+RESULTS_PAGE_SIZE,list.length);
+    container.appendChild(fragment);
+    summary.textContent=currentLang==="ja"
+      ?`該当リンク：${list.length}件（${displayed}件表示）`
+      :`${list.length} matching links (${displayed} shown)`;
+    if(displayed<list.length){
+      more.textContent=currentLang==="ja"?`もっと表示（残り${list.length-displayed}件）`:`Show more (${list.length-displayed} remaining)`;
+      container.appendChild(more);
+    }
+  }
+  showNext();
+}

@@ -64,17 +64,17 @@ FastScan inherits the shared-data requirements and additionally needs the OCR/re
 
 The original baseline intentionally counted only raw dictionary fields. That remains useful as raw-data debt, but it no longer represents runtime provenance after the verified overlay work.
 
-Reviewed runtime provenance after source-backed Wave 26 (the raw inventory above remains frozen):
+Reviewed runtime provenance after source-backed Note Wave 32 (the raw inventory above remains frozen):
 
-- verified category overlay identities: **174**
-- verified note overlay identities: **140**
-- verified note identities with maintained Japanese naming: **140**
-- strong runtime data identities (supported public role + Japanese name + source-backed verified ingredient-specific note): **140 / 599**
-- runtime public role explanations: **576 / 599 (96.16%)**; **23** identities still incomplete. This is distinct from the frozen 408/599 raw-canonical baseline.
+- verified category overlay identities: **196**
+- verified note overlay identities: **253**
+- verified note identities with maintained Japanese naming: **253**
+- strong runtime data identities (supported public role + Japanese name + source-backed verified ingredient-specific note): **253 / 599**
+- runtime public role explanations: **598 / 599 (99.83%)**; **1** intentionally ambiguous identity remains unresolved. This is distinct from the frozen 408/599 raw-canonical baseline.
 
 Accordingly, completion readiness must report raw dictionary debt and runtime verified provenance separately. A raw evidence count of zero must not be interpreted as zero runtime provenance.
 
-The runtime provenance floors are ratcheted at 174 verified categories, 140 verified notes, and 140 strong runtime identities so later changes cannot silently discard completed provenance work. Wave 20 adds source-backed ingredient-specific notes for Glycine, Lactic Acid, PEG-100 Stearate, and Proline.
+The runtime provenance floors are ratcheted at 196 verified categories, 253 verified notes, and 253 strong runtime identities so later changes cannot silently discard completed provenance work. Wave 20 adds source-backed ingredient-specific notes for Glycine, Lactic Acid, PEG-100 Stearate, and Proline.
 
 
 Wave 21 (2026-10-31) verifies three additional common-label notes against COSMILE Europe: 1,2-Hexanediol, Sodium Citrate, and Urea. Raw recognition records remain unchanged; verified runtime strong readiness is 85/599. Historical baseline metrics above remain frozen inventory, not a statement that all 599 identities have complete descriptions.
@@ -90,3 +90,23 @@ Category wave28 / note wave24 (2026-10-31): 18 independently source-reviewed ent
 
 
 Category wave29 / note wave25 (2026-10-31): 14 source-reviewed ingredients including animal-derived extracts, cleansing soap salts, sea salt, camphor, hydrochloric acid, essential oils and lichen extracts. Runtime public roles target **576/599 (96.16%)**, leaving **23** incomplete; source-backed ingredient notes target **140/599 (23.37%)**, leaving **459** incomplete. Exact authoritative COSMILE pages, previous raw category values, and alias/name ambiguity invariants are validated in CI. The raw 725-record dataset stays unchanged.
+
+
+Category wave30 / verified note wave26 (2026-11-01): 16 individually checked category functions from COSMILE Europe (13) and the U.S. FDA sunscreen active-ingredient list (3). Runtime supported public roles now target **592 / 599 (98.83%)**, leaving **7** unresolved; ingredient-specific source-backed notes **156 / 599 (26.04%)**, leaving **443** without stronger notes. FDA references **function only**, not an assertion of current regulatory safety, approval or effectiveness for any finished product. Individual ingredient name variants in the data are documented, not silently applied to unrelated chemicals. BHA remains intentionally unresolved as an ambiguous identity. Raw 725 rows/599 canonical identities unchanged.
+
+
+Category Wave 31 / Verified Note Wave 27 (2026-11-01): individual official or peer-reviewed sources clarify Disodium EDTA Dihydrate (Health Canada chelating), Benzyl Cinnamate (Korea Cosmetic Association fragrance), Citrus Aurantium Bergamia (Bergamot) Fruit Oil (Health Canada fragrance), Talc/PTFE (COSMILE BULKING), and Nylon-6 (Cosmetic Ingredient Review journal BULKING and opacifying). A new **bilingual BULKING role** is added to Lite/FastScan rather than reclassifying all powders. The specific canonical label `BHA` is a known ambiguous abbreviation and remains explicitly unresolved, not falsely shown as complete. With 598/599 roles, strong notes are 162/599, leaving 437 source-backed ingredient notes. CI measured values must verify these targets. This does not certify cosmetic-product safety or real-photo OCR accuracy.
+
+
+Ingredient-specific **verified note wave 28** (2026-11-01): 19 independently source-checked COSMILE Europe ingredient pages, including glycols, cleansers, emulsifier, vitamin E derivative, humectant, fatty alcohol, emollients, glycolic acid and Avobenzone. Raw dictionary records remain unchanged; verified public category inventory stays 196; maintained source-backed ingredient notes rise from 162 to **181 / 599 (30.22%)**, leaving **418** without an independently source-backed specific note. The primary bilingual role coverage remains **598 / 599** with intentionally ambiguous BHA unresolved. Measured values are subject to CI confirmation. Optional notes are currently in English; this work does not constitute completed Japanese ingredient-specific translations or actual photo OCR accuracy.
+
+
+Source-backed ingredient note wave 29 (2026-11-01): 21 additional exact COSMILE Europe records for cleansers, emollient solvent, antioxidant vitamin C derivatives, hyaluronic acid, Centella extract, caffeine, madecassoside, arbutin, plant antioxidants and chelators. Cumulative reviewed ingredient-specific notes target **202/599 (33.72%)**, leaving **397**, while the public bilingual role coverage remains **598/599** and 196 verified roles; the ambiguous BHA remains unresolved. The chemically distinct BHT receives its own sourced note without conflating the abbreviations. This addition does not test any real smartphone photos or provide Japanese translations for English source notes. Counts must be validated by CI.
+
+
+Source-backed ingredient note wave30 (2026-11-01): after separate note waves 28 and 29, **20 additional non-overlapping** common INCI identities were independently sourced against exact COSMILE Europe pages. Mineral UV filters, retinol, ascorbic acid, humectants, preservatives, buffers and acetylated hyaluronate now have evidence-backed notes. The 20 are new relative to main's prior 202 reviewed notes. Target **222/599 (37.06%)**, **377** without strong notes, while primary bilingual role explanations remain 598/599 with intentionally ambiguous BHA. These are ingredient-functions only, not product safety/medical assertions. CI must verify the target figures.
+
+Source-backed ingredient note wave31 (2026-11-01): 13 additional **non-overlapping**, individually COSMILE-reviewed canonical identities (Alcohol, PEG-150, Lecithin, Silica, Histidine, Sucrose, Ascorbyl Palmitate, Coco-Caprylate, Acrylates Copolymer, Hydrogenated Lecithin, C12-15 Alkyl Benzoate, Glyceryl Oleate and Sorbitan Stearate). Exact HTTPS source, neutral ingredient-function text, maintained Japanese ingredient name, and runtime provenance are asserted in the new CI wave31 gate. Target **235/599 (39.23%)** source-backed ingredient notes, leaving **364**; role coverage remains **598/599** with ambiguous BHA explicitly unresolved. No clinical claims, OCR score improvement claims, or additions to the 725 raw dictionary records.
+
+
+Source-backed ingredient note wave32 (2026-11-01): 18 additional exact COSMILE Europe ingredient records were individually checked, including solvents, surfactants, hair-conditioning materials, clays, fragrances, pH buffers, preservatives, amino acids and plant oils/extracts. Entries are restricted to functions the linked COSMILE ingredient page explicitly lists; notably Azelaic Acid is described only as buffering/fragrance in this source, without therapeutic or efficacy claims. Target **253/599 (42.24%)** source-backed notes, **346** remaining. Primary bilingual roles remain **598/599**; ambiguous BHA remains incomplete. The raw 725-record/599-identity scope and 196 source-verified category identities are unchanged. CI must independently check provenance and conflict-aware canonical merge; this does not establish actual-photo OCR accuracy or completed Japanese translations for English notes.

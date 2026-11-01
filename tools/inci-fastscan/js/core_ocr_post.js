@@ -6,7 +6,7 @@ function coreProcessOCRText(raw) {
   // Basic cleanup only. Delimiter conversion is deferred to postProcessOcrText
   // so valid numeric locants such as 1,2-Hexanediol can be preserved.
   return String(raw)
-    .replace(/[•●]/g, " ")
+    .replace(/[•●]/g, ",")
     .replace(/[、，]/g, ",")
     .replace(/\t/g, " ")
     .replace(/\u3000/g, " ")
@@ -21,7 +21,7 @@ function postProcessOcrText(rawText, options = {}) {
   const langHint = options.langHint === "jp" ? "jp" : "en";
   const normalized = String(rawText)
     .replace(/\r/g, "\n")
-    .replace(/[•●]/g, " ")
+    .replace(/[•●]/g, ",")
     .replace(/\t/g, " ")
     .replace(/\u3000/g, " ")
     .replace(/[ ]{2,}/g, " ")

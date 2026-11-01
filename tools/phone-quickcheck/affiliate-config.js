@@ -39,6 +39,8 @@
     offer("charger-samsung-60w", "wired_charger", "Samsung Super Fast Charging 3.0 60W 充電器", "AmazonでGalaxy 60W充電器を探す", "Find a Galaxy 60W charger on Amazon"),
     offer("charger-pd-30w", "wired_charger", "USB PD 30W USB-C 充電器", "Amazonで30W USB-PD充電器を探す", "Find a 30W USB-PD charger on Amazon"),
     offer("charger-pd-45w", "wired_charger", "USB PD 45W USB-C 充電器", "Amazonで45W USB-PD充電器を探す", "Find a 45W USB-PD charger on Amazon"),
+    offer("charger-pd-check-wattage", "wired_charger", "USB PD USB-C 充電器", "AmazonでUSB-PD充電器を探す（出力要確認）", "Find USB-PD chargers on Amazon (verify wattage)"),
+    offer("charger-pd-90w", "wired_charger", "USB PD 100W USB-C 充電器", "Amazonで90W以上のUSB-PD充電器を探す", "Find 90W+ USB-PD chargers on Amazon"),
     offer("charger-oppo-supervooc", "wired_charger", "OPPO SUPERVOOC 充電器", "AmazonでSUPERVOOC充電器を探す", "Find a SUPERVOOC charger on Amazon"),
     offer("charger-xiaomi-hypercharge", "wired_charger", "Xiaomi HyperCharge TurboCharge 充電器", "AmazonでXiaomi急速充電器を探す", "Find a Xiaomi HyperCharge charger on Amazon"),
     offer("charger-motorola-turbopower", "wired_charger", "Motorola TurboPower 充電器", "AmazonでTurboPower充電器を探す", "Find a TurboPower charger on Amazon"),

@@ -17,7 +17,12 @@ for (const id of ['prefSelect', 'citySelect', 'typeSelect', 'keywordInput', 'sea
 
 assert.ok(html.includes('<script src="app.js"></script>'), 'TrashNavi app.js is not loaded by index.html');
 assert.match(app, /loadMunicipalities\(\)\.then\(data=>\{MUNICIPALITIES=normalizeMunicipalities\(data\);initPrefOptions\(el\.pref,MUNICIPALITIES\)/, 'municipality data load / prefecture initialization contract missing');
-assert.match(app, /renderResults\(MUNICIPALITIES,el\.results,el\.summary\)/, 'initial result rendering contract missing');
+assert.match(app, /renderInitialState\(el\.results,el\.summary\)/, 'initial no-bulk-results contract missing');
+assert.ok(app.includes('const RESULTS_PAGE_SIZE=20'), 'bounded search-result pagination missing');
+assert.ok(app.includes('list.slice(displayed,displayed+RESULTS_PAGE_SIZE)'), 'load-more pagination missing');
+assert.ok(!app.includes('renderResults(MUNICIPALITIES,el.results,el.summary)'), 'do not render thousands of rows on initial load');
+assert.ok(html.indexOf('class="results-section"') < html.indexOf('class="municipality-related"'), 'search results must precede the full municipality directory');
+assert.ok(html.includes('<details class="municipality-directory">'), 'full municipality directory must be collapsed by default');
 
 for (const clause of [
   'if(pref&&x.pref!==pref)return false',
@@ -32,10 +37,10 @@ assert.ok(app.includes('.join(" ").toLowerCase().includes(kw)'), 'keyword filter
 assert.ok(app.includes('a.href=x.url'), 'official result URL binding missing');
 assert.ok(app.includes('a.target="_blank"'), 'external target contract missing');
 assert.ok(app.includes('a.rel="noopener noreferrer"'), 'external link safety contract missing');
-assert.ok(app.includes('note.textContent=TEXT[currentLang].note'), 'official-source confirmation note missing');
+assert.ok(html.includes('ごみ分別の最終確認'), 'official-source confirmation notice missing');
 
 assert.ok(app.includes('el.reset.addEventListener("click"'), 'reset handler missing');
-for (const clause of ['el.pref.value=""', 'el.type.value=""', 'el.kw.value=""', 'renderResults(MUNICIPALITIES,el.results,el.summary)']) {
+for (const clause of ['el.pref.value=""', 'el.type.value=""', 'el.kw.value=""', 'renderInitialState(el.results,el.summary)']) {
   assert.ok(app.includes(clause), `reset contract missing: ${clause}`);
 }
 

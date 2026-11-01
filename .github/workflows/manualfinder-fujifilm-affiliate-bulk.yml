@@ -1,0 +1,31 @@
+name: ManualFinder Fujifilm official accessory handoffs (38)
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/affiliate-fujifilm-camera-accessories-bulk.js'
+      - 'tools/manual-finder/affiliate-runtime.js'
+      - 'tools/manual-finder/tests/fujifilm-camera-accessory-bulk.test.mjs'
+      - 'tools/manual-finder/tests/camera-accessory-coverage.test.mjs'
+      - 'tools/manual-finder/tests/camera-accessory-doc-sync.test.mjs'
+      - 'tools/manual-finder/CAMERA_ACCESSORY_COVERAGE.md'
+      - 'tools/manual-finder/AFFILIATE_COVERAGE.md'
+      - 'tools/manual-finder/SPEC.md'
+      - '.github/workflows/manualfinder-fujifilm-affiliate-bulk.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-affiliate-evidence-and-reconciliation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify exact canonical camera records and Amazon tags
+        run: node tools/manual-finder/tests/fujifilm-camera-accessory-bulk.test.mjs
+      - name: Verify camera-wide affiliate coverage and missing details
+        run: node tools/manual-finder/tests/camera-accessory-coverage.test.mjs
+      - name: Validate coverage and affiliate documentation synchronization
+        run: node tools/manual-finder/tests/camera-accessory-doc-sync.test.mjs

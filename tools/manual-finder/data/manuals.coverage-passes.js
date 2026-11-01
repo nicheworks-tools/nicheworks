@@ -12,7 +12,9 @@
     "manuals.coverage-pass.fujitsu-lifebook-u.js",
     "manuals.coverage-pass.google-pixel-jp.js",
     "manuals.coverage-pass.motorola-jp-lineup.js",
-    "manuals.coverage-pass.asus-jp-vivobook.js"
+    "manuals.coverage-pass.asus-jp-vivobook.js",
+    "manuals.coverage-pass.xiaomi-jp-mobile.js",
+    "manuals.coverage-pass.canon-jp-lens.js"
   ]);
 
   window.MANUALFINDER_BUILD_COVERAGE_PASSES = () => [
@@ -26,6 +28,8 @@
     ...(window.MANUALFINDER_COVERAGE_PASS_FUJITSU_LIFEBOOK_U || []),
     ...(window.MANUALFINDER_COVERAGE_PASS_GOOGLE_PIXEL_JP || []),
     ...(window.MANUALFINDER_COVERAGE_PASS_MOTOROLA_JP || []),
-    ...(window.MANUALFINDER_COVERAGE_PASS_ASUS_JP_VIVOBOOK || [])
+    ...(window.MANUALFINDER_COVERAGE_PASS_ASUS_JP_VIVOBOOK || []),
+    ...(window.MANUALFINDER_COVERAGE_PASS_XIAOMI_JP_MOBILE || []),
+    ...(window.MANUALFINDER_COVERAGE_PASS_CANON_LENSES || [])
   ];
 })();

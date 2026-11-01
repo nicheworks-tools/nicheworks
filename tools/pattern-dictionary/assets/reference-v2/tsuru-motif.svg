@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1536" viewBox="0 0 1536 1536" role="img" aria-label="tsuru-motif original illustrative repeated motif">
+<rect width="1536" height="1536" fill="#f8f4eb"/>
+<defs><g id="motif"><path d="M-12,29 C-50,-36 -112,-112 -194,-145 C-158,-140 -133,-98 -100,-62 C-131,-89 -175,-103 -220,-110 C-163,-72 -117,-27 -54,29Z" fill="#fbfcfa" stroke="#444c4d" stroke-width="7"/><path d="M12,29 C50,-36 112,-112 194,-145 C158,-140 133,-98 100,-62 C131,-89 175,-103 220,-110 C163,-72 117,-27 54,29Z" fill="#fbfcfa" stroke="#444c4d" stroke-width="7"/><path d="M-194,-145 Q-166,-125 -145,-111 M194,-145 Q166,-125 145,-111" stroke="#212c34" stroke-width="11" fill="none"/><ellipse cx="0" cy="39" rx="54" ry="84" fill="#fcfcf9" stroke="#444c4d" stroke-width="8"/><path d="M0,-17 Q17,-110 44,-143 Q60,-158 80,-151" fill="none" stroke="#fcfcf9" stroke-width="20"/><path d="M0,-17 Q17,-110 44,-143 Q60,-158 80,-151" fill="none" stroke="#444c4d" stroke-width="4"/><circle cx="80" cy="-151" r="14" fill="#fcfcf9" stroke="#444c4d" stroke-width="4"/><path d="M94,-154 L139,-146 L95,-142Z" fill="#bd8c39"/><path d="M65,-163 Q81,-177 90,-162" stroke="#bc4844" stroke-width="11" fill="none"/><path d="M-13,108 L-20,174 M18,108 L48,174" stroke="#565a55" stroke-width="6" fill="none"/></g></defs>
+<use href="#motif" transform="translate(256 256)"/>
+<use href="#motif" transform="translate(768 256)"/>
+<use href="#motif" transform="translate(1280 256)"/>
+<use href="#motif" transform="translate(256 768)"/>
+<use href="#motif" transform="translate(768 768)"/>
+<use href="#motif" transform="translate(1280 768)"/>
+<use href="#motif" transform="translate(256 1280)"/>
+<use href="#motif" transform="translate(768 1280)"/>
+<use href="#motif" transform="translate(1280 1280)"/>
+</svg>

@@ -64,7 +64,7 @@ env.appendVerifiedIngredientNote(jpCell, verified);
 assert.match(jpCell.children[0].children[0].textContent, /出典付きの補足説明（英語）/);
 assert.match(app, /if \(item\.statusKey === 'matched'\) appendVerifiedIngredientNote\(noteCell, item\.match\)/);
 assert.ok(!app.slice(start, end).includes('innerHTML'), 'reviewed notes must use text nodes rather than HTML injection');
-assert.match(index, /app\.js\?v=20261031-verified-note-1/);
+assert.match(index, /app\.js\?v=20261101-bulking-wave31/, 'reviewed role copy must use the released JS version');
 assert.match(index, /enhancements\.css\?v=20261031-verified-note-1/);
 assert.match(css, /\.lite-verified-note/);
 console.log('LITE_VERIFIED_NOTE_VISIBILITY=PASS: role-first explanation, reviewed-only context, source links and bilingual labels');

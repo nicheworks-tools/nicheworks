@@ -1,0 +1,46 @@
+name: ManualFinder Xiaomi JP 60-device exact manual Coverage-Pass
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/coverage-passes/xiaomi/**'
+      - 'tools/manual-finder/scripts/xiaomi-jp-*.mjs'
+      - 'tools/manual-finder/tests/xiaomi-jp-*.test.mjs'
+      - 'tools/manual-finder/data/manuals.coverage-pass.xiaomi-jp-mobile.js'
+      - 'tools/manual-finder/data/manuals.coverage-passes.js'
+      - 'tools/manual-finder/COVERAGE.md'
+      - 'tools/manual-finder/SPEC.md'
+      - '.github/workflows/manualfinder-xiaomi-jp-coverage-pass.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  xiaomi-mobile-coverage-pass:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify complete manufacturer source and fail-closed model/PDF tests
+        run: |
+          node tools/manual-finder/tests/coverage-pass-pipeline.test.mjs
+          node tools/manual-finder/tests/xiaomi-jp-mobile-review.test.mjs
+          if test -f tools/manual-finder/tests/xiaomi-jp-mobile-publication.test.mjs; then
+            node tools/manual-finder/tests/xiaomi-jp-mobile-publication.test.mjs
+          fi
+      - name: Live-review all 60 manufacturer-indexed Xiaomi device PDF guides
+        run: |
+          mkdir -p manualfinder-xiaomi-review
+          node tools/manual-finder/scripts/xiaomi-jp-mobile-review.mjs --out manualfinder-xiaomi-review/review.json
+      - name: Verify every published manual against fresh manufacturer evidence
+        run: |
+          if test -f tools/manual-finder/scripts/xiaomi-jp-mobile-reconcile.mjs; then
+            node tools/manual-finder/scripts/xiaomi-jp-mobile-reconcile.mjs --live manualfinder-xiaomi-review/review.json
+          fi
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: manualfinder-xiaomi-jp-60-mobile-official-pdf-review
+          path: manualfinder-xiaomi-review/*.json
+          if-no-files-found: warn

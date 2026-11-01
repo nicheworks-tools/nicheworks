@@ -1,0 +1,73 @@
+name: FastScan real-photo OCR pilot
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/fastscan-real-photo-ocr-pilot.yml'
+      - 'tools/inci-fastscan/qa/real-photo-ocr-pilot.mjs'
+      - 'tools/inci-fastscan/qa/photo_ocr_metrics.js'
+      - 'tools/inci-fastscan/js/core_ocr_post.js'
+      - 'tools/_shared/cosmetic-ingredient-parser.js'
+
+permissions:
+  contents: read
+
+jobs:
+  english-photo-ocr-pilot:
+    name: 12 actual label photos / EN baseline
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      FASTSCAN_PHOTO_CORPUS_COMMIT: 5ba39a7b06c59ff1edb30a396fdd640f82506742
+      FASTSCAN_PHOTO_CORPUS_DIR: ${{ github.workspace }}/.qa-external-fastscan-photos
+      FASTSCAN_PHOTO_REPORT: ${{ github.workspace }}/fastscan-real-photo-ocr-results.json
+
+    steps:
+      - name: Checkout NicheWorks sources
+        uses: actions/checkout@v4
+
+      - name: Use Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install exact OCR runner dependencies (runner only)
+        run: |
+          npm init --yes >/dev/null
+          npm install --no-save --no-package-lock --ignore-scripts tesseract.js@5.0.3 yaml@2.6.1
+
+      - name: Fetch pinned real photo and ground-truth pairs (ephemeral, source GPL-3.0)
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "${FASTSCAN_PHOTO_CORPUS_DIR}"
+          ids=(
+            0083800047833 0085805190880 0768614212331 0842101102074
+            11112140153911 3253581766538 3253581780039 3367729117264
+            3499320013727 3499320014854 3574661563312 3574661588353
+          )
+          base="https://raw.githubusercontent.com/ki-iw/toxfox-ocr/${FASTSCAN_PHOTO_CORPUS_COMMIT}/data"
+          for id in "${ids[@]}"; do
+            curl --fail --silent --show-error --location --retry 3 \
+              "${base}/images/${id}.jpg" --output "${FASTSCAN_PHOTO_CORPUS_DIR}/${id}.jpg"
+            curl --fail --silent --show-error --location --retry 3 \
+              "${base}/ground_truth/${id}.yaml" --output "${FASTSCAN_PHOTO_CORPUS_DIR}/${id}.yaml"
+          done
+          test "$(find "${FASTSCAN_PHOTO_CORPUS_DIR}" -name '*.jpg' | wc -l)" -eq 12
+          test "$(find "${FASTSCAN_PHOTO_CORPUS_DIR}" -name '*.yaml' | wc -l)" -eq 12
+
+      - name: Measure actual Tesseract.js OCR against 12 annotated label photos
+        run: |
+          node --check tools/inci-fastscan/qa/real-photo-ocr-pilot.mjs
+          node tools/inci-fastscan/qa/real-photo-ocr-pilot.mjs
+          test -s "$FASTSCAN_PHOTO_REPORT" # numeric-only report must exist before upload
+
+      - name: Upload metrics only (never images, labels, or transcriptions)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fastscan-real-photo-ocr-metrics
+          path: ${{ github.workspace }}/fastscan-real-photo-ocr-results.json
+          if-no-files-found: error
+          retention-days: 14

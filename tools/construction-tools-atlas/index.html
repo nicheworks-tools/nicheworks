@@ -19,7 +19,7 @@
   <meta name="twitter:title" content="建設工具・現場用語辞典｜Construction Tools Atlas | NicheWorks">
   <meta name="twitter:description" content="建設工具・現場用語・作業名・別名・英語表記をすばやく検索できる無料の軽量辞典です。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
-  <link rel="stylesheet" href="./style.css?v=20260916-authoritative-ui-1">
+  <link rel="stylesheet" href="./style.css?v=20261101-dictionary-ux-2">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
   <script>
@@ -91,6 +91,10 @@
           <button id="openFilters" class="filterMore" type="button">詳細フィルター</button>
         </div>
       </div>
+      <div id="dictionaryJump" class="dictionaryJump" hidden>
+        <span id="dictionaryJumpLabel" class="dictionaryJumpLabel">辞典の項目を見る</span>
+        <div id="dictionaryJumpButtons" class="dictionaryJumpButtons" role="group" aria-label="辞典の実例"></div>
+      </div>
     </section>
 
     <section id="atlasWorkspace" class="atlasWorkspace" aria-label="検索結果と詳細">
@@ -131,9 +135,6 @@
               <div id="detailTaxonomy" class="chipRow detailTaxonomy"></div>
             </header>
 
-            <figure id="detailImage" class="detailImage" hidden></figure>
-            <div id="detailImageMissing" class="detailImageMissing">Reviewed image not available yet.</div>
-
             <section class="detailSection">
               <h3 id="whatHeading">これは何？</h3>
               <div id="detailDefinition" class="prose"></div>
@@ -143,6 +144,8 @@
               <div id="detailNotes" class="prose"></div>
               <ul id="detailBullets" class="detailList"></ul>
             </section>
+            <figure id="detailImage" class="detailImage" hidden></figure>
+            <div id="detailImageMissing" class="detailImageMissing">写真未登録。本文と使用例は閲覧できます。</div>
             <section id="examplesSection" class="detailSection" hidden>
               <h3 id="examplesHeading">よく使われる場面</h3>
               <ul id="detailExamples" class="detailList"></ul>
@@ -222,7 +225,7 @@
 
   <script src="./semantic-search-core.js?v=20260914-semantic-1"></script>
   <script src="/assets/amazon-affiliate.js"></script>
-  <script src="./data/quality-loader.js?v=20260916-authoritative-ui-1"></script>
-  <script src="./app.runtime.js?v=20260916-authoritative-ui-1"></script>
+  <script src="./data/quality-loader.js?v=20261101-source-backed-145-1"></script>
+  <script src="./app.runtime.js?v=20261101-curated-definitions-1"></script>
 </body>
 </html>

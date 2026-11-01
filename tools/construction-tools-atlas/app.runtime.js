@@ -4,6 +4,8 @@
   const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
   const MOBILE_QUERY = "(max-width: 899px)";
   const PAGE_SIZE = 50;
+  // Curated canonical starting points, not search popularity or product recommendations.
+  const STARTER_IDS = ["drill_driver", "q011_mortar_mixer", "q013_scaffold_clamp", "q015_cable_gland", "q016_vinyl_sheet_flooring", "q012_air_impact_wrench"];
   const LS = {
     lang: "cta_uilang",
     favs: "cta_favs",
@@ -81,7 +83,7 @@
     [
       "langControl","favoritesToggle","pageTitle","pageLead","privacyNote","searchInput","clearSearch","autocomplete",
       "interpretationBar","interpretationLabel","interpretationChips","actionLabel","actionFilters","typeLabel","typeFilters",
-      "openFilters","atlasWorkspace","resultCount","resultHint","loadingState","resultList","loadMoreWrap","loadMore","loadMoreHint",
+      "openFilters","dictionaryJump","dictionaryJumpLabel","dictionaryJumpButtons","atlasWorkspace","resultCount","resultHint","loadingState","resultList","loadMoreWrap","loadMore","loadMoreHint",
       "detailPanel","detailEmpty","detailContent","detailClose","detailFavorite","detailCopy","detailShare","detailEyebrow","detailTitle",
       "detailSecondary","detailTaxonomy","detailImage","detailImageMissing","whatHeading","detailDefinition","notesSection","notesHeading",
       "detailNotes","detailBullets","examplesSection","examplesHeading","detailExamples","aliasesSection","aliasesHeading","detailAliases",
@@ -150,6 +152,18 @@
     if (state.lang === "en") return value.en || value.ja || "";
     return value.ja || value.en || "";
   }
+  function preferredItems(value) {
+    if (state.lang === "en") return value.en.length ? value.en : value.ja;
+    return value.ja.length ? value.ja : value.en;
+  }
+  function isTemplateText(value) {
+    const copy = text(value);
+    return /^(仕様と下地条件を確認する。|周辺部材との取り合いを確認する。|Check the specification and substrate conditions\.|Confirm adjacent details before finishing\.)$/.test(copy)
+      || /^.+を使う前に寸法と仕様を確認する。$/.test(copy)
+      || /^Check dimensions and specifications before using .+\.$/.test(copy)
+      || /^.+は仕様、下地条件、周辺部材との取り合いを確認して使う。施工前後の確認を省くと不具合や手戻りの原因になる。$/.test(copy)
+      || /^Use .+ after checking the specification, substrate, and adjacent details\. Missing checks can cause defects or rework\.$/.test(copy);
+  }
 
   function humanize(value) {
     const raw = text(value);
@@ -172,7 +186,7 @@
 
   function entryKind(entry) {
     const value = normalized(entry.type);
-    if (/material|材|部材|塗料|接着/.test(value)) return "material";
+    if (/material|component|hardware|材|部材|金物|塗料|接着/.test(value)) return "material";
     if (/task|work|operation|施工|工事|作業/.test(value)) return "task";
     if (/tool|equipment|machine|instrument|工具|機械|器具|測定/.test(value)) return "tool";
     return "term";
@@ -288,7 +302,13 @@
     if (!image) {
       const missing = document.createElement("div");
       missing.className = className === "resultThumb" ? "resultThumbMissing" : "thumbMissing";
-      missing.textContent = state.lang === "en" ? "No image" : "画像なし";
+      const kind = entryKind(entry);
+      const labels = state.lang === "en"
+        ? { tool:"Tool", material:"Material", task:"Task", term:"Term" }
+        : { tool:"工具", material:"部材", task:"作業", term:"用語" };
+      missing.textContent = labels[kind];
+      missing.title = state.lang === "en" ? "Representative photo not yet reviewed" : "代表写真は未登録";
+      missing.dataset.kind = kind;
       return missing;
     }
     const img = document.createElement("img");
@@ -307,7 +327,8 @@
     state.filtered.slice(0, 7).forEach((entry) => {
       const button = document.createElement("button");
       button.type = "button";
-      button.appendChild(createThumb(entry, "autocompleteThumb"));
+      if (state.images.has(entry.id)) button.appendChild(createThumb(entry, "autocompleteThumb"));
+      else button.classList.add("autocompleteNoImage");
       const copy = document.createElement("div");
       const strong = document.createElement("strong"); strong.textContent = primaryTerm(entry);
       const sub = document.createElement("span"); sub.textContent = secondaryTerm(entry) || primaryPair(entry.summary);
@@ -343,7 +364,8 @@
       row.setAttribute("role", "button");
       row.tabIndex = 0;
       row.setAttribute("aria-current", String(state.current?.id === entry.id));
-      row.appendChild(createThumb(entry, "resultThumb"));
+      if (state.images.has(entry.id)) row.appendChild(createThumb(entry, "resultThumb"));
+      else row.classList.add("resultRow--no-image");
 
       const copy = document.createElement("div"); copy.className = "resultText";
       const title = document.createElement("div"); title.className = "resultTitle"; title.textContent = primaryTerm(entry);
@@ -353,7 +375,28 @@
       [humanize(entry.type), ...entry.categories.slice(0, 1).map(humanize)].filter(Boolean).forEach((value) => {
         const span = document.createElement("span"); span.className = "chip"; span.textContent = value; meta.appendChild(span);
       });
-      copy.append(title); if (secondary.textContent) copy.append(secondary); copy.append(summary, meta);
+      const reviewedNotes = preferredItems(entry.bullets).filter((value) => !isTemplateText(value));
+      const note = reviewedNotes[0] || primaryPair(entry.detail);
+      const example = preferredItems(entry.examples).find((value) => !isTemplateText(value));
+      const aliases = preferredItems(entry.aliases).slice(0, 3);
+      copy.append(title); if (secondary.textContent) copy.append(secondary);
+      if (summary.textContent) copy.append(summary);
+      if (note && note !== summary.textContent && !isTemplateText(note)) {
+        const context = document.createElement("div"); context.className = "resultContext";
+        context.textContent = (state.lang === "en" ? "Use / note: " : "用途・注意：") + note;
+        copy.append(context);
+      }
+      if (example) {
+        const usage = document.createElement("div"); usage.className = "resultExample";
+        usage.textContent = (state.lang === "en" ? "Example: " : "使用例：") + example;
+        copy.append(usage);
+      }
+      if (aliases.length) {
+        const alias = document.createElement("div"); alias.className = "resultAliases";
+        alias.textContent = (state.lang === "en" ? "Also: " : "別名：") + aliases.join(" / ");
+        copy.append(alias);
+      }
+      copy.append(meta);
 
       const star = document.createElement("button"); star.type = "button"; star.className = `starButton${state.favs.has(entry.id) ? " active" : ""}`; star.textContent = state.favs.has(entry.id) ? "★" : "☆";
       star.setAttribute("aria-label", state.favs.has(entry.id) ? "Remove favorite" : "Add favorite");
@@ -390,7 +433,20 @@
 
   function renderArray(node, value) {
     clear(node);
-    const values = state.lang === "en" ? value.en : state.lang === "both" ? unique([...value.ja, ...value.en]) : value.ja;
+    if (state.lang === "both") {
+      let count = 0;
+      for (const [code, items] of [["JA", value.ja], ["EN", value.en]]) {
+        for (const item of items) {
+          const li = document.createElement("li");
+          const tag = document.createElement("span"); tag.className = "langTag";
+          tag.textContent = code;
+          li.append(tag, document.createTextNode(item));
+          node.appendChild(li); count++;
+        }
+      }
+      return count;
+    }
+    const values = state.lang === "en" ? value.en : value.ja;
     values.forEach((item) => { const li = document.createElement("li"); li.textContent = item; node.appendChild(li); });
     return values.length;
   }
@@ -407,7 +463,8 @@
     clear(els.detailImage);
     const image = state.images.get(entry.id);
     els.detailImage.hidden = !image;
-    els.detailImageMissing.hidden = Boolean(image);
+    // Do not reserve space or repeat a missing-photo message for entries without reviewed imagery.
+    els.detailImageMissing.hidden = true;
     if (!image) return;
     const img = document.createElement("img");
     img.src = image.display;
@@ -432,12 +489,36 @@
     labels.forEach((label) => { const span = document.createElement("span"); span.className = "chip"; span.textContent = label; els.detailTaxonomy.appendChild(span); });
   }
 
+  function browseInSameContext(entry) {
+    // Common task/category links are suggestions for browsing, NOT asserted tool relationships.
+    const generic = new Set(["tool","material","term","task","general","construction","site","all"]);
+    const tasks = new Set(entry.tasks.filter(x => !generic.has(normalized(x))));
+    const categories = new Set(entry.categories.filter(x => !generic.has(normalized(x))));
+    return state.entries.filter(item => item.id !== entry.id).map(item => {
+      const sharedTasks = item.tasks.filter(x => tasks.has(x)).length;
+      const sharedCategories = item.categories.filter(x => categories.has(x)).length;
+      return { item, score: sharedTasks * 3 + sharedCategories * 2 };
+    }).filter(x => x.score >= 2)
+      .sort((a,b) => b.score - a.score || primaryTerm(a.item).localeCompare(primaryTerm(b.item), state.lang === "en" ? "en" : "ja"))
+      .slice(0,6).map(x => x.item);
+  }
+
   function renderRelated(entry) {
     clear(els.detailRelated);
-    const related = entry.relationIds.map((id) => state.entryById.get(resolveId(id))).filter(Boolean).filter((item, index, arr) => arr.findIndex((x) => x.id === item.id) === index).slice(0, 12);
-    els.relatedSection.hidden = !related.length;
-    related.forEach((item) => {
-      const button = document.createElement("button"); button.type = "button"; button.textContent = primaryTerm(item); button.addEventListener("click", () => openDetail(item.id, "push")); els.detailRelated.appendChild(button);
+    const maintained = entry.relationIds.map(id => state.entryById.get(resolveId(id)))
+      .filter(Boolean).filter((item,index,arr) => arr.findIndex(x => x.id === item.id) === index)
+      .filter(item => item.id !== entry.id).slice(0,12);
+    const inferred = maintained.length === 0;
+    const entries = inferred ? browseInSameContext(entry) : maintained;
+    els.relatedHeading.textContent = inferred
+      ? (state.lang === "en" ? "Explore the same task / category" : "同じ作業・分類から探す")
+      : (state.lang === "en" ? "Maintained related entries" : "関連する工具・材料（登録済み）");
+    els.relatedSection.hidden = !entries.length;
+    entries.forEach(item => {
+      const button = document.createElement("button"); button.type = "button";
+      button.textContent = primaryTerm(item);
+      button.addEventListener("click", () => openDetail(item.id,"push"));
+      els.detailRelated.appendChild(button);
     });
   }
 
@@ -454,6 +535,29 @@
     els.affiliateSection.hidden = false;
   }
 
+  function composeDefinition(entry) {
+    // Preserve reviewed source copy. Short source definitions may be shown with
+    // their existing subject-specific notes rather than artificially generated filler.
+    const definition = { ...entry.description };
+    const notes = { ja: isTemplateText(entry.detail.ja) ? "" : entry.detail.ja, en: isTemplateText(entry.detail.en) ? "" : entry.detail.en };
+    for (const [language,definitionLimit,detailMin] of [["ja",60,65],["en",135,125]]) {
+      const lead = definition[language] || "";
+      const context = notes[language] || "";
+      if (context && lead.includes(context)) {
+        // The reviewed source explanation was promoted into the definition field.
+        // Keep the full technical context once without duplicating it under "Main uses / notes".
+        notes[language] = "";
+        continue;
+      }
+      if (lead.length && lead.length < definitionLimit &&
+          context.length >= detailMin && !context.includes(lead)) {
+        definition[language] = lead + "\n" + context;
+        notes[language] = ""; // Don't repeat the same text under the next heading.
+      }
+    }
+    return { definition, notes };
+  }
+
   function renderDetail(entry) {
     if (!entry) return;
     els.detailEyebrow.textContent = humanize(entry.type) || (state.lang === "en" ? "Dictionary entry" : "辞書項目");
@@ -461,14 +565,18 @@
     els.detailSecondary.textContent = secondaryTerm(entry);
     renderTaxonomy(entry);
     renderImage(entry);
-    renderPair(els.detailDefinition, entry.description);
+    const composed = composeDefinition(entry);
+    renderPair(els.detailDefinition, composed.definition);
 
-    const hasNotes = Boolean(entry.detail.ja || entry.detail.en || entry.bullets.ja.length || entry.bullets.en.length);
+    const maintainedBullets = { ja: entry.bullets.ja.filter((value) => !isTemplateText(value)), en: entry.bullets.en.filter((value) => !isTemplateText(value)) };
+    const maintainedExamples = { ja: entry.examples.ja.filter((value) => !isTemplateText(value)), en: entry.examples.en.filter((value) => !isTemplateText(value)) };
+    const hasNotes = Boolean(composed.notes.ja || composed.notes.en || maintainedBullets.ja.length || maintainedBullets.en.length);
     els.notesSection.hidden = !hasNotes;
-    renderPair(els.detailNotes, entry.detail);
-    renderArray(els.detailBullets, entry.bullets);
+    els.detailNotes.hidden = !composed.notes.ja && !composed.notes.en;
+    renderPair(els.detailNotes, composed.notes);
+    renderArray(els.detailBullets, maintainedBullets);
 
-    const hasExamples = renderArray(els.detailExamples, entry.examples);
+    const hasExamples = renderArray(els.detailExamples, maintainedExamples);
     els.examplesSection.hidden = !hasExamples;
 
     clear(els.detailAliases);
@@ -576,8 +684,21 @@
     els.affiliateHeading.textContent = en ? "Find related tools / materials" : "関連する工具・材料を探す";
     els.affiliateLead.textContent = en ? "Amazon links are shown only for explicitly maintained canonical mappings." : "購入先の参考として、管理済みの項目だけAmazonへのリンクを表示します。";
     els.loadMore.textContent = en ? "Load more" : "さらに表示";
-    els.detailImageMissing.textContent = en ? "Reviewed image not available yet." : "確認済み画像はまだありません。";
+    els.detailImageMissing.textContent = en ? "Photo not yet reviewed; the definition and usage are available." : "代表写真は未登録です。説明・使用例は閲覧できます。";
     els.favoritesToggle.textContent = state.favOnly ? (en ? "★ Favorites" : "★ お気に入り") : (en ? "☆ Favorites" : "☆ お気に入り");
+  }
+
+  function renderQuickStart() {
+    clear(els.dictionaryJumpButtons);
+    const entries = STARTER_IDS.map(id => state.entryById.get(id)).filter(Boolean);
+    els.dictionaryJump.hidden = !entries.length;
+    els.dictionaryJumpLabel.textContent = state.lang === "en" ? "Open an example entry" : "用語の実例を見る";
+    entries.forEach(entry => {
+      const button = document.createElement("button"); button.type = "button";
+      button.textContent = primaryTerm(entry);
+      button.addEventListener("click", () => openDetail(entry.id,"push"));
+      els.dictionaryJumpButtons.appendChild(button);
+    });
   }
 
   function render() {
@@ -585,6 +706,7 @@
     applyLanguageChrome();
     refreshFiltered();
     renderPrimaryFilters();
+    renderQuickStart();
     renderInterpretations();
     renderList();
     els.favoritesToggle.setAttribute("aria-pressed", String(state.favOnly));
@@ -652,8 +774,17 @@
 
     const requested = new URL(window.location.href).searchParams.get("entry");
     if (requested) {
-      if (!openDetail(requested, "none")) setEntryInUrl("", "replace");
-      else if (resolveId(requested) !== requested) setEntryInUrl(state.current.id, "replace");
+      if (!openDetail(requested, "none")) {
+        setEntryInUrl("", "replace");
+        if (!isMobile()) {
+          const fallback = STARTER_IDS.find(id => state.entryById.has(id)) || state.filtered[0]?.id;
+          if (fallback) openDetail(fallback, "none");
+        }
+      } else if (resolveId(requested) !== requested) setEntryInUrl(state.current.id, "replace");
+    } else if (!isMobile()) {
+      // Keep a useful term visible even if the curated starter set changes.
+      const starter = STARTER_IDS.find(id => state.entryById.has(id)) || state.filtered[0]?.id;
+      if (starter) openDetail(starter, "none");
     }
   }
 

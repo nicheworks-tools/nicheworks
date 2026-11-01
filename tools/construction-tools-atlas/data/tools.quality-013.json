@@ -1,1 +1,911 @@
-{"schema":"cta-compact-v1","quality_batch":"013","rows":[{"id":"q013_scaffold_board","t":"component","ja":"足場板","en":"Scaffold Plank","dj":"足場の作業床として使う板状部材。","de":"Plank used as a working platform on scaffolding.","c":"temporary_work","task":"build_scaffold"},{"id":"q013_scaffold_clamp","t":"component","ja":"クランプ","en":"Scaffold Clamp","dj":"単管同士を固定する足場用金具。","de":"Clamp used to connect scaffold pipes.","c":"temporary_work","task":"connect_pipe"},{"id":"q013_swivel_clamp","t":"component","ja":"自在クランプ","en":"Swivel Clamp","dj":"角度を変えて単管を接続できるクランプ。","de":"Clamp that connects scaffold pipes at adjustable angles.","c":"temporary_work","task":"connect_pipe"},{"id":"q013_right_angle_clamp","t":"component","ja":"直交クランプ","en":"Right-Angle Clamp","dj":"単管を直角に固定するクランプ。","de":"Clamp for connecting scaffold pipes at right angles.","c":"temporary_work","task":"connect_pipe"},{"id":"q013_base_jack","t":"component","ja":"ジャッキベース","en":"Base Jack","dj":"足場支柱の高さを調整するねじ式ベース。","de":"Adjustable screw base used under scaffold standards.","c":"temporary_work","task":"level_scaffold"},{"id":"q013_base_plate_scaffold","t":"component","ja":"敷板","en":"Sole Board","dj":"足場荷重を地面へ分散する板。","de":"Board that spreads scaffold loads to the ground.","c":"temporary_work","task":"support_scaffold"},{"id":"q013_scaffold_ladder","t":"component","ja":"足場階段","en":"Scaffold Stair","dj":"足場内を上下移動する仮設階段。","de":"Temporary stair used for scaffold access.","c":"temporary_work","task":"access_scaffold"},{"id":"q013_ladder_frame","t":"component","ja":"建枠","en":"Scaffold Frame","dj":"枠組足場の主要な門型フレーム。","de":"Main frame member in frame scaffolding.","c":"temporary_work","task":"build_scaffold"},{"id":"q013_cross_brace","t":"component","ja":"筋交い","en":"Cross Brace","dj":"足場や仮設構造の揺れを抑える斜材。","de":"Diagonal brace used to stabilize temporary structures.","c":"temporary_work","task":"stabilize_frame"},{"id":"q013_wall_tie","t":"component","ja":"壁つなぎ","en":"Wall Tie","dj":"足場を建物へ固定して転倒を防ぐ部材。","de":"Tie that anchors scaffold to a building.","c":"temporary_work","task":"anchor_scaffold"},{"id":"q013_lifting_sling","t":"rigging","ja":"吊りスリング","en":"Lifting Sling","dj":"資材を吊り上げるための繊維やワイヤーの吊具。","de":"Sling used to lift materials.","c":"lifting","task":"lift_material"},{"id":"q013_wire_rope_sling","t":"rigging","ja":"ワイヤーロープスリング","en":"Wire Rope Sling","dj":"鋼線ロープで作られた吊り具。","de":"Lifting sling made from wire rope.","c":"lifting","task":"lift_material"},{"id":"q013_chain_sling","t":"rigging","ja":"チェーンスリング","en":"Chain Sling","dj":"チェーンで重量物を吊るための吊具。","de":"Chain assembly used for lifting heavy loads.","c":"lifting","task":"lift_steel"},{"id":"q013_turnbuckle","t":"rigging","ja":"ターンバックル","en":"Turnbuckle","dj":"ワイヤーやロッドの張力を調整する金具。","de":"Fitting used to adjust tension in rods or cables.","c":"lifting","task":"adjust_tension"},{"id":"q013_lever_hoist","t":"equipment","ja":"レバーブロック","en":"Lever Hoist","dj":"レバー操作で荷を引き寄せたり吊る工具。","de":"Lever-operated hoist for pulling or lifting loads.","c":"lifting","task":"pull_load"},{"id":"q013_beam_clamp","t":"rigging","ja":"ビームクランプ","en":"Beam Clamp","dj":"H形鋼などに吊点を設けるクランプ。","de":"Clamp used to create a lifting point on a beam.","c":"lifting","task":"set_lifting_point"},{"id":"q013_trolley_hoist","t":"equipment","ja":"トロリー","en":"Hoist Trolley","dj":"梁上を移動して荷を横移動する揚重具。","de":"Trolley used to move a hoist along a beam.","c":"lifting","task":"move_load"},{"id":"q013_tag_line","t":"rigging","ja":"介錯ロープ","en":"Tag Line","dj":"吊荷の回転や揺れを抑えるためのロープ。","de":"Rope used to control a suspended load.","c":"lifting","task":"control_load"},{"id":"q013_dolly","t":"equipment","ja":"台車","en":"Dolly","dj":"資材や工具を載せて移動する車輪付き台。","de":"Wheeled platform used to move materials or tools.","c":"transport","task":"move_material"},{"id":"q013_material_cart","t":"equipment","ja":"資材カート","en":"Material Cart","dj":"長物や箱物資材を運ぶ現場用カート。","de":"Cart used to transport materials on site.","c":"transport","task":"move_material"},{"id":"q013_mortar_pan","t":"equipment","ja":"トロ舟","en":"Mortar Pan","dj":"モルタルや材料を練る浅い容器。","de":"Shallow tray used to mix mortar or materials.","c":"mortar","task":"mix_mortar"},{"id":"q013_mix_bucket","t":"equipment","ja":"練りバケツ","en":"Mixing Bucket","dj":"接着材や補修材を練るための容器。","de":"Bucket used to mix adhesive or repair material.","c":"mortar","task":"mix_material"},{"id":"q013_paddle_mixer","t":"tool","ja":"撹拌機","en":"Paddle Mixer","dj":"塗材やモルタルを撹拌する電動工具。","de":"Powered mixer used to stir coatings or mortar.","c":"mortar","task":"mix_material"},{"id":"q013_mixing_paddle","t":"consumable","ja":"撹拌羽根","en":"Mixing Paddle","dj":"撹拌機に取り付ける混合用の羽根。","de":"Paddle attachment used for mixing materials.","c":"mortar","task":"mix_material"},{"id":"q013_concrete_rake","t":"tool","ja":"コンクリートレーキ","en":"Concrete Rake","dj":"生コンを広げたり寄せたりする工具。","de":"Tool used to pull and spread fresh concrete.","c":"concrete","task":"place_concrete"},{"id":"q013_screed_board","t":"tool","ja":"均し定規","en":"Screed Board","dj":"コンクリートやモルタル表面をならす定規。","de":"Straightedge used to level concrete or mortar.","c":"concrete","task":"level_surface"},{"id":"q013_bull_float","t":"tool","ja":"ブルフロート","en":"Bull Float","dj":"広いコンクリート面を均す長柄の仕上げ工具。","de":"Long-handled float for leveling large concrete areas.","c":"concrete","task":"finish_concrete"},{"id":"q013_edger_trowel","t":"tool","ja":"面取り鏝","en":"Concrete Edger","dj":"コンクリート端部を丸めて仕上げる工具。","de":"Tool used to round and finish concrete edges.","c":"concrete","task":"finish_edge"},{"id":"q013_groover_trowel","t":"tool","ja":"目地鏝","en":"Concrete Groover","dj":"コンクリートに目地溝を作る工具。","de":"Tool used to form grooves in concrete.","c":"concrete","task":"make_control_joint"},{"id":"q013_power_trowel","t":"equipment","ja":"トロウェル機","en":"Power Trowel","dj":"土間コンクリートを機械で押さえる仕上げ機。","de":"Machine used to finish slab concrete surfaces.","c":"concrete","task":"finish_slab"},{"id":"q013_joint_cutter","t":"equipment","ja":"目地切り機","en":"Joint Cutter","dj":"土間に収縮目地を切る機械。","de":"Machine used to cut contraction joints in slabs.","c":"concrete","task":"cut_joint"},{"id":"q013_ram_compactor","t":"equipment","ja":"ランマー","en":"Rammer","dj":"狭い場所の土を突き固める締固め機。","de":"Compactor used for narrow trenches and confined areas.","c":"earthwork","task":"compact_trench"},{"id":"q013_soil_tamper","t":"tool","ja":"タンパー","en":"Hand Tamper","dj":"手作業で土や砕石を突き固める工具。","de":"Hand tool used to compact soil or gravel.","c":"earthwork","task":"compact_ground"},{"id":"q013_shovel_square","t":"tool","ja":"角スコップ","en":"Square Shovel","dj":"土砂や材料をすくう四角いスコップ。","de":"Square shovel used to scoop soil or materials.","c":"earthwork","task":"dig_soil"},{"id":"q013_shovel_pointed","t":"tool","ja":"剣スコップ","en":"Round Point Shovel","dj":"硬い土を掘り起こしやすい尖ったスコップ。","de":"Pointed shovel used for digging soil.","c":"earthwork","task":"dig_soil"},{"id":"q013_crowbar","t":"tool","ja":"かなてこ","en":"Crowbar","dj":"重い物をこじ上げる鉄製の棒工具。","de":"Steel bar used for prying heavy objects.","c":"demolition","task":"pry_material"},{"id":"q013_soil_rake","t":"tool","ja":"レーキ","en":"Rake","dj":"土や砕石をならす櫛状の工具。","de":"Tool used to level soil or gravel.","c":"earthwork","task":"level_soil"},{"id":"q013_gravel","t":"material","ja":"砕石","en":"Crushed Stone","dj":"路盤や基礎下地に使う砕いた石材。","de":"Crushed aggregate used for bases and subgrades.","c":"earthwork","task":"prepare_base"},{"id":"q013_sand","t":"material","ja":"砂","en":"Sand","dj":"モルタルや敷き均しに使う細骨材。","de":"Fine aggregate used for mortar or bedding.","c":"earthwork","task":"bed_material"},{"id":"q013_backfill_soil","t":"material","ja":"埋戻し土","en":"Backfill Soil","dj":"掘削後の空間を埋め戻す土。","de":"Soil used to refill an excavation.","c":"earthwork","task":"backfill"},{"id":"q013_geotextile","t":"material","ja":"ジオテキスタイル","en":"Geotextile","dj":"土の分離、補強、排水に使う繊維シート。","de":"Fabric used for soil separation, reinforcement, or drainage.","c":"earthwork","task":"stabilize_ground"},{"id":"q013_weed_barrier","t":"material","ja":"防草シート","en":"Weed Barrier","dj":"雑草の発生を抑えるシート材。","de":"Sheet used to suppress weed growth.","c":"landscape","task":"prevent_weeds"},{"id":"q013_drain_pipe","t":"material","ja":"暗渠管","en":"Drain Pipe","dj":"地中の水を集めて排水する管。","de":"Pipe used to collect and drain subsurface water.","c":"drainage","task":"install_drain"},{"id":"q013_perforated_pipe","t":"material","ja":"有孔管","en":"Perforated Pipe","dj":"穴から水を集める排水用の管。","de":"Pipe with holes used to collect drainage water.","c":"drainage","task":"install_drain"},{"id":"q013_drain_gravel","t":"material","ja":"排水砕石","en":"Drainage Gravel","dj":"水を通しやすい排水層用の砕石。","de":"Gravel used to create a drainage layer.","c":"drainage","task":"make_drainage_layer"},{"id":"q013_catch_basin","t":"component","ja":"集水桝","en":"Catch Basin","dj":"雨水や排水を集める桝。","de":"Basin that collects stormwater or drainage.","c":"drainage","task":"collect_water"},{"id":"q013_manhole_cover","t":"component","ja":"マンホール蓋","en":"Manhole Cover","dj":"点検口を覆う鋳鉄などの蓋。","de":"Cover used over a manhole opening.","c":"drainage","task":"cover_access"},{"id":"q013_trench_box","t":"equipment","ja":"土留めボックス","en":"Trench Box","dj":"掘削溝の崩壊を防ぐ箱型支保工。","de":"Protective box used to prevent trench collapse.","c":"earthwork","task":"protect_trench"},{"id":"q013_shoring","t":"temporary","ja":"土留め支保工","en":"Shoring","dj":"掘削面や構造物を一時的に支える仮設構造。","de":"Temporary support for excavations or structures.","c":"temporary_work","task":"support_excavation"},{"id":"q013_sheet_pile","t":"material","ja":"鋼矢板","en":"Sheet Pile","dj":"土留めや止水に使う連続した鋼製杭。","de":"Interlocking steel pile used for earth retention or water cutoff.","c":"earthwork","task":"retain_soil"},{"id":"q013_h_pile","t":"material","ja":"H鋼杭","en":"H-Pile","dj":"山留めや支持に使うH形鋼の杭。","de":"H-shaped steel pile used for support or shoring.","c":"earthwork","task":"support_shoring"},{"id":"q013_strut","t":"component","ja":"切梁","en":"Strut","dj":"山留め壁を内側から支える水平材。","de":"Horizontal member supporting excavation walls.","c":"earthwork","task":"support_shoring"},{"id":"q013_waler","t":"component","ja":"腹起し","en":"Waler","dj":"土留め壁に荷重を分散する横材。","de":"Horizontal beam that distributes loads in shoring.","c":"earthwork","task":"support_shoring"},{"id":"q013_survey_stake","t":"tool","ja":"測量杭","en":"Survey Stake","dj":"位置や高さの基準を示す杭。","de":"Stake used to mark survey points or levels.","c":"survey","task":"mark_point"},{"id":"q013_level_staff","t":"tool","ja":"スタッフ","en":"Leveling Staff","dj":"レベル測量で高さを読む標尺。","de":"Graduated staff used in leveling surveys.","c":"survey","task":"measure_level"},{"id":"q013_theodolite","t":"tool","ja":"トランシット","en":"Theodolite","dj":"水平角や鉛直角を測る測量機器。","de":"Survey instrument for measuring horizontal and vertical angles.","c":"survey","task":"measure_angle"},{"id":"q013_prism_pole","t":"tool","ja":"プリズムポール","en":"Prism Pole","dj":"測距用プリズムを立てるポール。","de":"Pole used to hold a survey prism.","c":"survey","task":"survey_layout"},{"id":"q013_survey_prism","t":"tool","ja":"測量プリズム","en":"Survey Prism","dj":"測距光を反射する測量用反射器。","de":"Reflector used for distance measurement.","c":"survey","task":"measure_distance"},{"id":"q013_marking_paint","t":"material","ja":"マーキングスプレー","en":"Marking Paint","dj":"地面や部材へ目印を付けるスプレー塗料。","de":"Spray paint used for layout and marking.","c":"layout","task":"mark_point"},{"id":"q013_flagging_tape","t":"material","ja":"目印テープ","en":"Flagging Tape","dj":"位置や注意箇所を示す色付きテープ。","de":"Colored tape used to mark points or hazards.","c":"layout","task":"mark_point"},{"id":"q013_batter_board","t":"temporary","ja":"遣り方貫","en":"Batter Board","dj":"建物位置や基準線を保持する仮設板。","de":"Temporary board used to hold layout lines.","c":"layout","task":"set_building_line"},{"id":"q013_line_level","t":"tool","ja":"ラインレベル","en":"Line Level","dj":"水糸に掛けて水平を確認する小型水平器。","de":"Small level attached to a string line.","c":"layout","task":"check_level"},{"id":"q013_grade_stake","t":"tool","ja":"丁張杭","en":"Grade Stake","dj":"高さや勾配の基準を示す杭。","de":"Stake used to mark grade or elevation.","c":"layout","task":"set_grade"},{"id":"q013_slope_board","t":"tool","ja":"勾配定規","en":"Slope Board","dj":"所定の勾配を確認するための定規。","de":"Guide used to check a specified slope.","c":"layout","task":"check_slope"},{"id":"q013_panel_carrier","t":"tool","ja":"ボードキャリア","en":"Panel Carrier","dj":"石膏ボードなどの板材を運ぶ持ち手。","de":"Handle used to carry sheet panels.","c":"drywall","task":"carry_board"},{"id":"q013_drywall_rasp","t":"tool","ja":"ボードやすり","en":"Drywall Rasp","dj":"石膏ボード切断面を削って整える工具。","de":"Rasp used to shape drywall edges.","c":"drywall","task":"trim_board"},{"id":"q013_board_cutter","t":"tool","ja":"ボードカッター","en":"Drywall Cutter","dj":"石膏ボードを切るためのカッター。","de":"Knife or cutter used to score drywall board.","c":"drywall","task":"cut_board"},{"id":"q013_utility_knife","t":"tool","ja":"カッターナイフ","en":"Utility Knife","dj":"内装材やシートを切る汎用ナイフ。","de":"General-purpose knife for cutting sheets and finishes.","c":"cutting","task":"cut_material"},{"id":"q013_snap_off_blade","t":"consumable","ja":"替刃","en":"Snap-Off Blade","dj":"カッターナイフの交換用刃。","de":"Replacement blade for utility knives.","c":"cutting","task":"replace_blade"},{"id":"q013_straightedge","t":"tool","ja":"直尺","en":"Straightedge","dj":"直線確認やカットガイドに使う定規。","de":"Straight guide used for layout or cutting.","c":"layout","task":"mark_line"},{"id":"q013_metal_ruler","t":"tool","ja":"金尺","en":"Steel Ruler","dj":"寸法測定や直線引きに使う金属定規。","de":"Steel ruler used for measuring and marking.","c":"measurement","task":"measure_length"},{"id":"q013_tape_measure","t":"tool","ja":"コンベックス","en":"Tape Measure","dj":"巻き尺で長さを測る測定工具。","de":"Retractable tape used to measure length.","c":"measurement","task":"measure_length"},{"id":"q013_long_tape","t":"tool","ja":"巻尺","en":"Long Tape Measure","dj":"長距離の寸法を測る巻き取り式テープ。","de":"Long measuring tape used for site dimensions.","c":"measurement","task":"measure_distance"},{"id":"q013_marker_pen","t":"tool","ja":"墨出しペン","en":"Marker Pen","dj":"部材や下地に目印を書くペン。","de":"Pen used to mark materials or substrates.","c":"layout","task":"mark_material"},{"id":"q013_carpenter_pencil","t":"tool","ja":"大工鉛筆","en":"Carpenter Pencil","dj":"木材などに太く線を引く鉛筆。","de":"Flat pencil used for marking construction materials.","c":"layout","task":"mark_timber"},{"id":"q013_scribe","t":"tool","ja":"ケガキ針","en":"Scribe","dj":"金属面に細い線を刻む工具。","de":"Pointed tool used to mark metal surfaces.","c":"metalwork","task":"scribe_line"},{"id":"q013_center_punch","t":"tool","ja":"センターポンチ","en":"Center Punch","dj":"穴あけ位置にくぼみを付ける工具。","de":"Punch used to mark the center of a drilled hole.","c":"metalwork","task":"mark_hole"},{"id":"q013_pin_punch","t":"tool","ja":"ピンポンチ","en":"Pin Punch","dj":"ピンやリベットを打ち抜く棒状工具。","de":"Punch used to drive pins or rivets.","c":"metalwork","task":"remove_pin"},{"id":"q013_file_flat","t":"tool","ja":"平ヤスリ","en":"Flat File","dj":"金属や樹脂の平面を削る手工具。","de":"Hand file used to shape flat surfaces.","c":"metalwork","task":"file_surface"},{"id":"q013_file_round","t":"tool","ja":"丸ヤスリ","en":"Round File","dj":"穴や曲面を削る丸いヤスリ。","de":"Round file used to shape holes or curves.","c":"metalwork","task":"file_hole"},{"id":"q013_file_half_round","t":"tool","ja":"半丸ヤスリ","en":"Half-Round File","dj":"平面と曲面の両方に使えるヤスリ。","de":"File with flat and curved faces for shaping.","c":"metalwork","task":"file_surface"},{"id":"q013_putty_scraper","t":"tool","ja":"皮すき","en":"Paint Scraper","dj":"古い塗膜やパテを剥がすヘラ状工具。","de":"Scraper used to remove old paint or putty.","c":"surface_prep","task":"remove_coating"},{"id":"q013_wire_hand_brush","t":"tool","ja":"ワイヤーブラシ","en":"Wire Brush","dj":"錆や汚れをこすり落とす金属ブラシ。","de":"Metal brush used to remove rust or dirt.","c":"surface_prep","task":"remove_rust"},{"id":"q013_paint_roller","t":"tool","ja":"ローラー刷毛","en":"Paint Roller","dj":"広い面に塗料を塗るローラー工具。","de":"Roller used to apply paint over large areas.","c":"paint","task":"paint_surface"},{"id":"q013_paint_tray","t":"tool","ja":"ローラーバケット","en":"Paint Tray","dj":"ローラーに塗料を含ませる受け皿。","de":"Tray used to load paint onto a roller.","c":"paint","task":"paint_surface"}]}
+{
+  "schema": "cta-compact-v1",
+  "quality_batch": "013",
+  "rows": [
+    {
+      "id": "q013_scaffold_board",
+      "t": "component",
+      "ja": "足場板",
+      "en": "Scaffold Plank",
+      "dj": "足場の作業床として使う板状部材。\n足場の作業床を構成する板状部材。足場枠や支持材へ所定の方法で載せ、作業者と資材の荷重を受ける。割れ・大きな変形・腐食、支持間隔、端部の掛かり、浮きやずれを確認して使用する。",
+      "de": "Plank used as a working platform on scaffolding.\nA plank that forms the working deck of a scaffold. It spans scaffold supports and carries workers and materials. Check for cracks, severe deformation or corrosion, correct support spacing, adequate end bearing, and secure seating before use.",
+      "c": "temporary_work",
+      "task": "build_scaffold"
+    },
+    {
+      "id": "q013_scaffold_clamp",
+      "t": "component",
+      "ja": "クランプ",
+      "en": "Scaffold Clamp",
+      "dj": "足場用クランプは、単管足場などで鋼管同士を接続・固定する金具。直交クランプは直角方向、自在クランプは角度の異なる接続に用いられる。接続方式を確認し、ボルト・ナットの損傷や腐食、締付状態を施工要領に従って点検する。",
+      "de": "A scaffold clamp is a fitting used to connect and secure steel tubes in tube-and-coupler scaffolding. Right-angle and swivel clamps serve different joint configurations; selection, condition of fasteners and tightening must follow the applicable scaffold assembly instructions.",
+      "c": "temporary_work",
+      "task": "connect_pipe"
+    },
+    {
+      "id": "q013_swivel_clamp",
+      "t": "component",
+      "ja": "自在クランプ",
+      "en": "Swivel Clamp",
+      "dj": "角度を変えて単管を接続できるクランプ。\n2本の単管を任意角度で接続できる回転式の足場クランプ。斜材や筋交いなど直角以外の接続に使う。回転部が正常に動き、締結後に各単管を確実につかんでいることを確認する。",
+      "de": "Clamp that connects scaffold pipes at adjustable angles.\nA rotating scaffold clamp that connects two tubes at adjustable angles. It is used for braces and other non-90-degree connections. Verify free movement before installation and secure tube engagement after tightening.",
+      "c": "temporary_work",
+      "task": "connect_pipe",
+      "aj": [
+        "自在単管クランプ"
+      ],
+      "ae": [
+        "Swivel scaffold clamp"
+      ]
+    },
+    {
+      "id": "q013_right_angle_clamp",
+      "t": "component",
+      "ja": "直交クランプ",
+      "en": "Right-Angle Clamp",
+      "dj": "単管を直角に固定するクランプ。\n2本の単管を90度で固定する足場用クランプ。支柱と水平材など、直交関係を保持する接続部に使う。単管へのかみ合わせと締付状態をそろえ、クランプ本体の変形やねじ部損傷を確認する。",
+      "de": "Clamp for connecting scaffold pipes at right angles.\nA scaffold clamp designed to hold two tubes at 90 degrees. It is used at intersections such as standards and ledgers where a fixed right angle is required. Ensure full tube engagement, proper tightening, and an undamaged fitting body and thread.",
+      "c": "temporary_work",
+      "task": "connect_pipe",
+      "aj": [
+        "直交単管クランプ"
+      ],
+      "ae": [
+        "Fixed scaffold clamp"
+      ]
+    },
+    {
+      "id": "q013_base_jack",
+      "t": "component",
+      "ja": "ジャッキベース",
+      "en": "Base Jack",
+      "dj": "ジャッキベースは、足場支柱の下端に置くねじ式の高さ調整部材。地盤や敷板の高さの差を吸収して足場を水平に整える。ねじの伸出量には足場方式ごとの許容範囲があり、支柱の偏心や接地部の沈下、ねじ山の損傷を確認する必要がある。",
+      "de": "A scaffold base jack is a screw-adjustable base fitting placed beneath a scaffold standard to level the structure over uneven support conditions. Its extension must remain within the permitted range, with checks for firm bearing, settlement, bent components and damaged threads.",
+      "c": "temporary_work",
+      "task": "level_scaffold"
+    },
+    {
+      "id": "q013_base_plate_scaffold",
+      "t": "component",
+      "ja": "敷板",
+      "en": "Sole Board",
+      "dj": "足場荷重を地面へ分散する板。\n足場支柱から地盤へ伝わる荷重を分散するため、ベース金具の下などに敷く板材。局部沈下や支柱のめり込みを抑える役割がある。地盤の強度・平坦性、板の割れや腐朽、ベースの載り位置を確認する。",
+      "de": "Board that spreads scaffold loads to the ground.\nA sole board placed beneath scaffold bases to spread loads into the ground and reduce local settlement. It supports the base rather than adjusting scaffold height. Check ground bearing, level seating, board condition, and the position of the base on the board.",
+      "c": "temporary_work",
+      "task": "support_scaffold"
+    },
+    {
+      "id": "q013_scaffold_ladder",
+      "t": "component",
+      "ja": "足場階段",
+      "en": "Scaffold Stair",
+      "dj": "足場内を上下移動する仮設階段。\n足場内で作業床間を安全に上下移動するための仮設階段・階段ユニット。通常の立て掛けはしごとは異なり、足場構造へ所定の方法で取り付けて使用する。踏板、手すり、取付部、出入口の障害物を点検する。",
+      "de": "Temporary stair used for scaffold access.\nA temporary stair or stair unit installed within scaffolding to provide access between working levels. It differs from a portable leaning ladder because it is integrated and secured to the scaffold. Inspect treads, handrails, connections, and clear access at landings.",
+      "c": "temporary_work",
+      "task": "access_scaffold",
+      "aj": [
+        "昇降階段"
+      ],
+      "ae": [
+        "Scaffold access stair"
+      ]
+    },
+    {
+      "id": "q013_ladder_frame",
+      "t": "component",
+      "ja": "建枠",
+      "en": "Scaffold Frame",
+      "dj": "枠組足場の主要な門型フレーム。\n枠組足場を構成する門型の主要フレームで、作業床や筋交いなどを支持する骨組み部材。規格・寸法の異なる建枠を混在させず、脚部・接続ピン・ロック部・溶接部の損傷を確認する。",
+      "de": "Main frame member in frame scaffolding.\nA portal-shaped main frame used in frame scaffolding to support decks, braces, and connected members. Frames of incompatible size or system should not be mixed. Inspect legs, connection pins, locking features, welds, and overall straightness.",
+      "c": "temporary_work",
+      "task": "build_scaffold"
+    },
+    {
+      "id": "q013_cross_brace",
+      "t": "component",
+      "ja": "筋交い",
+      "en": "Cross Brace",
+      "dj": "足場や仮設構造の揺れを抑える斜材。\n足場や仮設フレームの対角線方向に取り付け、平行四辺形状の変形や横揺れを抑える斜材。指定された位置・本数を省略せず、端部のピンやロックへ確実に掛ける。曲がりや端部金具の損傷も確認する。",
+      "de": "Diagonal brace used to stabilize temporary structures.\nA diagonal brace installed across scaffold or temporary frames to resist racking and lateral movement. Required braces should not be omitted, and each end must fully engage its pin or lock. Inspect the brace for bending and damaged end fittings.",
+      "c": "temporary_work",
+      "task": "stabilize_frame"
+    },
+    {
+      "id": "q013_wall_tie",
+      "t": "component",
+      "ja": "壁つなぎ",
+      "en": "Wall Tie",
+      "dj": "足場を建物へ固定して転倒を防ぐ部材。\n足場を建物側へ連結し、風や偏荷重による足場の面外変位・転倒を抑えるための壁つなぎ部材。取付位置と間隔、躯体側アンカー、足場側接続は足場計画に従う。改修作業などで無断撤去すると安定性を大きく損なう。",
+      "de": "Tie that anchors scaffold to a building.\nA tie that connects scaffolding to the building to control out-of-plane movement and overturning from wind and eccentric loads. Tie locations, spacing, building anchors, and scaffold connections must follow the scaffold design. Removing ties without an approved alternative can seriously reduce stability.",
+      "c": "temporary_work",
+      "task": "anchor_scaffold"
+    },
+    {
+      "id": "q013_lifting_sling",
+      "t": "rigging",
+      "ja": "吊りスリング",
+      "en": "Lifting Sling",
+      "dj": "資材を吊り上げるための繊維やワイヤーの吊具。\n荷をクレーンやホイストで吊るために用いるスリング類の総称で、繊維、ワイヤーロープ、チェーンなど複数方式がある。荷重、掛け方、吊り角度、重心、端部形状に合う種類と定格を選び、損傷品を使用しない。",
+      "de": "Sling used to lift materials.\nA general class of sling used to connect a load to a crane or hoist, including textile, wire-rope, and chain types. Select the sling material, capacity, hitch, angle, and length for the load and its center of gravity. Damaged or unidentified slings must not be used.",
+      "c": "lifting",
+      "task": "lift_material"
+    },
+    {
+      "id": "q013_wire_rope_sling",
+      "t": "rigging",
+      "ja": "ワイヤーロープスリング",
+      "en": "Wire Rope Sling",
+      "dj": "鋼線ロープで作られた吊り具。\n鋼線をより合わせたワイヤーロープで構成する吊りスリング。耐熱性や耐摩耗性などの特性を持つ一方、素線切れ、キンク、つぶれ、腐食、端末部の異常を重点的に確認する。吊り角度や曲げ半径も能力に影響する。",
+      "de": "Lifting sling made from wire rope.\nA lifting sling made from steel wire rope. It offers characteristics such as abrasion and heat resistance, but must be inspected for broken wires, kinks, crushing, corrosion, and damaged terminations. Sling angle and bending around small radii also affect performance.",
+      "c": "lifting",
+      "task": "lift_material"
+    },
+    {
+      "id": "q013_chain_sling",
+      "t": "rigging",
+      "ja": "チェーンスリング",
+      "en": "Chain Sling",
+      "dj": "チェーンで重量物を吊るための吊具。\n合金鋼などのチェーンとマスターリンク、フック等で構成する吊り具。重量物や耐摩耗性が必要な玉掛けで使われる。リンクの伸び・摩耗・割れ・ねじれ、フック開き、接続金具の変形を点検し、指定グレードと定格を守る。",
+      "de": "Chain assembly used for lifting heavy loads.\nA lifting sling assembled from chain, master links, hooks, and related fittings. It is commonly used for heavy loads and demanding rigging conditions. Inspect links for stretch, wear, cracks, or twist and check hooks and connectors for deformation while maintaining the required grade and rated capacity.",
+      "c": "lifting",
+      "task": "lift_steel"
+    },
+    {
+      "id": "q013_turnbuckle",
+      "t": "rigging",
+      "ja": "ターンバックル",
+      "en": "Turnbuckle",
+      "dj": "ワイヤーやロッドの張力を調整する金具。\n中央胴を回して左右のねじ端を出入りさせ、ワイヤー、ロッド、ブレースなどの張力や長さを調整する金具。ねじのかかり代を確保し、曲げ荷重を与えず軸方向に使う。端部形状と定格も接続用途に合わせる。",
+      "de": "Fitting used to adjust tension in rods or cables.\nA fitting with opposite threaded ends that adjusts tension or effective length in wire, rod, or bracing by rotating its body. Maintain adequate thread engagement and load it axially rather than in bending. End fittings and capacity must match the connection.",
+      "c": "lifting",
+      "task": "adjust_tension"
+    },
+    {
+      "id": "q013_lever_hoist",
+      "t": "equipment",
+      "ja": "レバーブロック",
+      "en": "Lever Hoist",
+      "dj": "レバー操作で荷を引き寄せたり吊る工具。",
+      "de": "Lever-operated hoist for pulling or lifting loads.",
+      "c": "lifting",
+      "task": "pull_load"
+    },
+    {
+      "id": "q013_beam_clamp",
+      "t": "rigging",
+      "ja": "ビームクランプ",
+      "en": "Beam Clamp",
+      "dj": "H形鋼などに吊点を設けるクランプ。\nH形鋼などのフランジを把持して、ホイストや吊具用の吊点を設けるクランプ。梁材の寸法、フランジ厚、取付方向、定格荷重に合う製品を選ぶ。構造用の配管支持クランプや加工用クランプとは用途が異なる。",
+      "de": "Clamp used to create a lifting point on a beam.\nA clamp attached to a structural beam flange to provide a suspension or lifting point for a hoist or rigging. Select it for beam size, flange thickness, orientation, and rated load. It is distinct from workholding clamps and pipe-support clamps.",
+      "c": "lifting",
+      "task": "set_lifting_point"
+    },
+    {
+      "id": "q013_trolley_hoist",
+      "t": "equipment",
+      "ja": "トロリー",
+      "en": "Hoist Trolley",
+      "dj": "梁上を移動して荷を横移動する揚重具。\nI形・H形梁などの下フランジを走行し、吊下げたホイストと荷を梁方向へ横移動させるトロリー。梁幅に合わせた車輪間隔と定格荷重を設定し、ストッパー、車輪、軸、吊下げ部を点検する。",
+      "de": "Trolley used to move a hoist along a beam.\nA trolley that runs along the lower flange of a beam and carries a suspended hoist so the load can move horizontally along the beam. Adjust it to the beam flange width and rated load, and inspect wheels, axles, suspension, and end-stop arrangements.",
+      "c": "lifting",
+      "task": "move_load"
+    },
+    {
+      "id": "q013_tag_line",
+      "t": "rigging",
+      "ja": "介錯ロープ",
+      "en": "Tag Line",
+      "dj": "吊荷の回転や揺れを抑えるためのロープ。\n吊荷へ取り付け、地上の作業者が安全な位置から荷の回転・振れ・向きを補助制御するためのロープ。吊荷を直接手で押さえる代わりの補助手段として用いる。ロープを身体へ巻き付けたり、吊荷の真下へ入ったりしない。",
+      "de": "Rope used to control a suspended load.\nA rope attached to a suspended load so workers can help control rotation, swing, and orientation from a safer position. It reduces the need to touch the load directly but does not make standing beneath a suspended load acceptable. Keep the line clear of entanglement hazards.",
+      "c": "lifting",
+      "task": "control_load",
+      "aj": [
+        "介錯綱"
+      ],
+      "ae": [
+        "Guide rope"
+      ]
+    },
+    {
+      "id": "q013_dolly",
+      "t": "equipment",
+      "ja": "台車",
+      "en": "Dolly",
+      "dj": "資材や工具を載せて移動する車輪付き台。\n資材や工具を載せて人力搬送する低床の平台車。二輪のハンドトラックとは異なり、荷を平台上へ載せ、複数のキャスターで支持して移動する。積載能力、荷の重心、キャスター、床の段差や勾配を確認する。",
+      "de": "Wheeled platform used to move materials or tools.\nA low platform dolly used to move tools and materials manually. Unlike an upright two-wheel hand truck, it supports the load on a flat deck with multiple casters. Check rated load, center of gravity, caster condition, floor steps, and slopes.",
+      "c": "transport",
+      "task": "move_material"
+    },
+    {
+      "id": "q013_material_cart",
+      "t": "equipment",
+      "ja": "資材カート",
+      "en": "Material Cart",
+      "dj": "長物や箱物資材を運ぶ現場用カート。\n長尺材、箱物、工具など現場資材の運搬に使う専用カート。平台車より荷姿に合わせた枠・棚・受けを備えるものが多い。積載重量と寸法、荷崩れ、重心、走行経路、ストッパーやキャスターを確認する。",
+      "de": "Cart used to transport materials on site.\nA site cart intended for transporting construction materials such as long items, boxes, or tools. Many versions have frames, shelves, or supports tailored to the load. Verify capacity, load dimensions, restraint, center of gravity, route condition, brakes, and casters.",
+      "c": "transport",
+      "task": "move_material"
+    },
+    {
+      "id": "q013_mortar_pan",
+      "t": "equipment",
+      "ja": "トロ舟",
+      "en": "Mortar Pan",
+      "dj": "モルタルや材料を練る浅い容器。\nモルタル、左官材、補修材などを少量練ったり仮置きしたりする浅く広い容器。トロ舟とも呼ばれ、材料を取り出しやすい形状を持つ。材料の種類を混在させず、硬化物や汚れを除去して容量内で使用する。",
+      "de": "Shallow tray used to mix mortar or materials.\nA shallow, wide pan used to mix or hold small batches of mortar, plastering compounds, and repair materials. Its open shape makes material easy to mix and scoop. Keep incompatible materials separate, remove hardened residue, and work within the pan's practical capacity.",
+      "c": "mortar",
+      "task": "mix_mortar",
+      "aj": [
+        "トロ箱"
+      ],
+      "ae": [
+        "Mortar mixing tub"
+      ]
+    },
+    {
+      "id": "q013_mix_bucket",
+      "t": "equipment",
+      "ja": "練りバケツ",
+      "en": "Mixing Bucket",
+      "dj": "接着材や補修材を練るための容器。\n接着剤、補修材、塗材などを少量から中量で練り混ぜるためのバケツ型容器。撹拌羽根を使う場合は飛散を抑えられる深さと十分な容量を確保する。材料ごとの可使時間を意識し、硬化残渣や水分混入を避ける。",
+      "de": "Bucket used to mix adhesive or repair material.\nA bucket used to mix adhesives, repair compounds, coatings, and similar materials in small to medium batches. When power mixing, adequate depth and free volume help contain splashing. Respect each material's working time and avoid contamination by hardened residue or unintended water.",
+      "c": "mortar",
+      "task": "mix_material"
+    },
+    {
+      "id": "q013_paddle_mixer",
+      "t": "tool",
+      "ja": "撹拌機",
+      "en": "Paddle Mixer",
+      "dj": "塗材やモルタルを撹拌する電動工具。\nモルタル、接着材、塗材などを撹拌羽根で混合する手持ち式の電動撹拌機。材料粘度と量に合う回転数・羽根形状を選び、低速から始めて飛散や急な反力を抑える。回転中の羽根へ手や衣服を近づけない。",
+      "de": "Powered mixer used to stir coatings or mortar.\nA handheld powered mixer that drives a paddle to blend mortar, adhesive, coatings, and similar compounds. Match paddle shape and speed to material viscosity and batch size, starting at low speed to limit splash and reaction torque. Keep hands and loose clothing clear of the rotating paddle.",
+      "c": "mortar",
+      "task": "mix_material"
+    },
+    {
+      "id": "q013_mixing_paddle",
+      "t": "consumable",
+      "ja": "撹拌羽根",
+      "en": "Mixing Paddle",
+      "dj": "撹拌機に取り付ける混合用の羽根。",
+      "de": "Paddle attachment used for mixing materials.",
+      "c": "mortar",
+      "task": "mix_material"
+    },
+    {
+      "id": "q013_concrete_rake",
+      "t": "tool",
+      "ja": "コンクリートレーキ",
+      "en": "Concrete Rake",
+      "dj": "生コンを広げたり寄せたりする工具。\n打設したばかりの生コンクリートを引き寄せたり押し広げたりして、所定の位置とおおよその高さへ配るための長柄工具。仕上げ用のレーキではなく、打設直後の材料移動が主用途。鉄筋や型枠を乱さないように使い、過度に材料を引きずって分離させない。",
+      "de": "Tool used to pull and spread fresh concrete.\nA long-handled tool used to pull and spread freshly placed concrete to its approximate position and level. Its main purpose is material distribution immediately after placement rather than final finishing. Work around reinforcement and forms without disturbing them and avoid excessive dragging that can promote segregation.",
+      "c": "concrete",
+      "task": "place_concrete"
+    },
+    {
+      "id": "q013_screed_board",
+      "t": "tool",
+      "ja": "均し定規",
+      "en": "Screed Board",
+      "dj": "コンクリートやモルタル表面をならす定規。",
+      "de": "Straightedge used to level concrete or mortar.",
+      "c": "concrete",
+      "task": "level_surface"
+    },
+    {
+      "id": "q013_bull_float",
+      "t": "tool",
+      "ja": "ブルフロート",
+      "en": "Bull Float",
+      "dj": "広いコンクリート面を均す長柄の仕上げ工具。\n広い土間コンクリート面を、長柄のヘッドで打設直後に均し、粗い凹凸を整える仕上げ工具。表面がまだ軟らかい段階で使用し、過剰な往復や押さえ過ぎによるブリーディング水・ペーストの偏りを避ける。",
+      "de": "Long-handled float for leveling large concrete areas.\nA long-handled finishing tool used soon after screeding to smooth broad concrete slabs and reduce high and low spots. It is used while the surface is still plastic. Excessive passes or pressure can disturb bleed water and surface paste, so timing and technique matter.",
+      "c": "concrete",
+      "task": "finish_concrete"
+    },
+    {
+      "id": "q013_edger_trowel",
+      "t": "tool",
+      "ja": "面取り鏝",
+      "en": "Concrete Edger",
+      "dj": "コンクリート端部を丸めて仕上げる工具。\nコンクリート床や土間の端部を型枠沿いに押さえ、角を丸めて欠けにくい縁を作る手工具。仕上げ面と同じ高さを保ちながら端部を整え、工具を深く差し込み過ぎて縁を沈ませない。",
+      "de": "Tool used to round and finish concrete edges.\nA hand finishing tool used along concrete slab edges to round and compact the perimeter next to forms. It creates a cleaner, less fragile edge while maintaining the surrounding surface level. Avoid inserting or pressing the tool so deeply that the edge is depressed.",
+      "c": "concrete",
+      "task": "finish_edge"
+    },
+    {
+      "id": "q013_groover_trowel",
+      "t": "tool",
+      "ja": "目地鏝",
+      "en": "Concrete Groover",
+      "dj": "コンクリートに目地溝を作る工具。\nまだ硬化していないコンクリート表面へ一定の溝を形成し、収縮ひび割れを意図した位置へ誘導するための手工具。目地位置、深さ、直線性を計画に合わせ、表面が軟らか過ぎても硬過ぎても施工しにくい。",
+      "de": "Tool used to form grooves in concrete.\nA hand tool used to form a groove in plastic concrete so shrinkage cracking is encouraged at a planned location. Joint location, depth, and alignment must follow the slab layout. Concrete that is too soft or too hard makes a clean, consistent groove difficult.",
+      "c": "concrete",
+      "task": "make_control_joint"
+    },
+    {
+      "id": "q013_power_trowel",
+      "t": "equipment",
+      "ja": "トロウェル機",
+      "en": "Power Trowel",
+      "dj": "土間コンクリートを機械で押さえる仕上げ機。\n回転する複数の鏝羽根で土間コンクリート表面を機械的に押さえ、平滑に仕上げる機械。コンクリートの硬化進行に合わせて開始時期、羽根角度、回転条件を調整する。回転体への接触、機械の暴れ、一酸化炭素を含む動力源の使用環境に注意する。",
+      "de": "Machine used to finish slab concrete surfaces.\nA machine with rotating finishing blades used to consolidate and smooth slab concrete. Start time, blade pitch, and operating condition are adjusted as the concrete gains stiffness. Control contact with rotating parts, machine movement, and the operating environment of the power source.",
+      "c": "concrete",
+      "task": "finish_slab"
+    },
+    {
+      "id": "q013_joint_cutter",
+      "t": "equipment",
+      "ja": "目地切り機",
+      "en": "Joint Cutter",
+      "dj": "土間に収縮目地を切る機械。\n硬化初期のコンクリート土間などへ収縮目地を切り込む機械。目地位置、切込み深さ、切断時期がひび割れ制御に影響する。刃の種類・回転方向・冷却方式を機械と材料に合わせ、粉じんや飛散、キックバックに備える。",
+      "de": "Machine used to cut contraction joints in slabs.\nA machine used to saw contraction joints into concrete slabs during the appropriate early curing period. Joint location, depth, and cutting time affect crack control. Match blade type, rotation, and wet or dry cutting method to the machine and slab while controlling dust, debris, and kickback hazards.",
+      "c": "concrete",
+      "task": "cut_joint"
+    },
+    {
+      "id": "q013_ram_compactor",
+      "t": "equipment",
+      "ja": "ランマー",
+      "en": "Rammer",
+      "dj": "狭い場所の土を突き固める締固め機。\n上下に打撃するフットで土や路盤材を締め固める小型動力機械で、狭い掘削溝や配管周辺などに向く。手動タンパーとは異なり大きな打撃力を持つ。転倒、振動、騒音、排気、埋設物への影響に注意する。",
+      "de": "Compactor used for narrow trenches and confined areas.\nA powered rammer that compacts soil and granular fill with repeated vertical impacts from a small foot. It is suited to trenches and confined areas and delivers much greater impact than a hand tamper. Control tipping, vibration, noise, exhaust, and the risk of damaging buried services.",
+      "c": "earthwork",
+      "task": "compact_trench"
+    },
+    {
+      "id": "q013_soil_tamper",
+      "t": "tool",
+      "ja": "タンパー",
+      "en": "Hand Tamper",
+      "dj": "手作業で土や砕石を突き固める工具。",
+      "de": "Hand tool used to compact soil or gravel.",
+      "c": "earthwork",
+      "task": "compact_ground"
+    },
+    {
+      "id": "q013_shovel_square",
+      "t": "tool",
+      "ja": "角スコップ",
+      "en": "Square Shovel",
+      "dj": "土砂や材料をすくう四角いスコップ。\n刃先がほぼ直線で平らな角形のスコップ。掘り起こすより、砂・砕石・残土などをすくい、移し、平らに整える作業に向く。柄や踏み部の損傷を確認し、無理なこじりや過大な一回量を避ける。",
+      "de": "Square shovel used to scoop soil or materials.\nA shovel with a relatively flat, straight cutting edge, suited to scooping, moving, and leveling loose soil, sand, aggregate, or debris. It is generally less effective than a pointed shovel for breaking hard ground. Inspect the handle and blade and avoid excessive prying or overloaded scoops.",
+      "c": "earthwork",
+      "task": "dig_soil",
+      "aj": [
+        "角スコ"
+      ],
+      "ae": [
+        "Square-point shovel"
+      ]
+    },
+    {
+      "id": "q013_shovel_pointed",
+      "t": "tool",
+      "ja": "剣スコップ",
+      "en": "Round Point Shovel",
+      "dj": "硬い土を掘り起こしやすい尖ったスコップ。\n先端が尖った刃で硬めの土へ食い込みやすい剣スコップ。掘削、根切り、土の切り崩しなどに向き、角スコップより地盤へ入りやすい。埋設物の有無を確認し、無理なてこ使用で柄を破損させない。",
+      "de": "Pointed shovel used for digging soil.\nA round-point shovel with a pointed blade that penetrates firm soil more easily than a square shovel. It is used for digging, trenching, and breaking into compacted ground. Confirm buried services before excavation and avoid excessive prying that can damage the handle.",
+      "c": "earthwork",
+      "task": "dig_soil",
+      "aj": [
+        "剣スコ",
+        "剣先スコップ"
+      ],
+      "ae": [
+        "Round-point shovel"
+      ]
+    },
+    {
+      "id": "q013_crowbar",
+      "t": "tool",
+      "ja": "かなてこ",
+      "en": "Crowbar",
+      "dj": "重い物をこじ上げる鉄製の棒工具。",
+      "de": "Steel bar used for prying heavy objects.",
+      "c": "demolition",
+      "task": "pry_material"
+    },
+    {
+      "id": "q013_soil_rake",
+      "t": "tool",
+      "ja": "レーキ",
+      "en": "Rake",
+      "dj": "土や砕石をならす櫛状の工具。\n櫛状の歯と長柄を持ち、土や砕石を引き寄せたり広げたりして地表をならす手工具。コンクリートレーキやアスファルトレーキとは対象材が異なる。歯の曲がり・欠損、柄の緩みを確認し、周囲へ振り回さない。",
+      "de": "Tool used to level soil or gravel.\nA long-handled rake with teeth used to pull, spread, and level soil or gravel. It is distinct from concrete and asphalt rakes, which are shaped for different materials. Inspect teeth and handle attachment and maintain clearance when swinging or pulling the tool.",
+      "c": "earthwork",
+      "task": "level_soil"
+    },
+    {
+      "id": "q013_gravel",
+      "t": "material",
+      "ja": "砕石",
+      "en": "Crushed Stone",
+      "dj": "路盤や基礎下地に使う砕いた石材。\n岩石を破砕して粒度を整えた砕石で、路盤、基礎下、埋戻し、排水層などに使う骨材。用途によって粒径・粒度分布・締固め性・排水性が異なるため、指定された材料種を使用する。細粒分や含水状態も施工性に影響する。",
+      "de": "Crushed aggregate used for bases and subgrades.\nCrushed rock aggregate used for road bases, foundation bedding, backfill, and drainage layers. Required particle size distribution, compactability, and permeability vary by application, so the specified material grade must be used. Fines content and moisture also affect field performance.",
+      "c": "earthwork",
+      "task": "prepare_base"
+    },
+    {
+      "id": "q013_sand",
+      "t": "material",
+      "ja": "砂",
+      "en": "Sand",
+      "dj": "モルタルや敷き均しに使う細骨材。\n粒径の小さい天然または人工の細骨材で、モルタル・コンクリートの配合、敷き砂、埋戻しなどに使う。用途ごとに粒度、含水量、塩分や不純物等の要求が異なる。材料仕様に適合する砂を選び、保管時の土混入を防ぐ。",
+      "de": "Fine aggregate used for mortar or bedding.\nFine aggregate of natural or manufactured origin used in mortar and concrete mixes, bedding layers, and some backfill applications. Requirements for grading, moisture, salts, and impurities depend on the use. Select material that meets the project specification and keep stockpiles from being contaminated by soil.",
+      "c": "earthwork",
+      "task": "bed_material"
+    },
+    {
+      "id": "q013_backfill_soil",
+      "t": "material",
+      "ja": "埋戻し土",
+      "en": "Backfill Soil",
+      "dj": "掘削後の空間を埋め戻す土。\n掘削した溝・基礎周囲・構造物背面などを復旧するために戻す土質材料。掘削土を再利用する場合も購入材を使う場合も、粒径、含水状態、異物、締固め性を確認する。厚い一層を一度に埋めず、必要な層厚で締め固める。",
+      "de": "Soil used to refill an excavation.\nSoil or engineered fill used to refill excavations, trenches, foundation spaces, and areas behind structures. Whether reused excavated soil or imported fill is used, check particle size, moisture, debris, and compactability. Place and compact in controlled lifts rather than one deep layer.",
+      "c": "earthwork",
+      "task": "backfill"
+    },
+    {
+      "id": "q013_geotextile",
+      "t": "material",
+      "ja": "ジオテキスタイル",
+      "en": "Geotextile",
+      "dj": "土の分離、補強、排水に使う繊維シート。\n合成繊維などで作られた透水性シートで、土層の分離、ろ過、排水、補強、保護などに用いる。用途に応じて強度、開孔性、透水性、耐久性の異なる種類を選ぶ。重ね幅、損傷、しわ、施工中の土砂混入を管理する。",
+      "de": "Fabric used for soil separation, reinforcement, or drainage.\nA permeable synthetic textile used for separation, filtration, drainage, reinforcement, or protection in soil works. Product strength, opening size, permeability, and durability are selected for the intended function. Installation requires control of overlaps, tears, wrinkles, and contamination.",
+      "c": "earthwork",
+      "task": "stabilize_ground"
+    },
+    {
+      "id": "q013_weed_barrier",
+      "t": "material",
+      "ja": "防草シート",
+      "en": "Weed Barrier",
+      "dj": "雑草の発生を抑えるシート材。\n地表へ敷設して日射を遮り、雑草の発生・生育を抑えるシート材。造園、外構、砕石敷きの下などで使う。継ぎ目や端部、貫通部から雑草が出やすいため、重ね、固定、端部処理と上載材を適切に施工する。",
+      "de": "Sheet used to suppress weed growth.\nA sheet laid over soil to suppress weed emergence and growth by limiting light and providing a physical barrier. It is used in landscaping and beneath gravel finishes. Overlaps, edges, penetrations, anchoring, and cover material are important because weeds commonly emerge at openings.",
+      "c": "landscape",
+      "task": "prevent_weeds"
+    },
+    {
+      "id": "q013_drain_pipe",
+      "t": "material",
+      "ja": "暗渠管",
+      "en": "Drain Pipe",
+      "dj": "地中の水を集めて排水する管。\n地中へ設けて地下水や浸透水を集め、所定の放流先へ導く暗渠排水用の管。用途により有孔管・無孔管を使い分け、勾配、接続、周囲の排水材、土砂流入防止を計画する。つぶれや逆勾配は排水性能を損なう。",
+      "de": "Pipe used to collect and drain subsurface water.\nA buried pipe used to collect and convey groundwater or infiltrating water to a planned outlet. Perforated and solid sections are selected according to the drainage layout. Slope, joints, surrounding drainage aggregate, and control of soil intrusion are critical to performance.",
+      "c": "drainage",
+      "task": "install_drain"
+    },
+    {
+      "id": "q013_perforated_pipe",
+      "t": "material",
+      "ja": "有孔管",
+      "en": "Perforated Pipe",
+      "dj": "穴から水を集める排水用の管。\n管壁に多数の孔やスリットを設け、周囲の水を管内へ取り込む排水管。暗渠や擁壁背面、造成地などで集水部に用いる。孔位置、周囲の砕石とフィルター材、勾配を適切に組み合わせ、細粒土による目詰まりを抑える。",
+      "de": "Pipe with holes used to collect drainage water.\nA drainage pipe with holes or slots that admit water from the surrounding ground. It is used in subsurface drains and behind retaining structures as a collection section. Correct hole orientation where specified, drainage aggregate, filter material, and pipe slope help limit clogging by fine soil.",
+      "c": "drainage",
+      "task": "install_drain"
+    },
+    {
+      "id": "q013_drain_gravel",
+      "t": "material",
+      "ja": "排水砕石",
+      "en": "Drainage Gravel",
+      "dj": "水を通しやすい排水層用の砕石。\n水を通しやすい粒度の砕石・砂利で、暗渠管周囲や基礎・擁壁背面などの排水層を形成する材料。細粒分が多いと目詰まりしやすいため、指定粒度と清浄度を守り、必要に応じてフィルター材と組み合わせる。",
+      "de": "Gravel used to create a drainage layer.\nClean, free-draining gravel or crushed stone used around subsurface drains and in drainage layers behind foundations or retaining structures. Excess fines reduce permeability, so specified grading and cleanliness are important. It is often combined with filter geotextile to limit soil migration.",
+      "c": "drainage",
+      "task": "make_drainage_layer"
+    },
+    {
+      "id": "q013_catch_basin",
+      "t": "component",
+      "ja": "集水桝",
+      "en": "Catch Basin",
+      "dj": "雨水や排水を集める桝。\n雨水や地表排水を一度集め、排水管へ接続する桝状の構造・部材。流入口、流出口、底部、蓋などで構成され、土砂やごみの点検・清掃点にもなる。高さ、勾配、接続管の出入り、蓋の納まりを確認する。",
+      "de": "Basin that collects stormwater or drainage.\nA basin that collects surface or storm water and connects it to drainage piping. It typically includes inlets, outlets, a sump or base, and a cover and also provides a point for sediment removal and maintenance. Elevation, pipe connections, flow path, and cover seating must be coordinated.",
+      "c": "drainage",
+      "task": "collect_water"
+    },
+    {
+      "id": "q013_manhole_cover",
+      "t": "component",
+      "ja": "マンホール蓋",
+      "en": "Manhole Cover",
+      "dj": "点検口を覆う鋳鉄などの蓋。\nマンホールや地下設備の点検開口を覆い、人や車両の荷重を支持しながら転落・異物侵入を防ぐ蓋。設置場所に合う荷重区分、寸法、枠との組合せを使用する。浮き、がたつき、割れ、腐食、枠周囲の沈下を点検する。",
+      "de": "Cover used over a manhole opening.\nA cover fitted over a manhole or underground access opening to carry pedestrian or vehicle loads and prevent falls and debris entry. Cover size, frame, and load class must suit the installation. Inspect for rocking, cracking, corrosion, poor seating, and settlement around the frame.",
+      "c": "drainage",
+      "task": "cover_access"
+    },
+    {
+      "id": "q013_trench_box",
+      "t": "equipment",
+      "ja": "土留めボックス",
+      "en": "Trench Box",
+      "dj": "掘削溝の崩壊を防ぐ箱型支保工。\n掘削溝内へ設置し、側壁崩壊が起きた場合に内部の作業者を保護する箱型の土留め防護設備。地山を支えて崩壊を防止する支保工とは機能が異なる。掘削深さ、土質、ボックスの定格、設置高さ、出入り方法を施工計画に合わせる。",
+      "de": "Protective box used to prevent trench collapse.\nA protective shield placed inside a trench to protect workers from cave-in material. Its function differs from shoring that actively supports excavation walls. Selection and setup depend on trench depth, soil conditions, box rating, height relative to the excavation, and safe access.",
+      "c": "earthwork",
+      "task": "protect_trench"
+    },
+    {
+      "id": "q013_shoring",
+      "t": "temporary",
+      "ja": "土留め支保工",
+      "en": "Shoring",
+      "dj": "掘削面や構造物を一時的に支える仮設構造。\n掘削面や既存構造物を一時的に支持し、変形・崩壊を抑える仮設支保工の総称。矢板、腹起し、切梁、アンカーなどを組み合わせる方式がある。土圧、水圧、掘削順序、周辺構造物を踏まえた設計・施工・計測が必要になる。",
+      "de": "Temporary support for excavations or structures.\nA general temporary support system used to restrain excavations or existing structures against movement or collapse. Systems may combine sheet piles, walers, struts, anchors, and other members. Design and construction must account for earth pressure, groundwater, excavation sequence, and adjacent structures.",
+      "c": "temporary_work",
+      "task": "support_excavation"
+    },
+    {
+      "id": "q013_sheet_pile",
+      "t": "material",
+      "ja": "鋼矢板",
+      "en": "Sheet Pile",
+      "dj": "土留めや止水に使う連続した鋼製杭。\n端部をかみ合わせて連続壁を作る鋼製の矢板。土留め、仮締切、止水などに使われ、打込み・圧入・引抜き等で施工する。断面形式、長さ、継手、施工精度と地盤条件を計画に合わせ、周辺への振動・騒音も考慮する。",
+      "de": "Interlocking steel pile used for earth retention or water cutoff.\nAn interlocking steel pile driven or pressed into the ground to form a continuous wall for earth retention, cofferdams, and water cutoff. Section type, length, interlock condition, alignment, and installation method are selected for the ground and design. Vibration and noise may also affect nearby structures.",
+      "c": "earthwork",
+      "task": "retain_soil",
+      "aj": [
+        "鋼製矢板"
+      ],
+      "ae": [
+        "Steel sheet pile"
+      ]
+    },
+    {
+      "id": "q013_h_pile",
+      "t": "material",
+      "ja": "H鋼杭",
+      "en": "H-Pile",
+      "dj": "山留めや支持に使うH形鋼の杭。\nH形鋼を杭として地中へ設置し、山留め親杭や構造支持などに用いる部材。山留めでは一定間隔で設置し、間へ横矢板等を入れる方式がある。所定位置、根入れ、鉛直性、継手・溶接部を確認する。",
+      "de": "H-shaped steel pile used for support or shoring.\nAn H-shaped steel section installed as a pile for shoring soldier piles or structural support. In excavation support, H-piles may be spaced along the wall with lagging installed between them. Position, embedment, verticality, and any splices or welds must meet the design.",
+      "c": "earthwork",
+      "task": "support_shoring"
+    },
+    {
+      "id": "q013_strut",
+      "t": "component",
+      "ja": "切梁",
+      "en": "Strut",
+      "dj": "山留め壁を内側から支える水平材。\n掘削用山留め壁を内側から互いに押し合う形で支持する水平の圧縮材。腹起しから受けた土圧を対向する壁や支点へ伝える。軸線、座屈長、接合部、ジャッキ・プレロード等を設計どおりに確保する。",
+      "de": "Horizontal member supporting excavation walls.\nA horizontal compression member used to brace opposing excavation support walls from inside the excavation. It transfers load from walers into the opposite support line or another reaction point. Alignment, buckling length, connections, and any jacking or preload must follow the shoring design.",
+      "c": "earthwork",
+      "task": "support_shoring"
+    },
+    {
+      "id": "q013_waler",
+      "t": "component",
+      "ja": "腹起し",
+      "en": "Waler",
+      "dj": "土留め壁に荷重を分散する横材。\n山留め壁に沿って水平に設け、矢板や親杭から受ける土圧を複数の切梁・アンカーへ分配する横材。局部的な荷重集中を減らし、支保工全体へ力を伝える。継手、ブラケット、切梁との接点、通りを確認する。",
+      "de": "Horizontal beam that distributes loads in shoring.\nA horizontal member installed along an excavation support wall to collect load from sheet piles or soldier piles and distribute it to struts or anchors. It reduces local concentration and transfers earth pressure through the shoring system. Check splices, brackets, alignment, and strut or anchor bearing points.",
+      "c": "earthwork",
+      "task": "support_shoring"
+    },
+    {
+      "id": "q013_survey_stake",
+      "t": "tool",
+      "ja": "測量杭",
+      "en": "Survey Stake",
+      "dj": "位置や高さの基準を示す杭。\n測量点、通り、位置、高さなどの基準を現場へ保持するために地面へ打ち込む杭。木杭や樹脂杭などがあり、上端や側面へ番号・高さ・基準線を記す。施工中に動かされたり抜かれたりしないよう識別・保護する。",
+      "de": "Stake used to mark survey points or levels.\nA stake driven into the ground to preserve survey points, alignment, position, or elevation references on site. Wood, plastic, and other types may carry point numbers, level marks, or layout lines. It must be clearly identified and protected from accidental movement or removal.",
+      "c": "survey",
+      "task": "mark_point"
+    },
+    {
+      "id": "q013_level_staff",
+      "t": "tool",
+      "ja": "スタッフ",
+      "en": "Leveling Staff",
+      "dj": "レベル測量で高さを読む標尺。",
+      "de": "Graduated staff used in leveling surveys.",
+      "c": "survey",
+      "task": "measure_level"
+    },
+    {
+      "id": "q013_theodolite",
+      "t": "tool",
+      "ja": "トランシット",
+      "en": "Theodolite",
+      "dj": "水平角や鉛直角を測る測量機器。\n望遠鏡を水平・鉛直方向へ回転させ、水平角と鉛直角を精密に測る測量機器。トータルステーションと異なり、基本機能は角度測定が中心。三脚上で整準・求心し、既知点や後視方向を使って通り・角度を設定する。",
+      "de": "Survey instrument for measuring horizontal and vertical angles.\nA surveying instrument that measures precise horizontal and vertical angles through a rotating telescope. Unlike a total station, its basic function centers on angular measurement rather than integrated electronic distance measurement. It is centered and leveled on a tripod and oriented from known points or backsights.",
+      "c": "survey",
+      "task": "measure_angle"
+    },
+    {
+      "id": "q013_prism_pole",
+      "t": "tool",
+      "ja": "プリズムポール",
+      "en": "Prism Pole",
+      "dj": "測距用プリズムを立てるポール。\nトータルステーション等の測距用プリズムを所定高さで保持する伸縮式ポール。先端を測点へ置き、気泡管などで鉛直に立てて使用する。ポール高の設定値、ロック、先端摩耗、気泡管のずれは測定誤差に直結する。",
+      "de": "Pole used to hold a survey prism.\nA telescoping pole used to hold a surveying prism at a known height for total-station measurements. Its point is placed on the survey mark and the pole is held plumb, commonly using a bubble vial. Pole-height setting, locks, tip wear, and vial adjustment directly affect measurement accuracy.",
+      "c": "survey",
+      "task": "survey_layout"
+    },
+    {
+      "id": "q013_survey_prism",
+      "t": "tool",
+      "ja": "測量プリズム",
+      "en": "Survey Prism",
+      "dj": "測距光を反射する測量用反射器。\nトータルステーション等から発射された測距光を反射して機器へ戻す測量用反射器。プリズム定数や取付方向、中心位置が距離・座標計算に関わる。使用するプリズムと機器設定を一致させ、汚れや破損を避ける。",
+      "de": "Reflector used for distance measurement.\nA surveying reflector that returns an electronic distance-measurement beam to a total station or similar instrument. Prism constant, orientation, and center position affect computed distance and coordinates. Instrument settings must match the prism being used, and optical surfaces should remain clean and undamaged.",
+      "c": "survey",
+      "task": "measure_distance"
+    },
+    {
+      "id": "q013_marking_paint",
+      "t": "material",
+      "ja": "マーキングスプレー",
+      "en": "Marking Paint",
+      "dj": "地面や部材へ目印を付けるスプレー塗料。",
+      "de": "Spray paint used for layout and marking.",
+      "c": "layout",
+      "task": "mark_point"
+    },
+    {
+      "id": "q013_flagging_tape",
+      "t": "material",
+      "ja": "目印テープ",
+      "en": "Flagging Tape",
+      "dj": "位置や注意箇所を示す色付きテープ。\n測量点、埋設物、立入注意箇所、資材位置などを目立たせるために結び付ける色付きの薄いテープ。位置を示す目印であり、荷重を受ける固定材や立入防止設備ではない。色の意味を現場内で統一し、不要になったものは回収する。",
+      "de": "Colored tape used to mark points or hazards.\nA brightly colored thin tape used to make survey points, utilities, hazard locations, or material positions visible. It is an identification marker, not a load-bearing tie or a physical barricade. Color meanings should be consistent on the site and obsolete tape should be removed.",
+      "c": "layout",
+      "task": "mark_point"
+    },
+    {
+      "id": "q013_batter_board",
+      "t": "temporary",
+      "ja": "遣り方貫",
+      "en": "Batter Board",
+      "dj": "建物位置や基準線を保持する仮設板。\n建物の通り芯や基礎位置、高さ基準を掘削範囲の外側へ保持する遣り方の水平板。杭に取り付けた貫へ釘や印を設け、水糸を張って基準線を復元する。位置や高さが動くと施工全体へ影響するため、堅固に固定して保護する。",
+      "de": "Temporary board used to hold layout lines.\nA horizontal layout board fixed to stakes outside an excavation to preserve building lines, foundation positions, and level references. Nails or marks on the board carry string lines that can re-establish layout after excavation begins. Because movement affects downstream work, batter boards must be stable and protected.",
+      "c": "layout",
+      "task": "set_building_line"
+    },
+    {
+      "id": "q013_line_level",
+      "t": "tool",
+      "ja": "ラインレベル",
+      "en": "Line Level",
+      "dj": "水糸に掛けて水平を確認する小型水平器。",
+      "de": "Small level attached to a string line.",
+      "c": "layout",
+      "task": "check_level"
+    },
+    {
+      "id": "q013_grade_stake",
+      "t": "tool",
+      "ja": "丁張杭",
+      "en": "Grade Stake",
+      "dj": "高さや勾配の基準を示す杭。\n造成、路盤、掘削などで仕上がり高さや掘削深さ、勾配の基準を示す杭。杭頭や側面へ設計高との差、切土・盛土量などを記載して施工高さを伝える。表記方法を統一し、施工で失われる前に必要な基準を移設・控える。",
+      "de": "Stake used to mark grade or elevation.\nA stake used in grading and earthwork to communicate design elevation, cut or fill amount, or slope reference. Marks on the top or side indicate how the current ground relates to the required grade. Notation should be consistent, and control should be transferred before the stake is destroyed by work.",
+      "c": "layout",
+      "task": "set_grade"
+    },
+    {
+      "id": "q013_slope_board",
+      "t": "tool",
+      "ja": "勾配定規",
+      "en": "Slope Board",
+      "dj": "所定の勾配を確認するための定規。\n法面や排水勾配など、所定の傾きを現場で確認・再現するための基準板・定規。設計勾配に合わせて作り、土工や仕上げ面へ当てて傾きを比較する。基準となる方向や上下を明確にし、変形した定規を使わない。",
+      "de": "Guide used to check a specified slope.\nA template or guide used to check and reproduce a specified slope on earthwork, drainage surfaces, or similar work. It is made to the design gradient and compared against the constructed surface. Orientation must be clear and a warped or damaged template should not be relied upon.",
+      "c": "layout",
+      "task": "check_slope"
+    },
+    {
+      "id": "q013_panel_carrier",
+      "t": "tool",
+      "ja": "ボードキャリア",
+      "en": "Panel Carrier",
+      "dj": "石膏ボードなどの板材を運ぶ持ち手。\n石膏ボードや合板などの板材の下端・側面を保持し、人力搬送しやすくする持ち手工具。板の縁へ荷重を集中させるため、適合厚さと工具の掛かりを確認する。搬送経路の幅、段差、風、周囲の人にも注意する。",
+      "de": "Handle used to carry sheet panels.\nA hand carrier that grips or supports the edge of drywall, plywood, or other sheet panels to make manual handling easier. Because load is concentrated at the panel edge, the tool must suit the panel thickness and seat securely. Route width, steps, wind, and nearby workers also affect safe handling.",
+      "c": "drywall",
+      "task": "carry_board"
+    },
+    {
+      "id": "q013_drywall_rasp",
+      "t": "tool",
+      "ja": "ボードやすり",
+      "en": "Drywall Rasp",
+      "dj": "石膏ボード切断面を削って整える工具。\n切断した石膏ボードの小口を削り、寸法や直線性を微調整する粗目のやすり工具。大きく切り直す工具ではなく、切断後の出っ張りや荒れを少量ずつ整える。粉じんを抑え、表紙を必要以上に破らないように使う。",
+      "de": "Rasp used to shape drywall edges.\nA coarse rasp used to trim and straighten the cut edge of drywall after scoring and snapping. It is for small dimensional corrections and rough-edge cleanup rather than major cutting. Control dust and avoid tearing away more facing paper than necessary.",
+      "c": "drywall",
+      "task": "trim_board"
+    },
+    {
+      "id": "q013_board_cutter",
+      "t": "tool",
+      "ja": "ボードカッター",
+      "en": "Drywall Cutter",
+      "dj": "石膏ボードを切るためのカッター。\n石膏ボードを切断・切り込みするための専用カッターやナイフ。表紙へ直線状の切れ目を入れて折り、裏紙を切る一般的な作業に使う。刃を必要以上に出さず、直定規を使う場合は手を切断線から離す。",
+      "de": "Knife or cutter used to score drywall board.\nA dedicated knife or cutter used to score and cut drywall. A common method is to score the face paper, snap the gypsum core, and cut the backing paper. Keep blade exposure to the minimum needed and keep the supporting hand clear when cutting against a straightedge.",
+      "c": "drywall",
+      "task": "cut_board"
+    },
+    {
+      "id": "q013_utility_knife",
+      "t": "tool",
+      "ja": "カッターナイフ",
+      "en": "Utility Knife",
+      "dj": "内装材やシートを切る汎用ナイフ。",
+      "de": "General-purpose knife for cutting sheets and finishes.",
+      "c": "cutting",
+      "task": "cut_material"
+    },
+    {
+      "id": "q013_snap_off_blade",
+      "t": "consumable",
+      "ja": "替刃",
+      "en": "Snap-Off Blade",
+      "dj": "カッターナイフの交換用刃。\nカッターナイフに装着する折刃式の交換刃で、先端の区画を折って新しい刃先を出せる消耗品。指定サイズのホルダーへ使用し、折る際の飛散と鋭利な使用済み片に注意する。刃を長く出し過ぎると折損しやすい。",
+      "de": "Replacement blade for utility knives.\nA segmented replacement blade for a utility knife, designed so a worn tip section can be snapped off to expose a fresh edge. It must match the knife holder, and the snapping process creates a sharp fragment that requires controlled handling. Excessive blade extension increases breakage risk.",
+      "c": "cutting",
+      "task": "replace_blade"
+    },
+    {
+      "id": "q013_straightedge",
+      "t": "tool",
+      "ja": "直尺",
+      "en": "Straightedge",
+      "dj": "直線確認やカットガイドに使う定規。\n長い直線基準を作り、面の通り確認、墨付け、切断ガイドなどに使う直線定規。目盛りを持たない製品もあり、主目的は直線性の基準を提供すること。反り・打痕・縁の損傷が精度に影響する。",
+      "de": "Straight guide used for layout or cutting.\nA rigid straight guide used to check surface straightness, mark lines, or guide cutting. Many straightedges are not primarily measuring scales; their key function is providing a true linear reference. Bowing, dents, and damaged edges reduce accuracy.",
+      "c": "layout",
+      "task": "mark_line"
+    },
+    {
+      "id": "q013_metal_ruler",
+      "t": "tool",
+      "ja": "金尺",
+      "en": "Steel Ruler",
+      "dj": "寸法測定や直線引きに使う金属定規。\n鋼やステンレスなどの薄い直定規に目盛りを刻んだ測定工具。短い寸法測定、墨付け、直線確認に使う。端面摩耗、曲がり、ゼロ位置の欠け、目盛りの読み違いに注意し、精密測定が必要な場合は適切な測定器へ切り替える。",
+      "de": "Steel ruler used for measuring and marking.\nA graduated steel or stainless ruler used for short measurements, marking, and straight-line reference. Wear at the end, bending, damaged zero reference, and reading error affect results. For tighter tolerances, use an appropriate precision measuring instrument instead.",
+      "c": "measurement",
+      "task": "measure_length"
+    },
+    {
+      "id": "q013_tape_measure",
+      "t": "tool",
+      "ja": "コンベックス",
+      "en": "Tape Measure",
+      "dj": "巻き尺で長さを測る測定工具。",
+      "de": "Retractable tape used to measure length.",
+      "c": "measurement",
+      "task": "measure_length"
+    },
+    {
+      "id": "q013_long_tape",
+      "t": "tool",
+      "ja": "巻尺",
+      "en": "Long Tape Measure",
+      "dj": "長距離の寸法を測る巻き取り式テープ。\n数十メートルなど比較的長い距離を測るため、ケースやリールへ巻き取る長尺の巻尺。一般的なコンベックスより長距離測定に向き、鋼製・樹脂繊維製などがある。張力、たるみ、温度、勾配、始点位置が測定誤差に影響する。",
+      "de": "Long measuring tape used for site dimensions.\nA long reel tape used to measure site distances beyond the convenient range of a retractable pocket tape. Steel and synthetic-fiber tapes are common. Applied tension, sag, temperature, slope, and start-point definition can all affect longer measurements.",
+      "c": "measurement",
+      "task": "measure_distance"
+    },
+    {
+      "id": "q013_marker_pen",
+      "t": "tool",
+      "ja": "墨出しペン",
+      "en": "Marker Pen",
+      "dj": "部材や下地に目印を書くペン。",
+      "de": "Pen used to mark materials or substrates.",
+      "c": "layout",
+      "task": "mark_material"
+    },
+    {
+      "id": "q013_carpenter_pencil",
+      "t": "tool",
+      "ja": "大工鉛筆",
+      "en": "Carpenter Pencil",
+      "dj": "木材などに太く線を引く鉛筆。",
+      "de": "Flat pencil used for marking construction materials.",
+      "c": "layout",
+      "task": "mark_timber"
+    },
+    {
+      "id": "q013_scribe",
+      "t": "tool",
+      "ja": "ケガキ針",
+      "en": "Scribe",
+      "dj": "金属面に細い線を刻む工具。\n硬い鋭利な先端で金属表面へ細いけがき線を刻む手工具。鉛筆やマーカーより消えにくく細い基準線を作れる一方、仕上げ面へ永久傷を付けるため使用箇所を選ぶ。先端を鋭利に保ち、滑って手を刺さないよう扱う。",
+      "de": "Pointed tool used to mark metal surfaces.\nA pointed hand tool used to scratch a fine layout line into metal. It produces a thinner and more durable mark than pencil or ink but permanently scores the surface, so it should be used only where such marking is acceptable. Keep the point in good condition and control slips.",
+      "c": "metalwork",
+      "task": "scribe_line"
+    },
+    {
+      "id": "q013_center_punch",
+      "t": "tool",
+      "ja": "センターポンチ",
+      "en": "Center Punch",
+      "dj": "穴あけ位置にくぼみを付ける工具。\nドリル穴あけ位置へ小さなくぼみを打ち、ドリル先端の滑りを抑えるポンチ。ケガキ線の交点などへ先端を合わせ、ハンマーで適切な打撃を与える。先端摩耗や打撃頭のまくれを点検し、薄板を変形させるほど強く打たない。",
+      "de": "Punch used to mark the center of a drilled hole.\nA punch used to create a small dimple at a drilling location so the drill point is less likely to wander. The tip is placed at a scribed intersection and struck with a hammer. Inspect tip condition and the struck head and avoid excessive blows that distort thin work.",
+      "c": "metalwork",
+      "task": "mark_hole",
+      "aj": [
+        "芯出しポンチ"
+      ],
+      "ae": [
+        "Centre punch"
+      ]
+    },
+    {
+      "id": "q013_pin_punch",
+      "t": "tool",
+      "ja": "ピンポンチ",
+      "en": "Pin Punch",
+      "dj": "ピンやリベットを打ち抜く棒状工具。\nピン、ダウエル、リベット等を穴から押し出したり打ち込んだりするための細長い棒状ポンチ。先端径を対象ピンより適切に小さく選び、穴縁へ噛み込ませない。曲がったポンチやまくれた打撃頭は安全上使用しない。",
+      "de": "Punch used to drive pins or rivets.\nA slender punch used to drive pins, dowels, or similar fasteners into or out of holes. Tip diameter should suit the pin so the punch enters the hole without wedging against its edge. Bent punches and mushroomed struck heads should be removed from service.",
+      "c": "metalwork",
+      "task": "remove_pin"
+    },
+    {
+      "id": "q013_file_flat",
+      "t": "tool",
+      "ja": "平ヤスリ",
+      "en": "Flat File",
+      "dj": "金属や樹脂の平面を削る手工具。\n平らな面と直線状の刃を持ち、金属や樹脂の平面・角部を削る手やすり。切断後のバリ落とし、寸法微調整、面の修正に使う。目詰まりを清掃し、柄を付けずにむき出しの中子を押す使い方を避ける。",
+      "de": "Hand file used to shape flat surfaces.\nA hand file with flat faces used to shape flat metal or plastic surfaces, remove burrs, and make small dimensional corrections. Keep the teeth clean and use a proper handle on the tang so the bare tang is not driven into the hand.",
+      "c": "metalwork",
+      "task": "file_surface"
+    },
+    {
+      "id": "q013_file_round",
+      "t": "tool",
+      "ja": "丸ヤスリ",
+      "en": "Round File",
+      "dj": "穴や曲面を削る丸いヤスリ。\n円形断面を持ち、穴の内面や凹曲面を削るための丸やすり。穴径の拡大や曲面のバリ取りに使うが、削り過ぎると穴の真円度や位置を損なう。対象穴より適切に細い径を選ぶ。",
+      "de": "Round file used to shape holes or curves.\nA circular-section hand file used to shape holes, internal curves, and concave surfaces. It can enlarge a hole or remove internal burrs, but excessive filing can distort roundness and location. Select a file diameter appropriate to the opening.",
+      "c": "metalwork",
+      "task": "file_hole"
+    },
+    {
+      "id": "q013_file_half_round",
+      "t": "tool",
+      "ja": "半丸ヤスリ",
+      "en": "Half-Round File",
+      "dj": "平面と曲面の両方に使えるヤスリ。\n片面が平面、反対面が丸みを持つ半丸断面の手やすり。1本で平面と凹曲面の両方を加工でき、金属部品の形状合わせやバリ取りに便利。使用する面を加工形状に合わせ、角を不用意に削り落とさない。",
+      "de": "File with flat and curved faces for shaping.\nA hand file with one flat face and one curved face, allowing both flat and concave surfaces to be shaped with one tool. It is useful for fitting and deburring metal parts. Use the face that matches the work geometry and avoid unintentionally rounding required corners.",
+      "c": "metalwork",
+      "task": "file_surface"
+    },
+    {
+      "id": "q013_putty_scraper",
+      "t": "tool",
+      "ja": "皮すき",
+      "en": "Paint Scraper",
+      "dj": "古い塗膜やパテを剥がすヘラ状工具。",
+      "de": "Scraper used to remove old paint or putty.",
+      "c": "surface_prep",
+      "task": "remove_coating"
+    },
+    {
+      "id": "q013_wire_hand_brush",
+      "t": "tool",
+      "ja": "ワイヤーブラシ",
+      "en": "Wire Brush",
+      "dj": "錆や汚れをこすり落とす金属ブラシ。\n鋼線やステンレス線などの毛を植えた手持ちブラシで、金属面の浮き錆、汚れ、弱い塗膜などをこすり落とす工具。回転式ワイヤーホイールとは異なり手作業で使う。母材や仕上げを傷めない線材と硬さを選び、飛散片に備える。",
+      "de": "Metal brush used to remove rust or dirt.\nA hand brush with steel, stainless, or similar wire bristles used to remove loose rust, dirt, and weak coating from metal surfaces. Unlike a powered wire wheel, it is operated manually. Select bristle material and stiffness to suit the substrate and protect against loose wire fragments.",
+      "c": "surface_prep",
+      "task": "remove_rust"
+    },
+    {
+      "id": "q013_paint_roller",
+      "t": "tool",
+      "ja": "ローラー刷毛",
+      "en": "Paint Roller",
+      "dj": "広い面に塗料を塗るローラー工具。",
+      "de": "Roller used to apply paint over large areas.",
+      "c": "paint",
+      "task": "paint_surface"
+    },
+    {
+      "id": "q013_paint_tray",
+      "t": "tool",
+      "ja": "ローラーバケット",
+      "en": "Paint Tray",
+      "dj": "ローラーに塗料を含ませる受け皿。",
+      "de": "Tray used to load paint onto a roller.",
+      "c": "paint",
+      "task": "paint_surface"
+    }
+  ]
+}

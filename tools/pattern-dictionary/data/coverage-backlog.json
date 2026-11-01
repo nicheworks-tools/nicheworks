@@ -1,0 +1,848 @@
+{
+  "schema_version": "0.1-candidate-inventory",
+  "status": "not-published-not-verified",
+  "purpose": "Coverage gap inventory only. Entries are NOT canonical, have NO verified definitions or sources and MUST NOT be added to public browse, search, index, sitemap or affiliate inventory until individual editorial/source/image review. Check overlap and aliases against existing 100 first.",
+  "review_requirements": [
+    "taxonomy and definition boundary",
+    "duplicate / alias / parent-concept assessment",
+    "language naming and scope verification",
+    "independent sources",
+    "image structure review",
+    "JA/EN write-up and comparison cues",
+    "all publication and SEO tests"
+  ],
+  "candidates": [
+    {
+      "id": "kanzemizu",
+      "name": {
+        "ja": "観世水",
+        "en": "Kanze water motif"
+      },
+      "domain": "japanese-motifs",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "shokko",
+      "name": {
+        "ja": "蜀江文",
+        "en": "Shokko motif"
+      },
+      "domain": "japanese-motifs",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "matsukawabishi",
+      "name": {
+        "ja": "松皮菱",
+        "en": "Pine-bark diamond motif"
+      },
+      "domain": "japanese-motifs",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "bishamon-kikko",
+      "name": {
+        "ja": "毘沙門亀甲",
+        "en": "Bishamon hexagon motif"
+      },
+      "domain": "japanese-motifs",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "tachibana-motif",
+      "name": {
+        "ja": "橘文様",
+        "en": "Tachibana citrus motif"
+      },
+      "domain": "japanese-motifs",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "noshi-motif",
+      "name": {
+        "ja": "熨斗文様",
+        "en": "Noshi motif"
+      },
+      "domain": "japanese-motifs",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "goshoguruma",
+      "name": {
+        "ja": "御所車文様",
+        "en": "Court carriage motif"
+      },
+      "domain": "japanese-motifs",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "temari-motif",
+      "name": {
+        "ja": "手毬文様",
+        "en": "Temari ball motif"
+      },
+      "domain": "japanese-motifs",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "sankuzushi",
+      "name": {
+        "ja": "三崩し",
+        "en": "Three-block stripe motif"
+      },
+      "domain": "japanese-motifs",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "kasuri",
+      "name": {
+        "ja": "絣",
+        "en": "Kasuri weaving/dyeing"
+      },
+      "domain": "japanese-motifs",
+      "proposed_type": "technique",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "nishijin-ori",
+      "name": {
+        "ja": "西陣織",
+        "en": "Nishijin textile tradition"
+      },
+      "domain": "japanese-motifs",
+      "proposed_type": "tradition",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "graph-check",
+      "name": {
+        "ja": "グラフチェック",
+        "en": "Graph check"
+      },
+      "domain": "checks-and-stripes",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "micro-check",
+      "name": {
+        "ja": "マイクロチェック",
+        "en": "Micro check"
+      },
+      "domain": "checks-and-stripes",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "shadow-check",
+      "name": {
+        "ja": "シャドーチェック",
+        "en": "Shadow check"
+      },
+      "domain": "checks-and-stripes",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "candy-stripe",
+      "name": {
+        "ja": "キャンディストライプ",
+        "en": "Candy stripe"
+      },
+      "domain": "checks-and-stripes",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "pencil-stripe",
+      "name": {
+        "ja": "ペンシルストライプ",
+        "en": "Pencil stripe"
+      },
+      "domain": "checks-and-stripes",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "hairline-stripe",
+      "name": {
+        "ja": "ヘアラインストライプ",
+        "en": "Hairline stripe"
+      },
+      "domain": "checks-and-stripes",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "ticking-stripe",
+      "name": {
+        "ja": "ティッキングストライプ",
+        "en": "Ticking stripe"
+      },
+      "domain": "checks-and-stripes",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "bayadere-stripe",
+      "name": {
+        "ja": "バヤデールストライプ",
+        "en": "Bayadere stripe"
+      },
+      "domain": "checks-and-stripes",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "ombre-stripe",
+      "name": {
+        "ja": "オンブレストライプ",
+        "en": "Ombré stripe"
+      },
+      "domain": "checks-and-stripes",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "guilloche",
+      "name": {
+        "ja": "ギヨシェ模様",
+        "en": "Guilloché ornament"
+      },
+      "domain": "geometry-and-ornament",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "rosette-ornament",
+      "name": {
+        "ja": "ロゼット装飾",
+        "en": "Rosette ornament"
+      },
+      "domain": "geometry-and-ornament",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "sunburst",
+      "name": {
+        "ja": "サンバースト模様",
+        "en": "Sunburst pattern"
+      },
+      "domain": "geometry-and-ornament",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "starburst",
+      "name": {
+        "ja": "スターバースト模様",
+        "en": "Starburst pattern"
+      },
+      "domain": "geometry-and-ornament",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "isometric-cube",
+      "name": {
+        "ja": "等角立方体模様",
+        "en": "Isometric cube pattern"
+      },
+      "domain": "geometry-and-ornament",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "triangle-tessellation",
+      "name": {
+        "ja": "三角形の敷き詰め模様",
+        "en": "Triangle tessellation"
+      },
+      "domain": "geometry-and-ornament",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "concentric-circles",
+      "name": {
+        "ja": "同心円模様",
+        "en": "Concentric circles"
+      },
+      "domain": "geometry-and-ornament",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "op-art-pattern",
+      "name": {
+        "ja": "オプアート模様",
+        "en": "Op art pattern"
+      },
+      "domain": "geometry-and-ornament",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "fretwork",
+      "name": {
+        "ja": "透かし格子装飾",
+        "en": "Fretwork"
+      },
+      "domain": "geometry-and-ornament",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "mosaic-pattern",
+      "name": {
+        "ja": "モザイク模様",
+        "en": "Mosaic pattern"
+      },
+      "domain": "geometry-and-ornament",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "art-deco-fan",
+      "name": {
+        "ja": "アールデコ扇形模様",
+        "en": "Art Deco fan motif"
+      },
+      "domain": "geometry-and-ornament",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "rocaille",
+      "name": {
+        "ja": "ロカイユ装飾",
+        "en": "Rocaille ornament"
+      },
+      "domain": "geometry-and-ornament",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "rose-sprig",
+      "name": {
+        "ja": "小枝のバラ模様",
+        "en": "Rose sprig pattern"
+      },
+      "domain": "floral-and-botanical",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "rosebud-print",
+      "name": {
+        "ja": "バラのつぼみ柄",
+        "en": "Rosebud print"
+      },
+      "domain": "floral-and-botanical",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "lotus-motif",
+      "name": {
+        "ja": "蓮華文様",
+        "en": "Lotus motif"
+      },
+      "domain": "floral-and-botanical",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "art-nouveau-floral",
+      "name": {
+        "ja": "アールヌーヴォー花柄",
+        "en": "Art Nouveau floral"
+      },
+      "domain": "floral-and-botanical",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "tropical-leaf",
+      "name": {
+        "ja": "トロピカルリーフ柄",
+        "en": "Tropical leaf print"
+      },
+      "domain": "floral-and-botanical",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "palm-leaf",
+      "name": {
+        "ja": "ヤシ葉柄",
+        "en": "Palm leaf print"
+      },
+      "domain": "floral-and-botanical",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "fern-print",
+      "name": {
+        "ja": "シダ葉柄",
+        "en": "Fern print"
+      },
+      "domain": "floral-and-botanical",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "pinecone-motif",
+      "name": {
+        "ja": "松ぼっくり文様",
+        "en": "Pinecone motif"
+      },
+      "domain": "floral-and-botanical",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "tortoiseshell",
+      "name": {
+        "ja": "べっ甲柄",
+        "en": "Tortoiseshell pattern"
+      },
+      "domain": "animal-and-organic",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "butterfly-print",
+      "name": {
+        "ja": "蝶柄",
+        "en": "Butterfly print"
+      },
+      "domain": "animal-and-organic",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "peacock-feather",
+      "name": {
+        "ja": "孔雀の羽根模様",
+        "en": "Peacock feather motif"
+      },
+      "domain": "animal-and-organic",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "feather-print",
+      "name": {
+        "ja": "羽根柄",
+        "en": "Feather print"
+      },
+      "domain": "animal-and-organic",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "coral-print",
+      "name": {
+        "ja": "珊瑚柄",
+        "en": "Coral print"
+      },
+      "domain": "animal-and-organic",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "wood-grain",
+      "name": {
+        "ja": "木目模様",
+        "en": "Wood-grain pattern"
+      },
+      "domain": "animal-and-organic",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "crackle-pattern",
+      "name": {
+        "ja": "ひび割れ模様",
+        "en": "Crackle pattern"
+      },
+      "domain": "animal-and-organic",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "pebble-pattern",
+      "name": {
+        "ja": "小石柄",
+        "en": "Pebble pattern"
+      },
+      "domain": "animal-and-organic",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "adinkra",
+      "name": {
+        "ja": "アディンクラ",
+        "en": "Adinkra symbols"
+      },
+      "domain": "regional-textile-traditions",
+      "proposed_type": "tradition",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "aso-oke",
+      "name": {
+        "ja": "アソオケ",
+        "en": "Aso-oke woven textiles"
+      },
+      "domain": "regional-textile-traditions",
+      "proposed_type": "tradition",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "shweshwe",
+      "name": {
+        "ja": "シュウェシュウェ",
+        "en": "Shweshwe printed textiles"
+      },
+      "domain": "regional-textile-traditions",
+      "proposed_type": "tradition",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "mola-applique",
+      "name": {
+        "ja": "モラアップリケ",
+        "en": "Mola reverse appliqué"
+      },
+      "domain": "regional-textile-traditions",
+      "proposed_type": "technique",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "tapa-cloth",
+      "name": {
+        "ja": "タパ布",
+        "en": "Tapa barkcloth"
+      },
+      "domain": "regional-textile-traditions",
+      "proposed_type": "tradition",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "aguayo",
+      "name": {
+        "ja": "アグアヨ",
+        "en": "Aguayo textiles"
+      },
+      "domain": "regional-textile-traditions",
+      "proposed_type": "tradition",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "serape",
+      "name": {
+        "ja": "サラペ",
+        "en": "Serape woven textiles"
+      },
+      "domain": "regional-textile-traditions",
+      "proposed_type": "tradition",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "phulkari",
+      "name": {
+        "ja": "プルカリ",
+        "en": "Phulkari embroidery"
+      },
+      "domain": "regional-textile-traditions",
+      "proposed_type": "tradition",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "chikankari",
+      "name": {
+        "ja": "チカンカリ",
+        "en": "Chikankari embroidery"
+      },
+      "domain": "regional-textile-traditions",
+      "proposed_type": "tradition",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "jamdani",
+      "name": {
+        "ja": "ジャムダニ",
+        "en": "Jamdani weaving"
+      },
+      "domain": "regional-textile-traditions",
+      "proposed_type": "tradition",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "patola",
+      "name": {
+        "ja": "パトラ",
+        "en": "Patola textiles"
+      },
+      "domain": "regional-textile-traditions",
+      "proposed_type": "tradition",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "songket",
+      "name": {
+        "ja": "ソンケット",
+        "en": "Songket weaving"
+      },
+      "domain": "regional-textile-traditions",
+      "proposed_type": "tradition",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "leheriya",
+      "name": {
+        "ja": "レヘリヤ",
+        "en": "Leheriya resist dyeing"
+      },
+      "domain": "regional-textile-traditions",
+      "proposed_type": "technique",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "kasuti",
+      "name": {
+        "ja": "カスティ",
+        "en": "Kasuti embroidery"
+      },
+      "domain": "regional-textile-traditions",
+      "proposed_type": "tradition",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "birdseye-weave",
+      "name": {
+        "ja": "バーズアイ織",
+        "en": "Bird's-eye weave"
+      },
+      "domain": "techniques-and-textures",
+      "proposed_type": "weave",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "nailhead-weave",
+      "name": {
+        "ja": "ネイルヘッド織",
+        "en": "Nailhead weave"
+      },
+      "domain": "techniques-and-textures",
+      "proposed_type": "weave",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "hopsack-weave",
+      "name": {
+        "ja": "ホップサック織",
+        "en": "Hopsack weave"
+      },
+      "domain": "techniques-and-textures",
+      "proposed_type": "weave",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "oxford-weave",
+      "name": {
+        "ja": "オックスフォード織",
+        "en": "Oxford weave"
+      },
+      "domain": "techniques-and-textures",
+      "proposed_type": "weave",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "pique-weave",
+      "name": {
+        "ja": "ピケ織",
+        "en": "Piqué weave"
+      },
+      "domain": "techniques-and-textures",
+      "proposed_type": "weave",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "cyanotype-print",
+      "name": {
+        "ja": "サイアノタイプ印画",
+        "en": "Cyanotype textile printing"
+      },
+      "domain": "techniques-and-textures",
+      "proposed_type": "technique",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "discharge-print",
+      "name": {
+        "ja": "抜染プリント",
+        "en": "Discharge printing"
+      },
+      "domain": "techniques-and-textures",
+      "proposed_type": "technique",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "screen-print",
+      "name": {
+        "ja": "スクリーンプリント",
+        "en": "Screen printing"
+      },
+      "domain": "techniques-and-textures",
+      "proposed_type": "technique",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "devore",
+      "name": {
+        "ja": "デヴォレ加工",
+        "en": "Dévoré technique"
+      },
+      "domain": "techniques-and-textures",
+      "proposed_type": "technique",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "suminagashi",
+      "name": {
+        "ja": "墨流し",
+        "en": "Suminagashi marbling"
+      },
+      "domain": "techniques-and-textures",
+      "proposed_type": "technique",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "halftone-dots",
+      "name": {
+        "ja": "ハーフトーン網点",
+        "en": "Halftone dots"
+      },
+      "domain": "modern-visual-patterns",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "pixel-pattern",
+      "name": {
+        "ja": "ピクセル模様",
+        "en": "Pixel pattern"
+      },
+      "domain": "modern-visual-patterns",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "digital-camouflage",
+      "name": {
+        "ja": "デジタル迷彩",
+        "en": "Digital camouflage"
+      },
+      "domain": "modern-visual-patterns",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "topographic-contours",
+      "name": {
+        "ja": "等高線模様",
+        "en": "Topographic contours"
+      },
+      "domain": "modern-visual-patterns",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "glitch-pattern",
+      "name": {
+        "ja": "グリッチ模様",
+        "en": "Glitch pattern"
+      },
+      "domain": "modern-visual-patterns",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "memphis-pattern",
+      "name": {
+        "ja": "メンフィスデザイン",
+        "en": "Memphis-style pattern"
+      },
+      "domain": "modern-visual-patterns",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "low-poly-pattern",
+      "name": {
+        "ja": "ローポリ模様",
+        "en": "Low-poly pattern"
+      },
+      "domain": "modern-visual-patterns",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "dither-pattern",
+      "name": {
+        "ja": "ディザ模様",
+        "en": "Dither pattern"
+      },
+      "domain": "modern-visual-patterns",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "noise-texture",
+      "name": {
+        "ja": "ノイズテクスチャ",
+        "en": "Noise texture"
+      },
+      "domain": "modern-visual-patterns",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    },
+    {
+      "id": "gradient-mesh",
+      "name": {
+        "ja": "グラデーションメッシュ",
+        "en": "Gradient mesh"
+      },
+      "domain": "modern-visual-patterns",
+      "proposed_type": "motif",
+      "status": "candidate-unverified"
+    }
+  ],
+  "published_v2": {
+    "version": "pattern-dictionary-v2-supplement-1",
+    "added_ids": [
+      "sakura-motif",
+      "ume-motif",
+      "kiku-motif",
+      "tsuru-motif",
+      "yukiwa"
+    ],
+    "status": "source-checked-supplemental-publication",
+    "note": "Five published items are managed in v2-extension.json and are excluded from the remaining unverified backlog."
+  }
+}

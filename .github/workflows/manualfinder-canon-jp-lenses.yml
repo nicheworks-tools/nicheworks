@@ -1,0 +1,34 @@
+name: ManualFinder Canon JP 137 verified lens manuals and affiliate handoffs
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/**'
+      - '.github/workflows/manualfinder-canon-jp-lenses.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  canon-jp-lenses:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify official rows, model search tagging, exclusions, and existing regression coverage
+        run: |
+          node tools/manual-finder/tests/coverage-pass-pipeline.test.mjs
+          node tools/manual-finder/tests/canon-jp-lens-publication.test.mjs
+          node tools/manual-finder/tests/camera-accessory-coverage.test.mjs
+          node tools/manual-finder/tests/camera-accessory-doc-sync.test.mjs
+          node tools/manual-finder/tests/affiliate-coverage.test.mjs
+          node tools/manual-finder/tests/affiliate-doc-sync.test.mjs
+      - name: Live verify all 137 exact Canon official source anchors and 134 manufacturer PDF assets
+        run: node tools/manual-finder/scripts/canon-jp-lens-review.mjs
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: canon-jp-lens-137-official-manual-audit
+          path: manualfinder-canon-lens-review/review.json
+          if-no-files-found: warn

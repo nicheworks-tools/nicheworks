@@ -18,8 +18,8 @@ ok(!indexHtml.includes('detail-dictionary-fix.js'), 'legacy detail bootstrap mus
 ok(!indexHtml.includes('detail-image-hotfix.js'), 'legacy image hotfix must not be in the production entrypoint');
 ok(!indexHtml.includes('ui-mock-v2-parity.js') && !indexHtml.includes('ui-mock-v2-hardening.js'), 'legacy parity/hardening runtimes must not be in the production entrypoint');
 ok(!indexHtml.includes('content-polish.css') && !indexHtml.includes('detail-layout-fix.css'), 'legacy CSS patch layers must not be in the production entrypoint');
-ok(indexHtml.includes('style.css?v=20260916-authoritative-ui-1'), 'authoritative stylesheet cache key must be current');
-ok(indexHtml.includes('app.runtime.js?v=20260916-authoritative-ui-1'), 'authoritative runtime cache key must be current');
+ok(indexHtml.includes('style.css?v=20261101-dictionary-ux-2'), 'authoritative stylesheet cache key must be current');
+ok(indexHtml.includes('app.runtime.js?v=20261101-curated-definitions-1'), 'authoritative runtime cache key must be current');
 ok(indexHtml.includes('/assets/amazon-affiliate.js'), 'shared Amazon affiliate helper must be loaded directly');
 ok(indexHtml.includes('semantic-search-core.js'), 'semantic search core must remain available without dynamic injection');
 

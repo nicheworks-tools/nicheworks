@@ -8,7 +8,9 @@ It helps users identify a pattern when they recognize the look but do not know t
 
 ## Current production state
 
-Canonical v1 is complete and frozen at exactly **100 published pattern IDs**.
+Canonical v1 is complete and frozen at exactly **100 published pattern IDs**. The separately versioned supplement now adds **5 source-checked entries**, giving **105 currently browseable terms**.
+
+**Scope clarification (2026-11-01):** "complete" above refers only to the previously bounded 100-entry publication contract, **not** a comprehensive dictionary. The 100 terms mix motifs, textile traditions, processes, weave structures and surface effects. A separate provisional taxonomy now differentiates these axes; it is still subject to editorial review. The new `data/coverage-backlog.json` inventories **82 remaining unverified, unpublished candidates** across eight domains, with no fabricated definitions, citations or pages. These candidates are **not** canonical entries. Further coverage research, image variants, terminology review and search tests against previously unseen descriptions remain necessary. Existing references are now linked on detail screens.
 
 - **100** canonical runtime records.
 - **100** verified-publication production records.
@@ -18,7 +20,7 @@ Canonical v1 is complete and frozen at exactly **100 published pattern IDs**.
 - Image-accuracy decisions: **13 corrected / 37 representative-accepted / 50 accepted / 0 unresolved**.
 - **200** static detail pages: 100 Japanese + 100 English.
 - All 200 detail pages are `index,follow` and registered in the root sitemap.
-- **264** maintained search regression cases.
+- **280** maintained search regression cases.
 - **72** maintained comparison guides.
 - **305** active maintained Amazon.co.jp commerce-intent links.
 - Desktop and mobile Chromium QA has passed after canonical-100 publication and the Reference Image correction audit.
@@ -171,3 +173,17 @@ node scripts/audit-seo.mjs --strict
 - Common NicheWorks specification: `common-spec/spec-ja.md`
 
 The tool-local and repository specifications must describe the same current publication state.
+
+## Taxonomy, attribution and missing coverage (2026-11-01)
+
+- `data/taxonomy-v2.json`: independent, **provisional** `types`, `appearance`, and `contexts` for all 100 published IDs. An empty appearance is deliberate for a tradition/process without a fixed repeat; it must not be classified by a fabricated silhouette. This taxonomy augments, but does not silently rewrite, validated source definitions.
+- Home browse now filters independently on appearance, concept type and context. The detail page uses JA/EN terminology rather than raw English legacy family keys; broad English `term_scope` is not shown untranslated in Japanese.
+- `data/source-verification.json`: all 100 published IDs have linked review sources. The client displays per-entry links to them; links are third-party references, not a guarantee that an external site remains unchanged.
+- `data/coverage-backlog.json`: 87 **candidate-unverified** terms across eight areas, kept entirely outside the public runtime, sitemap and commerce surfaces. Each must pass deduplication, verified naming/definition, source review, image accuracy, bilingual QA and publication tests before any separate catalog expansion.
+- `tests/taxonomy-source-test.mjs`: validates taxonomy coverage, all reviewed source links, candidate quarantine, and bilingual filter wiring. CI also checks `app.js` syntax and mobile browse contracts.
+
+**Release status:** Existing 100 entries are a bounded, usable visual reference, not a finished, comprehensive pattern dictionary. Completion must be measured against the explicit coverage inventory and editorial quality criteria, not just passing SEO tests.
+
+## V2 supplement 1 — five source-checked Japanese motifs (2026-11-02)
+
+`data/v2-extension.json` contains Sakura, Ume, Kiku, Tsuru, and Yukiwa. Each has an independently sourced bilingual definition, visible attribution, recognition cues, similar terms and a new original 1536×1536 SVG pattern illustration in `assets/reference-v2/`. These are schematic examples, **not reproductions of museum images or claims of all historical variants**. Yukiwa origin is qualified due to competing historical accounts. The old 100-record canonical publication, its PNG manifest, 200 v1 URL audit, and locked regressions remain independent. The five new terms add **10 public bilingual detail URLs** and sitemap entries. Remaining unpublished candidate inventory: **82**. This is a limited coverage step, not a completed general dictionary.

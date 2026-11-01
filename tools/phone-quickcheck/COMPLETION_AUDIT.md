@@ -152,6 +152,79 @@ Phone QuickCheck v1 is complete under the maintained contract:
 
 Future work is maintenance: new models, source changes, corrections, and evidence upgrades. It is not part of the v1 closure backlog.
 
+## Post-v1 maintenance Wave 25 — 2026-11-01
+
+Added independently runnable public Chrome verification of **actual rendered** Amazon Associates purchase links, not just static `affiliateKeys` or unpopulated `amazonUrl` fields. Public accessory JSON must exactly match the canonical GitHub file (**22 classes**) alongside existing **223-phone** exact parity. The two new charger classes must be live.
+
+At 320/390/414/768/1280px the live page must show **three Amazon links** in arrows We3 M09 detail, including the source-aware generic USB-PD class with unknown wattage, and correct EN/JA links and NicheWorks Associates disclosure. Each actual visible anchor must lead to HTTPS Amazon Japan with maintained `tag=nicheworks09-22`, fixed classification search string (not the user-entered phone query), and sponsored/noopener plus a new-tab target. Source-backed arrows Alpha2 M10 must show its specific **90W+** charger search class. No user click is simulated and no automatic Amazon navigation occurs.
+
+Success verifies opportunity placement, not clicks, purchases, commission, approval of an affiliate account or other monetary outcomes.
+
+## Post-v1 maintenance Wave 24 — 2026-11-01
+
+Audited the actual Phone QuickCheck monetization path rather than inferring link availability from empty `affiliateKeys` or null `amazonUrl` records. Amazon Associate destinations are generated dynamically from `accessoryKeysFor` and `affiliate-config.js` (maintained tag `nicheworks09-22`), and rendered through the shared affiliate helper with explicit disclosure in desktop detail/mobile sheet. The baseline 223-phone dataset resolves to **719 possible CTA placements** (not clicks, impressions, affiliate earnings or product-level recommendations). Four latest FCNT devices previously had **two** CTA categories each: USB-C cable and 10,000mAh USB-C power bank.
+
+Identified **25 phones** with an official USB-PD protocol, explicitly excluded AC adapter and *unknown* manufacturer charger watt guidance; these had no charger CTA. Added `charger-pd-check-wattage` to only those phones, with explicit warnings to verify W/PPS/voltage-current before purchasing rather than inventing 20/30/45W performance. Reclassified the two FCNT Alpha models with an official **90W charger guidance** away from the too-generic 45W category into `charger-pd-90w`; this remains a charger search band, **not** a device max input claim.
+
+The maintained accessory catalog **20 → 22 classes**; the deterministic 223-phone dataset yields **719 → 744 possible CTA placements** (one additional link each for the 25 previously underserved phones; the two 90W cases replace an existing CTA rather than adding volume). All generated links are Amazon Japan tagged searches using approved fixed queries, in Japanese and English, with disclosures; no scraped product data, arbitrary retailer URLs, fabricated charging capability or user search-string passing.
+
+Required evidence: Phone QuickCheck affiliate/data/behavior/SEO/runtime CI green and a follow-up real public Chrome check that validates actual tagged links/labels/disclosure and 22 accessory classes after Cloudflare deployment. No increase in real sales or earnings is asserted.
+
+## Post-v1 maintenance Wave 23 — 2026-11-01
+
+Independent real-public Chrome deployment proof for the four-FCNT-model Wave 22 backfill. In addition to the existing **entire public JSON deep-equality** check against canonical GitHub data, assert each newly deployed FCNT SKU's **ID, release year, battery capacity, USB PD revision**, absence of a bundled cable/AC brick, and **unknown max wired W/PPS**. This catches silent source semantic regressions and partial Cloudflare deployments.
+
+Also run a true 320/390/414/768/1280px Chrome user journey searching for **arrows We3 M09**, selecting the result and asserting an exact-model detail and USB PD 3.0 rendering, with correct mobile sheet close. Preserve all earlier Phone (4b), CMF material variants, JA/EN, responsive and badge-close non-overlap assertions.
+
+Public 223-phone deployment is accepted only after this PR's production smoke runs green against live HTTPS, followed by merge. No data or business UI changed in this wave.
+
+## Post-v1 maintenance Wave 22 — 2026-11-01
+
+Official FCNT catalogue backfill of four currently unrepresented, historically sold domestic models. Canonical set **219 → 223 phones**, 11 makers, 36 foldables. Scope is exact Japanese SIM-free or docomo SKU per manufacturer. No inferential wattage or PPS; unchanged intentional Apple battery unknown baseline.
+
+### arrows We3 M09 (2026 Japan SIM-free)
+- FCNT SIM-free [specification](https://www.fcnt.com/spec/m09-sim-free/) and [launch notice](https://www.fcnt.com/news/33202/) explicitly establish June 25, 2026, 156×73×9.0mm, 189g, 6.1in, 5,000mAh, USB-C and **Power Delivery 3.0**, IPX6/IPX8/IPX9 / IP6X. Manufacturer's standard in-box list contains **quick-start guide only**, so no cable or AC adapter. Exact M09 (SIM-free) SKU; don't conflate with Docomo F-52G or Rakuten's M09-RM variant.
+
+### arrows N F-51C (2023 docomo)
+- [FCNT SKU specifications](https://www.fcnt.com/spec/f-51c/) establish Feb 10, 2023, 155×72×8.6mm (device thickest protrusion approximately 10.8mm, not mistaken for uniform body depth), 171g, 6.24in, 4,600mAh, USB-C / **Power Delivery revision 2.0**, IPX5/IPX8 / IP6X. Only quick-start guide in official in-box list; cable and charger sold separately.
+
+### arrows We F-51B (2021 docomo)
+- [FCNT SKU specifications](https://www.fcnt.com/spec/f-51b/) establish Dec 3, 2021, 147×71×9.4mm (max raised part 10.2mm), 172g, 5.7in, 4,000mAh, USB-C / **Power Delivery revision 3.0**, IPX5/IPX8 / IP6X. Standard package contains guide/paper notice only; no USB cable or power brick.
+
+### arrows NX9 F-52A (2020 docomo)
+- [FCNT SKU specifications](https://www.fcnt.com/spec/f-52a/) establish Dec 18, 2020, 152×72×8.5mm (max raised part 9.3mm), 162g, 6.3in, 3,600mAh, USB-C / **Power Delivery revision 2.0**, IPX5/IPX8 / IP6X. Standard package: guides and SIM eject tool, **not** USB cable or charger. The SIM tool is not represented as a charging accessory.
+
+### Evidence/quality conditions
+- Each included-package status, physical value and charging protocol originates from the exact FCNT specification URL retained in the record, with product/support destination and 2026-11-01 review date.
+- No manufacturer-proven wattage is available on these pages; leave **wiredRecommendedW/wiredMaxW null**, **PPS unknown**, and **wireless support unknown**, never classify lack of Qi evidence as definite non-support.
+- All validators and CI must pass before merge. The already deployed live Chrome smoke must confirm public **223 phones**, full canonical JSON equality, 5 viewports and JP/EN/sheet behavior after merge.
+
+## Post-v1 maintenance Wave 21 — 2026-11-01
+
+Strengthened public Cloudflare Pages real-Chrome tests after the four-model Nothing Japan catalog addition. The runtime script already deep-compares the **entire** public `phones.json` with canonical GitHub data; now it also explicitly asserts Phone (4a)'s 50W and Japanese cable inclusion, Phone (4a) Pro's primary wireless-negative and charger omission, Phone (2a)'s 45W and negative wireless, and CMF Phone 1's 33W PPS with two exact thickness↔weight pairs.
+
+In Chrome at **320/390/414/768/1280px**, the actual live page must search for `CMF Phone 1` and display both 8mm/197g standard and 9mm/202g vegan-leather values with distinct English labels. Existing JP/EN, older Phone (4b) sheet, horizontal overflow and ×-button badge collision tests remain intact. A successful Github source CI is not sufficient: this PR explicitly triggers the *public* browser workflow against the already merged 219-phone live page.
+
+## Post-v1 maintenance Wave 20 — 2026-11-01
+
+Backfilled four previously absent Nothing models from Japanese first-party manufacturer/carrier evidence. **215 → 219 phones**, **11 manufacturers**, **36 foldables**. `updatedAt` advances to 2026-11-01; original V1 181 baseline retained. No new unreviewed package/water unknown fields.
+
+### Nothing Phone (4a) — 2026 JP au retail unit
+[au's official Japan sale SKU](https://onlineshop.au.com/disp/CSfLastGoodsPage_001.jsp?GOODS_NO=14595&dispNo=001007) records **163.9 × 77.5 × 8.5 mm**, **205 g**, 6.78-inch screen, **5,080 mAh**, IP64 and an included USB-C cable; no adapter appears in its complete in-box listing. The [Nothing Japan manufacturer's product](https://jp.nothing.tech/products/phone-4a) explicitly supports **50 W fast charging**; no inferred PPS status, charger recommendation or wireless negative claim. Manufacturer [general box evidence](https://support.nothing.tech/hc/en-us/articles/43193532938513-What-s-included-in-the-box-for-Phone-4a) supports cable inclusion. Note: Nothing generic laboratory support uses 163.8 × 77.45 × 8.55mm; the maintained JP record deliberately uses au's exact sold-unit specifications.
+
+### Nothing Phone (4a) Pro — 2026 JP Rakuten A069P
+[Rakuten Mobile A069P Japan SKU](https://network.mobile.rakuten.co.jp/product/smartphone/phone-4a-pro/spec/) and [press announcement](https://corp.mobile.rakuten.co.jp/news/press/2026/0415_01/) establish **163.6 × 76.6 × 7.9 mm**, **210 g**, 6.83-inch display, **5,080 mAh**, IPX5/IP6X, **wireless charging unsupported**, USB-C cable included and wall adapter not included. [Nothing Japan product page](https://jp.nothing.tech/products/phone-4a-pro/) states **50 W fast charging**; leave PPS unverified. Nothing global lab measures 163.66 × 76.62 × 7.95mm, but JP carrier specifications intentionally govern this canonical A069P record.
+
+### Nothing Phone (2a) — 2024 Japan direct product
+[Nothing JP product](https://jp.nothing.tech/products/phone-2a) and [Nothing lab dimensions](https://support.nothing.tech/hc/en-us/articles/22960522674321-What-are-the-dimensions-weight-of-Phone-2a) establish **161.74 × 76.32 × 8.55 mm**, **190 g**, 6.7-inch AMOLED, **5,000 mAh**, **45 W charging**, IP54, USB-C cable in box and no wall adapter; [official wireless support answer](https://support.nothing.tech/hc/en-us/articles/22960579342737-Does-Phone-2a-support-wireless-charging) explicitly says **wireless charging not supported**. No PPS or charger requirement inferred.
+
+### CMF by Nothing Phone 1 — Japan IIJmio unit
+[IIJmio Japan sale specification](https://www.iijmio.jp/campaign/device/nothing202410.html) and [dated original Japan release](https://www.iijmio.jp/info/iij/1726809877.html) establish **164 × 77 mm**, **8.0 mm/197 g standard black-green** and **9.0 mm/202 g vegan-leather orange**. Preserved as paired `physicalVariants[]` rather than a misleading averaged thickness or weight. 6.67-inch display, [Nothing Japan](https://jp.nothing.tech/products/cmf-phone-1) **5,000 mAh** and **33 W fast charging**. Japanese carrier explicitly labels **33 W PPS** and **IPX2/IP5X**; `PPS` is a carrier-supported charging protocol, with a separate unknown adapter recommendation. The retailer's complete normal phone package contains USB-C cable and no adapter. The historical IIJmio *limited promotional bundle* with extra earbuds is not generalized into the phone's standard box. Wireless charging absence is not guessed from lack of a positive claim.
+
+### Source safety and validation
+- The Nothing trusted first-party-domain list is narrowly extended to official Japan carrier domains `au.com` and `iijmio.jp`; remaining third-party hosts are rejected.
+- Package and water evidence tied to exact Japanese direct/carrier variant, and source-backed wired charging and PPS only. CI must validate dataset/source/semantic/completion/behavior; after merge require actual Chrome/public JSON exact parity at 219 with all 5 viewport checks.
+
 ## Post-v1 maintenance Wave 19 — 2026-10-31
 
 Expanded the real production Chrome smoke to enforce the new **Wave 18 four-model** deployment facts in addition to the existing exact full-file JSON parity assertion. The public JSON must include FCNT arrows We2 M07 with its 4,500mAh battery; Nothing CMF Phone 2 Pro with 33W/negative wireless; Nothing Phone (3a) Lite with JP USB-C cable and negative wireless; and Nothing Phone (3) with JP A024 cable inclusion plus 15W wireless. This specifically guards against cross-regional package-state regressions, stale deploys and unsupported wireless claims. Five viewport browser checks, JP/EN, and badge-close non-overlap remain intact.

@@ -483,3 +483,47 @@ The 18 reviewed category-wave28 ingredients also receive individual source-backe
 ## Source-backed note wave 25 (2026-10-31)
 
 The same 14 individually reviewed ingredients receive provenance-checked neutral function descriptions. All notes remain optional and secondary to maintained bilingual role explanations. The notes do not predict allergy, medical efficacy, concentrations, product SPF, or finished product safety. The combined strong runtime inventory is **140/599 = 23.37%**, with **459** ingredient-specific verified notes still unreviewed. Exact source URLs and texts are pinned in `check-cosmetics-source-verified-wave29.mjs`.
+
+
+## Verified note wave 26 — 16 COSMILE/FDA-backed notes (2026-11-01)
+
+Sixteen further ingredient-specific function descriptions carry exact official source URLs. The three FDA-listed sunscreen actives (Dioxybenzone, Ensulizole, Meradimate) are annotated for UV-filter function without implying a favorable GRASE or product-level safety conclusion. All other notes are tied to specific COSMILE Europe cosmetic-function pages, not to unrelated but similar chemical names. The cumulative strong reviewed note inventory is **156/599 (26.04%)**, leaving **443** identities to investigate individually. Primary bilingual role descriptions remain distinct from optional, source-linked English short notes.
+
+
+## Verified note wave 27 (2026-11-01)
+
+The six Wave 31 reviewed identities also receive source-backed ingredient-level explanatory notes with HTTPS references. These describe chemical/physical formulation functions only. They do not assert individual allergy responses, quality of a specific cosmetic, legal compliance for a product, or a general conclusion on product safety.
+
+- Verified category identities: **196/599**
+- Verified ingredient-specific notes with maintained Japanese naming and supported public role: **162/599 (27.05%)**
+- Remaining missing stronger notes: **437/599**
+- The purposely ambiguous `BHA` is not assigned a note or a role.
+
+Source notes are secondary to the maintained bilingual role copy and use the same provenance checks in Lite and FastScan.
+
+
+## Verified ingredient-specific note wave 28 — 19 exact COSMILE sources (2026-11-01)
+
+Nineteen additional *individual* cosmetic ingredient function notes were checked against **exact COSMILE Europe ingredient pages**: Dipropylene Glycol, Propylene Glycol, Tocopheryl Acetate, Trehalose, Sodium Lauryl Sulfate, Sodium Laureth Sulfate, Decyl Glucoside, Lauryl Glucoside, Polysorbate 80, Cetyl Alcohol, Petrolatum, Mineral Oil, Glycolic Acid, Avobenzone (COSMILE named Butyl Methoxydibenzoylmethane), Sodium Cocoyl Isethionate, Sodium Cocoyl Glutamate, Sodium Coco-Sulfate, Isopropyl Palmitate and Sodium Lauroyl Glutamate.
+
+The COSMILE Avobenzone page explicitly names the alias, so this does not infer a chemical identity from a similar spelling. Every source link and precise, neutral statement is pinned to its canonical identity in `check-cosmetics-source-verified-note-wave28.mjs`. No safety score, guaranteed hypoallergenicity, efficacy-at-concentration or product-level regulatory assertion is derived from ingredient function descriptions. Existing category evidence (196), raw recognition (725 rows/599 canonical names) and the role-first UI remain intact; only **optional source-backed notes** are added.
+
+**Target runtime strong note readiness: 181 / 599 (30.22%), 418 remaining**. Primary bilingual role explanation remains at 598/599, with BHA ambiguous. Optional ingredient-specific notes are currently English-only; their Japanese localization still requires separate reviewed translations.
+
+
+## Verified ingredient-specific note wave 29 — 21 exact COSMILE sources (2026-11-01)
+
+Twenty-one independently reviewed exact COSMILE Europe ingredient-function entries have source-pinned notes: Disodium Cocoamphodiacetate, Isododecane, Sodium Lauroyl Sarcosinate, Disodium Lauryl Sulfosuccinate, Sodium Ascorbyl Phosphate, Ascorbyl Glucoside, Beta-Glucan, Ubiquinone, Ferulic Acid, Magnesium Ascorbyl Phosphate, Hyaluronic Acid, Resveratrol, Arbutin (beta-arbutin), Centella Asiatica Extract, Caffeine, Madecassoside, Gluconolactone, BHT (butylhydroxytoluene), Sodium Gluconate, Phytic Acid and Sodium Phytate.
+
+Only source-listed cosmetic functions are asserted. The source lists Beta-Glucan for skin conditioning and bulking, not a general allergy/soothing guarantee; Gluconolactone for chelating and conditioning, not automatically as a skin peel; and Caffeine for conditioning/fragrance, not a clinical de-puffing claim. Arbutin restrictions are noted without inferring general permission or efficacy. The **BHT** antioxidant record does not support or modify the intentionally ambiguous **BHA** record.
+
+All 21 exact URLs and short notes are reviewed and regression-pinned in `check-cosmetics-source-verified-note-wave29.mjs`. The note is an optional English-only expansion; the supported bilingual public role takes precedence. Expected strong notes **202 / 599 (33.72%)**, **397** remaining; no raw 725-row rewrite or role-category changes.
+
+
+## Source-reviewed note wave 30 — 20 additional COSMILE identities (2026-11-01)
+
+The non-overlapping reviewed set is Zinc Oxide, Titanium Dioxide, Retinol, Ascorbic Acid, Benzyl Alcohol, Glucose, Methylparaben, Sorbitol, Maltitol, Sorbic Acid, Xylitol, Sodium Phosphate, Mannitol, Potassium Citrate, Propylparaben, Ethylparaben, Disodium Phosphate, Sodium Acetylated Hyaluronate, Hydroxyethyl Urea and Butylparaben.
+
+Each original short note paraphrases cosmetic functions and usage from its own exact COSMILE Europe ingredient entry. URLs, source identity, retained Japanese names, canonical runtime notes and data inventory are verified by `check-cosmetics-source-verified-note-wave30.mjs`. No claims about product-specific SPF, finished-product safety, clinical efficacy, individual allergy or concentrations are inferred. Bilingual role explanations remain the primary public explanation; sourced English notes are optional, expandable secondary information.
+
+Cumulative target: **222/599 (37.06%)** individually verified notes, leaving **377**. Role explanation coverage remains **598/599** with BHA intentionally ambiguous. A real-photo OCR accuracy test with independently transcribed photographs remains unfinished.

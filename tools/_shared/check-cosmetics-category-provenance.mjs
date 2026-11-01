@@ -71,6 +71,10 @@ const EXPECTED_WAVE26_LEGACY_CATEGORIES = Object.freeze({
   "isoeugenol": ["fragrance allergen"],
   "amyl cinnamal": []
 });
+const EXPECTED_WAVE31_LEGACY_CATEGORIES = Object.freeze({"disodium edta dihydrate":[],"benzyl cinnamate":[],"citrus aurantium bergamia bergamot fruit oil":["essential oil"],"talc":["powder"],"nylon-6":["powder"],"ptfe":["powder"]});
+const EXPECTED_WAVE31 = Object.freeze({"disodium edta dihydrate":"chelating agent","benzyl cinnamate":"fragrance","citrus aurantium bergamia bergamot fruit oil":"fragrance","talc":"bulking agent","nylon-6":"bulking agent","ptfe":"bulking agent"});
+const EXPECTED_WAVE30_LEGACY_CATEGORIES = Object.freeze({"dioxybenzone":[],"ensulizole":[],"meradimate":[],"3-o-ethyl ascorbic acid":[],"trametes versicolor extract":[],"madecassic acid":[],"asiatic acid":[],"anisyl alcohol":[],"isoamyl salicylate":[],"lavandula angustifolia lavender oil":["essential oil"],"copernicia cerifera carnauba wax":["wax"],"euphorbia cerifera candelilla wax":["wax"],"peg-12":["humectant","solvent"],"peg-75":["humectant","solvent"],"ppg-26-buteth-26":["solubilizer"],"elastin":["protein"]});
+const EXPECTED_WAVE30 = Object.freeze({"dioxybenzone":"uv filter","ensulizole":"uv filter","meradimate":"uv filter","3-o-ethyl ascorbic acid":"skin conditioning","trametes versicolor extract":"hair conditioning","madecassic acid":"skin conditioning","asiatic acid":"skin conditioning","anisyl alcohol":"fragrance","isoamyl salicylate":"fragrance","lavandula angustifolia lavender oil":"fragrance","copernicia cerifera carnauba wax":"film former","euphorbia cerifera candelilla wax":"film former","peg-12":"humectant","peg-75":"humectant","ppg-26-buteth-26":"hair conditioning","elastin":"skin conditioning"});
 const EXPECTED_WAVE29_LEGACY_CATEGORIES = Object.freeze({"honey extract":["animal extract"],"royal jelly extract":["animal extract"],"propolis extract":["animal extract"],"sodium stearate":["soap"],"potassium laurate":["soap"],"sea salt":["mineral"],"camphor":["sensory"],"hydrochloric acid":[],"eucalyptus globulus leaf oil":["essential oil"],"citrus aurantium dulcis orange peel oil":["essential oil"],"citrus limon lemon peel oil":["essential oil"],"mentha piperita peppermint oil":["essential oil"],"evernia prunastri extract":[],"evernia furfuracea extract":[]});
 const EXPECTED_WAVE29 = Object.freeze({"honey extract":"humectant","royal jelly extract":"skin conditioning","propolis extract":"skin conditioning","sodium stearate":"cleanser","potassium laurate":"cleanser","sea salt":"humectant","camphor":"fragrance","hydrochloric acid":"buffer","eucalyptus globulus leaf oil":"fragrance","citrus aurantium dulcis orange peel oil":"fragrance","citrus limon lemon peel oil":"fragrance","mentha piperita peppermint oil":"fragrance","evernia prunastri extract":"fragrance","evernia furfuracea extract":"fragrance"});
 const EXPECTED_WAVE28_LEGACY_CATEGORIES = Object.freeze({"polyisobutene":[],"peg-60 hydrogenated castor oil":["solubilizer"],"kaolin":["powder"],"nylon-12":["powder"],"guar hydroxypropyltrimonium chloride":["conditioning polymer"],"calcium carbonate":["powder"],"polyquaternium-37":["conditioning polymer"],"microcrystalline cellulose":["powder"],"zinc stearate":["powder binder"],"polymethyl methacrylate":["powder"],"polyacrylate-13":["polymer"],"magnesium stearate":["powder binder"],"glycosphingolipids":["barrier lipid"],"ceramide ns":["barrier lipid"],"soluble collagen":["protein"],"ozokerite":["wax"],"polyacrylamide":["polymer"],"padimate o":[]});
@@ -78,7 +82,7 @@ const EXPECTED_WAVE28 = Object.freeze({"polyisobutene":"binder","peg-60 hydrogen
 const EXPECTED_WAVE27_LEGACY_CATEGORIES = Object.freeze({"hydrolyzed wheat protein":["protein"],"hydrolyzed rice protein":["protein"],"hydrolyzed vegetable protein":["protein"],"hydrolyzed soy protein":["protein"],"hydrolyzed pea protein":["protein"],"hydrolyzed elastin":["protein"],"collagen":["protein"],"magnesium chloride":["mineral"],"calcium chloride":["mineral"],"aluminum hydroxide":["pigment coating"],"boron nitride":["powder"],"cinnamyl alcohol":[]});
 const EXPECTED_WAVE27 = Object.freeze({"hydrolyzed wheat protein":"hair conditioning","hydrolyzed rice protein":"hair conditioning","hydrolyzed vegetable protein":"hair conditioning","hydrolyzed soy protein":"humectant","hydrolyzed pea protein":"hair conditioning","hydrolyzed elastin":"hair conditioning","collagen":"hair conditioning","magnesium chloride":"viscosity adjuster","calcium chloride":"viscosity adjuster","aluminum hydroxide":"viscosity adjuster","boron nitride":"skin conditioning","cinnamyl alcohol":"fragrance"});
 const EXPECTED_WAVE26 = Object.freeze({ "hydrolyzed keratin":"hair conditioning", "hydrolyzed silk":"hair conditioning", "hydrolyzed collagen":"humectant", "menthol":"fragrance", "beeswax":"viscosity adjuster", "aluminum starch octenylsuccinate":"viscosity adjuster", "benzyl benzoate":"fragrance", "benzyl salicylate":"fragrance", "hydroxycitronellal":"fragrance", "isoeugenol":"fragrance", "amyl cinnamal":"fragrance" });
-const EXPECTED_ALL = Object.freeze({ ...EXPECTED_WAVE1, ...EXPECTED_WAVE2, ...EXPECTED_WAVE3, ...EXPECTED_WAVE4, ...EXPECTED_WAVE5, ...EXPECTED_WAVE6, ...EXPECTED_WAVE7, ...EXPECTED_WAVE8, ...EXPECTED_WAVE9, ...EXPECTED_WAVE10, ...EXPECTED_WAVE11, ...EXPECTED_WAVE12, ...EXPECTED_WAVE13, ...EXPECTED_WAVE14, ...EXPECTED_WAVE15, ...EXPECTED_WAVE16, ...EXPECTED_WAVE17, ...EXPECTED_WAVE18, ...EXPECTED_WAVE19, ...EXPECTED_WAVE20, ...EXPECTED_WAVE21, ...EXPECTED_WAVE22, ...EXPECTED_WAVE23, ...EXPECTED_WAVE24, ...EXPECTED_WAVE25, ...EXPECTED_OFFICIAL_LABEL_CLOSURE, ...EXPECTED_STRONG_RUNTIME_CLOSURE, ...EXPECTED_WAVE26, ...EXPECTED_WAVE27, ...EXPECTED_WAVE28, ...EXPECTED_WAVE29 });
+const EXPECTED_ALL = Object.freeze({ ...EXPECTED_WAVE1, ...EXPECTED_WAVE2, ...EXPECTED_WAVE3, ...EXPECTED_WAVE4, ...EXPECTED_WAVE5, ...EXPECTED_WAVE6, ...EXPECTED_WAVE7, ...EXPECTED_WAVE8, ...EXPECTED_WAVE9, ...EXPECTED_WAVE10, ...EXPECTED_WAVE11, ...EXPECTED_WAVE12, ...EXPECTED_WAVE13, ...EXPECTED_WAVE14, ...EXPECTED_WAVE15, ...EXPECTED_WAVE16, ...EXPECTED_WAVE17, ...EXPECTED_WAVE18, ...EXPECTED_WAVE19, ...EXPECTED_WAVE20, ...EXPECTED_WAVE21, ...EXPECTED_WAVE22, ...EXPECTED_WAVE23, ...EXPECTED_WAVE24, ...EXPECTED_WAVE25, ...EXPECTED_OFFICIAL_LABEL_CLOSURE, ...EXPECTED_STRONG_RUNTIME_CLOSURE, ...EXPECTED_WAVE26, ...EXPECTED_WAVE27, ...EXPECTED_WAVE28, ...EXPECTED_WAVE29, ...EXPECTED_WAVE30, ...EXPECTED_WAVE31 });
 
 const EXPECTED_SOURCES = Object.freeze({
   water:'https://www.cosmeticsinfo.org/ingredient/water/', glycerin:'https://www.cosmeticsinfo.org/ingredient/glycerin/', 'propylene glycol':'https://www.cosmeticsinfo.org/ingredient/propylene-glycol/',
@@ -226,9 +230,31 @@ const EXPECTED_SOURCES = Object.freeze({
   "citrus limon lemon peel oil": "https://cosmileeurope.eu/inci/detail/18168/citrus-limon-peel-oil/",
   "mentha piperita peppermint oil": "https://cosmileeurope.eu/inci/detail/18166/mentha-piperita-oil/",
   "evernia prunastri extract": "https://cosmileeurope.eu/inci/detail/19229/evernia-prunastri-extract/",
-  "evernia furfuracea extract": "https://cosmileeurope.eu/inci/detail/19227/evernia-furfuracea-extract/"
+  "evernia furfuracea extract": "https://cosmileeurope.eu/inci/detail/19227/evernia-furfuracea-extract/",
+  "dioxybenzone": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
+  "ensulizole": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
+  "meradimate": "https://www.fda.gov/drugs/understanding-over-counter-medicines/sunscreen-how-help-protect-your-skin-sun",
+  "3-o-ethyl ascorbic acid": "https://cosmileeurope.eu/inci/detail/25166/3-o-ethyl-ascorbic-acid/",
+  "trametes versicolor extract": "https://cosmileeurope.eu/inci/detail/16277/trametes-versicolor-extract/",
+  "madecassic acid": "https://cosmileeurope.eu/inci/detail/8503/madecassic-acid/",
+  "asiatic acid": "https://cosmileeurope.eu/inci/detail/1251/asiatic-acid/",
+  "anisyl alcohol": "https://cosmileeurope.eu/inci/detail/19193/anise-alcohol/",
+  "isoamyl salicylate": "https://cosmileeurope.eu/inci/detail/26150/isoamyl-salicylate/",
+  "lavandula angustifolia lavender oil": "https://cosmileeurope.eu/inci/detail/8190/lavandula-angustifolia-oil/",
+  "copernicia cerifera carnauba wax": "https://cosmileeurope.eu/inci/detail/3787/copernicia-cerifera-cera/",
+  "euphorbia cerifera candelilla wax": "https://cosmileeurope.eu/inci/detail/17595/euphorbia-cerifera-cera/",
+  "peg-12": "https://cosmileeurope.eu/inci/detail/10395/peg-12/",
+  "peg-75": "https://cosmileeurope.eu/inci/detail/11036/peg-75/",
+  "ppg-26-buteth-26": "https://cosmileeurope.eu/inci/detail/12992/ppg-26-buteth-26/",
+  "elastin": "https://cosmileeurope.eu/inci/detail/5210/elastin/",
+  "disodium edta dihydrate": "https://webprod.hc-sc.gc.ca/nhpid-bdipsn/ingredReq?id=5761",
+  "benzyl cinnamate": "https://kcia.or.kr/cid/search/ingd_view.php?no=524",
+  "citrus aurantium bergamia bergamot fruit oil": "https://webprod.hc-sc.gc.ca/nhpid-bdipsn/ingredReq?id=4517",
+  "talc": "https://cosmileeurope.eu/inci/detail/15804/talc/",
+  "nylon-6": "https://journals.sagepub.com/doi/10.1177/1091581814563524",
+  "ptfe": "https://cosmileeurope.eu/inci/detail/13392/ptfe/"
 });
-const ALLOWED_SOURCE_HOSTS = new Set(['www.cosmeticsinfo.org','health.ec.europa.eu','cosmileeurope.eu','kcia.or.kr','www.kao-kirei.com','eur-lex.europa.eu']);
+const ALLOWED_SOURCE_HOSTS = new Set(['webprod.hc-sc.gc.ca','journals.sagepub.com','www.fda.gov','www.cosmeticsinfo.org','health.ec.europa.eu','cosmileeurope.eu','kcia.or.kr','www.kao-kirei.com','eur-lex.europa.eu']);
 
 function normalizeText(value=''){ return String(value).normalize('NFKC').replace(/\s+/g,' ').trim(); }
 function splitCategory(value=''){ return normalizeText(value).split(/\s*\/\s*/).map(normalizeText).filter(Boolean); }
@@ -283,7 +309,7 @@ for(const [canonical,expectedCategory] of Object.entries(EXPECTED_ALL)){
   const hasRawMissing=canonicalRows.some((row)=>!normalizeText(row.category));
   rawCategoryInventory[canonical]=rawCategories;
   if(rawCategories.length===0) newlyClassifiedCanonicalIdentities+=1;
-  if(rawCategories.length>0 && !Object.hasOwn(EXPECTED_WAVE15,canonical) && !Object.hasOwn(EXPECTED_WAVE16,canonical) && !Object.hasOwn(EXPECTED_WAVE18,canonical) && !Object.hasOwn(EXPECTED_WAVE19,canonical) && !Object.hasOwn(EXPECTED_WAVE20,canonical) && !Object.hasOwn(EXPECTED_WAVE21,canonical) && !Object.hasOwn(EXPECTED_WAVE22,canonical) && !Object.hasOwn(EXPECTED_WAVE23,canonical) && !Object.hasOwn(EXPECTED_WAVE24,canonical) && !Object.hasOwn(EXPECTED_WAVE25,canonical) && !Object.hasOwn(EXPECTED_WAVE26,canonical) && !Object.hasOwn(EXPECTED_WAVE27,canonical) && !Object.hasOwn(EXPECTED_WAVE28,canonical) && !Object.hasOwn(EXPECTED_WAVE29,canonical) && !Object.hasOwn(EXPECTED_OFFICIAL_LABEL_CLOSURE,canonical) && !Object.hasOwn(EXPECTED_STRONG_RUNTIME_CLOSURE,canonical)) assert.ok(rawCategories.includes(expectedCategory.toLowerCase()),`${canonical}: verified category conflicts with existing raw category metadata (${rawCategories.join(', ')})`);
+  if(rawCategories.length>0 && !Object.hasOwn(EXPECTED_WAVE15,canonical) && !Object.hasOwn(EXPECTED_WAVE16,canonical) && !Object.hasOwn(EXPECTED_WAVE18,canonical) && !Object.hasOwn(EXPECTED_WAVE19,canonical) && !Object.hasOwn(EXPECTED_WAVE20,canonical) && !Object.hasOwn(EXPECTED_WAVE21,canonical) && !Object.hasOwn(EXPECTED_WAVE22,canonical) && !Object.hasOwn(EXPECTED_WAVE23,canonical) && !Object.hasOwn(EXPECTED_WAVE24,canonical) && !Object.hasOwn(EXPECTED_WAVE25,canonical) && !Object.hasOwn(EXPECTED_WAVE26,canonical) && !Object.hasOwn(EXPECTED_WAVE27,canonical) && !Object.hasOwn(EXPECTED_WAVE28,canonical) && !Object.hasOwn(EXPECTED_WAVE29,canonical) && !Object.hasOwn(EXPECTED_WAVE30,canonical) && !Object.hasOwn(EXPECTED_WAVE31,canonical) && !Object.hasOwn(EXPECTED_OFFICIAL_LABEL_CLOSURE,canonical) && !Object.hasOwn(EXPECTED_STRONG_RUNTIME_CLOSURE,canonical)) assert.ok(rawCategories.includes(expectedCategory.toLowerCase()),`${canonical}: verified category conflicts with existing raw category metadata (${rawCategories.join(', ')})`);
 
   if(Object.hasOwn(EXPECTED_WAVE6,canonical)){
     assert.equal(hasRawMissing,true,`${canonical}: wave 6 must resolve at least one raw missing-category row`);
@@ -410,6 +436,14 @@ for(const [canonical,expectedCategory] of Object.entries(EXPECTED_ALL)){
     assert.equal(hasRawMissing,true,`${canonical}: wave 25 must preserve the existing duplicate raw missing-category row alongside fragrance-allergen metadata`);
     assert.deepEqual(rawCategories,EXPECTED_WAVE25_LEGACY_CATEGORIES[canonical],`${canonical}: wave 25 must preserve fragrance-allergen as an auditable legacy label class`);
     wave25Reviewed+=1;
+  }
+  if(Object.hasOwn(EXPECTED_WAVE31,canonical)) {
+    assert.deepEqual(rawCategories, EXPECTED_WAVE31_LEGACY_CATEGORIES[canonical],
+      `${canonical}: wave31 must retain raw category hints or original missing-category status`);
+  }
+  if(Object.hasOwn(EXPECTED_WAVE30,canonical)) {
+    assert.deepEqual(rawCategories, EXPECTED_WAVE30_LEGACY_CATEGORIES[canonical],
+      `${canonical}: wave30 must retain original raw category metadata and empty-category states`);
   }
   if(Object.hasOwn(EXPECTED_WAVE29,canonical)) {
     assert.deepEqual(rawCategories, EXPECTED_WAVE29_LEGACY_CATEGORIES[canonical],

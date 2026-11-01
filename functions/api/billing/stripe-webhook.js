@@ -134,6 +134,7 @@ async function handleRevocationEvent(env, eventType, object) {
     received: true,
     eventType,
     entitlementUpdated: updated.updated > 0,
+    revocationRecorded: updated.recorded === true,
     updatedCount: updated.updated,
     entitlementStatus: status
   };
@@ -243,8 +244,9 @@ export async function onRequest({ request, env }) {
     received: true,
     eventType,
     productId,
-    entitlementIssued: true,
+    entitlementIssued: issued.issued === true,
     paymentVerified: true,
+    revocationRecorded: issued.revoked === true,
     entitlementId: issued.entitlement?.entitlementId || entitlementRecord.entitlementId
   };
 

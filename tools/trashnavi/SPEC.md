@@ -125,6 +125,11 @@ first-pass candidateは、`municipal_home` を除いて **2種類以上の異な
 
 generic municipal top pageしか持たない自治体はthin landing pageを生成しない。
 
+### Active data-first / selective publication clarification (2026-11-01)
+
+全国1,741自治体のレビュー完了は公式ごみ情報データの整備を意味し、自治体別ランディングページの自動公開を意味しない。レビュー済み自治体のすべてのverified waste-specific URLは検索画面で扱う。独立ページはmanifestの明示的allowlistとし、複数の独立したリンク種別を持ち、検索需要・地区別年度・共同処理担当など検索一覧より有益な内容を説明できる場合だけ選択する。単一リンクだけでページ量産しない。既存公開ページは別途監査するまで維持し、一括削除・404化しない。実装監査ではcoverage stateとmanifest件数の一致を必須条件としない。
+
+
 ### Municipality page publication contract
 
 自治体別indexable pageは `tools/trashnavi/municipality-page-manifest.json` を公開対象のallowlistとし、`tools/trashnavi/scripts/generate-municipality-pages.mjs` から静的生成する。

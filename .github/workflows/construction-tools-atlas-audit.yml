@@ -36,6 +36,15 @@ jobs:
       - name: Check active runtime syntax
         run: node --check tools/construction-tools-atlas/app.runtime.js
 
+      - name: Validate dictionary-first main page (not off-site SEO pages)
+        run: node tools/construction-tools-atlas/scripts/check-dictionary-first-v2.3.cjs
+
+      - name: Validate subject-specific reviewed dictionary definitions (JA and EN)
+        run: node tools/construction-tools-atlas/scripts/check-dictionary-reviewed-definitions-v2.3.cjs
+
+      - name: Check existing substantial dictionary notes surface in main entry meanings
+        run: node tools/construction-tools-atlas/scripts/check-dictionary-substantive-source-v2.3.cjs
+
       - name: Check detail bootstrap syntax
         run: node --check tools/construction-tools-atlas/detail-dictionary-fix.js
 

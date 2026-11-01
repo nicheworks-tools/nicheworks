@@ -86,6 +86,54 @@ node tools/_shared/check-fastscan-photo-ocr-metrics.mjs
 ```
 This checks metric mathematics and wiring, **not** Tesseract recognition quality on real photographs. Changes in the image options must invalidate stale measurements. For real-annotation sets, a bad recognition result is diagnostic information, not permission to silently alter the transcription or auto-correct exact dictionary matches.
 
+## External annotated real-photo OCR pilot (12 English-language labels)
+
+An independent real-photo baseline can run in GitHub Actions via
+`.github/workflows/fastscan-real-photo-ocr-pilot.yml`. It is an **actual photo OCR
+measurement**, not a generated/simulated label regression and **not a completed
+mobile-browser QA certification**.
+
+- External data source: [ToxFox OCR development corpus](https://github.com/ki-iw/toxfox-ocr),
+  fixed commit `5ba39a7b06c59ff1edb30a396fdd640f82506742`, GPL-3.0 repo.
+  The pilot downloads 12 publicly available cropped ingredient-label photos and
+  their associated `INCI_list` / `raw_ingredients_list` ground-truth YAML files.
+  Source photo binaries and transcriptions are fetched into temporary CI storage
+  and **never committed to or uploaded as NicheWorks artifacts**.
+- OCR engine: Tesseract.js 5.0.3 with English language model. Output then passes
+  the actual FastScan `coreProcessOCRText` and `postProcessOcrText` functions,
+  and the existing `photo_ocr_metrics.js` character error / exact ingredient
+  scoring with the shared ingredient parser.
+- Metric outputs: per-image exact ingredient recall against the external annotated
+  ingredient list, and CER against the external raw package transcription.
+  The additionally reported **annotation-only control** scores the same source's
+  `raw_ingredients_list` against its `INCI_list` without any photo OCR. This
+  explicitly measures how much strict exact-name scoring disagrees with the
+  dataset's own spellings, aliases, names with explanatory parentheses and
+  separator formatting. It is **not** an OCR quality score or a correct-output
+  upper bound; compare it with the raw photo OCR score before diagnosing the model.
+  Pooled metrics correctly weight ingredient counts and reference characters.
+  CI uploads **aggregate numeric results only**, including per-photo numeric
+  scores without the image, filename of the local user, input transcription,
+  OCR output or raw text. Public corpus sample IDs are included for reproducibility.
+- Important limitation: source labels can contain spelling/normalization errors,
+  aliases and imperfect human transcriptions. The pilot runs on **unmodified
+  source photos** with no client-side canvas preprocessing. Therefore the result
+  is a raw Tesseract.js real-photo baseline, **not** the accuracy of the
+  end-to-end browser FastScan image-processing workflow. All 12 must have real
+  OCR output to count as measured; there is no assumed acceptable performance
+  threshold.
+- Additional acceptance gates after this pilot: **production browser** original
+  versus adjusted preprocessing, Japanese ingredient-label photos with independent
+  transcription, actual 360px smartphone photo/OCR operation, curved/glare-rich
+  packaging, and evaluation of errors before declaring product completion.
+
+**First measured 12-photo pilot (2026-11-01, [GitHub Actions run 41307444468](https://github.com/nicheworks-tools/nicheworks/actions/runs/41307444468)):** all 12 external real English-language label photos were recognized, with **19.28% pooled strict annotated-ingredient exact recall**, **44.60% pooled CER against the raw transcription**, and **62.05% pooled annotation-only exact-recall control**. These are negative diagnostic results, **not a passed OCR accuracy gate**; strict matching also disagrees with the corpus's own spelling/alias conventions, so raw image OCR and exact-ingredient matching must be debugged separately. Results vary widely by photo. The first run printed valid per-photo numbers but its upload-artifact step skipped the hidden `.qa-external-fastscan-results.json` output; the next workflow revision changes to a visible numeric-only filename and makes a missing artifact a hard failure. No photographed label, OCR text, or ground truth is uploaded. Real smartphone/browser original-versus-preprocessed and Japanese measurements remain outstanding.
+
+The pilot may be triggered manually in GitHub Actions and also runs when its own
+workflow or runner is changed in a pull request. If external image/model downloads
+are unavailable, the job must fail transparently rather than report a made-up
+recognition score.
+
 ## Detailed result regression
 
 For known matches, confirm cards expose the maintained reference information expected by the current UI, including canonical INCI and the route used to resolve the name where available.

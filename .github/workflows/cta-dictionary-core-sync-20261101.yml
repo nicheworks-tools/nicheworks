@@ -1,0 +1,18 @@
+name: CTA Reviewed Definitions Regression Check
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit-reviewed-definitions:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify full-text JA/EN dictionary data and existing page parity
+        run: |
+          node tools/construction-tools-atlas/scripts/check-dictionary-reviewed-definitions-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/build-seo-detail-pages-v2.3.cjs --check
+          node tools/construction-tools-atlas/scripts/check-dictionary-first-v2.3.cjs

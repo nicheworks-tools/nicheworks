@@ -1,0 +1,37 @@
+name: Old Kanji signed Stripe and SQLite lifecycle
+
+on:
+  pull_request:
+    paths:
+      - 'functions/api/billing/**'
+      - 'schema/billing_entitlements.sql'
+      - 'config/billing/products.json'
+      - 'scripts/check-old-kanji-billing-lifecycle.mjs'
+      - '.github/workflows/old-kanji-billing-lifecycle.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'functions/api/billing/**'
+      - 'schema/billing_entitlements.sql'
+      - 'scripts/check-old-kanji-billing-lifecycle.mjs'
+      - '.github/workflows/old-kanji-billing-lifecycle.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  billing-lifecycle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Validate signed payment, refund, dispute, retry and restoration
+        run: node scripts/check-old-kanji-billing-lifecycle.mjs
+      - name: Verify source files unchanged during tests
+        run: |
+          git diff --exit-code
+          test -z "$(git status --porcelain)"

@@ -313,3 +313,23 @@ a{ color:#374151; }
 @media print{
   .intro-panel, .faq-panel, .nw-links, .confirm-panel, .toast{ display:none !important; }
 }
+
+/* Pre-packing readiness belongs to a separate, voluntary shopping context. */
+.packing-readiness { margin-top: 14px; }
+.packing-list { list-style: none; margin: 10px 0; padding: 0; }
+.packing-list li + li { border-top: 1px solid #e5e7eb; }
+.packing-list label {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 4px;
+  font-size: 13px;
+  line-height: 1.6;
+  cursor: pointer;
+}
+.packing-list input {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+}

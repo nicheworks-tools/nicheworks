@@ -6,7 +6,7 @@
 - Public URL: `https://nicheworks.app/tools/phone-quickcheck/`
 - Specification status: `complete`
 - Common specification: `common-spec/spec-ja.md`
-- Current dataset: `215 verified models`
+- Current dataset: `223 verified models`
 - Public launch date: `2026-09-13`
 - Product class: `static browser utility / quick-check directory`
 
@@ -18,7 +18,7 @@ It is intentionally not a comprehensive smartphone encyclopedia, review database
 
 ## Current functional contract
 
-The maintained public dataset contains 215 verified models across Apple, FCNT, Google, Samsung, Sony, SHARP, OPPO, Xiaomi, Motorola, Nothing, and ZTE, including 36 foldables with separate folded/unfolded dimensions. Users can search by model name and maintained aliases, filter by manufacturer, charging connector, and release year, and sort by newest, lightest, or compact-size oriented order.
+The maintained public dataset contains 223 verified models across Apple, FCNT, Google, Samsung, Sony, SHARP, OPPO, Xiaomi, Motorola, Nothing, and ZTE, including 36 foldables with separate folded/unfolded dimensions. Users can search by model name and maintained aliases, filter by manufacturer, charging connector, and release year, and sort by newest, lightest, or compact-size oriented order.
 
 The list view remains deliberately compact. Selecting a phone exposes detail information including dimensions, weight, display size where maintained, water/dust rating or an explicitly source-backed non-resistant state, charging port, charger guidance, verified protocol labels, PPS state, wireless charging standard/wattage, battery capacity where an accepted value exists, included cable/adapter state, official specification/manual links, and last verification date.
 
@@ -38,7 +38,7 @@ Power-bank charge estimates use the maintained product approximation:
 
 The UI shows 5,000 / 10,000 / 20,000mAh estimates rounded to one decimal place and clearly labels them approximate. If battery capacity is unknown, no charge-count estimate is generated.
 
-Accessory guidance is resolved from maintained charging facts and reusable accessory classes rather than a phone × product matrix. Current classes cover USB-C cables, USB-C-to-Lightning cables, USB-PD, PPS, Samsung Super Fast Charging, OPPO SUPERVOOC, Xiaomi HyperCharge/TurboCharge, Motorola TurboPower, Qi/Qi2, and USB-C power banks. Amazon purchase handoffs use the shared NicheWorks Associates helper and a fixed tagged-search template. Search destinations are generated only from maintained accessory-class metadata; user free-text search is never inserted into an Amazon URL. Maintained `amazonUrl` fields remain null because Phone QuickCheck uses the reviewed dynamic accessory-search template rather than per-record retail URLs.
+Accessory guidance is resolved from maintained charging facts and reusable accessory classes rather than a phone × product matrix. Current classes cover USB-C cables, USB-C-to-Lightning cables, USB-PD, PPS, Samsung Super Fast Charging, OPPO SUPERVOOC, Xiaomi HyperCharge/TurboCharge, Motorola TurboPower, Qi/Qi2, and USB-C power banks. Amazon purchase handoffs use the shared NicheWorks Associates helper and a fixed tagged-search template. Search destinations are generated only from maintained accessory-class metadata; user free-text search is never inserted into an Amazon URL. Maintained `amazonUrl` fields remain null because Phone QuickCheck uses the reviewed dynamic accessory-search template rather than per-record retail URLs. As of 2026-11-01, the 22 classes additionally include a wattage-unverified USB-PD charger category only when an official USB-PD protocol is maintained and the charger is explicitly not included, and a 90W+ USB-PD search category for manufacturer-published 90W charger guidance. Neither class asserts a device-side charging maximum or PPS requirement. The class-to-Amazon search query and click destinations are generated from fixed, maintained metadata, not phone free-text.
 
 ## Inputs
 
@@ -127,7 +127,7 @@ Desktop uses a wide two-pane layout: searchable/filterable list on the left and 
 - [x] One canonical public tool page exists at `/tools/phone-quickcheck/`.
 - [x] Japanese and English UI are available on the same page.
 - [x] Desktop uses list + right detail pane and mobile uses a bottom sheet for details.
-- [x] The maintained public dataset contains 215 maintained models.
+- [x] The maintained public dataset contains 223 maintained models.
 - [x] Search matches canonical model names plus maintained aliases.
 - [x] Manufacturer, connector, and release-year filters work from canonical data.
 - [x] Device dimensions, weight, charging information, and official-source links can be displayed without converting the tool into a full specification encyclopedia.

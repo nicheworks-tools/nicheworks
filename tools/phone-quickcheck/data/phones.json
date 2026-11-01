@@ -1,6 +1,6 @@
 {
   "version": 8,
-  "updatedAt": "2026-10-31",
+  "updatedAt": "2026-11-01",
   "phones": [
     {
       "id": "apple-iphone-18-pro",
@@ -11307,6 +11307,445 @@
         "waterUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-3/spec/",
         "packageUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-3/spec/",
         "verifiedAt": "2026-10-31"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "nothing-phone-4a",
+      "manufacturer": "Nothing",
+      "model": "Phone (4a)",
+      "aliases": [
+        "Nothing Phone (4a)",
+        "Nothing Phone 4a",
+        "Phone 4a",
+        "フォン4a",
+        "Nothing 4a"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 163.9,
+        "widthMm": 77.5,
+        "depthMm": 8.5
+      },
+      "weightG": 205,
+      "displayInch": 6.78,
+      "waterRating": "IP64",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 50,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5080,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://jp.nothing.tech/products/phone-4a"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://onlineshop.au.com/disp/CSfLastGoodsPage_001.jsp?GOODS_NO=14595&dispNo=001007",
+        "manualUrl": "https://support.nothing.tech/hc/en-us/categories/40129777015569",
+        "releaseUrl": "https://jp.nothing.tech/products/phone-4a",
+        "chargingUrl": "https://jp.nothing.tech/products/phone-4a",
+        "waterUrl": "https://onlineshop.au.com/disp/CSfLastGoodsPage_001.jsp?GOODS_NO=14595&dispNo=001007",
+        "packageUrl": "https://onlineshop.au.com/disp/CSfLastGoodsPage_001.jsp?GOODS_NO=14595&dispNo=001007",
+        "verifiedAt": "2026-11-01"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "nothing-phone-4a-pro",
+      "manufacturer": "Nothing",
+      "model": "Phone (4a) Pro",
+      "aliases": [
+        "Nothing Phone (4a) Pro",
+        "Nothing Phone 4a Pro",
+        "Phone 4a Pro",
+        "A069P",
+        "フォン4a Pro"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 163.6,
+        "widthMm": 76.6,
+        "depthMm": 7.9
+      },
+      "weightG": 210,
+      "displayInch": 6.83,
+      "waterRating": "IPX5 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 50,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStatus": "not_supported",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5080,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-4a-pro/spec/"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-4a-pro/spec/",
+        "manualUrl": "https://support.nothing.tech/hc/en-us/categories/40129794073361-Nothing-Phone-4a-Pro",
+        "releaseUrl": "https://corp.mobile.rakuten.co.jp/news/press/2026/0415_01/",
+        "chargingUrl": "https://jp.nothing.tech/products/phone-4a-pro/",
+        "wirelessUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-4a-pro/spec/",
+        "waterUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-4a-pro/spec/",
+        "packageUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/phone-4a-pro/spec/",
+        "verifiedAt": "2026-11-01"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "nothing-phone-2a",
+      "manufacturer": "Nothing",
+      "model": "Phone (2a)",
+      "aliases": [
+        "Nothing Phone (2a)",
+        "Nothing Phone 2a",
+        "Phone 2a",
+        "フォン2a"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2024,
+      "dimensions": {
+        "heightMm": 161.74,
+        "widthMm": 76.32,
+        "depthMm": 8.55
+      },
+      "weightG": 190,
+      "displayInch": 6.7,
+      "waterRating": "IP54",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 45,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStatus": "not_supported",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://jp.nothing.tech/products/phone-2a"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://jp.nothing.tech/products/phone-2a",
+        "manualUrl": "https://support.nothing.tech/hc/en-us/articles/22960522674321-What-are-the-dimensions-weight-of-Phone-2a",
+        "releaseUrl": "https://jp.nothing.tech/products/phone-2a",
+        "chargingUrl": "https://jp.nothing.tech/products/phone-2a",
+        "wirelessUrl": "https://support.nothing.tech/hc/en-us/articles/22960579342737-Does-Phone-2a-support-wireless-charging",
+        "waterUrl": "https://jp.nothing.tech/products/phone-2a",
+        "packageUrl": "https://jp.nothing.tech/products/phone-2a",
+        "verifiedAt": "2026-11-01"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "nothing-cmf-phone-1",
+      "manufacturer": "Nothing",
+      "model": "CMF Phone 1",
+      "aliases": [
+        "CMF by Nothing Phone 1",
+        "Nothing CMF Phone 1",
+        "CMF Phone1",
+        "シーエムエフ Phone 1"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2024,
+      "dimensions": {
+        "heightMm": 164,
+        "widthMm": 77
+      },
+      "physicalVariants": [
+        {
+          "key": "black-green-standard",
+          "labelJa": "ブラック / ライトグリーン",
+          "labelEn": "Black / Light Green",
+          "depthMm": 8,
+          "weightG": 197
+        },
+        {
+          "key": "orange-vegan-leather",
+          "labelJa": "オレンジ（ヴィーガンレザー）",
+          "labelEn": "Orange (vegan leather)",
+          "depthMm": 9,
+          "weightG": 202
+        }
+      ],
+      "displayInch": 6.67,
+      "waterRating": "IPX2 / IP5X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": 33,
+        "protocols": [
+          "PPS"
+        ],
+        "pps": "supported",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://jp.nothing.tech/products/cmf-phone-1"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.iijmio.jp/campaign/device/nothing202410.html",
+        "manualUrl": "https://jp.nothing.tech/pages/contact-support",
+        "releaseUrl": "https://www.iijmio.jp/info/iij/1726809877.html",
+        "chargingUrl": "https://www.iijmio.jp/campaign/device/nothing202410.html",
+        "waterUrl": "https://www.iijmio.jp/campaign/device/nothing202410.html",
+        "packageUrl": "https://www.iijmio.jp/campaign/device/nothing202410.html",
+        "verifiedAt": "2026-11-01"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "fcnt-arrows-we3-m09",
+      "manufacturer": "FCNT",
+      "model": "arrows We3 M09",
+      "aliases": [
+        "arrows We3",
+        "arrows We3 SIMフリー",
+        "arrows We3 M09 SIM-free",
+        "アローズ ウィースリー",
+        "M09"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 156,
+        "widthMm": 73,
+        "depthMm": 9
+      },
+      "weightG": 189,
+      "displayInch": 6.1,
+      "waterRating": "IPX6/IPX8/IPX9 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 3.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.fcnt.com/spec/m09-sim-free/"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.fcnt.com/spec/m09-sim-free/",
+        "manualUrl": "https://www.fcnt.com/product/arrows/m09-sim-free/",
+        "releaseUrl": "https://www.fcnt.com/news/33202/",
+        "chargingUrl": "https://www.fcnt.com/spec/m09-sim-free/",
+        "waterUrl": "https://www.fcnt.com/spec/m09-sim-free/",
+        "packageUrl": "https://www.fcnt.com/spec/m09-sim-free/",
+        "verifiedAt": "2026-11-01"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "fcnt-arrows-n-f51c",
+      "manufacturer": "FCNT",
+      "model": "arrows N F-51C",
+      "aliases": [
+        "arrows N",
+        "FCNT arrows N",
+        "arrows N docomo",
+        "F-51C",
+        "アローズ エヌ"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2023,
+      "dimensions": {
+        "heightMm": 155,
+        "widthMm": 72,
+        "depthMm": 8.6
+      },
+      "weightG": 171,
+      "displayInch": 6.24,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 2.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 4600,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.fcnt.com/spec/f-51c/"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.fcnt.com/spec/f-51c/",
+        "manualUrl": "https://www.fcnt.com/product/arrows/f-51c/",
+        "chargingUrl": "https://www.fcnt.com/spec/f-51c/",
+        "waterUrl": "https://www.fcnt.com/spec/f-51c/",
+        "packageUrl": "https://www.fcnt.com/spec/f-51c/",
+        "verifiedAt": "2026-11-01"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "fcnt-arrows-we-f51b",
+      "manufacturer": "FCNT",
+      "model": "arrows We F-51B",
+      "aliases": [
+        "arrows We",
+        "FCNT arrows We",
+        "arrows We docomo",
+        "F-51B",
+        "アローズ ウィー"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2021,
+      "dimensions": {
+        "heightMm": 147,
+        "widthMm": 71,
+        "depthMm": 9.4
+      },
+      "weightG": 172,
+      "displayInch": 5.7,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 3.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 4000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.fcnt.com/spec/f-51b/"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.fcnt.com/spec/f-51b/",
+        "manualUrl": "https://www.fcnt.com/product/arrows/f-51b/",
+        "chargingUrl": "https://www.fcnt.com/spec/f-51b/",
+        "waterUrl": "https://www.fcnt.com/spec/f-51b/",
+        "packageUrl": "https://www.fcnt.com/spec/f-51b/",
+        "verifiedAt": "2026-11-01"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "fcnt-arrows-nx9-f52a",
+      "manufacturer": "FCNT",
+      "model": "arrows NX9 F-52A",
+      "aliases": [
+        "arrows NX9",
+        "FCNT arrows NX9",
+        "arrows NX9 docomo",
+        "F-52A",
+        "アローズ エヌエックスナイン"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2020,
+      "dimensions": {
+        "heightMm": 152,
+        "widthMm": 72,
+        "depthMm": 8.5
+      },
+      "weightG": 162,
+      "displayInch": 6.3,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 2.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 3600,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.fcnt.com/spec/f-52a/"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.fcnt.com/spec/f-52a/",
+        "manualUrl": "https://www.fcnt.com/product/arrows/f-52a/",
+        "chargingUrl": "https://www.fcnt.com/spec/f-52a/",
+        "waterUrl": "https://www.fcnt.com/spec/f-52a/",
+        "packageUrl": "https://www.fcnt.com/spec/f-52a/",
+        "verifiedAt": "2026-11-01"
       },
       "affiliateKeys": []
     }
