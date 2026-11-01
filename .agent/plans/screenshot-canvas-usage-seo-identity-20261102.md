@@ -16,3 +16,6 @@ PR SEO URL identity checker reports no errors and all checks green; merge before
 
 ## Follow-on validation
 First PR SEO step passed `indexable-url-identity`, but subsequent `head-metadata-cardinality` found 22 missing singleton fields across three Screenshot Canvas pages. Include `tools/screenshot-canvas/index.html` to add missing robots, og:image and Twitter card fields; the two usage pages add robots, og title/description/image and full Twitter card metadata. Still no user-facing or runtime changes. Require SEO audit full success.
+
+## Follow-on Tool Quality and SEO Structured Data gates
+The full CI suite uncovered that the shared quality matrix used unsupported `layout_class: hybrid` and a noncanonical `spec` path for screenshot-canvas, despite canonical `docs/tools/screenshot-canvas.md` existing. Correct only that record to the supported `desktop-wide` class and required canonical spec path. Each indexed Screenshot Canvas usage page receives exactly one minimal `WebPage` JSON-LD block with its own URL, language and containing utility. No end-user logic, site-wide navigation or other tool changes.
