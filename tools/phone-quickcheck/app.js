@@ -424,9 +424,14 @@
     } else if (manufacturer === 'samsung' && watts && (protocols.includes('adaptive fast charging') || protocols.includes('qc2.0'))) {
       keys.add('charger-samsung-afc-15w');
     } else if (protocols.includes('usb pd') && watts) {
-      if (watts <= 20) keys.add('charger-pd-20w');
+      // This is official adapter guidance, never a claim of maximum phone input.
+      if (watts >= 90) keys.add('charger-pd-90w');
+      else if (watts <= 20) keys.add('charger-pd-20w');
       else if (watts <= 30) keys.add('charger-pd-30w');
       else keys.add('charger-pd-45w');
+    } else if (protocols.includes('usb pd') && !watts && phone.included?.adapter === 'not_included') {
+      // Avoid inventing a 20W/30W/45W recommendation for unknown-wattage phones.
+      keys.add('charger-pd-check-wattage');
     }
 
     if (wireless.includes('qi2') && wireless.includes('compatible case')) keys.add('charger-qi2-case-required');
