@@ -72,6 +72,8 @@
   };
 
   var LIMITS = { maxSide: 6000, maxMp: 24, minMask: 8, weakStrength: 16 };
+  var loadGeneration = 0;
+  var editRevision = 0;
 
   function t(ja, en) { return lang === "ja" ? ja : en; }
   function uid() { return "m_" + Math.random().toString(16).slice(2) + Date.now().toString(16); }
@@ -133,6 +135,7 @@
   }
 
   function setCurrentType(type) {
+    ++editRevision;
     state.type = type;
     var m = activeMask();
     if (m) {
@@ -144,6 +147,7 @@
   }
 
   function setStrength(value) {
+    ++editRevision;
     state.strength = clamp(parseInt(value, 10) || 16, 1, 32);
     var m = activeMask();
     if (m && m.type !== "solid") m.strength = state.strength;
@@ -383,6 +387,8 @@
 
   function loadFile(file) {
     if (!file) return;
+    var generation = ++loadGeneration;
+    ++editRevision;
     if (!/^image\/(png|jpeg|webp)$/.test(file.type)) {
       setStatus(t("PNG / JPG / WebP の画像を選択してください。HEICは未対応です。", "Choose a PNG / JPG / WebP image. HEIC is not supported."), "error");
       return;
@@ -390,15 +396,23 @@
     clearStatus();
     var url = URL.createObjectURL(file);
     var img = new Image();
-    img.onload = function () { prepareImage(img, url); };
+    img.onload = function () {
+      if (generation !== loadGeneration) {
+        URL.revokeObjectURL(url);
+        return;
+      }
+      prepareImage(img, url);
+    };
     img.onerror = function () {
       URL.revokeObjectURL(url);
+      if (generation !== loadGeneration) return;
       setStatus(t("画像を読み込めませんでした。別の画像で試してください。", "Could not load the image. Try another file."), "error");
     };
     img.src = url;
   }
 
   function prepareImage(img, url) {
+    ++editRevision;
     if (state.imageUrl) URL.revokeObjectURL(state.imageUrl);
     state.imageUrl = url;
     state.originalW = img.naturalWidth || img.width;
@@ -437,6 +451,7 @@
   }
 
   function addMask(a, b) {
+    ++editRevision;
     var r = normRect(a, b);
     if (r.w < LIMITS.minMask || r.h < LIMITS.minMask) return;
     var m = { id: uid(), x: r.x, y: r.y, w: r.w, h: r.h, type: state.type, strength: state.strength };
@@ -474,6 +489,7 @@
 
   function onPointerMove(evt) {
     if (!state.drag || !state.image) return;
+    ++editRevision;
     var cp = canvasPoint(evt);
     var ip = imagePointFromCss(cp);
     if (state.drag.kind === "pan") {
@@ -515,6 +531,7 @@
 
   function deleteActive() {
     if (!state.activeId) return;
+    ++editRevision;
     state.masks = state.masks.filter(function (m) { return m.id !== state.activeId; });
     state.activeId = state.masks.length ? state.masks[state.masks.length - 1].id : null;
     syncControls();
@@ -524,6 +541,7 @@
   function duplicateActive() {
     var m = activeMask();
     if (!m) return;
+    ++editRevision;
     var copy = Object.assign({}, m, { id: uid(), x: clamp(m.x + 16, 0, state.w - m.w), y: clamp(m.y + 16, 0, state.h - m.h) });
     state.masks.push(copy);
     state.activeId = copy.id;
@@ -532,6 +550,7 @@
   }
 
   function clearMasks() {
+    ++editRevision;
     state.masks = [];
     state.activeId = null;
     syncControls();
@@ -539,6 +558,8 @@
   }
 
   function clearAll() {
+    ++loadGeneration;
+    ++editRevision;
     if (state.imageUrl) URL.revokeObjectURL(state.imageUrl);
     state.image = null;
     state.imageUrl = "";
@@ -632,8 +653,18 @@
     if (problem) { openChecklist(problem); return; }
     var out = buildOutputCanvas();
     if (!out) { setStatus(t("保存できませんでした。", "Could not save."), "error"); return; }
+    var revision = editRevision;
+    var imageAtStart = state.image;
     out.toBlob(function (blob) {
-      if (!blob) { setStatus(t("PNG作成に失敗しました。", "PNG creation failed."), "error"); return; }
+      // Abort an old export rather than download unreviewed/stale redactions.
+      if (revision !== editRevision || imageAtStart !== state.image) {
+        setStatus(t("PNG生成中に画像やマスクが変わりました。もう一度保存してください。", "Image or masks changed during PNG creation. Review and save again."), "error");
+        return;
+      }
+      if (!blob || String(blob.type || "").toLowerCase() !== "image/png") {
+        setStatus(t("PNG作成に失敗しました。形式を確認して再試行してください。", "PNG creation failed or the browser returned another format."), "error");
+        return;
+      }
       var url = URL.createObjectURL(blob);
       var a = document.createElement("a");
       a.href = url;
