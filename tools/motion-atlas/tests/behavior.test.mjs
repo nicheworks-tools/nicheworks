@@ -69,6 +69,18 @@ assert.match(en, /data-pro-active="true"/);
 assert.match(ja, /data-pro-active="true"/);
 assert.doesNotMatch(en, /buy\.stripe\.com/);
 assert.doesNotMatch(ja, /buy\.stripe\.com/);
+
+assert.match(en, /data-studio-preview href="\/tools\/motion-atlas\/studio\/"/, "English free page must link to Studio preview");
+assert.match(ja, /data-studio-preview href="\/tools\/motion-atlas\/ja\/studio\/"/, "Japanese free page must link to localized Studio preview");
+for (const [language, html] of [["en", en], ["ja", ja]]) {
+  assert.equal((html.match(/data-studio-preview/g) || []).length, 1, language + ": Studio link duplicated");
+  assert.match(html, /42/, language + ": clear that 42 existing demos stay free");
+  assert.match(html, /studio-crosslink/, language + ": dedicated, visible Studio preview section missing");
+}
+assert.match(css, /\.studio-crosslink\{/);
+assert.match(css, /\.studio-try-link\{/);
+assert.match(css, /@media\(max-width:760px\)\{\.studio-crosslink/, "Studio CTA must stack on mobile");
+
 for (const [language, html] of [["en", en], ["ja", ja]]) {
   assert.match(html, /\/assets\/nw-tool-analytics\.js/, language + ": existing event helper not loaded");
   assert.match(html, /\/assets\/nw-tool-analytics-pilot\.js/, language + ": missing search/compare/detail event wiring");
