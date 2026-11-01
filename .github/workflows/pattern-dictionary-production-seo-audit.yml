@@ -25,6 +25,12 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Verify canonical search and SEO regressions
+        run: |
+          node tools/pattern-dictionary/tests/validate.mjs
+          node tools/pattern-dictionary/tests/search-test.mjs
+          node tools/pattern-dictionary/tests/seo-detail-test.mjs
+
       - name: Audit 200 production detail URLs
         env:
           PATTERN_DICTIONARY_PRODUCTION_SEO_REPORT: pattern-dictionary-production-seo-report.json
