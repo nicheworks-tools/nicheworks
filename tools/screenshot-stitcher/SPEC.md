@@ -17,7 +17,9 @@ Combine multiple screenshots vertically in the browser, with ordering and output
 - Support optional top/bottom margin trimming with threshold from 0 to 40, inter-image spacing from 0 to 200 px, and white or transparent background.
 - Render a Canvas preview of the stitched result and warn when resulting height exceeds 20,000 px.
 - Export a single stitched image as PNG, WebP, or JPEG.
+- Verify the actual Canvas output Blob MIME before saving. If the browser silently falls back to another image type, reject it rather than labeling the data with the selected extension.
 - Split output by a user-specified pixel height and save the resulting parts as ZIP.
+- Invalidate pending single-image preview and ZIP generation if the user changes settings/images or clears the list. Never publish a stale encoded result or complete an obsolete ZIP download.
 - Provide JP/EN UI and an always-visible local-processing privacy statement.
 
 ## Inputs
@@ -60,12 +62,15 @@ The preview and image list benefit from desktop width, while core add/reorder/co
 - Margin trimming is top/bottom threshold-based rather than semantic content detection.
 - Very tall results can exceed practical canvas/browser limits; the UI warns at the implemented 20,000 px threshold and split output is available.
 - Rendering/export capability still depends on browser Canvas/image support and available device memory.
+- Browsers may not support some requested image encoders and may return PNG; this must be explained rather than generating mislabeled files.
 
 ## Acceptance criteria
 
 - [ ] PNG/JPEG/WebP screenshots can be added through the supported input paths, reordered, individually removed, and cleared.
 - [ ] Width, trim, spacing, and background settings affect the stitched preview without modifying the original source files.
 - [ ] A stitched result can be exported in each supported single-image format, and split mode can produce a ZIP of parts.
+- [ ] If a Canvas encoder returns a different Blob format, both single-image and ZIP export fail with a bilingual, actionable message.
+- [ ] Out-of-order preview/ZIP callbacks and late-decoding images cannot restore results after an option change, new preview, or Clear All.
 - [ ] JP/EN switching keeps the complete stitching workflow usable and local-processing wording visible.
 - [ ] Basic controls remain operable at approximately 320 px width with visible keyboard focus and recoverable error handling.
 
@@ -74,4 +79,5 @@ The preview and image list benefit from desktop width, while core add/reorder/co
 - `tools/screenshot-stitcher/SPEC.md` (pre-standard v1.1 contract migrated into this format)
 - `tools/screenshot-stitcher/index.html`
 - `tools/screenshot-stitcher/app.js`
+- `tools/screenshot-stitcher/tests/behavior.test.mjs`
 - `tools/screenshot-stitcher/style.css`
