@@ -84,12 +84,18 @@ const messages = {
     ja: "圧縮データの生成に失敗しました。別の形式や品質設定で試してください。",
     en: "Failed to generate the compressed output. Try another format or quality setting.",
   },
+  outputFormatUnsupported: {
+    ja: "ブラウザが指定形式で画像を生成できませんでした。別の形式（JPEGなど）を選んでください。誤った拡張子での保存は行いません。",
+    en: "Your browser returned a different image format. Try JPEG or another browser; a misleading file is not saved.",
+  },
 };
 
 const MAX_FILE_SIZE = 20 * 1024 * 1024;
 const MAX_PIXELS = 40_000_000;
 const SUPPORTED_INPUT_TYPES = new Set(["image/png", "image/jpeg", "image/webp"]);
 let compressTimer = null;
+let loadGeneration = 0;
+let compressionGeneration = 0;
 
 uploadArea.addEventListener("click", () => fileInput.click());
 
@@ -115,8 +121,18 @@ fileInput.addEventListener("change", () => {
 function handleFile(file) {
   if (!file) return;
 
+  const generation = ++loadGeneration;
+  ++compressionGeneration;
+  if (compressTimer) window.clearTimeout(compressTimer);
+  compressTimer = null;
+  state.file = null;
+  state.img = null;
+  state.hasTransparency = false;
   clearError();
   resetOutputState();
+  resultContent.classList.add("hidden");
+  setNoResultVisible(true);
+  fileNameEl.textContent = "";
 
   if (file.size > MAX_FILE_SIZE) {
     showError("fileTooLarge");
@@ -130,12 +146,19 @@ function handleFile(file) {
 
   const reader = new FileReader();
   reader.onload = (e) => {
+    if (generation !== loadGeneration) return;
     const img = new Image();
-    img.onload = () => processImage(file, img);
-    img.onerror = () => showError("loadFail");
+    img.onload = () => {
+      if (generation === loadGeneration) processImage(file, img);
+    };
+    img.onerror = () => {
+      if (generation === loadGeneration) showError("loadFail");
+    };
     img.src = e.target.result;
   };
-  reader.onerror = () => showError("loadFail");
+  reader.onerror = () => {
+    if (generation === loadGeneration) showError("loadFail");
+  };
   reader.readAsDataURL(file);
 }
 
@@ -146,7 +169,7 @@ function processImage(file, img) {
   state.hasTransparency = detectTransparency(img);
 
   const totalPixels = img.naturalWidth * img.naturalHeight;
-  if (totalPixels > MAX_PIXELS) {
+  if (!Number.isFinite(totalPixels) || totalPixels <= 0 || totalPixels > MAX_PIXELS) {
     showError("hugeImage");
     return;
   }
@@ -199,42 +222,67 @@ function updateWarning() {
 
 function updateCompression() {
   if (!state.img || !state.file) return;
+  const revision = ++compressionGeneration;
   const quality = Number.parseFloat(qualityRange.value);
+  if (!Number.isFinite(quality)) {
+    showError("outputFail");
+    return;
+  }
   qualityValue.textContent = quality.toFixed(2);
-  outputFormatEl.textContent = formatLabel(formatSelect.value);
   updateWarning();
 
-  if (compressTimer) {
-    window.clearTimeout(compressTimer);
-  }
+  // The old result must never be offered while a new format/quality is pending.
+  resetOutputState();
+  clearError();
+  if (compressTimer) window.clearTimeout(compressTimer);
   compressTimer = window.setTimeout(() => {
-    generateCompressedOutput(quality);
+    compressTimer = null;
+    if (revision === compressionGeneration) generateCompressedOutput(quality, revision);
   }, 120);
 }
 
-function generateCompressedOutput(quality) {
+function matchesRequestedOutput(blob, format) {
+  return Boolean(blob && (format === "image/webp" || format === "image/jpeg") &&
+    String(blob.type || "").toLowerCase() === format);
+}
+
+function generateCompressedOutput(quality, revision) {
+  if (revision !== compressionGeneration || !state.file || !state.img) return;
+  const file = state.file;
+  const img = state.img;
+  const format = formatSelect.value;
   const canvas = document.createElement("canvas");
-  canvas.width = state.img.naturalWidth;
-  canvas.height = state.img.naturalHeight;
+  canvas.width = img.naturalWidth;
+  canvas.height = img.naturalHeight;
   const ctx = canvas.getContext("2d");
-  if (state.hasTransparency && formatSelect.value === "image/jpeg") {
+  if (!ctx) {
+    showError("outputFail");
+    return;
+  }
+  if (state.hasTransparency && format === "image/jpeg") {
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
   }
-  ctx.drawImage(state.img, 0, 0);
+  ctx.drawImage(img, 0, 0);
 
-  const format = formatSelect.value;
   canvas.toBlob(
     (blob) => {
+      // Canvas encoders are asynchronous and may finish out of order.
+      if (revision !== compressionGeneration || file !== state.file ||
+          img !== state.img || format !== formatSelect.value) return;
       if (!blob) {
         showError("outputFail");
         return;
       }
+      if (!matchesRequestedOutput(blob, format)) {
+        showError("outputFormatUnsupported");
+        return;
+      }
       state.outputBlob = blob;
       outputSizeEl.textContent = formatBytes(blob.size);
-      reductionEl.textContent = formatReduction(blob.size, state.file.size);
+      reductionEl.textContent = formatReduction(blob.size, file.size);
       outputFormatEl.textContent = formatLabel(format);
-      updateCompressionAdvice(blob.size, state.file.size);
+      updateCompressionAdvice(blob.size, file.size);
       updatePreview(blob);
       downloadBtn.disabled = false;
       clearError();
@@ -334,6 +382,8 @@ function resetOutputState() {
 }
 
 function resetTool() {
+  ++loadGeneration;
+  ++compressionGeneration;
   if (compressTimer) {
     window.clearTimeout(compressTimer);
     compressTimer = null;
@@ -362,7 +412,8 @@ formatSelect.addEventListener("change", updateCompression);
 resetBtn.addEventListener("click", resetTool);
 
 downloadBtn.addEventListener("click", () => {
-  if (!state.outputBlob || !state.file) return;
+  if (!state.outputBlob || !state.file ||
+      !matchesRequestedOutput(state.outputBlob, formatSelect.value)) return;
   const format = formatSelect.value;
   const ext = format === "image/webp" ? "webp" : "jpg";
   const baseName = state.file.name.replace(/\.[^.]+$/, "");
