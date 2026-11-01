@@ -548,15 +548,6 @@
       ]
     },
     {
-      "id": "q013_dolly",
-      "ja": [
-        "運搬台車"
-      ],
-      "en": [
-        "Platform dolly"
-      ]
-    },
-    {
       "id": "q013_material_cart",
       "ja": [
         "資材運搬台車"
@@ -1733,15 +1724,6 @@
       ],
       "en": [
         "Corner reinforcing tape"
-      ]
-    },
-    {
-      "id": "q016_ceiling_tile",
-      "ja": [
-        "天井パネル"
-      ],
-      "en": [
-        "Ceiling panel"
       ]
     },
     {
