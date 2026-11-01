@@ -15,6 +15,7 @@
 - search、category、purpose、mobile-fit、implementation difficultyで絞り込める。
 - pattern detailではlive sample、what it is、use case、best/not-for、similar patterns、short AI prompt、implementation note、practical intent、beginner wordingを表示する。
 - short promptをclipboardへcopyできる。
+- catalog内の正規slugに限り`?pattern=`の個別リンクを利用でき、EN/JAの言語ページを維持したまま直接detailを開ける。無料detailから固定リンクをcopyできる。未知のslugは無視する。
 - favoritesとrecent viewsをbrowser localStorageへ保存する。
 - Free compareは最大2件、current legacy common NicheWorks Pro active時は最大5件まで比較できる。
 - current Pro layerはfull handoff outputとPro-only sample detailを解放する。
@@ -29,6 +30,7 @@
 - mobile-fit filter。
 - implementation difficulty filter。
 - pattern card selection。
+- Optional known `?pattern=` slug and native per-detail permalink (no user search text or private content in URL)。
 - favorite toggle。
 - compare add/remove/clear。
 - Pro generator context fields and compare candidates on the existing generator page。
@@ -38,6 +40,7 @@
 - filtered pattern catalogと件数。
 - interactive/extended pattern detail。
 - short AI prompt copy。
+- 正規catalog項目の共有リンク（JA/EN、それぞれのページに戻る）。
 - local favorites / recent list。
 - Free 2-way / current legacy Pro最大5-way compare。
 - Preview-marked handoff/generator output while inactive。
@@ -115,6 +118,7 @@ desktop-firstのfilters / catalog / detail workspaceを主構成とし、mobile�
 
 - [ ] 100-example catalogをsearch/filterし、detailを開ける。
 - [ ] detailからshort AI promptをcopyできる。
+- [ ] 正規Free datasetのslugで`?pattern=`に直接移動するとdetailが復元され、detailからリンクをcopyできる。無効slugは無視し、Free表示に新しい課金制約を設けない。
 - [ ] favorite/recentがlanguage-specific localStorageへ保存され、再訪時に復元される。
 - [ ] Free状態ではcompareが2件を超えず、上限時にupgrade案内を表示する。
 - [ ] current legacy Proは`active && entitlement === "nicheworks_pro"`の場合だけcompare上限が5件へ拡張され、別entitlementのactive stateではFree上限2件を維持する。
@@ -127,6 +131,7 @@ desktop-firstのfilters / catalog / detail workspaceを主構成とし、mobile�
 
 - `tools/ui-atlas/index.html` — 100-example positioning、filters、catalog/detail/compare/favorites/recent/Pro UI。
 - `tools/ui-atlas/ja/index.html` — Japanese page。
+- `tools/ui-atlas/tests/behavior.test.mjs` — Free permalink回帰テスト。
 - `tools/ui-atlas/app.js` — filters、detail、localStorage favorites/recent、Free 2 / legacy Pro 5 compare limits、legacy Pro status handling。
 - `tools/ui-atlas/pro-generator.js` — Preview/full output、2/5 candidate behavior、Pro-only sample bank behavior。
 - `tools/ui-atlas/pro-bridge.js` — current live legacy shared gate。
