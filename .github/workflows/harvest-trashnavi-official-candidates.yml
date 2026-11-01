@@ -1,0 +1,99 @@
+name: Harvest TrashNavi official candidate links
+on:
+  workflow_dispatch:
+    inputs:
+      shard:
+        description: 'Pending-municipality shard 0..24 (blank = rotating hour)'
+        required: false
+        default: ''
+        type: string
+      size:
+        description: 'Number of pending municipalities per shard (1..100)'
+        required: false
+        default: '50'
+        type: string
+  schedule:
+    - cron: '5 * * * *'
+permissions:
+  contents: write
+  pull-requests: write
+concurrency:
+  group: trashnavi-official-candidate-harvest
+  cancel-in-progress: false
+jobs:
+  candidate-discovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Check scanner syntax and offline unit tests
+        run: |
+          node --check tools/trashnavi/scripts/harvest-official-candidates.mjs
+          node --test tools/trashnavi/scripts/harvest-official-candidates.test.mjs
+      - name: Choose pending-municipality shard
+        id: shard
+        shell: bash
+        env:
+          GIVEN_SHARD: ${ inputs.shard }
+          GIVEN_SIZE: ${ inputs.size }
+        run: |
+          set -euo pipefail
+          SIZE="${GIVEN_SIZE:-50}"
+          [[ "$SIZE" =~ ^[0-9]+$ ]] && (( SIZE >= 1 && SIZE <= 100 ))
+          if [[ -n "$GIVEN_SHARD" ]]; then
+            SHARD="$GIVEN_SHARD"
+          else
+            SHARD="$(( $(date -u +%s) / 3600 % 25 ))"
+          fi
+          [[ "$SHARD" =~ ^[0-9]+$ ]] && (( SHARD >= 0 && SHARD < 25 ))
+          printf -v PAD '%02d' "$SHARD"
+          echo "value=$SHARD" >> "$GITHUB_OUTPUT"
+          echo "pad=$PAD" >> "$GITHUB_OUTPUT"
+          echo "size=$SIZE" >> "$GITHUB_OUTPUT"
+      - name: Scan official municipal sites without changing reviewed state
+        env:
+          SHARD: ${ steps.shard.outputs.value }
+          PAD: ${ steps.shard.outputs.pad }
+          SIZE: ${ steps.shard.outputs.size }
+        run: |
+          node tools/trashnavi/scripts/harvest-official-candidates.mjs \
+            --shard "$SHARD" --size "$SIZE" \
+            --output "tools/trashnavi/review-worklists/harvest/official-candidates-shard-$PAD.json"
+      - name: Save candidate report as downloadable artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: trashnavi-official-candidates-shard-${ steps.shard.outputs.pad }
+          path: tools/trashnavi/review-worklists/harvest/official-candidates-shard-${ steps.shard.outputs.pad }.json
+          retention-days: 30
+      - name: Propose candidates in research-only pull request
+        id: candidate-pr
+        continue-on-error: true
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${ secrets.GITHUB_TOKEN }
+          add-paths: tools/trashnavi/review-worklists/harvest/
+          branch: automation/trashnavi-candidates-shard-${ steps.shard.outputs.pad }
+          title: 'research(trashnavi): unverified candidate shard ${ steps.shard.outputs.pad }'
+          commit-message: 'research(trashnavi): record official site navigation candidates'
+          body: |
+            RESEARCH CANDIDATES ONLY: not verified to contain current waste rules.
+            These links may be incomplete, stale, district-specific or not actually waste sources.
+            This does not modify reviewed counts, official direct-link data, or public municipality pages.
+            Individually verify target contents, region, year and official authority before registering sources.
+      - name: Summarize candidate discovery
+        env:
+          PAD: ${ steps.shard.outputs.pad }
+          PR_URL: ${ steps.candidate-pr.outputs.pull-request-url }
+        run: |
+          {
+            echo '## TrashNavi official link candidate discovery'
+            echo "Shard: $PAD"
+            echo "Candidate PR: ${PR_URL:-not created; download artifact}"
+            echo '~~~json'
+            node -e 'const d=require("./tools/trashnavi/review-worklists/harvest/official-candidates-shard-"+process.env.PAD+".json");console.log(JSON.stringify(d.counts,null,2));'
+            echo '~~~'
+            echo 'No verified source count or review state was changed.'
+          } >> "$GITHUB_STEP_SUMMARY"
