@@ -489,7 +489,20 @@
     "disodium phosphate": Object.freeze({ note_short: "Disodium Phosphate helps buffer the pH of cosmetic formulas and is also listed for an anticorrosive function.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/5003/disodium-phosphate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "sodium acetylated hyaluronate": Object.freeze({ note_short: "Sodium Acetylated Hyaluronate is listed as a humectant that helps retain moisture in cosmetic products.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/14518/sodium-acetylated-hyaluronate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
     "hydroxyethyl urea": Object.freeze({ note_short: "Hydroxyethyl Urea is used to retain moisture; COSMILE Europe also lists skin- and hair-conditioning functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/7106/hydroxyethyl-urea/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
-    "butylparaben": Object.freeze({ note_short: "Butylparaben is used as a preservative to help protect cosmetic products from microbial spoilage; this is a function description, not a finished-product safety judgment.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2044/butylparaben/"]), authority: "Cosmetics Europe / COSMILE Europe" })
+    "butylparaben": Object.freeze({ note_short: "Butylparaben is used as a preservative to help protect cosmetic products from microbial spoilage; this is a function description, not a finished-product safety judgment.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2044/butylparaben/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "alcohol": Object.freeze({ note_short: "COSMILE Europe lists Alcohol (ethanol) as a solvent that dissolves other substances; it also lists antimicrobial and viscosity-related functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/590/alcohol/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "peg-150": Object.freeze({ note_short: "PEG-150 is listed as a humectant and solvent in cosmetics, with additional binding and fragrance-carrier functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/10488/peg-150/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "lecithin": Object.freeze({ note_short: "Lecithin can help emulsify oil-and-water mixtures and is also listed for skin conditioning and emollient functions.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/8209/lecithin/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "silica": Object.freeze({ note_short: "Silica is used as an absorbent and bulking ingredient in cosmetics; other listed functions include anticaking, opacifying and viscosity control.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/14425/silica/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "histidine": Object.freeze({ note_short: "Histidine is listed as a humectant and skin-conditioning ingredient, as well as an antistatic agent.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6499/histidine/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "sucrose": Object.freeze({ note_short: "Sucrose can act as a humectant and skin-conditioning ingredient in cosmetic formulations.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15664/sucrose/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "ascorbyl palmitate": Object.freeze({ note_short: "Ascorbyl Palmitate is listed as an antioxidant used to limit oxidation of cosmetic ingredients; this does not establish a finished product's efficacy.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/1244/ascorbyl-palmitate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "coco-caprylate": Object.freeze({ note_short: "Coco-Caprylate is listed as a skin-conditioning emollient that helps soften and smooth the skin.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/3638/coco-caprylate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "acrylates copolymer": Object.freeze({ note_short: "Acrylates Copolymer is listed for film forming, binding and antistatic functions in cosmetic products.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/365/acrylates-copolymer/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "hydrogenated lecithin": Object.freeze({ note_short: "Hydrogenated Lecithin is used to support emulsification of oil and water and is listed for skin conditioning.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6653/hydrogenated-lecithin/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "c12-15 alkyl benzoate": Object.freeze({ note_short: "C12-15 Alkyl Benzoate is listed for skin-conditioning and emollient functions in cosmetics.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/2154/c12-15-alkyl-benzoate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "glyceryl oleate": Object.freeze({ note_short: "Glyceryl Oleate serves as an emulsifier and an emollient in cosmetic formulations.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/6036/glyceryl-oleate/"]), authority: "Cosmetics Europe / COSMILE Europe" }),
+    "sorbitan stearate": Object.freeze({ note_short: "Sorbitan Stearate is used as an emulsifier to help form mixtures of oil and water in cosmetic products.", note_sources: Object.freeze(["https://cosmileeurope.eu/inci/detail/15319/sorbitan-stearate/"]), authority: "Cosmetics Europe / COSMILE Europe" })
   });
 
   function canonicalIdentityKey(value = "") {
@@ -714,7 +727,7 @@
   }
 
   const api = {
-    version: "1.67.0",
+    version: "1.68.0",
     normalizeText, normalizeBaseKey, normalizeKey, canonicalIdentityKey, normalizeNoteSources, splitIngredients, isExactIngredientMatch, isAmbiguousExactName, mergeDictionaryRecords,
     verifiedCategoryEvidence: VERIFIED_CATEGORY_EVIDENCE,
     verifiedNoteEvidence: VERIFIED_NOTE_EVIDENCE,
