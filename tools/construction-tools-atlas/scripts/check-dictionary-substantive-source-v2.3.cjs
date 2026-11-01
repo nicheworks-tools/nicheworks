@@ -3,18 +3,30 @@ const assert=require("node:assert/strict");
 const {runPublicLoader}=require("./audit-public-image-inventory-v2.3.cjs");
 (async()=>{
  const runtime=await runPublicLoader();
- const ids=new Set(),sample=[],byType={},targets=[];
+ const ids=new Set(),pending=[],maintained=[];
  for(const entry of runtime.entries){
-  const id=entry.id;assert(id&&!ids.has(id),"duplicate/invalid public canonical "+id);ids.add(id);
-  const lead=entry.description?.ja||entry.description_ja||"";
-  const extended=entry.detail_ja||entry.detail?.ja||"";
-  const enLead=entry.description?.en||entry.description_en||"";
-  const enDetail=entry.detail_en||entry.detail?.en||"";
-  const ja=lead.length>0&&lead.length<60&&extended.length>=65&&!extended.includes(lead);
-  const en=enLead.length>0&&enLead.length<135&&enDetail.length>=125&&!enDetail.includes(enLead);
-  if(ja||en){targets.push(id);const type=entry.type||"unknown";byType[type]=(byType[type]||0)+1;if(sample.length<8)sample.push({id,ja,en});}
+  const id=entry.id;
+  assert(id&&!ids.has(id),"duplicate/invalid public canonical "+id);
+  ids.add(id);
+  const ja=entry.description?.ja||entry.description_ja||"";
+  const en=entry.description?.en||entry.description_en||"";
+  const detailJa=entry.detail_ja||entry.detail?.ja||"";
+  const detailEn=entry.detail_en||entry.detail?.en||"";
+  if(/^q0(?:11|12|13|14|15|16|17)_/.test(id)){
+   maintained.push(id);
+   assert(ja.length>=80,id+": active compact source JA definition is still superficial");
+   assert(en.length>=150,id+": active compact source EN definition is still superficial");
+   assert(detailJa&&detailEn,id+": reviewed explanatory source missing");
+  }else if((ja.length<60&&detailJa.length>=65&&!detailJa.includes(ja))||
+           (en.length<135&&detailEn.length>=125&&!detailEn.includes(en))){
+   pending.push(id);
+  }
  }
- assert.equal(ids.size,870,"published-canonical count changed during dictionary-only presentation work");
- assert(targets.length>=200,"the existing reviewed explanatory corpus must support a material dictionary-wide improvement");
- console.log("Construction Atlas dictionary substantive source content: PASS "+JSON.stringify({publicCanonicals:ids.size,entriesWithExistingDetailToExpose:targets.length,sample}));
+ assert.equal(ids.size,870,"published-canonical count must stay fixed during definition work");
+ assert.equal(maintained.length,511,"active q011-q017 canonical count changed");
+ console.log("Construction Atlas dictionary substantive source: PASS "+JSON.stringify({
+  publicCanonicals:ids.size,maintainedCompactCanonicals:maintained.length,
+  compactCanonicalsWithSubstantiveBilingualDefinitions:maintained.length,
+  otherCanonicalsWithShortDefinitionsAndRichNotes:pending.length
+ }));
 })().catch(e=>{console.error(e.stack);process.exitCode=1});
