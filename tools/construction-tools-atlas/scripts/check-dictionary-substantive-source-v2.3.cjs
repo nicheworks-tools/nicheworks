@@ -19,11 +19,17 @@ const {runPublicLoader}=require("./audit-public-image-inventory-v2.3.cjs");
    assert(detailJa&&detailEn,id+": reviewed explanatory source missing");
   }else if((ja.length<60&&detailJa.length>=65&&!detailJa.includes(ja))||
            (en.length<135&&detailEn.length>=125&&!detailEn.includes(en))){
-   pending.push(id);
+   pending.push({id, ja, en, detailJa, detailEn, nameJa:entry.term?.ja||"", nameEn:entry.term?.en||""});
   }
  }
  assert.equal(ids.size,870,"published-canonical count must stay fixed during definition work");
  assert.equal(maintained.length,511,"active q011-q017 canonical count changed");
+
+ if(process.env.CTA_DIAG_PROMOTIONS==="1"){
+   for(let i=0;i<pending.length;i+=8){
+     console.log("CTA_PENDING_SOURCE_"+String(Math.floor(i/8)).padStart(2,"0")+"="+JSON.stringify(pending.slice(i,i+8)));
+   }
+ }
  console.log("Construction Atlas dictionary substantive source: PASS "+JSON.stringify({
   publicCanonicals:ids.size,maintainedCompactCanonicals:maintained.length,
   compactCanonicalsWithSubstantiveBilingualDefinitions:maintained.length,
