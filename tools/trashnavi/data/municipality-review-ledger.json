@@ -591,12 +591,12 @@
       "lgcode": "013919",
       "pref": "北海道",
       "municipality": "島牧村",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "limited",
+      "reviewed_at": "2026-11-01",
+      "qualifying_source_count": 1,
+      "distinct_link_type_count": 1,
       "service_provider": null,
-      "review_note": null
+      "review_note": "Official direct waste page checked on 2026-11-01; source notes limit municipality, district, and edition."
     },
     {
       "lgcode": "013927",
@@ -723,12 +723,12 @@
       "lgcode": "014036",
       "pref": "北海道",
       "municipality": "泊村",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "limited",
+      "reviewed_at": "2026-11-01",
+      "qualifying_source_count": 1,
+      "distinct_link_type_count": 1,
       "service_provider": null,
-      "review_note": null
+      "review_note": "Official direct waste page checked on 2026-11-01; source notes limit municipality, district, and edition."
     },
     {
       "lgcode": "014044",
@@ -745,12 +745,12 @@
       "lgcode": "014052",
       "pref": "北海道",
       "municipality": "積丹町",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "limited",
+      "reviewed_at": "2026-11-01",
+      "qualifying_source_count": 1,
+      "distinct_link_type_count": 1,
       "service_provider": null,
-      "review_note": null
+      "review_note": "Official direct waste page checked on 2026-11-01; source notes limit municipality, district, and edition."
     },
     {
       "lgcode": "014061",
@@ -844,12 +844,12 @@
       "lgcode": "014281",
       "pref": "北海道",
       "municipality": "長沼町",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
-      "service_provider": null,
-      "review_note": null
+      "coverage_state": "joint_service",
+      "reviewed_at": "2026-11-01",
+      "qualifying_source_count": 1,
+      "distinct_link_type_count": 1,
+      "service_provider": "南空知公衆衛生組合",
+      "review_note": "Official direct waste page checked on 2026-11-01; source notes limit municipality, district, and edition."
     },
     {
       "lgcode": "014290",
@@ -866,23 +866,23 @@
       "lgcode": "014303",
       "pref": "北海道",
       "municipality": "月形町",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "limited",
+      "reviewed_at": "2026-11-01",
+      "qualifying_source_count": 1,
+      "distinct_link_type_count": 1,
       "service_provider": null,
-      "review_note": null
+      "review_note": "Official direct waste page checked on 2026-11-01; source notes limit municipality, district, and edition."
     },
     {
       "lgcode": "014311",
       "pref": "北海道",
       "municipality": "浦臼町",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "limited",
+      "reviewed_at": "2026-11-01",
+      "qualifying_source_count": 1,
+      "distinct_link_type_count": 1,
       "service_provider": null,
-      "review_note": null
+      "review_note": "Official direct waste page checked on 2026-11-01; source notes limit municipality, district, and edition."
     },
     {
       "lgcode": "014320",
@@ -899,12 +899,12 @@
       "lgcode": "014338",
       "pref": "北海道",
       "municipality": "妹背牛町",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "limited",
+      "reviewed_at": "2026-11-01",
+      "qualifying_source_count": 2,
+      "distinct_link_type_count": 2,
       "service_provider": null,
-      "review_note": null
+      "review_note": "Official direct waste page checked on 2026-11-01; source notes limit municipality, district, and edition."
     },
     {
       "lgcode": "014346",
@@ -998,12 +998,12 @@
       "lgcode": "014567",
       "pref": "北海道",
       "municipality": "愛別町",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "limited",
+      "reviewed_at": "2026-11-01",
+      "qualifying_source_count": 2,
+      "distinct_link_type_count": 2,
       "service_provider": null,
-      "review_note": null
+      "review_note": "Official direct waste page checked on 2026-11-01; source notes limit municipality, district, and edition."
     },
     {
       "lgcode": "014575",
@@ -1020,12 +1020,12 @@
       "lgcode": "014583",
       "pref": "北海道",
       "municipality": "東川町",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "limited",
+      "reviewed_at": "2026-11-01",
+      "qualifying_source_count": 1,
+      "distinct_link_type_count": 1,
       "service_provider": null,
-      "review_note": null
+      "review_note": "Official direct waste page checked on 2026-11-01; source notes limit municipality, district, and edition."
     },
     {
       "lgcode": "014591",
@@ -1042,12 +1042,12 @@
       "lgcode": "014605",
       "pref": "北海道",
       "municipality": "上富良野町",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "limited",
+      "reviewed_at": "2026-11-01",
+      "qualifying_source_count": 1,
+      "distinct_link_type_count": 1,
       "service_provider": null,
-      "review_note": null
+      "review_note": "Official direct waste page checked on 2026-11-01; source notes limit municipality, district, and edition."
     },
     {
       "lgcode": "014613",
@@ -1075,12 +1075,12 @@
       "lgcode": "014630",
       "pref": "北海道",
       "municipality": "占冠村",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "limited",
+      "reviewed_at": "2026-11-01",
+      "qualifying_source_count": 1,
+      "distinct_link_type_count": 1,
       "service_provider": null,
-      "review_note": null
+      "review_note": "Official direct waste page checked on 2026-11-01; source notes limit municipality, district, and edition."
     },
     {
       "lgcode": "014648",
@@ -1097,12 +1097,12 @@
       "lgcode": "014656",
       "pref": "北海道",
       "municipality": "剣淵町",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "limited",
+      "reviewed_at": "2026-11-01",
+      "qualifying_source_count": 1,
+      "distinct_link_type_count": 1,
       "service_provider": null,
-      "review_note": null
+      "review_note": "Official direct waste page checked on 2026-11-01; source notes limit municipality, district, and edition."
     },
     {
       "lgcode": "014681",
@@ -1119,12 +1119,12 @@
       "lgcode": "014699",
       "pref": "北海道",
       "municipality": "美深町",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "limited",
+      "reviewed_at": "2026-11-01",
+      "qualifying_source_count": 1,
+      "distinct_link_type_count": 1,
       "service_provider": null,
-      "review_note": null
+      "review_note": "Official direct waste page checked on 2026-11-01; source notes limit municipality, district, and edition."
     },
     {
       "lgcode": "014702",
