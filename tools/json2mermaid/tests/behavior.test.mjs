@@ -26,7 +26,7 @@ for (const id of ["copyMarkdownBtn", "downloadMd", "downloadMmd", "downloadTxt",
   assert.equal(page.split('id="' + id + '"').length - 1, 1, id + " must occur exactly once");
 }
 assert.match(app, /copyMarkdownBtn\?\.addEventListener\("click", copyMarkdownHandler\)/);
-assert.match(app, /downloadMd\?\.addEventListener\("click", \(\) => downloadHandler\("md"\)\)/);
+assert.match(app, /downloadMdBtn\?\.addEventListener\("click", \(\) => downloadHandler\("md"\)\)/);
 assert.match(app, /extension === "md" \? formatMermaidMarkdown\(source\) : source/,
   "new format must not replace existing raw .mmd/.txt downloads");
 assert.match(app, /text\/markdown;charset=utf-8/);
