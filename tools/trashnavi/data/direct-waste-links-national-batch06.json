@@ -1,0 +1,15 @@
+[
+  {
+    "pref": "北海道",
+    "city": "せたな町",
+    "name": "ごみについて（分別表・北部桧山衛生センター組合の収集カレンダー案内）",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.setana.lg.jp/kurashi/kankyou/post_94.html",
+    "lgcode": "013714",
+    "last_checked": "2026-11-01",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "町公式のごみ分別表。収集カレンダーは北部桧山衛生センター組合の別サイトへ案内。町内地区別収集日はこのページのみでは確定できない。"
+  }
+]
