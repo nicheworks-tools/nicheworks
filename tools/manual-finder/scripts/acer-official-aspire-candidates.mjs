@@ -23,7 +23,7 @@ export function extractAcerAspireCandidates(html) {
   if(!aspire) throw Error('Acer Aspire family boundary not identifiable; fail closed');
   const names=[...aspire[1].matchAll(/\b(?:Aspire\s+)?(A(?:1[0-9]{2}|3[0-9]{2}|5[0-9]{2}|7[0-9]{2})-[0-9A-Z]+(?:-[0-9A-Z]+)?)\b/g)].map(x=>'Aspire '+x[1]);
   const models=[...new Set(names)].sort((a,b)=>a.localeCompare(b,'en',{numeric:true}));
-  if(models.length<50) throw Error('Acer official Aspire candidate population below 50; do not silently accept partial HTML');
+  if(models.length<50) throw Error(`Acer candidate population below 50: extracted=${models.length}, rawRows=${names.length}, laptopSectionChars=${section[1].length}, aspireSectionChars=${aspire[1].length}; publication forbidden`);
   return {models,sourceRows:names.length,duplicates:names.length-models.length,sha256:SHA(models.join('\n'))};
 }
 export async function discover({html,sourceUrl=SOURCE}={}){
@@ -42,8 +42,15 @@ export async function discover({html,sourceUrl=SOURCE}={}){
 }
 async function main(){
  const argv=process.argv.slice(2),file=argv.indexOf('--html'),out=argv.indexOf('--out');
- const result=await discover({html:file<0?undefined:await fs.readFile(argv[file+1],'utf8')});
- const data=JSON.stringify(result,null,2)+'\n';
- if(out>=0)await fs.writeFile(argv[out+1],data);else process.stdout.write(data);
+ const started=Date.now();
+ try {
+  const result=await discover({html:file<0?undefined:await fs.readFile(argv[file+1],'utf8')});
+  const data=JSON.stringify({...result,elapsedMs:Date.now()-started},null,2)+'\n';
+  if(out>=0)await fs.writeFile(argv[out+1],data);else process.stdout.write(data);
+ } catch(error) {
+  const diagnostic={schemaVersion:1,manufacturer:'Acer',sourceUrl:SOURCE,observedAt:new Date().toISOString(),elapsedMs:Date.now()-started,publicationReady:false,manualVerified:0,published:0,diagnosticOnly:true,error:String(error)};
+  if(out>=0)await fs.writeFile(argv[out+1],JSON.stringify(diagnostic,null,2)+'\n');
+  console.error(JSON.stringify(diagnostic));process.exitCode=1;
+ }
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url))main().catch(e=>{console.error(e);process.exitCode=1});
