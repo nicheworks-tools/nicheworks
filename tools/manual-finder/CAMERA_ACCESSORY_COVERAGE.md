@@ -10,22 +10,22 @@ This document is the audited baseline for compatibility-sensitive camera battery
 | --- | ---: |
 | Canonical `カメラ・映像` records | **382** |
 | Camera records with a basic Amazon path | **375** |
-| Camera records with verified accessory detail | **171** |
+| Camera records with verified accessory detail | **193** |
 | Reviewed camera-detail exclusions | **33** |
-| Actionable camera records still missing accessory detail | **171** |
+| Actionable camera records still missing accessory detail | **149** |
 | Non-actionable camera maker-index records | **7** |
 
 Required reconciliation:
 
-`camera basic 375 = detail 171 + reviewed exclusion 33 + missing 171`
+`camera basic 375 = detail 193 + reviewed exclusion 33 + missing 149`
 
-The active detail ledger contains 14 Nikon, 70 DJI, 37 OM SYSTEM, 12 GoPro, and 38 Fujifilm verified camera detail rows. Twenty-six DJI rows and seven GoPro rows are evidence-backed reviewed exclusions. The audit now loads the same published coverage-pass batches as the runtime: Sony adds 107 actionable camera rows, Panasonic adds 27, and Fujifilm adds 56. Those 190 rows already have generic exact-model Amazon searches. This batch adds two confirmed battery/charger searches to 38 Fujifilm rows; all remaining compatibility-sensitive rows stay counted as missing.
+The active detail ledger contains 14 Nikon, 70 DJI, 37 OM SYSTEM, 12 GoPro, 38 Fujifilm, and 22 Sony verified camera detail rows. Twenty-six DJI rows and seven GoPro rows are evidence-backed reviewed exclusions. The audit now loads the same published coverage-pass batches as the runtime: Sony adds 107 actionable camera rows, Panasonic adds 27, and Fujifilm adds 56. Those 190 rows already have generic exact-model Amazon searches. This batch adds two confirmed battery/charger searches to 38 Fujifilm rows; all remaining compatibility-sensitive rows stay counted as missing.
 
 ## Actionable coverage by maker
 
 | Maker | Basic | Detail | Reviewed exclusion | Missing |
 | --- | ---: | ---: | ---: | ---: |
-| Sony | 107 | 0 | 0 | 107 |
+| Sony | 107 | 22 | 0 | 85 |
 | DJI | 96 | 70 | 26 | 0 |
 | Fujifilm | 56 | 38 | 0 | 18 |
 | OM SYSTEM | 37 | 37 | 0 | 0 |
@@ -322,7 +322,7 @@ The camera accessory phase is complete only when:
 
 `camera basic = detail + reviewed exclusion + missing 0`
 
-The current baseline is not complete: `171` actionable records remain missing accessory detail.
+The current baseline is not complete: `149` actionable records remain missing accessory detail.
 
 ## Source of truth
 
@@ -394,3 +394,7 @@ The current baseline is not complete: `171` actionable records remain missing ac
 ## Fujifilm battery/charger official bulk mappings (2026-11-01)
 
 38 canonical Fujifilm camera models now gain 76 verified manufacturer-compatibility-based Amazon battery/charger search handoffs. NP-W126S/BC-W126S: 28 exact models; NP-W235/BC-W235: 10 exact models. GFX100RF and GFX ETERNA 55 are separately identified on Fujifilm official NP-W235 and BC-W235 product lists, rather than inferred from the nine-row support chart. `GFX 50S II` is not promoted because the chart uses the differently spaced name `GFX50S II`. Official source URLs: https://www.fujifilm-x.com/ja-jp/support/compatibility/accessories/np-w126s/ ; https://www.fujifilm-x.com/ja-jp/support/compatibility/accessories/np-w235/ ; https://www.fujifilm-x.com/ja-jp/products/accessories/np-w235/ ; https://www.fujifilm-x.com/ja-jp/products/accessories/bc-w235/ . Runtime: `affiliate-fujifilm-camera-accessories-bulk.js`. No price, inventory or revenue is claimed.
+
+## Sony official battery and charger mappings (2026-11-01)
+
+22 exact canonical Sony cameras gain 44 tagged Amazon accessory-search handoffs: 16 `NP-FZ100` / `BC-QZ1`, and 6 `NP-FW50` / `BC-TRW`. Explicit model-level evidence comes from Sony's USB-PD support article (12 exact cameras, excluding ILCE-7RM6 because its battery is NP-SA100), Sony's camera compatibility pages (ILCE-7M3, ILCE-7RM3, ILCE-7RM4), Sony's BC-QZ1 accessory page (ILCE-9), and Sony's NP-FW50 accessory compatibility page (five named cameras plus ILCE-6000 verified separately). Manufacturer evidence: https://support.sony.jp/electronics/support/a-mount-body-slt-a50-series/slt-a57/articles/00301779 ; https://www.sony.jp/ichigan/products/BC-QZ1/ ; https://www.sony.jp/ichigan/products/NP-FW50/compatible.html ; https://www.sony.jp/ichigan/products/ILCE-6000/compatible.html ; and exact-camera source URLs in `affiliate-sony-camera-accessories-bulk.js`. This batch adds no new manual records, and no kit/variant models are inferred. Product search is not inventory or revenue evidence.
