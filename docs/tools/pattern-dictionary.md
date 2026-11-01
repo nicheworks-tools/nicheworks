@@ -161,3 +161,7 @@ Acceptance for canonical v1 requires exactly 100 published IDs, 200 indexable bi
 - No live retailer data is fetched.
 - Qualified technique/tradition/style/material terms use representative recognition imagery rather than claiming one universal motif.
 - Pattern Atlas remains a separate product.
+
+## Dictionary structure work (2026-11-01)
+
+The bounded `canonical-100-v1` publication is **not** a complete subject-wide dictionary. It now also has `tools/pattern-dictionary/data/taxonomy-v2.json` (100 provisional, independent concept type / appearance / context classifications) and `tools/pattern-dictionary/data/coverage-backlog.json` (**87 unverified, unpublished** proposed concepts; no public routes). Published detail pages expose source-verification publisher links. JA/EN browse separates appearance, concept type, and cultural/craft context instead of mixing them in a single filter dimension. New coverage is not automatically published or treated as verified.
