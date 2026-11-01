@@ -79,6 +79,29 @@ async function httpSmoke(){
     assert.equal(phone.charging?.wiredMaxW,null,id+' handset max W must remain unknown');
     assert.equal(phone.charging?.pps,'unknown',id+' PPS must remain unknown');
   }
+  // Wave 28: five distinct Japan-marketed FCNT models, including exact source-backed box variance.
+  const wave28=[
+    ['fcnt-arrows-be-f04k',2018,2580,'not_included'],
+    ['fcnt-arrows-u-801fj',2019,2880,'not_included'],
+    ['fcnt-arrows-j-901fj',2019,2880,'not_included'],
+    ['fcnt-arrows-rx',2019,2880,'included'],
+    ['fcnt-arrows-m05',2019,2880,'not_included']
+  ];
+  for(const [id,year,mah,cable] of wave28){
+    const p=live.find(item=>item.id===id);
+    assert.ok(p,'Wave28 FCNT Japan marketed model missing from public data: '+id);
+    assert.equal(p.releaseYear,year,id+' release year mismatch');
+    assert.equal(p.charging?.battery?.capacityMah,mah,id+' battery mismatch');
+    assert.equal(p.included?.cable,cable,id+' standard-box cable inclusion mismatch');
+    assert.equal(p.included?.adapter,'not_included',id+' excluded wall adapter mismatch');
+    assert.deepEqual(p.charging?.protocols,[],id+' must not assert an unknown PD protocol');
+    assert.equal(p.charging?.wiredMaxW,null,id+' must not invent max charging watts');
+    assert.equal(p.charging?.pps,'unknown',id+' must not invent PPS');
+    assert.equal(p.waterRating,'IPX5/IPX8 / IP6X',id+' official water and dust mismatched');
+  }
+  const rx=live.find(x=>x.id==='fcnt-arrows-rx');
+  assert.equal(rx?.charging?.wirelessStatus,'not_supported','Rakuten-supported RX no-wireless fact missing');
+  assert.match(rx?.sources?.wirelessUrl||'',/^https:\/\/network\.mobile\.rakuten\.co\.jp\//,'RX negative wireless source must be the domestic carrier');
   const liveAccessories=JSON.parse(data['data/accessories.json']);
   const localAccessories=JSON.parse(readFileSync('tools/phone-quickcheck/data/accessories.json','utf8'));
   assert.deepEqual(liveAccessories,localAccessories,'Public accessories JSON differs from the canonical GitHub data');
@@ -215,6 +238,24 @@ async function browserSmoke(){
       const alphaOffers=await until(async()=>{const o=await evalJs(affiliateExpression);return o.links.length===3&&o.links.some(a=>a.label.includes('90W以上'))?o:null;},9000);
       assert.ok(alphaOffers.links.every(a=>new URL(a.href).searchParams.get('tag')==='nicheworks09-22'),width+'px: Alpha2 affiliate tracking tag missing');
       if(fcntRender.mobile) await evalJs('document.querySelector("#sheetClose").click()');
+      // Wave 28 actual rendered phone selection and Amazon CTAs, including RX bundled USB-C cable.
+      const wave28Cases=[
+        ['fcnt-arrows-be-f04k','arrows Be F-04K','2580 mAh'],
+        ['fcnt-arrows-u-801fj','arrows U','2880 mAh'],
+        ['fcnt-arrows-j-901fj','arrows J','2880 mAh'],
+        ['fcnt-arrows-rx','arrows RX','2880 mAh'],
+        ['fcnt-arrows-m05','arrows M05','2880 mAh']
+      ];
+      for(const [modelId,modelName,batteryLabel] of wave28Cases){
+        const result=await evalJs('(()=>{const id='+JSON.stringify(modelId)+';const q='+JSON.stringify(modelName)+';const input=document.querySelector("#searchInput");input.value=q;input.dispatchEvent(new Event("input",{bubbles:true}));const row=document.querySelector(".phone-row[data-phone-id="+id+"]");if(!row)return {found:false};row.click();const mobile=matchMedia("(max-width: 900px)").matches;const details=document.querySelector(mobile?"#sheetDetail":"#desktopDetail").textContent;return {found:true,mobile,name:details.includes(q),battery:details.includes('+JSON.stringify(batteryLabel)+'),negativeQi:details.includes("非対応")};})()');
+        assert.ok(result.found&&result.name&&result.battery,width+'px Wave28 model search/details not rendered: '+modelId+' '+JSON.stringify(result));
+        if(modelId==='fcnt-arrows-rx')assert.ok(result.negativeQi,width+'px RX carrier-proven no-wireless fact not displayed');
+        const offer=await until(async()=>{const o=await evalJs(affiliateExpression);return o.links.length===2?o:null;},8000);
+        assert.ok(offer.links.every(x=>new URL(x.href).searchParams.get('tag')==='nicheworks09-22'),width+'px '+modelId+' Amazon Associates tagged handoffs missing');
+        assert.ok(!offer.links.some(x=>x.label.includes('USB-PD')),width+'px '+modelId+' unsupported PD offer incorrectly displayed');
+        if(result.mobile)await evalJs('document.querySelector("#sheetClose").click()');
+      }
+      console.log('Wave28 FCNT PASS: '+width+'px, five 2018/2019 Japanese models and two tagged links each');
       console.log('Affiliate PASS: '+width+'px, live EN/JA tagged links, sponsored rel and disclosure, generic USB-PD, Alpha2 90W');
       console.log('Chrome PASS: '+width+'px, no overflow, search, JP/EN, '+(jp.mobile?'mobile sheet':'desktop detail'));
     }
