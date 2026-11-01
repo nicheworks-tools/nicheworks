@@ -136,7 +136,7 @@ try {
       const directText = recognized?.data?.text || '';
       const processedText = processText.postProcessOcrText(
         processText.coreProcessOCRText(directText), { langHint: 'en' });
-      const annotatedListMetrics = metric.score(gt.INCI_list.join('\\n'), processedText, parser.splitIngredients);
+      const annotatedListMetrics = metric.score(gt.INCI_list.join('\n'), processedText, parser.splitIngredients);
       const rawTranscriptionMetrics = metric.score(gt.raw_ingredients_list, processedText, parser.splitIngredients);
       experimental[variant.key].push({
         id,
