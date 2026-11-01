@@ -79,6 +79,28 @@ async function httpSmoke(){
     assert.equal(phone.charging?.wiredMaxW,null,id+' handset max W must remain unknown');
     assert.equal(phone.charging?.pps,'unknown',id+' PPS must remain unknown');
   }
+  // Wave 26 FCNT historic JP models: explicit sources, correct package and charging semantics.
+  const wave26Models=[
+    ['fcnt-arrows-be4-plus-f41b',2021,3600,null,false],
+    ['fcnt-arrows-5g-f51a',2020,4070,'USB PD 2.0',false],
+    ['fcnt-arrows-be4-f41a',2020,2780,null,true],
+    ['fcnt-arrows-be3-f02l',2019,2780,null,true]
+  ];
+  for(const [id,year,mah,pd,negativeQi] of wave26Models){
+    const p=live.find(item=>item.id===id);
+    assert.ok(p,'Wave26 FCNT record missing in public deployment: '+id);
+    assert.equal(p.releaseYear,year,id+' JP release year mismatch');
+    assert.equal(p.charging?.battery?.capacityMah,mah,id+' manufacturer/carrier battery mismatch');
+    assert.deepEqual(p.charging?.protocols,pd?[pd]:[],id+' source-backed PD protocol mismatch');
+    assert.equal(p.included?.cable,'not_included',id+' standard package USB cable mismatch');
+    assert.equal(p.included?.adapter,'not_included',id+' standard box AC brick mismatch');
+    assert.equal(p.charging?.wiredMaxW,null,id+' phone wired max W must stay unknown');
+    assert.equal(p.charging?.pps,'unknown',id+' PPS must stay unknown');
+    if(negativeQi){
+      assert.equal(p.charging?.wirelessStatus,'not_supported',id+' carrier-confirmed Qi negative missing');
+      assert.match(p.sources?.wirelessUrl||'',/^https:\/\/www\.docomo\.ne\.jp\//,id+' domestic wireless primary source missing');
+    }
+  }
   const liveAccessories=JSON.parse(data['data/accessories.json']);
   const localAccessories=JSON.parse(readFileSync('tools/phone-quickcheck/data/accessories.json','utf8'));
   assert.deepEqual(liveAccessories,localAccessories,'Public accessories JSON differs from the canonical GitHub data');
@@ -215,6 +237,18 @@ async function browserSmoke(){
       const alphaOffers=await until(async()=>{const o=await evalJs(affiliateExpression);return o.links.length===3&&o.links.some(a=>a.label.includes('90W以上'))?o:null;},9000);
       assert.ok(alphaOffers.links.every(a=>new URL(a.href).searchParams.get('tag')==='nicheworks09-22'),width+'px: Alpha2 affiliate tracking tag missing');
       if(fcntRender.mobile) await evalJs('document.querySelector("#sheetClose").click()');
+      // New model purchase journey on deployed Chrome UI: a sourced PD charger, and no invented PD on Be3.
+      const f51Result=await evalJs('(()=>{const input=document.querySelector("#searchInput");input.value="arrows 5G F-51A";input.dispatchEvent(new Event("input",{bubbles:true}));const row=document.querySelector(".phone-row[data-phone-id=fcnt-arrows-5g-f51a]");if(!row)return {found:false};row.click();const mobile=matchMedia("(max-width: 900px)").matches;const text=document.querySelector(mobile?"#sheetDetail":"#desktopDetail").textContent;return {found:true,mobile,model:text.includes("arrows 5G F-51A"),pd:text.includes("USB PD 2.0")};})()');
+      assert.ok(f51Result.found&&f51Result.model&&f51Result.pd,width+'px Wave26 FCNT F-51A detail/PD absent: '+JSON.stringify(f51Result));
+      const f51Offers=await until(async()=>{const o=await evalJs(affiliateExpression);return o.links.length===3&&o.links.some(x=>x.label.includes('USB-PD'))?o:null;},8000);
+      assert.ok(f51Offers.links.every(x=>new URL(x.href).searchParams.get('tag')==='nicheworks09-22'),width+'px F-51A purchase links untagged');
+      if(f51Result.mobile) await evalJs('document.querySelector("#sheetClose").click()');
+      const be3Result=await evalJs('(()=>{const input=document.querySelector("#searchInput");input.value="arrows Be3 F-02L";input.dispatchEvent(new Event("input",{bubbles:true}));const row=document.querySelector(".phone-row[data-phone-id=fcnt-arrows-be3-f02l]");if(!row)return {found:false};row.click();const mobile=matchMedia("(max-width: 900px)").matches;const detail=document.querySelector(mobile?"#sheetDetail":"#desktopDetail").textContent;return {found:true,mobile,model:detail.includes("arrows Be3 F-02L"),wirelessNegative:detail.includes("非対応")};})()');
+      assert.ok(be3Result.found&&be3Result.model&&be3Result.wirelessNegative,width+'px Be3 domestic wireless fact/detail missing: '+JSON.stringify(be3Result));
+      const be3Offers=await until(async()=>{const o=await evalJs(affiliateExpression);return o.links.length===2?o:null;},8000);
+      assert.ok(!be3Offers.links.some(x=>x.label.includes('USB-PD')),width+'px Be3 must not claim unverified USB PD support');
+      if(be3Result.mobile) await evalJs('document.querySelector("#sheetClose").click()');
+      console.log('Wave26 FCNT PASS: '+width+'px, historic 4 models, F-51A USB PD2.0 + tagged 3 CTAs, Be3 Qi negative and no guessed PD');
       console.log('Affiliate PASS: '+width+'px, live EN/JA tagged links, sponsored rel and disclosure, generic USB-PD, Alpha2 90W');
       console.log('Chrome PASS: '+width+'px, no overflow, search, JP/EN, '+(jp.mobile?'mobile sheet':'desktop detail'));
     }
