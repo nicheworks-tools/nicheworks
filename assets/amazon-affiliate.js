@@ -84,14 +84,17 @@
       `${destinationKey}_${placement}`
     );
 
-    window.gtag("event", "affiliate_outbound", {
+    const payload = {
       tool_slug: stableToken(state.tool, "unknown"),
       affiliate_id: affiliateId,
       placement,
       merchant: state.merchant,
       destination_key: destinationKey,
       language: resolveLanguage(options.container, options.language)
-    });
+    };
+    const allowedIntent = new Set(["general", "sorting", "collection", "cleanup"]);
+    if (allowedIntent.has(options.intentBucket)) payload.intent_bucket = options.intentBucket;
+    window.gtag("event", "affiliate_outbound", payload);
   }
 
   function mountLink(container, target, url, options = {}) {
