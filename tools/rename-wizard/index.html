@@ -132,6 +132,14 @@
         <input id="fileInput" type="file" multiple class="file-input" />
       </div>
 
+      <div class="filename-paste">
+        <label class="section-title" for="namesInput">または、ファイル名の一覧を貼り付け</label>
+        <p class="section-desc">1行に1件、最大500件。ファイルを選択せずに名前だけ試せます。実ファイルの読み取り・変更・アップロードは行いません。</p>
+        <textarea id="namesInput" class="names-input" rows="5" maxlength="100000" placeholder="請求書 2026年10月.PDF&#10;写真 001.JPG"></textarea>
+        <button id="loadNamesButton" class="btn btn-ghost" type="button">名前一覧を読み込む</button>
+        <p id="pasteStatus" class="copy-status" role="status" aria-live="polite"></p>
+      </div>
+
       <div class="options">
         <h3 class="options-title">整形ルール</h3>
         <label class="option-item"><input type="checkbox" id="optNormalizeWidth" checked />全角英数字・記号を半角に統一（Unicode NFKC）</label>
