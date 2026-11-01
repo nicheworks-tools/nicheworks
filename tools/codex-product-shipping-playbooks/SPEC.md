@@ -17,16 +17,18 @@ Explain a repository-first set of reusable playbooks for taking Codex-assisted s
 - Link users to the public repository and explain how to consume it as a workflow guide.
 - State explicitly that the material does not replace tests, code review, security review, release ownership, legal review, or human release judgment.
 - Provide equivalent English and Japanese guide pages.
+- Present a static eight-stage issue-to-release checklist in both languages, matching the repository workflow order. Users can copy this reusable evidence/owner placeholder checklist to their clipboard; it does not execute checks or claim approval.
 
 ## Inputs
 
-None beyond page navigation and links. This NicheWorks page is a read-only guide to a separate repository.
+None beyond page navigation, links, and an explicit copy-checklist button. The template is fixed text, not user-submitted source code.
 
 ## Outputs
 
 - Workflow documentation and release-process reference material.
 - Navigation to the public GitHub repository.
 - English and Japanese explanatory pages.
+- Fixed, clipboard-copyable eight-stage handoff template with evidence/owner blanks and human-approval warning.
 
 ## State and persistence
 
@@ -59,9 +61,12 @@ The tool is long-form documentation with wide summary cards but remains fully re
 - [ ] The guide presents the complete current issue-to-release workflow path in the documented order.
 - [ ] Users can reach the public repository and understand the roles of playbooks, artifacts, gates, flows, and examples.
 - [ ] English and Japanese pages retain the same core scope and the same human-review/release-safety disclaimer.
+- [ ] Both pages present exactly the canonical eight workflow stage IDs in order with native clipboard copy, a success/failure status and no application upload.
 
 ## Implementation evidence
 
 - `tools/codex-product-shipping-playbooks/index.html`
 - `tools/codex-product-shipping-playbooks/ja/`
 - `tools/codex-product-shipping-playbooks/style.css`
+- `tools/codex-product-shipping-playbooks/handoff.js`
+- `tools/codex-product-shipping-playbooks/tests/behavior.test.mjs`
