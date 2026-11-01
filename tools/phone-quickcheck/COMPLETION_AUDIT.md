@@ -152,6 +152,27 @@ Phone QuickCheck v1 is complete under the maintained contract:
 
 Future work is maintenance: new models, source changes, corrections, and evidence upgrades. It is not part of the v1 closure backlog.
 
+## Post-v1 maintenance Wave 22 — 2026-11-01
+
+Official FCNT catalogue backfill of four currently unrepresented, historically sold domestic models. Canonical set **219 → 223 phones**, 11 makers, 36 foldables. Scope is exact Japanese SIM-free or docomo SKU per manufacturer. No inferential wattage or PPS; unchanged intentional Apple battery unknown baseline.
+
+### arrows We3 M09 (2026 Japan SIM-free)
+- FCNT SIM-free [specification](https://www.fcnt.com/spec/m09-sim-free/) and [launch notice](https://www.fcnt.com/news/33202/) explicitly establish June 25, 2026, 156×73×9.0mm, 189g, 6.1in, 5,000mAh, USB-C and **Power Delivery 3.0**, IPX6/IPX8/IPX9 / IP6X. Manufacturer's standard in-box list contains **quick-start guide only**, so no cable or AC adapter. Exact M09 (SIM-free) SKU; don't conflate with Docomo F-52G or Rakuten's M09-RM variant.
+
+### arrows N F-51C (2023 docomo)
+- [FCNT SKU specifications](https://www.fcnt.com/spec/f-51c/) establish Feb 10, 2023, 155×72×8.6mm (device thickest protrusion approximately 10.8mm, not mistaken for uniform body depth), 171g, 6.24in, 4,600mAh, USB-C / **Power Delivery revision 2.0**, IPX5/IPX8 / IP6X. Only quick-start guide in official in-box list; cable and charger sold separately.
+
+### arrows We F-51B (2021 docomo)
+- [FCNT SKU specifications](https://www.fcnt.com/spec/f-51b/) establish Dec 3, 2021, 147×71×9.4mm (max raised part 10.2mm), 172g, 5.7in, 4,000mAh, USB-C / **Power Delivery revision 3.0**, IPX5/IPX8 / IP6X. Standard package contains guide/paper notice only; no USB cable or power brick.
+
+### arrows NX9 F-52A (2020 docomo)
+- [FCNT SKU specifications](https://www.fcnt.com/spec/f-52a/) establish Dec 18, 2020, 152×72×8.5mm (max raised part 9.3mm), 162g, 6.3in, 3,600mAh, USB-C / **Power Delivery revision 2.0**, IPX5/IPX8 / IP6X. Standard package: guides and SIM eject tool, **not** USB cable or charger. The SIM tool is not represented as a charging accessory.
+
+### Evidence/quality conditions
+- Each included-package status, physical value and charging protocol originates from the exact FCNT specification URL retained in the record, with product/support destination and 2026-11-01 review date.
+- No manufacturer-proven wattage is available on these pages; leave **wiredRecommendedW/wiredMaxW null**, **PPS unknown**, and **wireless support unknown**, never classify lack of Qi evidence as definite non-support.
+- All validators and CI must pass before merge. The already deployed live Chrome smoke must confirm public **223 phones**, full canonical JSON equality, 5 viewports and JP/EN/sheet behavior after merge.
+
 ## Post-v1 maintenance Wave 21 — 2026-11-01
 
 Strengthened public Cloudflare Pages real-Chrome tests after the four-model Nothing Japan catalog addition. The runtime script already deep-compares the **entire** public `phones.json` with canonical GitHub data; now it also explicitly asserts Phone (4a)'s 50W and Japanese cable inclusion, Phone (4a) Pro's primary wireless-negative and charger omission, Phone (2a)'s 45W and negative wireless, and CMF Phone 1's 33W PPS with two exact thickness↔weight pairs.
