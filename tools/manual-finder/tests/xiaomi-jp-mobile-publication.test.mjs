@@ -34,7 +34,8 @@ for(const file of [
  'data/manuals.coverage-pass.google-pixel-jp.js',
  'data/manuals.coverage-pass.motorola-jp-lineup.js',
  'data/manuals.coverage-pass.asus-jp-vivobook.js',
- 'data/manuals.coverage-pass.xiaomi-jp-mobile.js'
+ 'data/manuals.coverage-pass.xiaomi-jp-mobile.js',
+ 'data/manuals.coverage-pass.canon-jp-lens.js'
 ])vm.runInContext(fs.readFileSync(new URL('../'+file,import.meta.url),'utf8'),sandbox,{filename:file});
 const rows=Array.from(sandbox.window.MANUALFINDER_COVERAGE_PASS_XIAOMI_JP_MOBILE||[]);
 assert.equal(rows.length,59);
@@ -66,12 +67,12 @@ for(const row of rows){
 const names=Array.from(sandbox.window.MANUALFINDER_COVERAGE_PASS_BATCHES||[]);
 assert.ok(names.includes('manuals.coverage-pass.xiaomi-jp-mobile.js'));
 const all=Array.from(sandbox.window.MANUALFINDER_BUILD_COVERAGE_PASSES());
-assert.equal(all.length,860);
+assert.equal(all.length,997);
 assert.equal(all.filter(x=>x.maker==='Xiaomi').length,59);
 assert.equal(all.filter(x=>x.maker==='ASUS').length,35);
 assert.equal(all.filter(x=>x.maker==='Motorola').length,11);
 const coverage=fs.readFileSync(new URL('../COVERAGE.md',import.meta.url),'utf8');
-assert.ok(coverage.includes('**2,376 verified model/caliber rows**'));
+assert.ok(coverage.includes('**2,513 verified model/caliber rows**'));
 assert.ok(coverage.includes('**44 of the 66 baseline brands are still generic-only**'));
 assert.ok(coverage.includes('| Xiaomi | 59 | expanded, scope-reviewed |'));
 const fake={
@@ -83,4 +84,4 @@ const fake={
 assert.equal(reconcile(pass,fake).valid,true);
 fake.records[0].manualUrl='https://bad.example/test.pdf';
 assert.equal(reconcile(pass,fake).valid,false,'never accept a changed manufacturer PDF destination');
-console.log('Xiaomi JP 59 exact verified manufacturer PDFs, held Leica, 60-model lock and 860-row public runtime passed.');
+console.log('Xiaomi JP 59 exact verified manufacturer PDFs, held Leica, 60-model lock and 997-row public runtime passed.');

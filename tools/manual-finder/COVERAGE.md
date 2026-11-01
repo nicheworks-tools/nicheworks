@@ -17,7 +17,7 @@ All future model-level expansion must follow `COVERAGE_PASS_WORKFLOW.md`. Script
 
 ## Current verified model-level inventory
 
-With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifilm GFX/X, VAIO JP start-guide PCs, Samsung JP Galaxy smartphones, dynabook JP 2024–2026 PCs, Fujitsu FMWORLD LIFEBOOK U business PCs, Google Pixel JP model-specific safety/support documentation, Motorola JP current smartphone lineup, ASUS JP Vivobook series, and Xiaomi JP smartphone/tablet user-guide index, the accepted dataset contains **2,376 verified model/caliber rows**. **1,933 are outside Seiko**. Coverage-Pass publication contributes **860 reviewed rows across twelve bounded manufacturer scopes**. The Xiaomi JP 60-device source reconciles to 59 positively verified manufacturer PDF guides and one held co-branded Leica model; 59 guide rows are published. This is not Xiaomi company-wide coverage.
+With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifilm GFX/X, VAIO JP start-guide PCs, Samsung JP Galaxy smartphones, dynabook JP 2024–2026 PCs, Fujitsu FMWORLD LIFEBOOK U business PCs, Google Pixel JP model-specific safety/support documentation, Motorola JP current smartphone lineup, ASUS JP Vivobook series, and Xiaomi JP smartphone/tablet user-guide index, the accepted dataset contains **2,513 verified model/caliber rows**. **2,070 are outside Seiko**. Coverage-Pass publication contributes **997 reviewed rows across thirteen bounded manufacturer scopes**. The Xiaomi JP 60-device source reconciles to 59 positively verified manufacturer PDF guides and one held co-branded Leica model; 59 guide rows are published. This is not Xiaomi company-wide coverage.
 
 | Maker / dataset identity | Verified rows | Current state | Notes |
 | --- | ---: | --- | --- |
@@ -50,9 +50,9 @@ With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifil
 | Brother | 13 | expanded | Wave 3B covers 13 exact MFC-J model manual pages from the first bounded search-result block; one targeted model remains held. |
 | Insta360 | 7 | expanded | Product-specific official online manuals. |
 | Epson | 6 | expanded | Wave 3D first Colorio batch; exact official manual/support targets with verified consumable mappings. |
-| Canon | 6 | expanded | Wave 3E first PIXUS batch; direct or vendor-shared official online manuals with verified consumable mappings. |
+| Canon | 143 | expanded | Six Wave 3E PIXUS printers plus 137 distinct official RF/EF-series lens instruction manual rows (123 direct + 14 shared) from Canon Japan nine-section lens-manual index. Lens scope does not claim Canon company-wide completeness; manufacturer direct PDFs verified. |
 | Hisense | 2 | expanded | Exact TV function-manual targets; coverage is still very thin. |
-| **Total** | **2,376** |  |  |
+| **Total** | **2,513** |  |  |
 
 Counts above are accepted repository rows, not estimates of manufacturer catalog size.
 
@@ -65,7 +65,7 @@ Counts above are accepted repository rows, not estimates of manufacturer catalog
 | 1 | Apple | **expanded — 31** | iPhone User Guide bounded scope is published and coverage-pass-complete at 31 shared manual rows + exact model support pages; broader Apple remains incomplete |
 | 2 | Sony | **expanded — 107** | JP α E-mount scope is published and coverage-pass-complete at 104 direct + 3 support-only + 0 held; broader Sony categories remain incomplete |
 | 3 | Panasonic | **expanded — 27** | JP LUMIX S/G/compact camera-body sitemap scope is published and coverage-pass-complete at 27 direct + 0 support-only + 0 held; broader Panasonic categories remain incomplete |
-| 4 | Canon | **expanded — 6** | First PIXUS batch covered in Wave 3E; broader Canon remains incomplete |
+| 4 | Canon | **expanded — 143** | Six PIXUS models and 137 official RF/EF interchangeable-lens user manuals; printers, cameras, and remaining lens groups are not complete |
 | 5 | Nikon | **expanded — 14** | Mirrorless Web-manual section covered in Wave 3A; rotate away |
 | 6 | Fujifilm | **expanded — 56** | JP GFX + X-series camera-manual-index scope is published and coverage-pass-complete at 52 direct + 4 shared + 0 held; FinePix and broader Fujifilm remain incomplete |
 | 7 | Brother | **expanded — 13** | First bounded MFC-J batch covered in Wave 3B; MFC-J6990CDW held; rotate away |
@@ -229,3 +229,7 @@ A manufacturer may be marked `coverage-pass-complete` only when all of the follo
 - a future refresh path is identified.
 
 Until then, `expanded` means only that useful verified model-level coverage exists.
+
+### Canon Japan official interchangeable-lens manual-index Coverage-Pass (2026-11-01)
+
+Manufacturer entry: https://canon.jp/support/manual/ef . Nine direct Japanese lens-manual subsections enumerate the bounded single-model scope: RF zoom, RF prime, RF-S, EF zoom, EF prime, EF-S, EF-M, EF macro, TS-E. **137 unique model/manual anchors** reconcile to **123 direct + 14 shared + 0 support_only + 0 held**. Manufacturer-referred redirects yielded 134 verified official PDF file signatures; three VR lens manual entries are explicitly named on the shared Canon EOS VR SYSTEM page. Separately named mixed-model anchors and adapters are excluded from this **bounded scope**; this is not Canon-wide completion. Evidence manifest: `coverage-passes/canon/jp-lens-manual-index-2026.json`; publicly indexed records: `data/manuals.coverage-pass.canon-jp-lens.js`. Each record qualifies for the existing reviewed exact Canon model Amazon search; interchangeable lenses are excluded from camera-body battery/charger detail requirements rather than inventing compatibility.

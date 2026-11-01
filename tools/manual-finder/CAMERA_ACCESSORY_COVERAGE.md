@@ -8,16 +8,16 @@ This document is the audited baseline for compatibility-sensitive camera battery
 
 | Metric | Audited value |
 | --- | ---: |
-| Canonical `カメラ・映像` records | **382** |
-| Camera records with a basic Amazon path | **375** |
+| Canonical `カメラ・映像` records | **519** |
+| Camera records with a basic Amazon path | **512** |
 | Camera records with verified accessory detail | **193** |
-| Reviewed camera-detail exclusions | **33** |
+| Reviewed camera-detail exclusions | **170** |
 | Actionable camera records still missing accessory detail | **149** |
 | Non-actionable camera maker-index records | **7** |
 
 Required reconciliation:
 
-`camera basic 375 = detail 193 + reviewed exclusion 33 + missing 149`
+`camera basic 512 = detail 193 + reviewed exclusion 170 + missing 149`
 
 The active detail ledger contains 14 Nikon, 70 DJI, 37 OM SYSTEM, 12 GoPro, 38 Fujifilm, and 22 Sony verified camera detail rows. Twenty-six DJI rows and seven GoPro rows are evidence-backed reviewed exclusions. The audit now loads the same published coverage-pass batches as the runtime: Sony adds 107 actionable camera rows, Panasonic adds 27, and Fujifilm adds 56. Those 190 rows already have generic exact-model Amazon searches. This batch adds two confirmed battery/charger searches to 38 Fujifilm rows; all remaining compatibility-sensitive rows stay counted as missing.
 
@@ -25,6 +25,7 @@ The active detail ledger contains 14 Nikon, 70 DJI, 37 OM SYSTEM, 12 GoPro, 38 F
 
 | Maker | Basic | Detail | Reviewed exclusion | Missing |
 | --- | ---: | ---: | ---: | ---: |
+| Canon | 137 | 0 | 137 | 0 |
 | Sony | 107 | 22 | 0 | 85 |
 | DJI | 96 | 70 | 26 | 0 |
 | Fujifilm | 56 | 38 | 0 | 18 |
@@ -398,3 +399,7 @@ The current baseline is not complete: `149` actionable records remain missing ac
 ## Sony official battery and charger mappings (2026-11-01)
 
 22 exact canonical Sony cameras gain 44 tagged Amazon accessory-search handoffs: 16 `NP-FZ100` / `BC-QZ1`, and 6 `NP-FW50` / `BC-TRW`. Explicit model-level evidence comes from Sony's USB-PD support article (12 exact cameras, excluding ILCE-7RM6 because its battery is NP-SA100), Sony's camera compatibility pages (ILCE-7M3, ILCE-7RM3, ILCE-7RM4), Sony's BC-QZ1 accessory page (ILCE-9), and Sony's NP-FW50 accessory compatibility page (five named cameras plus ILCE-6000 verified separately). Manufacturer evidence: https://support.sony.jp/electronics/support/a-mount-body-slt-a50-series/slt-a57/articles/00301779 ; https://www.sony.jp/ichigan/products/BC-QZ1/ ; https://www.sony.jp/ichigan/products/NP-FW50/compatible.html ; https://www.sony.jp/ichigan/products/ILCE-6000/compatible.html ; and exact-camera source URLs in `affiliate-sony-camera-accessories-bulk.js`. This batch adds no new manual records, and no kit/variant models are inferred. Product search is not inventory or revenue evidence.
+
+### Canon interchangeable lenses (2026-11-01)
+
+The official Canon JP lens-manual index supplied 137 new **lens** records with valid exact-model Amazon search handoffs. Lenses are not battery-powered camera bodies: all 137 are explicitly reviewed and excluded from the camera **body battery/charger** detail backlog with evidence from their individual official lens manual-index anchors. This changes camera-category Amazon basics from 375 to 512 and exclusions from 33 to 170, but **does not change** the 193 supported camera-body detail mappings or the 149 remaining camera-body compatibility gaps. These 137 lens exclusion records are included in `affiliate-camera-detail-exclusions.js`. No battery, lens/body compatibility, or filter-thread applicability is assumed.
