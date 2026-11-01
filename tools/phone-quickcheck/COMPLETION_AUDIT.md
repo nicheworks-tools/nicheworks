@@ -152,6 +152,10 @@ Phone QuickCheck v1 is complete under the maintained contract:
 
 Future work is maintenance: new models, source changes, corrections, and evidence upgrades. It is not part of the v1 closure backlog.
 
+## Post-v1 maintenance Wave 29 — 2026-11-02
+
+Extended the independently executed public Cloudflare Pages Chrome workflow to the 5-model Wave28 backfill. The script already checks the **entire public phones.json and accessories.json are deep-equal to canonical GitHub data**, validates the **22 accessory categories**, 5 viewport layout, JA/EN search, sheets and Amazon tags. Now additionally assert all new model IDs, years, mAh, **RX's cable included** vs others' no-cable package, no AC brick, no invented PD/PPS/charging max and RX's source-backed Qi negative. At **320/390/414/768/1280px** Chrome searches/selects **all five new models**, verifies actual battery display, no false PPS/PD class, and two correctly tagged Amazon accessories per model with mobile sheet close. The 232-phone public rollout is not accepted until actual public smoke is green.
+
 ## Post-v1 maintenance Wave 28 — 2026-11-02
 
 Catalogue expansion continued, with five more historically marketed **Japan** FCNT phones from original Fujitsu/FMWORLD manufacturer product and *specific standard-package* pages. Data **227 → 232 phones**, FCNT **12 → 17**, still 11 manufacturers / 36 foldables / old 181-phone V1 closure unchanged.
