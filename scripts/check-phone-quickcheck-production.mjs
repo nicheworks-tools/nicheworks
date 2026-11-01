@@ -61,6 +61,24 @@ async function httpSmoke(){
   assert.equal(cmf1.charging?.wiredMaxW,33,'CMF Phone 1 33W missing');
   assert.equal(cmf1.charging?.pps,'supported','CMF Phone 1 primary-sourced PPS missing');
   assert.deepEqual(cmf1.physicalVariants?.map(v=>[v.depthMm,v.weightG]),[[8,197],[9,202]],'CMF Phone 1 exact variant pair mismatch');
+  // FCNT Wave 22: exact-model manufacturer facts, and no invented charging max/adapter wattage.
+  const expectedFcnt=[
+    ['fcnt-arrows-we3-m09',2026,5000,'USB PD 3.0'],
+    ['fcnt-arrows-n-f51c',2023,4600,'USB PD 2.0'],
+    ['fcnt-arrows-we-f51b',2021,4000,'USB PD 3.0'],
+    ['fcnt-arrows-nx9-f52a',2020,3600,'USB PD 2.0']
+  ];
+  for(const [id,year,battery,pd] of expectedFcnt){
+    const phone=live.find(p=>p.id===id);
+    assert.ok(phone,'Public FCNT model missing: '+id);
+    assert.equal(phone.releaseYear,year,id+' release year mismatch');
+    assert.equal(phone.charging?.battery?.capacityMah,battery,id+' battery mismatch');
+    assert.ok(phone.charging?.protocols?.includes(pd),id+' primary-source USB PD revision missing');
+    assert.equal(phone.included?.adapter,'not_included',id+' excluded AC adapter mismatch');
+    assert.equal(phone.included?.cable,'not_included',id+' excluded cable mismatch');
+    assert.equal(phone.charging?.wiredMaxW,null,id+' handset max W must remain unknown');
+    assert.equal(phone.charging?.pps,'unknown',id+' PPS must remain unknown');
+  }
   assert.ok(Array.isArray(JSON.parse(data['data/accessories.json']).accessories),'Accessories JSON missing');
   console.log('HTTP PASS: '+count+' verified public phones, assets and latest records');
 }
@@ -164,6 +182,10 @@ async function browserSmoke(){
       const cmfRender=await evalJs('(()=>{const input=document.querySelector("#searchInput");input.value="CMF Phone 1";input.dispatchEvent(new Event("input",{bubbles:true}));const row=document.querySelector(".phone-row[data-phone-id=nothing-cmf-phone-1]");if(!row)return {found:false};row.click();const mobile=matchMedia("(max-width: 900px)").matches;const detail=document.querySelector(mobile?"#sheetDetail":"#desktopDetail").textContent;return {found:true,mobile,standard:detail.includes("8 mm / 197 g")&&detail.includes("Black / Light Green"),vegan:detail.includes("9 mm / 202 g")&&detail.includes("Orange (vegan leather)")};})()');
       assert.ok(cmfRender.found&&cmfRender.standard&&cmfRender.vegan,width+'px CMF Phone 1 variant pairs not rendered: '+JSON.stringify(cmfRender));
       if(cmfRender.mobile) await evalJs('document.querySelector("#sheetClose").click()');
+      // FCNT We3 live user journey: search, select, manufacturer-backed PD revision, mobile close.
+      const fcntRender=await evalJs('(()=>{const input=document.querySelector("#searchInput");input.value="arrows We3 M09";input.dispatchEvent(new Event("input",{bubbles:true}));const row=document.querySelector(".phone-row[data-phone-id=fcnt-arrows-we3-m09]");if(!row)return {found:false};row.click();const mobile=matchMedia("(max-width: 900px)").matches;const detail=document.querySelector(mobile?"#sheetDetail":"#desktopDetail").textContent;return {found:true,mobile,model:detail.includes("arrows We3 M09"),pd:detail.includes("USB PD 3.0")};})()');
+      assert.ok(fcntRender.found&&fcntRender.model&&fcntRender.pd,width+'px FCNT We3 M09 search/detail or PD rendering failed: '+JSON.stringify(fcntRender));
+      if(fcntRender.mobile) await evalJs('document.querySelector("#sheetClose").click()');
       console.log('Chrome PASS: '+width+'px, no overflow, search, JP/EN, '+(jp.mobile?'mobile sheet':'desktop detail'));
     }
   }finally{
