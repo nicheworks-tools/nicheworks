@@ -36,5 +36,32 @@
     "status": "active",
     "language": "ja",
     "fiscal_year": "2026"
+  },
+  {
+    "pref": "北海道",
+    "city": "函館市",
+    "name": "家庭ごみの分け方・出し方",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.city.hakodate.hokkaido.jp/docs/2014011600737/",
+    "lgcode": "012025",
+    "last_checked": "2026-11-01",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "収集日は地域別。戸井・恵山・椴法華・南茅部支所管内は排出時刻が異なる"
+  },
+  {
+    "pref": "北海道",
+    "city": "室蘭市",
+    "name": "令和8年度 家庭系ごみ・資源物・危険ごみ収集カレンダー",
+    "type": "ごみ収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.city.muroran.lg.jp/life/?content=3942",
+    "lgcode": "012050",
+    "last_checked": "2026-11-01",
+    "status": "active",
+    "language": "ja",
+    "fiscal_year": "2026",
+    "scope_note": "2026年4月～2027年3月の公式カレンダー"
   }
 ]
