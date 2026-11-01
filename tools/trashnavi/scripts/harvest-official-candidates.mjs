@@ -25,7 +25,7 @@ export function extract(html,base,host){
 }
 export function pendingSlice(ledger,gov,shard,size){
   const homes=new Map(gov.map(x=>[String(x.lgcode),x.url]));
-  return ledger.municipalities.filter(x=>x.coverage_state==='pending_review').slice(shard*size,(shard+1)*size).map(x=>({lgcode:String(x.lgcode),pref:x.pref,municipality:x.municipality,official_home:homes.get(String(x.lgcode))||null}));
+  return ledger.municipalities.slice(shard*size,(shard+1)*size).filter(x=>x.coverage_state==='pending_review').map(x=>({lgcode:String(x.lgcode),pref:x.pref,municipality:x.municipality,official_home:homes.get(String(x.lgcode))||null}));
 }
 export function allowed(robots,p){
   const restrictions=[],lines=String(robots||'').split(/\r?\n/);

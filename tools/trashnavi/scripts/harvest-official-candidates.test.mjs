@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import {extract,pendingSlice,allowed} from './harvest-official-candidates.mjs';
 
 test('only same official host candidate links are extracted',()=>{
@@ -22,7 +23,32 @@ test('only pending municipalities selected and original ledger not modified',()=
   {lgcode:'012106',pref:'北海道',municipality:'岩見沢市',coverage_state:'pending_review'}
  ]};
  const gov=[{lgcode:'012084',url:'https://www.city.kitami.lg.jp/'},{lgcode:'012106',url:'https://www.iwamizawa.jp/'}];
- assert.deepEqual(pendingSlice(ledger,gov,0,1).map(x=>x.lgcode),['012084']);
- assert.deepEqual(pendingSlice(ledger,gov,1,1).map(x=>x.lgcode),['012106']);
+ assert.deepEqual(pendingSlice(ledger,gov,0,1).map(x=>x.lgcode),[]);
+ assert.deepEqual(pendingSlice(ledger,gov,1,1).map(x=>x.lgcode),['012084']);
+ assert.deepEqual(pendingSlice(ledger,gov,2,1).map(x=>x.lgcode),['012106']);
  assert.equal(ledger.municipalities[1].coverage_state,'pending_review');
+});
+
+test('fixed ledger shards remain stable as municipalities are reviewed',()=>{
+ const ledger={municipalities:[
+  {lgcode:'01',coverage_state:'pending_review'},
+  {lgcode:'02',coverage_state:'pending_review'},
+  {lgcode:'03',coverage_state:'limited'},
+  {lgcode:'04',coverage_state:'pending_review'},
+  {lgcode:'05',coverage_state:'pending_review'}
+ ]};
+ const gov=ledger.municipalities.map(x=>({lgcode:x.lgcode,url:'https://www.example.jp/'}));
+ assert.deepEqual(pendingSlice(ledger,gov,0,2).map(x=>x.lgcode),['01','02']);
+ assert.deepEqual(pendingSlice(ledger,gov,1,2).map(x=>x.lgcode),['04']);
+ assert.deepEqual(pendingSlice(ledger,gov,2,2).map(x=>x.lgcode),['05']);
+ ledger.municipalities[0].coverage_state='limited';
+ assert.deepEqual(pendingSlice(ledger,gov,1,2).map(x=>x.lgcode),['04']);
+ assert.deepEqual(pendingSlice(ledger,gov,2,2).map(x=>x.lgcode),['05']);
+});
+
+test('workflow interpolates GitHub expressions and covers all full-ledger shards',()=>{
+ const workflow=fs.readFileSync(new URL('../../../.github/workflows/harvest-trashnavi-official-candidates.yml',import.meta.url),'utf8');
+ assert.doesNotMatch(workflow,/\$\{\s+(?:inputs|steps|secrets)\./);
+ assert.match(workflow,/\$\{\{ inputs\.shard \}\}/);
+ assert.match(workflow,/SHARD_COUNT/);
 });
