@@ -36,7 +36,13 @@
       "dj": "部材間の動きや水密性に対応するため、シーリング材を充填して仕上げる目地。\n外壁、建具周り、内装取合いなどで部材間の動きを吸収し、水・空気の侵入を抑えるためにシーリング材を充填して形成する目地。目地幅・深さ、二面接着、下地清掃、プライマー、バックアップ材を仕様に合わせる。",
       "de": "A joint filled with sealant to accommodate movement and provide weather or water resistance between building elements.\nJoint formed with sealant between building elements to accommodate movement and limit water or air penetration around facades, openings, and interior interfaces. Joint width and depth, two-sided adhesion, substrate preparation, primer, and backing must follow the specified system.",
       "c": "sealing",
-      "task": "seal_joint"
+      "task": "seal_joint",
+      "aj": [
+        "コーキング目地"
+      ],
+      "ae": [
+        "Sealant-filled joint"
+      ]
     },
     {
       "id": "q017_rubber_mallet",
@@ -62,7 +68,13 @@
       "dj": "粗い刃で木材を削り、形状や曲面を整える手工具。\n木材の端部や曲面を粗く削って形を整えるための手工具。目の粗さ、断面形状、刃長を加工量や曲率に合わせて選び、仕上げ前の荒取りや局部調整に使う。",
       "de": "A coarse hand file used to remove wood and shape edges or curved surfaces.\nHand tool with coarse cutting teeth used to remove wood and shape edges or curves. Tooth coarseness, profile, and cutting length are selected to match the amount of stock removal and surface geometry.",
       "c": "woodworking",
-      "task": "shape_wood"
+      "task": "shape_wood",
+      "aj": [
+        "木工用粗目やすり"
+      ],
+      "ae": [
+        "Woodworking rasp"
+      ]
     },
     {
       "id": "q017_needle_nose_pliers",
@@ -121,7 +133,13 @@
       "dj": "結束バンドを所定の張力で締め、余長を切断する工具。\n結束バンドを設定した張力で締め付け、余ったテールを切断する工具。バンド幅・材質への適合、張力調整範囲、切断面の仕上がりを確認して配線束や軽量部材の結束に使う。",
       "de": "A tool used to tension cable ties consistently and trim the excess tail.\nTool used to tension cable ties to a set level and cut off the excess tail. Tie width, material compatibility, tension range, and cut quality should match the wiring or light-duty bundling application.",
       "c": "electrical",
-      "task": "tighten_cable_tie"
+      "task": "tighten_cable_tie",
+      "aj": [
+        "ケーブルタイ工具"
+      ],
+      "ae": [
+        "Cable tie tensioning tool"
+      ]
     },
     {
       "id": "q017_pipe_threader",
@@ -131,7 +149,13 @@
       "dj": "配管端部に接続用のねじを加工する工具または機械。\n鋼管などの管端へ接続用ねじを加工する手動または電動のねじ切り工具・機械。管径、ねじ規格、ダイヘッド、切削油、管固定方法を合わせて使用する。",
       "de": "A tool or machine used to cut connection threads on the end of pipe.\nManual or powered tool or machine used to cut connection threads on pipe ends such as steel pipe. Pipe size, thread standard, die head, cutting oil, and workholding method must be matched to the job.",
       "c": "plumbing",
-      "task": "thread_pipe"
+      "task": "thread_pipe",
+      "aj": [
+        "配管ねじ切り機"
+      ],
+      "ae": [
+        "Pipe threading machine"
+      ]
     },
     {
       "id": "q017_pipe_deburrer",
@@ -141,7 +165,13 @@
       "dj": "切断した配管端部のバリを除去し、内外周を整える工具。\n切断後の配管端部に残る内外周のバリを除き、面取りして整える工具。管材と径に適合する刃を使い、継手挿入や流路を妨げる鋭い突起を除去する。",
       "de": "A tool used to remove burrs and dress the inside or outside edge of cut pipe.\nTool used to remove burrs and chamfer the inside or outside edge of cut pipe. The cutter must suit the pipe material and diameter so sharp projections are removed without damaging the end profile.",
       "c": "plumbing",
-      "task": "deburr_pipe"
+      "task": "deburr_pipe",
+      "aj": [
+        "配管バリ取り器"
+      ],
+      "ae": [
+        "Pipe deburring tool"
+      ]
     },
     {
       "id": "q017_copper_pipe",
@@ -199,7 +229,13 @@
       "dj": "同一方向の配管同士を接続する筒形の継手。\n同一方向に並ぶ2本の配管を直線的に接続する筒形継手。管材、径、ねじ・差込・圧着などの接続方式、使用圧力を既設・新設配管に合わせる。",
       "de": "A sleeve-like fitting used to join two aligned sections of pipe.\nSleeve-like fitting used to join two aligned sections of pipe in a straight run. Pipe material, size, threaded, socket, press, or other connection method, and service rating must match both sides.",
       "c": "plumbing",
-      "task": "join_pipe"
+      "task": "join_pipe",
+      "aj": [
+        "管用ソケット継手"
+      ],
+      "ae": [
+        "Pipe coupler"
+      ]
     },
     {
       "id": "q017_ceiling_runner",
@@ -257,7 +293,13 @@
       "dj": "頭部に輪を設け、吊り具や引張り材の取付点として使うボルト。ねじの呼び径、埋込長さ、取付母材、荷重方向、許容荷重を確認し、吊り上げに使う場合はその用途に適合した定格品を使用する。輪付きボルトすべてが吊り荷用とは限らない。",
       "de": "A threaded bolt with a looped eye used as an attachment point for a line, connector, or lifting equipment. Thread engagement, supporting material, load direction, and rated capacity must suit the application. Not every general-purpose eye bolt is approved for overhead lifting.",
       "c": "fastening",
-      "task": "provide_attachment_point"
+      "task": "provide_attachment_point",
+      "aj": [
+        "輪付きボルト"
+      ],
+      "ae": [
+        "Eyebolt fastener"
+      ]
     },
     {
       "id": "q017_conduit_coupling",
@@ -267,7 +309,13 @@
       "dj": "同径の電線管同士を直線的に接続する継手。\n同径の電線管同士を直線的に接続するための継手。電線管の種類、呼び径、ねじ・差込・圧着などの接続方式、必要な保護等級や接地条件を合わせて選ぶ。",
       "de": "A fitting used to join two conduit sections of the same size in line.\nFitting used to join two conduit sections of the same size in line. Conduit type, trade size, threaded, set-screw, compression, or other connection method, and any enclosure or grounding requirements must match the installation.",
       "c": "electrical",
-      "task": "join_conduit"
+      "task": "join_conduit",
+      "aj": [
+        "電線管用カップリング"
+      ],
+      "ae": [
+        "Electrical conduit coupling"
+      ]
     },
     {
       "id": "q017_conduit_connector",
@@ -277,7 +325,13 @@
       "dj": "電線管をボックスや盤などの開口部へ接続・固定する継手。\n電線管をボックス、盤、エンクロージャーなどの開口部へ接続・固定する継手。管種、呼び径、ノックアウト径、接続方式、シール性や接地条件を確認して選定する。",
       "de": "A fitting used to secure conduit to an electrical box, enclosure, or panel opening.\nFitting used to secure conduit to an electrical box, panel, or enclosure opening. Conduit type, trade size, knockout size, connection method, sealing, and grounding requirements must be compatible.",
       "c": "electrical",
-      "task": "connect_conduit_to_box"
+      "task": "connect_conduit_to_box",
+      "aj": [
+        "電線管接続コネクタ"
+      ],
+      "ae": [
+        "Conduit fitting connector"
+      ]
     },
     {
       "id": "q017_switch_plate",
@@ -303,7 +357,13 @@
       "dj": "盤内や設備内で電線をまとめ、保護しながら経路を整える配線用ダクト。\n盤内や設備内で電線をまとめ、保護しながら配線経路を整えるダクト。収納量、幅・高さ、スロット形状、材質、難燃性、蓋の有無を配線量と盤内レイアウトに合わせる。",
       "de": "A duct used to organize, route, and protect wiring inside panels or equipment.\nDuct used to organize, route, and protect wiring inside panels or equipment. Capacity, width, height, slot pattern, material, flame properties, and cover style should match the cable volume and panel layout.",
       "c": "electrical",
-      "task": "route_wiring"
+      "task": "route_wiring",
+      "aj": [
+        "配線用ダクト"
+      ],
+      "ae": [
+        "Wiring duct"
+      ]
     },
     {
       "id": "q017_barricade_bar",
@@ -313,7 +373,13 @@
       "dj": "立入制限や通行止め範囲を示すために設置する横桟状の安全部材。\n立入禁止や通行制限範囲を視覚的に示し、作業区画を区切る横桟状の安全部材。長さ、視認性、支持方法、屋内外条件、周辺の人流に合わせて設置する。",
       "de": "A horizontal barricade member used to mark or block a restricted work area.\nHorizontal barricade member used to mark or block a restricted work area. Length, visibility, support method, indoor or outdoor conditions, and pedestrian flow should be considered when setting it up.",
       "c": "safety",
-      "task": "restrict_access"
+      "task": "restrict_access",
+      "aj": [
+        "立入禁止バー"
+      ],
+      "ae": [
+        "Safety barricade bar"
+      ]
     },
     {
       "id": "q017_rotary_laser",
@@ -381,7 +447,13 @@
       "dj": "手作業で面を研磨・ならすためのブロック状研磨材。\n手作業で面を研磨・ならすブロック状の研磨材。粒度、砥粒種類、硬さ、形状を素材と必要な仕上がりに合わせ、木材、塗膜、パテ、金属などの局部研磨に使う。",
       "de": "A block-shaped abrasive used by hand to sand, smooth, or dress a surface.\nBlock-shaped abrasive used by hand to sand, smooth, or dress surfaces. Grit size, abrasive type, hardness, and shape are selected for the material and required finish on wood, coatings, filler, metal, and similar surfaces.",
       "c": "finishing",
-      "task": "abrade_surface"
+      "task": "abrade_surface",
+      "aj": [
+        "手研磨ブロック"
+      ],
+      "ae": [
+        "Sanding block"
+      ]
     },
     {
       "id": "q017_adhesive_spreader",
@@ -391,7 +463,13 @@
       "dj": "床材などの施工時に接着剤を所定の厚さへ広げるヘラ。\n床材などの施工で接着剤を所定の量・厚さへ広げるためのヘラやスプレッダー。刃幅、ノッチ形状、ノッチ寸法、接着剤との適合を施工仕様に合わせて選ぶ。",
       "de": "A hand spreader used to distribute flooring or construction adhesive to the required thickness.\nHand spreader or trowel used to distribute flooring or construction adhesive at the required coverage and thickness. Blade width, notch shape, notch size, and adhesive compatibility should follow the installation specification.",
       "c": "flooring",
-      "task": "spread_adhesive"
+      "task": "spread_adhesive",
+      "aj": [
+        "接着剤塗布ヘラ"
+      ],
+      "ae": [
+        "Glue spreader"
+      ]
     },
     {
       "id": "q017_flooring_pull_bar",
@@ -401,7 +479,13 @@
       "dj": "壁際など叩き込みにくい場所で床材を引き寄せて接合する金具。\n壁際など直接打撃しにくい場所で、床材の端部へ掛けて接合部を引き寄せる金具。床材厚さ、端部形状、当て面、必要な引寄せ力に合う形状を選ぶ。",
       "de": "A metal pull bar used to draw flooring joints together near walls or other hard-to-strike edges.\nMetal pull bar used to draw flooring joints together near walls and other places where direct tapping is difficult. Bar geometry, contact face, flooring thickness, edge profile, and required pulling force should suit the flooring system.",
       "c": "flooring",
-      "task": "pull_flooring_joint"
+      "task": "pull_flooring_joint",
+      "aj": [
+        "フロア施工用引き寄せ金具"
+      ],
+      "ae": [
+        "Flooring pull tool"
+      ]
     },
     {
       "id": "q017_floor_edge_pad",
@@ -411,7 +495,13 @@
       "dj": "床材の端部を叩いて調整するときに直接の打撃を避け、端部を保護する当て材。\n床材端部を叩いて位置調整する際、直接の打撃を避けて端部やロック形状を保護する当て材。床材の形状や硬さに合う接触面を選び、打撃を分散させて使う。",
       "de": "A protective pad or block placed against a flooring edge so it can be adjusted without direct impact damage.\nProtective pad or block placed against a flooring edge so it can be tapped into position without direct impact damage. Contact shape and hardness should suit the flooring profile and distribute impact away from vulnerable edges.",
       "c": "flooring",
-      "task": "protect_floor_edge"
+      "task": "protect_floor_edge",
+      "aj": [
+        "床材当て木"
+      ],
+      "ae": [
+        "Flooring tapping block"
+      ]
     },
     {
       "id": "q017_formwork_panel",
@@ -453,7 +543,13 @@
       "dj": "型枠部材を所定位置で締め付け、組立状態を保持するクランプ。\n型枠部材を所定位置で締め付け、組立状態を保持するためのクランプ。型枠方式、把持範囲、許容荷重、締付け機構を確認し、せき板・桟木・鋼製部材など対象に合う形式を使う。",
       "de": "A clamp used to tighten and hold formwork members in their required assembled position.\nClamp used to tighten and hold formwork members in their required assembled position. Clamping range, rated load, mechanism, and compatibility with the formwork system should match the panels, walers, or framing being secured.",
       "c": "formwork",
-      "task": "clamp_formwork"
+      "task": "clamp_formwork",
+      "aj": [
+        "型枠締付クランプ"
+      ],
+      "ae": [
+        "Formwork clamp"
+      ]
     },
     {
       "id": "q017_flooring_roller",
@@ -463,7 +559,13 @@
       "dj": "床シートや床材を均一に押さえ、接着面を圧着するためのローラー。\n床シートやタイルなどを接着剤へ均一に圧着し、浮きや空気残りを減らすためのローラー。床材と接着剤の施工仕様に合わせてローラー幅、重量、押圧方法を選ぶ。",
       "de": "A roller used to press flooring evenly and consolidate its bonded contact with adhesive.\nRoller used to press sheet flooring, tiles, and similar finishes evenly into adhesive, reducing trapped air and poor contact. Roller width, weight, and rolling procedure should follow the flooring and adhesive installation requirements.",
       "c": "flooring",
-      "task": "press_flooring"
+      "task": "press_flooring",
+      "aj": [
+        "床圧着ローラー"
+      ],
+      "ae": [
+        "Flooring pressure roller"
+      ]
     },
     {
       "id": "q017_ceiling_hanger",
