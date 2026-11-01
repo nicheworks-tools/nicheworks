@@ -1,15 +1,15 @@
 {
   "schemaVersion": "nicheworks-non-affiliate-scope-v1",
-  "updated": "2026-09-19",
-  "registryTotal": 88,
+  "updated": "2026-11-02",
+  "registryTotal": 89,
   "excludedClass": "AFFILIATE",
   "excludedCount": 20,
-  "inScopeCount": 68,
+  "inScopeCount": 69,
   "source": "MONETIZATION_CLASSIFICATION.json",
   "counts": {
     "PRO_BUNDLE": 42,
     "STANDALONE_PRO": 1,
-    "ADS_DONATION": 23,
+    "ADS_DONATION": 24,
     "FREE": 0,
     "HOLD": 2
   },
@@ -78,6 +78,7 @@
       "motion-atlas",
       "pages-deploy-guide",
       "redirect-unwrapper",
+      "screenshot-canvas",
       "size-converter",
       "sukima-baito-income",
       "tiny-audio-meter",
