@@ -1,9 +1,14 @@
 "use strict";
-const assert=require("node:assert/strict");
+const assert=require("node:assert/strict"),fs=require("node:fs"),path=require("node:path");
 const {runPublicLoader}=require("./audit-public-image-inventory-v2.3.cjs");
 (async()=>{
  const runtime=await runPublicLoader();
- const ids=new Set(),pending=[],maintained=[];
+ const overlay=JSON.parse(fs.readFileSync(path.join(__dirname,"..","data","definition-promotions-v2.3.json"),"utf8"));
+ assert.equal(overlay.schema,"cta-definition-promotions-v2.3");
+ assert.equal(overlay.entries.length,145,"145 individually identified public canonical definitions expected");
+ const rows=new Map(overlay.entries.map(row=>[row.id,row]));
+ assert.equal(rows.size,145,"duplicate promoted canonical id");
+ const ids=new Set(),pending=[],maintained=[],promoted=[];
  for(const entry of runtime.entries){
   const id=entry.id;
   assert(id&&!ids.has(id),"duplicate/invalid public canonical "+id);
@@ -14,25 +19,31 @@ const {runPublicLoader}=require("./audit-public-image-inventory-v2.3.cjs");
   const detailEn=entry.detail_en||entry.detail?.en||"";
   if(/^q0(?:11|12|13|14|15|16|17)_/.test(id)){
    maintained.push(id);
-   assert(ja.length>=80,id+": active compact source JA definition is still superficial");
-   assert(en.length>=150,id+": active compact source EN definition is still superficial");
+   assert(ja.length>=80,id+": compact source JA definition is superficial");
+   assert(en.length>=150,id+": compact source EN definition is superficial");
    assert(detailJa&&detailEn,id+": reviewed explanatory source missing");
-  }else if((ja.length<60&&detailJa.length>=65&&!detailJa.includes(ja))||
-           (en.length<135&&detailEn.length>=125&&!detailEn.includes(en))){
-   pending.push({id, ja, en, detailJa, detailEn, nameJa:entry.term?.ja||"", nameEn:entry.term?.en||""});
+  }
+  if((ja.length<60&&detailJa.length>=65&&!detailJa.includes(ja))||
+     (en.length<135&&detailEn.length>=125&&!detailEn.includes(en)))pending.push(id);
+  if(rows.has(id)){
+   const patch=rows.get(id);
+   assert.equal(ja,patch.definition_ja,id+": promoted Japanese source differs");
+   assert.equal(en,patch.definition_en,id+": promoted English source differs");
+   assert(entry.summary?.ja || entry.summary_ja,id+": concise browse summary lost");
+   assert.equal(entry.meta?.definition_promotion_version,overlay.version,id+": provenance lost");
+   promoted.push(id);
   }
  }
- assert.equal(ids.size,870,"published-canonical count must stay fixed during definition work");
- assert.equal(maintained.length,511,"active q011-q017 canonical count changed");
-
- if(true){
-   for(let i=0;i<pending.length;i+=8){
-     console.log("CTA_PENDING_SOURCE_"+String(Math.floor(i/8)).padStart(2,"0")+"="+JSON.stringify(pending.slice(i,i+8)));
-   }
- }
+ assert.equal(ids.size,870,"public canonical set must remain 870");
+ assert.equal(maintained.length,511,"active compact canonical count changed");
+ assert.equal(promoted.length,145,"definition overlay is missing active targets");
+ assert.equal(pending.length,0,"still short despite maintained explanatory source: "+pending.join(", "));
+ assert.equal(runtime.diagnostics.definitionPromotionsApplied,145,"loader did not apply all definitions");
+ assert.equal(runtime.diagnostics.definitionPromotionsSourceDrift,0,"definition source was changed unexpectedly");
+ assert.equal(runtime.diagnostics.definitionPromotionsMissingTargets,0,"overlay targets nonpublic id");
+ assert.deepEqual(runtime.diagnostics.definitionPromotionsProblems,[],"definition overlay reports validation problems");
  console.log("Construction Atlas dictionary substantive source: PASS "+JSON.stringify({
   publicCanonicals:ids.size,maintainedCompactCanonicals:maintained.length,
-  compactCanonicalsWithSubstantiveBilingualDefinitions:maintained.length,
-  otherCanonicalsWithShortDefinitionsAndRichNotes:pending.length
+  promotedSourceBackedDefinitions:promoted.length,remainingShortWithRichNotes:pending.length
  }));
 })().catch(e=>{console.error(e.stack);process.exitCode=1});
