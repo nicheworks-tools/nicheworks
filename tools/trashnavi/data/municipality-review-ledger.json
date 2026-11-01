@@ -228,12 +228,12 @@
       "lgcode": "012211",
       "pref": "北海道",
       "municipality": "名寄市",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
-      "service_provider": null,
-      "review_note": null
+      "coverage_state": "joint_service",
+      "reviewed_at": "2026-11-01",
+      "qualifying_source_count": 1,
+      "distinct_link_type_count": 1,
+      "service_provider": "名寄地区衛生施設事務組合",
+      "review_note": "Official current waste-specific source reviewed 2026-11-01. Joint municipal processor directly confirms municipality service jurisdiction. Only limited official evidence available; do not infer comprehensive FY2026 district collection rules."
     },
     {
       "lgcode": "012220",
@@ -470,12 +470,12 @@
       "lgcode": "013439",
       "pref": "北海道",
       "municipality": "鹿部町",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "limited",
+      "reviewed_at": "2026-11-01",
+      "qualifying_source_count": 1,
+      "distinct_link_type_count": 1,
       "service_provider": null,
-      "review_note": null
+      "review_note": "Official current waste-specific source reviewed 2026-11-01. Only limited official evidence available; do not infer comprehensive FY2026 district collection rules."
     },
     {
       "lgcode": "013455",
@@ -503,12 +503,12 @@
       "lgcode": "013471",
       "pref": "北海道",
       "municipality": "長万部町",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "limited",
+      "reviewed_at": "2026-11-01",
+      "qualifying_source_count": 1,
+      "distinct_link_type_count": 1,
       "service_provider": null,
-      "review_note": null
+      "review_note": "Official current waste-specific source reviewed 2026-11-01. Only limited official evidence available; do not infer comprehensive FY2026 district collection rules."
     },
     {
       "lgcode": "013617",
