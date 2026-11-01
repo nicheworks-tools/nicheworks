@@ -45,16 +45,19 @@ The standardized symbol meaning, the physical garment label, manufacturer instru
 - Group symbols into Wash, Bleach, Dry, Iron, and Professional UI categories while preserving the seven-table canonical classification in the data contract.
 - Search by Japanese/English meaning, internal ID, professional-care letter, temperature where applicable, and official JIS symbol number.
 - Keep a crawlable static overview of the five basic care-symbol shapes, official reading order, seven-table/43-symbol scope, and representative symbol-number examples so the core meaning is available before JavaScript renders the interactive grid.
+- Publish an in-page static index of exactly the canonical 43 JIS numbers with Japanese/English summaries and clickable `?jis=NNN` deep links, rather than adding separate duplicate pages.
 - Show a bilingual meaning and official symbol number when a symbol is selected.
 - Provide an experimental photo candidate search by comparing an uploaded image with the local SVG templates.
 - Photo candidate search is not OCR and is not an authoritative automatic classifier.
 - Process the uploaded photo locally in the browser. No photo content is uploaded by this tool.
 - Allow copying the selected result and standard/safety context.
+- Restore a selected canonical symbol from the `jis` URL query parameter and allow copying its stable tool URL. Ignore missing, malformed, or unknown numbers.
 
 ## Inputs
 
 - Care-symbol category and selected symbol.
 - Optional search text or official symbol number.
+- Optional three-digit canonical `?jis=` URL parameter (no user-entered text is included in links).
 - Optional local image for experimental candidate comparison.
 - UI language.
 
@@ -63,6 +66,7 @@ The standardized symbol meaning, the physical garment label, manufacturer instru
 - Selected symbol meaning in Japanese or English.
 - JIS symbol number.
 - Up to three visual candidates for the experimental photo comparison.
+- A shareable link to the selected JIS symbol, with the same normal garment-label cautions.
 
 ## State and persistence
 
@@ -111,6 +115,9 @@ The symbol grid and result areas reflow for narrow screens while retaining usabl
 - [ ] P/F professional dry-clean records never use the very-gentle two-line modifier.
 - [ ] Natural-dry one/two line geometry and shade marker are distinguishable.
 - [ ] Search accepts official symbol numbers such as `141` and `511`.
+- [ ] The static index exposes exactly the canonical 43 JIS numbers and bilingual meanings, without duplicates or invented treatment advice.
+- [ ] `?jis=141` loads the matching canonical symbol, a share button copies only the fixed URL plus the whitelisted JIS number, and unknown/malformed numbers do nothing.
+- [ ] General Amazon accessory links remain independent of symbol choice and are shown after the 43-number reference but before FAQ.
 - [ ] Public H1 and static overview describe the page as a guide to the meaning of laundry care symbols and expose the basic symbol families without requiring the JavaScript grid.
 - [ ] Selecting a symbol displays its meaning and official symbol number.
 - [ ] Photo candidate search compares only against the canonical 43-symbol set.
@@ -126,4 +133,5 @@ The symbol grid and result areas reflow for narrow screens while retaining usabl
 - `tools/laundry-code-decode/app.js`
 - `tools/laundry-code-decode/style.css`
 - `tools/laundry-code-decode/affiliate-config.js`
+- `tools/laundry-code-decode/tests/behavior.test.mjs`
 - `tools/laundry-code-decode/tests/behavior.test.mjs`
