@@ -21,7 +21,7 @@ Required printer reconciliation:
 
 The camera accessory audit independently reconciles as:
 
-`camera basic 375 = detail 171 + reviewed exclusion 33 + missing 171`
+`camera basic 375 = detail 193 + reviewed exclusion 33 + missing 149`
 
 Maker-level camera state:
 
@@ -270,7 +270,7 @@ After Waves 1–41:
 
 `DJI camera 96 = detail 70 + reviewed exclusion 26 + missing 0`
 
-The catalog-wide camera audit is therefore 375 actionable basic rows, 171 detail mappings, 33 reviewed exclusions, and 171 missing accessory-detail rows. The denominator now includes published Sony, Panasonic, and Fujifilm coverage-pass camera rows because the runtime already gives those canonical models an exact-model Amazon body-search path.
+The catalog-wide camera audit is therefore 375 actionable basic rows, 193 detail mappings, 33 reviewed exclusions, and 149 missing accessory-detail rows. The denominator now includes published Sony, Panasonic, and Fujifilm coverage-pass camera rows because the runtime already gives those canonical models an exact-model Amazon body-search path.
 
 ## OM SYSTEM camera review — Waves 1–6
 
@@ -444,8 +444,12 @@ DJI is closed at:
 
 ## Next expansion gate
 
-Printer-detail is closed. Nikon, DJI, and OM SYSTEM camera accessory coverage remain closed. The measured camera accessory backlog is Sony 107, Fujifilm 18, Panasonic 27, GoPro 12, and Insta360 7.
+Printer-detail is closed. Nikon, DJI, and OM SYSTEM camera accessory coverage remain closed. The measured camera accessory backlog is Sony 85, Fujifilm 18, Panasonic 27, GoPro 12, and Insta360 7.
 
 ## Fujifilm accessory affiliate batch — 2026-11-01
 
 The Fujifilm 56-camera catalog now has 38 compatibility-backed battery/charger detail rows and 18 unresolved accessory-detail rows. All 38 gain two deterministic tagged Amazon searches (76 total) using manufacturer evidence for NP-W126S/BC-W126S and NP-W235/BC-W235. Actual sales or revenue are not claimed. Evidence: `affiliate-fujifilm-camera-accessories-bulk.js`, Fujifilm official accessory compatibility pages and `tests/camera-accessory-coverage.test.mjs`.
+
+## Sony accessory affiliate batch — 2026-11-01
+
+22 additional Sony exact-camera battery/charger mappings, 44 tagged Amazon searches, from manufacturer camera/accessory compatibility evidence. Sony actionable 107 = 22 detail + 0 exclusions + 85 missing. Full camera audit 375 basic = 193 detail + 33 reviewed exclusions + 149 missing. No new manuals or sales claimed. Runtime: `affiliate-sony-camera-accessories-bulk.js`; direct tests: `tests/sony-camera-accessory-bulk.test.mjs`.
