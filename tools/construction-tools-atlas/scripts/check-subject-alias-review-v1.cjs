@@ -38,12 +38,12 @@ const normalize=search.normalizeText;
         const key=normalize(alias);
         assert(key,id+": empty alias");
         assert(effective.some(x=>normalize(x)===key),id+": reviewed alias absent from runtime: "+alias);
-        assert(normalize(target.term.ja)!==key&&normalize(target.term.en)!==key,id+": redundant self-term alias: "+alias);
+        if(normalize(target.term.ja)===key||normalize(target.term.en)===key)collisions.push(id+": redundant self-term alias: "+alias);
         const wrongTerm=[...(terms.get(key)||[])].filter(other=>other!==id);
         if(wrongTerm.length)collisions.push(id+": alias shadows another canonical term: "+alias+" -> "+wrongTerm.join(","));
         const wrongAlias=[...(owners.get(key)||[])].filter(other=>other!==id);
         if(wrongAlias.length)collisions.push(id+": alias conflicts with another canonical alias: "+alias+" -> "+wrongAlias.join(","));
-        assert(engine.scoreEntry(target,alias,[])>=4200,id+": alias query not indexed by search engine: "+alias);
+        if(engine.scoreEntry(target,alias,[])<4200)collisions.push(id+": alias query not indexed: "+alias);
         queries.push({id,alias});
       }
     }
