@@ -225,6 +225,29 @@
           <div class="flow-step"><strong>7. review-diff</strong>Review the implemented diff against the intended change and what was actually delivered.</div>
           <div class="flow-step"><strong>8. post-ship-retro</strong>Capture lessons after shipping so future changes improve from concrete experience.</div>
         </div>
+        <div class="handoff-tool" aria-label="Issue-to-release checklist">
+          <h3>Copyable issue-to-release checklist</h3>
+          <p>This is a record-keeping template, not an automated security or release approval. Record real evidence and require a human release decision.</p>
+          <pre id="handoffTemplate" class="handoff-template">[ ] intake-repo — Repository context, affected files, dependencies and constraints
+    Evidence / owner: __________
+[ ] spec-delta — Current behavior, intended behavior and scope of change
+    Evidence / owner: __________
+[ ] plan-change — Implementation steps, owners, risks and rollback outline
+    Evidence / owner: __________
+[ ] define-acceptance — Acceptance tests and objective done criteria
+    Evidence / owner: __________
+[ ] ship-check — Executed tests, security/privacy checks and outstanding failures
+    Evidence / owner: __________
+[ ] write-release-artifacts — Release notes, changelog and user-facing explanation
+    Evidence / owner: __________
+[ ] review-diff — Actual diff versus intended scope, reviewer findings
+    Evidence / owner: __________
+[ ] post-ship-retro — Post-release evidence, defects and lessons learned
+    Evidence / owner: __________
+
+Release owner / approver: __________</pre>
+          <div class="button-row"><button class="btn btn-secondary" type="button" id="copyHandoff">Copy the 8-step checklist</button><span id="handoffStatus" role="status" aria-live="polite"></span></div>
+        </div>
       </section>
 
       <section id="included">
@@ -334,5 +357,6 @@
       <p>Published by <a href="https://nicheworks.app/">NicheWorks</a> · <a href="/tools/codex-product-shipping-playbooks/ja/">日本語版を見る</a> · <a href="https://github.com/nicheworks-tools/codex-product-shipping-playbooks/tree/main" target="_blank" rel="noopener">GitHub</a></p>
     </div>
   </footer>
+  <script src="./handoff.js" defer></script>
 </body>
 </html>
