@@ -1,7 +1,7 @@
 {
-  "schema_version": "pattern-dictionary-v2-supplement-1",
+  "schema_version": "pattern-dictionary-v2-supplement-2",
   "updated": "2026-11-02",
-  "publication_note": "Five source-checked, illustrated supplemental terms. The original canonical 100 v1 is immutable. Illustrations are original representative vectors, not a museum image, nor a guarantee of all historical variants.",
+  "publication_note": "Ten source-checked and illustrated supplemental motifs in two releases beyond frozen canonical 100. Original editorial vectors are representative diagrams, not museum images; several named design families admit variation.",
   "entries": [
     {
       "id": "sakura-motif",
@@ -1120,6 +1120,1139 @@
         "size": "1536x1536",
         "status": "original-editorial-vector",
         "claim": "illustration of one representative form only; not a reproduction of the linked museum objects"
+      }
+    },
+    {
+      "id": "kanzemizu",
+      "uses": {
+        "ja": [
+          "能装束",
+          "謡本の表紙",
+          "染織品",
+          "漆工品"
+        ],
+        "en": [
+          "Noh garments",
+          "Noh chant-book covers",
+          "textiles",
+          "lacquerware"
+        ]
+      },
+      "source": {
+        "pattern_id": "kanzemizu",
+        "verification_state": "verified",
+        "term_scope": "Japanese stylized oval/spiral water motif associated with the Kanze Noh tradition; its configuration varies across textiles and crafts",
+        "verified_names": {
+          "ja": "観世水文様",
+          "en": "Kanze Water Motif"
+        },
+        "verified_aliases": {
+          "ja": [
+            "観世水",
+            "観世水文",
+            "かんぜみず"
+          ],
+          "en": [
+            "kanzemizu",
+            "kanze-mizu",
+            "kanze water pattern"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "文化遺産オンライン / 染分地観世水模様素襖",
+            "url": "https://online.bunka.go.jp/heritages/detail/248536",
+            "supports": [
+              "Oval spiral water motif and use on Noh costume, textiles and lacquer"
+            ]
+          },
+          {
+            "publisher": "小学館『日本国語大辞典』／コトバンク",
+            "url": "https://kotobank.jp/word/%E8%A6%B3%E4%B8%96%E6%B0%B4-470520",
+            "supports": [
+              "Term meaning, Kanze-linked spiral-water motif and uses"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "kanzemizu",
+        "review_state": "source-reviewed",
+        "verification_state": "verified",
+        "names": {
+          "ja": "観世水文様",
+          "en": "Kanze Water Motif"
+        },
+        "aliases": {
+          "ja": [
+            "観世水",
+            "観世水文",
+            "かんぜみず"
+          ],
+          "en": [
+            "kanzemizu",
+            "kanze-mizu",
+            "kanze water pattern"
+          ]
+        },
+        "term_scope": "Japanese stylized oval/spiral water motif associated with the Kanze Noh tradition; its configuration varies across textiles and crafts",
+        "definition": {
+          "ja": "細長い楕円状の渦や流れを組み合わせ、水の動きを示す日本の文様。観世流の謡本や能装束に関わる意匠として知られ、染織・漆工にも用いられました。一般的な波の半円反復とは異なり、横長の渦の輪郭が識別点になります。",
+          "en": "A Japanese water ornament built from elongated, oval swirls suggesting moving or circulating water. Associated with the Kanze school of Noh and found on performance garments, book covers and decorative arts, it differs from semicircular wave repeats through its curling, oval flow."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "横長の楕円・渦巻き状の水の線が主な目印です",
+            "青海波の同心半円を並べる構成とは異なり、流線が曲がって巻き込みます",
+            "観世流ゆかりの意匠ですが、実作品によって描線・渦の数・配置は異なります"
+          ],
+          "en": [
+            "Look for long, curling oval/spiral lines suggesting flowing water",
+            "Unlike repeated concentric semicircles of seigaiha, the streams coil or turn",
+            "Number and spacing of spirals vary among historical works"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "能装束",
+            "謡本の表紙",
+            "染織品",
+            "漆工品"
+          ],
+          "en": [
+            "Noh garments",
+            "Noh chant-book covers",
+            "textiles",
+            "lacquerware"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "indigo",
+            "white"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Original editorial recognition palette; does not define the motif."
+        }
+      },
+      "runtime": {
+        "id": "kanzemizu",
+        "names": {
+          "ja": "観世水文様",
+          "en": "Kanze Water Motif"
+        },
+        "aliases": {
+          "ja": [
+            "観世水",
+            "観世水文",
+            "かんぜみず"
+          ],
+          "en": [
+            "kanzemizu",
+            "kanze-mizu",
+            "kanze water pattern"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "横長の渦巻き模様",
+            "能装束の渦巻く水の柄",
+            "かんぜみず 文様"
+          ],
+          "en": [
+            "oval swirling Japanese water pattern",
+            "kanze water swirl noh textile",
+            "kanzemizu motif"
+          ]
+        },
+        "families": [
+          "japanese",
+          "ornamental"
+        ],
+        "motifs": [
+          "渦水",
+          "流水"
+        ],
+        "visual": {
+          "geometry": [
+            "ornamental",
+            "organic"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "indigo",
+            "white"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial colors."
+        },
+        "uses": [
+          "textile",
+          "fashion",
+          "interior"
+        ],
+        "culture": [
+          "Japanese"
+        ],
+        "relationships": {
+          "similar": [
+            "seigaiha",
+            "nami-chidori",
+            "tatewaku"
+          ],
+          "often_confused_with": [
+            "seigaiha"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "細長い楕円状の渦や流れを組み合わせ、水の動きを示す日本の文様。観世流の謡本や能装束に関わる意匠として知られ、染織・漆工にも用いられました。一般的な波の半円反復とは異なり、横長の渦の輪郭が識別点になります。",
+          "en": "A Japanese water ornament built from elongated, oval swirls suggesting moving or circulating water. Associated with the Kanze school of Noh and found on performance garments, book covers and decorative arts, it differs from semicircular wave repeats through its curling, oval flow."
+        },
+        "reference_path": "assets/reference-v2/kanzemizu.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "ornamental",
+            "organic"
+          ],
+          "contexts": [
+            "japanese"
+          ]
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/kanzemizu.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Illustrative schematic only; not a copy of a museum collection item and not proof of a uniquely fixed historic repeat."
+      }
+    },
+    {
+      "id": "shokko",
+      "uses": {
+        "ja": [
+          "錦織",
+          "古裂",
+          "装飾用の布",
+          "伝統意匠の復刻"
+        ],
+        "en": [
+          "brocade weaving",
+          "historic textiles",
+          "decorative cloth",
+          "historical design revivals"
+        ]
+      },
+      "source": {
+        "pattern_id": "shokko",
+        "verification_state": "qualified",
+        "term_scope": "Named historical geometric floral brocade designs associated with Shokko/Shu brocade, not a universal single octagon repeat",
+        "verified_names": {
+          "ja": "蜀江文",
+          "en": "Shokko Brocade Motif"
+        },
+        "verified_aliases": {
+          "ja": [
+            "蜀江文様",
+            "蜀江錦文様",
+            "しょっこうもん"
+          ],
+          "en": [
+            "shokko motif",
+            "shokko brocade pattern",
+            "Shu brocade geometric motif"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "根津美術館 / 蜀江錦",
+            "url": "https://www.nezu-muse.or.jp/jp/collection/detail.php?id=70015",
+            "supports": [
+              "Historic brocade with grid, beaded floral roundels and scrolling motifs"
+            ]
+          },
+          {
+            "publisher": "榛原オンラインミュージアム / 菊唐花入蜀江",
+            "url": "https://museum.haibara.co.jp/design-collection/hyakka/13550-45",
+            "supports": [
+              "Octagon-and-square decorative Shokko design with floral cells"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "shokko",
+        "review_state": "source-reviewed",
+        "verification_state": "qualified",
+        "names": {
+          "ja": "蜀江文",
+          "en": "Shokko Brocade Motif"
+        },
+        "aliases": {
+          "ja": [
+            "蜀江文様",
+            "蜀江錦文様",
+            "しょっこうもん"
+          ],
+          "en": [
+            "shokko motif",
+            "shokko brocade pattern",
+            "Shu brocade geometric motif"
+          ]
+        },
+        "term_scope": "Named historical geometric floral brocade designs associated with Shokko/Shu brocade, not a universal single octagon repeat",
+        "definition": {
+          "ja": "八角形や四角形の枠を幾何学的につなぎ、その内側に花・唐草などを配する文様群。名称は中国の蜀にゆかりのある錦に結びつきます。歴史資料には格子や連珠を組み合わせる異なる構成があり、すべてが一つの固定図案ではありません。",
+          "en": "A family of geometric brocade designs using interconnected octagonal and square compartments with floral or scrolling motifs inside. Associated with Shu (Shokko) brocades, historic examples differ in their grids, pearl roundels and internal ornament rather than sharing one immutable repeat."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "八角形と四角形を組み合わせる区画構造が典型例です",
+            "区画の内部に花・唐草などの細部を入れます",
+            "ただの格子や一様な八角タイルとは異なり、装飾区画の構成が重要です"
+          ],
+          "en": [
+            "An octagon-and-square compartment network is one common example",
+            "Floral or scrolling ornaments appear inside the compartments",
+            "Do not reduce all historic Shokko textiles to one identical octagonal grid"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "錦織",
+            "古裂",
+            "装飾用の布",
+            "伝統意匠の復刻"
+          ],
+          "en": [
+            "brocade weaving",
+            "historic textiles",
+            "decorative cloth",
+            "historical design revivals"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "red",
+            "gold"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Original editorial recognition palette; does not define the motif."
+        },
+        "qualification": {
+          "ja": "この項目は蜀江錦に結びつく文様群を扱います。現存するすべての蜀江錦が同一の八角格子を持つという意味ではありません。",
+          "en": "This describes a design family associated with Shokko brocades, not a claim that every surviving textile uses a single octagon-and-square repeat."
+        }
+      },
+      "runtime": {
+        "id": "shokko",
+        "names": {
+          "ja": "蜀江文",
+          "en": "Shokko Brocade Motif"
+        },
+        "aliases": {
+          "ja": [
+            "蜀江文様",
+            "蜀江錦文様",
+            "しょっこうもん"
+          ],
+          "en": [
+            "shokko motif",
+            "shokko brocade pattern",
+            "Shu brocade geometric motif"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "八角形に花が入った錦の文様",
+            "蜀江錦 模様",
+            "しょっこう柄"
+          ],
+          "en": [
+            "octagon square brocade floral grid",
+            "shokko pattern octagon squares",
+            "shu brocade design"
+          ]
+        },
+        "families": [
+          "geometric",
+          "ornamental"
+        ],
+        "motifs": [
+          "八角格子",
+          "唐花"
+        ],
+        "visual": {
+          "geometry": [
+            "geometric",
+            "ornamental"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "red",
+            "gold"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial colors."
+        },
+        "uses": [
+          "textile",
+          "fashion",
+          "interior"
+        ],
+        "culture": [],
+        "relationships": {
+          "similar": [
+            "lattice",
+            "quatrefoil",
+            "hanabishi"
+          ],
+          "often_confused_with": [
+            "lattice"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "八角形や四角形の枠を幾何学的につなぎ、その内側に花・唐草などを配する文様群。名称は中国の蜀にゆかりのある錦に結びつきます。歴史資料には格子や連珠を組み合わせる異なる構成があり、すべてが一つの固定図案ではありません。",
+          "en": "A family of geometric brocade designs using interconnected octagonal and square compartments with floral or scrolling motifs inside. Associated with Shu (Shokko) brocades, historic examples differ in their grids, pearl roundels and internal ornament rather than sharing one immutable repeat."
+        },
+        "reference_path": "assets/reference-v2/shokko.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "geometric",
+            "ornamental"
+          ],
+          "contexts": [
+            "regional"
+          ]
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/shokko.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Illustrative schematic only; not a copy of a museum collection item and not proof of a uniquely fixed historic repeat."
+      }
+    },
+    {
+      "id": "matsukawabishi",
+      "uses": {
+        "ja": [
+          "着物・小袖",
+          "絣織物",
+          "刀装具",
+          "陶磁器"
+        ],
+        "en": [
+          "kimono and kosode",
+          "ikat textiles",
+          "sword fittings",
+          "ceramics"
+        ]
+      },
+      "source": {
+        "pattern_id": "matsukawabishi",
+        "verification_state": "verified",
+        "term_scope": "Japanese linked diamond motif with a larger middle diamond and smaller diamond forms above and below",
+        "verified_names": {
+          "ja": "松皮菱文様",
+          "en": "Pine-Bark Diamond Motif"
+        },
+        "verified_aliases": {
+          "ja": [
+            "松皮菱",
+            "松皮菱紋",
+            "まつかわびし"
+          ],
+          "en": [
+            "matsukawabishi",
+            "pine bark diamond pattern",
+            "stacked diamond motif"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "京都国立博物館 / 松皮菱段小文様小袖",
+            "url": "https://www.kyohaku.go.jp/jp/collection/meihin/senshoku/item03/",
+            "supports": [
+              "Use of angular pine-bark-diamond boundaries in historic kosode"
+            ]
+          },
+          {
+            "publisher": "小学館『デジタル大辞泉』／コトバンク",
+            "url": "https://kotobank.jp/word/%E6%9D%BE%E7%9A%AE%E8%8F%B1-634784",
+            "supports": [
+              "Large diamond with smaller diamonds above and below; patterned repeats"
+            ]
+          },
+          {
+            "publisher": "文化遺産オンライン / 透鐔 杉に松皮菱文",
+            "url": "https://api.online.bunka.go.jp/heritages/detail/665719",
+            "supports": [
+              "Geometric construction and design use in sword fittings"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "matsukawabishi",
+        "review_state": "source-reviewed",
+        "verification_state": "verified",
+        "names": {
+          "ja": "松皮菱文様",
+          "en": "Pine-Bark Diamond Motif"
+        },
+        "aliases": {
+          "ja": [
+            "松皮菱",
+            "松皮菱紋",
+            "まつかわびし"
+          ],
+          "en": [
+            "matsukawabishi",
+            "pine bark diamond pattern",
+            "stacked diamond motif"
+          ]
+        },
+        "term_scope": "Japanese linked diamond motif with a larger middle diamond and smaller diamond forms above and below",
+        "definition": {
+          "ja": "大きな菱形の上下に小さな菱形を重ねた日本の文様。三つの菱の連なりを単独で使う場合と、横に並べたり区画の輪郭として反復したりする場合があります。松の樹皮の裂け目になぞらえたという名称の説明があります。",
+          "en": "A Japanese motif formed by joining a large central diamond to smaller diamonds above and below. It may stand alone, repeat as a linked pattern, or define sections of dyed cloth. The name is traditionally associated with fissures in pine bark."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "中心の大きい菱形と上下の小さい菱形が一続きになります",
+            "単純な等大の菱格子・アーガイルとは構造が違います",
+            "菱形の連続や、染め分けの境界線としても用いられます"
+          ],
+          "en": [
+            "One large central lozenge connects with smaller upper and lower lozenges",
+            "Unlike an equal-size diamond lattice or argyle, the three stacked forms differ in scale",
+            "It can be repeated or used to divide different dyed sections"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "着物・小袖",
+            "絣織物",
+            "刀装具",
+            "陶磁器"
+          ],
+          "en": [
+            "kimono and kosode",
+            "ikat textiles",
+            "sword fittings",
+            "ceramics"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "indigo",
+            "white"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Original editorial recognition palette; does not define the motif."
+        }
+      },
+      "runtime": {
+        "id": "matsukawabishi",
+        "names": {
+          "ja": "松皮菱文様",
+          "en": "Pine-Bark Diamond Motif"
+        },
+        "aliases": {
+          "ja": [
+            "松皮菱",
+            "松皮菱紋",
+            "まつかわびし"
+          ],
+          "en": [
+            "matsukawabishi",
+            "pine bark diamond pattern",
+            "stacked diamond motif"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "大きな菱の上下に小さい菱がある模様",
+            "まつかわびし 和柄",
+            "3つ重ねた菱形文様"
+          ],
+          "en": [
+            "three stacked diamonds Japanese pattern",
+            "pine bark diamond kimono",
+            "matsukawabishi motif"
+          ]
+        },
+        "families": [
+          "japanese",
+          "geometric"
+        ],
+        "motifs": [
+          "菱形",
+          "大小の重ね"
+        ],
+        "visual": {
+          "geometry": [
+            "geometric"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "indigo",
+            "white"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial colors."
+        },
+        "uses": [
+          "textile",
+          "fashion",
+          "interior"
+        ],
+        "culture": [
+          "Japanese"
+        ],
+        "relationships": {
+          "similar": [
+            "hishi",
+            "diamond",
+            "harlequin"
+          ],
+          "often_confused_with": [
+            "diamond",
+            "hishi"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "大きな菱形の上下に小さな菱形を重ねた日本の文様。三つの菱の連なりを単独で使う場合と、横に並べたり区画の輪郭として反復したりする場合があります。松の樹皮の裂け目になぞらえたという名称の説明があります。",
+          "en": "A Japanese motif formed by joining a large central diamond to smaller diamonds above and below. It may stand alone, repeat as a linked pattern, or define sections of dyed cloth. The name is traditionally associated with fissures in pine bark."
+        },
+        "reference_path": "assets/reference-v2/matsukawabishi.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "geometric"
+          ],
+          "contexts": [
+            "japanese"
+          ]
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/matsukawabishi.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Illustrative schematic only; not a copy of a museum collection item and not proof of a uniquely fixed historic repeat."
+      }
+    },
+    {
+      "id": "bishamon-kikko",
+      "uses": {
+        "ja": [
+          "風呂敷",
+          "着物・染織",
+          "陶磁器",
+          "和雑貨"
+        ],
+        "en": [
+          "wrapping cloths",
+          "kimono and textiles",
+          "ceramics",
+          "Japanese decorative goods"
+        ]
+      },
+      "source": {
+        "pattern_id": "bishamon-kikko",
+        "verification_state": "verified",
+        "term_scope": "Japanese triple-hexagon unit repeated as a geometric motif, named for historical Bishamonten armour ornament",
+        "verified_names": {
+          "ja": "毘沙門亀甲",
+          "en": "Bishamon Kikko Triple-Hexagon Motif"
+        },
+        "verified_aliases": {
+          "ja": [
+            "毘沙門亀甲文",
+            "びしゃもんきっこう"
+          ],
+          "en": [
+            "bishamon kikko",
+            "triple hexagon pattern",
+            "bishamon tortoiseshell motif"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "文化遺産オンライン / 風呂敷 毘沙門亀甲文",
+            "url": "https://online.bunka.go.jp/heritages/detail/621685",
+            "supports": [
+              "Three hexagons make a repeating unit, and naming tradition"
+            ]
+          },
+          {
+            "publisher": "ジャパンサーチ / 色絵毘沙門亀甲文皿（ColBase）",
+            "url": "https://jpsearch.go.jp/item/cobas-78686",
+            "supports": [
+              "Historic triple-hexagon design on Nabeshima plate and armor association"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "bishamon-kikko",
+        "review_state": "source-reviewed",
+        "verification_state": "verified",
+        "names": {
+          "ja": "毘沙門亀甲",
+          "en": "Bishamon Kikko Triple-Hexagon Motif"
+        },
+        "aliases": {
+          "ja": [
+            "毘沙門亀甲文",
+            "びしゃもんきっこう"
+          ],
+          "en": [
+            "bishamon kikko",
+            "triple hexagon pattern",
+            "bishamon tortoiseshell motif"
+          ]
+        },
+        "term_scope": "Japanese triple-hexagon unit repeated as a geometric motif, named for historical Bishamonten armour ornament",
+        "definition": {
+          "ja": "亀甲（六角形）を三つ組み合わせた単位を繰り返す幾何学文様。一般的な亀甲文が一つの六角形の連続であるのに対し、三連の組み方が目印です。寺院の毘沙門天像の甲冑に見られる意匠との関連が伝えられています。",
+          "en": "A Japanese geometric repeat constructed from a recurring unit of three joined hexagons. Unlike a uniform single-cell tortoiseshell lattice, its recognition cue is the triad arrangement. The name has been linked to armor ornaments on images of Bishamonten."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "一単位を三つの六角形の組み合わせで見ます",
+            "単なるハニカムや亀甲の均一な格子と区別します",
+            "内側に花・桐などを配する器物の作例もあります"
+          ],
+          "en": [
+            "Read the repetition as groups of three hexagons",
+            "Distinguish the triad from a uniform honeycomb or kikko grid",
+            "Historic applied designs may include flower or paulownia inserts"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "風呂敷",
+            "着物・染織",
+            "陶磁器",
+            "和雑貨"
+          ],
+          "en": [
+            "wrapping cloths",
+            "kimono and textiles",
+            "ceramics",
+            "Japanese decorative goods"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "indigo",
+            "white"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Original editorial recognition palette; does not define the motif."
+        }
+      },
+      "runtime": {
+        "id": "bishamon-kikko",
+        "names": {
+          "ja": "毘沙門亀甲",
+          "en": "Bishamon Kikko Triple-Hexagon Motif"
+        },
+        "aliases": {
+          "ja": [
+            "毘沙門亀甲文",
+            "びしゃもんきっこう"
+          ],
+          "en": [
+            "bishamon kikko",
+            "triple hexagon pattern",
+            "bishamon tortoiseshell motif"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "亀甲を三つ組み合わせた模様",
+            "毘沙門亀甲 風呂敷",
+            "三つの六角形の和柄"
+          ],
+          "en": [
+            "triple hexagon Japanese pattern",
+            "bishamon tortoiseshell pattern",
+            "three kikko hexagons"
+          ]
+        },
+        "families": [
+          "japanese",
+          "geometric"
+        ],
+        "motifs": [
+          "六角形",
+          "三連亀甲"
+        ],
+        "visual": {
+          "geometry": [
+            "geometric"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "indigo",
+            "white"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial colors."
+        },
+        "uses": [
+          "textile",
+          "fashion",
+          "interior"
+        ],
+        "culture": [
+          "Japanese"
+        ],
+        "relationships": {
+          "similar": [
+            "kikko",
+            "hexagon",
+            "honeycomb"
+          ],
+          "often_confused_with": [
+            "kikko",
+            "honeycomb"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "亀甲（六角形）を三つ組み合わせた単位を繰り返す幾何学文様。一般的な亀甲文が一つの六角形の連続であるのに対し、三連の組み方が目印です。寺院の毘沙門天像の甲冑に見られる意匠との関連が伝えられています。",
+          "en": "A Japanese geometric repeat constructed from a recurring unit of three joined hexagons. Unlike a uniform single-cell tortoiseshell lattice, its recognition cue is the triad arrangement. The name has been linked to armor ornaments on images of Bishamonten."
+        },
+        "reference_path": "assets/reference-v2/bishamon-kikko.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "geometric"
+          ],
+          "contexts": [
+            "japanese"
+          ]
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/bishamon-kikko.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Illustrative schematic only; not a copy of a museum collection item and not proof of a uniquely fixed historic repeat."
+      }
+    },
+    {
+      "id": "tachibana-motif",
+      "uses": {
+        "ja": [
+          "着物・小袖",
+          "家紋",
+          "装飾文様",
+          "工芸"
+        ],
+        "en": [
+          "kimono and kosode",
+          "family crests",
+          "ornament",
+          "crafts"
+        ]
+      },
+      "source": {
+        "pattern_id": "tachibana-motif",
+        "verification_state": "verified",
+        "term_scope": "Japanese ornament depicting tachibana citrus fruit, leaves and/or blossoms in varied compositions",
+        "verified_names": {
+          "ja": "橘文様",
+          "en": "Tachibana Citrus Motif"
+        },
+        "verified_aliases": {
+          "ja": [
+            "橘柄",
+            "橘文",
+            "たちばな文様"
+          ],
+          "en": [
+            "tachibana motif",
+            "Japanese citrus motif",
+            "tachibana orange pattern"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "国立文化財機構 e国宝 / 雪持ち橘文様小袖",
+            "url": "https://emuseum.nich.go.jp/detail?content_base_id=101139&content_part_id=0&content_pict_id=0&langId=ja&webView=",
+            "supports": [
+              "Historical snow-laden tachibana design in a Momoyama-period kosode"
+            ]
+          },
+          {
+            "publisher": "内閣府 / 文化勲章の種類",
+            "url": "https://www8.cao.go.jp/shokun/shurui-juyotaisho-kunsho/bunkakunsho",
+            "supports": [
+              "Citrus fruits, leaves and five-petal blossoms as recognized tachibana design elements"
+            ]
+          },
+          {
+            "publisher": "東京国立博物館 / 江戸時代衣装展",
+            "url": "https://www.tnm.jp/modules/r_exhibition/index.php?controller=item&id=3760",
+            "supports": [
+              "Tachibana as traditional auspicious garment motif"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "tachibana-motif",
+        "review_state": "source-reviewed",
+        "verification_state": "verified",
+        "names": {
+          "ja": "橘文様",
+          "en": "Tachibana Citrus Motif"
+        },
+        "aliases": {
+          "ja": [
+            "橘柄",
+            "橘文",
+            "たちばな文様"
+          ],
+          "en": [
+            "tachibana motif",
+            "Japanese citrus motif",
+            "tachibana orange pattern"
+          ]
+        },
+        "term_scope": "Japanese ornament depicting tachibana citrus fruit, leaves and/or blossoms in varied compositions",
+        "definition": {
+          "ja": "常緑の柑橘「橘」の実・葉・花などを図案化した日本の植物文様。着物や家紋などに使われ、実を囲む葉や枝を配置する表現があります。作例によって雪を載せた橘、花と実を合わせた橘など構図は異なります。",
+          "en": "A Japanese botanical motif depicting tachibana citrus fruit, leaves and sometimes blossoms. Found in kimono, family crests and decorative art, its compositions range from fruit framed by leaves to flowering sprays or snow-laden fruit."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "丸みのある橘の実と葉の組み合わせが手掛かりです",
+            "花の図案だけでは梅・桜文との断定的な区別が難しいことがあります",
+            "家紋や着物では枝葉・実の数と構図に幅があります"
+          ],
+          "en": [
+            "Look for rounded citrus fruits combined with leaves",
+            "Flower-only renderings may not be uniquely identifiable against other floral motifs",
+            "Branches, leaf count and fruit placement vary across crests and textiles"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "着物・小袖",
+            "家紋",
+            "装飾文様",
+            "工芸"
+          ],
+          "en": [
+            "kimono and kosode",
+            "family crests",
+            "ornament",
+            "crafts"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "green",
+            "gold"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Original editorial recognition palette; does not define the motif."
+        }
+      },
+      "runtime": {
+        "id": "tachibana-motif",
+        "names": {
+          "ja": "橘文様",
+          "en": "Tachibana Citrus Motif"
+        },
+        "aliases": {
+          "ja": [
+            "橘柄",
+            "橘文",
+            "たちばな文様"
+          ],
+          "en": [
+            "tachibana motif",
+            "Japanese citrus motif",
+            "tachibana orange pattern"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "橘の実と葉っぱの和柄",
+            "たちばな文 着物",
+            "果実と葉の日本の文様"
+          ],
+          "en": [
+            "tachibana fruit and leaves kimono",
+            "Japanese orange fruit motif",
+            "tachibana citrus crest pattern"
+          ]
+        },
+        "families": [
+          "japanese",
+          "floral",
+          "organic"
+        ],
+        "motifs": [
+          "橘",
+          "果実と葉"
+        ],
+        "visual": {
+          "geometry": [
+            "floral",
+            "organic"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "green",
+            "gold"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial colors."
+        },
+        "uses": [
+          "textile",
+          "fashion",
+          "interior"
+        ],
+        "culture": [
+          "Japanese"
+        ],
+        "relationships": {
+          "similar": [
+            "botanical-print",
+            "tree-of-life",
+            "sakura-motif"
+          ],
+          "often_confused_with": [
+            "sakura-motif",
+            "ume-motif"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "常緑の柑橘「橘」の実・葉・花などを図案化した日本の植物文様。着物や家紋などに使われ、実を囲む葉や枝を配置する表現があります。作例によって雪を載せた橘、花と実を合わせた橘など構図は異なります。",
+          "en": "A Japanese botanical motif depicting tachibana citrus fruit, leaves and sometimes blossoms. Found in kimono, family crests and decorative art, its compositions range from fruit framed by leaves to flowering sprays or snow-laden fruit."
+        },
+        "reference_path": "assets/reference-v2/tachibana-motif.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "floral",
+            "organic"
+          ],
+          "contexts": [
+            "japanese"
+          ]
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/tachibana-motif.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Illustrative schematic only; not a copy of a museum collection item and not proof of a uniquely fixed historic repeat."
       }
     }
   ]
