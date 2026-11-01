@@ -540,3 +540,18 @@ html[data-pro-active="true"] .pro-status{
     background:#fff;
   }
 }
+
+/* Optional move-out handoff essentials, separate from saved legal-adjacent tasks. */
+.handoff-ready-list { list-style: none; padding: 0; margin: 10px 0; }
+.handoff-ready-list li + li { border-top: 1px solid #e5e7eb; }
+.handoff-ready-list label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 3px;
+  font-size: 13px;
+  line-height: 1.6;
+  cursor: pointer;
+}
+.handoff-ready-list input { flex: 0 0 18px; width: 18px; height: 18px; margin: 2px 0 0; }
+@media print { .handoff-ready, .handoff-ready + .nw-amazon-mount { display: none !important; } }
