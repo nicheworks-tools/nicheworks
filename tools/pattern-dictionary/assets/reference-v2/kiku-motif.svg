@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1536" viewBox="0 0 1536 1536" role="img" aria-label="kiku-motif original illustrative repeated motif">
+<rect width="1536" height="1536" fill="#f8f4eb"/>
+<defs><g id="motif"><g fill="#f8d6a0" stroke="#a4682a" stroke-width="3"><ellipse cx="0" cy="-91" rx="23" ry="79" transform="rotate(0)"/><ellipse cx="0" cy="-91" rx="23" ry="79" transform="rotate(22.5)"/><ellipse cx="0" cy="-91" rx="23" ry="79" transform="rotate(45)"/><ellipse cx="0" cy="-91" rx="23" ry="79" transform="rotate(67.5)"/><ellipse cx="0" cy="-91" rx="23" ry="79" transform="rotate(90)"/><ellipse cx="0" cy="-91" rx="23" ry="79" transform="rotate(112.5)"/><ellipse cx="0" cy="-91" rx="23" ry="79" transform="rotate(135)"/><ellipse cx="0" cy="-91" rx="23" ry="79" transform="rotate(157.5)"/><ellipse cx="0" cy="-91" rx="23" ry="79" transform="rotate(180)"/><ellipse cx="0" cy="-91" rx="23" ry="79" transform="rotate(202.5)"/><ellipse cx="0" cy="-91" rx="23" ry="79" transform="rotate(225)"/><ellipse cx="0" cy="-91" rx="23" ry="79" transform="rotate(247.5)"/><ellipse cx="0" cy="-91" rx="23" ry="79" transform="rotate(270)"/><ellipse cx="0" cy="-91" rx="23" ry="79" transform="rotate(292.5)"/><ellipse cx="0" cy="-91" rx="23" ry="79" transform="rotate(315)"/><ellipse cx="0" cy="-91" rx="23" ry="79" transform="rotate(337.5)"/></g><circle r="35" fill="#c58a34"/><circle r="19" fill="#ffdea2"/></g></defs>
+<use href="#motif" transform="translate(256 256)"/>
+<use href="#motif" transform="translate(768 256)"/>
+<use href="#motif" transform="translate(1280 256)"/>
+<use href="#motif" transform="translate(256 768)"/>
+<use href="#motif" transform="translate(768 768)"/>
+<use href="#motif" transform="translate(1280 768)"/>
+<use href="#motif" transform="translate(256 1280)"/>
+<use href="#motif" transform="translate(768 1280)"/>
+<use href="#motif" transform="translate(1280 1280)"/>
+</svg>

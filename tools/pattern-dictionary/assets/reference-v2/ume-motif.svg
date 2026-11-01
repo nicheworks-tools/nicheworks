@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1536" viewBox="0 0 1536 1536" role="img" aria-label="ume-motif original illustrative repeated motif">
+<rect width="1536" height="1536" fill="#f8f4eb"/>
+<defs><g id="motif"><g fill="#fff6ef" stroke="#bf6071" stroke-width="6"><ellipse cx="0" cy="-76" rx="52" ry="56" transform="rotate(0)"/><ellipse cx="0" cy="-76" rx="52" ry="56" transform="rotate(72)"/><ellipse cx="0" cy="-76" rx="52" ry="56" transform="rotate(144)"/><ellipse cx="0" cy="-76" rx="52" ry="56" transform="rotate(216)"/><ellipse cx="0" cy="-76" rx="52" ry="56" transform="rotate(288)"/></g><circle r="26" fill="#f2d789"/><g stroke="#b05d50" stroke-width="3"><path d="M0,-12 L0,-40" transform="rotate(0)"/><path d="M0,-12 L0,-40" transform="rotate(45)"/><path d="M0,-12 L0,-40" transform="rotate(90)"/><path d="M0,-12 L0,-40" transform="rotate(135)"/><path d="M0,-12 L0,-40" transform="rotate(180)"/><path d="M0,-12 L0,-40" transform="rotate(225)"/><path d="M0,-12 L0,-40" transform="rotate(270)"/><path d="M0,-12 L0,-40" transform="rotate(315)"/></g></g></defs>
+<use href="#motif" transform="translate(256 256)"/>
+<use href="#motif" transform="translate(768 256)"/>
+<use href="#motif" transform="translate(1280 256)"/>
+<use href="#motif" transform="translate(256 768)"/>
+<use href="#motif" transform="translate(768 768)"/>
+<use href="#motif" transform="translate(1280 768)"/>
+<use href="#motif" transform="translate(256 1280)"/>
+<use href="#motif" transform="translate(768 1280)"/>
+<use href="#motif" transform="translate(1280 1280)"/>
+</svg>
