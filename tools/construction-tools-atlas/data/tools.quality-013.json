@@ -280,13 +280,7 @@
       "dj": "資材や工具を載せて移動する車輪付き台。\n資材や工具を載せて人力搬送する低床の平台車。二輪のハンドトラックとは異なり、荷を平台上へ載せ、複数のキャスターで支持して移動する。積載能力、荷の重心、キャスター、床の段差や勾配を確認する。",
       "de": "Wheeled platform used to move materials or tools.\nA low platform dolly used to move tools and materials manually. Unlike an upright two-wheel hand truck, it supports the load on a flat deck with multiple casters. Check rated load, center of gravity, caster condition, floor steps, and slopes.",
       "c": "transport",
-      "task": "move_material",
-      "aj": [
-        "運搬台車"
-      ],
-      "ae": [
-        "Platform dolly"
-      ]
+      "task": "move_material"
     },
     {
       "id": "q013_material_cart",
