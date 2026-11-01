@@ -59,6 +59,8 @@ requireText(webhook, "paymentPending", 'webhook');
 requireText(webhook, "updateEntitlementStatusByPaymentIntent", 'webhook');
 
 requireText(entitlementStore, "WHERE stripe_payment_intent_id = ?", 'entitlement store');
+requireText(entitlementStore, 'billing_payment_revocations', 'revocation tombstone table');
+requireText(entitlementStore, 'WHERE NOT EXISTS', 'revoke-first checkout guard');
 requireText(entitlementStore, "AND status = 'active'", 'entitlement store');
 requireText(entitlementStore, "['refunded', 'disputed', 'revoked']", 'entitlement store');
 

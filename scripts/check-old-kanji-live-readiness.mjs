@@ -21,6 +21,8 @@ assert.equal(await oldKanjiLiveReady(config,product,{...env,STRIPE_WEBHOOK_SECRE
 assert.equal(await oldKanjiLiveReady(config,product,{...env,STRIPE_PRICE_OKJ_TOOLKIT_PRO:''}),false);
 assert.equal(await oldKanjiLiveReady(config,product,{...env,BILLING_DB:null}),false);
 assert.equal(await oldKanjiLiveReady(config,product,{...env,BILLING_DB:{prepare(){throw Error('missing migration')}}}),false);
+const partialMigration={prepare(sql){if(sql.includes('billing_payment_revocations'))throw Error('missing revocation table');return {async first(){return null;}};}};
+assert.equal(await oldKanjiLiveReady(config,product,{...env,BILLING_DB:partialMigration}),false);
 
 // Verify the matching-Stripe-Price routine, including amount and currency, without a real purchase.
 const checkout=fs.readFileSync('functions/api/billing/create-checkout-session.js','utf8');
