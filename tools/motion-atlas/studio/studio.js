@@ -40,7 +40,7 @@ const STORAGE="motionAtlasStudioPresetsV1";
 const SESSION_KEY="nicheworks:billing:session:motion_atlas.studio_v1";
 const defaultTrack=(effect,delay,duration)=>({effect,delay,duration,easing:"ease-out"});
 let tracks=[defaultTrack("fade-up",0,750),defaultTrack("overshoot",320,720)];
-let animations=[],bundle=null;
+let animations=[],bundle=null,exportSignature="";
 const getText=()=>String($("target-text").value||"").slice(0,80).replace(/[\u0000-\u001f\u007f]/g,"");
 const el=(name,text,className)=>{
  const node=document.createElement(name);
@@ -117,7 +117,15 @@ function move(index,direction){
  renderTracks();createStage();
 }
 function remove(index){if(tracks.length<2){message(WORDS.empty);return;}tracks.splice(index,1);renderTracks();createStage();}
+function invalidateExportIfEdited(){
+ if(!bundle||exportSignature===JSON.stringify({text:getText(),tracks}))return;
+ bundle=null;exportSignature="";
+ $("export-download").hidden=true;
+ $("export-files").replaceChildren();$("export-files").hidden=true;
+ $("export-output").hidden=true;$("export-output").textContent="";
+}
 function createStage(){
+ invalidateExportIfEdited();
  animations.forEach(a=>a.cancel());animations=[];
  const stage=$("stage");stage.replaceChildren();
  let parent=stage;
@@ -187,19 +195,34 @@ async function exportBundle(){
   const response=await fetch("/api/motion-atlas/studio-export",{method:"POST",headers:{"content-type":"application/json"},credentials:"same-origin",body:JSON.stringify({sessionId,composition:{text:getText(),tracks}})});
   const data=await response.json();
   if(!response.ok||!data.ok||!Array.isArray(data.files)){message(response.status===401||response.status===403?WORDS.denied:WORDS.error);return;}
-  bundle=data.files.find(file=>file.name==="MotionStudioBundle.md");
-  if(!bundle||typeof bundle.content!=="string"){message(WORDS.error);return;}
-  $("export-output").textContent=bundle.content;
-  $("export-output").hidden=false;$("export-download").hidden=false;
+  const expected=["MotionStudio.css","MotionStudioSequence.jsx","MotionStudioBundle.md"];
+  const files=expected.map(name=>data.files.find(f=>f.name===name&&typeof f.content==="string"&&f.content.length<75000));
+  if(files.some(file=>!file)){message(WORDS.error);return;}
+  bundle=files;exportSignature=JSON.stringify({text:getText(),tracks});
+  $("export-output").textContent=files[2].content;
+  $("export-output").hidden=false;
+  const region=$("export-files");region.replaceChildren();
+  for(const file of files.slice(0,2)){
+    const button=el("button",file.name);button.type="button";
+    button.dataset.exportFile=file.name;
+    button.addEventListener("click",()=>downloadFile(file));
+    region.append(button);
+  }
+  region.hidden=false;$("export-download").hidden=false;
   message(WORDS.ready);
  }catch{message(WORDS.error);}finally{$("export").disabled=false;}
 }
-function download(){
- if(!bundle)return;
- const blob=new Blob([bundle.content],{type:"text/markdown;charset=utf-8"});
+function downloadFile(file){
+ if(!bundle||!bundle.some(f=>f.name===file?.name))return;
+ const mime=file.name.endsWith(".css")?"text/css":file.name.endsWith(".jsx")?"text/javascript":"text/markdown";
+ const blob=new Blob([file.content],{type:mime+";charset=utf-8"});
  const url=URL.createObjectURL(blob);
- const anchor=el("a");anchor.href=url;anchor.download="MotionStudioBundle.md";document.body.append(anchor);
+ const anchor=el("a");anchor.href=url;anchor.download=file.name;document.body.append(anchor);
  anchor.click();anchor.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);message(WORDS.download);
+}
+function download(){
+ const file=bundle?.find(f=>f.name==="MotionStudioBundle.md");
+ if(file)downloadFile(file);
 }
 $("target-text").addEventListener("input",createStage);
 $("add-track").addEventListener("click",()=>{
