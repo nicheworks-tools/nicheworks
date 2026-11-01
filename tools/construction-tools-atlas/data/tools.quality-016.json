@@ -369,13 +369,7 @@
       "dj": "天井面の仕上げに使う板状の化粧材で、吊り天井のグリッドに載せる方式や下地に固定する方式がある。材料によって吸音・耐湿・防火等の性能が異なり、支持方式、割付、照明や設備開口との納まりを確認する。",
       "de": "A board or modular panel used as a ceiling finish, either laid into a suspended grid or fixed to a supporting substrate. Products vary in acoustic, moisture, and fire performance. Check the support system, panel layout, and coordination with lights or services before installation.",
       "c": "ceiling",
-      "task": "install_ceiling",
-      "aj": [
-        "天井パネル"
-      ],
-      "ae": [
-        "Ceiling panel"
-      ]
+      "task": "install_ceiling"
     },
     {
       "id": "q016_acoustic_ceiling_tile",
