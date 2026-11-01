@@ -522,7 +522,7 @@ All 21 exact URLs and short notes are reviewed and regression-pinned in `check-c
 
 ## Source-reviewed note wave 30 — 20 additional COSMILE identities (2026-11-01)
 
-The non-overlapping reviewed set is Zinc Oxide, Titanium Dioxide, Retinol, Ascorbic Acid, Benzyl Alcohol, Glucose, Methylparaben, Sorbitol, Maltitol, Sorbic Acid, Xylitol, Sodium Phosphate, Mannitol, Potassium Citrate, Propylparaben, Ethylparaben, Disodium Phosphate, Sodium Acetylated Hyaluronate, Hydroxyethyl Urea and Sodium Bicarbonate.
+The non-overlapping reviewed set is Zinc Oxide, Titanium Dioxide, Retinol, Ascorbic Acid, Benzyl Alcohol, Glucose, Methylparaben, Sorbitol, Maltitol, Sorbic Acid, Xylitol, Sodium Phosphate, Mannitol, Potassium Citrate, Propylparaben, Ethylparaben, Disodium Phosphate, Sodium Acetylated Hyaluronate, Hydroxyethyl Urea and Butylparaben.
 
 Each original short note paraphrases cosmetic functions and usage from its own exact COSMILE Europe ingredient entry. URLs, source identity, retained Japanese names, canonical runtime notes and data inventory are verified by `check-cosmetics-source-verified-note-wave30.mjs`. No claims about product-specific SPF, finished-product safety, clinical efficacy, individual allergy or concentrations are inferred. Bilingual role explanations remain the primary public explanation; sourced English notes are optional, expandable secondary information.
 
