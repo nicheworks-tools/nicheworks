@@ -1,0 +1,30 @@
+name: Motion Atlas Studio QA (draft paid product)
+
+on:
+  pull_request:
+    paths:
+      - 'tools/motion-atlas/studio/**'
+      - 'tools/motion-atlas/ja/studio/**'
+      - 'tools/motion-atlas/tests/studio-*.mjs'
+      - 'functions/api/motion-atlas/**'
+      - '.github/workflows/motion-atlas-studio-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  studio-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Chromium available
+        run: command -v google-chrome || command -v google-chrome-stable || command -v chromium
+      - name: Studio 390px and desktop (EN/JA, standard/reduced)
+        run: node tools/motion-atlas/tests/studio-browser.test.mjs
+      - name: Paid export contract and secure entitlement test
+        run: node tools/motion-atlas/tests/studio-contract.test.mjs
