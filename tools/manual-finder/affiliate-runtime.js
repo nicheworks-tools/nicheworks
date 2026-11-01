@@ -70,7 +70,8 @@
       ["affiliate-gopro-camera-accessories-wave2.js?v=mf-gopro-camera-accessory-wave2-20260919a", "MANUALFINDER_GOPRO_CAMERA_ACCESSORY_WAVE2_LEDGER"],
       ["affiliate-gopro-camera-accessories-wave3.js?v=mf-gopro-camera-accessory-wave3-20260919a", "MANUALFINDER_GOPRO_CAMERA_ACCESSORY_WAVE3_LEDGER"],
       ["affiliate-gopro-camera-accessories-wave4.js?v=mf-gopro-camera-accessory-wave4-20260919a", "MANUALFINDER_GOPRO_CAMERA_ACCESSORY_WAVE4_LEDGER"],
-      ["affiliate-fujifilm-camera-accessories-bulk.js?v=mf-fujifilm-battery-20261101a", "MANUALFINDER_FUJIFILM_CAMERA_ACCESSORY_BULK_LEDGER"]
+      ["affiliate-fujifilm-camera-accessories-bulk.js?v=mf-fujifilm-battery-20261101a", "MANUALFINDER_FUJIFILM_CAMERA_ACCESSORY_BULK_LEDGER"],
+      ["affiliate-sony-camera-accessories-bulk.js?v=mf-sony-battery-20261101a", "MANUALFINDER_SONY_CAMERA_ACCESSORY_BULK_LEDGER"]
     ];
 
     let index = 0;
