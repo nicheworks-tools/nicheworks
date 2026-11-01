@@ -32,6 +32,10 @@ for (const target of expectedTargets) {
 const accessoryKeys = accessories.map((item) => item.key);
 check(accessoryKeys.length > 0, 'accessory catalog must not be empty');
 check(new Set(accessoryKeys).size === accessoryKeys.length, 'accessory keys must be unique');
+for (const key of ['charger-pd-check-wattage', 'charger-pd-90w']) {
+  check(accessoryKeys.includes(key), `required source-backed charger category missing: ${key}`);
+}
+check(accessories.length >= 22, 'expanded affiliate catalog must contain at least 22 classes');
 
 for (const key of accessoryKeys) {
   const offer = config?.getOffer?.(key);
