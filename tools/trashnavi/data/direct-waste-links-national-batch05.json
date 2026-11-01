@@ -826,5 +826,44 @@
     "language": "ja",
     "scope_note": "令和8年度。今金町A～D地区の収集カレンダー。処理主体の北部桧山衛生センター組合に言及。",
     "fiscal_year": "2026"
+  },
+  {
+    "pref": "北海道",
+    "city": "名寄市",
+    "name": "名寄地区広域最終処分場（受入・搬入・禁止品）",
+    "type": "ごみ処理施設",
+    "link_type": "dropoff_facility",
+    "url": "https://eiseishisetu.jp/pages/58/",
+    "lgcode": "012211",
+    "last_checked": "2026-11-01",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "名寄地区衛生施設事務組合が管理する最終処分場の搬入情報。共同処理対象に名寄市を明記。市の家庭ごみ分別・収集曜日を網羅する資料ではない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "鹿部町",
+    "name": "2026年の燃やせるごみ分別徹底・減量化のお願い",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.shikabe.lg.jp/soshiki/minsei/gyomu/1/1/3499.html",
+    "lgcode": "013439",
+    "last_checked": "2026-11-01",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "2026年の処理施設停止に対応する町公式の燃やせるごみ分別・減量案内。分別の全品目・現行地区別収集カレンダーは含まないため、2014年保存版と混同しない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "長万部町",
+    "name": "2026年7月ごみ分別徹底・減量化のお願い",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://town.oshamambe.lg.jp/soshiki/6/9486.html",
+    "lgcode": "013471",
+    "last_checked": "2026-11-01",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "2026年7月1日更新の町公式ごみ分別・減量案内。旧2021年地区別曜日表の2026年適用は検証できていないため本リンクを最新収集カレンダーとみなさない。"
   }
 ]
