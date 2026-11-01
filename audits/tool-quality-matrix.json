@@ -6349,10 +6349,10 @@
         "compare",
         "canvas"
       ],
-      "spec": "tools/screenshot-canvas/SPEC.md",
+      "spec": "docs/tools/screenshot-canvas.md",
       "spec_coverage": "complete",
       "implementation_exists": true,
-      "layout_class": "hybrid",
+      "layout_class": "desktop-wide",
       "language_policy": "bilingual single-page",
       "functional_completeness": "documented-current-contract",
       "inputs_summary": "PNG/JPEG/WebP files, drag/drop, paste; canvas size, background, layout, opacity and layer controls.",
@@ -6374,8 +6374,8 @@
       "faq_status": "optional-present",
       "ga4_status": "not-implemented",
       "adsense_status": "not-implemented",
-      "canonical_status": "not-implemented",
-      "json_ld_status": "not-implemented",
+      "canonical_status": "present",
+      "json_ld_status": "present",
       "donation_status": "not-implemented",
       "privacy_compliance": "documented",
       "functional_test_status": "behavior-test-missing",
@@ -6400,8 +6400,8 @@
         "usage": "recommended-and-present",
         "faq": "optional-present",
         "usage_evidence": [
-          "tools/screenshot-stitcher/usage-en.html",
-          "tools/screenshot-stitcher/usage.html"
+          "tools/screenshot-canvas/usage.html",
+          "tools/screenshot-canvas/usage-en.html"
         ],
         "usage_language_coverage": {
           "ja": true,

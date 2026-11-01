@@ -1081,6 +1081,18 @@
         "size",
         "battery"
       ]
+    },
+    "screenshot-canvas": {
+      "title_ja": "スクショ自由配置・比較",
+      "title_en": "Screenshot Canvas",
+      "desc_ja": "複数の画像を自由に配置・重ね合わせて比較し、PNGで保存できます。",
+      "desc_en": "Arrange and compare multiple screenshots on a canvas and export PNG.",
+      "tags": [
+        "screenshot",
+        "image",
+        "compare",
+        "canvas"
+      ]
     }
   }
 }
