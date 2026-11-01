@@ -32,4 +32,35 @@ for(const id of ids){
     if(!s.includes(`"inLanguage":"${lang}"`))throw new Error(`${prefix}${id}: JSON-LD language mismatch`);
   }
 }
+
+// 2026-11-01 GSC-informed snippet changes: keep visible SERP metadata,
+// Open Graph, Twitter cards and structured WebPage data synchronized.
+const intentTargets=[
+  {file:'patterns/honeycomb/index.html',title:['蜂の巣柄','六角形'],desc:['ハニカム','亀甲文様']},
+  {file:'en/patterns/pinstripe/index.html',title:['Pinstripe Pattern','Meaning'],desc:['pinstripe','chalk stripe']},
+  {file:'patterns/diamond/index.html',title:['ダイヤ柄','アーガイル'],desc:['菱形','ハーレクイン']},
+  {file:'patterns/tattersall/index.html',title:['タッターソールチェック','格子柄'],desc:['ウィンドウペーン','ギンガム']},
+  {file:'en/patterns/windowpane-check/index.html',title:['Windowpane Check Pattern','Identify'],desc:['Tattersall','Glen check']}
+];
+function intentTag(s,attr,value){
+  return s.match(new RegExp('<meta\\s+'+attr+'="'+value+'"\\s+content="([^"]*)"'))?.[1]||null;
+}
+for(const target of intentTargets){
+  const s=fs.readFileSync(path.join(root,target.file),'utf8');
+  const title=s.match(/<title>([^<]+)<\/title>/)?.[1];
+  const desc=intentTag(s,'name','description');
+  if(!title||!desc)throw new Error(target.file+': missing title or description');
+  if(!target.title.every(term=>title.includes(term)))throw new Error(target.file+': missing search-intent title term');
+  if(!target.desc.every(term=>desc.includes(term)))throw new Error(target.file+': missing supported description term');
+  for(const [attr,name,want] of [['property','og:title',title],['property','og:description',desc],['name','twitter:title',title],['name','twitter:description',desc]]){
+    if(intentTag(s,attr,name)!==want)throw new Error(target.file+': '+name+' drifted from title/description');
+  }
+  const raw=s.match(/<script type="application\/ld\+json">([^<]+)<\/script>/)?.[1];
+  if(!raw)throw new Error(target.file+': missing JSON-LD');
+  const data=JSON.parse(raw);
+  const webPage=(data['@graph']||[]).find(node=>node['@type']==='WebPage');
+  if(!webPage||webPage.name!==title||webPage.description!==desc)throw new Error(target.file+': WebPage JSON-LD drifted');
+}
+console.log('OK: 5 GSC-priority snippets carry intent-specific copy with synchronized OG/Twitter/JSON-LD.');
+
 console.log('OK: 200/200 JA+EN Pattern Dictionary detail pages carry canonical social, language, icon, and structured-data publication metadata.');
