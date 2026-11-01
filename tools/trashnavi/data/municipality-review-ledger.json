@@ -1504,12 +1504,12 @@
       "lgcode": "015717",
       "pref": "北海道",
       "municipality": "豊浦町",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "limited",
+      "reviewed_at": "2026-11-02",
+      "qualifying_source_count": 3,
+      "distinct_link_type_count": 2,
       "service_provider": null,
-      "review_note": null
+      "review_note": "Batch 08: 豊浦町公式の令和8年度地区別ごみ収集日、資源ごみ収集日、危険ごみ分別の3独立URLを確認。収集日2件は同一link_typeのためlimited。地域別日程・大型ごみ申込期限を全町一律にしない。"
     },
     {
       "lgcode": "015750",
