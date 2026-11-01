@@ -50,7 +50,9 @@ const normalize=search.normalizeText;
   }
   assert.equal(collisions.length,0,"Curated alias collisions:\n"+collisions.join("\n"));
   const explicitBilingual=runtime.entries.filter(e=>e.aliases?.ja?.length&&e.aliases?.en?.length);
-  assert.equal(explicitBilingual.length,609,"public bilingual alias coverage regressed (380 + 232)");
+  assert.equal(explicitBilingual.length,616,"runtime bilingual alias coverage regressed (387 + 229, including identity-resolution aliases)");
+  const quality=JSON.parse(fs.readFileSync(path.join(__dirname,"..","data","public-content-quality-v2.3.json"),"utf8"));
+  assert.equal(quality.summary.explicit_bilingual_aliases,609,"source-reviewed bilingual alias count regressed (380 + 229)");
   const samples=["q011_check_valve","q011_insulation_tester","q012_step_drill","q013_trench_box","q014_resin_sash","q015_cable_gland","q016_floor_sander","q017_pipe_threader"];
   for(const id of samples){
     const row=review.entries.find(r=>r.id===id);
@@ -63,7 +65,7 @@ const normalize=search.normalizeText;
   }
   console.log("Construction Atlas reviewed aliases: PASS "+JSON.stringify({
     publicCanonicals:runtime.entries.length,reviewedNewAliases:checked.size,
-    exactSearchQueries:queries.length,publicExplicitBilingualAliasCount:explicitBilingual.length,
+    exactSearchQueries:queries.length,runtimeExplicitBilingualAliasCount:explicitBilingual.length,sourceReviewedBilingualAliasCount:quality.summary.explicit_bilingual_aliases,
     conflictingCanonicalNames:0,conflictingAliases:0
   }));
 })().catch(err=>{console.error(err.stack);process.exitCode=1});
