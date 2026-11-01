@@ -152,6 +152,16 @@ Phone QuickCheck v1 is complete under the maintained contract:
 
 Future work is maintenance: new models, source changes, corrections, and evidence upgrades. It is not part of the v1 closure backlog.
 
+## Post-v1 maintenance Wave 24 — 2026-11-01
+
+Audited the actual Phone QuickCheck monetization path rather than inferring link availability from empty `affiliateKeys` or null `amazonUrl` records. Amazon Associate destinations are generated dynamically from `accessoryKeysFor` and `affiliate-config.js` (maintained tag `nicheworks09-22`), and rendered through the shared affiliate helper with explicit disclosure in desktop detail/mobile sheet. The baseline 223-phone dataset resolves to **719 possible CTA placements** (not clicks, impressions, affiliate earnings or product-level recommendations). Four latest FCNT devices previously had **two** CTA categories each: USB-C cable and 10,000mAh USB-C power bank.
+
+Identified **25 phones** with an official USB-PD protocol, explicitly excluded AC adapter and *unknown* manufacturer charger watt guidance; these had no charger CTA. Added `charger-pd-check-wattage` to only those phones, with explicit warnings to verify W/PPS/voltage-current before purchasing rather than inventing 20/30/45W performance. Reclassified the two FCNT Alpha models with an official **90W charger guidance** away from the too-generic 45W category into `charger-pd-90w`; this remains a charger search band, **not** a device max input claim.
+
+The maintained accessory catalog **20 → 22 classes**; the deterministic 223-phone dataset yields **719 → 744 possible CTA placements** (one additional link each for the 25 previously underserved phones; the two 90W cases replace an existing CTA rather than adding volume). All generated links are Amazon Japan tagged searches using approved fixed queries, in Japanese and English, with disclosures; no scraped product data, arbitrary retailer URLs, fabricated charging capability or user search-string passing.
+
+Required evidence: Phone QuickCheck affiliate/data/behavior/SEO/runtime CI green and a follow-up real public Chrome check that validates actual tagged links/labels/disclosure and 22 accessory classes after Cloudflare deployment. No increase in real sales or earnings is asserted.
+
 ## Post-v1 maintenance Wave 23 — 2026-11-01
 
 Independent real-public Chrome deployment proof for the four-FCNT-model Wave 22 backfill. In addition to the existing **entire public JSON deep-equality** check against canonical GitHub data, assert each newly deployed FCNT SKU's **ID, release year, battery capacity, USB PD revision**, absence of a bundled cable/AC brick, and **unknown max wired W/PPS**. This catches silent source semantic regressions and partial Cloudflare deployments.
