@@ -86,6 +86,8 @@ html,body{background:#fff;color:#111;margin:0;font-family:system-ui,-apple-syste
 .trashnavi-affiliate-section{margin-top:16px;padding:16px;border:1px solid #e5e7eb;border-radius:14px;background:#fafafa}
 .trashnavi-affiliate-section h2{margin:0 0 8px;font-size:1.08rem;color:#111827}
 .trashnavi-affiliate-section>p{margin:0 0 12px;color:#4b5563;font-size:.86rem}
+.trashnavi-affiliate-choice-note{padding:10px 12px;border-left:3px solid #64748b;background:#f1f5f9;border-radius:4px;font-weight:500;line-height:1.55}
+.trashnavi-affiliate-offer-note{margin:6px 2px 4px;font-size:.78rem;line-height:1.55;color:#475569}
 .trashnavi-affiliate-grid{display:grid;grid-template-columns:1fr;gap:8px}
 .trashnavi-affiliate-slot{min-width:0}
 .trashnavi-affiliate-link{display:block;padding:10px 12px;border:1px solid #d1d5db;border-radius:10px;background:#fff;color:#1d4ed8;text-decoration:none;font-size:.84rem;font-weight:600}
