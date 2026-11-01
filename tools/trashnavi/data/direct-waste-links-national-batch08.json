@@ -377,5 +377,57 @@
     "status": "active",
     "language": "ja",
     "scope_note": "令和4年3月改訂の分別ガイド、令和7年4月改訂の品目早見表を掲載。西紋別地区環境衛生施設組合の案内もある。"
+  },
+  {
+    "pref": "北海道",
+    "city": "雄武町",
+    "name": "ごみの分け方出し方ガイド",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.oumu.hokkaido.jp/kurashi_tetsuzuki/gomi_recycle/oyakutachijoho/1713.html",
+    "lgcode": "015636",
+    "last_checked": "2026-11-01",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "2026年7月22日更新。日本語・英語・中国語・ベトナム語版の分別ガイドを掲載。"
+  },
+  {
+    "pref": "北海道",
+    "city": "雄武町",
+    "name": "ごみ分別一覧",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.oumu.hokkaido.jp/kurashi_tetsuzuki/gomi_recycle/oyakutachijoho/1744.html",
+    "lgcode": "015636",
+    "last_checked": "2026-11-01",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "2026年6月15日更新。50音順Excel形式の分別一覧。"
+  },
+  {
+    "pref": "北海道",
+    "city": "雄武町",
+    "name": "プラスチックごみ資源化",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.oumu.hokkaido.jp/soshiki/juminseikatsuka/gomi_haikibutu/2326.html",
+    "lgcode": "015636",
+    "last_checked": "2026-11-01",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "2022年11月11日更新。プラスチック資源ごみの分別に関する町公式説明。"
+  },
+  {
+    "pref": "北海道",
+    "city": "大空町",
+    "name": "ごみの分け方・出し方",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.ozora.hokkaido.jp/soshiki/1006/2/74.html",
+    "lgcode": "015644",
+    "last_checked": "2026-11-01",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "2023年3月31日更新。分別冊子と区分表を提供。収集日は毎月の生活カレンダー参照と明記。2026年度版とは扱わない。"
   }
 ]
