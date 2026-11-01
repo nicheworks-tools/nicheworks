@@ -43,7 +43,7 @@ const rootAffiliatePos = root.indexOf('id="trashnaviAmazonAffiliate"');
 check(rootAffiliatePos > root.indexOf('id="results"') && rootAffiliatePos < root.indexOf('class="data-note"'), 'TrashNavi root PR panel must follow official search results and precede bulk directory');
 check(root.includes('自治体ごとの指定・収集ルールへの適合'), 'general supplies must not claim municipal compliance');
 check(runtime.includes('orderedOffers(intent)') && runtime.includes('const intent = searchIntent();'), 'closed-set search-intent ranking is required');
-check(runtime.includes('renderChoiceGuide(section, intent, lang)'), 'buyer guidance must follow the user's broad intent');
+check(runtime.includes('renderChoiceGuide(section, intent, lang)'), 'buyer guidance must follow the broad search intent');
 check(runtime.includes('OFFER_GUIDES[offer.key][lang]'), 'each approved offer must have an original selection checklist');
 check(runtime.includes('intentBucket: intent'), 'privacy-bucketed purchase click tracking required');
 check(helper.includes('payload.intent_bucket = options.intentBucket'), 'click analytics must emit only the broad intent bucket');
