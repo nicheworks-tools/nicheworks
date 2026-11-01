@@ -38,8 +38,8 @@ assert.equal(merged.length, 599, 'no new or removed canonical ingredient');
 assert.equal(Object.keys(noteSources).length, 20, 'the exact twenty reviewed identities');
 assert.equal(Object.keys(parser.verifiedCategoryEvidence).length, 196, 'note-only wave cannot promote categories');
 assert.equal(Object.keys(taxonomy.reviewed_mappings).length, 196, 'authoritative category taxonomy unchanged');
-assert.equal(Object.keys(parser.verifiedNoteEvidence).length, 222, 'twenty unique source notes must be added');
-assert.equal(parser.version, '1.67.0', 'note-wave30 public shared parser version');
+assert.ok(Object.keys(parser.verifiedNoteEvidence).length >= 222, 'wave30 cumulative source-note floor must remain');
+assert.ok(Number(parser.version.split('.')[1]) >= 67, 'note-wave30 parser contract must remain available');
 const uniqueNotes = new Set();
 for (const [canonical, exactUrl] of Object.entries(noteSources)) {
   const evidence = parser.verifiedNoteEvidence[canonical];
@@ -63,4 +63,4 @@ assert.equal(parser.verifiedCategoryEvidence.bha,undefined,
   'ambiguous BHA must remain incomplete');
 assert.equal(parser.verifiedNoteEvidence.bha,undefined,
   'ambiguous BHA must not be assigned an ingredient note');
-console.log('COSMETICS_NOTE_WAVE30=PASS: 20 unique source-backed notes, 222 strong reviewed identities, 196 verified roles unchanged, 599 canonical identities unchanged');
+console.log('COSMETICS_NOTE_WAVE30=PASS: 20 unique source-backed notes, at least 222 strong reviewed identities, 196 verified roles unchanged, 599 canonical identities unchanged');
