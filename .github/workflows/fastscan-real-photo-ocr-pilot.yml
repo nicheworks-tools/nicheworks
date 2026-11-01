@@ -20,8 +20,8 @@ jobs:
     timeout-minutes: 30
     env:
       FASTSCAN_PHOTO_CORPUS_COMMIT: 5ba39a7b06c59ff1edb30a396fdd640f82506742
-      FASTSCAN_PHOTO_CORPUS_DIR: ${{ runner.temp }}/fastscan-real-photos
-      FASTSCAN_PHOTO_REPORT: ${{ runner.temp }}/fastscan-real-photo-results.json
+      FASTSCAN_PHOTO_CORPUS_DIR: ${{ github.workspace }}/.qa-external-fastscan-photos
+      FASTSCAN_PHOTO_REPORT: ${{ github.workspace }}/.qa-external-fastscan-results.json
 
     steps:
       - name: Checkout NicheWorks sources
@@ -67,6 +67,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: fastscan-real-photo-ocr-metrics
-          path: ${{ runner.temp }}/fastscan-real-photo-results.json
+          path: ${{ github.workspace }}/.qa-external-fastscan-results.json
           if-no-files-found: ignore
           retention-days: 14
