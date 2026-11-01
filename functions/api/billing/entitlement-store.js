@@ -119,6 +119,9 @@ export function validateEntitlementRecord(record) {
   if (normalizeEntitlementStatus(record.status) !== record.status) {
     return { ok: false, error: 'entitlement_record_invalid_status' };
   }
+  if (record.source === 'stripe_webhook' && record.status === 'active' && !record.stripePaymentIntentId) {
+    return { ok: false, error: 'entitlement_payment_intent_id_required' };
+  }
 
   return { ok: true };
 }
@@ -198,6 +201,7 @@ export async function getActiveEntitlementByCheckoutSession(env, { productId, se
       WHERE stripe_checkout_session_id = ?
         AND product_id = ?
         AND status = 'active'
+        AND NOT EXISTS (SELECT 1 FROM billing_payment_revocations WHERE billing_payment_revocations.stripe_payment_intent_id = billing_entitlements.stripe_payment_intent_id)
       LIMIT 1
     `)
     .bind(normalizedSessionId, normalizedProductId)
@@ -236,7 +240,7 @@ export async function issueEntitlement(env, record) {
   if (existing.found && existing.entitlement) {
     return {
       ok: true,
-      issued: true,
+      issued: existing.entitlement.status === 'active',
       idempotent: true,
       entitlement: existing.entitlement
     };
@@ -287,7 +291,7 @@ export async function issueEntitlement(env, record) {
 
     return {
       ok: true,
-      issued: true,
+      issued: dup.entitlement.status === 'active',
       idempotent: true,
       entitlement: dup.entitlement
     };
