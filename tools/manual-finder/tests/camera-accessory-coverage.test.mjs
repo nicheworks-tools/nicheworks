@@ -132,6 +132,8 @@ const goProWaveFiles = fs.readdirSync(root)
   .sort((a, b) => waveNumber(a) - waveNumber(b));
 for (const name of goProWaveFiles) run(new URL(name, root), `tools/manual-finder/${name}`);
 
+run(new URL('affiliate-fujifilm-camera-accessories-bulk.js', root), 'tools/manual-finder/affiliate-fujifilm-camera-accessories-bulk.js');
+
 run(new URL('affiliate-camera-detail-exclusions.js', root), 'tools/manual-finder/affiliate-camera-detail-exclusions.js');
 
 const config = context.window.MANUALFINDER_AFFILIATE_CONFIG;
