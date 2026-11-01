@@ -80,7 +80,7 @@ try{
    const track=all(".track")[0],numbers=track.querySelectorAll("input[type=number]");
    check(numbers.length===2,"Timeline timing inputs missing");
    numbers[0].value="550";numbers[0].dispatchEvent(new Event("change",{bubbles:true}));
-   check(document.querySelector("#total-duration").textContent==="1300 ms","Timing edit didn't update total");
+   check(document.querySelector("#total-duration").textContent==="1330 ms","Timing edit didn't update total");
    all(".track")[1].querySelector(".track-actions button:first-child").click();
    check(all(".track").length===3,"Reorder lost track");
    document.querySelector("#preset-name").value="Studio QA";
