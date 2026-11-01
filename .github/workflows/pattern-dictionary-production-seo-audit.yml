@@ -30,6 +30,7 @@ jobs:
           node tools/pattern-dictionary/tests/validate.mjs
           node --check tools/pattern-dictionary/app.js
           node tools/pattern-dictionary/tests/taxonomy-source-test.mjs
+          node tools/pattern-dictionary/tests/v2-supplement-test.mjs
           node tools/pattern-dictionary/tests/browse-mobile-test.mjs
           node tools/pattern-dictionary/tests/search-test.mjs
           node tools/pattern-dictionary/tests/seo-detail-test.mjs

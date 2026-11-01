@@ -6,6 +6,7 @@ const COMPARE=ROOT+'data/compare-guides.json';
 const AFFILIATE=ROOT+'data/affiliate-config.json';
 const TAXONOMY=ROOT+'data/taxonomy-v2.json';
 const SOURCES=ROOT+'data/source-verification.json';
+const V2=ROOT+'data/v2-extension.json';
 let patternsPromise,dictPromise,comparePromise,affiliatePromise,sourcesPromise,taxonomyMeta;
 const REFERENCE_IDS=new Set(['houndstooth','gingham','tartan','glen-check','argyle','chevron','polka-dot','paisley','damask','arabesque','seigaiha','asanoha','shippo','ichimatsu','kikko','kilim','karakusa','moroccan-trellis','leopard-print','ikat','buffalo-check','shepherd-check','windowpane-check','madras-check','tattersall','gun-club-check','prince-of-wales-check','pinstripe','chalk-stripe','bengal-stripe','koushi','awning-stripe','regimental-stripe','breton-stripe','swiss-dot','herringbone','zigzag','diamond','harlequin','checkerboard','greek-key','quatrefoil','ogee','lattice','honeycomb','scallop','basketweave','hexagon','trellis','hishi','fleur-de-lis','toile-de-jouy','chintz','ditsy-floral','jacobean-floral','millefleurs','botanical-print','acanthus','medallion','ivy','baroque-scroll','chinoiserie','flame-stitch','tree-of-life','moire','yagasuri','sayagata','uroko','tatewaku','kagome','kanoko','hanabishi','same-komon','nami-chidori','tomoe','shibori','batik','bandhani','ajrakh','kalamkari','suzani','kente','bogolan','adire','kuba-cloth','sashiko','kantha','otomi-embroidery','african-wax-print','block-print','zebra-print','tiger-print','snake-print','cow-print','giraffe-print','dalmatian-spots','camouflage','tie-dye','marbling','terrazzo']);
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
@@ -18,11 +19,48 @@ function nearTypo(a,b){a=norm(a);b=norm(b);if(!a||!b||a===b||Math.min(a.length,b
 function typoHit(q,p){const qt=queryTokens(q),ct=[p.names?.ja,p.names?.en,...(p.aliases?.ja||[]),...(p.aliases?.en||[])].flatMap(queryTokens);return qt.some(a=>ct.some(b=>nearTypo(a,b)))}
 function confidenceNameMatch(q,p,lang){const nq=norm(q),other=lang==='ja'?'en':'ja',c=[p.names?.[lang],p.names?.[other],...(p.aliases?.[lang]||[]),...(p.aliases?.[other]||[])].map(norm).filter(Boolean);return c.some(v=>v===nq||nearTypo(nq,v))}
 const esc=s=>(s||'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt',"'":'&#39;','"':'&quot;'}[c]));
-async function patterns(){return patternsPromise||(patternsPromise=Promise.all([fetch(DATA).then(r=>r.json()),fetch(PROD).then(r=>r.json()),fetch(TAXONOMY).then(r=>{if(!r.ok)throw new Error('Taxonomy unavailable');return r.json()})]).then(([base,prod,tax])=>{taxonomyMeta=tax;const taxonomyById=Object.fromEntries(tax.entries.map(x=>[x.id,x]));const overlays=Object.fromEntries((prod.patterns||[]).map(x=>[x.pattern_id,x]));return base.map(p=>{const o=overlays[p.id]||{};return {...p,...o,id:p.id,names:{...p.names,...(o.names||{})},aliases:{ja:[...new Set([...(p.aliases?.ja||[]),...(o.aliases?.ja||[])])],en:[...new Set([...(p.aliases?.en||[]),...(o.aliases?.en||[])])]},colors:{...p.colors,...(o.colors||{})},description:o.definition||p.description,relationships:p.relationships,search_terms:p.search_terms,families:p.families,motifs:p.motifs,visual:p.visual,uses:p.uses,culture:p.culture,taxonomy:taxonomyById[p.id]}})}))}
+async function patterns(){
+  return patternsPromise||(patternsPromise=Promise.all([
+    fetch(DATA).then(r=>r.json()),
+    fetch(PROD).then(r=>r.json()),
+    fetch(TAXONOMY).then(r=>{if(!r.ok)throw new Error('Taxonomy unavailable');return r.json()}),
+    fetch(V2).then(r=>{if(!r.ok)throw new Error('Supplement unavailable');return r.json()})
+  ]).then(([base,prod,tax,v2])=>{
+    taxonomyMeta=tax;
+    const taxonomyById=Object.fromEntries(tax.entries.map(x=>[x.id,x]));
+    const overlays=Object.fromEntries((prod.patterns||[]).map(x=>[x.pattern_id,x]));
+    const published=base.map(p=>{
+      const o=overlays[p.id]||{};
+      return {...p,...o,id:p.id,names:{...p.names,...(o.names||{})},
+        aliases:{ja:[...new Set([...(p.aliases?.ja||[]),...(o.aliases?.ja||[])])],en:[...new Set([...(p.aliases?.en||[]),...(o.aliases?.en||[])])]},
+        colors:{...p.colors,...(o.colors||{})},description:o.definition||p.description,
+        relationships:p.relationships,search_terms:p.search_terms,families:p.families,motifs:p.motifs,
+        visual:p.visual,uses:p.uses,culture:p.culture,taxonomy:taxonomyById[p.id]};
+    });
+    const supplement=(v2.entries||[]).map(e=>{
+      const p=e.runtime,o=e.production;
+      return {...p,...o,id:p.id,names:{...p.names,...(o.names||{})},
+        aliases:{ja:[...new Set([...(p.aliases?.ja||[]),...(o.aliases?.ja||[])])],en:[...new Set([...(p.aliases?.en||[]),...(o.aliases?.en||[])])]},
+        colors:{...p.colors,...(o.colors||{})},description:o.definition||p.description,
+        relationships:p.relationships,search_terms:p.search_terms,families:p.families,motifs:p.motifs,
+        visual:p.visual,uses:p.uses,culture:p.culture,taxonomy:p.taxonomy,reference_path:p.reference_path};
+    });
+    if(base.length!==100||supplement.length!==5||new Set([...published,...supplement].map(p=>p.id)).size!==105)throw new Error('Unexpected published dictionary identities');
+    return [...published,...supplement];
+  }));
+}
 async function dict(){return dictPromise||(dictPromise=fetch(DICT).then(r=>r.json()))}
 async function compareGuides(){return comparePromise||(comparePromise=fetch(COMPARE).then(r=>r.json()).then(x=>x.guides||[]))}
 async function affiliateConfig(){return affiliatePromise||(affiliatePromise=fetch(AFFILIATE).then(r=>r.json()))}
-async function sources(){return sourcesPromise||(sourcesPromise=fetch(SOURCES).then(r=>{if(!r.ok)throw new Error('Source verification unavailable');return r.json()}).then(x=>Object.fromEntries(x.patterns.map(e=>[e.pattern_id,e]))))}
+async function sources(){
+  return sourcesPromise||(sourcesPromise=Promise.all([
+    fetch(SOURCES).then(r=>{if(!r.ok)throw new Error('Source verification unavailable');return r.json()}),
+    fetch(V2).then(r=>{if(!r.ok)throw new Error('Supplement unavailable');return r.json()})
+  ]).then(([base,v2])=>Object.fromEntries([
+    ...base.patterns.map(e=>[e.pattern_id,e]),
+    ...v2.entries.map(e=>[e.id,e.source])
+  ])));
+}
 function taxonomyLabels(p,lang){const t=p.taxonomy||{types:[],appearance:[],contexts:[]};const parts=[['types','concept_types',lang==='ja'?'種類':'Type'],['appearance','appearance_groups',lang==='ja'?'見た目':'Visual'],['contexts','contexts',lang==='ja'?'文脈':'Context']];return parts.flatMap(([field,dict,prefix])=>(t[field]||[]).map(key=>'<span class="pd-tag">'+esc(prefix+': '+(taxonomyMeta?.[dict]?.[key]?.[lang]||key))+'</span>')).join('')}
 let amazonHelperPromise;
 function ensureAmazonHelper(){if(window.NWAmazonAffiliate)return Promise.resolve(window.NWAmazonAffiliate);return amazonHelperPromise||(amazonHelperPromise=new Promise((resolve,reject)=>{const script=document.createElement('script');script.src='/assets/amazon-affiliate.js';script.async=true;script.onload=()=>window.NWAmazonAffiliate?resolve(window.NWAmazonAffiliate):reject(new Error('Amazon affiliate helper unavailable'));script.onerror=()=>reject(new Error('Amazon affiliate helper failed to load'));document.head.appendChild(script)}))}
@@ -30,6 +68,7 @@ function activeAffiliateOffers(cfg){return (cfg?.offers||[]).filter(o=>o.status=
 function detailUrl(p,lang){return ROOT+(lang==='en'?'en/':'')+'patterns/'+encodeURIComponent(p.id)+'/'}
 function compareUrl(a,b,lang){return ROOT+(lang==='en'?'en/':'')+'compare.html?a='+encodeURIComponent(a)+'&b='+encodeURIComponent(b)}
 function patternSvg(p){
+  if(p.reference_path)return ROOT+p.reference_path;
   if(p.id==='diamond-family'){const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600"><rect width="600" height="600" fill="#f8fafc"/><g fill="none" stroke="#334155" stroke-width="12">${[75,225,375,525].flatMap(y=>[75,225,375,525].map(x=>`<path d="M${x} ${y-55}L${x+55} ${y} ${x} ${y+55} ${x-55} ${y}Z"/>`)).join('')}</g></svg>`;return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg)}
   if(REFERENCE_IDS.has(p.id))return ROOT+'assets/reference/'+p.id+'.png';
   const id=p.id, fam=p.families?.[0]||''; let body='';
@@ -49,7 +88,7 @@ function patternSvg(p){
   return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg)
 }
 function card(p,lang){return `<article class="pd-card" data-family="${esc(p.families?.[0]||'')}"><a href="${detailUrl(p,lang)}"><div class="pd-thumb"><img loading="lazy" src="${patternSvg(p)}" alt="${esc(p.names[lang])}"></div><div class="pd-card-title">${esc(p.names[lang])}</div><div class="pd-card-sub">${esc(p.names[lang==='ja'?'en':'ja'])}</div>${REFERENCE_IDS.has(p.id)?'':'<div class="pd-dev">DEV PLACEHOLDER</div>'}</a></article>`}
-function imageStatus(p,lang){return '';}
+function imageStatus(p,lang){return p.reference_path?'<p class="pd-note">'+(lang==='ja'?'参考図：独自作成の模式図です。歴史資料の画像ではなく、すべての変種を示すものではありません。':'Original schematic illustration, not a museum photograph or an exhaustive rendering of historical variants.')+'</p>':'';}
 function bag(p,lang){return norm([p.names?.[lang],p.names?.[lang==='ja'?'en':'ja'],...(p.aliases?.[lang]||[]),...(p.search_terms?.[lang]||[]),...(p.motifs||[]),...(p.families||[]),...(p.visual?.geometry||[]),...(p.visual?.line||[]),...(p.colors?.primary||[]),...(p.uses||[]),...(p.culture||[]),p.term_scope,p.definition?.[lang],...(p.distinguishing_features?.[lang]||[]),...(p.common_uses?.[lang]||[])].join(' '))}
 function signalNegated(nq,nk,lang){return lang==='en'?(nq.includes('not '+nk)||nq.includes('without '+nk)):(nq.includes(nk+'じゃない')||nq.includes(nk+'ではない'))}
 async function interpret(q,lang){const all=await dict(),nq=norm(q),out=[],seen=new Set();for(const l of [lang,lang==='ja'?'en':'ja'])for(const [k,v] of Object.entries(all[l]||{})){const nk=norm(k);if(nq.includes(nk)&&!signalNegated(nq,nk,l)&&!seen.has(nk)){seen.add(nk);out.push({label:k,...v})}}return out.filter((x,i,a)=>!a.some((y,j)=>j!==i&&norm(y.label).length>norm(x.label).length&&norm(y.label).includes(norm(x.label))))}
