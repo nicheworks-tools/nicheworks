@@ -257,17 +257,23 @@
       const expectedEn = text(patch.expected_en);
       const nextJa = text(patch.definition_ja);
       const nextEn = text(patch.definition_en);
+      const browseJa = text(patch.browse_ja);
       // Do not silently revert a newer editor's source definition.
       if (!expectedJa || !expectedEn || originalJa !== expectedJa || originalEn !== expectedEn ||
           !nextJa || !nextEn ||
           (nextJa === originalJa && nextEn === originalEn) ||
-          nextJa.length < originalJa.length || nextEn.length < originalEn.length) {
+          (nextJa.length < originalJa.length && !(browseJa && browseJa.length >= 15 && originalJa.includes("具体例：") && !nextJa.includes("具体例："))) ||
+          nextEn.length < originalEn.length) {
         stats.definitionPromotionsSourceDrift += 1;
         stats.definitionPromotionsProblems.push("Unmatched or invalid source definition: " + id);
         continue;
       }
       target.description = { ...(target.description || {}), ja:nextJa, en:nextEn };
-      // Keep the shorter summary in search results, expand only the definition.
+      // Keep a concise source-backed summary in search results, not the expanded definition.
+      target.summary ||= {};
+      target.summary.ja ||= text(target.summary_ja) || originalJa;
+      target.summary.en ||= text(target.summary_en) || originalEn;
+      if (browseJa) { target.summary.ja = browseJa; target.summary_ja = browseJa; }
       target.meta = { ...(target.meta || {}), definition_promotion_version:text(raw.version) };
       stats.definitionPromotionsApplied += 1;
     }
