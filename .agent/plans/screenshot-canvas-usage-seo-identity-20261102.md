@@ -13,3 +13,6 @@ Retain all visible how-to text, document title, language and existing navigation
 
 ## Acceptance
 PR SEO URL identity checker reports no errors and all checks green; merge before refreshing the Phone QuickCheck browser gate PR so it can pass the *entire* workflow suite. This is a separate small repair, not a diversion from resumed phone catalog expansion.
+
+## Follow-on validation
+First PR SEO step passed `indexable-url-identity`, but subsequent `head-metadata-cardinality` found 22 missing singleton fields across three Screenshot Canvas pages. Include `tools/screenshot-canvas/index.html` to add missing robots, og:image and Twitter card fields; the two usage pages add robots, og title/description/image and full Twitter card metadata. Still no user-facing or runtime changes. Require SEO audit full success.
