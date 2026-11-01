@@ -18,8 +18,8 @@ const resetBtn = document.getElementById("reset-btn");
 
 let loadedFile = null;
 let convertedBlob = null;
-let sourceUrl = null;
 let previewUrl = null;
+let conversionRevision = 0;
 let currentOutputExt = "png";
 let currentLang = "ja";
 let isConverting = false;
@@ -57,6 +57,7 @@ const I18N = {
     tooManyFiles: "現在は1枚ずつの変換です。1枚だけ選択してください。",
     loadFailed: "画像の読み込みに失敗しました。AVIF非対応ブラウザ、破損ファイル、拡張子偽装の可能性があります。",
     convertFailed: "変換中にエラーが発生しました。画像が大きすぎる、またはブラウザが形式に対応していない可能性があります。",
+    formatMismatch: "ブラウザが選択形式とは異なる画像を返しました。誤った拡張子で保存せず処理を中止しました。",
     snifferHelp: "FileType Snifferで形式を確認する",
     selected: "選択中",
     original: "変換元",
@@ -95,6 +96,7 @@ const I18N = {
     tooManyFiles: "This tool currently converts one image at a time. Choose one file only.",
     loadFailed: "The image could not be loaded. The browser may not support AVIF, the file may be broken, or the extension may be wrong.",
     convertFailed: "Conversion failed. The image may be too large, or your browser may not support this format.",
+    formatMismatch: "Your browser returned a different image type. Saving stopped rather than creating a mislabeled file.",
     snifferHelp: "Check the file with FileType Sniffer",
     selected: "Selected",
     original: "Original",
@@ -147,9 +149,7 @@ function hideProgress() {
 }
 
 function revokeUrls() {
-  if (sourceUrl) URL.revokeObjectURL(sourceUrl);
   if (previewUrl) URL.revokeObjectURL(previewUrl);
-  sourceUrl = null;
   previewUrl = null;
 }
 
@@ -174,8 +174,13 @@ function isSupportedImage(file) {
 function canvasToBlob(canvas, mime, quality) {
   return new Promise((resolve, reject) => {
     canvas.toBlob((blob) => {
-      if (blob) resolve(blob);
-      else reject(new Error("toBlob failed"));
+      if (!blob) return reject(new Error("toBlob failed"));
+      if (String(blob.type || "").toLowerCase() !== mime) {
+        const error = new Error("Unexpected canvas output image type");
+        error.code = "ENCODER_FORMAT_MISMATCH";
+        return reject(error);
+      }
+      resolve(blob);
     }, mime, quality);
   });
 }
@@ -284,8 +289,8 @@ function handleFileList(files) {
 }
 
 function handleFile(file) {
-  if (isConverting) return;
-
+  ++conversionRevision;
+  isConverting = false;
   clearError();
   hideProgress();
   revokeUrls();
@@ -310,19 +315,25 @@ function handleFile(file) {
    Conversion
 ================================ */
 async function loadImageFromFile(file) {
-  sourceUrl = URL.createObjectURL(file);
+  // Revoke only this operation's source URL; never revoke a newer upload.
+  const localUrl = URL.createObjectURL(file);
   const img = new Image();
   img.decoding = "async";
-
-  return new Promise((resolve, reject) => {
-    img.onload = () => resolve(img);
-    img.onerror = () => reject(new Error("image load failed"));
-    img.src = sourceUrl;
-  });
+  try {
+    return await new Promise((resolve, reject) => {
+      img.onload = () => resolve(img);
+      img.onerror = () => reject(new Error("image load failed"));
+      img.src = localUrl;
+    });
+  } finally {
+    URL.revokeObjectURL(localUrl);
+  }
 }
 
 async function convertImage(type = "png") {
   if (!loadedFile || isConverting) return;
+  const revision = ++conversionRevision;
+  const file = loadedFile;
 
   clearError();
   showProgress();
@@ -331,43 +342,43 @@ async function convertImage(type = "png") {
   setButtonsEnabled(false);
 
   try {
-    const img = await loadImageFromFile(loadedFile);
+    const img = await loadImageFromFile(file);
+    if (revision !== conversionRevision || file !== loadedFile) return;
     const canvas = document.createElement("canvas");
     canvas.width = img.naturalWidth || img.width;
     canvas.height = img.naturalHeight || img.height;
-
+    if (!canvas.width || !canvas.height) throw new Error("invalid image dimensions");
     const ctx = canvas.getContext("2d", { alpha: type !== "jpeg" });
     if (!ctx) throw new Error("canvas context failed");
-
     if (type === "jpeg") {
       ctx.fillStyle = "#fff";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
-
     ctx.drawImage(img, 0, 0);
 
     const mime = type === "png" ? "image/png" : "image/jpeg";
-    convertedBlob = await canvasToBlob(canvas, mime, type === "jpeg" ? 0.92 : undefined);
+    const blob = await canvasToBlob(canvas, mime, type === "jpeg" ? 0.92 : undefined);
+    if (revision !== conversionRevision || file !== loadedFile) return;
+    convertedBlob = blob;
     currentOutputExt = type === "png" ? "png" : "jpg";
 
-    previewUrl = URL.createObjectURL(convertedBlob);
+    previewUrl = URL.createObjectURL(blob);
     previewImg.src = previewUrl;
-    sizeInfo.innerText = `${t("dimensions")}：${canvas.width}×${canvas.height} / ${t("original")}：${formatBytes(loadedFile.size)} / ${t("converted")}：${formatBytes(convertedBlob.size)}`;
+    sizeInfo.innerText = `${t("dimensions")}：${canvas.width}×${canvas.height} / ${t("original")}：${formatBytes(file.size)} / ${t("converted")}：${formatBytes(blob.size)}`;
     updateFileInfo(`${t("dimensions")}：${canvas.width}×${canvas.height}`);
-
     resultBlock.style.display = "block";
     resultBlock.scrollIntoView({ behavior: "smooth", block: "start" });
   } catch (e) {
-    const isLoadError = e && e.message === "image load failed";
-    showError(isLoadError ? t("loadFailed") : t("convertFailed"), isLoadError);
+    if (revision !== conversionRevision) return;
+    const loadFailed = e && e.message === "image load failed";
+    showError(e?.code === "ENCODER_FORMAT_MISMATCH" ? t("formatMismatch") :
+      loadFailed ? t("loadFailed") : t("convertFailed"), loadFailed);
   } finally {
-    hideProgress();
-    if (sourceUrl) {
-      URL.revokeObjectURL(sourceUrl);
-      sourceUrl = null;
+    if (revision === conversionRevision) {
+      hideProgress();
+      isConverting = false;
+      setButtonsEnabled(Boolean(loadedFile));
     }
-    isConverting = false;
-    setButtonsEnabled(Boolean(loadedFile));
   }
 }
 
@@ -389,6 +400,7 @@ downloadBtn.addEventListener("click", () => {
 });
 
 resetBtn.addEventListener("click", () => {
+  ++conversionRevision;
   loadedFile = null;
   convertedBlob = null;
   isConverting = false;
