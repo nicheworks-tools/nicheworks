@@ -12208,6 +12208,214 @@
         "verifiedAt": "2026-11-02"
       },
       "affiliateKeys": []
+    },
+    {
+      "id": "sony-xperia-5-j9260",
+      "manufacturer": "Sony",
+      "model": "Xperia 5 (J9260)",
+      "aliases": [
+        "Xperia 5",
+        "Xperia5",
+        "Xperia 5 SIMフリー",
+        "ソニー エクスペリア5 J9260"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2020,
+      "dimensions": {
+        "heightMm": 158,
+        "widthMm": 68,
+        "depthMm": 8.2
+      },
+      "weightG": 164,
+      "displayInch": 6.1,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStatus": "not_supported",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 3140,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.sony.jp/xperia/xperia/xperia5/spec_sony.html"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia5/spec_sony.html",
+        "manualUrl": "https://www.sony.jp/xperia/xperia/xperia5/spec_sony.html",
+        "releaseUrl": "https://www.sony.jp/store/press/200818.html",
+        "wirelessUrl": "https://www.sony.jp/xperia/xperia/xperia5/spec_sony.html",
+        "waterUrl": "https://www.sony.jp/xperia/xperia/xperia5/spec_sony.html",
+        "packageUrl": "https://www.sony.jp/xperia/xperia/xperia5/spec_sony.html",
+        "verifiedAt": "2026-11-02"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "sharp-aquos-sense4-lite",
+      "manufacturer": "SHARP",
+      "model": "AQUOS sense4 lite",
+      "aliases": [
+        "AQUOSsense4lite",
+        "AQUOS sense4 lite SH-RM15",
+        "アクオス センス4 ライト",
+        "楽天モバイル sense4 lite"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2020,
+      "dimensions": {
+        "heightMm": 148,
+        "widthMm": 71,
+        "depthMm": 8.9
+      },
+      "weightG": 176,
+      "displayInch": 5.8,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 3.0"
+        ],
+        "pps": "unknown",
+        "wirelessStatus": "not_supported",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 4570,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://jp.sharp/products/aquos-sense4-lite-r/spec.html"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://jp.sharp/products/aquos-sense4-lite-r/spec.html",
+        "manualUrl": "https://jp.sharp/products/aquos-sense4-lite-r/spec.html",
+        "chargingUrl": "https://jp.sharp/products/aquos-sense4-lite-r/spec.html",
+        "wirelessUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/aquos-sense4-lite/",
+        "waterUrl": "https://jp.sharp/products/aquos-sense4-lite-r/spec.html",
+        "packageUrl": "https://network.mobile.rakuten.co.jp/product/smartphone/aquos-sense4-lite/",
+        "verifiedAt": "2026-11-02"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "sharp-aquos-sense4-plus-shm16",
+      "manufacturer": "SHARP",
+      "model": "AQUOS sense4 plus (SH-M16)",
+      "aliases": [
+        "AQUOS sense4 plus",
+        "SH-M16",
+        "AQUOSsense4plus",
+        "アクオス センス4 プラス"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2020,
+      "dimensions": {
+        "heightMm": 166,
+        "widthMm": 78,
+        "depthMm": 8.8
+      },
+      "weightG": 197,
+      "displayInch": 6.7,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 3.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 4120,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://jp.sharp/products/shm16/spec.html"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "included"
+      },
+      "sources": {
+        "specificationsUrl": "https://jp.sharp/products/shm16/spec.html",
+        "manualUrl": "https://jp.sharp/products/shm16/spec.html",
+        "chargingUrl": "https://jp.sharp/products/shm16/spec.html",
+        "waterUrl": "https://jp.sharp/products/shm16/spec.html",
+        "packageUrl": "https://jp.sharp/products/shm16/spec.html",
+        "verifiedAt": "2026-11-02"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-a25-5g-au",
+      "manufacturer": "Samsung",
+      "model": "Galaxy A25 5G (au)",
+      "aliases": [
+        "Galaxy A25 5G",
+        "GalaxyA25",
+        "ギャラクシーA25 5G",
+        "SM-A253J",
+        "Galaxy A25 5G au"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "dimensions": {
+        "heightMm": 167.7,
+        "widthMm": 77.7,
+        "depthMm": 8.5
+      },
+      "weightG": 210,
+      "displayInch": 6.7,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.samsung.com/jp/smartphones/galaxy-a/galaxy-a25-5g-blue-64gb-sm-a253jzbakdi/"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.samsung.com/jp/smartphones/galaxy-a/galaxy-a25-5g-blue-64gb-sm-a253jzbakdi/",
+        "manualUrl": "https://www.samsung.com/jp/smartphones/galaxy-a/galaxy-a25-5g-blue-64gb-sm-a253jzbakdi/",
+        "waterUrl": "https://www.samsung.com/jp/smartphones/galaxy-a/galaxy-a25-5g-blue-64gb-sm-a253jzbakdi/",
+        "packageUrl": "https://www.au.com/online-manual/galaxy_a25_5g/galaxy_a25_5g_01/m_00_00_01.html",
+        "verifiedAt": "2026-11-02"
+      },
+      "affiliateKeys": []
     }
   ]
 }
