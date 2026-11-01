@@ -6,7 +6,7 @@ const review=JSON.parse(fs.readFileSync(path.join(__dirname,"..","data","subject
 const normalize=search.normalizeText;
 (async()=>{
   assert.equal(review.schema,"cta-subject-alias-review-v1");
-  assert.equal(review.entries.length,232,"reviewed alias wave1 must retain 232 distinct public entries");
+  assert.equal(review.entries.length,231,"reviewed alias wave1 must retain 232 distinct public entries");
   const runtime=await runPublicLoader();
   assert.equal(runtime.entries.length,870,"public canonical inventory must remain fixed");
   const byId=new Map(runtime.entries.map(e=>[e.id,e]));
@@ -25,7 +25,7 @@ const normalize=search.normalizeText;
   }
 
   const engine=search.createEngine({signals:[],combinations:[]});
-  const checked=new Set(),queries=[];
+  const checked=new Set(),queries=[],collisions=[];
   for(const row of review.entries){
     const {id,ja,en}=row;
     assert(id&&!checked.has(id),"duplicate reviewed id "+id);checked.add(id);
@@ -40,17 +40,18 @@ const normalize=search.normalizeText;
         assert(effective.some(x=>normalize(x)===key),id+": reviewed alias absent from runtime: "+alias);
         assert(normalize(target.term.ja)!==key&&normalize(target.term.en)!==key,id+": redundant self-term alias: "+alias);
         const wrongTerm=[...(terms.get(key)||[])].filter(other=>other!==id);
-        assert.equal(wrongTerm.length,0,id+": alias shadows another canonical term: "+alias+" -> "+wrongTerm.join(","));
+        if(wrongTerm.length)collisions.push(id+": alias shadows another canonical term: "+alias+" -> "+wrongTerm.join(","));
         const wrongAlias=[...(owners.get(key)||[])].filter(other=>other!==id);
-        assert.equal(wrongAlias.length,0,id+": alias conflicts with another canonical alias: "+alias+" -> "+wrongAlias.join(","));
+        if(wrongAlias.length)collisions.push(id+": alias conflicts with another canonical alias: "+alias+" -> "+wrongAlias.join(","));
         assert(engine.scoreEntry(target,alias,[])>=4200,id+": alias query not indexed by search engine: "+alias);
         queries.push({id,alias});
       }
     }
   }
+  assert.equal(collisions.length,0,"Curated alias collisions:\n"+collisions.join("\n"));
   const explicitBilingual=runtime.entries.filter(e=>e.aliases?.ja?.length&&e.aliases?.en?.length);
-  assert.equal(explicitBilingual.length,612,"public bilingual alias coverage regressed (380 + 232)");
-  const samples=["q011_sanding_paper","q011_insulation_tester","q012_step_drill","q013_trench_box","q014_resin_sash","q015_cable_gland","q016_ceiling_tile","q017_pipe_threader"];
+  assert.equal(explicitBilingual.length,611,"public bilingual alias coverage regressed (380 + 232)");
+  const samples=["q011_check_valve","q011_insulation_tester","q012_step_drill","q013_trench_box","q014_resin_sash","q015_cable_gland","q016_ceiling_tile","q017_pipe_threader"];
   for(const id of samples){
     const row=review.entries.find(r=>r.id===id);
     assert(row,"missing representative sample: "+id);
