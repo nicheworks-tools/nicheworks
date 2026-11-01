@@ -23,8 +23,9 @@ test('only pending municipalities selected and original ledger not modified',()=
   {lgcode:'012106',pref:'北海道',municipality:'岩見沢市',coverage_state:'pending_review'}
  ]};
  const gov=[{lgcode:'012084',url:'https://www.city.kitami.lg.jp/'},{lgcode:'012106',url:'https://www.iwamizawa.jp/'}];
- assert.deepEqual(pendingSlice(ledger,gov,0,1).map(x=>x.lgcode),['012084']);
- assert.deepEqual(pendingSlice(ledger,gov,1,1).map(x=>x.lgcode),['012106']);
+ assert.deepEqual(pendingSlice(ledger,gov,0,1).map(x=>x.lgcode),[]);
+ assert.deepEqual(pendingSlice(ledger,gov,1,1).map(x=>x.lgcode),['012084']);
+ assert.deepEqual(pendingSlice(ledger,gov,2,1).map(x=>x.lgcode),['012106']);
  assert.equal(ledger.municipalities[1].coverage_state,'pending_review');
 });
 
