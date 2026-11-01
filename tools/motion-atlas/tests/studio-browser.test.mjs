@@ -68,7 +68,7 @@ try{
   return result.result?.value;
  }
  await call("Page.enable");await call("Runtime.enable");
- function scenario(){
+ async function scenario(){
   const all=q=>Array.from(document.querySelectorAll(q));
   const check=(condition,why)=>{if(!condition)throw Error(why)};
   try{
@@ -101,6 +101,38 @@ try{
    check(document.querySelector("#export-output").hidden,"Export bypassed purchase check");
    check(document.querySelector("#export-download").hidden,"Download unexpectedly enabled");
    check(document.documentElement.scrollWidth-document.documentElement.clientWidth<=8,"Horizontal overflow");
+
+   // UI-only mock: test buttons/file names. D1 authorization is tested separately in Node.
+   const key="nicheworks:billing:session:motion_atlas.studio_v1";
+   localStorage.setItem(key,"cs_test_mockBilling");
+   const oldFetch=window.fetch;
+   window.fetch=async (url,options)=>{
+    if(String(url).includes("/api/motion-atlas/studio-export"))
+     return {ok:true,status:200,json:async()=>({ok:true,files:[
+      {name:"MotionStudio.css",content:"/* test */"},
+      {name:"MotionStudioSequence.jsx",content:"export default function Test(){}"},
+      {name:"MotionStudioBundle.md",content:"# Test bundle"}
+     ]})};
+    return oldFetch(url,options);
+   };
+   document.querySelector("#export").click();
+   for(let n=0;n<30&&document.querySelector("#export-files").hidden;n++)await new Promise(resolve=>setTimeout(resolve,25));
+   check(!document.querySelector("#export-files").hidden,"Mocked authorized export did not reveal file controls");
+   check(all("[data-export-file]").length===2,"Both CSS and React download buttons missing");
+   check(!document.querySelector("#export-download").hidden,"Bundle download missing");
+   const downloads=[],originalClick=HTMLAnchorElement.prototype.click;
+   HTMLAnchorElement.prototype.click=function(){downloads.push(this.download);};
+   try{
+    all("[data-export-file]").forEach(button=>button.click());
+    document.querySelector("#export-download").click();
+   }finally{HTMLAnchorElement.prototype.click=originalClick;}
+   check(JSON.stringify(downloads)==='["MotionStudio.css","MotionStudioSequence.jsx","MotionStudioBundle.md"]',"Incorrect file download names: "+JSON.stringify(downloads));
+   document.querySelector("#target-text").value="CHANGED";
+   document.querySelector("#target-text").dispatchEvent(new Event("input",{bubbles:true}));
+   check(document.querySelector("#export-files").hidden,"Stale exported code remained available after editing");
+   check(document.querySelector("#export-output").hidden,"Stale readme remained after editing");
+   window.fetch=oldFetch;localStorage.removeItem(key);
+
    return {ok:true,width:window.innerWidth,count:all(".track").length,reduced};
   }catch(error){return {ok:false,error:error.message,width:window.innerWidth};}
  }
