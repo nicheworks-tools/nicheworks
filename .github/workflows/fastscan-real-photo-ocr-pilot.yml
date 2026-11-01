@@ -21,7 +21,7 @@ jobs:
     env:
       FASTSCAN_PHOTO_CORPUS_COMMIT: 5ba39a7b06c59ff1edb30a396fdd640f82506742
       FASTSCAN_PHOTO_CORPUS_DIR: ${{ github.workspace }}/.qa-external-fastscan-photos
-      FASTSCAN_PHOTO_REPORT: ${{ github.workspace }}/.qa-external-fastscan-results.json
+      FASTSCAN_PHOTO_REPORT: ${{ github.workspace }}/fastscan-real-photo-ocr-results.json
 
     steps:
       - name: Checkout NicheWorks sources
@@ -61,12 +61,13 @@ jobs:
         run: |
           node --check tools/inci-fastscan/qa/real-photo-ocr-pilot.mjs
           node tools/inci-fastscan/qa/real-photo-ocr-pilot.mjs
+          test -s "$FASTSCAN_PHOTO_REPORT" # numeric-only report must exist before upload
 
       - name: Upload metrics only (never images, labels, or transcriptions)
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: fastscan-real-photo-ocr-metrics
-          path: ${{ github.workspace }}/.qa-external-fastscan-results.json
-          if-no-files-found: ignore
+          path: ${{ github.workspace }}/fastscan-real-photo-ocr-results.json
+          if-no-files-found: error
           retention-days: 14
