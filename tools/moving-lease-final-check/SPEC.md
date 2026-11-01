@@ -24,6 +24,7 @@ Rental is the primary public search intent. The `owned` mode remains available o
 - Require an exit/handoff date and accept home type (`rental` or `owned`).
 - Generate a final-stage checklist and completion progress for the selected conditions.
 - Keep a crawlable static move-out guide in the initial HTML covering inspection/handoff timing, keys/return items, condition photos, meter checks, remaining belongings, and the contract-guidance boundary.
+- Add a separate temporary five-item handoff-essentials check (keys, papers, photo equipment, notes, optional protection supplies) before the FAQ, with general Amazon accessory offers nearby. These temporary checkboxes do not modify persisted checklist progress, infer lease/legal requirements, or appear in printed output.
 - Rental output focuses on inspection timing, key return, room/equipment photos, meter records, insurance/contract confirmation, refund contact details, return items, and restoration-related source checking.
 - Owned output focuses on final shutoff/locking, handoff documents/keys, condition photos, handoff contacts, vacancy setup, continuing contracts, equipment condition, and record retention.
 - Persist exit/handoff date, home type, and checkbox state in the current browser.
@@ -37,6 +38,7 @@ Rental is the primary public search intent. The `owned` mode remains available o
 - Required move-out / handoff date.
 - Home type: rental or owned.
 - Checklist completion toggles.
+- Optional, non-persistent handoff preparation checkboxes, independent of the canonical task list.
 
 ## Outputs
 
@@ -78,6 +80,9 @@ The canonical monetization class is `AFFILIATE`. The live commerce block uses th
 
 ## Acceptance criteria
 
+- [ ] Five static handoff-preparation items have native temporary checkboxes and prioritize official management instructions over purchases.
+- [ ] The general fixed Amazon links appear beside this guide, never as a response to checklist state; no extra shopping content is printed.
+
 - [ ] A required exit/handoff date and home type produce the corresponding final-stage checklist.
 - [ ] Rental tasks remain centered on inspection/photo/key/return/handoff work rather than broad moving preparation.
 - [ ] Initial HTML exposes the core move-out checking topics without requiring checklist generation and keeps restoration, deposit, and legal judgments out of scope.
@@ -95,3 +100,4 @@ The canonical monetization class is `AFFILIATE`. The live commerce block uses th
 - `tools/moving-lease-final-check/app.js`
 - `tools/moving-lease-final-check/style.css`
 - `tools/moving-lease-final-check/affiliate-config.js`
+- `tools/moving-lease-final-check/tests/behavior.test.mjs`
