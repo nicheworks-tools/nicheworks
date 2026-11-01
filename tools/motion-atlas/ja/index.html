@@ -21,6 +21,13 @@
   <header class="nw-header"><div><p class="nw-eyebrow">Niche Works / モーション判断ツール</p><h1>Motion Atlas</h1><p class="nw-tagline">名前だけで終わらない。見て、比べて、AIに正確に頼めるモーション辞典。</p></div><div class="nw-header-actions"><a href="../">English</a><a href="usage/">使い方</a><a href="about/">このツールについて</a></div></header>
   <main class="nw-main">
     <section class="intro-panel"><p>実際に動くサンプルを見ながら、UIモーションの違い・使いどころ・AIへの頼み方を確認できます。</p><p class="privacy-note">検索、お気に入り、最近見た項目、比較対象はこのブラウザ内で処理します。検索語をサーバーへ送信しません。</p></section>
+    <section class="studio-crosslink" aria-labelledby="studio-preview-title">
+      <div class="studio-crosslink-copy">
+        <h2 id="studio-preview-title">複数の動きを組み合わせる Studio</h2>
+        <p>この辞典の42種類のデモ・比較・AI依頼文・既存の書き出しは引き続き無料です。別ツールのStudio体験版では、複数の動きを時間軸に配置し、合成再生やプリセット保存ができます。有料の実装コード一括生成はまだ販売していません。</p>
+      </div>
+      <a class="studio-try-link" data-studio-preview href="/tools/motion-atlas/ja/studio/">Studio体験版を開く</a>
+    </section>
     <section class="motion-shell" aria-label="Motion Atlas tool">
       <aside class="filter-panel" aria-label="フィルタ"><div class="filter-head"><h2>フィルタ</h2><button type="button" data-reset>リセット</button></div><label>モーションを検索<input id="motion-search" type="search" aria-label="モーションを検索"></label><label>カテゴリ<select id="category-filter" multiple size="6"></select></label><label>動きの種類<select id="type-filter" multiple size="6"></select></label><label>発火条件<select id="trigger-filter" multiple size="6"></select></label><div class="filter-grid"><label>強さ <select id="intensity-filter"><option value="">すべて</option></select></label><label>速度感 <select id="speed-filter"><option value="">すべて</option></select></label><label>モバイル適性 <select id="mobile-filter"><option value="">すべて</option></select></label><label>負荷/刺激 <select id="a11y-filter"><option value="">すべて</option></select></label></div><label class="toggle-row"><input type="checkbox" id="reduced-toggle"><span>動きを減らす</span></label><p id="reduced-note" class="hint" hidden>動きを減らす設定が有効です。デモは負荷や刺激を抑えた表示になります。</p></aside>
       <section class="list-panel" aria-label="モーション一覧"><div class="list-toolbar"><h2>モーションカタログ</h2><p><span id="result-count">0</span>件</p></div><div id="zero-state" class="zero-state" hidden><h3>完全一致がありません</h3><p>例：fade、slide、hover、loading、scroll reveal、押した感じ、エラーで震える、チェックが描かれる。</p><div id="quick-suggestions" class="chip-row"></div></div><div id="motion-list" class="motion-list"></div></section>
