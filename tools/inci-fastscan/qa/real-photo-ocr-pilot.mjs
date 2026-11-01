@@ -89,18 +89,28 @@ try {
       processText.coreProcessOCRText(recognized?.data?.text || ''), { langHint: 'en' });
     const annotatedListMetrics = metric.score(gt.INCI_list.join('\n'), normalizedOcr, parser.splitIngredients);
     const rawTranscriptionMetrics = metric.score(gt.raw_ingredients_list, normalizedOcr, parser.splitIngredients);
+    // Positive control: score a source annotation transcription against its
+    // own canonical INCI_list without any photo OCR. This quantifies the strict
+    // evaluator's alias/parenthesis/punctuation mismatch on this corpus.
+    // It is not an OCR prediction and must not be counted as OCR accuracy.
+    const annotatedRaw = processText.postProcessOcrText(
+      processText.coreProcessOCRText(gt.raw_ingredients_list), { langHint: 'en' });
+    const annotationOracleMetrics = metric.score(
+      gt.INCI_list.join('\n'), annotatedRaw, parser.splitIngredients);
 
     results.push({
       id,
       referenceIngredientCount: gt.INCI_list.length,
       durationMs,
       annotatedListMetrics,
-      rawTranscriptionMetrics
+      rawTranscriptionMetrics,
+      annotationOracleMetrics
     });
     console.log([
       'PHOTO', id, 'annotated ingredients', gt.INCI_list.length,
       'recognized', annotatedListMetrics.recognizedIngredients,
       'exact recall', (100 * annotatedListMetrics.exactIngredientRecall).toFixed(2) + '%',
+      'annotation-only control recall', (100 * annotationOracleMetrics.exactIngredientRecall).toFixed(2) + '%',
       'character error', (100 * rawTranscriptionMetrics.characterErrorRate).toFixed(2) + '%',
       'duration', durationMs + 'ms'
     ].join(' | '));
@@ -127,11 +137,12 @@ const report = {
       'tools/inci-fastscan/qa/photo_ocr_metrics.js',
       'tools/_shared/cosmetic-ingredient-parser.js'
     ],
-    caveat: 'Exploratory Tesseract.js real-photo baseline. Does NOT exercise browser image preprocessing, phone cameras, Japanese OCR or full live FastScan UI. External annotations may contain spelling and alias variations.',
+    caveat: 'Exploratory Tesseract.js real-photo baseline. Does NOT exercise browser image preprocessing, phone cameras, Japanese OCR or full live FastScan UI. External annotations may contain spelling and alias variations. The annotation-only positive control estimates strict scoring disagreement on source ground truths without photo OCR.',
     passCriteria: 'All 12 photographs processed with real OCR and a per-photo numeric result; there is no fabricated accuracy threshold.'
   },
   aggregateAnnotatedList: aggregate(results, 'annotatedListMetrics'),
   aggregateRawTranscription: aggregate(results, 'rawTranscriptionMetrics'),
+  aggregateAnnotationOnlyControl: aggregate(results, 'annotationOracleMetrics'),
   samples: results
 };
 fs.writeFileSync(outputFile, JSON.stringify(report, null, 2) + '\n', 'utf8');
@@ -142,5 +153,6 @@ console.log('FASTSCAN_REAL_PHOTO_PILOT=' + JSON.stringify({
   photos: results.length,
   annotatedListExactRecallPercent: +(100*a.pooledExactIngredientRecall).toFixed(2),
   rawTranscriptionCerPercent: +(100*r.pooledCharacterErrorRate).toFixed(2),
+  annotationOnlyControlRecallPercent: +(100*report.aggregateAnnotationOnlyControl.pooledExactIngredientRecall).toFixed(2),
   report: outputFile
 }));

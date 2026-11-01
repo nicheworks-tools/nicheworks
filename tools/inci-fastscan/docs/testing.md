@@ -105,6 +105,12 @@ mobile-browser QA certification**.
   scoring with the shared ingredient parser.
 - Metric outputs: per-image exact ingredient recall against the external annotated
   ingredient list, and CER against the external raw package transcription.
+  The additionally reported **annotation-only control** scores the same source's
+  `raw_ingredients_list` against its `INCI_list` without any photo OCR. This
+  explicitly measures how much strict exact-name scoring disagrees with the
+  dataset's own spellings, aliases, names with explanatory parentheses and
+  separator formatting. It is **not** an OCR quality score or a correct-output
+  upper bound; compare it with the raw photo OCR score before diagnosing the model.
   Pooled metrics correctly weight ingredient counts and reference characters.
   CI uploads **aggregate numeric results only**, including per-photo numeric
   scores without the image, filename of the local user, input transcription,
