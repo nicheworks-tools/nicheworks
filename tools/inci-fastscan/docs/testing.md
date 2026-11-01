@@ -129,6 +129,16 @@ mobile-browser QA certification**.
 
 **First measured 12-photo pilot (2026-11-01, [GitHub Actions run 41307444468](https://github.com/nicheworks-tools/nicheworks/actions/runs/41307444468)):** all 12 external real English-language label photos were recognized, with **19.28% pooled strict annotated-ingredient exact recall**, **44.60% pooled CER against the raw transcription**, and **62.05% pooled annotation-only exact-recall control**. These are negative diagnostic results, **not a passed OCR accuracy gate**; strict matching also disagrees with the corpus's own spelling/alias conventions, so raw image OCR and exact-ingredient matching must be debugged separately. Results vary widely by photo. The first run printed valid per-photo numbers but its upload-artifact step skipped the hidden `.qa-external-fastscan-results.json` output; the next workflow revision changes to a visible numeric-only filename and makes a missing artifact a hard failure. No photographed label, OCR text, or ground truth is uploaded. Real smartphone/browser original-versus-preprocessed and Japanese measurements remain outstanding.
 
+**Controlled real-photo segmentation A/B (2026-11-02, [GitHub Actions run 41335294961](https://github.com/nicheworks-tools/nicheworks/actions/runs/41335294961)):** all 36 OCR recognitions completed on the same 12 independently annotated English package photos and a metrics-only artifact was uploaded. Reported pooled results:
+
+| Fixed OCR mode | Strict annotated INCI recall (higher better) | CER vs raw label transcription (lower better) | Raw OCR CER before FastScan cleanup |
+| --- | ---: | ---: | ---: |
+| Tesseract.js default | **19.28%** | 44.60% | 46.57% |
+| PSM6 uniform text block | **19.28%** | 44.60% | 46.57% |
+| PSM11 sparse text | 16.57% | **38.22%** | 40.12% |
+
+**Decision:** retain production default. PSM11 reduces pooled character edits by 6.38 percentage points but **decreases exact-name recall by 2.71 points**; an unconditional switch would worsen a primary user-facing metric. PSM6 replicates default in this corpus. The FastScan OCR cleanup slightly reduces pooled CER in both modes (without demonstrating better exact-name recall). Individual photos vary widely and some show near-zero exact recall despite moderately low CER, so OCR text segmentation, missing ingredient boundaries, ground-truth spellings/aliases, and image quality must be investigated separately. This is not an overall mobile or Japanese accuracy certification, and is not an instruction to silently auto-correct user text. See CI numeric-only artifact `fastscan-real-photo-ocr-metrics` in that run.
+
 The pilot also compares default Tesseract page segmentation with fixed **PSM 6** (uniform text block) and **PSM 11** (sparse text) on the same 12 photos. It reports baseline and experimental per-photo/pooled exact ingredient recall, CER against package transcription, and the raw OCR CER before ingredient cleanup, without logging image or OCR text. These modes are **offline experiments only**: no best-per-photo oracle selection and no production mode change without proven reproducible improvement. A successful job means the measurement ran, not that the recognition accuracy passed.
 
 The pilot may be triggered manually in GitHub Actions and also runs when its own
