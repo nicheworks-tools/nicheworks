@@ -12416,6 +12416,274 @@
         "verifiedAt": "2026-11-02"
       },
       "affiliateKeys": []
+    },
+    {
+      "id": "samsung-galaxy-s23-ultra-sc52d",
+      "manufacturer": "Samsung",
+      "model": "Galaxy S23 Ultra (SC-52D)",
+      "aliases": [
+        "Galaxy S23 Ultra",
+        "Samsung Galaxy S23 Ultra",
+        "SC-52D",
+        "GalaxyS23Ultra",
+        "ギャラクシーS23ウルトラ"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2023,
+      "dimensions": {
+        "heightMm": 163,
+        "widthMm": 78,
+        "depthMm": 8.9
+      },
+      "weightG": 234,
+      "displayInch": 6.8,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 3.1",
+          "PPS"
+        ],
+        "pps": "supported",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.docomo.ne.jp/support/product/sc52d/spec.html"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.docomo.ne.jp/support/product/sc52d/spec.html",
+        "manualUrl": "https://www.docomo.ne.jp/binary/pdf/support/manual/SC-51D_SC-52D_J_syousai_13.pdf",
+        "releaseUrl": "https://www.samsung.com/jp/smartphones/galaxy-s/galaxy-s23-ultra-green-256gb-docomo-sm-s918dzgedcm/",
+        "waterUrl": "https://www.docomo.ne.jp/support/product/sc52d/spec.html",
+        "packageUrl": "https://www.docomo.ne.jp/binary/pdf/support/manual/SC-51D_SC-52D_J_syousai_13.pdf",
+        "chargingUrl": "https://www.docomo.ne.jp/support/product/sc52d/spec.html",
+        "wirelessUrl": "https://www.docomo.ne.jp/support/product/sc52d/spec.html",
+        "verifiedAt": "2026-11-02"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "sony-xperia-1-j9110",
+      "manufacturer": "Sony",
+      "model": "Xperia 1 (J9110)",
+      "aliases": [
+        "Xperia 1",
+        "Xperia1",
+        "Xperia 1 SIMフリー",
+        "ソニー エクスペリア1 J9110"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2020,
+      "dimensions": {
+        "heightMm": 167,
+        "widthMm": 72,
+        "depthMm": 8.2
+      },
+      "weightG": 178,
+      "displayInch": 6.5,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStatus": "not_supported",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 3330,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.sony.jp/xperia/xperia/xperia1/spec_sony.html"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.sony.jp/xperia/xperia/xperia1/spec_sony.html",
+        "manualUrl": "https://www.sony.jp/xperia/xperia/xperia1/spec_sony.html",
+        "releaseUrl": "https://www.sony.jp/CorporateCruise/Press/202008/20-0818/",
+        "waterUrl": "https://www.sony.jp/xperia/xperia/xperia1/spec_sony.html",
+        "packageUrl": "https://www.sony.jp/xperia/xperia/xperia1/spec_sony.html",
+        "wirelessUrl": "https://www.sony.jp/xperia/xperia/xperia1/spec_sony.html",
+        "verifiedAt": "2026-11-02"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "sharp-aquos-sense-plus-shm07",
+      "manufacturer": "SHARP",
+      "model": "AQUOS sense plus (SH-M07)",
+      "aliases": [
+        "AQUOS sense plus",
+        "AQUOSsenseplus",
+        "SH-M07",
+        "アクオス センス プラス"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2018,
+      "dimensions": {
+        "heightMm": 151,
+        "widthMm": 71,
+        "depthMm": 8.9
+      },
+      "weightG": 157,
+      "displayInch": 5.5,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [
+          "Quick Charge 3.0",
+          "USB Power Delivery"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 3100,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://jp.sharp/products/aquos-sense-plus/spec.html"
+        }
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "included"
+      },
+      "sources": {
+        "specificationsUrl": "https://jp.sharp/products/aquos-sense-plus/spec.html",
+        "manualUrl": "https://jp.sharp/products/aquos-sense-plus/spec.html",
+        "releaseUrl": "https://corporate.jp.sharp/news/180614-b.html",
+        "waterUrl": "https://jp.sharp/products/aquos-sense-plus/spec.html",
+        "packageUrl": "https://jp.sharp/products/aquos-sense-plus/spec.html",
+        "chargingUrl": "https://jp.sharp/products/aquos-sense-plus/spec.html",
+        "verifiedAt": "2026-11-02"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "sharp-aquos-sense3-shm12",
+      "manufacturer": "SHARP",
+      "model": "AQUOS sense3 (SH-M12)",
+      "aliases": [
+        "AQUOS sense3",
+        "AQUOSsense3",
+        "SH-M12",
+        "アクオス センス3 SIMフリー"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2019,
+      "dimensions": {
+        "heightMm": 147,
+        "widthMm": 70,
+        "depthMm": 8.9
+      },
+      "weightG": 167,
+      "displayInch": 5.5,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB Power Delivery"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 4000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://jp.sharp/products/shm12/spec.html"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "included"
+      },
+      "sources": {
+        "specificationsUrl": "https://jp.sharp/products/shm12/spec.html",
+        "manualUrl": "https://k-tai.sharp.co.jp/support/other/shm12/manual/index_v2/pdf/SH-M12_J_QSG.pdf",
+        "releaseUrl": "https://corporate.jp.sharp/news/191119-a.html",
+        "waterUrl": "https://jp.sharp/products/shm12/spec.html",
+        "packageUrl": "https://k-tai.sharp.co.jp/support/other/shm12/manual/index_v2/pdf/SH-M12_J_QSG.pdf",
+        "chargingUrl": "https://k-tai.sharp.co.jp/support/other/shm12/manual/index_v2/pdf/SH-M12_J_QSG.pdf",
+        "verifiedAt": "2026-11-02"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "sharp-aquos-sense3-plus-shm11",
+      "manufacturer": "SHARP",
+      "model": "AQUOS sense3 plus (SH-M11)",
+      "aliases": [
+        "AQUOS sense3 plus",
+        "AQUOSsense3plus",
+        "SH-M11",
+        "アクオス センス3プラス"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2019,
+      "dimensions": {
+        "heightMm": 160,
+        "widthMm": 75,
+        "depthMm": 8.7
+      },
+      "weightG": 175,
+      "displayInch": 6,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB Power Delivery"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 4000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://jp.sharp/products/shm11/spec.html"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "included"
+      },
+      "sources": {
+        "specificationsUrl": "https://jp.sharp/products/shm11/spec.html",
+        "manualUrl": "https://jp.sharp/products/shm11/spec.html",
+        "releaseUrl": "https://corporate.jp.sharp/news/191217-a.html",
+        "waterUrl": "https://jp.sharp/products/shm11/spec.html",
+        "packageUrl": "https://jp.sharp/products/shm11/spec.html",
+        "chargingUrl": "https://jp.sharp/products/shm11/spec.html",
+        "verifiedAt": "2026-11-02"
+      },
+      "affiliateKeys": []
     }
   ]
 }
