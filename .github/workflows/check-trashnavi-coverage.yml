@@ -26,6 +26,11 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Validate official candidate scanner (offline)
+        run: |
+          node --check tools/trashnavi/scripts/harvest-official-candidates.mjs
+          node --test tools/trashnavi/scripts/harvest-official-candidates.test.mjs
+
       - name: Report coverage baseline
         run: |
           node tools/trashnavi/scripts/audit-coverage.mjs | tee /tmp/trashnavi-coverage.txt
