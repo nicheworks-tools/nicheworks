@@ -76,13 +76,7 @@
       "dj": "サンドペーパーは、紙や布の基材に砥粒を固定した研磨材で、木材・パテ・塗膜・金属などの表面を削ったり整えたりする。番手が小さいほど一般に粗削り向きで、大きいほど仕上げ向き。対象材と必要な仕上がりに応じて砥粒と番手を使い分ける。",
       "de": "Sanding paper is an abrasive sheet or cloth used to remove material and smooth wood, filler, paint or metal. Lower grit numbers generally cut more coarsely, while higher grits give finer finishes; choose the abrasive and grit for the surface and finishing stage.",
       "c": "finishing",
-      "task": "sand_surface",
-      "aj": [
-        "紙やすり"
-      ],
-      "ae": [
-        "Sandpaper"
-      ]
+      "task": "sand_surface"
     },
     {
       "id": "q011_stud_finder",
