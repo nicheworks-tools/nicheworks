@@ -30,7 +30,7 @@ const noteSources = Object.freeze({
   "disodium phosphate": "https://cosmileeurope.eu/inci/detail/5003/disodium-phosphate/",
   "sodium acetylated hyaluronate": "https://cosmileeurope.eu/inci/detail/14518/sodium-acetylated-hyaluronate/",
   "hydroxyethyl urea": "https://cosmileeurope.eu/inci/detail/7106/hydroxyethyl-urea/",
-  "sodium bicarbonate": "https://cosmileeurope.eu/inci/detail/14564/sodium-bicarbonate/"
+  "butylparaben": "https://cosmileeurope.eu/inci/detail/2044/butylparaben/"
 });
 
 assert.equal(raw.length, 725, 'no raw dictionary rewrite');
