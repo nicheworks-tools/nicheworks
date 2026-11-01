@@ -224,6 +224,17 @@
   });
 })();
 
+// Escape Markdown fence collisions when JSON values contain backticks.
+// The generated Mermaid source remains local; the wrapper is for Markdown editors only.
+function formatMermaidMarkdown(source) {
+  const value = String(source ?? "").trim();
+  if (!value) return "";
+  const tick = String.fromCharCode(96);
+  const longest = (value.match(/`+/g) || []).reduce((size, run) => Math.max(size, run.length), 0);
+  const fence = tick.repeat(Math.max(3, longest + 1));
+  return fence + "mermaid\n" + value + "\n" + fence + "\n";
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const inputEl = document.getElementById("jsonInput");
   const outputEl = document.getElementById("mermaidOutput");
@@ -232,6 +243,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const resetBtn = document.getElementById("resetBtn");
   const downloadMmdBtn = document.getElementById("downloadMmd");
   const downloadTxtBtn = document.getElementById("downloadTxt");
+  const copyMarkdownBtn = document.getElementById("copyMarkdownBtn");
+  const downloadMdBtn = document.getElementById("downloadMd");
   const statsBox = document.getElementById("statsBox");
   const statNodes = document.getElementById("statNodes");
   const statEdges = document.getElementById("statEdges");
@@ -257,6 +270,8 @@ document.addEventListener("DOMContentLoaded", () => {
       reset: "リセット",
       downloadMmd: ".mmdで保存",
       downloadTxt: ".txtで保存",
+      copyMarkdown: "Markdown形式でコピー",
+      downloadMd: ".mdで保存",
       presetSimple: "シンプルツリー",
       presetNested: "ネストオブジェクト",
       presetArray: "配列オブジェクト",
@@ -271,6 +286,8 @@ document.addEventListener("DOMContentLoaded", () => {
       reset: "Reset",
       downloadMmd: "Download .mmd",
       downloadTxt: "Download .txt",
+      copyMarkdown: "Copy Markdown",
+      downloadMd: "Download .md",
       presetSimple: "Simple tree",
       presetNested: "Nested object",
       presetArray: "Array of objects",
@@ -512,6 +529,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  const copyMarkdownHandler = async () => {
+    const text = formatMermaidMarkdown(outputEl.value);
+    if (!text) {
+      showToast(currentLang === "ja" ? "出力が空です。先に変換してください。" : "No output yet. Convert JSON first.");
+      return;
+    }
+    const ok = await copyText(text);
+    showToast(ok
+      ? (currentLang === "ja" ? "Mermaid対応Markdownをコピーしました。" : "Mermaid Markdown copied.")
+      : (currentLang === "ja" ? "コピーに失敗しました。" : "Copy failed."));
+  };
+
   const resetHandler = () => {
     inputEl.value = "";
     outputEl.value = "";
@@ -571,13 +600,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const downloadHandler = (extension) => {
     hideError();
-    const text = outputEl.value.trim();
-    if (!text) {
+    const source = outputEl.value.trim();
+    if (!source) {
       showToast(currentLang === "ja" ? "出力が空です。先に変換してください。" : "No output yet. Convert JSON first.");
       return;
     }
-
-    const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+    const text = extension === "md" ? formatMermaidMarkdown(source) : source;
+    const blob = new Blob([text], { type: extension === "md" ? "text/markdown;charset=utf-8" : "text/plain;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
@@ -603,6 +632,8 @@ document.addEventListener("DOMContentLoaded", () => {
   resetBtn.addEventListener("click", resetHandler);
   downloadMmdBtn.addEventListener("click", () => downloadHandler("mmd"));
   downloadTxtBtn.addEventListener("click", () => downloadHandler("txt"));
+  copyMarkdownBtn?.addEventListener("click", copyMarkdownHandler);
+  downloadMdBtn?.addEventListener("click", () => downloadHandler("md"));
 
   applyLang(currentLang);
 });
