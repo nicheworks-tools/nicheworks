@@ -165,3 +165,7 @@ Acceptance for canonical v1 requires exactly 100 published IDs, 200 indexable bi
 ## Dictionary structure work (2026-11-01)
 
 The bounded `canonical-100-v1` publication is **not** a complete subject-wide dictionary. It now also has `tools/pattern-dictionary/data/taxonomy-v2.json` (100 provisional, independent concept type / appearance / context classifications) and `tools/pattern-dictionary/data/coverage-backlog.json` (**87 unverified, unpublished** proposed concepts; no public routes). Published detail pages expose source-verification publisher links. JA/EN browse separates appearance, concept type, and cultural/craft context instead of mixing them in a single filter dimension. New coverage is not automatically published or treated as verified.
+
+## Source-checked supplement (2026-11-02)
+
+A separate `v2-extension.json` now contributes 5 additional Japanese named motifs (Sakura, Ume, Kiku, Tsuru, Yukiwa) with JA/EN definitions, original repeatable SVG illustrations and 11 museum/specialist attribution links. Total runtime searchable terms: 105, total JA/EN static detail pages: 210. The frozen canonical-100-v1 tests and PNG reference manifest still apply only to the first 100. The supplement explicitly does not claim exhaustive historical image coverage or that all proposed backlog terms are verified.

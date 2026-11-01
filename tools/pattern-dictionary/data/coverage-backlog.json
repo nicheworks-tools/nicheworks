@@ -13,56 +13,6 @@
   ],
   "candidates": [
     {
-      "id": "sakura-motif",
-      "name": {
-        "ja": "桜文様",
-        "en": "Cherry blossom motif"
-      },
-      "domain": "japanese-motifs",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
-      "id": "ume-motif",
-      "name": {
-        "ja": "梅文様",
-        "en": "Plum blossom motif"
-      },
-      "domain": "japanese-motifs",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
-      "id": "kiku-motif",
-      "name": {
-        "ja": "菊文様",
-        "en": "Chrysanthemum motif"
-      },
-      "domain": "japanese-motifs",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
-      "id": "tsuru-motif",
-      "name": {
-        "ja": "鶴文様",
-        "en": "Crane motif"
-      },
-      "domain": "japanese-motifs",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
-      "id": "yukiwa",
-      "name": {
-        "ja": "雪輪文様",
-        "en": "Snow-ring motif"
-      },
-      "domain": "japanese-motifs",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
       "id": "kanzemizu",
       "name": {
         "ja": "観世水",
@@ -882,5 +832,17 @@
       "proposed_type": "motif",
       "status": "candidate-unverified"
     }
-  ]
+  ],
+  "published_v2": {
+    "version": "pattern-dictionary-v2-supplement-1",
+    "added_ids": [
+      "sakura-motif",
+      "ume-motif",
+      "kiku-motif",
+      "tsuru-motif",
+      "yukiwa"
+    ],
+    "status": "source-checked-supplemental-publication",
+    "note": "Five published items are managed in v2-extension.json and are excluded from the remaining unverified backlog."
+  }
 }

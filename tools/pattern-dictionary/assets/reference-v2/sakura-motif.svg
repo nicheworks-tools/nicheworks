@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1536" viewBox="0 0 1536 1536" role="img" aria-label="sakura-motif original illustrative repeated motif">
+<rect width="1536" height="1536" fill="#f8f4eb"/>
+<defs><g id="motif"><g fill="#ec91ac" stroke="#a65b76" stroke-width="4"><path d="M0,-10 C-44,-44 -90,-106 -67,-145 C-53,-168 -16,-169 0,-144 C16,-169 53,-168 67,-145 C90,-106 44,-44 0,-10Z" transform="rotate(0)"/><path d="M0,-10 C-44,-44 -90,-106 -67,-145 C-53,-168 -16,-169 0,-144 C16,-169 53,-168 67,-145 C90,-106 44,-44 0,-10Z" transform="rotate(72)"/><path d="M0,-10 C-44,-44 -90,-106 -67,-145 C-53,-168 -16,-169 0,-144 C16,-169 53,-168 67,-145 C90,-106 44,-44 0,-10Z" transform="rotate(144)"/><path d="M0,-10 C-44,-44 -90,-106 -67,-145 C-53,-168 -16,-169 0,-144 C16,-169 53,-168 67,-145 C90,-106 44,-44 0,-10Z" transform="rotate(216)"/><path d="M0,-10 C-44,-44 -90,-106 -67,-145 C-53,-168 -16,-169 0,-144 C16,-169 53,-168 67,-145 C90,-106 44,-44 0,-10Z" transform="rotate(288)"/></g><circle r="23" fill="#f8d976"/><circle r="7" fill="#aa703c"/></g></defs>
+<use href="#motif" transform="translate(256 256)"/>
+<use href="#motif" transform="translate(768 256)"/>
+<use href="#motif" transform="translate(1280 256)"/>
+<use href="#motif" transform="translate(256 768)"/>
+<use href="#motif" transform="translate(768 768)"/>
+<use href="#motif" transform="translate(1280 768)"/>
+<use href="#motif" transform="translate(256 1280)"/>
+<use href="#motif" transform="translate(768 1280)"/>
+<use href="#motif" transform="translate(1280 1280)"/>
+</svg>

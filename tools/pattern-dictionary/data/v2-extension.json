@@ -1,0 +1,1126 @@
+{
+  "schema_version": "pattern-dictionary-v2-supplement-1",
+  "updated": "2026-11-02",
+  "publication_note": "Five source-checked, illustrated supplemental terms. The original canonical 100 v1 is immutable. Illustrations are original representative vectors, not a museum image, nor a guarantee of all historical variants.",
+  "entries": [
+    {
+      "id": "sakura-motif",
+      "uses": {
+        "ja": [
+          "着物",
+          "帯",
+          "染織品",
+          "和紙・包装"
+        ],
+        "en": [
+          "kimono",
+          "obi",
+          "textiles",
+          "paper decoration"
+        ]
+      },
+      "source": {
+        "pattern_id": "sakura-motif",
+        "verification_state": "verified",
+        "term_scope": "Japanese cherry blossom floral ornament; not one fixed textile repeat",
+        "verified_names": {
+          "ja": "桜文様",
+          "en": "Cherry Blossom Motif"
+        },
+        "verified_aliases": {
+          "ja": [
+            "桜柄",
+            "桜花文",
+            "さくら模様"
+          ],
+          "en": [
+            "sakura pattern",
+            "cherry blossom pattern",
+            "sakura motif"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "Tokyo National Museum",
+            "url": "https://www.tnm.jp/modules/r_exhibition/index.php?controller=item&id=7305",
+            "supports": [
+              "Museum collection lists cherry-blossom motifs in Edo-period kimono"
+            ]
+          },
+          {
+            "publisher": "Metropolitan Museum of Art",
+            "url": "https://www.metmuseum.org/art/collection/search/785522",
+            "supports": [
+              "Japanese kosode bears an embroidered flowering cherry tree"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "sakura-motif",
+        "review_state": "source-reviewed",
+        "verification_state": "verified",
+        "names": {
+          "ja": "桜文様",
+          "en": "Cherry Blossom Motif"
+        },
+        "aliases": {
+          "ja": [
+            "桜柄",
+            "桜花文",
+            "さくら模様"
+          ],
+          "en": [
+            "sakura pattern",
+            "cherry blossom pattern",
+            "sakura motif"
+          ]
+        },
+        "term_scope": "Japanese cherry blossom floral ornament; not one fixed textile repeat",
+        "definition": {
+          "ja": "桜の花・花びら・枝などを図案化した文様。桜の花弁を五枚で表すことが多く、花弁先端の切れ込みが識別の手掛かりになる表現があります。写実的な枝垂桜や花びらだけの散らし柄も含みます。",
+          "en": "A Japanese decorative motif depicting cherry blossoms, petals or branches. Five-petaled blossoms, sometimes with a notch at each petal tip, are one common rendering; realistic flowering branches and scattered petals are also used."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "五枚の花弁で構成する桜花は代表的な図案の一つ",
+            "花弁先端の小さな切れ込みは梅との見分け方の手掛かり。ただし全例に必須ではありません",
+            "散り花・枝垂桜・枝付きの花など、構図に幅があります"
+          ],
+          "en": [
+            "Five-petaled blossoms are one common depiction",
+            "Notched petal tips often distinguish stylized sakura from round-petaled plum, but not every rendering has notches",
+            "Scattered petals, flowering branches and hanging blossoms are all possible compositions"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "着物",
+            "帯",
+            "染織品",
+            "和紙・包装"
+          ],
+          "en": [
+            "kimono",
+            "obi",
+            "textiles",
+            "paper decoration"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "pink",
+            "white"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Recognition-palette only; not part of the definition"
+        }
+      },
+      "runtime": {
+        "id": "sakura-motif",
+        "names": {
+          "ja": "桜文様",
+          "en": "Cherry Blossom Motif"
+        },
+        "aliases": {
+          "ja": [
+            "桜柄",
+            "桜花文",
+            "さくら模様"
+          ],
+          "en": [
+            "sakura pattern",
+            "cherry blossom pattern",
+            "sakura motif"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "桜の花びらの柄",
+            "桜の和柄",
+            "花びらの先が割れた花柄"
+          ],
+          "en": [
+            "cherry blossom pattern kimono",
+            "five petal notched flower Japan",
+            "sakura flower print"
+          ]
+        },
+        "families": [
+          "japanese",
+          "floral"
+        ],
+        "motifs": [
+          "桜",
+          "五弁花"
+        ],
+        "visual": {
+          "geometry": [
+            "floral"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "pink",
+            "white"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial palette"
+        },
+        "uses": [
+          "fashion",
+          "textile"
+        ],
+        "culture": [
+          "Japanese"
+        ],
+        "relationships": {
+          "similar": [
+            "ume-motif",
+            "ditsy-floral",
+            "botanical-print"
+          ],
+          "often_confused_with": [
+            "ume-motif"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "桜の花・花びら・枝などを図案化した文様。桜の花弁を五枚で表すことが多く、花弁先端の切れ込みが識別の手掛かりになる表現があります。写実的な枝垂桜や花びらだけの散らし柄も含みます。",
+          "en": "A Japanese decorative motif depicting cherry blossoms, petals or branches. Five-petaled blossoms, sometimes with a notch at each petal tip, are one common rendering; realistic flowering branches and scattered petals are also used."
+        },
+        "reference_path": "assets/reference-v2/sakura-motif.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "floral"
+          ],
+          "contexts": [
+            "japanese"
+          ]
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/sakura-motif.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "illustration of one representative form only; not a reproduction of the linked museum objects"
+      }
+    },
+    {
+      "id": "ume-motif",
+      "uses": {
+        "ja": [
+          "着物",
+          "帯",
+          "染織品",
+          "和装小物"
+        ],
+        "en": [
+          "kimono",
+          "obi",
+          "textiles",
+          "Japanese accessories"
+        ]
+      },
+      "source": {
+        "pattern_id": "ume-motif",
+        "verification_state": "verified",
+        "term_scope": "Japanese plum blossom ornament in multiple realistic or stylized forms",
+        "verified_names": {
+          "ja": "梅文様",
+          "en": "Plum Blossom Motif"
+        },
+        "verified_aliases": {
+          "ja": [
+            "梅柄",
+            "梅花文",
+            "うめ模様"
+          ],
+          "en": [
+            "ume pattern",
+            "plum blossom pattern",
+            "Japanese plum motif"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "Kyoto National Museum",
+            "url": "https://knmdb.kyohaku.go.jp/5695.html",
+            "supports": [
+              "Edo-period kosode with a plum-blossom design"
+            ]
+          },
+          {
+            "publisher": "Metropolitan Museum of Art",
+            "url": "https://www.metmuseum.org/art/collection/search/45385",
+            "supports": [
+              "Meiji kimono featuring a blossoming plum tree"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "ume-motif",
+        "review_state": "source-reviewed",
+        "verification_state": "verified",
+        "names": {
+          "ja": "梅文様",
+          "en": "Plum Blossom Motif"
+        },
+        "aliases": {
+          "ja": [
+            "梅柄",
+            "梅花文",
+            "うめ模様"
+          ],
+          "en": [
+            "ume pattern",
+            "plum blossom pattern",
+            "Japanese plum motif"
+          ]
+        },
+        "term_scope": "Japanese plum blossom ornament in multiple realistic or stylized forms",
+        "definition": {
+          "ja": "梅の花や枝を図案化した文様。丸みのある五枚の花弁を単純化した梅花、枝付きの梅、紅白の梅などが使われます。桜文様とは花弁の輪郭と枝の表現が識別の手掛かりになります。",
+          "en": "A Japanese motif depicting plum blossoms or flowering branches. Rounded five-petaled blossoms, plum branches, and red or white blossoms are common variants; petal contours and branch details can help distinguish it from cherry blossom motifs."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "丸みのある五弁花が典型的な梅花の単純化です",
+            "花の中心に花蕊を描く表現が見られます",
+            "桜との判別は花弁の形や枝ぶりを総合して行い、色だけでは判別しません"
+          ],
+          "en": [
+            "Rounded five-petaled flowers are a common stylization",
+            "A visible central cluster of stamens is a useful cue in detailed examples",
+            "Color alone does not reliably distinguish plum from cherry; inspect petals and branches"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "着物",
+            "帯",
+            "染織品",
+            "和装小物"
+          ],
+          "en": [
+            "kimono",
+            "obi",
+            "textiles",
+            "Japanese accessories"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "red",
+            "white"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Recognition-palette only; not part of the definition"
+        }
+      },
+      "runtime": {
+        "id": "ume-motif",
+        "names": {
+          "ja": "梅文様",
+          "en": "Plum Blossom Motif"
+        },
+        "aliases": {
+          "ja": [
+            "梅柄",
+            "梅花文",
+            "うめ模様"
+          ],
+          "en": [
+            "ume pattern",
+            "plum blossom pattern",
+            "Japanese plum motif"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "梅の花の和柄",
+            "丸い五枚花びらの柄",
+            "紅梅文様"
+          ],
+          "en": [
+            "plum blossoms kimono motif",
+            "rounded five petal Japanese flower",
+            "ume floral pattern"
+          ]
+        },
+        "families": [
+          "japanese",
+          "floral"
+        ],
+        "motifs": [
+          "梅",
+          "五弁花"
+        ],
+        "visual": {
+          "geometry": [
+            "floral"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "red",
+            "white"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial palette"
+        },
+        "uses": [
+          "fashion",
+          "textile"
+        ],
+        "culture": [
+          "Japanese"
+        ],
+        "relationships": {
+          "similar": [
+            "sakura-motif",
+            "ditsy-floral",
+            "botanical-print"
+          ],
+          "often_confused_with": [
+            "sakura-motif"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "梅の花や枝を図案化した文様。丸みのある五枚の花弁を単純化した梅花、枝付きの梅、紅白の梅などが使われます。桜文様とは花弁の輪郭と枝の表現が識別の手掛かりになります。",
+          "en": "A Japanese motif depicting plum blossoms or flowering branches. Rounded five-petaled blossoms, plum branches, and red or white blossoms are common variants; petal contours and branch details can help distinguish it from cherry blossom motifs."
+        },
+        "reference_path": "assets/reference-v2/ume-motif.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "floral"
+          ],
+          "contexts": [
+            "japanese"
+          ]
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/ume-motif.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "illustration of one representative form only; not a reproduction of the linked museum objects"
+      }
+    },
+    {
+      "id": "kiku-motif",
+      "uses": {
+        "ja": [
+          "着物",
+          "帯",
+          "婚礼衣装",
+          "装飾布"
+        ],
+        "en": [
+          "kimono",
+          "obi",
+          "formal garments",
+          "decorative textiles"
+        ]
+      },
+      "source": {
+        "pattern_id": "kiku-motif",
+        "verification_state": "verified",
+        "term_scope": "Chrysanthemum floral designs; not restricted to a single petal count or family-crest form",
+        "verified_names": {
+          "ja": "菊文様",
+          "en": "Chrysanthemum Motif"
+        },
+        "verified_aliases": {
+          "ja": [
+            "菊柄",
+            "菊花文",
+            "きく模様"
+          ],
+          "en": [
+            "kiku pattern",
+            "chrysanthemum pattern",
+            "Japanese chrysanthemum motif"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "Metropolitan Museum of Art",
+            "url": "https://www.metmuseum.org/art/collection/search/49822",
+            "supports": [
+              "Taisho kimono decorated with chrysanthemums with slender petals"
+            ]
+          },
+          {
+            "publisher": "Tokyo National Museum",
+            "url": "https://www.tnm.jp/modules/r_exhibition/index.php?controller=item&id=7305",
+            "supports": [
+              "Edo-period kimono listing includes cherry and chrysanthemum motifs"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "kiku-motif",
+        "review_state": "source-reviewed",
+        "verification_state": "verified",
+        "names": {
+          "ja": "菊文様",
+          "en": "Chrysanthemum Motif"
+        },
+        "aliases": {
+          "ja": [
+            "菊柄",
+            "菊花文",
+            "きく模様"
+          ],
+          "en": [
+            "kiku pattern",
+            "chrysanthemum pattern",
+            "Japanese chrysanthemum motif"
+          ]
+        },
+        "term_scope": "Chrysanthemum floral designs; not restricted to a single petal count or family-crest form",
+        "definition": {
+          "ja": "菊の花を装飾的に表した文様。細長い花弁が中心から多方向に広がる放射状の菊花や、葉や茎を含む写実的な菊など、さまざまな図案があります。",
+          "en": "A decorative representation of chrysanthemums, ranging from stylized radial flower heads with many slender petals to naturalistic compositions including stems and leaves."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "中心から多数の細い花弁が放射状に延びる表現が多い",
+            "細弁が重なる複層の花頭や、葉を添えた大輪などの変種があります",
+            "五弁花の桜・梅とは花弁の数と長さが主な識別点です"
+          ],
+          "en": [
+            "Many narrow petals radiating from the center are a common cue",
+            "Layered petals, large blossoms and leaves appear in varied designs",
+            "Numerous slender petals distinguish typical chrysanthemums from five-petaled plum or cherry"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "着物",
+            "帯",
+            "婚礼衣装",
+            "装飾布"
+          ],
+          "en": [
+            "kimono",
+            "obi",
+            "formal garments",
+            "decorative textiles"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "gold",
+            "white"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Recognition-palette only; not part of the definition"
+        }
+      },
+      "runtime": {
+        "id": "kiku-motif",
+        "names": {
+          "ja": "菊文様",
+          "en": "Chrysanthemum Motif"
+        },
+        "aliases": {
+          "ja": [
+            "菊柄",
+            "菊花文",
+            "きく模様"
+          ],
+          "en": [
+            "kiku pattern",
+            "chrysanthemum pattern",
+            "Japanese chrysanthemum motif"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "菊の花の和柄",
+            "細長い花びらの花文様",
+            "菊花模様"
+          ],
+          "en": [
+            "chrysanthemum kimono pattern",
+            "many narrow petal Japanese flower motif",
+            "kiku floral pattern"
+          ]
+        },
+        "families": [
+          "japanese",
+          "floral"
+        ],
+        "motifs": [
+          "菊",
+          "放射状花弁"
+        ],
+        "visual": {
+          "geometry": [
+            "floral"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "gold",
+            "white"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial palette"
+        },
+        "uses": [
+          "fashion",
+          "textile"
+        ],
+        "culture": [
+          "Japanese"
+        ],
+        "relationships": {
+          "similar": [
+            "sakura-motif",
+            "ume-motif",
+            "medallion"
+          ],
+          "often_confused_with": [
+            "sakura-motif"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "菊の花を装飾的に表した文様。細長い花弁が中心から多方向に広がる放射状の菊花や、葉や茎を含む写実的な菊など、さまざまな図案があります。",
+          "en": "A decorative representation of chrysanthemums, ranging from stylized radial flower heads with many slender petals to naturalistic compositions including stems and leaves."
+        },
+        "reference_path": "assets/reference-v2/kiku-motif.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "floral"
+          ],
+          "contexts": [
+            "japanese"
+          ]
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/kiku-motif.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "illustration of one representative form only; not a reproduction of the linked museum objects"
+      }
+    },
+    {
+      "id": "tsuru-motif",
+      "uses": {
+        "ja": [
+          "婚礼衣装",
+          "着物",
+          "帯",
+          "工芸品"
+        ],
+        "en": [
+          "bridal robes",
+          "kimono",
+          "obi",
+          "decorative arts"
+        ]
+      },
+      "source": {
+        "pattern_id": "tsuru-motif",
+        "verification_state": "verified",
+        "term_scope": "Crane bird imagery in Japanese textile and decorative art; includes multiple poses and combinations",
+        "verified_names": {
+          "ja": "鶴文様",
+          "en": "Crane Motif"
+        },
+        "verified_aliases": {
+          "ja": [
+            "鶴柄",
+            "鶴の文様",
+            "鶴模様"
+          ],
+          "en": [
+            "Japanese crane motif",
+            "crane pattern",
+            "tsuru motif"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "Metropolitan Museum of Art",
+            "url": "https://www.metmuseum.org/art/collection/search/894320",
+            "supports": [
+              "Meiji summer robe decorated with cranes and pines"
+            ]
+          },
+          {
+            "publisher": "Metropolitan Museum of Art",
+            "url": "https://www.metmuseum.org/art/collection/search/736262",
+            "supports": [
+              "Cranes among auspicious longevity motifs on Japanese bridal robe"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "tsuru-motif",
+        "review_state": "source-reviewed",
+        "verification_state": "verified",
+        "names": {
+          "ja": "鶴文様",
+          "en": "Crane Motif"
+        },
+        "aliases": {
+          "ja": [
+            "鶴柄",
+            "鶴の文様",
+            "鶴模様"
+          ],
+          "en": [
+            "Japanese crane motif",
+            "crane pattern",
+            "tsuru motif"
+          ]
+        },
+        "term_scope": "Crane bird imagery in Japanese textile and decorative art; includes multiple poses and combinations",
+        "definition": {
+          "ja": "鶴を装飾的に表す文様。翼を広げた飛鶴、立つ鶴、松や波と組み合わせた鶴などがあり、日本の染織では長寿や吉祥の題材として使われます。",
+          "en": "A Japanese decorative motif representing cranes, shown flying with outstretched wings, standing, or combined with pines and waves; in Japanese textiles it often conveys auspicious longevity."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "長い首と脚、広げた翼などが鶴の形態の手掛かりです",
+            "羽先を黒く描く、赤い頭頂部を示すなどの表現例がありますが固定条件ではありません",
+            "小鳥の千鳥文様とは鳥の体格や翼・脚の表現、構図が異なります"
+          ],
+          "en": [
+            "Long neck, legs and broad outstretched wings can signal a crane",
+            "Black wing tips or a red crown are optional illustrative features, not universal requirements",
+            "Compared with plover motifs, cranes are usually depicted with longer necks and legs"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "婚礼衣装",
+            "着物",
+            "帯",
+            "工芸品"
+          ],
+          "en": [
+            "bridal robes",
+            "kimono",
+            "obi",
+            "decorative arts"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "white",
+            "black",
+            "red"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Recognition-palette only; not part of the definition"
+        }
+      },
+      "runtime": {
+        "id": "tsuru-motif",
+        "names": {
+          "ja": "鶴文様",
+          "en": "Crane Motif"
+        },
+        "aliases": {
+          "ja": [
+            "鶴柄",
+            "鶴の文様",
+            "鶴模様"
+          ],
+          "en": [
+            "Japanese crane motif",
+            "crane pattern",
+            "tsuru motif"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "鶴の和柄",
+            "翼を広げた白い鳥の柄",
+            "松と鶴の吉祥文様"
+          ],
+          "en": [
+            "flying crane motif kimono",
+            "Japanese crane and pine pattern",
+            "auspicious crane ornament"
+          ]
+        },
+        "families": [
+          "japanese",
+          "ornamental"
+        ],
+        "motifs": [
+          "鶴",
+          "鳥"
+        ],
+        "visual": {
+          "geometry": [
+            "organic"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "white",
+            "black",
+            "red"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial palette"
+        },
+        "uses": [
+          "fashion",
+          "textile"
+        ],
+        "culture": [
+          "Japanese"
+        ],
+        "relationships": {
+          "similar": [
+            "nami-chidori",
+            "seigaiha"
+          ],
+          "often_confused_with": [
+            "nami-chidori"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "鶴を装飾的に表す文様。翼を広げた飛鶴、立つ鶴、松や波と組み合わせた鶴などがあり、日本の染織では長寿や吉祥の題材として使われます。",
+          "en": "A Japanese decorative motif representing cranes, shown flying with outstretched wings, standing, or combined with pines and waves; in Japanese textiles it often conveys auspicious longevity."
+        },
+        "reference_path": "assets/reference-v2/tsuru-motif.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "pictorial",
+            "organic"
+          ],
+          "contexts": [
+            "japanese"
+          ]
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/tsuru-motif.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "illustration of one representative form only; not a reproduction of the linked museum objects"
+      }
+    },
+    {
+      "id": "yukiwa",
+      "uses": {
+        "ja": [
+          "着物",
+          "帯",
+          "染織",
+          "蒔絵・工芸"
+        ],
+        "en": [
+          "kimono",
+          "obi",
+          "textiles",
+          "lacquerware and crafts"
+        ]
+      },
+      "source": {
+        "pattern_id": "yukiwa",
+        "verification_state": "qualified",
+        "term_scope": "Traditional Japanese snow-ring outline; historical derivation uncertain and not equivalent to modern snowflake micrographs",
+        "verified_names": {
+          "ja": "雪輪文様",
+          "en": "Yukiwa Snow-Ring Motif"
+        },
+        "verified_aliases": {
+          "ja": [
+            "雪輪",
+            "雪輪文",
+            "雪の輪"
+          ],
+          "en": [
+            "yukiwa motif",
+            "snow ring pattern",
+            "Japanese snow-ring motif"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "Tokyo National Museum",
+            "url": "https://www.tnm.jp/modules/r_free_page/index.php?id=2687&lang=ja",
+            "supports": [
+              "Historic snow-ring motifs on traditional Japanese textiles"
+            ]
+          },
+          {
+            "publisher": "Toguri Museum of Art",
+            "url": "https://www.toguri-museum.or.jp/gakugei/back/2014_07.php",
+            "supports": [
+              "Historian's caution that the snow-ring motif predates modern snow-crystal microscopy and its specific origin is uncertain"
+            ]
+          },
+          {
+            "publisher": "SenSho / Kyoto Yuzen Encyclopedia",
+            "url": "https://www.sensho.or.jp/dictionary/kimono_encyclo/monyo_use/use10_monyo.html",
+            "supports": [
+              "Characteristic rounded sixfold outline of snow-ring motif; often used as motif frame"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "yukiwa",
+        "review_state": "source-reviewed",
+        "verification_state": "qualified",
+        "names": {
+          "ja": "雪輪文様",
+          "en": "Yukiwa Snow-Ring Motif"
+        },
+        "aliases": {
+          "ja": [
+            "雪輪",
+            "雪輪文",
+            "雪の輪"
+          ],
+          "en": [
+            "yukiwa motif",
+            "snow ring pattern",
+            "Japanese snow-ring motif"
+          ]
+        },
+        "term_scope": "Traditional Japanese snow-ring outline; historical derivation uncertain and not equivalent to modern snowflake micrographs",
+        "definition": {
+          "ja": "丸みを帯びた六方の輪郭を用いる日本の伝統文様。雪の意匠として古くから着物や工芸に使われ、輪郭を枠として他の花草文様を配する例もあります。成立の由来には複数の説明があり、近代的な雪結晶図から直接生まれたとは断定できません。",
+          "en": "A traditional Japanese snow-related ornament with a rounded, broadly sixfold outline, used on garments and crafts and sometimes as a framing shape for other motifs. Its precise historical origin is debated; it should not be asserted to derive directly from modern snow-crystal diagrams."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "六方の丸みを帯びた連続する輪郭が一般的な識別点です",
+            "内部に草花など別の文様を配置して枠にする場合があります",
+            "雪の結晶を示す鋭い幾何学図とは区別し、成立の由来は断定しません"
+          ],
+          "en": [
+            "A rounded, approximately sixfold scalloped outline is common",
+            "The shape may serve as a frame containing flowers or other designs",
+            "Distinguish traditional snow-ring from sharp geometric snowflake illustrations; origin remains debated"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "着物",
+            "帯",
+            "染織",
+            "蒔絵・工芸"
+          ],
+          "en": [
+            "kimono",
+            "obi",
+            "textiles",
+            "lacquerware and crafts"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "indigo",
+            "white"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Recognition-palette only; not part of the definition"
+        },
+        "qualification": {
+          "ja": "雪輪文の起源については諸説あります。雪の結晶の顕微鏡観察が日本に普及する以前の作品にも雪輪文があるため、『雪の結晶を模様化したもの』という由来の断定を避けます。",
+          "en": "The origin of yukiwa is disputed. Examples predate broad awareness of microscopic snow-crystal forms in Japan, so a direct origin from snow-crystal diagrams is not established."
+        }
+      },
+      "runtime": {
+        "id": "yukiwa",
+        "names": {
+          "ja": "雪輪文様",
+          "en": "Yukiwa Snow-Ring Motif"
+        },
+        "aliases": {
+          "ja": [
+            "雪輪",
+            "雪輪文",
+            "雪の輪"
+          ],
+          "en": [
+            "yukiwa motif",
+            "snow ring pattern",
+            "Japanese snow-ring motif"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "雪輪柄",
+            "雪の丸い文様",
+            "六つにくびれた雪の輪"
+          ],
+          "en": [
+            "yukiwa snow wheel kimono",
+            "six lobed round Japanese snow pattern",
+            "snow-ring design Japan"
+          ]
+        },
+        "families": [
+          "japanese",
+          "geometric"
+        ],
+        "motifs": [
+          "雪輪",
+          "六方の輪郭"
+        ],
+        "visual": {
+          "geometry": [
+            "geometric"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "indigo",
+            "white"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial palette"
+        },
+        "uses": [
+          "fashion",
+          "textile"
+        ],
+        "culture": [
+          "Japanese"
+        ],
+        "relationships": {
+          "similar": [
+            "kikko",
+            "hexagon",
+            "seigaiha"
+          ],
+          "often_confused_with": [
+            "kikko"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "丸みを帯びた六方の輪郭を用いる日本の伝統文様。雪の意匠として古くから着物や工芸に使われ、輪郭を枠として他の花草文様を配する例もあります。成立の由来には複数の説明があり、近代的な雪結晶図から直接生まれたとは断定できません。",
+          "en": "A traditional Japanese snow-related ornament with a rounded, broadly sixfold outline, used on garments and crafts and sometimes as a framing shape for other motifs. Its precise historical origin is debated; it should not be asserted to derive directly from modern snow-crystal diagrams."
+        },
+        "reference_path": "assets/reference-v2/yukiwa.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "geometric",
+            "ornamental"
+          ],
+          "contexts": [
+            "japanese"
+          ]
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/yukiwa.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "illustration of one representative form only; not a reproduction of the linked museum objects"
+      }
+    }
+  ]
+}
