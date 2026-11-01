@@ -40,3 +40,9 @@ The current corpus is dated evidence from official product pages. This OCR gate 
 OCR images, OCR text, filenames, repaired names, review hints, and analysis results remain local to the FastScan workflow. The OCR runtime must not reference the Amazon affiliate configuration, Amazon destinations, or affiliate event names.
 
 Amazon monetization remains a separate fixed-category layer and is not selected or constructed from OCR output.
+
+## Explicit bullet separators on real cosmetic labels (2026-11-01)
+
+The initial 12-photo external ToxFox OCR baseline showed low exact-ingredient recall (**19.28%**, with **44.60%** character error against the raw source transcription). The test used unmodified photos and English Tesseract.js without browser canvas processing, so this is a diagnostic baseline rather than product accuracy.
+
+Visible `•` and `●` are *actual ingredient separators* in many INCI packaging lists. Previously both OCR cleanup functions converted them to ordinary spaces, which could concatenate adjacent ingredient names and make them unmatchable. The cleanup now keeps them as commas for later ingredient-boundary parsing; numeric `1,2-Hexanediol` locant commas remain protected. This is a **deterministic delimiter fix**, not a claim that the model recognizes every photographic bullet correctly. English and Japanese bullet examples are unit-tested, while the external 12-photo pilot is rerun to quantify impact. Never treat a test-only CER or recall increase as proven end-to-end Android/Japanese recognition quality.

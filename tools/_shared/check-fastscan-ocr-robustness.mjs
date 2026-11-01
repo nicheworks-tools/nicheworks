@@ -101,6 +101,21 @@ assert.deepEqual(
   'English OCR cleanup must preserve line candidates and numeric locant commas'
 );
 
+// Real ingredient labels often separate names with bullets; removing these
+// marks as whitespace would merge two correctly recognized ingredients.
+const bulletRaw = 'INGREDIENTS: Water • Glycerin ● 1,2-Hexanediol\nWARNING';
+const bulletPost = postProcess(context.coreProcessOCRText(bulletRaw), { langHint: 'en' });
+assert.deepEqual(
+  Array.from(parser.splitIngredients(bulletPost)),
+  ['Water', 'Glycerin', '1,2-Hexanediol'],
+  'OCR bullets are ingredient delimiters; numeric locant commas are not'
+);
+assert.deepEqual(
+  Array.from(parser.splitIngredients(postProcess('全成分：水•グリセリン●ヒアルロン酸Na', { langHint: 'jp' }))),
+  ['水', 'グリセリン', 'ヒアルロン酸Na'],
+  'Japanese ingredient bullet separators must not join adjacent names'
+);
+
 const japaneseProcessed = postProcess(
   '商品名\n全成分\n水、 グリセリン，ヒアルロン酸 Na\n内容量 120mL',
   { langHint: 'jp' }
