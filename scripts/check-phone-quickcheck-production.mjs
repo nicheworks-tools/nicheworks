@@ -121,7 +121,7 @@ async function httpSmoke(){
   }
   const s23=live.find(x=>x.id==='samsung-galaxy-s23-ultra-sc52d');
   assert.equal(s23?.charging?.pps,'supported','Samsung source-backed PPS support lost');
-  assert.ok(s23?.charging?.protocols?.some(x=>/3\\.1/.test(x)),'Samsung carrier-verified PD3.1 lost');
+  assert.ok(s23?.charging?.protocols?.some(x=>String(x).includes('3.1')),'Samsung carrier-verified PD3.1 lost');
   assert.equal(s23?.charging?.wirelessStandard,'Qi','Samsung docomo verified Qi lost');
   assert.equal(live.find(x=>x.id==='sony-xperia-1-j9110')?.charging?.wirelessStatus,'not_supported','Sony manufacturer no-wireless statement missing');
   const liveAccessories=JSON.parse(data['data/accessories.json']);
