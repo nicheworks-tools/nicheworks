@@ -127,7 +127,8 @@
 
     <label class="section-label" for="mermaidOutput" data-i18n="ja">Mermaid記法（出力）</label><label class="section-label" for="mermaidOutput" data-i18n="en">Mermaid Output</label>
     <textarea id="mermaidOutput" class="code-output" readonly></textarea>
-    <div class="btn-area export-area"><button id="downloadMmd" class="btn-secondary" data-i18n-key="downloadMmd">.mmdで保存</button><button id="downloadTxt" class="btn-secondary" data-i18n-key="downloadTxt">.txtで保存</button></div>
+    <div class="btn-area export-area"><button id="downloadMmd" class="btn-secondary" data-i18n-key="downloadMmd">.mmdで保存</button><button id="downloadTxt" class="btn-secondary" data-i18n-key="downloadTxt">.txtで保存</button><button id="copyMarkdownBtn" class="btn-secondary" data-i18n-key="copyMarkdown">Markdown形式でコピー</button><button id="downloadMd" class="btn-secondary" data-i18n-key="downloadMd">.mdで保存</button></div>
+    <p class="limit-note" data-i18n="ja">Markdown形式はMermaidコードを<code>```mermaid</code>形式のコードブロックで囲みます。GitHubなどMermaid対応のMarkdownで使えます。</p><p class="limit-note" data-i18n="en">Markdown export wraps the Mermaid source in a fenced <code>```mermaid</code> block for compatible Markdown viewers.</p>
 
     <div id="statsBox" class="stats-box hidden">
       <p class="stats-title" data-i18n="ja">生成統計</p><p class="stats-title" data-i18n="en">Generation Statistics</p>
