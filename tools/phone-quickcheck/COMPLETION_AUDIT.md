@@ -152,6 +152,14 @@ Phone QuickCheck v1 is complete under the maintained contract:
 
 Future work is maintenance: new models, source changes, corrections, and evidence upgrades. It is not part of the v1 closure backlog.
 
+## Post-v1 maintenance Wave 23 — 2026-11-01
+
+Independent real-public Chrome deployment proof for the four-FCNT-model Wave 22 backfill. In addition to the existing **entire public JSON deep-equality** check against canonical GitHub data, assert each newly deployed FCNT SKU's **ID, release year, battery capacity, USB PD revision**, absence of a bundled cable/AC brick, and **unknown max wired W/PPS**. This catches silent source semantic regressions and partial Cloudflare deployments.
+
+Also run a true 320/390/414/768/1280px Chrome user journey searching for **arrows We3 M09**, selecting the result and asserting an exact-model detail and USB PD 3.0 rendering, with correct mobile sheet close. Preserve all earlier Phone (4b), CMF material variants, JA/EN, responsive and badge-close non-overlap assertions.
+
+Public 223-phone deployment is accepted only after this PR's production smoke runs green against live HTTPS, followed by merge. No data or business UI changed in this wave.
+
 ## Post-v1 maintenance Wave 22 — 2026-11-01
 
 Official FCNT catalogue backfill of four currently unrepresented, historically sold domestic models. Canonical set **219 → 223 phones**, 11 makers, 36 foldables. Scope is exact Japanese SIM-free or docomo SKU per manufacturer. No inferential wattage or PPS; unchanged intentional Apple battery unknown baseline.
