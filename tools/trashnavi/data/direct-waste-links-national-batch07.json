@@ -302,5 +302,19 @@
     "status": "active",
     "language": "ja",
     "scope_note": "町公式2025年1月以降継続の危険ごみルール。限定品目のみで一般ごみカレンダーではない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "小平町",
+    "name": "留萌南部衛生組合のごみ分別・共同処理案内",
+    "type": "ごみ分別・共同処理",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.obira.hokkaido.jp/hotnews/detail/00000986.html",
+    "lgcode": "014826",
+    "last_checked": "2026-11-01",
+    "status": "active",
+    "language": "ja",
+    "service_provider": "留萌南部衛生組合",
+    "scope_note": "小平町公式ページ。留萌市・増毛町・小平町の共同処理主体を明記し、組合のごみ分別・施設情報へ案内。具体的な分別品目や地区別収集日はリンク先の組合情報で確認すること。"
   }
 ]
