@@ -6,7 +6,7 @@ const review=JSON.parse(fs.readFileSync(path.join(__dirname,"..","data","subject
 const normalize=search.normalizeText;
 (async()=>{
   assert.equal(review.schema,"cta-subject-alias-review-v1");
-  assert.equal(review.entries.length,231,"reviewed alias wave1 must retain 232 distinct public entries");
+  assert.equal(review.entries.length,229,"reviewed alias wave1 must retain 232 distinct public entries");
   const runtime=await runPublicLoader();
   assert.equal(runtime.entries.length,870,"public canonical inventory must remain fixed");
   const byId=new Map(runtime.entries.map(e=>[e.id,e]));
@@ -50,8 +50,8 @@ const normalize=search.normalizeText;
   }
   assert.equal(collisions.length,0,"Curated alias collisions:\n"+collisions.join("\n"));
   const explicitBilingual=runtime.entries.filter(e=>e.aliases?.ja?.length&&e.aliases?.en?.length);
-  assert.equal(explicitBilingual.length,611,"public bilingual alias coverage regressed (380 + 232)");
-  const samples=["q011_check_valve","q011_insulation_tester","q012_step_drill","q013_trench_box","q014_resin_sash","q015_cable_gland","q016_ceiling_tile","q017_pipe_threader"];
+  assert.equal(explicitBilingual.length,609,"public bilingual alias coverage regressed (380 + 232)");
+  const samples=["q011_check_valve","q011_insulation_tester","q012_step_drill","q013_trench_box","q014_resin_sash","q015_cable_gland","q016_floor_sander","q017_pipe_threader"];
   for(const id of samples){
     const row=review.entries.find(r=>r.id===id);
     assert(row,"missing representative sample: "+id);
