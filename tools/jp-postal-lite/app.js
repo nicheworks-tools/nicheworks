@@ -17,6 +17,7 @@ const $ = (id) => document.getElementById(id);
 const prefSelect = $("prefecture");
 const queryInput = $("query");
 const searchBtn = $("search-btn");
+const addVisibleBtn = $("add-visible-btn");
 const results = $("results");
 const resultsTitle = $("results-title");
 const resultLimitNote = $("result-limit-note");
@@ -35,6 +36,7 @@ const toast = $("toast");
 
 const cache = new Map();
 let outputRows = [];
+let visibleRows = [];
 let activeMenu = null;
 let toastTimer = null;
 let searchRun = 0;
@@ -120,6 +122,8 @@ function setAlert(message, kind = "error") {
 }
 
 function setEmpty(message) {
+  visibleRows = [];
+  if (addVisibleBtn) addVisibleBtn.disabled = true;
   results.textContent = message;
   results.classList.add("empty");
   resultsTitle.textContent = "検索結果（0件）";
@@ -157,6 +161,8 @@ function filterData(data, query) {
 }
 
 function renderResults(rows, total) {
+  visibleRows = rows.slice(0, LIMIT);
+  if (addVisibleBtn) addVisibleBtn.disabled = visibleRows.length === 0;
   results.innerHTML = "";
   results.classList.remove("empty");
   resultsTitle.textContent = total > rows.length
@@ -292,6 +298,32 @@ function addOutput(item, tag) {
   showToast("出力リストに追加しました");
 }
 
+// Merge the currently displayed (at most 50) search results without duplicate CSV rows.
+function mergePostalRows(existing, candidates) {
+  const next = existing.slice();
+  const known = new Set(existing.map((row) => row.postal_hyphen + "\u0000" + row.full));
+  let added = 0;
+  candidates.slice(0, LIMIT).forEach((item) => {
+    if (!item || typeof item.postal_hyphen !== "string" || typeof item.full !== "string") return;
+    const key = item.postal_hyphen + "\u0000" + item.full;
+    if (known.has(key)) return;
+    known.add(key);
+    next.push({ postal_hyphen: item.postal_hyphen, full: item.full });
+    added += 1;
+  });
+  return { rows: next, added };
+}
+
+function addVisibleResults() {
+  if (!visibleRows.length) return;
+  const merged = mergePostalRows(outputRows, visibleRows);
+  outputRows = merged.rows;
+  renderOutput();
+  showToast(merged.added
+    ? "表示中の" + merged.added + "件を出力リストに追加しました"
+    : "表示中の住所はすべて追加済みです");
+}
+
 function renderOutput() {
   outputListEl.innerHTML = "";
   outputListEl.classList.remove("empty");
@@ -410,6 +442,7 @@ function bindEvents() {
   });
   prefSelect.addEventListener("change", handleSearch);
   downloadBtn.addEventListener("click", downloadCSV);
+  if (addVisibleBtn) addVisibleBtn.addEventListener("click", addVisibleResults);
   if (clearOutputBtn) clearOutputBtn.addEventListener("click", clearOutput);
   document.addEventListener("click", closeMenu);
 }
