@@ -52,4 +52,6 @@ jobs:
         run: node tools/trashnavi/scripts/check-affiliate-contract.mjs
 
       - name: Check runtime contract
-        run: node tools/trashnavi/scripts/check-runtime-contract.mjs
+        run: |
+          node --check tools/trashnavi/app.js
+          node tools/trashnavi/scripts/check-runtime-contract.mjs
