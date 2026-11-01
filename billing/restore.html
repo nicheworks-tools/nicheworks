@@ -43,6 +43,7 @@
       <option value="csv_tidy.pro_v1">CSV Tidy Pro</option>
       <option value="reconcile.pro_v1">NicheWorks Reconcile Pro</option>
       <option value="okj.toolkit_pro">Old Kanji Toolkit Pro</option>
+      <option value="motion_atlas.studio_v1">Motion Atlas Studio</option>
     </select>
     <label for="code">秘密の復元コード / Confidential recovery code</label>
     <input id="code" type="password" required autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="text" maxlength="512" placeholder="cs_test_… / cs_live_…">
@@ -65,7 +66,8 @@
     const destinations = {
       'csv_tidy.pro_v1': '/tools/csv-tidy/',
       'reconcile.pro_v1': '/tools/reconcile/',
-      'okj.toolkit_pro': '/tools/old-kanji-reference/'
+      'okj.toolkit_pro': '/tools/old-kanji-reference/',
+      'motion_atlas.studio_v1': '/tools/motion-atlas/studio/'
     };
     const form = document.getElementById('recoveryForm');
     const product = document.getElementById('product');
