@@ -16,6 +16,7 @@ Inspect a file's leading signature bytes in the browser to estimate its actual f
 - Estimate supported formats including common documents, images, audio/video, archives, executables, and ZIP-container-based formats.
 - Compare the detected type with the visible filename/extension and surface relevant mismatch/container warnings.
 - Produce a human-readable summary and JSON representation that can be copied.
+- Also allow local download of the current report as `.txt` summary or `.json` details. Export includes original filename and findings, which must be disclosed before external sharing; no file content beyond the existing signature bytes is stored.
 - Provide reset behavior and separate Japanese/English tool pages.
 
 ## Inputs
@@ -28,6 +29,7 @@ Inspect a file's leading signature bytes in the browser to estimate its actual f
 - Estimated file type/signature summary.
 - Extension/signature or container warnings where applicable.
 - JSON result and copied summary/JSON.
+- Offline `.json` and `.txt` reports of the current result; never a malware/safety certificate.
 
 ## State and persistence
 
@@ -61,6 +63,7 @@ The file drop/select → analyze → result flow is compact and naturally stacks
 - [ ] Selecting a supported file reads only the implemented leading-byte window and produces a signature-based estimate without executing the file.
 - [ ] A visible extension/signature mismatch or container case can be surfaced in the result/warning path when recognized.
 - [ ] Summary and JSON copy actions reflect the current analysis and reset clears current working state.
+- [ ] Both languages can save the current result locally as JSON or TXT using an ephemeral object URL, never save empty/stale data, and warn that exports contain the filename.
 - [ ] Japanese and English pages retain equivalent core detection behavior and the non-antivirus warning.
 
 ## Implementation evidence
@@ -68,4 +71,5 @@ The file drop/select → analyze → result flow is compact and naturally stacks
 - `tools/filetype-sniffer/index.html`
 - `tools/filetype-sniffer/en/`
 - `tools/filetype-sniffer/app.js`
+- `tools/filetype-sniffer/tests/behavior.test.mjs`
 - `tools/filetype-sniffer/usage.html`
