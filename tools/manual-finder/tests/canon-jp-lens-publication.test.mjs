@@ -1,0 +1,68 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+import {validateCoveragePass} from '../scripts/coverage-pass-lib.mjs';
+
+const base = new URL('../', import.meta.url);
+const pass = JSON.parse(fs.readFileSync(new URL('coverage-passes/canon/jp-lens-manual-index-2026.json', base), 'utf8'));
+const verdict=validateCoveragePass(pass);
+assert.equal(verdict.valid,true,verdict.errors?.join('; '));
+assert.equal(verdict.completionReady,true,verdict.errors?.join('; '));
+assert.equal(pass.status,'coverage-pass-complete');
+assert.equal(pass.universe.models.length,137);
+assert.equal(pass.records.length,137);
+const summary=Object.fromEntries(['direct','shared','support_only','held'].map(s=>[s,pass.records.filter(r=>r.state===s).length]));
+assert.deepEqual(summary,{direct:123,shared:14,support_only:0,held:0});
+assert.equal(new Set(pass.universe.models).size,137);
+
+const sandbox={window:{},URL};
+const ctx=vm.createContext(sandbox);
+function load(path){vm.runInContext(fs.readFileSync(new URL(path,base),'utf8'),ctx,{filename:path});}
+load('data/manuals.coverage-passes.js');
+load('data/manuals.coverage-pass.canon-jp-lens.js');
+load('affiliate-config.js');
+load('affiliate-camera-detail-exclusions.js');
+const rows=Array.from(ctx.window.MANUALFINDER_COVERAGE_PASS_CANON_LENSES||[]);
+const registered=Array.from(ctx.window.MANUALFINDER_COVERAGE_PASS_BATCHES||[]);
+assert.ok(registered.includes('manuals.coverage-pass.canon-jp-lens.js'));
+assert.equal(rows.length,137);
+assert.deepEqual(new Set(rows.map(x=>x.model)),new Set(pass.universe.models));
+assert.deepEqual(new Set(ctx.window.MANUALFINDER_BUILD_COVERAGE_PASSES().map(x=>x.model)),new Set(rows.map(x=>x.model)));
+const exclusionRows=Array.from(ctx.window.MANUALFINDER_CAMERA_DETAIL_EXCLUSIONS||[]);
+const canonExclusions=exclusionRows.filter(x=>x.maker==='Canon');
+assert.equal(canonExclusions.length,137);
+assert.equal(new Set(canonExclusions.map(x=>x.model)).size,137);
+const config=ctx.window.MANUALFINDER_AFFILIATE_CONFIG;
+assert.equal(config.trackingId,'nicheworks09-22');
+assert.equal(config.enabled,true);
+for(const row of rows){
+ const record=pass.records.find(x=>x.model===row.model);
+ assert.ok(record);
+ assert.equal(row.maker,'Canon');
+ assert.equal(row.category,'カメラ・映像');
+ assert.equal(row.manualUrl,record.manualUrl);
+ assert.equal(row.supportUrl,record.evidenceUrls[0]);
+ assert.equal(row.sharedTarget,record.state==='shared');
+ assert.equal(row.sourceLevel,'A');
+ assert.equal(row.sourceType,'official');
+ const manual=new URL(row.manualUrl);
+ assert.equal(manual.protocol,'https:');
+ assert.ok(manual.hostname==='gdlp01.c-wss.com'||manual.hostname==='cam.start.canon');
+ const exclusion=canonExclusions.find(x=>x.model===row.model);
+ assert.ok(exclusion);
+ assert.equal(exclusion.reason,'interchangeable_lens_not_battery_powered_camera_body');
+ const tagged=config.buildModelSearchUrl(row);
+ const url=new URL(tagged);
+ assert.equal(url.hostname,'www.amazon.co.jp');
+ assert.equal(url.searchParams.get('tag'),'nicheworks09-22');
+ assert.equal(url.searchParams.get('k'),'Canon '+row.model);
+}
+assert.equal(rows.filter(x=>x.resolutionState==='direct_manual_page').length,123);
+assert.equal(rows.filter(x=>x.resolutionState==='shared_manual_page').length,14);
+assert.equal(rows.filter(x=>x.manualUrl.endsWith('.pdf')).length,134);
+assert.equal(rows.filter(x=>x.manualUrl==='https://cam.start.canon/ja/V001/').length,3);
+const coverage=fs.readFileSync(new URL('COVERAGE.md',base),'utf8');
+assert.match(coverage,/2,513 verified model\/caliber rows/);
+const camera=fs.readFileSync(new URL('CAMERA_ACCESSORY_COVERAGE.md',base),'utf8');
+assert.ok(camera.includes('camera basic 512 = detail 193 + reviewed exclusion 170 + missing 149'));
+console.log('Canon JP lens publication: 137 official manual rows, 137 tagged Amazon model searches, 137 lens exclusions passed.');
