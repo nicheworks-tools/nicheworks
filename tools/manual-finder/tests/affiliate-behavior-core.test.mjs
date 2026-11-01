@@ -31,7 +31,7 @@ assert.deepEqual(
   ['PC・スマホ', '家電', 'プリンター・複合機', 'カメラ・映像', 'オーディオ', 'ゲーム', 'ネットワーク機器']
 );
 assert.deepEqual(Array.from(config.modelSearchTemplate.excludedCategories), ['その他']);
-assert.equal(config.printerConsumables.length, 64, '25 consumer-printer mappings plus 39 office-toner mappings should be present');
+assert.equal(config.printerConsumables.length, 72, '33 consumer-printer mappings (including eight verified Brother Wave 3F models) plus 39 office-toner mappings should be present');
 assert.equal(config.officePrinterConsumables.length, 39, 'OKI 10 + KYOCERA 11 + RICOH 11 + FUJIFILM BI 7 office-toner mappings should be present');
 assert.equal(Object.keys(config.targets).length, 3);
 assert.equal(config.offers.length, 1, 'dynamic searches must not create one stored Amazon URL per record');
