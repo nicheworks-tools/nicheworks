@@ -152,6 +152,26 @@ Phone QuickCheck v1 is complete under the maintained contract:
 
 Future work is maintenance: new models, source changes, corrections, and evidence upgrades. It is not part of the v1 closure backlog.
 
+## Post-v1 maintenance Wave 26 — 2026-11-02
+
+Resumed expanding actual first-party-verified Japan phone coverage in parallel with (not after) qualified-traffic/affiliate measurement. Added four **distinct, historically sold NTT docomo FCNT products**, canonical count **223 → 227**, FCNT **8 → 12**, retained **11 manufacturers / 36 foldables** and original V1 181 baseline. No unsupported protocol/wattage/box claims; all four add a wired USB-C cable and USB-C power-bank dynamic Amazon class; arrows 5G's first-party USB PD2.0 plus charger exclusion additionally resolves the existing generic wattage-unverified USB-PD charger class. These classes use the verified 22-class tagged, disclosed Amazon runtime, not null static URLs.
+
+### arrows Be4 Plus F-41B (docomo 2021-05-28)
+- [FCNT manufacturer specifications](https://www.fcnt.com/spec/f-41b/): 148×71×9.4mm, 160g, 5.6in OLED, **3,600mAh**, USB Type-C, IPX5/IPX8 and IP6X; in-box guide and notices only, no cable/charger. Manufacturer fast charging field is a dash; **do not** infer USB PD revision or unsupported charging mode, wattage or PPS from it.
+
+### arrows 5G F-51A (docomo 2020-07-30)
+- [FCNT model specification](https://www.fcnt.com/spec/f-51a/): 164×76×7.7mm (9.5mm raised thickest part), 171g, 6.7in OLED, **4,070mAh**, USB Type-C and manufacturer-described **Power Delivery Revision 2.0**, IPX5/IPX8 and IP6X. In-box list includes earbuds USB-C–3.5mm adapter and SIM eject tool, **not** USB data/charge cable or wall brick. **Accessory headphone adapter must not be mistaken for AC charger.** No invented exact wattage or PPS.
+
+### arrows Be4 F-41A (docomo 2020-06-25)
+- [NTT docomo SKU specification](https://www.docomo.ne.jp/support/product/f41a/spec.html), [FCNT product launch](https://www.fcnt.com/news/detail/20200619.html), [FCNT/FMWORLD standard package](https://www.fmworld.net/product/phone/f-41a/option.html): 147×70×8.9mm / 144g, 5.6in, **2,780mAh**, USB-C, IPX5/IPX8/IP6X. Explicit carrier Qi negative evidence retained as `wirelessStatus:not_supported` with carrier wirelessUrl. Carrier shows PD support '-' so **do not** assert USB PD or PPS. Cable and charger not included; accessory options separate from package.
+
+### arrows Be3 F-02L (docomo 2019-06-07)
+- [NTT docomo SKU specification](https://www.docomo.ne.jp/support/product/f02l/spec.html), [FCNT/FMWORLD box](https://www.fmworld.net/product/phone/f-02l/option.html): 147×70×8.9mm / 145g, 5.6in, **2,780mAh**, USB-C, IPX5/IPX8/IP6X. Explicit Qi negative is retained with its primary source; no guessed USB PD or charger wattage. Normal box contains phone, guide, notices only; no wall adapter or USB charging cable.
+
+### Trust and gate
+- Narrow FCNT primary-origin allowlist expanded from manufacturer `fcnt.com` only to additionally the original Japanese manufacturer site `fmworld.net` and exact domestic carrier `docomo.ne.jp`, both same class of authoritative source hosts used by other manufacturers. No retailer/affiliate product URLs are accepted as provenance.
+- Source-backed charging/cable/adapter and wireless flags remain in source semantically permitted values; no new unreviewed water/package unknowns. All count/spec/SEO/behavior/affiliate/total CI must pass. Public production Chrome proof should verify **227** full public JSON parity, 5 widths, and at least the new models' device facts/charging categories.
+
 ## Post-v1 maintenance Wave 25 — 2026-11-01
 
 Added independently runnable public Chrome verification of **actual rendered** Amazon Associates purchase links, not just static `affiliateKeys` or unpopulated `amazonUrl` fields. Public accessory JSON must exactly match the canonical GitHub file (**22 classes**) alongside existing **223-phone** exact parity. The two new charger classes must be live.
