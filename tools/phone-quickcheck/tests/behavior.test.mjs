@@ -195,6 +195,29 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja', failFetch 
   assert.equal(h.elements.dataState.textContent, '2 models');
 }
 
+// Source-backed affiliate recommendations grow with the phone data without guessing watts.
+for (const id of ['fcnt-arrows-we2-plus-m06', 'fcnt-arrows-we2-m07', 'fcnt-arrows-we3-m09', 'fcnt-arrows-n-f51c', 'fcnt-arrows-we-f51b', 'fcnt-arrows-nx9-f52a']) {
+  const h = await createHarness([id]);
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /USB-PD対応充電器（必要W数は要確認）/, `${id}: missing no-included-adapter USB-PD search class`);
+  assert.doesNotMatch(html, /USB-PD対応 20W以上の充電器/, `${id}: invented 20W accessory recommendation`);
+  assert.doesNotMatch(html, /USB-PD対応 30W以上の充電器/, `${id}: invented 30W accessory recommendation`);
+}
+
+// FCNT officially recommends a 90W adapter; do not downgrade its accessory search to 45W+.
+for (const id of ['fcnt-arrows-alpha2-m10', 'fcnt-arrows-alpha-m08']) {
+  const h = await createHarness([id]);
+  const html = h.elements.desktopDetail.innerHTML;
+  assert.match(html, /USB-PD対応90W以上の充電器（適合確認）/, `${id}: missing manufacturer-backed 90W adapter guidance`);
+  assert.doesNotMatch(html, /USB-PD対応 45W以上の充電器/, `${id}: generic 45W-only class shown instead of official 90W guidance`);
+}
+
+// Unknown wattage + bundled adapter must not trigger the extra charger-purchase prompt.
+{
+  const h = await createHarness(['sharp-aquos-sense4']);
+  assert.doesNotMatch(h.elements.desktopDetail.innerHTML, /USB-PD対応充電器（必要W数は要確認）/);
+}
+
 // Verified battery capacity produces the maintained 67%-efficiency estimates.
 {
   const h = await createHarness(['google-pixel-7']);

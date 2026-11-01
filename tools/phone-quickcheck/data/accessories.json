@@ -1,6 +1,6 @@
 {
-  "version": 5,
-  "updatedAt": "2026-09-14",
+  "version": 6,
+  "updatedAt": "2026-11-01",
   "accessories": [
     {
       "key": "cable-usbc-usbc",
@@ -104,6 +104,22 @@
       "labelEn": "45W+ USB-PD charger",
       "noteJa": "端末側の給電条件を満たすUSB Power Delivery対応45W以上を目安にしてください。",
       "noteEn": "Choose a 45W-or-higher USB Power Delivery charger that meets the phone's charging requirements.",
+      "amazonUrl": null
+    },
+    {
+      "key": "charger-pd-check-wattage",
+      "labelJa": "USB-PD対応充電器（必要W数は要確認）",
+      "labelEn": "USB-PD charger (verify required wattage)",
+      "noteJa": "この機種のUSB-PD対応は確認済みですが、必要なW数・PPS・高速充電条件は未確認です。購入前にメーカーの指定条件と充電器の対応出力を必ず確認してください。",
+      "noteEn": "USB-PD support is confirmed, but required wattage, PPS and fast-charging conditions are unverified. Check the manufacturer's requirements and the charger's output before buying.",
+      "amazonUrl": null
+    },
+    {
+      "key": "charger-pd-90w",
+      "labelJa": "USB-PD対応90W以上の充電器（適合確認）",
+      "labelEn": "90W+ USB-PD charger (confirm compatibility)",
+      "noteJa": "メーカーが90W充電器を案内する機種向けの検索候補です。90Wは端末の最大入力W数を意味しません。必要な電圧・電流・規格・ケーブル条件を公式仕様でご確認ください。",
+      "noteEn": "Search category for phones with manufacturer-stated 90W charger guidance. This is not a claim of 90W maximum phone input. Verify voltage/current profiles, standards, and cable requirements against official specs.",
       "amazonUrl": null
     },
     {
