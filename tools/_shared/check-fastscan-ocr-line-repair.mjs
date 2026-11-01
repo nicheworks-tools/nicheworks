@@ -76,4 +76,45 @@ assert.deepEqual(
   'already known adjacent ingredients must never be merged'
 );
 
+// A true three-line wrap must repair to an EXACT maintained INCI name; do
+// not infer a name from spelling similarity or reclassify unrelated tokens.
+result = repair(
+  ['Bis-Ethylhexyloxyphenol', 'Methoxyphenyl', 'Triazine', 'Water'],
+  dict
+);
+assert.deepEqual(Array.from(result.list), [
+  'Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine',
+  'Water'
+], 'three fragments of one exact INCI name must be joined');
+assert.equal(result.repairs.length, 1);
+assert.deepEqual(Array.from(result.repairs[0].from), [
+  'Bis-Ethylhexyloxyphenol', 'Methoxyphenyl', 'Triazine'
+]);
+
+result = repair(['Sodium-', 'Hyalur', 'onate', 'Glycerin'], dict);
+assert.deepEqual(Array.from(result.list), ['Sodium Hyaluronate', 'Glycerin'],
+  'hyphen-ended line and internal word wrap may join only for exact maintained names');
+assert.equal(result.repairs.length, 1);
+
+result = repair(['Unknown', 'Methoxyphenyl', 'Triazine', 'Water'], dict);
+assert.deepEqual(Array.from(result.list),
+  ['Unknown', 'Methoxyphenyl', 'Triazine', 'Water'],
+  'similar-looking three-part noise must remain unmodified');
+assert.equal(result.repairs.length, 0);
+
+result = repair(['Unrecognized prefix', 'Cetearyl', 'Alcohol'], dict);
+assert.deepEqual(Array.from(result.list),
+  ['Unrecognized prefix', 'Cetearyl Alcohol'],
+  'keep a known trailing two-line ingredient distinct from leading noise');
+assert.equal(result.repairs.length, 1);
+assert.equal(result.repairs[0].from.length, 2);
+
+// Even if a composite synthetic identity exists, two separately known labels
+// must not be silently combined into a longer apparent ingredient.
+dict.push({ en: 'Water Glycerin Alcohol', jp: [], alias: [] });
+result = repair(['Water', 'Glycerin', 'Alcohol'], dict);
+assert.deepEqual(Array.from(result.list), ['Water', 'Glycerin', 'Alcohol'],
+  'multiple individually known ingredients must not collapse into one name');
+assert.equal(result.repairs.length, 0);
+
 console.log('FastScan OCR exact line-repair regression checks passed');

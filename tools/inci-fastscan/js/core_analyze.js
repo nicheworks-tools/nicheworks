@@ -39,15 +39,36 @@ function repairWrappedIngredientFragments(list, dict) {
       continue;
     }
 
+    // Retain the original two-line exact repair as the first priority.
     const repairedName = findExactWrappedJoin(current, next, knownNames);
-    if (!repairedName) {
-      output.push(current);
+    if (repairedName) {
+      output.push(repairedName);
+      repairs.push({ from: [current, next], to: repairedName });
+      index += 1;
       continue;
     }
 
-    output.push(repairedName);
-    repairs.push({ from: [current, next], to: repairedName });
-    index += 1;
+    // Some small product labels wrap a single long INCI name across three
+    // OCR lines. Repair only when the COMPLETE three-part name is already an
+    // exact maintained dictionary name. Never merge two independently known
+    // ingredients or override an independently known trailing two-part name.
+    const third = input[index + 2];
+    if (third) {
+      const knownCount = [current, next, third]
+        .filter(part => isKnownIngredientName(part, knownNames)).length;
+      const trailingPair = findExactWrappedJoin(next, third, knownNames);
+      if (knownCount <= 1 && !trailingPair) {
+        const triple = findExactWrappedTripleJoin(current, next, third, knownNames);
+        if (triple) {
+          output.push(triple);
+          repairs.push({ from: [current, next, third], to: triple });
+          index += 2;
+          continue;
+        }
+      }
+    }
+
+    output.push(current);
   }
 
   return { list: output, repairs };
@@ -89,6 +110,39 @@ function findExactWrappedJoin(previous, next, knownNames) {
   for (const candidate of candidates) {
     const key = ingredientRepairKey(candidate);
     if (key && knownNames.has(key)) return knownNames.get(key);
+  }
+  return "";
+}
+
+function findExactWrappedTripleJoin(first, second, third, knownNames) {
+  const left = String(first || "").trim();
+  const middle = String(second || "").trim();
+  const right = String(third || "").trim();
+  if (!left || !middle || !right) return "";
+
+  // All candidate boundaries are checked against an EXACT maintained name.
+  // Adjacent OCR lines are never combined solely because they look similar.
+  const firstParts = [left];
+  if (/[-\u2010\u2011\u2012\u2013\u2014]$/.test(left)) {
+    firstParts.push(left.slice(0, -1).trimEnd());
+  }
+  const secondParts = [middle];
+  if (/[-\u2010\u2011\u2012\u2013\u2014]$/.test(middle)) {
+    secondParts.push(middle.slice(0, -1).trimEnd());
+  }
+  for (const a of firstParts) {
+    for (const b of secondParts) {
+      const candidates = [
+        a + " " + b + " " + right,
+        a + b + " " + right,
+        a + " " + b + right,
+        a + b + right
+      ];
+      for (const candidate of candidates) {
+        const key = ingredientRepairKey(candidate);
+        if (key && knownNames.has(key)) return knownNames.get(key);
+      }
+    }
   }
   return "";
 }

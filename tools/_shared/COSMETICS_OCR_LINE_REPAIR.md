@@ -23,3 +23,7 @@ The repaired list is then passed through the existing exact matcher. Repair meta
 ## Privacy and Amazon invariant
 
 This repair runs locally in the browser against already-loaded dictionary data. It sends no OCR text or ingredient text externally. The Amazon affiliate slot/configuration remains isolated and disabled until Associates activation is explicitly performed.
+
+## Exact three-line OCR wraps (2026-11-02)
+
+FastScan now checks a single ingredient split across **three** OCR lines when no safe two-line join exists. It may join the fragments only if their complete combined identity **exactly matches** a maintained English, Japanese or alias name; it never uses edit-distance, guesses, product safety language, or autofixes an uncertain name. Any independently recognized neighboring ingredients remain separate. The existing two-fragment exact-join behavior has priority and is unchanged. The repair action is recorded in `repairs` for review, and users still verify editable OCR text before ingredient lookup. Regression covers three-part INCI wraps, hyphen-ended wraps, trailing known two-part ingredients, unknown noise and an adversarial sequence of independently known names.
