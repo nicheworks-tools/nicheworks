@@ -103,7 +103,7 @@ assert.deepEqual(
 
 // Real ingredient labels often separate names with bullets; removing these
 // marks as whitespace would merge two correctly recognized ingredients.
-const bulletRaw = 'INGREDIENTS: Water • Glycerin ● 1,2-Hexanediol\\nWARNING';
+const bulletRaw = 'INGREDIENTS: Water • Glycerin ● 1,2-Hexanediol\nWARNING';
 const bulletPost = postProcess(context.coreProcessOCRText(bulletRaw), { langHint: 'en' });
 assert.deepEqual(
   Array.from(parser.splitIngredients(bulletPost)),
