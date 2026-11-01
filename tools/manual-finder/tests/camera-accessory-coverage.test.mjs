@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import vm from 'node:vm';
+import { execFileSync } from 'node:child_process';
 
 const root = new URL('../', import.meta.url);
 const dataRoot = new URL('../data/', import.meta.url);
@@ -234,4 +235,5 @@ assert.equal(
 assert.equal(summary.cameraDetail, detailLedger.length, 'every reviewed camera detail row must remain active');
 assert.equal(summary.cameraDetailExcluded, exclusions.length, 'every reviewed camera exclusion must remain active and detail-free');
 
+execFileSync(process.execPath, [new URL('./sony-camera-accessory-bulk.test.mjs', import.meta.url).pathname], { stdio: 'inherit' });
 console.log('ManualFinder camera accessory coverage audit passed.');
