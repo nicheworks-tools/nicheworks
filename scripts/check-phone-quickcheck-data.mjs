@@ -14,7 +14,7 @@ const accessoryPayload = JSON.parse(fs.readFileSync(accessoriesPath, 'utf8'));
 const phones = Array.isArray(phonePayload.phones) ? phonePayload.phones : [];
 const accessories = Array.isArray(accessoryPayload.accessories) ? accessoryPayload.accessories : [];
 
-if (phones.length < 227) fail(`expected at least 227 phones, got ${phones.length}`);
+if (phones.length < 232) fail(`expected at least 232 phones, got ${phones.length}`);
 if (!/^2026-\d{2}-\d{2}$/.test(String(phonePayload.updatedAt || ''))) fail('phones updatedAt must be a 2026 ISO date');
 
 const ids = new Set();
