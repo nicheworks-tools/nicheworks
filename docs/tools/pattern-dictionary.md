@@ -169,3 +169,7 @@ The bounded `canonical-100-v1` publication is **not** a complete subject-wide di
 ## Source-checked supplement (2026-11-02)
 
 A separate `v2-extension.json` now contributes 5 additional Japanese named motifs (Sakura, Ume, Kiku, Tsuru, Yukiwa) with JA/EN definitions, original repeatable SVG illustrations and 11 museum/specialist attribution links. Total runtime searchable terms: 105, total JA/EN static detail pages: 210. The frozen canonical-100-v1 tests and PNG reference manifest still apply only to the first 100. The supplement explicitly does not claim exhaustive historical image coverage or that all proposed backlog terms are verified.
+
+## Pattern Dictionary supplemental coverage wave 2 (2026-11-02)
+
+10 source-reviewed Japanese V2 motifs are now separate from frozen canonical 100, totaling 110 browser entries. Wave 2 adds Kanze Water, Shokko, Pine-Bark Diamond, Bishamon Kikko and Tachibana with original 1536px vector schematics, 10 more JA/EN detail routes and corresponding sitemap URLs (220 total). Editorial backlog is 77 unpublished candidate records. Strict post-deployment 220/220 live SEO audit remains separate from the PR's previous 210-page production baseline.

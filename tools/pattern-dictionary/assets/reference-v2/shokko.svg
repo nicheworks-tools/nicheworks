@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1536" viewBox="0 0 1536 1536" role="img" aria-label="shokko original editorial schematic repeat">
+<rect width="1536" height="1536" fill="#faf6ee"/>
+<defs><g id="motif"><g stroke="#9c393d" stroke-linejoin="round"><path d="M-86 -146 L86 -146 146 -86 146 86 86 146 -86 146 -146 86 -146 -86 Z" fill="#f2d6b6" stroke-width="11"/><path d="M-65 -123 L65 -123 123 -65 123 65 65 123 -65 123 -123 65 -123 -65Z" fill="none" stroke="#c58952" stroke-width="4"/><rect x="-170" y="-170" width="47" height="47" fill="#e8c16b" stroke-width="6"/><rect x="123" y="-170" width="47" height="47" fill="#e8c16b" stroke-width="6"/><rect x="-170" y="123" width="47" height="47" fill="#e8c16b" stroke-width="6"/><rect x="123" y="123" width="47" height="47" fill="#e8c16b" stroke-width="6"/></g><g fill="#9c393d"><ellipse cx="0" cy="-56" rx="23" ry="45" transform="rotate(0)"/><ellipse cx="0" cy="-56" rx="23" ry="45" transform="rotate(45)"/><ellipse cx="0" cy="-56" rx="23" ry="45" transform="rotate(90)"/><ellipse cx="0" cy="-56" rx="23" ry="45" transform="rotate(135)"/><ellipse cx="0" cy="-56" rx="23" ry="45" transform="rotate(180)"/><ellipse cx="0" cy="-56" rx="23" ry="45" transform="rotate(225)"/><ellipse cx="0" cy="-56" rx="23" ry="45" transform="rotate(270)"/><ellipse cx="0" cy="-56" rx="23" ry="45" transform="rotate(315)"/></g><circle r="20" fill="#eac364"/><circle r="9" fill="#fff5e1"/></g></defs>
+<use href="#motif" transform="translate(256 256)"/>
+<use href="#motif" transform="translate(768 256)"/>
+<use href="#motif" transform="translate(1280 256)"/>
+<use href="#motif" transform="translate(256 768)"/>
+<use href="#motif" transform="translate(768 768)"/>
+<use href="#motif" transform="translate(1280 768)"/>
+<use href="#motif" transform="translate(256 1280)"/>
+<use href="#motif" transform="translate(768 1280)"/>
+<use href="#motif" transform="translate(1280 1280)"/>
+</svg>

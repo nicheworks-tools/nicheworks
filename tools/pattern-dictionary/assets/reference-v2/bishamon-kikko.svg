@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1536" viewBox="0 0 1536 1536" role="img" aria-label="bishamon-kikko original editorial schematic repeat">
+<rect width="1536" height="1536" fill="#faf6ee"/>
+<defs><g id="motif"><polygon points="-1.9,-98.0 -1.9,-2.0 -85.0,46.0 -168.1,-2.0 -168.1,-98.0 -85.0,-146.0" fill="#c8d2b5" stroke="#3a6657" stroke-width="10" stroke-linejoin="round"/><path d="M-113 -50H-57 M-85 -78V-22" stroke="#faf5e8" stroke-width="7" stroke-linecap="round"/><polygon points="168.1,-98.0 168.1,-2.0 85.0,46.0 1.9,-2.0 1.9,-98.0 85.0,-146.0" fill="#a0b8a8" stroke="#3a6657" stroke-width="10" stroke-linejoin="round"/><path d="M57 -50H113 M85 -78V-22" stroke="#faf5e8" stroke-width="7" stroke-linecap="round"/><polygon points="83.1,49.0 83.1,145.0 0.0,193.0 -83.1,145.0 -83.1,49.0 -0.0,1.0" fill="#c8d2b5" stroke="#3a6657" stroke-width="10" stroke-linejoin="round"/><path d="M-28 97H28 M0 69V125" stroke="#faf5e8" stroke-width="7" stroke-linecap="round"/></g></defs>
+<use href="#motif" transform="translate(256 256)"/>
+<use href="#motif" transform="translate(768 256)"/>
+<use href="#motif" transform="translate(1280 256)"/>
+<use href="#motif" transform="translate(256 768)"/>
+<use href="#motif" transform="translate(768 768)"/>
+<use href="#motif" transform="translate(1280 768)"/>
+<use href="#motif" transform="translate(256 1280)"/>
+<use href="#motif" transform="translate(768 1280)"/>
+<use href="#motif" transform="translate(1280 1280)"/>
+</svg>

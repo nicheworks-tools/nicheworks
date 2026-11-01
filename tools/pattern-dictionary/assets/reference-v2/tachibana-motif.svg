@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1536" viewBox="0 0 1536 1536" role="img" aria-label="tachibana-motif original editorial schematic repeat">
+<rect width="1536" height="1536" fill="#faf6ee"/>
+<defs><g id="motif"><g stroke-linejoin="round"><path d="M0 13 Q-8 -70 10 -123" fill="none" stroke="#3e7549" stroke-width="11" stroke-linecap="round"/><path d="M8 -93 C-50 -155 -123 -147 -125 -92 C-108 -49 -59 -57 8 -93Z" fill="#75a56c" stroke="#345e3e" stroke-width="7"/><path d="M7 -77 C67 -153 146 -132 138 -71 C116 -34 60 -48 7 -77Z" fill="#62945e" stroke="#345e3e" stroke-width="7"/><path d="M-14 -3 C-88 -43 -132 2 -116 60 C-101 129 -44 145 0 141 C49 150 110 113 118 53 C120 -14 70 -49 -14 -3Z" fill="#e8ac3d" stroke="#a16c29" stroke-width="8"/><path d="M-84 47 C-58 25 -28 25 -6 33" fill="none" stroke="#f4d68d" stroke-width="10" stroke-linecap="round"/><path d="M36 -14 C57 0 62 21 53 39" fill="none" stroke="#f6d27c" stroke-width="6" stroke-linecap="round"/></g></g></defs>
+<use href="#motif" transform="translate(256 256)"/>
+<use href="#motif" transform="translate(768 256)"/>
+<use href="#motif" transform="translate(1280 256)"/>
+<use href="#motif" transform="translate(256 768)"/>
+<use href="#motif" transform="translate(768 768)"/>
+<use href="#motif" transform="translate(1280 768)"/>
+<use href="#motif" transform="translate(256 1280)"/>
+<use href="#motif" transform="translate(768 1280)"/>
+<use href="#motif" transform="translate(1280 1280)"/>
+</svg>

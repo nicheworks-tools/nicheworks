@@ -13,56 +13,6 @@
   ],
   "candidates": [
     {
-      "id": "kanzemizu",
-      "name": {
-        "ja": "観世水",
-        "en": "Kanze water motif"
-      },
-      "domain": "japanese-motifs",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
-      "id": "shokko",
-      "name": {
-        "ja": "蜀江文",
-        "en": "Shokko motif"
-      },
-      "domain": "japanese-motifs",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
-      "id": "matsukawabishi",
-      "name": {
-        "ja": "松皮菱",
-        "en": "Pine-bark diamond motif"
-      },
-      "domain": "japanese-motifs",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
-      "id": "bishamon-kikko",
-      "name": {
-        "ja": "毘沙門亀甲",
-        "en": "Bishamon hexagon motif"
-      },
-      "domain": "japanese-motifs",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
-      "id": "tachibana-motif",
-      "name": {
-        "ja": "橘文様",
-        "en": "Tachibana citrus motif"
-      },
-      "domain": "japanese-motifs",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
       "id": "noshi-motif",
       "name": {
         "ja": "熨斗文様",

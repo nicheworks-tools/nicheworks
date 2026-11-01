@@ -14,9 +14,13 @@ const concurrency=Math.max(1,Math.min(16,Number(process.env.PATTERN_DICTIONARY_P
 const timeoutMs=Math.max(5000,Number(process.env.PATTERN_DICTIONARY_PRODUCTION_SEO_TIMEOUT_MS||20000));
 const retries=Math.max(0,Math.min(3,Number(process.env.PATTERN_DICTIONARY_PRODUCTION_SEO_RETRIES||2)));
 
-if(patterns.length!==100||v2.entries.length!==5)throw new Error(`Expected 100 baseline and 5 supplemental patterns, got ${patterns.length}/${v2.entries.length}`);
-const allPublished=[...patterns,...v2.entries.map(e=>({id:e.id}))];
-if(new Set(allPublished.map(p=>p.id)).size!==105)throw new Error('Duplicate or unexpected published pattern identity');
+if(patterns.length!==100||v2.entries.length!==10)throw new Error(`Expected 100 baseline and 10 supplemental patterns in source, got ${patterns.length}/${v2.entries.length}`);
+// PR validation audits the currently deployed edition (five supplements). After production deployment,
+// set PATTERN_DICTIONARY_LIVE_SUPPLEMENT_COUNT=10 to require all 220 URLs on the live site.
+const liveSupplementCount=Number(process.env.PATTERN_DICTIONARY_LIVE_SUPPLEMENT_COUNT ?? '5');
+if(![5,10].includes(liveSupplementCount))throw new Error('Live supplement count must be 5 or 10');
+const allPublished=[...patterns,...v2.entries.slice(0,liveSupplementCount).map(e=>({id:e.id}))];
+if(new Set(allPublished.map(p=>p.id)).size!==100+liveSupplementCount)throw new Error('Duplicate or unexpected published pattern identity');
 
 const detailTargets=allPublished.flatMap(({id})=>[
   {id,lang:'ja',url:`${origin}${toolPath}patterns/${encodeURIComponent(id)}/`},

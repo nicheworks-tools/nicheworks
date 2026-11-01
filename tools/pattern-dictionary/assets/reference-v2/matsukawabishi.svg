@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1536" viewBox="0 0 1536 1536" role="img" aria-label="matsukawabishi original editorial schematic repeat">
+<rect width="1536" height="1536" fill="#faf6ee"/>
+<defs><g id="motif"><g stroke="#294d78" stroke-width="8" stroke-linejoin="round" fill="#6392b2"><path d="M0 -105 L132 3 0 111 -132 3Z" fill="#537ea3"/><path d="M0 -178 L75 -105 0 -29 -75 -105Z" fill="#7ea7c1"/><path d="M0 36 L75 111 0 185 -75 111Z" fill="#7ea7c1"/><path d="M0 -144 L43 -105 0 -65 -43 -105Z M0 -62 L84 3 0 69 -84 3Z M0 75 L43 111 0 151 -43 111Z" fill="none" stroke="#dbe9f1" stroke-width="4"/></g></g></defs>
+<use href="#motif" transform="translate(256 256)"/>
+<use href="#motif" transform="translate(768 256)"/>
+<use href="#motif" transform="translate(1280 256)"/>
+<use href="#motif" transform="translate(256 768)"/>
+<use href="#motif" transform="translate(768 768)"/>
+<use href="#motif" transform="translate(1280 768)"/>
+<use href="#motif" transform="translate(256 1280)"/>
+<use href="#motif" transform="translate(768 1280)"/>
+<use href="#motif" transform="translate(1280 1280)"/>
+</svg>
