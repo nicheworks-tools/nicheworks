@@ -103,3 +103,12 @@
 .motion-demo[data-demo="easing-comparison"] .demo-easing-dot:nth-child(1)::before{content:"IN"}
 .motion-demo[data-demo="easing-comparison"] .demo-easing-dot:nth-child(2)::before{content:"LIN"}
 .motion-demo[data-demo="easing-comparison"] .demo-easing-dot:nth-child(3)::before{content:"OUT"}
+
+
+/* Separate Studio discovery: all existing Motion Atlas catalogue features remain free. */
+.studio-crosslink{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:1rem;background:#f0f4ff;border:1px solid #b8c8f5;border-radius:18px;padding:.9rem 1rem;margin:0 0 .9rem;min-width:0}
+.studio-crosslink h2{font-size:1.1rem;line-height:1.35;margin:0 0 .2rem}
+.studio-crosslink p{font-size:.9rem;line-height:1.5;color:#3c4e6e;margin:0;max-width:900px}
+.studio-try-link{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:.5rem .85rem;border-radius:10px;background:#2454e6;color:#fff;text-decoration:none;font-weight:650;text-align:center;white-space:normal}
+.studio-try-link:hover,.studio-try-link:focus-visible{background:#173da9;color:#fff;outline:2px solid #7799ff;outline-offset:2px}
+@media(max-width:760px){.studio-crosslink{grid-template-columns:minmax(0,1fr);gap:.65rem;padding:.8rem}.studio-try-link{width:100%}}
