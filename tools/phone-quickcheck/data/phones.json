@@ -1,6 +1,6 @@
 {
   "version": 8,
-  "updatedAt": "2026-11-01",
+  "updatedAt": "2026-11-02",
   "phones": [
     {
       "id": "apple-iphone-18-pro",
@@ -11746,6 +11746,216 @@
         "waterUrl": "https://www.fcnt.com/spec/f-52a/",
         "packageUrl": "https://www.fcnt.com/spec/f-52a/",
         "verifiedAt": "2026-11-01"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "fcnt-arrows-be4-plus-f41b",
+      "manufacturer": "FCNT",
+      "model": "arrows Be4 Plus F-41B",
+      "aliases": [
+        "arrows Be4 Plus",
+        "FCNT arrows Be4 Plus",
+        "F-41B",
+        "arrows Be4+",
+        "アローズ ビーフォー プラス"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2021,
+      "dimensions": {
+        "heightMm": 148,
+        "widthMm": 71,
+        "depthMm": 9.4
+      },
+      "weightG": 160,
+      "displayInch": 5.6,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 3600,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.fcnt.com/spec/f-41b/"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.fcnt.com/spec/f-41b/",
+        "manualUrl": "https://www.fcnt.com/product/arrows/f-41b/",
+        "chargingUrl": "https://www.fcnt.com/spec/f-41b/",
+        "waterUrl": "https://www.fcnt.com/spec/f-41b/",
+        "packageUrl": "https://www.fcnt.com/spec/f-41b/",
+        "verifiedAt": "2026-11-02"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "fcnt-arrows-5g-f51a",
+      "manufacturer": "FCNT",
+      "model": "arrows 5G F-51A",
+      "aliases": [
+        "arrows 5G",
+        "FCNT arrows 5G",
+        "F-51A",
+        "arrows 5G docomo",
+        "アローズ ファイブジー"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2020,
+      "dimensions": {
+        "heightMm": 164,
+        "widthMm": 76,
+        "depthMm": 7.7
+      },
+      "weightG": 171,
+      "displayInch": 6.7,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 2.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 4070,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.fcnt.com/spec/f-51a/"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.fcnt.com/spec/f-51a/",
+        "manualUrl": "https://www.fcnt.com/product/arrows/f-51a/",
+        "chargingUrl": "https://www.fcnt.com/spec/f-51a/",
+        "waterUrl": "https://www.fcnt.com/spec/f-51a/",
+        "packageUrl": "https://www.fcnt.com/spec/f-51a/",
+        "verifiedAt": "2026-11-02"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "fcnt-arrows-be4-f41a",
+      "manufacturer": "FCNT",
+      "model": "arrows Be4 F-41A",
+      "aliases": [
+        "arrows Be4",
+        "FCNT arrows Be4",
+        "F-41A",
+        "arrows Be4 docomo",
+        "アローズ ビーフォー"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2020,
+      "dimensions": {
+        "heightMm": 147,
+        "widthMm": 70,
+        "depthMm": 8.9
+      },
+      "weightG": 144,
+      "displayInch": 5.6,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStatus": "not_supported",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 2780,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.docomo.ne.jp/support/product/f41a/spec.html"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.docomo.ne.jp/support/product/f41a/spec.html",
+        "manualUrl": "https://www.docomo.ne.jp/support/product/f41a/",
+        "chargingUrl": "https://www.docomo.ne.jp/support/product/f41a/spec.html",
+        "wirelessUrl": "https://www.docomo.ne.jp/support/product/f41a/spec.html",
+        "waterUrl": "https://www.docomo.ne.jp/support/product/f41a/spec.html",
+        "packageUrl": "https://www.fmworld.net/product/phone/f-41a/option.html",
+        "verifiedAt": "2026-11-02"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "fcnt-arrows-be3-f02l",
+      "manufacturer": "FCNT",
+      "model": "arrows Be3 F-02L",
+      "aliases": [
+        "arrows Be3",
+        "FCNT arrows Be3",
+        "F-02L",
+        "arrows Be3 docomo",
+        "アローズ ビースリー"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2019,
+      "dimensions": {
+        "heightMm": 147,
+        "widthMm": 70,
+        "depthMm": 8.9
+      },
+      "weightG": 145,
+      "displayInch": 5.6,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStatus": "not_supported",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "battery": {
+          "capacityMah": 2780,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.docomo.ne.jp/support/product/f02l/spec.html"
+        }
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.docomo.ne.jp/support/product/f02l/spec.html",
+        "manualUrl": "https://www.docomo.ne.jp/support/product/f02l/",
+        "chargingUrl": "https://www.docomo.ne.jp/support/product/f02l/spec.html",
+        "wirelessUrl": "https://www.docomo.ne.jp/support/product/f02l/spec.html",
+        "waterUrl": "https://www.docomo.ne.jp/support/product/f02l/spec.html",
+        "packageUrl": "https://www.fmworld.net/product/phone/f-02l/option.html",
+        "verifiedAt": "2026-11-02"
       },
       "affiliateKeys": []
     }
