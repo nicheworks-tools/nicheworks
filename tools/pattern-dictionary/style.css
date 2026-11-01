@@ -8,3 +8,15 @@
 .pd-amazon-links{display:grid;gap:9px;max-width:680px;margin:14px 0}.pd-amazon-links>div{min-width:0}.pd-amazon-offer-link{display:block;width:100%;text-align:left}.pd-affiliate-disclosure{margin-top:12px;color:var(--pd-muted);font-size:12px;line-height:1.6}.pd-affiliate-disclosure p{margin:4px 0}
 
 .pd-mini-global-textile{background:repeating-linear-gradient(45deg,#111 0 2px,transparent 2px 8px),repeating-linear-gradient(-45deg,#111 0 2px,transparent 2px 8px)}
+
+/* Taxonomy v2: independent appearance, concept-type and context facets. */
+.pd-taxonomy-section{padding-top:18px;padding-bottom:18px}
+.pd-taxonomy-section .pd-section-head{margin-bottom:10px}
+.pd-taxonomy-section h2{font-size:17px}
+.pd-taxonomy-section .pd-note{display:block;margin:10px 0 0;line-height:1.6}
+.pd-sources{border-top:1px solid var(--pd-line)}
+.pd-source-list{margin:12px 0;padding-left:22px;line-height:1.8;overflow-wrap:anywhere}
+.pd-source-list li{padding:5px 0}
+.pd-source-list a{color:#1d4ed8;text-underline-offset:3px}
+.pd-source-list a:focus-visible{outline:2px solid #0f172a;outline-offset:3px}
+@media(max-width:680px){.pd-taxonomy-section .pd-filter-row{flex-wrap:wrap;overflow:visible}.pd-taxonomy-section .pd-filter{flex:0 1 auto}}
