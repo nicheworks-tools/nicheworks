@@ -170,3 +170,6 @@ const csrf=await onRequestPost({request:request(base,sessionId,"https://evil.exa
 assert.equal(csrf.status,403);
 assert.equal((await onRequestGet()).status,405);
 console.log("Motion Atlas Studio contract PASS: EN/JA preview, 2-track bundle, validation, D1-only entitlement allow/deny.");
+
+// Include signed Stripe-shaped webhook + SQLite entitlement lifecycle for the Studio product.
+await import("./studio-billing-lifecycle.test.mjs");
