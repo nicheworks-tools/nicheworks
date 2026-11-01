@@ -133,6 +133,7 @@ const goProWaveFiles = fs.readdirSync(root)
 for (const name of goProWaveFiles) run(new URL(name, root), `tools/manual-finder/${name}`);
 
 run(new URL('affiliate-fujifilm-camera-accessories-bulk.js', root), 'tools/manual-finder/affiliate-fujifilm-camera-accessories-bulk.js');
+run(new URL('affiliate-sony-camera-accessories-bulk.js', root), 'tools/manual-finder/affiliate-sony-camera-accessories-bulk.js');
 
 run(new URL('affiliate-camera-detail-exclusions.js', root), 'tools/manual-finder/affiliate-camera-detail-exclusions.js');
 
