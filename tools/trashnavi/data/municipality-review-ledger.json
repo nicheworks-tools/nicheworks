@@ -96,12 +96,12 @@
       "lgcode": "012092",
       "pref": "北海道",
       "municipality": "夕張市",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "limited",
+      "reviewed_at": "2026-11-01",
+      "qualifying_source_count": 2,
+      "distinct_link_type_count": 2,
       "service_provider": null,
-      "review_note": null
+      "review_note": "夕張市公式の分別辞典・地区別2026年10月～2027年3月収集カレンダーと、2026年5月12日施行の粗大ごみ予約制を確認。カレンダーは地区別で全域一律の収集日ではない。"
     },
     {
       "lgcode": "012106",
