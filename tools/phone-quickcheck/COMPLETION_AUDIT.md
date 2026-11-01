@@ -152,6 +152,12 @@ Phone QuickCheck v1 is complete under the maintained contract:
 
 Future work is maintenance: new models, source changes, corrections, and evidence upgrades. It is not part of the v1 closure backlog.
 
+## Post-v1 maintenance Wave 27 — 2026-11-02
+
+Added actual public Cloudflare Pages deployment proof for the Wave 26 historical FCNT 4-model coverage expansion (**223→227 models**). Existing production smoke already compares entire public phones.json to canonical checked-out JSON and confirms exact public accessories data (22 classes). Now assert all new FCNT IDs with official Japan release year, mAh, source-based PD (only F-51A Rev2.0), standard phone-package cable/adapter exclusions and unknown handset maximum watts/PPS. Check Be4/Be3 carrier-proven Qi-not-supported with domestic carrier URL. All five Chrome viewports search/select F-51A and assert USB PD2.0 plus **3 actual Amazon tagged CTAs**, and search/select Be3 ensuring negative wireless state and only the two baseline cable/powerbank CTAs, with **no guessed USB-PD charger**. Existing EN/JA, close-button, overflow and Amazon disclosure checks remain unchanged.
+
+Do not mark 227-phone production deployment verified until real public HTTP/parity and Chrome workflows return success.
+
 ## Post-v1 maintenance Wave 26 — 2026-11-02
 
 Resumed expanding actual first-party-verified Japan phone coverage in parallel with (not after) qualified-traffic/affiliate measurement. Added four **distinct, historically sold NTT docomo FCNT products**, canonical count **223 → 227**, FCNT **8 → 12**, retained **11 manufacturers / 36 foldables** and original V1 181 baseline. No unsupported protocol/wattage/box claims; all four add a wired USB-C cable and USB-C power-bank dynamic Amazon class; arrows 5G's first-party USB PD2.0 plus charger exclusion additionally resolves the existing generic wattage-unverified USB-PD charger class. These classes use the verified 22-class tagged, disclosed Amazon runtime, not null static URLs.
