@@ -12,6 +12,8 @@ const summaryContent = document.getElementById('summaryContent');
 const jsonOutput = document.getElementById('jsonOutput');
 const copySummaryBtn = document.getElementById('copySummaryBtn');
 const copyJsonBtn = document.getElementById('copyJsonBtn');
+const downloadJsonBtn = document.getElementById('downloadJsonBtn');
+const downloadSummaryBtn = document.getElementById('downloadSummaryBtn');
 const resetBtn = document.getElementById('resetBtn');
 
 const READABLE_LANG = document.documentElement.lang === 'en' ? 'en' : 'ja';
@@ -339,10 +341,42 @@ async function analyzeFile(file) {
 function handleFileSelection(file) {
   if (!file) return;
   currentFile = file;
+  currentSummaryText = '';
+  if (jsonOutput) jsonOutput.textContent = '';
   if (selectedFileName) selectedFileName.textContent = file.name;
   if (dropZone) dropZone.classList.add('has-file');
   analyzeFile(file);
 }
+
+// Offline report export: filenames and inferred findings are only saved locally.
+function reportExportPayload(kind, jsonText, summaryText) {
+  const isJson = kind === 'json';
+  if (!isJson && kind !== 'txt') return null;
+  const text = String(isJson ? jsonText : summaryText || '').trim();
+  if (!text) return null;
+  return {
+    extension: isJson ? 'json' : 'txt',
+    mime: isJson ? 'application/json;charset=utf-8' : 'text/plain;charset=utf-8',
+    text: text + '\n'
+  };
+}
+
+function downloadReport(kind) {
+  const payload = reportExportPayload(kind, jsonOutput?.textContent || '', currentSummaryText);
+  if (!payload) return;
+  const filename = 'filetype-sniffer-report.' + payload.extension;
+  const objectUrl = URL.createObjectURL(new Blob([payload.text], { type: payload.mime }));
+  const anchor = document.createElement('a');
+  anchor.href = objectUrl;
+  anchor.download = filename;
+  document.body.appendChild(anchor);
+  anchor.click();
+  anchor.remove();
+  setTimeout(() => URL.revokeObjectURL(objectUrl), 500);
+}
+
+if (downloadJsonBtn) downloadJsonBtn.addEventListener('click', () => downloadReport('json'));
+if (downloadSummaryBtn) downloadSummaryBtn.addEventListener('click', () => downloadReport('txt'));
 
 function copyToClipboard(text, button) {
   if (!text) return;

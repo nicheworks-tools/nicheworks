@@ -70,4 +70,26 @@ assert.equal(executableMeta.executableLike, true, 'MZ signature should be treate
 assert.equal(evaluate(`fileExt('photo.JPEG')`), 'jpg');
 assert.equal(evaluate(`fileExt('archive')`), '');
 
+
+const jaPage = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+const enPage = fs.readFileSync(new URL('../en/index.html', import.meta.url), 'utf8');
+for (const [label, page] of [['Japanese', jaPage], ['English', enPage]]) {
+  assert.equal(page.split('id="downloadJsonBtn"').length - 1, 1, label + ' must show JSON download');
+  assert.equal(page.split('id="downloadSummaryBtn"').length - 1, 1, label + ' must show TXT download');
+  assert.match(page, /original filename|元のファイル名/, label + ' must disclose filename in report');
+}
+const jsonReport = JSON.parse(evaluate("JSON.stringify(reportExportPayload('json', '{\\\"detectedExt\\\":\\\"pdf\\\"}', 'summary'))"));
+assert.equal(jsonReport.extension, 'json');
+assert.equal(jsonReport.mime, 'application/json;charset=utf-8');
+assert.deepEqual(JSON.parse(jsonReport.text), { detectedExt: 'pdf' });
+const textReport = JSON.parse(evaluate("JSON.stringify(reportExportPayload('txt', '{\\\"ok\\\":true}', 'Summary here'))"));
+assert.equal(textReport.extension, 'txt');
+assert.equal(textReport.text, 'Summary here\n');
+assert.equal(evaluate("reportExportPayload('json', '', 'summary')"), null);
+assert.equal(evaluate("reportExportPayload('txt', 'json', '')"), null);
+assert.equal(evaluate("reportExportPayload('unknown', 'json', 'summary')"), null);
+assert.ok(source.includes("URL.createObjectURL(new Blob([payload.text]"), 'must generate a local Blob');
+assert.ok(source.includes("URL.revokeObjectURL(objectUrl)"), 'temporary URL must be revoked');
+assert.ok(!source.includes('fetch('), 'report download must not send file data over network');
+
 console.log('FileType Sniffer behavior test passed.');
