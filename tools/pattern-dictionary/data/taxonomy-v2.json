@@ -1,0 +1,1154 @@
+{
+  "schema_version": "2.0-draft",
+  "review_state": "editorial-provisional",
+  "description": "Separate item kind, visual appearance and context. This is a browse/navigation layer, not a revision of source-verified definitions. Empty appearance means no single required appearance. Types may overlap (e.g., a named textile tradition can include a technique).",
+  "concept_types": {
+    "motif": {
+      "ja": "模様・図案",
+      "en": "Pattern / motif"
+    },
+    "technique": {
+      "ja": "制作・染織技法",
+      "en": "Textile / surface technique"
+    },
+    "tradition": {
+      "ja": "染織・装飾の伝統",
+      "en": "Textile / decorative tradition"
+    },
+    "weave": {
+      "ja": "織り組織",
+      "en": "Weave structure"
+    },
+    "effect": {
+      "ja": "表面の視覚効果",
+      "en": "Surface effect"
+    }
+  },
+  "appearance_groups": {
+    "check": {
+      "ja": "チェック・格子",
+      "en": "Checks & plaids"
+    },
+    "stripe": {
+      "ja": "縞・ストライプ",
+      "en": "Stripes"
+    },
+    "dot": {
+      "ja": "点・ドット",
+      "en": "Dots"
+    },
+    "geometric": {
+      "ja": "幾何学",
+      "en": "Geometric"
+    },
+    "floral": {
+      "ja": "花・植物",
+      "en": "Floral"
+    },
+    "ornamental": {
+      "ja": "装飾文様",
+      "en": "Ornamental"
+    },
+    "animal": {
+      "ja": "動物",
+      "en": "Animal"
+    },
+    "abstract": {
+      "ja": "抽象",
+      "en": "Abstract"
+    },
+    "organic": {
+      "ja": "有機的な形",
+      "en": "Organic forms"
+    },
+    "weave": {
+      "ja": "織り模様",
+      "en": "Woven pattern"
+    },
+    "textile": {
+      "ja": "布地模様",
+      "en": "Textile pattern"
+    },
+    "pictorial": {
+      "ja": "絵画的な図案",
+      "en": "Pictorial"
+    }
+  },
+  "contexts": {
+    "japanese": {
+      "ja": "日本の伝統文様",
+      "en": "Japanese motifs"
+    },
+    "regional": {
+      "ja": "地域の染織・装飾",
+      "en": "Regional textiles / craft"
+    }
+  },
+  "entries": [
+    {
+      "id": "houndstooth",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "check"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "gingham",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "check"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "tartan",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "check"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "glen-check",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "check"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "argyle",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "geometric"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "chevron",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "geometric"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "polka-dot",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "dot"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "paisley",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "ornamental"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "damask",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "ornamental"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "arabesque",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "ornamental"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "seigaiha",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "geometric"
+      ],
+      "contexts": [
+        "japanese"
+      ]
+    },
+    {
+      "id": "asanoha",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "geometric"
+      ],
+      "contexts": [
+        "japanese"
+      ]
+    },
+    {
+      "id": "shippo",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "geometric"
+      ],
+      "contexts": [
+        "japanese"
+      ]
+    },
+    {
+      "id": "ichimatsu",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "check"
+      ],
+      "contexts": [
+        "japanese"
+      ]
+    },
+    {
+      "id": "kikko",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "geometric"
+      ],
+      "contexts": [
+        "japanese"
+      ]
+    },
+    {
+      "id": "kilim",
+      "types": [
+        "tradition"
+      ],
+      "appearance": [
+        "textile",
+        "geometric"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "karakusa",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "ornamental"
+      ],
+      "contexts": [
+        "japanese"
+      ]
+    },
+    {
+      "id": "moroccan-trellis",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "geometric"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "leopard-print",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "animal"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "ikat",
+      "types": [
+        "technique"
+      ],
+      "appearance": [
+        "textile"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "buffalo-check",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "check"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "shepherd-check",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "check"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "windowpane-check",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "check"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "madras-check",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "check"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "tattersall",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "check"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "gun-club-check",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "check"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "prince-of-wales-check",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "check"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "pinstripe",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "stripe"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "chalk-stripe",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "stripe"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "bengal-stripe",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "stripe"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "koushi",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "check"
+      ],
+      "contexts": [
+        "japanese"
+      ]
+    },
+    {
+      "id": "awning-stripe",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "stripe"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "regimental-stripe",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "stripe"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "breton-stripe",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "stripe"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "swiss-dot",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "dot"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "herringbone",
+      "types": [
+        "weave"
+      ],
+      "appearance": [
+        "geometric"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "zigzag",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "geometric"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "diamond",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "geometric"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "harlequin",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "geometric"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "checkerboard",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "check",
+        "geometric"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "greek-key",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "geometric"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "quatrefoil",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "geometric",
+        "ornamental"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "ogee",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "geometric",
+        "ornamental"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "lattice",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "geometric"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "honeycomb",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "geometric"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "scallop",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "geometric"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "basketweave",
+      "types": [
+        "weave"
+      ],
+      "appearance": [
+        "geometric",
+        "weave"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "hexagon",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "geometric"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "trellis",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "geometric",
+        "ornamental"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "hishi",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "geometric"
+      ],
+      "contexts": [
+        "japanese"
+      ]
+    },
+    {
+      "id": "fleur-de-lis",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "ornamental",
+        "floral"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "toile-de-jouy",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "ornamental",
+        "pictorial"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "chintz",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "floral"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "ditsy-floral",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "floral"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "jacobean-floral",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "floral",
+        "ornamental"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "millefleurs",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "floral"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "botanical-print",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "floral",
+        "organic"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "acanthus",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "ornamental",
+        "floral"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "medallion",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "ornamental"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "ivy",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "floral",
+        "organic"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "baroque-scroll",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "ornamental"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "chinoiserie",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "ornamental"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "flame-stitch",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "ornamental"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "tree-of-life",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "ornamental",
+        "floral"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "moire",
+      "types": [
+        "effect"
+      ],
+      "appearance": [
+        "abstract"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "yagasuri",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "geometric"
+      ],
+      "contexts": [
+        "japanese"
+      ]
+    },
+    {
+      "id": "sayagata",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "geometric"
+      ],
+      "contexts": [
+        "japanese"
+      ]
+    },
+    {
+      "id": "uroko",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "geometric"
+      ],
+      "contexts": [
+        "japanese"
+      ]
+    },
+    {
+      "id": "tatewaku",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "ornamental"
+      ],
+      "contexts": [
+        "japanese"
+      ]
+    },
+    {
+      "id": "kagome",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "geometric"
+      ],
+      "contexts": [
+        "japanese"
+      ]
+    },
+    {
+      "id": "kanoko",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "dot"
+      ],
+      "contexts": [
+        "japanese"
+      ]
+    },
+    {
+      "id": "hanabishi",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "floral"
+      ],
+      "contexts": [
+        "japanese"
+      ]
+    },
+    {
+      "id": "same-komon",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "dot"
+      ],
+      "contexts": [
+        "japanese"
+      ]
+    },
+    {
+      "id": "nami-chidori",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "ornamental"
+      ],
+      "contexts": [
+        "japanese"
+      ]
+    },
+    {
+      "id": "tomoe",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "geometric"
+      ],
+      "contexts": [
+        "japanese"
+      ]
+    },
+    {
+      "id": "shibori",
+      "types": [
+        "technique"
+      ],
+      "appearance": [],
+      "contexts": [
+        "regional"
+      ]
+    },
+    {
+      "id": "batik",
+      "types": [
+        "technique"
+      ],
+      "appearance": [],
+      "contexts": [
+        "regional"
+      ]
+    },
+    {
+      "id": "bandhani",
+      "types": [
+        "technique"
+      ],
+      "appearance": [
+        "dot"
+      ],
+      "contexts": [
+        "regional"
+      ]
+    },
+    {
+      "id": "ajrakh",
+      "types": [
+        "technique",
+        "tradition"
+      ],
+      "appearance": [],
+      "contexts": [
+        "regional"
+      ]
+    },
+    {
+      "id": "kalamkari",
+      "types": [
+        "technique",
+        "tradition"
+      ],
+      "appearance": [],
+      "contexts": [
+        "regional"
+      ]
+    },
+    {
+      "id": "suzani",
+      "types": [
+        "tradition"
+      ],
+      "appearance": [
+        "floral"
+      ],
+      "contexts": [
+        "regional"
+      ]
+    },
+    {
+      "id": "kente",
+      "types": [
+        "tradition"
+      ],
+      "appearance": [],
+      "contexts": [
+        "regional"
+      ]
+    },
+    {
+      "id": "bogolan",
+      "types": [
+        "tradition"
+      ],
+      "appearance": [],
+      "contexts": [
+        "regional"
+      ]
+    },
+    {
+      "id": "adire",
+      "types": [
+        "technique",
+        "tradition"
+      ],
+      "appearance": [],
+      "contexts": [
+        "regional"
+      ]
+    },
+    {
+      "id": "kuba-cloth",
+      "types": [
+        "tradition"
+      ],
+      "appearance": [
+        "geometric"
+      ],
+      "contexts": [
+        "regional"
+      ]
+    },
+    {
+      "id": "sashiko",
+      "types": [
+        "technique",
+        "tradition"
+      ],
+      "appearance": [],
+      "contexts": [
+        "regional"
+      ]
+    },
+    {
+      "id": "kantha",
+      "types": [
+        "technique",
+        "tradition"
+      ],
+      "appearance": [],
+      "contexts": [
+        "regional"
+      ]
+    },
+    {
+      "id": "otomi-embroidery",
+      "types": [
+        "technique",
+        "tradition"
+      ],
+      "appearance": [
+        "floral",
+        "pictorial"
+      ],
+      "contexts": [
+        "regional"
+      ]
+    },
+    {
+      "id": "african-wax-print",
+      "types": [
+        "technique",
+        "tradition"
+      ],
+      "appearance": [],
+      "contexts": [
+        "regional"
+      ]
+    },
+    {
+      "id": "block-print",
+      "types": [
+        "technique"
+      ],
+      "appearance": [],
+      "contexts": [
+        "regional"
+      ]
+    },
+    {
+      "id": "zebra-print",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "animal"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "tiger-print",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "animal"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "snake-print",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "animal"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "cow-print",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "animal"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "giraffe-print",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "animal"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "dalmatian-spots",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "animal"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "camouflage",
+      "types": [
+        "motif"
+      ],
+      "appearance": [
+        "organic"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "tie-dye",
+      "types": [
+        "technique"
+      ],
+      "appearance": [
+        "abstract"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "marbling",
+      "types": [
+        "technique"
+      ],
+      "appearance": [
+        "abstract"
+      ],
+      "contexts": []
+    },
+    {
+      "id": "terrazzo",
+      "types": [
+        "effect"
+      ],
+      "appearance": [
+        "abstract"
+      ],
+      "contexts": []
+    }
+  ]
+}

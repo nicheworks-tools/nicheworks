@@ -5,6 +5,7 @@
 - Slug: `pattern-dictionary`
 - Public URL: `https://nicheworks.app/tools/pattern-dictionary/`
 - Specification status: `complete`
+- Completion scope: `bounded canonical-100-v1 publication only; comprehensive dictionary incomplete`
 - Publication contract: `canonical-100-v1`
 - Common specification: `common-spec/spec-ja.md`
 - Current dataset: `100 verified-publication patterns`
@@ -19,7 +20,7 @@ The product identifies a maintained pattern identity, exposes nearby/confusable 
 
 ## Current functional contract
 
-The canonical v1 catalog is complete and frozen at exactly **100 published pattern IDs**.
+The canonical v1 catalog is complete and frozen at exactly **100 published pattern IDs**. This is a bounded release contract, **not** a claim of dictionary-wide topic completeness.
 
 - `data/patterns.json`: 100 canonical runtime records.
 - `data/production-content.json`: 100 `verified-publication` records.
@@ -27,7 +28,7 @@ The canonical v1 catalog is complete and frozen at exactly **100 published patte
 - `data/reference-images.json`: 100 deterministic 1536×1536 PNG Reference Images in `verified-publication` state.
 - `data/reference-image-accuracy-audit.json`: complete 100-entry accuracy audit; 13 corrected, 37 representative-accepted, 50 accepted, 0 unresolved.
 - Static detail surface: 100 Japanese + 100 English detail pages = **200 indexable detail URLs**.
-- Search regression set: **264 maintained cases**.
+- Search regression set: **280 maintained cases**.
 - Comparison guidance: **72 maintained guides**.
 - Amazon commerce layer: **305 maintained active Amazon.co.jp offers**, using fixed canonical queries and the shared NicheWorks Associates tag.
 
@@ -181,3 +182,11 @@ Publication/quality evidence:
 - `tools/pattern-dictionary/tests/validate.mjs`
 - `docs/tools/pattern-dictionary.md`
 - `sitemap.xml`
+
+## Incomplete dictionary scope and provisional taxonomy (2026-11-01)
+
+The current 100 canonical IDs are a published starter collection, not a complete reference across all textile, decorative, industrial and graphic pattern domains. `data/coverage-backlog.json` tracks **87 unpublished and unverified** candidates across eight domains, for editorial evaluation only. Candidate IDs are excluded from browser search, sitemap, structured data, and affiliate mappings until individually reviewed.
+
+`data/taxonomy-v2.json` separates three independent axes: (1) concept type (motif, technique, tradition, weave structure, surface effect), (2) appearance, and (3) cultural/craft context. Editorial status is explicitly **provisional**. Absence of appearance for broad techniques/traditions is intentional, not a missing image to fabricate. Mixed concept types are allowed. Browse and detail UIs display translated labels and the detail UI exposes the corresponding source-verification publisher links for all 100 terms. Existing term scope, definitions, image reviews and verified source distinctions are preserved.
+
+No broad-dictionary completion claim is permitted until a scoped editorial coverage model exists, duplicate/alias/parent concept decisions are reviewed, images accurately illustrate variants and contrasts, and real unseen descriptions are evaluated. SEO validity and search regression pass counts do not substitute for these editorial milestones.

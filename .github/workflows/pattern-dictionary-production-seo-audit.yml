@@ -28,6 +28,9 @@ jobs:
       - name: Verify canonical search and SEO regressions
         run: |
           node tools/pattern-dictionary/tests/validate.mjs
+          node --check tools/pattern-dictionary/app.js
+          node tools/pattern-dictionary/tests/taxonomy-source-test.mjs
+          node tools/pattern-dictionary/tests/browse-mobile-test.mjs
           node tools/pattern-dictionary/tests/search-test.mjs
           node tools/pattern-dictionary/tests/seo-detail-test.mjs
 
