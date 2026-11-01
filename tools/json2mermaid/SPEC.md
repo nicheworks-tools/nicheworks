@@ -17,6 +17,7 @@ Convert JSON structure into Mermaid `flowchart` source code locally so users can
 - Enforce the implemented safety/size limits: approximately 300 KB input, maximum depth 12, and up to 50 expanded array items.
 - Parse JSON and emit Mermaid flowchart source with node/edge/depth/omission statistics plus warning/error states.
 - Copy generated Mermaid source and download it as `.mmd` or `.txt`.
+- In the Free converter, also copy a Mermaid-fenced Markdown code block or download it as `.md`, preserving the current generated source and choosing a longer backtick fence if needed.
 - Link to Mermaid Live Editor only as an external preview option; the current tool does not render the Mermaid diagram itself.
 
 ## Inputs
@@ -30,6 +31,7 @@ Convert JSON structure into Mermaid `flowchart` source code locally so users can
 - Mermaid `flowchart TD` or `flowchart LR` source text.
 - Generation statistics and limit warnings.
 - Clipboard copy and `.mmd` / `.txt` downloads.
+- Free `.md` Markdown source download and Markdown-fenced clipboard copy.
 
 ## State and persistence
 
@@ -111,6 +113,7 @@ Large JSON/Mermaid text areas benefit from wider screens, while the conversion c
 - [ ] Direction, leaf, and array options change the generated source according to the selected behavior.
 - [ ] Oversize, over-depth, or heavily expanded arrays surface limit/warning behavior rather than silently claiming complete representation.
 - [ ] Copy and `.mmd` / `.txt` downloads use the currently generated source and JP/EN switching preserves the workflow.
+- [ ] Free Markdown copy and `.md` export wrap exactly the current Mermaid result in a safe-length `mermaid` code fence without changing raw exports or introducing any upload.
 - [ ] The visible Free converter and staged Pro batch path use the same browser-local converter API rather than duplicated JSON→Mermaid implementations.
 - [ ] The staged Pro workspace can compose batch conversion, saved style preset application, local Mermaid rendering, and SVG/PNG export without adding network transport.
 - [ ] Future Pro implementation does not move any current Free contract feature behind a paid gate.
@@ -120,7 +123,8 @@ Large JSON/Mermaid text areas benefit from wider screens, while the conversion c
 ## Implementation evidence
 
 - `tools/json2mermaid/index.html`
-- `tools/json2mermaid/app.js` — current Free runtime and shared browser-local converter API.
+- `tools/json2mermaid/app.js`
+- `tools/json2mermaid/tests/behavior.test.mjs` — current Free runtime and shared browser-local converter API.
 - `tools/json2mermaid/pro-engine.mjs` — staged, non-live Pro infrastructure only.
 - `tools/json2mermaid/pro-shared-converter-integration.mjs` — staged batch integration using the Free converter API.
 - `tools/json2mermaid/pro-workspace.mjs` — staged, non-live composition of batch/preset/render/export paths.
