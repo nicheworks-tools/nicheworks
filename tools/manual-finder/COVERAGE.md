@@ -17,7 +17,7 @@ All future model-level expansion must follow `COVERAGE_PASS_WORKFLOW.md`. Script
 
 ## Current verified model-level inventory
 
-With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifilm GFX/X, VAIO JP start-guide PCs, Samsung JP Galaxy smartphones, dynabook JP 2024–2026 PCs, Fujitsu FMWORLD LIFEBOOK U business PCs, Google Pixel JP model-specific safety/support documentation, Motorola JP current smartphone lineup, ASUS JP Vivobook series, and Xiaomi JP smartphone/tablet user-guide index, the accepted dataset contains **2,513 verified model/caliber rows**. **2,070 are outside Seiko**. Coverage-Pass publication contributes **997 reviewed rows across thirteen bounded manufacturer scopes**. The Xiaomi JP 60-device source reconciles to 59 positively verified manufacturer PDF guides and one held co-branded Leica model; 59 guide rows are published. This is not Xiaomi company-wide coverage.
+With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifilm GFX/X, VAIO JP start-guide PCs, Samsung JP Galaxy smartphones, dynabook JP 2024–2026 PCs, Fujitsu FMWORLD LIFEBOOK U business PCs, Google Pixel JP model-specific safety/support documentation, Motorola JP current smartphone lineup, ASUS JP Vivobook series, and Xiaomi JP smartphone/tablet user-guide index, the accepted dataset contains **2,521 verified model/caliber rows**. **2,078 are outside Seiko**. Coverage-Pass publication contributes **997 reviewed rows across thirteen bounded manufacturer scopes**. The Xiaomi JP 60-device source reconciles to 59 positively verified manufacturer PDF guides and one held co-branded Leica model; 59 guide rows are published. This is not Xiaomi company-wide coverage.
 
 | Maker / dataset identity | Verified rows | Current state | Notes |
 | --- | ---: | --- | --- |
@@ -47,12 +47,12 @@ With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifil
 | FUJIFILM Business Innovation | 27 | expanded | Vendor-defined grouped MFP manual pages. |
 | CASIO | 20 | expanded | G-SHOCK / EX-word / NAME LAND / keyboard model support. |
 | Nikon | 14 | expanded | Wave 3A covers all 14 mirrorless-camera models explicitly listed in Nikon's current Japanese Web-manual portal mirrorless section. Company-wide coverage is not complete. |
-| Brother | 13 | expanded | Wave 3B covers 13 exact MFC-J model manual pages from the first bounded search-result block; one targeted model remains held. |
+| Brother | 21 | expanded | Waves 3B+3F: 13 legacy MFC-J manual pages and 8 newly manufacturer-verified models (6 direct + 2 official shared manual identities), with 16 manufacturer-verified ink Amazon search offers. The separate legacy held model is unchanged. |
 | Insta360 | 7 | expanded | Product-specific official online manuals. |
 | Epson | 6 | expanded | Wave 3D first Colorio batch; exact official manual/support targets with verified consumable mappings. |
 | Canon | 143 | expanded | Six Wave 3E PIXUS printers plus 137 distinct official RF/EF-series lens instruction manual rows (123 direct + 14 shared) from Canon Japan nine-section lens-manual index. Lens scope does not claim Canon company-wide completeness; manufacturer direct PDFs verified. |
 | Hisense | 2 | expanded | Exact TV function-manual targets; coverage is still very thin. |
-| **Total** | **2,513** |  |  |
+| **Total** | **2,521** |  |  |
 
 Counts above are accepted repository rows, not estimates of manufacturer catalog size.
 
@@ -68,7 +68,7 @@ Counts above are accepted repository rows, not estimates of manufacturer catalog
 | 4 | Canon | **expanded — 143** | Six PIXUS models and 137 official RF/EF interchangeable-lens user manuals; printers, cameras, and remaining lens groups are not complete |
 | 5 | Nikon | **expanded — 14** | Mirrorless Web-manual section covered in Wave 3A; rotate away |
 | 6 | Fujifilm | **expanded — 56** | JP GFX + X-series camera-manual-index scope is published and coverage-pass-complete at 52 direct + 4 shared + 0 held; FinePix and broader Fujifilm remain incomplete |
-| 7 | Brother | **expanded — 13** | First bounded MFC-J batch covered in Wave 3B; MFC-J6990CDW held; rotate away |
+| 7 | Brother | **expanded — 21** | Eight additional 2026 MFC-J printers from official model user-guide/ink pages; MFC-J6990CDW remains held |
 | 8 | Epson | **expanded — 6** | First bounded Colorio batch covered in Wave 3D; broader Epson remains incomplete |
 | 9 | HP | generic-only | PC/mobile queue |
 | 10 | Dell | generic-only | PC/mobile queue |
@@ -233,3 +233,7 @@ Until then, `expanded` means only that useful verified model-level coverage exis
 ### Canon Japan official interchangeable-lens manual-index Coverage-Pass (2026-11-01)
 
 Manufacturer entry: https://canon.jp/support/manual/ef . Nine direct Japanese lens-manual subsections enumerate the bounded single-model scope: RF zoom, RF prime, RF-S, EF zoom, EF prime, EF-S, EF-M, EF macro, TS-E. **137 unique model/manual anchors** reconcile to **123 direct + 14 shared + 0 support_only + 0 held**. Manufacturer-referred redirects yielded 134 verified official PDF file signatures; three VR lens manual entries are explicitly named on the shared Canon EOS VR SYSTEM page. Separately named mixed-model anchors and adapters are excluded from this **bounded scope**; this is not Canon-wide completion. Evidence manifest: `coverage-passes/canon/jp-lens-manual-index-2026.json`; publicly indexed records: `data/manuals.coverage-pass.canon-jp-lens.js`. Each record qualifies for the existing reviewed exact Canon model Amazon search; interchangeable lenses are excluded from camera-body battery/charger detail requirements rather than inventing compatibility.
+
+### Brother JP MFC-J official manuals and ink compatibility — Wave 3F (2026-11-02)
+
+Eight new manufacturer-confirmed MFC-J models, six direct official product-manual pages and two separate DN/DWN model identities sharing one vendor-defined official manual page: MFC-J4950DN, MFC-J7110CDW, MFC-J7210CDW, MFC-J7310CDW, MFC-J7510CDW, MFC-J7610CDW, MFC-J742DN and MFC-J742DWN. Every manufacturer model page explicitly lists the **online user's guide**; source evidence and eight exact-model official ink compatibility pages are recorded in `coverage-passes/brother/jp-mfcj-8-printer-manual-ink-20261102.json`. Publication `data/manuals.wave3.06.js` and existing Wave 3 runtime. The existing Amazon `nicheworks09-22` model search is active, and **16 verified ink SKU search offers** are added to `affiliate-config.js` (two per model); no retailer purchase or revenue is claimed. This is a bounded expansion, not Brother company-complete.
