@@ -182,7 +182,7 @@ try {
     fs.mkdirSync(outDir,{recursive:true});
     fs.writeFileSync(path.join(outDir,lang+"-"+width+".png"),Buffer.from(screenshot.data,"base64"));
     assert.ok(result.ok, lang + " " + width + ": " + JSON.stringify(result));
-    assert.equal(result.width, width, "Incorrect CSS viewport width");
+    assert.equal(result.viewport, width, "Incorrect CSS viewport width");
     assert.ok(result.clientWidth <= width && result.clientWidth >= width - (mobile ? 0 : 24), "Incorrect layout viewport width; allow native desktop scrollbar");
     console.log("PASS", lang, width + "px", JSON.stringify(result));
   }
