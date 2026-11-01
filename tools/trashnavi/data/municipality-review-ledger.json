@@ -19,12 +19,12 @@
       "lgcode": "012025",
       "pref": "北海道",
       "municipality": "函館市",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "limited",
+      "reviewed_at": "2026-11-01",
+      "qualifying_source_count": 1,
+      "distinct_link_type_count": 1,
       "service_provider": null,
-      "review_note": null
+      "review_note": "Batch 05: 函館市公式「家庭ごみの分け方・出し方」（2026-09-04更新）を確認。地域別収集日・支所管内の排出時刻差を明示。収集カレンダーの全域一般化を避け、公式ごみ直リンク1件のみ登録。"
     },
     {
       "lgcode": "012033",
@@ -52,12 +52,12 @@
       "lgcode": "012050",
       "pref": "北海道",
       "municipality": "室蘭市",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "limited",
+      "reviewed_at": "2026-11-01",
+      "qualifying_source_count": 1,
+      "distinct_link_type_count": 1,
       "service_provider": null,
-      "review_note": null
+      "review_note": "Batch 05: 室蘭市公式「令和8年度家庭系ごみ収集カレンダー」（2026-03-31更新、2026-04～2027-03）を確認。収集カレンダーの公式直リンク1件のみ登録。その他のごみサービスは未検証。"
     },
     {
       "lgcode": "012068",
