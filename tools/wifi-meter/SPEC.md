@@ -26,11 +26,11 @@ Do not use Low / Medium / High output, estimated RTT/downlink, or unsupported-br
 - `navigator.connection`またはbrowser prefix版Network Information APIを利用する。
 - Keep a crawlable explanation of estimated RTT, RTT-to-RTT fluctuation, and estimated downlink, including the explicit distinction from real ping, jitter, speed tests, and RSSI measurement.
 - Start後は約1秒ごとに`connection.rtt`と`connection.downlink`を読み取る。
-- 前回RTTとの差のabsolute valueをfluctuationとして表示する。
+- 前回RTTとの差のabsolute valueをfluctuationとして表示する。初回や前回有効値なしの場合は`---`を表示し、差分が0msと断定しない。
 - RTT値を最大50 pointsまでpage memoryへ保持し、canvas trend graphを描画する。
 - connection estimateはRTT/fluctuationの簡易thresholdでLow / Medium / High loadへ分類する。
 - thresholdはLow: RTT<80msかつfluctuation<30ms、Medium: RTT<180msかつfluctuation<80ms、それ以外をHighとして扱う。
-- API unsupportedまたはRTT/downlink unavailableの場合はNot supportedを表示する。
+- API unsupportedまたはRTT/downlink unavailableの場合はNot supportedを表示する。不正値（NaN/Infinity/負数）を有効な推定値と見なさず、両方利用不可なら前回RTTとグラフ履歴を破棄して新しい測定列に切り替える。
 - Stopでpollingを止め、Resetは2回確認式でresult/graphをclearする。
 - JA/EN UIを同一pageで切り替える。
 
@@ -86,7 +86,7 @@ Start/Stop、current values、graph、Resetを縦方向中心に配置する。
 ## Acceptance criteria
 
 - [ ] Network Information API対応browserでStartすると約1秒間隔で推定RTT/downlinkを表示する。
-- [ ] 2回目以降のRTT取得では前回値との差をfluctuationとして表示する。
+- [ ] 2回目以降のRTT取得では前回値との差をfluctuationとして表示する。初回または非対応明けには`---`、不正/欠損値は数値として表示しない。
 - [ ] RTT trendを最大50 pointsに制限してcanvasへ描画する。
 - [ ] thresholdに従ってLow / Medium / Highのconnection estimateを表示する。
 - [ ] API非対応時は架空の測定値を生成せずNot supportedを表示する。
@@ -99,4 +99,5 @@ Start/Stop、current values、graph、Resetを縦方向中心に配置する。
 ## Implementation evidence
 
 - `tools/wifi-meter/index.html` — Network Information API基準の説明、SSID/RSSI非取得、Start/Stop/result/graph UI、browser-support disclaimer。
-- `tools/wifi-meter/app.js` — `navigator.connection` reading、1-second polling、RTT fluctuation、50-point graph、classification thresholds、language migration/persistence。
+- `tools/wifi-meter/app.js`
+- `tools/wifi-meter/tests/behavior.test.mjs` — `navigator.connection` reading、1-second polling、RTT fluctuation、50-point graph、classification thresholds、language migration/persistence。
