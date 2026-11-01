@@ -69,6 +69,7 @@ function aggregate(rows, field) {
     ...(field === 'annotatedListMetrics' ? { totalOcrDurationMs: elapsedMs } : {})
   };
 }
+const results = [];
 // A/B only: never use the ground-truth annotations to pick OCR output at runtime.
 const experimental = { singleBlock: [], sparseText: [] };
 const worker = await createWorker('eng');
