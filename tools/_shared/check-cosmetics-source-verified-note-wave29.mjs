@@ -100,8 +100,8 @@ assert.equal(raw.length,725,'raw recognition inventory is frozen');
 assert.equal(runtime.length,599,'canonical names must not change in a note-only wave');
 assert.equal(Object.keys(expected).length,21);
 assert.equal(Object.keys(parser.verifiedCategoryEvidence).length,196,'category evidence unchanged');
-assert.equal(Object.keys(parser.verifiedNoteEvidence).length,202,'21 new notes');
-assert.equal(parser.version,'1.66.0');
+assert.ok(Object.keys(parser.verifiedNoteEvidence).length >= 202,'note wave29 source evidence must remain after note wave30');
+assert.ok(Number(parser.version.split('.')[1]) >= 66,'note wave29 parser contract must be retained');
 for(const [key,want] of Object.entries(expected)) {
   const note=parser.verifiedNoteEvidence[key];
   const row=byCanonical.get(key);

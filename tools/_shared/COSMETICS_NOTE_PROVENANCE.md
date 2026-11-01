@@ -518,3 +518,12 @@ Twenty-one independently reviewed exact COSMILE Europe ingredient-function entri
 Only source-listed cosmetic functions are asserted. The source lists Beta-Glucan for skin conditioning and bulking, not a general allergy/soothing guarantee; Gluconolactone for chelating and conditioning, not automatically as a skin peel; and Caffeine for conditioning/fragrance, not a clinical de-puffing claim. Arbutin restrictions are noted without inferring general permission or efficacy. The **BHT** antioxidant record does not support or modify the intentionally ambiguous **BHA** record.
 
 All 21 exact URLs and short notes are reviewed and regression-pinned in `check-cosmetics-source-verified-note-wave29.mjs`. The note is an optional English-only expansion; the supported bilingual public role takes precedence. Expected strong notes **202 / 599 (33.72%)**, **397** remaining; no raw 725-row rewrite or role-category changes.
+
+
+## Source-reviewed note wave 30 — 20 additional COSMILE identities (2026-11-01)
+
+The non-overlapping reviewed set is Zinc Oxide, Titanium Dioxide, Retinol, Ascorbic Acid, Benzyl Alcohol, Glucose, Methylparaben, Sorbitol, Maltitol, Sorbic Acid, Xylitol, Sodium Phosphate, Mannitol, Potassium Citrate, Propylparaben, Ethylparaben, Disodium Phosphate, Sodium Acetylated Hyaluronate, Hydroxyethyl Urea and Butylparaben.
+
+Each original short note paraphrases cosmetic functions and usage from its own exact COSMILE Europe ingredient entry. URLs, source identity, retained Japanese names, canonical runtime notes and data inventory are verified by `check-cosmetics-source-verified-note-wave30.mjs`. No claims about product-specific SPF, finished-product safety, clinical efficacy, individual allergy or concentrations are inferred. Bilingual role explanations remain the primary public explanation; sourced English notes are optional, expandable secondary information.
+
+Cumulative target: **222/599 (37.06%)** individually verified notes, leaving **377**. Role explanation coverage remains **598/599** with BHA intentionally ambiguous. A real-photo OCR accuracy test with independently transcribed photographs remains unfinished.

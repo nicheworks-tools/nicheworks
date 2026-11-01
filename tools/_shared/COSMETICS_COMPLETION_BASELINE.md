@@ -64,17 +64,17 @@ FastScan inherits the shared-data requirements and additionally needs the OCR/re
 
 The original baseline intentionally counted only raw dictionary fields. That remains useful as raw-data debt, but it no longer represents runtime provenance after the verified overlay work.
 
-Reviewed runtime provenance after source-backed Wave 31 (the raw inventory above remains frozen):
+Reviewed runtime provenance after source-backed Note Wave 30 (the raw inventory above remains frozen):
 
 - verified category overlay identities: **196**
-- verified note overlay identities: **202**
-- verified note identities with maintained Japanese naming: **202**
-- strong runtime data identities (supported public role + Japanese name + source-backed verified ingredient-specific note): **202 / 599**
+- verified note overlay identities: **222**
+- verified note identities with maintained Japanese naming: **222**
+- strong runtime data identities (supported public role + Japanese name + source-backed verified ingredient-specific note): **222 / 599**
 - runtime public role explanations: **598 / 599 (99.83%)**; **1** intentionally ambiguous identity remains unresolved. This is distinct from the frozen 408/599 raw-canonical baseline.
 
 Accordingly, completion readiness must report raw dictionary debt and runtime verified provenance separately. A raw evidence count of zero must not be interpreted as zero runtime provenance.
 
-The runtime provenance floors are ratcheted at 196 verified categories, 202 verified notes, and 202 strong runtime identities so later changes cannot silently discard completed provenance work. Wave 20 adds source-backed ingredient-specific notes for Glycine, Lactic Acid, PEG-100 Stearate, and Proline.
+The runtime provenance floors are ratcheted at 196 verified categories, 222 verified notes, and 222 strong runtime identities so later changes cannot silently discard completed provenance work. Wave 20 adds source-backed ingredient-specific notes for Glycine, Lactic Acid, PEG-100 Stearate, and Proline.
 
 
 Wave 21 (2026-10-31) verifies three additional common-label notes against COSMILE Europe: 1,2-Hexanediol, Sodium Citrate, and Urea. Raw recognition records remain unchanged; verified runtime strong readiness is 85/599. Historical baseline metrics above remain frozen inventory, not a statement that all 599 identities have complete descriptions.
@@ -102,3 +102,6 @@ Ingredient-specific **verified note wave 28** (2026-11-01): 19 independently sou
 
 
 Source-backed ingredient note wave 29 (2026-11-01): 21 additional exact COSMILE Europe records for cleansers, emollient solvent, antioxidant vitamin C derivatives, hyaluronic acid, Centella extract, caffeine, madecassoside, arbutin, plant antioxidants and chelators. Cumulative reviewed ingredient-specific notes target **202/599 (33.72%)**, leaving **397**, while the public bilingual role coverage remains **598/599** and 196 verified roles; the ambiguous BHA remains unresolved. The chemically distinct BHT receives its own sourced note without conflating the abbreviations. This addition does not test any real smartphone photos or provide Japanese translations for English source notes. Counts must be validated by CI.
+
+
+Source-backed ingredient note wave30 (2026-11-01): after separate note waves 28 and 29, **20 additional non-overlapping** common INCI identities were independently sourced against exact COSMILE Europe pages. Mineral UV filters, retinol, ascorbic acid, humectants, preservatives, buffers and acetylated hyaluronate now have evidence-backed notes. The 20 are new relative to main's prior 202 reviewed notes. Target **222/599 (37.06%)**, **377** without strong notes, while primary bilingual role explanations remain 598/599 with intentionally ambiguous BHA. These are ingredient-functions only, not product safety/medical assertions. CI must verify the target figures.
