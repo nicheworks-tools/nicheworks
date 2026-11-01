@@ -144,7 +144,7 @@ ManualFinder is an `AFFILIATE` tool, but commerce is an optional next-action lay
 
 Every actionable `カメラ・映像` row with a basic Amazon path must reconcile to verified accessory detail, a reviewed exclusion, or explicit missing-accessory diagnostic state.
 
-The current camera state is **375 basic = 133 detail + 33 reviewed exclusions + 209 missing accessory detail** across 382 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator. The camera audit now loads published coverage-pass batches exactly as the runtime does, so Sony, Panasonic, and Fujifilm camera expansions cannot bypass compatibility-sensitive accessory accounting.
+The current camera state is **375 basic = 171 detail + 33 reviewed exclusions + 171 missing accessory detail** across 382 canonical camera-category records; 7 maker/index rows are non-actionable and excluded from the actionable denominator. The camera audit now loads published coverage-pass batches exactly as the runtime does, so Sony, Panasonic, and Fujifilm camera expansions cannot bypass compatibility-sensitive accessory accounting.
 
 Nikon Waves 1–2 remain closed at **14 detail + 0 reviewed exclusions + 0 missing**.
 
@@ -240,7 +240,7 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] GoPro Wave 4 activates exactly MAX and MAX2 with separate official Enduro battery evidence.
 - [x] GoPro Wave 5 reviews exactly seven built-in/integrated-battery cameras as evidence-backed exclusions with no generic USB charger handoff.
 - [x] GoPro currently reconciles to **31 basic = 12 detail + 7 reviewed exclusions + 12 missing accessory detail**.
-- [x] The catalog-wide camera audit reconciles to **375 basic = 133 detail + 33 reviewed exclusions + 209 missing accessory detail** while seven maker/index rows remain non-actionable, and published coverage-pass camera batches are included in the denominator.
+- [x] The catalog-wide camera audit reconciles to **375 basic = 171 detail + 33 reviewed exclusions + 171 missing accessory detail** while seven maker/index rows remain non-actionable, and published coverage-pass camera batches are included in the denominator.
 - [x] Missing-model maker diagnostics and documentation sync remain machine-readable drift guards.
 - [x] Sony Japan α E-mount coverage-pass population reconciles at **107 = 104 direct + 0 shared + 3 support-only + 0 held** and the reviewed rows are loaded into the public directory through the coverage-pass batch loader.
 - [x] Panasonic Japan LUMIX S/G/compact camera-body sitemap scope reconciles at **27 = 27 direct + 0 shared + 0 support-only + 0 held** and the reviewed rows are loaded through the same reusable coverage-pass batch loader.
@@ -260,6 +260,7 @@ Core ManualFinder implementation:
 - `tools/manual-finder/affiliate-runtime.js`
 - `tools/manual-finder/AFFILIATE_COVERAGE.md`
 - `tools/manual-finder/CAMERA_ACCESSORY_COVERAGE.md`
+- `tools/manual-finder/affiliate-fujifilm-camera-accessories-bulk.js` — 38 officially mapped Fujifilm battery/charger affiliate rows.
 - `tools/manual-finder/affiliate-camera-accessories.js`
 - `tools/manual-finder/affiliate-nikon-camera-accessories-wave2.js`
 - `tools/manual-finder/affiliate-camera-detail-exclusions.js`
