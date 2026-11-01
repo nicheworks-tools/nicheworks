@@ -6,6 +6,7 @@ import {DatabaseSync} from "node:sqlite";
 import {onRequest as stripeWebhook} from "../../../functions/api/billing/stripe-webhook.js";
 import {onRequestGet as readEntitlement} from "../../../functions/api/billing/entitlement.js";
 import {onRequestPost as studioExport} from "../../../functions/api/motion-atlas/studio-export.js";
+import {onRequestPost as createCheckout} from "../../../functions/api/billing/create-checkout-session.js";
 
 if(!globalThis.crypto)globalThis.crypto=webcrypto;
 const PRODUCT="motion_atlas.studio_v1";
@@ -68,6 +69,55 @@ const checkoutPayment=(changes={})=>({
  metadata:{productId:PRODUCT,priceTierId:PRICE_TIER},
  ...changes
 });
+// Test-only Stripe API responses prove the configured price check and metadata wiring.
+// No real key, HTTP request, payment, or price approval is involved.
+const checkoutEnv={...env,
+ STRIPE_SECRET_KEY:"sk_test_LOCAL_MOCK_NOT_REAL",
+ STRIPE_PRICE_MOTION_ATLAS_STUDIO_V1:"price_STUDIO_TEST_ONLY",
+ BILLING_TEST_CHECKOUT_ENABLED:"true"
+};
+const realFetch=globalThis.fetch;
+let checkoutParams;
+try{
+ globalThis.fetch=async (input,options)=>{
+  const url=String(input);
+  if(url==="https://api.stripe.com/v1/prices/price_STUDIO_TEST_ONLY"){
+   assert.equal(options?.method,"GET");
+   return new Response(JSON.stringify({
+    id:"price_STUDIO_TEST_ONLY",active:true,type:"one_time",recurring:null,
+    livemode:false,currency:"jpy",unit_amount:1234
+   }),{status:200});
+  }
+  if(url==="https://api.stripe.com/v1/checkout/sessions"){
+   assert.equal(options?.method,"POST");
+   checkoutParams=new URLSearchParams(options.body);
+   return new Response(JSON.stringify({
+    id:"cs_test_mockSTRIPEAPI",
+    url:"https://checkout.stripe.com/c/pay/test_checkout_fake"
+   }),{status:200});
+  }
+  throw Error("Unexpected external network call: "+url);
+ };
+ const response=await createCheckout({
+  request:new Request(endpoint+"/api/billing/create-checkout-session",{
+   method:"POST",headers:{"content-type":"application/json"},
+   body:JSON.stringify({productId:PRODUCT,returnPath:"/tools/motion-atlas/studio/"})
+  }),env:checkoutEnv
+ });
+ assert.equal(response.status,200);
+ const data=await response.json();
+ assert.equal(data.ok,true);
+ assert.equal(data.productId,PRODUCT);
+ assert.equal(data.url,"https://checkout.stripe.com/c/pay/test_checkout_fake");
+ assert.equal(data.mode,"test");
+ assert.equal(checkoutParams.get("line_items[0][price]"),"price_STUDIO_TEST_ONLY");
+ assert.equal(checkoutParams.get("metadata[productId]"),PRODUCT);
+ assert.equal(checkoutParams.get("metadata[priceTierId]"),PRICE_TIER);
+ assert.match(checkoutParams.get("success_url"),/billing\/success\.html/);
+ assert.match(checkoutParams.get("success_url"),/session_id=\{CHECKOUT_SESSION_ID\}/);
+ assert.match(checkoutParams.get("success_url"),/return_path=%2Ftools%2Fmotion-atlas%2Fstudio%2F/);
+}finally{globalThis.fetch=realFetch;}
+
 const before=await exportAttempt();
 assert.equal(before.status,403,"No paid D1 row means no export");
 assert.equal((await readAccess()).value.active,false);
@@ -108,4 +158,4 @@ assert.equal((await exportAttempt()).status,403,"Replayed Stripe event must not 
 const cross=await readAccess("cs_test_otherPRODUCT");
 assert.equal(cross.value.active,false);
 db.close();
-console.log("Motion Atlas Studio signed Stripe-shaped webhook -> D1 -> paid export -> refund/replay: PASS (synthetic price, no real checkout).");
+console.log("Motion Atlas Studio mock Stripe Checkout API -> signed webhook -> SQLite D1 -> paid export -> refund/replay: PASS (synthetic price; no real payment).");
