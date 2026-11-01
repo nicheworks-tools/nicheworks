@@ -70,6 +70,8 @@ function aggregate(rows, field) {
   };
 }
 const results = [];
+// A/B only: never use the ground-truth annotations to pick OCR output at runtime.
+const experimental = { singleBlock: [], sparseText: [] };
 const worker = await createWorker('eng');
 try {
   for (const id of ids) {
@@ -104,7 +106,8 @@ try {
       durationMs,
       annotatedListMetrics,
       rawTranscriptionMetrics,
-      annotationOracleMetrics
+      annotationOracleMetrics,
+      rawDirectMetrics: metric.score(gt.raw_ingredients_list, recognized?.data?.text || '', parser.splitIngredients)
     });
     console.log([
       'PHOTO', id, 'annotated ingredients', gt.INCI_list.length,
@@ -115,11 +118,48 @@ try {
       'duration', durationMs + 'ms'
     ].join(' | '));
   }
+
+  // Fixed, explicit Tesseract page-segmentation experiments on the SAME twelve
+  // unmodified photos and independent reference transcriptions. This is an
+  // offline A/B measurement; no best-per-photo oracle selection is deployed.
+  for (const variant of [
+    { key: 'singleBlock', pageSegMode: '6' },
+    { key: 'sparseText', pageSegMode: '11' }
+  ]) {
+    await worker.setParameters({ tessedit_pageseg_mode: variant.pageSegMode });
+    for (const id of ids) {
+      const imageFile = path.join(datasetDir, id + '.jpg');
+      const gt = YAML.parse(fs.readFileSync(path.join(datasetDir, id + '.yaml'), 'utf8'));
+      const started = performance.now();
+      const recognized = await worker.recognize(imageFile);
+      const durationMs = Math.round(performance.now() - started);
+      const directText = recognized?.data?.text || '';
+      const processedText = processText.postProcessOcrText(
+        processText.coreProcessOCRText(directText), { langHint: 'en' });
+      const annotatedListMetrics = metric.score(gt.INCI_list.join('\n'), processedText, parser.splitIngredients);
+      const rawTranscriptionMetrics = metric.score(gt.raw_ingredients_list, processedText, parser.splitIngredients);
+      experimental[variant.key].push({
+        id,
+        durationMs,
+        annotatedListMetrics,
+        rawTranscriptionMetrics,
+        rawDirectMetrics: metric.score(gt.raw_ingredients_list, directText, parser.splitIngredients)
+      });
+      console.log([
+        'EXPERIMENT', variant.key, id,
+        'exact recall', (100 * annotatedListMetrics.exactIngredientRecall).toFixed(2) + '%',
+        'CER', (100 * rawTranscriptionMetrics.characterErrorRate).toFixed(2) + '%',
+        'raw OCR CER', (100 * experimental[variant.key].at(-1).rawDirectMetrics.characterErrorRate).toFixed(2) + '%'
+      ].join(' | '));
+    }
+  }
 } finally {
   await worker.terminate();
 }
 
-assert.equal(results.length, 12, 'all twelve real-photo samples must finish');
+assert.equal(results.length, 12, 'all twelve real-photo baseline samples must finish');
+assert.equal(experimental.singleBlock.length, 12, 'all single-block photos must finish');
+assert.equal(experimental.sparseText.length, 12, 'all sparse-text photos must finish');
 const report = {
   schema: 'fastscan-external-real-photo-pilot-v1',
   corpus: {
@@ -131,7 +171,7 @@ const report = {
     sampleCount: results.length
   },
   method: {
-    model: 'Tesseract.js 5.0.3 eng worker, unmodified photos',
+    model: 'Tesseract.js 5.0.3 eng worker, unmodified photos; baseline default PSM, fixed PSM6/11 experiments',
     productionSharedModules: [
       'tools/inci-fastscan/js/core_ocr_post.js',
       'tools/inci-fastscan/qa/photo_ocr_metrics.js',
@@ -143,6 +183,15 @@ const report = {
   aggregateAnnotatedList: aggregate(results, 'annotatedListMetrics'),
   aggregateRawTranscription: aggregate(results, 'rawTranscriptionMetrics'),
   aggregateAnnotationOnlyControl: aggregate(results, 'annotationOracleMetrics'),
+  baselineRawUnprocessed: aggregate(results, 'rawDirectMetrics'),
+  experimentalPageSegmentation: Object.fromEntries(Object.entries(experimental).map(([name, rows]) => [name, {
+    mode: name === 'singleBlock' ? 'PSM6 - assume a single uniform text block' : 'PSM11 - sparse text',
+    aggregateAnnotatedList: aggregate(rows, 'annotatedListMetrics'),
+    aggregateRawTranscription: aggregate(rows, 'rawTranscriptionMetrics'),
+    rawUnprocessed: aggregate(rows, 'rawDirectMetrics'),
+    samples: rows,
+    caveat: 'Diagnostic only. No ground-truth oracle used at runtime; no production PSM changed.'
+  }])),
   samples: results
 };
 fs.writeFileSync(outputFile, JSON.stringify(report, null, 2) + '\n', 'utf8');
@@ -156,3 +205,15 @@ console.log('FASTSCAN_REAL_PHOTO_PILOT=' + JSON.stringify({
   annotationOnlyControlRecallPercent: +(100*report.aggregateAnnotationOnlyControl.pooledExactIngredientRecall).toFixed(2),
   report: outputFile
 }));
+
+for (const [name, group] of Object.entries(report.experimentalPageSegmentation)) {
+  console.log('FASTSCAN_PSM_EXPERIMENT=' + JSON.stringify({
+    variant: name,
+    photos: group.aggregateAnnotatedList.photos,
+    exactIngredientRecallPercent: +(100 * group.aggregateAnnotatedList.pooledExactIngredientRecall).toFixed(2),
+    rawTranscriptionCerPercent: +(100 * group.aggregateRawTranscription.pooledCharacterErrorRate).toFixed(2),
+    baselineExactRecallPercent: +(100 * a.pooledExactIngredientRecall).toFixed(2),
+    baselineCerPercent: +(100 * r.pooledCharacterErrorRate).toFixed(2),
+    rawPreCleanupCerPercent: +(100 * group.rawUnprocessed.pooledCharacterErrorRate).toFixed(2)
+  }));
+}
