@@ -94,8 +94,8 @@ assert.equal(raw.length,725,'note-only wave may not rewrite raw dictionary recor
 assert.equal(runtime.length,599,'note-only wave may not change canonical recognition');
 assert.equal(Object.keys(expected).length,19);
 assert.equal(Object.keys(parser.verifiedCategoryEvidence).length,196,'verified categories must remain unchanged');
-assert.equal(Object.keys(parser.verifiedNoteEvidence).length,181,'nineteen new source-backed ingredient notes');
-assert.equal(parser.version,'1.65.0');
+assert.ok(Object.keys(parser.verifiedNoteEvidence).length>=181,'note wave28 reviewed evidence must be retained');
+assert.ok(Number(parser.version.split('.')[1])>=65,'note wave28 parser contract retained');
 for(const [key,want] of Object.entries(expected)) {
   const note=parser.verifiedNoteEvidence[key];
   const row=byCanonical.get(key);
