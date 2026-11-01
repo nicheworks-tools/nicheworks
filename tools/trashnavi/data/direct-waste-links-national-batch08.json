@@ -481,5 +481,70 @@
     "status": "active",
     "language": "ja",
     "scope_note": "スプレー缶・ライター・電池・小型充電式製品等の分別方法。危険ごみの収集日は地域別カレンダーを参照。"
+  },
+  {
+    "pref": "北海道",
+    "city": "白老町",
+    "name": "ごみの収集と分別について（令和8年度地区別カレンダー案内）",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.shiraoi.hokkaido.jp/docs/page2013010900015.html",
+    "lgcode": "015784",
+    "last_checked": "2026-11-02",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "本文更新日2023-03-23。令和8年度の地区別カレンダーへの案内あり。地区ごとの日程を全町共通として扱わない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "白老町",
+    "name": "環境衛生センターへのごみの自己搬入について",
+    "type": "ごみ直接搬入",
+    "link_type": "dropoff_facility",
+    "url": "https://www.town.shiraoi.hokkaido.jp/docs/page2021070100023.html",
+    "lgcode": "015784",
+    "last_checked": "2026-11-02",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "町外発生ごみは対象外。分別と搬入条件の町公式案内。"
+  },
+  {
+    "pref": "北海道",
+    "city": "厚真町",
+    "name": "資源物とごみの分別・減量ガイドブック（令和7年4月改訂）",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.atsuma.lg.jp/page/1300.html",
+    "lgcode": "015814",
+    "last_checked": "2026-11-02",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "令和7年4月改訂版。ごみ袋価格の正誤表あり。令和8年度版とは扱わない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "厚真町",
+    "name": "粗大ごみ処理（収集申込）方法について",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.town.atsuma.lg.jp/page/1370.html",
+    "lgcode": "015814",
+    "last_checked": "2026-11-02",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "東胆振清掃企業組合への事前申込、処理券1個500円。"
+  },
+  {
+    "pref": "北海道",
+    "city": "厚真町",
+    "name": "安平・厚真行政事務組合からのお知らせ（地区別収集日）",
+    "type": "ごみ収集日",
+    "link_type": "collection_calendar",
+    "url": "https://www.town.atsuma.lg.jp/page/1076.html",
+    "lgcode": "015814",
+    "last_checked": "2026-11-02",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "令和3年4月からの収集日変更。厚真町上地区・下地区等の区分を維持し全町共通化しない。"
   }
 ]
