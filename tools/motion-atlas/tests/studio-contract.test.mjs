@@ -40,6 +40,18 @@ assert.match(client,/data\.files\.find\(f=>f\.name===name/,"Do not trust unorder
 assert.match(client,/exportSignature===JSON\.stringify/,"Stale code outputs must be discarded after editing");
 assert.match(client,/button\.dataset\.exportFile=file\.name/,"Individual CSS/React file buttons required");
 assert.match(client,/anchor\.download=file\.name/,"File download must keep correct filename");
+assert.match(client,/catalog\.status!=="active"/,"Checkout must wait for registry activation");
+assert.match(client,/product\?\.checkout\?\.enabled!==true/,"Checkout must wait for explicit product flag");
+assert.match(client,/product\?\.stripe\?\.mode!=="connected"/,"Checkout must wait for Stripe verification");
+assert.match(client,/returnPath:location\.pathname/,"Stripe return path must remain on the tool");
+assert.match(client,/destination\.hostname!=="checkout\.stripe\.com"/,"Only Stripe checkout redirects allowed");
+for(const html of [en,ja]){
+ assert.match(html,/id="purchase-panel"[^>]*hidden/,"Purchase CTA must initially be hidden");
+ assert.match(html,/id="purchase-price"/);
+ assert.match(html,/id="restore-link"/);
+ assert.match(html,/\/billing\/restore\.html\?product_id=motion_atlas\.studio_v1/);
+}
+
 
 assert.doesNotMatch(client,/function generateStudioFiles|@keyframes nwStudio_/,"Paid generator must remain on server");
 
@@ -66,6 +78,28 @@ const billingResponse=await createCheckout({request:billingRequest,env:{
 }});
 assert.equal(billingResponse.status,403,"Explicit checkout gate must reject even when global flags are on");
 assert.equal((await billingResponse.json()).error,"product_checkout_disabled");
+const checkoutFor=async config=>createCheckout({
+ request:new Request("https://nicheworks.app/api/billing/create-checkout-session",{
+  method:"POST",headers:{"content-type":"application/json"},
+  body:JSON.stringify({productId:STUDIO_PRODUCT_ID,returnPath:"/tools/motion-atlas/studio/"})
+ }),
+ env:{ASSETS:{fetch:async()=>new Response(JSON.stringify(config),{status:200})},
+ BILLING_LIVE_CHECKOUT_ENABLED:"true",STRIPE_SECRET_KEY:"sk_live_fake"}
+});
+const approvedToggle=structuredClone(config);
+approvedToggle.products.find(p=>p.productId===STUDIO_PRODUCT_ID).checkout.enabled=true;
+const stoppedByRegistry=await checkoutFor(approvedToggle);
+assert.equal(stoppedByRegistry.status,409,"Global flag must not bypass inactive Studio registry");
+assert.equal((await stoppedByRegistry.json()).error,"product_not_on_sale");
+approvedToggle.status="active";
+const stoppedByStripe=await checkoutFor(approvedToggle);
+assert.equal(stoppedByStripe.status,409);
+assert.equal((await stoppedByStripe.json()).error,"product_not_on_sale");
+approvedToggle.products.find(p=>p.productId===STUDIO_PRODUCT_ID).stripe.mode="connected";
+const stoppedByPrice=await checkoutFor(approvedToggle);
+assert.equal(stoppedByPrice.status,409,"Even active Stripe flag cannot launch unpriced Studio");
+assert.equal((await stoppedByPrice.json()).error,"product_config_mismatch");
+
 
 const base={text:"Motion",tracks:[
  {effect:"fade-up",delay:0,duration:750,easing:"ease-out"},
