@@ -1,6 +1,6 @@
 # ManualFinder Camera Accessory Coverage
 
-Updated: 2026-09-19
+Updated: 2026-11-01
 
 This document is the audited baseline for compatibility-sensitive camera battery/charger Amazon handoffs. It is separate from the completed printer-detail audit. Exact missing model arrays remain machine-readable in `tests/camera-accessory-coverage.test.mjs` rather than being duplicated as prose.
 
@@ -10,16 +10,16 @@ This document is the audited baseline for compatibility-sensitive camera battery
 | --- | ---: |
 | Canonical `カメラ・映像` records | **382** |
 | Camera records with a basic Amazon path | **375** |
-| Camera records with verified accessory detail | **133** |
+| Camera records with verified accessory detail | **171** |
 | Reviewed camera-detail exclusions | **33** |
-| Actionable camera records still missing accessory detail | **209** |
+| Actionable camera records still missing accessory detail | **171** |
 | Non-actionable camera maker-index records | **7** |
 
 Required reconciliation:
 
-`camera basic 375 = detail 133 + reviewed exclusion 33 + missing 209`
+`camera basic 375 = detail 171 + reviewed exclusion 33 + missing 171`
 
-The active detail ledger contains all fourteen actionable Nikon records, seventy reviewed DJI records, all thirty-seven actionable OM SYSTEM records, and twelve reviewed GoPro records. Twenty-six DJI rows and seven GoPro rows are evidence-backed reviewed exclusions. The audit now loads the same published coverage-pass batches as the runtime: Sony adds 107 actionable camera rows, Panasonic adds 27, and Fujifilm adds 56. Those 190 rows already receive exact-model Amazon body searches under the generic commerce rule, so their unreviewed compatibility-sensitive accessory detail is now counted honestly as missing rather than being invisible to the audit.
+The active detail ledger contains 14 Nikon, 70 DJI, 37 OM SYSTEM, 12 GoPro, and 38 Fujifilm verified camera detail rows. Twenty-six DJI rows and seven GoPro rows are evidence-backed reviewed exclusions. The audit now loads the same published coverage-pass batches as the runtime: Sony adds 107 actionable camera rows, Panasonic adds 27, and Fujifilm adds 56. Those 190 rows already have generic exact-model Amazon searches. This batch adds two confirmed battery/charger searches to 38 Fujifilm rows; all remaining compatibility-sensitive rows stay counted as missing.
 
 ## Actionable coverage by maker
 
@@ -27,7 +27,7 @@ The active detail ledger contains all fourteen actionable Nikon records, seventy
 | --- | ---: | ---: | ---: | ---: |
 | Sony | 107 | 0 | 0 | 107 |
 | DJI | 96 | 70 | 26 | 0 |
-| Fujifilm | 56 | 0 | 0 | 56 |
+| Fujifilm | 56 | 38 | 0 | 18 |
 | OM SYSTEM | 37 | 37 | 0 | 0 |
 | GoPro | 31 | 12 | 7 | 12 |
 | Panasonic | 27 | 0 | 0 | 27 |
@@ -311,7 +311,7 @@ Seven camera-category records are maker/index entries without an actionable exac
 ## Expansion order
 
 1. Review the newly published Sony 107 camera rows in manufacturer-batched official-evidence accessory passes.
-2. Review Fujifilm 56 and Panasonic 27 published coverage-pass camera rows.
+2. Review remaining Fujifilm 18 and Panasonic 27 published coverage-pass camera rows.
 3. Close the pre-existing GoPro 12 and Insta360 7 residuals.
 
 DJI, Nikon, and OM SYSTEM remain closed at zero missing.
@@ -322,7 +322,7 @@ The camera accessory phase is complete only when:
 
 `camera basic = detail + reviewed exclusion + missing 0`
 
-The current baseline is not complete: `209` actionable records remain missing accessory detail.
+The current baseline is not complete: `171` actionable records remain missing accessory detail.
 
 ## Source of truth
 
@@ -390,3 +390,7 @@ The current baseline is not complete: `209` actionable records remain missing ac
 - `tests/gopro-integrated-battery-exclusions-wave5.test.mjs` — exact seven-row GoPro integrated-battery exclusion boundary.
 - `tests/camera-accessory-coverage.test.mjs` — catalog-wide camera reconciliation and exact missing-model diagnostics.
 - `tests/camera-accessory-doc-sync.test.mjs` — documentation drift guard and implementation-evidence synchronization.
+
+## Fujifilm battery/charger official bulk mappings (2026-11-01)
+
+38 canonical Fujifilm camera models now gain 76 verified manufacturer-compatibility-based Amazon battery/charger search handoffs. NP-W126S/BC-W126S: 28 exact models; NP-W235/BC-W235: 10 exact models. GFX100RF and GFX ETERNA 55 are separately identified on Fujifilm official NP-W235 and BC-W235 product lists, rather than inferred from the nine-row support chart. `GFX 50S II` is not promoted because the chart uses the differently spaced name `GFX50S II`. Official source URLs: https://www.fujifilm-x.com/ja-jp/support/compatibility/accessories/np-w126s/ ; https://www.fujifilm-x.com/ja-jp/support/compatibility/accessories/np-w235/ ; https://www.fujifilm-x.com/ja-jp/products/accessories/np-w235/ ; https://www.fujifilm-x.com/ja-jp/products/accessories/bc-w235/ . Runtime: `affiliate-fujifilm-camera-accessories-bulk.js`. No price, inventory or revenue is claimed.
