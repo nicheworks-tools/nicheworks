@@ -283,6 +283,7 @@ async function cleanExif() {
   const loadIdAtStart = currentLoadId;
 
   resetMessages();
+  outputScanResult = null;
   setStatus("Processing image...", "画像を処理中...");
   setStatusNote("", "");
   setButtonsDisabled(true);
@@ -309,6 +310,11 @@ async function cleanExif() {
     if (!blob) {
       throw new Error("Failed to create image blob");
     }
+    if (!matchesRequestedCanvasMime(blob, mimeType)) {
+      const formatError = new Error("Browser output image format did not match the requested format");
+      formatError.code = "OUTPUT_FORMAT_UNSUPPORTED";
+      throw formatError;
+    }
 
     const outputBuffer = await blob.arrayBuffer();
     if (cleanId !== currentCleanId || loadIdAtStart !== currentLoadId) return;
@@ -320,8 +326,10 @@ async function cleanExif() {
     const a = document.createElement("a");
     a.href = blobUrl;
     a.download = downloadName;
+    document.body.appendChild(a);
     a.click();
-    URL.revokeObjectURL(blobUrl);
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(blobUrl), 500);
 
     if (doneMsgJa) doneMsgJa.textContent = `保存しました：${downloadName}`;
     if (doneMsgEn) doneMsgEn.textContent = `Saved: ${downloadName}`;
@@ -341,14 +349,25 @@ async function cleanExif() {
   } catch (error) {
     if (cleanId !== currentCleanId || loadIdAtStart !== currentLoadId) return;
     console.error(error);
-    setStatus(
-      "Failed to clean the image. Please try another file.",
-      "画像の処理に失敗しました。別の画像でお試しください。"
-    );
-    setStatusNote(
-      "Some files may not be decodable by the browser even if the extension looks supported.",
-      "拡張子が対応形式でも、ブラウザで読み込めない画像は処理できない場合があります。"
-    );
+    if (error?.code === "OUTPUT_FORMAT_UNSUPPORTED") {
+      setStatus(
+        "Your browser did not return the selected output image format. No file was saved.",
+        "ブラウザが選択した画像形式で出力できなかったため、保存を中止しました。"
+      );
+      setStatusNote(
+        "Select JPEG output or try another browser. The file is not labeled with an incorrect extension.",
+        "JPEG出力を選ぶか、別のブラウザでお試しください。異なる形式のファイルを誤った拡張子で保存しません。"
+      );
+    } else {
+      setStatus(
+        "Failed to clean the image. Please try another file.",
+        "画像の処理に失敗しました。別の画像でお試しください。"
+      );
+      setStatusNote(
+        "Some files may not be decodable by the browser even if the extension looks supported.",
+        "拡張子が対応形式でも、ブラウザで読み込めない画像は処理できない場合があります。"
+      );
+    }
   } finally {
     if (cleanId === currentCleanId && loadIdAtStart === currentLoadId) {
       setButtonsDisabled(false);
@@ -597,6 +616,11 @@ function loadImage(src) {
     img.onerror = () => reject(new Error("Image load failed"));
     img.src = src;
   });
+}
+
+function matchesRequestedCanvasMime(blob, requestedMime) {
+  if (!blob || !requestedMime) return false;
+  return String(blob.type || "").toLowerCase() === String(requestedMime).toLowerCase();
 }
 
 function canvasToBlob(canvas, type, quality) {

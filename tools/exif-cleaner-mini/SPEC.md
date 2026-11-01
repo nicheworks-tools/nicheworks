@@ -15,6 +15,7 @@ Regenerate supported photos in browser canvas so most EXIF metadata is not carri
 - Show a preview and implemented inspection/status information for the selected image.
 - Redraw the image in browser Canvas to create a new file rather than editing the source file.
 - Keep the original supported format where implemented or convert to JPEG; JPEG quality is adjustable from the provided range.
+- Validate the actual Canvas output Blob MIME before naming/downloading any file. If the browser silently returns PNG for requested WebP/JPEG (or returns an unknown MIME), stop with an explicit bilingual error rather than saving a mislabeled image.
 - Warn that JPEG conversion can remove transparency and that Canvas regeneration does not guarantee removal of every app-specific/file-level trace.
 - Download the regenerated image and provide reset/next-action links.
 - Provide JP/EN UI and safety/usage guidance.
@@ -54,6 +55,7 @@ The upload → preview → format/quality → download workflow is designed as a
 
 - Supported input is JPEG/PNG/WebP; HEIC is not currently supported.
 - Canvas regeneration removes most common EXIF carry-over but does not guarantee every app-specific metadata/file trace is removed.
+- A browser that does not support the selected encoder must not silently deliver a different format under a misleading file extension.
 - This is not malware scanning or forensic sanitization.
 - JPEG conversion can lose transparency and quality depending on the selected setting.
 
@@ -62,12 +64,14 @@ The upload → preview → format/quality → download workflow is designed as a
 - [ ] A supported image can be loaded and previewed without intentional application upload.
 - [ ] Cleaning regenerates a new browser-created image rather than mutating the original source file.
 - [ ] Format/quality controls affect the downloaded result according to the implemented options and transparency warnings remain visible where relevant.
+- [ ] Blob MIME must match requested JPEG/PNG/WebP format before download; fallback or unknown MIME results in no download and an actionable JP/EN error.
 - [ ] JP/EN switching preserves the complete cleaning workflow and non-guarantee disclaimer.
 
 ## Implementation evidence
 
 - `tools/exif-cleaner-mini/index.html`
 - `tools/exif-cleaner-mini/app.js`
+- `tools/exif-cleaner-mini/tests/behavior.test.mjs`
 - `tools/exif-cleaner-mini/style.css`
 - `tools/exif-cleaner-mini/usage.html`
 - `tools/exif-cleaner-mini/howto/en/`
