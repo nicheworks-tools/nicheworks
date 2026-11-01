@@ -20,11 +20,13 @@ Provide a visual dictionary for world pattern references with searchable metadat
 - Support PNG size selection and build CSS using an SVG data URI plus the pattern tile dimensions.
 - Require an explicit cultural-context acknowledgement before export for patterns marked with an export warning.
 - Provide separate English and Japanese public pages.
+- Publish a crawlable list of every canonical pattern name on both public pages. Link names through a whitelisted `?pattern=<slug>` selection, restore the detail/editor on arrival, and expose a per-pattern permalink without duplicating standalone near-identical pages.
 - Public home/usage copy describes these implemented capabilities as current behavior rather than a future shell plan.
 
 ## Inputs
 
 - Search query and catalog filters.
+- Optional known `?pattern=` slug in the current JA/EN page; unknown slugs are ignored and arbitrary user text never becomes a link.
 - Selected pattern.
 - Color/palette edits.
 - Export format and PNG size.
@@ -33,6 +35,7 @@ Provide a visual dictionary for world pattern references with searchable metadat
 ## Outputs
 
 - Filtered visual pattern catalog.
+- A server-readable bilingual index of the 30 current pattern names and shareable per-pattern detail URLs.
 - Pattern detail, context, and live SVG preview.
 - Color-edited pattern preview.
 - Downloaded SVG, PNG, or CSS asset.
@@ -71,6 +74,8 @@ The catalog, filters, detail/editor preview, color tools, and export controls ar
 - [ ] SVG, PNG, and CSS exports are generated client-side and produce the selected current pattern rather than fallback placeholder content.
 - [ ] Patterns marked as requiring export caution cannot be exported until the user acknowledges the cultural warning.
 - [ ] Public EN/JA home and usage copy describes the implemented search/edit/preview/export workflow as current functionality.
+- [ ] Both languages expose exactly the canonical 30 slugs as native HTML links; a known URL restores its pattern detail/editor and selection updates the current-language URL.
+- [ ] Unknown pattern query values do not select a record or appear in generated permalinks; the cultural export-warning acknowledgement still applies.
 
 ## Implementation evidence
 
@@ -79,6 +84,8 @@ The catalog, filters, detail/editor preview, color tools, and export controls ar
 - `tools/pattern-atlas/usage.html`
 - `tools/pattern-atlas/ja/usage.html`
 - `tools/pattern-atlas/js/app.js`
+- `tools/pattern-atlas/js/deep-link.js`
+- `tools/pattern-atlas/tests/behavior.test.mjs`
 - `tools/pattern-atlas/js/data/patterns-all.js`
 - `tools/pattern-atlas/js/renderers/index.js`
 - `tools/pattern-atlas/js/export-ui.js`

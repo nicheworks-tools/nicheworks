@@ -59,7 +59,10 @@ export function setupPatternDetail({ root, patterns, isJapanese }) {
     button.title = isJapanese ? '出力機能は後続PRで実装します' : 'Export will be implemented in a later PR';
     exportRow.append(format, size, button);
 
-    section.replaceChildren(title, grid, notice, exportRow);
+    // Native permalink works without clipboard permissions or an account.
+    const permalink = el('a', 'pa-button pa-pattern-permalink', isJapanese ? 'この模様へのリンク' : 'Link to this pattern');
+    permalink.href = '?pattern=' + encodeURIComponent(pattern.slug);
+    section.replaceChildren(title, grid, notice, exportRow, permalink);
   };
 
   root.addEventListener('click', (event) => {
