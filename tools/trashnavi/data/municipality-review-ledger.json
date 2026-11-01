@@ -1174,12 +1174,12 @@
       "lgcode": "014826",
       "pref": "北海道",
       "municipality": "小平町",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
-      "service_provider": null,
-      "review_note": null
+      "coverage_state": "joint_service",
+      "reviewed_at": "2026-11-01",
+      "qualifying_source_count": 1,
+      "distinct_link_type_count": 1,
+      "service_provider": "留萌南部衛生組合",
+      "review_note": "小平町公式のごみ専用ページに、留萌市・増毛町・小平町の共同処理と組合の分別・施設情報への案内を確認。公式直リンク1件。地区別日程や年度は未推定。"
     },
     {
       "lgcode": "014834",
