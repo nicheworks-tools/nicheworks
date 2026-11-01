@@ -34,6 +34,14 @@ function buildOrigin(request, env) {
 }
 
 function enabledFlag(env, productId, mode) {
+  // Motion Atlas Studio requires a product-specific switch, not the shared checkout flag.
+  // This prevents an active global rollout for another product from also selling Studio.
+  if (productId === 'motion_atlas.studio_v1') {
+    const studioFlag = mode === 'test'
+      ? env.MOTION_ATLAS_STUDIO_TEST_CHECKOUT_ENABLED
+      : env.MOTION_ATLAS_STUDIO_LIVE_CHECKOUT_ENABLED;
+    return studioFlag === 'true';
+  }
   const commonFlag = mode === 'test' ? env.BILLING_TEST_CHECKOUT_ENABLED : env.BILLING_LIVE_CHECKOUT_ENABLED;
   if (commonFlag === 'true') return true;
 

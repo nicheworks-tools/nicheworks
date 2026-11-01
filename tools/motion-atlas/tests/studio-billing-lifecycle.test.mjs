@@ -74,8 +74,25 @@ const checkoutPayment=(changes={})=>({
 const checkoutEnv={...env,
  STRIPE_SECRET_KEY:"sk_test_LOCAL_MOCK_NOT_REAL",
  STRIPE_PRICE_MOTION_ATLAS_STUDIO_V1:"price_STUDIO_TEST_ONLY",
- BILLING_TEST_CHECKOUT_ENABLED:"true"
+ BILLING_TEST_CHECKOUT_ENABLED:"true",
+ MOTION_ATLAS_STUDIO_TEST_CHECKOUT_ENABLED:"true"
 };
+// Global billing enable must not unlock the separate Studio product.
+const checkoutBody=()=>new Request(endpoint+"/api/billing/create-checkout-session",{
+ method:"POST",headers:{"content-type":"application/json"},
+ body:JSON.stringify({productId:PRODUCT,returnPath:"/tools/motion-atlas/studio/"})
+});
+const globalOnly=await createCheckout({request:checkoutBody(),env:{
+ ...checkoutEnv,MOTION_ATLAS_STUDIO_TEST_CHECKOUT_ENABLED:undefined
+}});
+assert.equal(globalOnly.status,403,"Global test flag must not authorize Studio");
+assert.equal((await globalOnly.json()).error,"test_checkout_not_enabled");
+const wrongMode=await createCheckout({request:checkoutBody(),env:{
+ ...checkoutEnv,STRIPE_SECRET_KEY:"sk_live_FAKE_NEVER_DEPLOY",
+ BILLING_LIVE_CHECKOUT_ENABLED:"true",MOTION_ATLAS_STUDIO_LIVE_CHECKOUT_ENABLED:undefined
+}});
+assert.equal(wrongMode.status,403,"Test-only Studio enable must not authorize live mode");
+assert.equal((await wrongMode.json()).error,"live_checkout_not_enabled");
 const realFetch=globalThis.fetch;
 let checkoutParams;
 try{
