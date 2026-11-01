@@ -12,7 +12,7 @@ const exportNeedle = `  if (document.readyState === "loading") {
 assert.ok(source.includes(exportNeedle), 'light-check test export hook must match production source');
 source = source.replace(
   exportNeedle,
-  `  globalThis.__test = { state, explainCameraError, clamp, pct, castLabel, castLabelToText, contrastLabel, contrastLabelToText, stabilityLabel, stabilityLabelToText, buildAdvice, buildCopyText };\n})();`,
+  `  globalThis.__test = { state, explainCameraError, clamp, pct, castLabel, castLabelToText, contrastLabel, contrastLabelToText, stabilityLabel, stabilityLabelToText, buildAdvice, buildCopyText, captureBaseline, clearBaseline, baselineComparisonText, hardStopCamera };\n})();`,
 );
 
 function makeElement() {
@@ -132,5 +132,47 @@ assert.match(copy, /Contrast: high \/ hard shadows/);
 assert.match(copy, /Stability \/ F: variable/);
 assert.match(copy, /FPS: 29\.9/);
 assert.match(copy, /Mode: Normal/);
+
+
+const html = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+const css = fs.readFileSync(new URL('../style.css', import.meta.url), 'utf8');
+assert.equal(api.state.baseline, null);
+api.state.running = false;
+api.captureBaseline();
+assert.equal(api.state.baseline, null, 'stopped camera must not save a baseline');
+api.state.running = true;
+api.state.latest = {
+  brightness: 0.31, castLabel: 'neutral', contrastLabel: 'flat', stabilityLabel: 'unknown'
+};
+api.captureBaseline();
+assert.ok(api.state.baseline, 'active capture stores a baseline');
+assert.equal(api.state.baseline.brightness, 0.31);
+assert.equal(Object.keys(api.state.baseline).sort().join(','), 'brightness,castLabel,contrastLabel,stabilityLabel',
+  'camera frames and metadata must not be retained');
+api.state.latest = {
+  brightness: 0.72, castLabel: 'warm', contrastLabel: 'hard', stabilityLabel: 'ok',
+  stabilityValue: 0.01, fps: 30, sample: '160×120', mode: 'Normal'
+};
+const jaBaseline = api.baselineComparisonText(api.state.latest, api.state.baseline, 'ja');
+const enBaseline = api.baselineComparisonText(api.state.latest, api.state.baseline, 'en');
+assert.ok(jaBaseline.includes('31 → 72') && jaBaseline.includes('+41ポイント'));
+assert.ok(enBaseline.includes('+41 points') && enBaseline.includes('near neutral'));
+assert.ok(enBaseline.includes('low / flat') && enBaseline.includes('high / hard shadows'));
+assert.match(api.buildCopyText(), /Baseline comparison \(relative\)/);
+api.clearBaseline();
+assert.equal(api.state.baseline, null, 'manual clear must erase baseline');
+api.captureBaseline();
+assert.ok(api.state.baseline);
+api.hardStopCamera();
+assert.equal(api.state.baseline, null, 'stop, flip and mode switch must clear the baseline');
+
+for (const control of ['btnBaseline', 'btnClearBaseline', 'baselineSummary']) {
+  assert.ok(html.includes('id="' + control + '"'), 'missing comparison control ' + control);
+}
+assert.ok(css.includes('.lc-baseline-actions'), 'responsive baseline layout missing');
+assert.ok(html.includes('映像は保存しません。'));
+assert.ok(html.includes('not calibrated lux or flicker measurements'));
+assert.ok(source.includes('els.btnBaseline.addEventListener("click", captureBaseline)'));
+assert.ok(source.includes('els.btnClearBaseline.addEventListener("click", clearBaseline)'));
 
 console.log('Light Check behavior test passed.');

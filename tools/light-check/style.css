@@ -1089,3 +1089,26 @@ button,
   outline: 3px solid rgba(11,61,145,.45);
   outline-offset: 2px;
 }
+
+/* Before/after lighting comparison: low-profile controls within Results sheet. */
+.lc-baseline-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 8px;
+}
+.lc-baseline-actions .lc-btn { min-width: 0; flex: 1 1 130px; }
+.lc-baseline-actions .lc-btn:disabled { opacity: .48; cursor: not-allowed; }
+.lc-baseline-summary {
+  margin: 8px 0;
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.lc-baseline-caution {
+  margin: 8px 0 14px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+}

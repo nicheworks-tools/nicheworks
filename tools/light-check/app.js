@@ -19,6 +19,7 @@
     fpsEMA: 0,
     meanHistory: [],
     latest: null,
+    baseline: null,
   };
 
   const $ = (id) => document.getElementById(id);
@@ -39,6 +40,9 @@
     btnFlip: $("btnFlip"),
     btnLite: $("btnLite"),
     btnCopyResults: $("btnCopyResults"),
+    btnBaseline: $("btnBaseline"),
+    btnClearBaseline: $("btnClearBaseline"),
+    baselineSummary: $("baselineSummary"),
     btnSheetHowto: $("btnSheetHowto"),
     btnSheetResults: $("btnSheetResults"),
     sheetBackdrop: $("sheetBackdrop"),
@@ -126,6 +130,8 @@
       els.btnStop.disabled = !state.running;
     }
     if (els.btnFlip) els.btnFlip.disabled = state.busy || !state.running;
+    if (els.btnBaseline) els.btnBaseline.disabled = state.busy || !state.running || !state.latest;
+    if (els.btnClearBaseline) els.btnClearBaseline.disabled = !state.baseline;
     if (els.btnLite) {
       els.btnLite.disabled = state.busy;
       els.btnLite.setAttribute("aria-pressed", state.liteMode ? "true" : "false");
@@ -210,6 +216,8 @@
     state.lastFrameTime = 0;
     state.fpsEMA = 0;
     state.meanHistory = [];
+    state.baseline = null;
+    renderBaseline();
     if (els.hint) els.hint.hidden = false;
     updateButtons();
   }
@@ -242,6 +250,7 @@
         els.video.srcObject = stream;
         await els.video.play();
       }
+      state.latest = null;
       state.running = true;
       state.lastFrameTime = 0;
       state.fpsEMA = 0;
@@ -249,6 +258,7 @@
       if (els.hint) els.hint.hidden = true;
       updateStatus("running");
       updateButtons();
+      updateMetricsText();
       state.rafId = requestAnimationFrame(runFrameLoop);
     } catch (err) {
       hardStopCamera();
@@ -473,6 +483,8 @@
         if (el) el.textContent = "-";
       });
       if (els.statMode) els.statMode.textContent = state.liteMode ? "Lite" : "Normal";
+      renderBaseline();
+      updateButtons();
       return;
     }
 
@@ -494,6 +506,63 @@
     if (els.statFps) els.statFps.textContent = fps;
     if (els.statSample) els.statSample.textContent = metric.sample;
     if (els.statMode) els.statMode.textContent = metric.mode;
+    renderBaseline();
+    updateButtons();
+  }
+
+  // Baseline comparisons are relative camera readings only; no frame is retained.
+  function baselineComparisonText(metric, baseline, lang) {
+    const points = Math.round((metric.brightness - baseline.brightness) * 100);
+    const delta = (points >= 0 ? "+" : "") + points;
+    const castBefore = castLabelToText(baseline.castLabel, lang);
+    const castNow = castLabelToText(metric.castLabel, lang);
+    const contrastBefore = contrastLabelToText(baseline.contrastLabel, lang);
+    const contrastNow = contrastLabelToText(metric.contrastLabel, lang);
+    const stabilityBefore = stabilityLabelToText(baseline.stabilityLabel, lang);
+    const stabilityNow = stabilityLabelToText(metric.stabilityLabel, lang);
+    return (lang === "ja" ? "基準との比較（相対）" : "Baseline comparison (relative)") +
+      ": B " + pct(baseline.brightness) + " → " + pct(metric.brightness) +
+      " (" + delta + (lang === "ja" ? "ポイント" : " points") + ")" +
+      " / C " + castBefore + " → " + castNow +
+      " / S " + contrastBefore + " → " + contrastNow +
+      " / F " + stabilityBefore + " → " + stabilityNow;
+  }
+
+  function renderBaseline() {
+    if (!els.baselineSummary) return;
+    const lang = getLang();
+    if (!state.baseline) {
+      els.baselineSummary.textContent = lang === "ja"
+        ? "基準未記録。カメラを開始し、照明を変える前の状態で「基準を記録」を押してください。"
+        : "No baseline. Start the camera and save the lighting state before changing it.";
+      return;
+    }
+    if (!state.latest || !state.running) {
+      els.baselineSummary.textContent = lang === "ja"
+        ? "基準を記録しました。同じカメラ・構図のまま照明を変更してください。"
+        : "Baseline saved. Change the lighting while keeping the same camera and framing.";
+      return;
+    }
+    els.baselineSummary.textContent = baselineComparisonText(state.latest, state.baseline, lang);
+  }
+
+  function captureBaseline() {
+    if (!state.running || !state.latest || state.busy) return;
+    const metric = state.latest;
+    state.baseline = {
+      brightness: metric.brightness,
+      castLabel: metric.castLabel,
+      contrastLabel: metric.contrastLabel,
+      stabilityLabel: metric.stabilityLabel,
+    };
+    renderBaseline();
+    updateButtons();
+  }
+
+  function clearBaseline() {
+    state.baseline = null;
+    renderBaseline();
+    updateButtons();
   }
 
   function runFrameLoop(timestamp) {
@@ -552,6 +621,7 @@
       "Stability / F: " + stabilityLabelToText(metric.stabilityLabel, lang),
       "FPS: " + (metric.fps ? metric.fps.toFixed(1) : "-"),
       "Mode: " + metric.mode,
+      ...(state.baseline ? [baselineComparisonText(metric, state.baseline, lang)] : []),
       note,
     ].join("\n");
   }
@@ -601,6 +671,8 @@
     if (els.btnFlip) els.btnFlip.addEventListener("click", flipCamera);
     if (els.btnLite) els.btnLite.addEventListener("click", toggleLite);
     if (els.btnCopyResults) els.btnCopyResults.addEventListener("click", copyResults);
+    if (els.btnBaseline) els.btnBaseline.addEventListener("click", captureBaseline);
+    if (els.btnClearBaseline) els.btnClearBaseline.addEventListener("click", clearBaseline);
     if (els.btnSheetHowto) els.btnSheetHowto.addEventListener("click", () => openSheet("howto"));
     if (els.btnSheetResults) els.btnSheetResults.addEventListener("click", () => openSheet("results"));
     if (els.sheetBackdrop) els.sheetBackdrop.addEventListener("click", closeSheets);
