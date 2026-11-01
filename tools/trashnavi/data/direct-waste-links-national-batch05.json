@@ -63,5 +63,31 @@
     "language": "ja",
     "fiscal_year": "2026",
     "scope_note": "2026年4月～2027年3月の公式カレンダー"
+  },
+  {
+    "pref": "北海道",
+    "city": "夕張市",
+    "name": "ごみ分別辞典・地区別ごみ収集カレンダー",
+    "type": "ごみ分別・収集カレンダー",
+    "link_type": "waste_sorting",
+    "url": "https://www.city.yubari.lg.jp/soshiki/9/1473.html",
+    "lgcode": "012092",
+    "last_checked": "2026-11-01",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "地区別の令和8年10月～令和9年3月カレンダーを掲載。分別辞典PDFは令和3年4月作成。地区ごとの収集日を確認すること。"
+  },
+  {
+    "pref": "北海道",
+    "city": "夕張市",
+    "name": "粗大ごみの収集方法（2026年5月12日から電話予約制）",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.city.yubari.lg.jp/soshiki/9/9782.html",
+    "lgcode": "012092",
+    "last_checked": "2026-11-01",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "令和8年5月12日から電話予約制。収集は原則月1回・1回5点まで。"
   }
 ]
