@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1536" viewBox="0 0 1536 1536" role="img" aria-label="kanzemizu original editorial schematic repeat">
+<rect width="1536" height="1536" fill="#faf6ee"/>
+<defs><g id="motif"><g fill="none" stroke="#2d658e" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="25" cy="0" rx="140" ry="83" stroke-width="12"/><ellipse cx="25" cy="0" rx="109" ry="56" stroke-width="9"/><ellipse cx="25" cy="0" rx="78" ry="34" stroke-width="7"/><path d="M-165 -47 C-112 -47 -103 -2 -68 0 C-48 3 -37 27 -17 35 M-165 -20 C-123 -21 -114 20 -78 23 M-156 59 C-90 51 -83 89 -33 78" stroke-width="8"/><path d="M73 -17 C96 -16 100 20 75 31 C48 42 33 12 47 -3" stroke-width="6"/></g></g></defs>
+<use href="#motif" transform="translate(256 256)"/>
+<use href="#motif" transform="translate(768 256)"/>
+<use href="#motif" transform="translate(1280 256)"/>
+<use href="#motif" transform="translate(256 768)"/>
+<use href="#motif" transform="translate(768 768)"/>
+<use href="#motif" transform="translate(1280 768)"/>
+<use href="#motif" transform="translate(256 1280)"/>
+<use href="#motif" transform="translate(768 1280)"/>
+<use href="#motif" transform="translate(1280 1280)"/>
+</svg>
