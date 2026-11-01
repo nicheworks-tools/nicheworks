@@ -543,6 +543,12 @@
     for (const [language,definitionLimit,detailMin] of [["ja",60,65],["en",135,125]]) {
       const lead = definition[language] || "";
       const context = notes[language] || "";
+      if (context && lead.includes(context)) {
+        // The reviewed source explanation was promoted into the definition field.
+        // Keep the full technical context once without duplicating it under "Main uses / notes".
+        notes[language] = "";
+        continue;
+      }
       if (lead.length && lead.length < definitionLimit &&
           context.length >= detailMin && !context.includes(lead)) {
         definition[language] = lead + "\n" + context;

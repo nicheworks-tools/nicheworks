@@ -1,1 +1,900 @@
-{"schema":"cta-compact-v1","quality_batch":"012","rows":[{"id":"q012_air_impact_wrench","t":"tool","ja":"エアインパクトレンチ","en":"Air Impact Wrench","dj":"エアインパクトレンチは、圧縮空気を動力に打撃トルクを発生させ、ボルトやナットを素早く締めたり緩めたりする工具。ソケットの差込角と適合サイズ、必要な空気圧・流量を確認して使う。指定トルクでの最終締付けは別途トルク管理が必要。","de":"An air impact wrench uses compressed air to deliver repeated torque impacts for quickly tightening or loosening nuts and bolts. Use compatible impact-rated sockets and adequate air pressure and flow; critical final tightening torque must be verified by an appropriate specified method.","c":"fastening","task":"tighten_bolt"},{"id":"q012_ratchet_handle","t":"tool","ja":"ラチェットハンドル","en":"Ratchet Handle","dj":"ラチェットハンドルは、ソケットを取り付けてボルトやナットを回す手工具。内部の送り機構により、ハンドルを往復させてもソケットを一方向へ連続して回せるため、狭い場所で作業しやすい。規定トルクを測定する工具ではない。","de":"A ratchet handle is a manual socket wrench handle whose pawl mechanism drives a socket in one direction while allowing the handle to return without removing it. It is useful in restricted spaces but does not measure or guarantee a specified final tightening torque.","c":"fastening","task":"tighten_bolt"},{"id":"q012_hex_key","t":"tool","ja":"六角レンチ","en":"Hex Key","dj":"六角穴付きボルトを回すL字またはT字の工具。","de":"Tool for turning socket-head hex screws.","c":"fastening","task":"tighten_hex_bolt"},{"id":"q012_spanner","t":"tool","ja":"スパナ","en":"Open-End Wrench","dj":"二面幅に合わせてナットを回す開口レンチ。","de":"Open-ended wrench used on nuts and bolts.","c":"fastening","task":"tighten_nut"},{"id":"q012_combination_wrench","t":"tool","ja":"コンビネーションレンチ","en":"Combination Wrench","dj":"片側がスパナ、片側がめがねのレンチ。","de":"Wrench with an open end and a box end.","c":"fastening","task":"tighten_nut"},{"id":"q012_box_wrench","t":"tool","ja":"めがねレンチ","en":"Box-End Wrench","dj":"ナットを囲んで力をかけやすいレンチ。","de":"Closed-end wrench that grips a nut around its flats.","c":"fastening","task":"tighten_nut"},{"id":"q012_tap_die_set","t":"tool","ja":"タップ・ダイスセット","en":"Tap and Die Set","dj":"雌ねじや雄ねじを切る工具セット。","de":"Tool set for cutting internal and external threads.","c":"metalwork","task":"cut_thread"},{"id":"q012_thread_gauge","t":"tool","ja":"ねじピッチゲージ","en":"Thread Pitch Gauge","dj":"ねじ山のピッチを確認するゲージ。","de":"Gauge used to identify thread pitch.","c":"measurement","task":"check_thread"},{"id":"q012_feeler_gauge","t":"tool","ja":"シックネスゲージ","en":"Feeler Gauge","dj":"隙間寸法を薄板で測るゲージ。","de":"Gauge made of thin blades for measuring small gaps.","c":"measurement","task":"measure_gap"},{"id":"q012_dial_gauge","t":"tool","ja":"ダイヤルゲージ","en":"Dial Indicator","dj":"わずかな変位や振れを測る計測器。","de":"Indicator used to measure small displacement or runout.","c":"measurement","task":"measure_runout"},{"id":"q012_vernier_caliper","t":"tool","ja":"ノギス","en":"Vernier Caliper","dj":"外径・内径・深さを測る精密測定工具。","de":"Measuring tool for outside, inside, and depth dimensions.","c":"measurement","task":"measure_dimension"},{"id":"q012_micrometer","t":"tool","ja":"マイクロメーター","en":"Micrometer","dj":"小さな厚みや外径を高精度で測る工具。","de":"Precision tool for measuring thickness or outside diameter.","c":"measurement","task":"measure_precision"},{"id":"q012_depth_gauge","t":"tool","ja":"デプスゲージ","en":"Depth Gauge","dj":"穴や段差の深さを測る工具。","de":"Gauge used to measure hole or step depth.","c":"measurement","task":"measure_depth"},{"id":"q012_digital_level","t":"tool","ja":"デジタル水平器","en":"Digital Level","dj":"傾きや水平を数値で表示する水平器。","de":"Level that displays slope or level digitally.","c":"measurement","task":"check_level"},{"id":"q012_water_level","t":"tool","ja":"水盛り管","en":"Water Level","dj":"水面の高さを利用して水平を出す道具。","de":"Tool that uses water surface height to transfer level.","c":"layout","task":"transfer_level"},{"id":"q012_builder_square","t":"tool","ja":"差し金","en":"Carpenter Square","dj":"直角や寸法を確認するL字の測定工具。","de":"L-shaped square for checking right angles and layout.","c":"layout","task":"mark_square"},{"id":"q012_framing_square","t":"tool","ja":"大矩","en":"Framing Square","dj":"大きな部材の直角や墨付けに使う定規。","de":"Large square used for framing layout.","c":"layout","task":"mark_framing"},{"id":"q012_sliding_bevel","t":"tool","ja":"自由スコヤ","en":"Sliding Bevel","dj":"任意角度を写し取る角度定規。","de":"Adjustable bevel used to transfer angles.","c":"layout","task":"transfer_angle"},{"id":"q012_marking_gauge","t":"tool","ja":"けびき","en":"Marking Gauge","dj":"木材に平行な基準線を引く工具。","de":"Tool for marking parallel lines on timber.","c":"woodworking","task":"mark_timber"},{"id":"q012_block_plane","t":"tool","ja":"豆鉋","en":"Block Plane","dj":"木材の面取りや小修正に使う小型鉋。","de":"Small plane for trimming and chamfering wood.","c":"woodworking","task":"trim_wood"},{"id":"q012_japanese_plane","t":"tool","ja":"鉋","en":"Japanese Plane","dj":"木材表面を削って平滑にする手工具。","de":"Hand plane used to smooth wood surfaces.","c":"woodworking","task":"plane_wood"},{"id":"q012_pull_saw","t":"tool","ja":"胴付きのこ","en":"Dozuki Saw","dj":"細かく正確な切断に使う背金付きのこぎり。","de":"Backed pull saw used for precise cuts.","c":"woodworking","task":"precision_cut"},{"id":"q012_coping_saw","t":"tool","ja":"糸のこ","en":"Coping Saw","dj":"曲線や細部を切る細刃のこぎり。","de":"Fine saw used for curves and detail cuts.","c":"cutting","task":"cut_curve"},{"id":"q012_step_drill","t":"tool","ja":"ステップドリル","en":"Step Drill Bit","dj":"薄板に複数径の穴を開ける段付きドリル。","de":"Stepped bit used for multiple hole sizes in thin material.","c":"drilling","task":"drill_sheet_metal"},{"id":"q012_countersink_bit","t":"tool","ja":"皿取り錐","en":"Countersink Bit","dj":"皿ねじ頭を収める座ぐりを作る刃物。","de":"Bit used to create a countersink for flat-head screws.","c":"drilling","task":"countersink_hole"},{"id":"q012_reamer","t":"tool","ja":"リーマー","en":"Reamer","dj":"穴径や仕上げ精度を整える刃物。","de":"Tool used to finish or slightly enlarge holes.","c":"metalwork","task":"finish_hole"},{"id":"q012_grinder_disc","t":"consumable","ja":"切断砥石","en":"Cutting Disc","dj":"グラインダーで金属や石材を切る砥石。","de":"Abrasive disc used for cutting metal or masonry.","c":"cutting","task":"cut_metal"},{"id":"q012_flap_disc","t":"consumable","ja":"フラップディスク","en":"Flap Disc","dj":"研削と仕上げを兼ねる羽根状研磨ディスク。","de":"Layered abrasive disc for grinding and finishing.","c":"finishing","task":"grind_surface"},{"id":"q012_wire_brush_wheel","t":"consumable","ja":"ワイヤーブラシホイール","en":"Wire Brush Wheel","dj":"錆や塗膜を落とす回転ブラシ。","de":"Rotary wire brush for removing rust or coating.","c":"surface_prep","task":"remove_rust"},{"id":"q012_diamond_blade","t":"consumable","ja":"ダイヤモンドカッター","en":"Diamond Blade","dj":"コンクリートやタイルを切るダイヤ刃。","de":"Diamond blade for cutting concrete or tile.","c":"cutting","task":"cut_masonry"},{"id":"q012_cup_wheel","t":"consumable","ja":"カップホイール","en":"Diamond Cup Wheel","dj":"コンクリート面を研削するカップ状砥石。","de":"Cup wheel used to grind concrete surfaces.","c":"surface_prep","task":"grind_concrete"},{"id":"q012_sds_plus_bit","t":"consumable","ja":"SDSプラスビット","en":"SDS Plus Bit","dj":"SDSプラスシャンクのコンクリート用ドリルビット。","de":"Concrete drill bit with an SDS Plus shank.","c":"drilling","task":"drill_concrete"},{"id":"q012_sds_max_bit","t":"consumable","ja":"SDSマックスビット","en":"SDS Max Bit","dj":"大型ハンマードリル用のコンクリートビット。","de":"Heavy-duty concrete bit for SDS Max hammers.","c":"drilling","task":"drill_concrete"},{"id":"q012_chisel_bit","t":"consumable","ja":"チゼルビット","en":"Chisel Bit","dj":"はつりや溝切りに使うハンマードリル用刃先。","de":"Bit used for chiseling or light demolition.","c":"demolition","task":"chip_concrete"},{"id":"q012_bull_point","t":"consumable","ja":"ブルポイント","en":"Bull Point Chisel","dj":"一点に力を集中させてはつる尖ったビット。","de":"Pointed chisel bit for breaking concrete.","c":"demolition","task":"break_concrete"},{"id":"q012_flat_chisel","t":"consumable","ja":"平タガネ","en":"Flat Chisel","dj":"面状にはつるための平たいチゼル。","de":"Flat chisel used for surface chiseling.","c":"demolition","task":"chip_surface"},{"id":"q012_cold_chisel","t":"tool","ja":"タガネ","en":"Cold Chisel","dj":"金属やコンクリートを打って削る手工具。","de":"Hand chisel used for cutting or chipping hard material.","c":"demolition","task":"chip_material"},{"id":"q012_bolster_chisel","t":"tool","ja":"幅広タガネ","en":"Bolster Chisel","dj":"広い幅でタイルやモルタルを剥がす工具。","de":"Wide chisel used to remove tile or mortar.","c":"demolition","task":"remove_tile"},{"id":"q012_nail_puller","t":"tool","ja":"釘抜き","en":"Nail Puller","dj":"釘抜きは、木材などに打ち込まれた釘の頭や軸に爪を掛け、てこの力で引き抜く手工具。解体や再利用材の釘除去に使い、仕上げ面を傷めたくない場合は支点に当て板を入れる。折れた釘や錆びた釘では滑り・急な抜けに注意する。","de":"A nail puller is a hand tool whose claws grip the head or shank of a driven nail and use leverage to extract it from timber or similar material. It is used during dismantling or material reuse; a protective block under the fulcrum can reduce surface damage.","c":"demolition","task":"pull_nail"},{"id":"q012_hand_shear","t":"tool","ja":"金切りばさみ","en":"Tin Snips","dj":"金切りばさみは、薄い鋼板や板金材を手の力で切断する工具。直線切り用・曲線切り用などの刃形状があり、材質や板厚、切る方向によって使い分ける。切断後の端部は鋭利になるため、材料の保持と端材の扱いにも注意する。","de":"Tin snips are hand shears for cutting thin sheet metal. Different blade shapes handle straight or curved cuts and different directions; the tool must be matched to the metal and sheet thickness. Cut edges can be sharp and require careful handling.","c":"sheet_metal","task":"cut_sheet_metal"},{"id":"q012_nibbler","t":"tool","ja":"ニブラー","en":"Nibbler","dj":"薄板を少しずつ切り抜く電動工具。","de":"Tool that cuts sheet metal by nibbling small pieces.","c":"sheet_metal","task":"cut_sheet_metal"},{"id":"q012_sheet_metal_brake","t":"tool","ja":"板金曲げ機","en":"Sheet Metal Brake","dj":"板金を直線的に折り曲げる機械。","de":"Machine used to bend sheet metal.","c":"sheet_metal","task":"bend_sheet_metal"},{"id":"q012_pop_rivet_gun","t":"tool","ja":"リベッター","en":"Pop Rivet Gun","dj":"ブラインドリベットを締結する工具。","de":"Tool used to install blind rivets.","c":"fastening","task":"install_rivet"},{"id":"q012_blind_rivet","t":"fastener","ja":"ブラインドリベット","en":"Blind Rivet","dj":"片側から施工できるリベット締結材。","de":"Rivet fastener installed from one side.","c":"fastening","task":"fasten_sheet"},{"id":"q012_self_tapping_screw","t":"fastener","ja":"タッピングビス","en":"Self-Tapping Screw","dj":"ねじ山を作りながら締め込むビス。","de":"Screw that forms its own thread in material.","c":"fastening","task":"fasten_fixture"},{"id":"q012_washer","t":"fastener","ja":"座金","en":"Washer","dj":"締結力を分散し座面を保護する薄い輪。","de":"Thin ring that spreads load under a fastener.","c":"fastening","task":"secure_bolt"},{"id":"q012_spring_washer","t":"fastener","ja":"ばね座金","en":"Spring Washer","dj":"緩み止め目的で使うばね状座金。","de":"Washer used to help resist loosening.","c":"fastening","task":"prevent_loosening"},{"id":"q012_lock_nut","t":"fastener","ja":"ロックナット","en":"Lock Nut","dj":"緩み止め機能を持つナット。","de":"Nut designed to resist loosening.","c":"fastening","task":"prevent_loosening"},{"id":"q012_all_thread_rod","t":"fastener","ja":"全ねじ","en":"All-Thread Rod","dj":"全長にねじが切られた棒材。","de":"Rod threaded along its full length.","c":"fastening","task":"hang_support"},{"id":"q012_channel_nut","t":"fastener","ja":"チャンネルナット","en":"Channel Nut","dj":"C形鋼や支持材内で使う固定ナット。","de":"Nut used inside strut channels.","c":"mep","task":"mount_support"},{"id":"q012_unistrut_channel","t":"material","ja":"支持チャンネル","en":"Strut Channel","dj":"配管や設備を支持する溝形鋼材。","de":"Slotted channel used to support piping or equipment.","c":"mep","task":"build_support"},{"id":"q012_pipe_clamp","t":"component","ja":"配管バンド","en":"Pipe Clamp","dj":"配管を壁や支持材に固定する金具。","de":"Clamp used to secure pipe to a support.","c":"plumbing","task":"support_pipe"},{"id":"q012_hanger_clamp","t":"component","ja":"吊りバンド","en":"Pipe Hanger","dj":"配管を吊り下げ支持する金具。","de":"Hanger used to suspend pipe.","c":"plumbing","task":"hang_pipe"},{"id":"q012_rubber_mount","t":"component","ja":"防振ゴム","en":"Rubber Mount","dj":"機器の振動伝達を抑えるゴム部材。","de":"Rubber support used to reduce vibration transfer.","c":"mep","task":"isolate_vibration"},{"id":"q012_leveling_mount","t":"component","ja":"レベル調整脚","en":"Leveling Mount","dj":"機器や架台の高さを微調整する脚部材。","de":"Adjustable foot used to level equipment or frames.","c":"mep","task":"level_equipment"},{"id":"q012_base_plate","t":"component","ja":"ベースプレート","en":"Base Plate","dj":"柱や機器を基礎へ固定する板部材。","de":"Plate used to anchor a column or equipment to a base.","c":"steel","task":"fix_baseplate"},{"id":"q012_gusset_plate","t":"component","ja":"ガセットプレート","en":"Gusset Plate","dj":"接合部を補強する三角形や板状の鋼板。","de":"Plate used to reinforce a connection.","c":"steel","task":"reinforce_joint"},{"id":"q012_shim_plate","t":"component","ja":"シムプレート","en":"Shim Plate","dj":"高さや隙間を微調整する薄い板。","de":"Thin plate used to adjust height or gaps.","c":"steel","task":"adjust_level"},{"id":"q012_grout_under_base","t":"process","ja":"ベース下グラウト","en":"Baseplate Grouting","dj":"ベースプレート下の隙間を無収縮材で充填する作業。","de":"Filling under a baseplate with non-shrink grout.","c":"steel","task":"grout_baseplate"},{"id":"q012_non_shrink_grout","t":"material","ja":"無収縮グラウト","en":"Non-Shrink Grout","dj":"収縮を抑えた充填用セメント系材料。","de":"Cementitious grout designed to minimize shrinkage.","c":"grout","task":"fill_gap"},{"id":"q012_epoxy_anchor_adhesive","t":"material","ja":"アンカー接着剤","en":"Anchor Adhesive","dj":"あと施工アンカーを固定する樹脂接着剤。","de":"Resin adhesive used for post-installed anchors.","c":"anchor","task":"install_anchor"},{"id":"q012_blow_pump","t":"tool","ja":"ブロワーポンプ","en":"Blow Pump","dj":"アンカー穴などの粉じんを吹き出す清掃工具。","de":"Pump used to blow dust out of drilled holes.","c":"anchor","task":"clean_hole"},{"id":"q012_hole_brush","t":"tool","ja":"孔内ブラシ","en":"Hole Cleaning Brush","dj":"アンカー孔内の粉じんをこすり落とすブラシ。","de":"Brush used to clean drilled anchor holes.","c":"anchor","task":"clean_hole"},{"id":"q012_embed_plate","t":"component","ja":"埋込プレート","en":"Embedded Plate","dj":"コンクリートに先付けする鋼製接合プレート。","de":"Steel plate cast into concrete for later connections.","c":"concrete","task":"embed_steel"},{"id":"q012_anchor_template","t":"tool","ja":"アンカーテンプレート","en":"Anchor Bolt Template","dj":"アンカーボルト位置を保持する型板。","de":"Template used to hold anchor bolt positions.","c":"anchor","task":"set_anchor_bolt"},{"id":"q012_concrete_cover_meter","t":"tool","ja":"かぶり厚さ計","en":"Cover Meter","dj":"鉄筋位置やかぶり厚さを非破壊で確認する計測器。","de":"Meter used to locate rebar and measure concrete cover.","c":"inspection","task":"check_rebar_cover"},{"id":"q012_rebar_locator","t":"tool","ja":"鉄筋探査機","en":"Rebar Locator","dj":"コンクリート中の鉄筋位置を探す機器。","de":"Device used to locate rebar inside concrete.","c":"inspection","task":"locate_rebar"},{"id":"q012_infrared_thermometer","t":"tool","ja":"放射温度計","en":"Infrared Thermometer","dj":"非接触で表面温度を測る計測器。","de":"Non-contact tool for measuring surface temperature.","c":"inspection","task":"measure_temperature"},{"id":"q012_crack_scale","t":"tool","ja":"クラックスケール","en":"Crack Width Gauge","dj":"ひび割れ幅を読む透明ゲージ。","de":"Gauge used to measure crack width.","c":"inspection","task":"measure_crack"},{"id":"q012_concrete_test_hammer","t":"tool","ja":"シュミットハンマー","en":"Rebound Hammer","dj":"コンクリート表面反発から強度を推定する試験器。","de":"Tester that estimates concrete strength from rebound.","c":"inspection","task":"test_concrete_strength"},{"id":"q012_slump_cone","t":"tool","ja":"スランプコーン","en":"Slump Cone","dj":"生コンのスランプを測る円錐型の器具。","de":"Cone used to test fresh concrete slump.","c":"concrete","task":"test_slump"},{"id":"q012_air_meter","t":"tool","ja":"空気量測定器","en":"Air Meter","dj":"生コン中の空気量を測る試験器。","de":"Meter used to measure air content in fresh concrete.","c":"concrete","task":"test_air_content"},{"id":"q012_concrete_cylinder_mold","t":"tool","ja":"供試体型枠","en":"Concrete Cylinder Mold","dj":"圧縮強度試験用の供試体を作る型枠。","de":"Mold used to make concrete test cylinders.","c":"concrete","task":"make_test_specimen"},{"id":"q012_curing_tank","t":"equipment","ja":"水中養生槽","en":"Curing Tank","dj":"コンクリート供試体を一定条件で養生する槽。","de":"Tank used to cure concrete specimens.","c":"concrete","task":"cure_specimen"},{"id":"q012_core_sampler","t":"tool","ja":"コア採取機","en":"Core Sampler","dj":"コンクリートから試験用コアを採取する機械。","de":"Machine used to take concrete core samples.","c":"inspection","task":"take_core_sample"},{"id":"q012_dust_collector","t":"equipment","ja":"集じん機","en":"Dust Collector","dj":"切断や研削時の粉じんを吸引する機器。","de":"Equipment that collects dust during cutting or grinding.","c":"safety","task":"control_dust"},{"id":"q012_shop_vacuum","t":"equipment","ja":"業務用掃除機","en":"Shop Vacuum","dj":"現場の粉じんや切粉を吸引する掃除機。","de":"Vacuum used for jobsite dust and debris.","c":"cleanup","task":"clean_site"},{"id":"q012_air_compressor","t":"equipment","ja":"エアコンプレッサー","en":"Air Compressor","dj":"空圧工具に圧縮空気を供給する機械。","de":"Machine that supplies compressed air to pneumatic tools.","c":"equipment","task":"supply_air"},{"id":"q012_extension_cord_reel","t":"equipment","ja":"コードリール","en":"Extension Cord Reel","dj":"電源を延長して巻き取り保管するリール。","de":"Reel used to extend and store power cable.","c":"electrical","task":"temporary_power"},{"id":"q012_temporary_distribution_box","t":"equipment","ja":"仮設分電盤","en":"Temporary Distribution Box","dj":"工事中の仮設電源を分岐する盤。","de":"Temporary panel used to distribute construction power.","c":"temporary_work","task":"temporary_power"},{"id":"q012_warning_tape","t":"safety","ja":"立入禁止テープ","en":"Warning Tape","dj":"危険区域や立入禁止範囲を示すテープ。","de":"Tape used to mark restricted or hazardous areas.","c":"safety","task":"mark_restricted_area"},{"id":"q012_guardrail","t":"safety","ja":"仮設手すり","en":"Temporary Guardrail","dj":"墜落を防ぐための仮設手すり。","de":"Temporary rail used to prevent falls.","c":"safety","task":"fall_prevention"},{"id":"q012_toe_board","t":"safety","ja":"幅木","en":"Toe Board","dj":"足場端部から物の落下を抑える板。","de":"Board that helps prevent objects falling from scaffold edges.","c":"safety","task":"falling_object_prevention"},{"id":"q012_debris_net","t":"safety","ja":"養生ネット","en":"Debris Net","dj":"資材や粉じんの飛散・落下を抑えるネット。","de":"Net used to reduce debris or dust spread.","c":"safety","task":"contain_debris"}]}
+{
+  "schema": "cta-compact-v1",
+  "quality_batch": "012",
+  "rows": [
+    {
+      "id": "q012_air_impact_wrench",
+      "t": "tool",
+      "ja": "エアインパクトレンチ",
+      "en": "Air Impact Wrench",
+      "dj": "エアインパクトレンチは、圧縮空気を動力に打撃トルクを発生させ、ボルトやナットを素早く締めたり緩めたりする工具。ソケットの差込角と適合サイズ、必要な空気圧・流量を確認して使う。指定トルクでの最終締付けは別途トルク管理が必要。",
+      "de": "An air impact wrench uses compressed air to deliver repeated torque impacts for quickly tightening or loosening nuts and bolts. Use compatible impact-rated sockets and adequate air pressure and flow; critical final tightening torque must be verified by an appropriate specified method.",
+      "c": "fastening",
+      "task": "tighten_bolt"
+    },
+    {
+      "id": "q012_ratchet_handle",
+      "t": "tool",
+      "ja": "ラチェットハンドル",
+      "en": "Ratchet Handle",
+      "dj": "ラチェットハンドルは、ソケットを取り付けてボルトやナットを回す手工具。内部の送り機構により、ハンドルを往復させてもソケットを一方向へ連続して回せるため、狭い場所で作業しやすい。規定トルクを測定する工具ではない。",
+      "de": "A ratchet handle is a manual socket wrench handle whose pawl mechanism drives a socket in one direction while allowing the handle to return without removing it. It is useful in restricted spaces but does not measure or guarantee a specified final tightening torque.",
+      "c": "fastening",
+      "task": "tighten_bolt"
+    },
+    {
+      "id": "q012_hex_key",
+      "t": "tool",
+      "ja": "六角レンチ",
+      "en": "Hex Key",
+      "dj": "六角穴付きボルトを回すL字またはT字の工具。",
+      "de": "Tool for turning socket-head hex screws.",
+      "c": "fastening",
+      "task": "tighten_hex_bolt"
+    },
+    {
+      "id": "q012_spanner",
+      "t": "tool",
+      "ja": "スパナ",
+      "en": "Open-End Wrench",
+      "dj": "二面幅に合わせてナットを回す開口レンチ。\n先端が開いた二面幅の口でナットやボルト頭を回す手工具。一般的なレンチ類のうち、ここでは片口・両口などのオープンエンド形状を指す。適合しないサイズや斜め掛けは角を傷めやすいため、二面幅に合うサイズを奥まで掛けて使用する。",
+      "de": "Open-ended wrench used on nuts and bolts.\nA hand wrench with an open-ended jaw sized to turn nuts and bolt heads. Within the broader wrench family, this entry refers specifically to open-end spanners, including single- and double-ended forms. Use the correct across-flats size and seat the jaws fully to avoid rounding the fastener.",
+      "c": "fastening",
+      "task": "tighten_nut"
+    },
+    {
+      "id": "q012_combination_wrench",
+      "t": "tool",
+      "ja": "コンビネーションレンチ",
+      "en": "Combination Wrench",
+      "dj": "片側がスパナ、片側がめがねのレンチ。\n同じ呼び寸法の開口部（スパナ側）とめがね部を両端に持つ手工具。差し込みやすさが必要な場面では開口側、締結部を多面で囲んで力を掛けたい場面ではめがね側を使い分ける。締結部とレンチ寸法が合わない状態で使用すると角を傷めやすい。",
+      "de": "Wrench with an open end and a box end.\nA hand wrench with an open end and a box end of the same nominal size. The open end provides quick side access, while the box end surrounds more of the fastener for more secure engagement. Using the wrong size can round the fastener and damage the wrench.",
+      "c": "fastening",
+      "task": "tighten_nut"
+    },
+    {
+      "id": "q012_box_wrench",
+      "t": "tool",
+      "ja": "めがねレンチ",
+      "en": "Box-End Wrench",
+      "dj": "ナットを囲んで力をかけやすいレンチ。\nリング状のめがね部でボルト・ナットの頭を囲み、複数面に力を分散して締緩する手工具。開口レンチより外れにくく大きな力を掛けやすいが、周囲にリングを差し込む空間が必要。寸法違いや浅い掛かりは締結部の角を損傷させる。",
+      "de": "Closed-end wrench that grips a nut around its flats.\nA ring-ended wrench that surrounds a bolt head or nut and distributes load across multiple flats. It generally gives more secure engagement than an open-ended wrench but requires clearance to place the ring over the fastener. Incorrect size or partial engagement can damage the fastener.",
+      "c": "fastening",
+      "task": "tighten_nut"
+    },
+    {
+      "id": "q012_tap_die_set",
+      "t": "tool",
+      "ja": "タップ・ダイスセット",
+      "en": "Tap and Die Set",
+      "dj": "雌ねじや雄ねじを切る工具セット。\n雌ねじを加工するタップと、雄ねじを加工・修正するダイスを組み合わせたねじ加工工具セット。ねじ規格、呼び径、ピッチ、下穴径を一致させ、工具を軸に対して真っ直ぐ進めることが重要。切りくずを逃がさず無理に回すと刃欠けや折損につながる。",
+      "de": "Tool set for cutting internal and external threads.\nA threading set containing taps for internal threads and dies for external threads or thread repair. Thread standard, nominal diameter, pitch, and tap-drill size must match, and the tool must start square to the work. Forcing the tool without clearing chips can damage the cutting edges or break a tap.",
+      "c": "metalwork",
+      "task": "cut_thread"
+    },
+    {
+      "id": "q012_thread_gauge",
+      "t": "tool",
+      "ja": "ねじピッチゲージ",
+      "en": "Thread Pitch Gauge",
+      "dj": "ねじ山のピッチを確認するゲージ。\n複数の歯形ブレードをねじ山へ当て、最も隙間なく一致する形からねじピッチを確認するゲージ。ピッチを識別する道具であり、ねじの呼び径そのものを測定するものではない。メートル・インチなど規格系を混同しないことが重要。",
+      "de": "Gauge used to identify thread pitch.\nA leaf gauge with several tooth profiles used to identify thread pitch by matching a blade to the thread form. It identifies pitch rather than the nominal thread diameter. Metric and inch-series gauges or other thread systems must not be confused.",
+      "c": "measurement",
+      "task": "check_thread"
+    },
+    {
+      "id": "q012_feeler_gauge",
+      "t": "tool",
+      "ja": "シックネスゲージ",
+      "en": "Feeler Gauge",
+      "dj": "隙間寸法を薄板で測るゲージ。",
+      "de": "Gauge made of thin blades for measuring small gaps.",
+      "c": "measurement",
+      "task": "measure_gap"
+    },
+    {
+      "id": "q012_dial_gauge",
+      "t": "tool",
+      "ja": "ダイヤルゲージ",
+      "en": "Dial Indicator",
+      "dj": "わずかな変位や振れを測る計測器。",
+      "de": "Indicator used to measure small displacement or runout.",
+      "c": "measurement",
+      "task": "measure_runout"
+    },
+    {
+      "id": "q012_vernier_caliper",
+      "t": "tool",
+      "ja": "ノギス",
+      "en": "Vernier Caliper",
+      "dj": "外径・内径・深さを測る精密測定工具。",
+      "de": "Measuring tool for outside, inside, and depth dimensions.",
+      "c": "measurement",
+      "task": "measure_dimension"
+    },
+    {
+      "id": "q012_micrometer",
+      "t": "tool",
+      "ja": "マイクロメーター",
+      "en": "Micrometer",
+      "dj": "小さな厚みや外径を高精度で測る工具。\nスピンドルの微小な送り量を利用し、外径や厚さを高い分解能で測定する精密測定工具。測定範囲に合う本体を選び、アンビルとスピンドルの測定面を清潔に保つ。締め付け力のばらつきを抑えるため、ラチェットや定圧機構を備える機種ではその機構を使う。",
+      "de": "Precision tool for measuring thickness or outside diameter.\nA precision measuring tool that uses fine spindle movement to measure outside diameter or thickness. Select a micrometer with the appropriate range and keep the anvil and spindle faces clean. Where fitted, use the ratchet or constant-force mechanism to reduce variation from measuring force.",
+      "c": "measurement",
+      "task": "measure_precision"
+    },
+    {
+      "id": "q012_depth_gauge",
+      "t": "tool",
+      "ja": "デプスゲージ",
+      "en": "Depth Gauge",
+      "dj": "穴や段差の深さを測る工具。\n基準面にベースを当て、穴・溝・段差などの底までの距離を測定する工具。基準面のバリや傾きがそのまま測定誤差になるため、ベースを安定して密着させることが重要。測定範囲と測定子形状も対象に合わせる。",
+      "de": "Gauge used to measure hole or step depth.\nA gauge that rests on a reference surface and measures the distance to the bottom of a hole, groove, or step. Burrs or tilt at the reference surface directly affect the reading, so the base must sit flat and stable. The range and contact shape must suit the feature being measured.",
+      "c": "measurement",
+      "task": "measure_depth"
+    },
+    {
+      "id": "q012_digital_level",
+      "t": "tool",
+      "ja": "デジタル水平器",
+      "en": "Digital Level",
+      "dj": "傾きや水平を数値で表示する水平器。\n本体の基準面を対象物へ当て、水平・鉛直や傾斜角をデジタル表示する測定工具。気泡管だけでは読み取りにくい微小勾配や角度を数値で確認できる。測定前の校正状態、基準面の清潔さ、ゼロ設定が精度に影響する。",
+      "de": "Level that displays slope or level digitally.\nA measuring tool that displays level, plumb, or slope angle digitally when its reference face is placed on a surface. It makes small slopes or angles easier to quantify than a visual bubble alone. Calibration status, a clean reference face, and correct zeroing affect accuracy.",
+      "c": "measurement",
+      "task": "check_level"
+    },
+    {
+      "id": "q012_water_level",
+      "t": "tool",
+      "ja": "水盛り管",
+      "en": "Water Level",
+      "dj": "水面の高さを利用して水平を出す道具。\n透明ホース内の水面が両端で同じ高さになる性質を利用し、離れた二点間へ水平基準を移す道具。視線が通らない場所や距離がある場所でも使えるが、ホース内の気泡、折れ、端部の上下動が誤差になる。測定中は両端を安定させて水面が静止してから読む。",
+      "de": "Tool that uses water surface height to transfer level.\nA leveling tool that transfers elevation between separated points using the equal free-surface height of water in a clear hose. It can work around obstructions, but trapped air, kinks, and movement of either end cause errors. Both ends should be held stable and read only after the water settles.",
+      "c": "layout",
+      "task": "transfer_level"
+    },
+    {
+      "id": "q012_builder_square",
+      "t": "tool",
+      "ja": "差し金",
+      "en": "Carpenter Square",
+      "dj": "直角や寸法を確認するL字の測定工具。",
+      "de": "L-shaped square for checking right angles and layout.",
+      "c": "layout",
+      "task": "mark_square"
+    },
+    {
+      "id": "q012_framing_square",
+      "t": "tool",
+      "ja": "大矩",
+      "en": "Framing Square",
+      "dj": "大きな部材の直角や墨付けに使う定規。\n長短2本の直角な脚を持ち、大きな部材の直角確認や墨付け、木造下地の割付などに使う大型のL字定規。差し金やスコヤと用途が重なるが、大矩はより大きな基準線や部材の直角確認に使う。落下や曲がりで精度が狂うため、基準面へ密着させて状態を確認する。",
+      "de": "Large square used for framing layout.\nA large L-shaped square with two perpendicular legs used for checking square, laying out large members, and framing work. It overlaps in purpose with carpenter's squares and try squares but is intended for larger layout and reference work. Bending or impact can affect accuracy, so keep both legs true and seated against the reference edges.",
+      "c": "layout",
+      "task": "mark_framing"
+    },
+    {
+      "id": "q012_sliding_bevel",
+      "t": "tool",
+      "ja": "自由スコヤ",
+      "en": "Sliding Bevel",
+      "dj": "任意角度を写し取る角度定規。\n可動する刃と台座を任意角度で固定し、既存の角度を別の部材へ写し取る手工具。数値角度を直接読み取る工具ではなく、形状の転写や同じ角度の反復に向く。固定ねじが緩いと移動中に角度が変わる。",
+      "de": "Adjustable bevel used to transfer angles.\nA hand tool with an adjustable blade that locks at an arbitrary angle so an existing angle can be transferred to another workpiece. It is primarily an angle-transfer tool rather than a direct numeric angle reader. A loose locking screw can allow the setting to change during handling.",
+      "c": "layout",
+      "task": "transfer_angle"
+    },
+    {
+      "id": "q012_marking_gauge",
+      "t": "tool",
+      "ja": "けびき",
+      "en": "Marking Gauge",
+      "dj": "木材に平行な基準線を引く工具。\n木材の基準縁に定規状の台を沿わせ、けびき針や刃で縁と平行な線を一定距離に引く墨付け工具。ほぞ・溝・板幅などの基準線を繰り返し同じ位置に出すのに向く。台が基準縁から浮くと線が蛇行する。",
+      "de": "Tool for marking parallel lines on timber.\nA woodworking marking tool whose fence follows a reference edge while a pin or cutter scribes a line at a fixed offset. It is useful for repeatedly laying out tenons, grooves, or width references. If the fence lifts away from the reference edge, the line will wander.",
+      "c": "woodworking",
+      "task": "mark_timber"
+    },
+    {
+      "id": "q012_block_plane",
+      "t": "tool",
+      "ja": "豆鉋",
+      "en": "Block Plane",
+      "dj": "木材の面取りや小修正に使う小型鉋。\n短い台と刃を持つ小型の鉋で、木材端部の面取り、木口の小修正、局所的な段差調整などに使う。大面積を本格的に平滑化する長台鉋とは用途が異なる。刃の出量を小さくし、木目や木口の欠けを見ながら少量ずつ削る。",
+      "de": "Small plane for trimming and chamfering wood.\nA compact hand plane used for chamfering edges, trimming end grain, and making small local corrections. Its short sole makes it different from a longer smoothing or jointing plane used to establish a broad flat surface. Use a fine blade projection and take controlled cuts to avoid tear-out.",
+      "c": "woodworking",
+      "task": "trim_wood"
+    },
+    {
+      "id": "q012_japanese_plane",
+      "t": "tool",
+      "ja": "鉋",
+      "en": "Japanese Plane",
+      "dj": "木材表面を削って平滑にする手工具。\n刃を木製の台に仕込み、手前へ引いて木材表面を薄く削る日本式の鉋。仕上げ削りでは刃の研ぎ、刃出し、台直し、木目方向が仕上がりを大きく左右する。無理に深く刃を出すと引き抵抗と逆目の欠けが増える。",
+      "de": "Hand plane used to smooth wood surfaces.\nA Japanese-style hand plane with a blade set in a wooden body and normally used by pulling it toward the user. For fine finishing, blade sharpness, blade projection, sole condition, and grain direction strongly affect the result. Excessive blade projection increases cutting force and tear-out.",
+      "c": "woodworking",
+      "task": "plane_wood"
+    },
+    {
+      "id": "q012_pull_saw",
+      "t": "tool",
+      "ja": "胴付きのこ",
+      "en": "Dozuki Saw",
+      "dj": "細かく正確な切断に使う背金付きのこぎり。\n引く動作で切削する細刃のこぎりのうち、背金で刃を補強して精密な直線切断に向く胴付きのこ。背金が刃の剛性を高める一方、切込み深さは背金位置に制限される。細い刃を押し込まず、引きストロークを主体に使う。",
+      "de": "Backed pull saw used for precise cuts.\nA fine pull saw with a rigid spine that supports the blade for accurate straight cuts, commonly known as a dozuki saw. The spine improves stiffness but limits cutting depth. The thin blade should not be forced on the push stroke; cutting is primarily on the pull stroke.",
+      "c": "woodworking",
+      "task": "precision_cut"
+    },
+    {
+      "id": "q012_coping_saw",
+      "t": "tool",
+      "ja": "糸のこ",
+      "en": "Coping Saw",
+      "dj": "曲線や細部を切る細刃のこぎり。\n細い交換刃を弓形フレームに張り、曲線や切欠き、小さな内部形状を切る手のこ。刃幅が小さいため方向転換しやすい一方、強く押したりねじったりすると刃が折れやすい。刃の張りと歯の向きを確認して使用する。",
+      "de": "Fine saw used for curves and detail cuts.\nA frame saw using a thin replaceable blade for curves, notches, and small detailed cuts. Its narrow blade turns easily but can break if forced or twisted. Correct blade tension and tooth direction are important before cutting.",
+      "c": "cutting",
+      "task": "cut_curve"
+    },
+    {
+      "id": "q012_step_drill",
+      "t": "tool",
+      "ja": "ステップドリル",
+      "en": "Step Drill Bit",
+      "dj": "薄板に複数径の穴を開ける段付きドリル。\n段階的に径が大きくなる円錐状の刃で、主に薄板へ複数サイズの穴を一つのビットで加工する工具。目的径の段で送りを止める必要があり、厚い材料や深い穴には向かない。材料と径に応じた回転数で、食い付きやバリを管理する。",
+      "de": "Stepped bit used for multiple hole sizes in thin material.\nA conical stepped bit that produces several hole diameters with one tool, mainly in sheet material. Feed must stop at the step corresponding to the required diameter, and the tool is not intended for deep holes in thick stock. Speed and feed should suit the material and hole size.",
+      "c": "drilling",
+      "task": "drill_sheet_metal"
+    },
+    {
+      "id": "q012_countersink_bit",
+      "t": "tool",
+      "ja": "皿取り錐",
+      "en": "Countersink Bit",
+      "dj": "皿ねじ頭を収める座ぐりを作る刃物。\n皿頭ねじの頭部を材料表面と同面または指定深さに収めるため、穴口へ円錐状の座面を加工する刃物。ねじ頭の角度と皿取り形状が合うことが重要で、深く削り過ぎると保持面積や仕上がりを損なう。既存穴に対して芯を合わせて加工する。",
+      "de": "Bit used to create a countersink for flat-head screws.\nA cutting bit that forms a conical seat at a hole entrance so a flat-head screw can sit flush or at a specified depth. The countersink geometry must match the screw head, and excessive depth can reduce bearing area or spoil the finish. Keep the cutter centered on the existing hole.",
+      "c": "drilling",
+      "task": "countersink_hole"
+    },
+    {
+      "id": "q012_reamer",
+      "t": "tool",
+      "ja": "リーマー",
+      "en": "Reamer",
+      "dj": "穴径や仕上げ精度を整える刃物。\nあらかじめ開けた穴へ通し、少量の材料を均一に切削して穴径・真円度・表面状態を仕上げる工具。ドリルの代わりに大きな取り代を一度に削る工具ではない。下穴径、リーマ径、加工材に適した切削条件と芯合わせが必要。",
+      "de": "Tool used to finish or slightly enlarge holes.\nA finishing tool passed through a previously drilled or bored hole to remove a small, controlled amount of material and improve diameter, roundness, and surface finish. It is not intended to replace drilling by removing a large allowance in one pass. Correct pre-hole size, alignment, and cutting conditions are required.",
+      "c": "metalwork",
+      "task": "finish_hole"
+    },
+    {
+      "id": "q012_grinder_disc",
+      "t": "consumable",
+      "ja": "切断砥石",
+      "en": "Cutting Disc",
+      "dj": "グラインダーで金属や石材を切る砥石。\nディスクグラインダー等に装着し、主に金属や指定された石材を切断する薄い研削砥石。研削用砥石より薄く、切断方向の荷重を想定しているため、側面を押し付けて研削すると破損リスクが高まる。工具の回転数、砥石寸法、対象材料への適合確認が必須。",
+      "de": "Abrasive disc used for cutting metal or masonry.\nA thin abrasive cut-off wheel fitted to an angle grinder or compatible machine for cutting metal or specified masonry materials. Unlike a grinding wheel, it is designed primarily for edge cutting; heavy side loading can cause failure. Wheel size, rated speed, machine compatibility, and material suitability must be checked.",
+      "c": "cutting",
+      "task": "cut_metal",
+      "aj": [
+        "切断用砥石"
+      ],
+      "ae": [
+        "Cut-off wheel"
+      ]
+    },
+    {
+      "id": "q012_flap_disc",
+      "t": "consumable",
+      "ja": "フラップディスク",
+      "en": "Flap Disc",
+      "dj": "研削と仕上げを兼ねる羽根状研磨ディスク。\n研磨布片を羽根状に重ねたディスクで、グラインダーに装着して研削と表面ならしを連続して行う研磨材。砥粒種類と粒度により除去量・仕上がりが変わる。局所へ強く押し続けると削り過ぎや過熱、面のうねりを招く。",
+      "de": "Layered abrasive disc for grinding and finishing.\nAn abrasive disc made from overlapping coated-abrasive flaps, used on a grinder for stock removal and surface blending. Abrasive type and grit determine cutting rate and finish. Excessive pressure in one location can cause over-grinding, heat buildup, and surface waviness.",
+      "c": "finishing",
+      "task": "grind_surface"
+    },
+    {
+      "id": "q012_wire_brush_wheel",
+      "t": "consumable",
+      "ja": "ワイヤーブラシホイール",
+      "en": "Wire Brush Wheel",
+      "dj": "錆や塗膜を落とす回転ブラシ。\n回転工具に装着した鋼線などのワイヤーで、金属表面の浮き錆、スケール、古い塗膜や付着物をこすり落とすブラシ。切削砥石のように寸法を大きく削る用途ではなく、表面清掃・下地処理が主目的。回転中にワイヤー片が飛散する可能性がある。",
+      "de": "Rotary wire brush for removing rust or coating.\nA rotary brush wheel using steel or other wire to remove loose rust, scale, old coating, and surface deposits. Its main purpose is cleaning and surface preparation rather than dimensional cutting like an abrasive wheel. Individual wires can be shed at operating speed.",
+      "c": "surface_prep",
+      "task": "remove_rust"
+    },
+    {
+      "id": "q012_diamond_blade",
+      "t": "consumable",
+      "ja": "ダイヤモンドカッター",
+      "en": "Diamond Blade",
+      "dj": "コンクリートやタイルを切るダイヤ刃。",
+      "de": "Diamond blade for cutting concrete or tile.",
+      "c": "cutting",
+      "task": "cut_masonry"
+    },
+    {
+      "id": "q012_cup_wheel",
+      "t": "consumable",
+      "ja": "カップホイール",
+      "en": "Diamond Cup Wheel",
+      "dj": "コンクリート面を研削するカップ状砥石。\nカップ状の基体にダイヤモンドセグメント等を配置し、グラインダーでコンクリート面の段差、レイタンス、付着物などを研削する工具。切断用ダイヤモンドブレードとは用途と当て方が異なり、面研削に用いる。大量の粉じんが発生するため集じんを含む施工方法が重要。",
+      "de": "Cup wheel used to grind concrete surfaces.\nA cup-shaped grinding wheel, commonly with diamond segments, used on a grinder to remove high spots, laitance, coatings, or other material from concrete surfaces. It is for face grinding rather than the cutting action of a diamond blade. Concrete grinding can generate substantial dust, so dust-control methods are important.",
+      "c": "surface_prep",
+      "task": "grind_concrete"
+    },
+    {
+      "id": "q012_sds_plus_bit",
+      "t": "consumable",
+      "ja": "SDSプラスビット",
+      "en": "SDS Plus Bit",
+      "dj": "SDSプラスシャンクのコンクリート用ドリルビット。\nSDSプラス規格のシャンクを持ち、対応するロータリーハンマーでコンクリートや組積材へ穴あけするビット。打撃回転により先端の超硬チップ等で材料を破砕しながら切り進む。SDS Maxなど他規格のチャックとは直接互換ではない。",
+      "de": "Concrete drill bit with an SDS Plus shank.\nA masonry drill bit with an SDS Plus shank for compatible rotary hammers. Rotary hammer action drives the carbide or similar tip while the flutes remove broken material from the hole. It is not directly interchangeable with SDS Max or other shank systems.",
+      "c": "drilling",
+      "task": "drill_concrete",
+      "aj": [
+        "SDSプラスドリルビット"
+      ],
+      "ae": [
+        "SDS-plus drill bit"
+      ]
+    },
+    {
+      "id": "q012_sds_max_bit",
+      "t": "consumable",
+      "ja": "SDSマックスビット",
+      "en": "SDS Max Bit",
+      "dj": "大型ハンマードリル用のコンクリートビット。\nSDS Max規格の大型シャンクを持ち、対応する大型ロータリーハンマーでコンクリートなどへ比較的大径・深い孔を穿孔するビット。SDSプラスより大型用途を想定し、工具本体・ビットとも質量と反力が大きくなりやすい。異なるSDS規格を混同しない。",
+      "de": "Heavy-duty concrete bit for SDS Max hammers.\nA heavy-duty masonry bit with an SDS Max shank for compatible large rotary hammers, typically used for larger or deeper holes in concrete and similar materials. Compared with SDS Plus equipment, both bit and machine are generally larger and can produce greater reaction forces. Different SDS shank standards must not be mixed.",
+      "c": "drilling",
+      "task": "drill_concrete"
+    },
+    {
+      "id": "q012_chisel_bit",
+      "t": "consumable",
+      "ja": "チゼルビット",
+      "en": "Chisel Bit",
+      "dj": "はつりや溝切りに使うハンマードリル用刃先。\nハンマードリルや電動ハンマーに装着し、打撃力でコンクリートやモルタルをはつる交換刃。先端形状とシャンク規格で用途が変わるため、機械のチャック規格、対象材、作業幅に合うビットを選ぶ。回転を止めたはつりモードで使う機種では、指定された運転モードと装着方法を守る。",
+      "de": "Bit used for chiseling or light demolition.\nA replaceable chisel attachment for rotary hammers or demolition hammers that uses impact energy to chip concrete or mortar. Select the tip shape and shank system to match the machine, material, and required working width. On tools with a dedicated chiseling mode, use the specified non-rotary mode and installation method.",
+      "c": "demolition",
+      "task": "chip_concrete"
+    },
+    {
+      "id": "q012_bull_point",
+      "t": "consumable",
+      "ja": "ブルポイント",
+      "en": "Bull Point Chisel",
+      "dj": "一点に力を集中させてはつる尖ったビット。\n先端が一点に尖ったはつり用ビットで、打撃力を狭い範囲へ集中させてコンクリートや硬い材料へ亀裂の起点を作る。面を仕上げる用途より、破砕開始や厚い部分を割る作業に向く。使用する電動ハンマーのシャンク規格と出力に適合するものを選ぶ。",
+      "de": "Pointed chisel bit for breaking concrete.\nA pointed demolition bit that concentrates impact energy at one spot to initiate cracks in concrete or other hard material. It is suited to starting break-up work or penetrating thick sections rather than producing a finished flat surface. Match the shank and size to the demolition hammer.",
+      "c": "demolition",
+      "task": "break_concrete"
+    },
+    {
+      "id": "q012_flat_chisel",
+      "t": "consumable",
+      "ja": "平タガネ",
+      "en": "Flat Chisel",
+      "dj": "面状にはつるための平たいチゼル。\n幅のある平らな刃先で打撃を面状に伝え、コンクリート表面、モルタル、タイル下地などをはつるビット。ブルポイントより広い範囲を削りやすく、表層除去や溝の拡幅に使われる。シャンク規格、刃幅、対象材を本体と作業に合わせる。",
+      "de": "Flat chisel used for surface chiseling.\nA chisel bit with a flat cutting edge that spreads impact across a wider area for chipping concrete surfaces, mortar, or tile bedding. It removes surface material more broadly than a bull point and is useful for stripping or widening channels. Match the shank, blade width, and material to the hammer and task.",
+      "c": "demolition",
+      "task": "chip_surface"
+    },
+    {
+      "id": "q012_cold_chisel",
+      "t": "tool",
+      "ja": "タガネ",
+      "en": "Cold Chisel",
+      "dj": "金属やコンクリートを打って削る手工具。\n焼入れされた刃先を持ち、ハンマーで打撃して金属の切断・かしめ除去・バリ落としなどを行う手打ち用タガネ。石工ノミとは主対象材が異なる。刃先と打撃頭の欠け・まくれを点検し、対象材に合う刃幅と打撃工具を選ぶ。",
+      "de": "Hand chisel used for cutting or chipping hard material.\nA hardened hand chisel struck with a hammer for cutting or chipping metal, removing rivet heads, and similar work. It is distinct from a masonry chisel because its primary material and edge geometry are for metalworking. Inspect both the cutting edge and struck head and choose a suitable blade width and hammer for the job.",
+      "c": "demolition",
+      "task": "chip_material"
+    },
+    {
+      "id": "q012_bolster_chisel",
+      "t": "tool",
+      "ja": "幅広タガネ",
+      "en": "Bolster Chisel",
+      "dj": "広い幅でタイルやモルタルを剥がす工具。\n手ハンマーで打撃して使う幅広のタガネで、レンガ、モルタル、タイルなどを切断・剥離するときに刃幅を利用して力を広く伝える。電動ハンマー用ビットではなく手工具として扱い、刃先の状態と打撃頭部の変形を確認して使う。",
+      "de": "Wide chisel used to remove tile or mortar.\nA wide hand chisel struck with a hammer for cutting or separating masonry, mortar, or tile. Its broad edge spreads the blow across a larger line. It is a hand tool rather than a powered-hammer bit, so the cutting edge and struck head should be inspected before use.",
+      "c": "demolition",
+      "task": "remove_tile"
+    },
+    {
+      "id": "q012_nail_puller",
+      "t": "tool",
+      "ja": "釘抜き",
+      "en": "Nail Puller",
+      "dj": "釘抜きは、木材などに打ち込まれた釘の頭や軸に爪を掛け、てこの力で引き抜く手工具。解体や再利用材の釘除去に使い、仕上げ面を傷めたくない場合は支点に当て板を入れる。折れた釘や錆びた釘では滑り・急な抜けに注意する。",
+      "de": "A nail puller is a hand tool whose claws grip the head or shank of a driven nail and use leverage to extract it from timber or similar material. It is used during dismantling or material reuse; a protective block under the fulcrum can reduce surface damage.",
+      "c": "demolition",
+      "task": "pull_nail"
+    },
+    {
+      "id": "q012_hand_shear",
+      "t": "tool",
+      "ja": "金切りばさみ",
+      "en": "Tin Snips",
+      "dj": "金切りばさみは、薄い鋼板や板金材を手の力で切断する工具。直線切り用・曲線切り用などの刃形状があり、材質や板厚、切る方向によって使い分ける。切断後の端部は鋭利になるため、材料の保持と端材の扱いにも注意する。",
+      "de": "Tin snips are hand shears for cutting thin sheet metal. Different blade shapes handle straight or curved cuts and different directions; the tool must be matched to the metal and sheet thickness. Cut edges can be sharp and require careful handling.",
+      "c": "sheet_metal",
+      "task": "cut_sheet_metal"
+    },
+    {
+      "id": "q012_nibbler",
+      "t": "tool",
+      "ja": "ニブラー",
+      "en": "Nibbler",
+      "dj": "薄板を少しずつ切り抜く電動工具。\n薄板を小さく連続して打ち抜くことで切断する電動・空圧工具。材料を大きく変形させにくく、曲線や切り抜きに向く一方、細かな切りくずが多数発生する。最大板厚、材質、ダイとパンチの状態を確認して使う。",
+      "de": "Tool that cuts sheet metal by nibbling small pieces.\nA powered or pneumatic sheet-metal tool that cuts by repeatedly punching out small pieces. It can make curves and cutouts with relatively little distortion, but it produces many sharp chips. Check the rated material and thickness and inspect the punch and die before use.",
+      "c": "sheet_metal",
+      "task": "cut_sheet_metal"
+    },
+    {
+      "id": "q012_sheet_metal_brake",
+      "t": "tool",
+      "ja": "板金曲げ機",
+      "en": "Sheet Metal Brake",
+      "dj": "板金を直線的に折り曲げる機械。\n板金を直線に沿って所定角度へ折り曲げる機械。クランプで材料を保持し、曲げ葉やビームを動かして成形する。機械ごとに最大板厚、曲げ幅、最小フランジ寸法などの能力があるため、材質と寸法を能力範囲内に収める。",
+      "de": "Machine used to bend sheet metal.\nA machine used to bend sheet metal along a straight line. The sheet is clamped and a bending leaf or beam forms the bend to the required angle. Each brake has limits for material, thickness, bend width, and minimum flange size that must be respected.",
+      "c": "sheet_metal",
+      "task": "bend_sheet_metal"
+    },
+    {
+      "id": "q012_pop_rivet_gun",
+      "t": "tool",
+      "ja": "リベッター",
+      "en": "Pop Rivet Gun",
+      "dj": "ブラインドリベットを締結する工具。\nブラインドリベットのマンドレルを引いてリベット本体を変形・締結し、マンドレルを破断させる工具。片側から施工できるのが特徴で、手動・空圧・電動タイプがある。リベット径に合うノーズピースと工具能力を選ぶ。",
+      "de": "Tool used to install blind rivets.\nA tool that pulls the mandrel of a blind rivet so the rivet body expands and clamps the joint, after which the mandrel breaks. It enables fastening from one side and is available in manual, pneumatic, and powered versions. Match the nosepiece and tool capacity to the rivet diameter.",
+      "c": "fastening",
+      "task": "install_rivet"
+    },
+    {
+      "id": "q012_blind_rivet",
+      "t": "fastener",
+      "ja": "ブラインドリベット",
+      "en": "Blind Rivet",
+      "dj": "片側から施工できるリベット締結材。\n接合部の片側から施工できるリベットで、筒状のリベット本体とマンドレルで構成される。マンドレルを引くと本体の裏側が変形して母材を挟み込み、所定位置でマンドレルが破断する。材質、径、長さ、グリップ範囲を接合材に合わせる。",
+      "de": "Rivet fastener installed from one side.\nA rivet fastener installed from one side, consisting of a tubular rivet body and a mandrel. Pulling the mandrel expands the blind side of the body to clamp the materials, then the mandrel breaks at a designed point. Select material, diameter, length, and grip range for the joint.",
+      "c": "fastening",
+      "task": "fasten_sheet",
+      "aj": [
+        "ポップリベット"
+      ],
+      "ae": [
+        "Blind pop rivet"
+      ]
+    },
+    {
+      "id": "q012_self_tapping_screw",
+      "t": "fastener",
+      "ja": "タッピングビス",
+      "en": "Self-Tapping Screw",
+      "dj": "ねじ山を作りながら締め込むビス。\n下穴または適合する母材へねじ込みながら、自身のねじ山で相手材にねじを形成するねじ。先端にドリル刃を持つセルフドリリングねじとは区別が必要で、種類によっては適切な下穴を要する。母材、板厚、下穴径、締付け条件を仕様に合わせる。",
+      "de": "Screw that forms its own thread in material.\nA screw that forms mating threads in the work as it is driven into a prepared hole or suitable material. It is distinct from a self-drilling screw with an integral drill point, and many self-tapping types require a correctly sized pilot hole. Match the screw to material, thickness, pilot-hole size, and tightening requirements.",
+      "c": "fastening",
+      "task": "fasten_fixture"
+    },
+    {
+      "id": "q012_washer",
+      "t": "fastener",
+      "ja": "座金",
+      "en": "Washer",
+      "dj": "締結力を分散し座面を保護する薄い輪。\nボルトやナットの座面の下に入れる薄い環状部品で、締付け荷重の分散、座面保護、穴まわりの支持などに用いる。内径・外径・厚さ・材質には種類があり、締結部の設計や指定に合う座金を選ぶ。単独で必ず緩み止めになる部品ではない。",
+      "de": "Thin ring that spreads load under a fastener.\nA thin ring placed under a bolt head or nut to distribute bearing load, protect the seating surface, or support the area around a hole. Washers vary in inside diameter, outside diameter, thickness, and material and should match the joint specification. A plain washer by itself is not necessarily a locking device.",
+      "c": "fastening",
+      "task": "secure_bolt",
+      "aj": [
+        "ワッシャー"
+      ],
+      "ae": [
+        "Flat washer"
+      ]
+    },
+    {
+      "id": "q012_spring_washer",
+      "t": "fastener",
+      "ja": "ばね座金",
+      "en": "Spring Washer",
+      "dj": "緩み止め目的で使うばね状座金。\n切れ目を持つばね状の座金で、締付け時の弾性や座面への作用を利用する締結部品。用途や有効性は締結条件・設計仕様に依存し、すべての振動環境で緩みを防げるものではない。使用可否や組合せは図面・メーカー仕様に従う。",
+      "de": "Washer used to help resist loosening.\nA split spring washer used as an elastic element in some bolted joints. Its suitability and locking effect depend on the joint design and service conditions, and it should not be assumed to prevent loosening in every vibration environment. Use it only where the drawing or specified fastening system calls for it.",
+      "c": "fastening",
+      "task": "prevent_loosening",
+      "aj": [
+        "スプリングワッシャー"
+      ],
+      "ae": [
+        "Split lock washer"
+      ]
+    },
+    {
+      "id": "q012_lock_nut",
+      "t": "fastener",
+      "ja": "ロックナット",
+      "en": "Lock Nut",
+      "dj": "緩み止め機能を持つナット。\nねじ部の摩擦増加、樹脂リング、変形ねじ、二重構造などで緩みにくくする機能を持つナットの総称。方式ごとに再使用可否、温度範囲、必要な突出ねじ山、締付け方法が異なる。設計で指定された種類を使用する。",
+      "de": "Nut designed to resist loosening.\nA general term for nuts designed to resist loosening by features such as prevailing torque, polymer inserts, distorted threads, or other locking mechanisms. Reuse limits, temperature capability, required thread protrusion, and tightening procedure vary by type. Use the locking nut specified for the joint.",
+      "c": "fastening",
+      "task": "prevent_loosening",
+      "aj": [
+        "緩み止めナット"
+      ],
+      "ae": [
+        "Locking nut"
+      ]
+    },
+    {
+      "id": "q012_all_thread_rod",
+      "t": "fastener",
+      "ja": "全ねじ",
+      "en": "All-Thread Rod",
+      "dj": "全長にねじが切られた棒材。",
+      "de": "Rod threaded along its full length.",
+      "c": "fastening",
+      "task": "hang_support"
+    },
+    {
+      "id": "q012_channel_nut",
+      "t": "fastener",
+      "ja": "チャンネルナット",
+      "en": "Channel Nut",
+      "dj": "C形鋼や支持材内で使う固定ナット。\nストラットチャンネルの内部へ入れ、溝形状にかみ合わせてボルト固定点を作る専用ナット。ばね付きや位置保持機構付きなどの種類があり、チャンネル形状・幅・ボルトねじ規格との適合が必要。溝内で正しく回転・着座していることを確認する。",
+      "de": "Nut used inside strut channels.\nA nut designed to fit inside strut channel and engage the channel lips to create a threaded fixing point. Versions may include springs or other positioning features. The nut must match the channel profile, width, and bolt thread and must seat correctly against the channel lips.",
+      "c": "mep",
+      "task": "mount_support"
+    },
+    {
+      "id": "q012_unistrut_channel",
+      "t": "material",
+      "ja": "支持チャンネル",
+      "en": "Strut Channel",
+      "dj": "配管や設備を支持する溝形鋼材。\n設備・配管・電気支持などに使う溝形のストラットチャンネル。専用ナットや金物を溝へ組み合わせることで、溶接せずに支持位置を調整しやすい骨組みを構成できる。断面寸法、板厚、材質・表面処理、許容荷重を支持設計に合わせる。",
+      "de": "Slotted channel used to support piping or equipment.\nA slotted strut channel used to build adjustable supports for mechanical, piping, and electrical installations. Channel nuts and fittings engage the slot to create bolted frames without welding. Section size, gauge, material or coating, and allowable load must match the support design.",
+      "c": "mep",
+      "task": "build_support"
+    },
+    {
+      "id": "q012_pipe_clamp",
+      "t": "component",
+      "ja": "配管バンド",
+      "en": "Pipe Clamp",
+      "dj": "配管を壁や支持材に固定する金具。\n配管を支持材や壁面へ固定するため、管の外周を保持するクランプ。二つ割り、片サドル、ゴムライニング付きなど形状があり、管径、材質、温度、振動、腐食条件に合わせて選ぶ。締め過ぎによる管の変形やライニング損傷を避ける。",
+      "de": "Clamp used to secure pipe to a support.\nA clamp that grips the outside of a pipe to secure it to a support or surface. Designs include split clamps, saddles, and lined clamps. Select for pipe diameter, material, temperature, vibration, and corrosion conditions, and avoid over-tightening that can deform the pipe or damage the lining.",
+      "c": "plumbing",
+      "task": "support_pipe"
+    },
+    {
+      "id": "q012_hanger_clamp",
+      "t": "component",
+      "ja": "吊りバンド",
+      "en": "Pipe Hanger",
+      "dj": "配管を吊り下げ支持する金具。\n配管を上部構造から吊り下げて支持するためのバンド・ハンガー部品。吊りボルトなどと組み合わせ、管の荷重を支持点へ伝える。管径、支持間隔、吊り材の強度、熱伸縮や防振条件を含めて支持計画に合わせる。",
+      "de": "Hanger used to suspend pipe.\nA hanger component used to suspend pipe from overhead structure, commonly with threaded rod or other suspension hardware. It transfers pipe load to the support point. Pipe size, hanger spacing, rod capacity, thermal movement, and vibration requirements must be considered.",
+      "c": "plumbing",
+      "task": "hang_pipe"
+    },
+    {
+      "id": "q012_rubber_mount",
+      "t": "component",
+      "ja": "防振ゴム",
+      "en": "Rubber Mount",
+      "dj": "機器の振動伝達を抑えるゴム部材。\n機器と架台・床の間に入れ、ゴムの弾性で振動や固体伝搬音を低減する防振支持部品。ゴム硬度、形状、荷重範囲、たわみ量で防振特性が変わるため、機器重量と使用条件に合わせて選定する。過大圧縮や油・熱などの環境劣化にも注意する。",
+      "de": "Rubber support used to reduce vibration transfer.\nA resilient rubber isolator placed between equipment and its support to reduce transmitted vibration and structure-borne noise. Isolation performance depends on rubber stiffness, geometry, load range, and deflection. Select it for equipment weight and environment and avoid excessive compression or incompatible exposure to heat or oils.",
+      "c": "mep",
+      "task": "isolate_vibration"
+    },
+    {
+      "id": "q012_leveling_mount",
+      "t": "component",
+      "ja": "レベル調整脚",
+      "en": "Leveling Mount",
+      "dj": "機器や架台の高さを微調整する脚部材。\n機器や架台の脚部に取り付け、ねじ機構などで高さを微調整して水平を出す支持部品。床への荷重分散や防振要素を兼ねる製品もある。機器重量、ねじ径、調整量、ベース径、固定方法を確認し、調整後はロック機構を確実にする。",
+      "de": "Adjustable foot used to level equipment or frames.\nAn adjustable equipment foot or mount used to fine-tune height and level, often by a threaded stem. Some designs also spread floor load or include vibration isolation. Check equipment load, thread size, adjustment range, base size, and anchoring method, and secure the adjustment after leveling.",
+      "c": "mep",
+      "task": "level_equipment"
+    },
+    {
+      "id": "q012_base_plate",
+      "t": "component",
+      "ja": "ベースプレート",
+      "en": "Base Plate",
+      "dj": "柱や機器を基礎へ固定する板部材。\n柱脚や機器架台の荷重を支持面へ伝えるため、柱・支柱などの下端に設ける鋼板。アンカーボルトや溶接部、グラウト層と一体で納まりを構成し、板厚、寸法、孔位置、支持面との接触状態を図面どおりに確認する。",
+      "de": "Plate used to anchor a column or equipment to a base.\nA steel plate at the base of a column, post, or equipment support that transfers load into the supporting surface. It works together with anchors, welds, and the grout layer, so plate size and thickness, hole locations, and bearing condition should match the drawings.",
+      "c": "steel",
+      "task": "fix_baseplate"
+    },
+    {
+      "id": "q012_gusset_plate",
+      "t": "component",
+      "ja": "ガセットプレート",
+      "en": "Gusset Plate",
+      "dj": "接合部を補強する三角形や板状の鋼板。\nブレースや梁・柱など複数部材の接合部で、力を伝達し接合部を補強する鋼板。ボルト孔、溶接長、板厚、取付方向が接合性能に関わるため、勝手に孔を拡げたり切断したりせず、接合詳細図に従って施工する。",
+      "de": "Plate used to reinforce a connection.\nA steel connection plate used where braces, beams, columns, or other members meet to transfer forces and reinforce the joint. Bolt holes, weld length, plate thickness, and orientation are part of the connection design and should follow the connection drawings without unauthorized cutting or hole enlargement.",
+      "c": "steel",
+      "task": "reinforce_joint"
+    },
+    {
+      "id": "q012_shim_plate",
+      "t": "component",
+      "ja": "シムプレート",
+      "en": "Shim Plate",
+      "dj": "高さや隙間を微調整する薄い板。\n部材や機器の据付時に高さ、レベル、隙間を微調整する薄い鋼板。必要厚さを組み合わせて支持状態を整えるが、局部的な点支持や不安定な重ね方を避け、設計・施工要領で指定された位置と範囲に配置する。",
+      "de": "Thin plate used to adjust height or gaps.\nA thin steel plate used to make fine adjustments to elevation, level, or clearance during installation of structural members or equipment. Shims may be stacked to obtain the required thickness, but they should provide stable bearing and be placed only at locations permitted by the design or installation procedure.",
+      "c": "steel",
+      "task": "adjust_level"
+    },
+    {
+      "id": "q012_grout_under_base",
+      "t": "process",
+      "ja": "ベース下グラウト",
+      "en": "Baseplate Grouting",
+      "dj": "ベースプレート下の隙間を無収縮材で充填する作業。\nベースプレートや機器基礎とコンクリート支持面の隙間へグラウトを充填し、連続した支持面を形成する施工。下地清掃、型枠、所定の流動性、充填経路、空気抜き、養生を管理し、空洞や未充填を残さないことが重要。",
+      "de": "Filling under a baseplate with non-shrink grout.\nThe process of placing grout beneath a base plate or equipment base to fill the gap to the concrete support and create continuous bearing. Preparation, formwork, specified consistency, flow path, venting, and curing must be controlled so voids or unfilled areas are not left beneath the base.",
+      "c": "steel",
+      "task": "grout_baseplate"
+    },
+    {
+      "id": "q012_non_shrink_grout",
+      "t": "material",
+      "ja": "無収縮グラウト",
+      "en": "Non-Shrink Grout",
+      "dj": "収縮を抑えた充填用セメント系材料。\nベースプレート下、機器基礎、アンカー周辺などの隙間充填に用いる、硬化時の収縮を抑えるよう設計されたグラウト材。製品ごとに適用厚さ、練混ぜ水量、流動性、可使時間、養生条件が異なるため、指定仕様とメーカー手順に従う。",
+      "de": "Cementitious grout designed to minimize shrinkage.\nA grout formulated to limit shrinkage for filling gaps beneath base plates, around equipment bases, or at similar load-transfer locations. Permitted thickness, mixing water, consistency, working time, and curing vary by product, so the project specification and manufacturer instructions govern its use.",
+      "c": "grout",
+      "task": "fill_gap"
+    },
+    {
+      "id": "q012_epoxy_anchor_adhesive",
+      "t": "material",
+      "ja": "アンカー接着剤",
+      "en": "Anchor Adhesive",
+      "dj": "あと施工アンカーを固定する樹脂接着剤。\nコンクリート等に穿孔した孔へ充填し、全ねじやアンカー筋を定着させる接着系アンカー用樹脂。母材、アンカー径、孔径・深さ、孔内清掃、施工温度、硬化時間が性能に影響するため、認定・設計条件と製品施工手順に従う。",
+      "de": "Resin adhesive used for post-installed anchors.\nA resin adhesive used in drilled holes to bond threaded rod or reinforcing-bar anchors into concrete or another approved base material. Performance depends on the base material, anchor size, hole diameter and depth, hole cleaning, installation temperature, and cure time, so the approved design and product instructions must be followed.",
+      "c": "anchor",
+      "task": "install_anchor"
+    },
+    {
+      "id": "q012_blow_pump",
+      "t": "tool",
+      "ja": "ブロワーポンプ",
+      "en": "Blow Pump",
+      "dj": "アンカー穴などの粉じんを吹き出す清掃工具。\n接着系アンカーなどの施工前に、穿孔した孔から切粉や粉じんを吹き出すための手動ポンプ。孔内ブラシと組み合わせた清掃工程の一部として使い、製品が指定する吹出し回数・順序・ノズル到達深さを守る。",
+      "de": "Pump used to blow dust out of drilled holes.\nA manual air pump used to blow drilling dust and debris out of anchor holes before installing adhesive or other specified anchors. It is commonly one step in a blow-brush-blow cleaning sequence, and the required number of cycles, order, and nozzle depth come from the anchor system instructions.",
+      "c": "anchor",
+      "task": "clean_hole"
+    },
+    {
+      "id": "q012_hole_brush",
+      "t": "tool",
+      "ja": "孔内ブラシ",
+      "en": "Hole Cleaning Brush",
+      "dj": "アンカー孔内の粉じんをこすり落とすブラシ。\nアンカー孔の内壁に付着した切粉や粉じんを機械的に除去する専用ブラシ。孔径に合う指定径のブラシを使い、ブロワー等による吹出しと組み合わせて、接着系アンカーが必要とする孔内清掃状態を作る。",
+      "de": "Brush used to clean drilled anchor holes.\nA dedicated brush used to mechanically loosen drilling dust and debris from the wall of an anchor hole. The brush diameter must suit the drilled hole and is typically used with air blowing to achieve the cleaning condition required by the adhesive-anchor system.",
+      "c": "anchor",
+      "task": "clean_hole"
+    },
+    {
+      "id": "q012_embed_plate",
+      "t": "component",
+      "ja": "埋込プレート",
+      "en": "Embedded Plate",
+      "dj": "コンクリートに先付けする鋼製接合プレート。\nコンクリート打設前に所定位置へ組み込み、硬化後に鉄骨・金物・設備支持材などを接合するための埋込鋼板。裏面のアンカーやスタッドを含め、位置、レベル、向き、固定状態を打設前に確認し、コンクリート圧で動かないよう保持する。",
+      "de": "Steel plate cast into concrete for later connections.\nA steel plate set in position before concrete placement so structural steel, hardware, or equipment supports can be attached after the concrete hardens. Its location, elevation, orientation, embedded anchors or studs, and temporary fixation must be checked before the pour so it does not move under concrete pressure.",
+      "c": "concrete",
+      "task": "embed_steel"
+    },
+    {
+      "id": "q012_anchor_template",
+      "t": "tool",
+      "ja": "アンカーテンプレート",
+      "en": "Anchor Bolt Template",
+      "dj": "アンカーボルト位置を保持する型板。\n複数のアンカーボルトを設計どおりの芯間・配置・鉛直度で保持するための位置決め治具。基礎コンクリート打設時の移動を防ぎ、後から取り付けるベースプレートの孔位置と整合させるため、基準線とレベルに対して固定する。",
+      "de": "Template used to hold anchor bolt positions.\nA positioning template that holds multiple anchor bolts at the designed spacing, pattern, and alignment during foundation work. It keeps the bolts from moving during concrete placement and aligns them with the future base-plate hole pattern, so the template must be set from established lines and levels.",
+      "c": "anchor",
+      "task": "set_anchor_bolt"
+    },
+    {
+      "id": "q012_concrete_cover_meter",
+      "t": "tool",
+      "ja": "かぶり厚さ計",
+      "en": "Cover Meter",
+      "dj": "鉄筋位置やかぶり厚さを非破壊で確認する計測器。",
+      "de": "Meter used to locate rebar and measure concrete cover.",
+      "c": "inspection",
+      "task": "check_rebar_cover"
+    },
+    {
+      "id": "q012_rebar_locator",
+      "t": "tool",
+      "ja": "鉄筋探査機",
+      "en": "Rebar Locator",
+      "dj": "コンクリート中の鉄筋位置を探す機器。",
+      "de": "Device used to locate rebar inside concrete.",
+      "c": "inspection",
+      "task": "locate_rebar"
+    },
+    {
+      "id": "q012_infrared_thermometer",
+      "t": "tool",
+      "ja": "放射温度計",
+      "en": "Infrared Thermometer",
+      "dj": "非接触で表面温度を測る計測器。\n対象面から放射される赤外線を検出し、接触せずに表面温度を測る計測器。測定範囲は距離対測定径、放射率、視野内の対象占有率、反射の影響を受けるため、機器仕様と対象表面に合う測定条件を設定する。",
+      "de": "Non-contact tool for measuring surface temperature.\nA non-contact instrument that estimates surface temperature from emitted infrared radiation. Results depend on the distance-to-spot ratio, emissivity, how fully the target fills the field of view, and reflected radiation, so measurement conditions must suit both the instrument and the surface.",
+      "c": "inspection",
+      "task": "measure_temperature"
+    },
+    {
+      "id": "q012_crack_scale",
+      "t": "tool",
+      "ja": "クラックスケール",
+      "en": "Crack Width Gauge",
+      "dj": "ひび割れ幅を読む透明ゲージ。",
+      "de": "Gauge used to measure crack width.",
+      "c": "inspection",
+      "task": "measure_crack"
+    },
+    {
+      "id": "q012_concrete_test_hammer",
+      "t": "tool",
+      "ja": "シュミットハンマー",
+      "en": "Rebound Hammer",
+      "dj": "コンクリート表面反発から強度を推定する試験器。\nばねで駆動したハンマーをコンクリート表面へ打撃し、その反発値から表層の硬さの均一性や圧縮強度の参考値を評価する非破壊試験器。反発値は表面状態、打撃方向、材齢、含水状態などの影響を受けるため、単一打点だけで強度を断定せず、規定手順で複数点を測る。",
+      "de": "Tester that estimates concrete strength from rebound.\nA rebound hammer that impacts a concrete surface with a spring-driven mass and records rebound to assess surface hardness uniformity or estimate compressive strength. Rebound is affected by surface condition, test direction, age, moisture, and other factors, so results should follow the specified multi-point test method rather than treating one reading as definitive strength.",
+      "c": "inspection",
+      "task": "test_concrete_strength",
+      "aj": [
+        "反発度試験器"
+      ],
+      "ae": [
+        "Schmidt hammer"
+      ]
+    },
+    {
+      "id": "q012_slump_cone",
+      "t": "tool",
+      "ja": "スランプコーン",
+      "en": "Slump Cone",
+      "dj": "生コンのスランプを測る円錐型の器具。\nフレッシュコンクリートのスランプ試験に用いる規定寸法の円すい台形容器。コンクリートを所定手順で詰め、型を鉛直に引き上げた後の沈下量を測定し、施工時のコンシステンシーを確認する。試験は適用規格の手順と器具条件に従う。",
+      "de": "Cone used to test fresh concrete slump.\nA standardized truncated-cone mold used for the slump test of fresh concrete. Concrete is placed and rodded according to the test method, the cone is lifted vertically, and the resulting subsidence is measured to assess consistency at the time of testing. The applicable test standard governs the procedure and equipment.",
+      "c": "concrete",
+      "task": "test_slump",
+      "aj": [
+        "スランプ試験用コーン"
+      ],
+      "ae": [
+        "Abrams cone"
+      ]
+    },
+    {
+      "id": "q012_air_meter",
+      "t": "tool",
+      "ja": "空気量測定器",
+      "en": "Air Meter",
+      "dj": "生コン中の空気量を測る試験器。\nフレッシュコンクリートの空気量を測定する試験器。圧力法など機種・試験方法に応じて容器へ試料を詰め、締固め、圧力操作を行って空気量を読み取る。骨材補正や校正の扱いを含め、適用規格と機器手順に従う。",
+      "de": "Meter used to measure air content in fresh concrete.\nAn instrument used to determine the air content of fresh concrete. Depending on the meter and test method, a sample is placed and consolidated in a calibrated vessel and pressure is applied to obtain the air-content reading. Calibration, aggregate correction where applicable, and operating steps follow the relevant standard and instrument procedure.",
+      "c": "concrete",
+      "task": "test_air_content"
+    },
+    {
+      "id": "q012_concrete_cylinder_mold",
+      "t": "tool",
+      "ja": "供試体型枠",
+      "en": "Concrete Cylinder Mold",
+      "dj": "圧縮強度試験用の供試体を作る型枠。\nコンクリートの圧縮強度試験などに用いる円柱供試体を成形する型枠。規定寸法の型へ試料を詰めて締固め、上面を仕上げ、識別・初期養生を行う。型の寸法、変形、漏れ、再使用品の状態を試験規格に合わせて管理する。",
+      "de": "Mold used to make concrete test cylinders.\nA cylindrical mold used to cast concrete specimens for compressive-strength or related tests. Fresh concrete is placed and consolidated in the specified mold, the top is finished, and the specimen is identified and initially cured. Mold dimensions, deformation, leakage, and reuse condition must meet the applicable test method.",
+      "c": "concrete",
+      "task": "make_test_specimen"
+    },
+    {
+      "id": "q012_curing_tank",
+      "t": "equipment",
+      "ja": "水中養生槽",
+      "en": "Curing Tank",
+      "dj": "コンクリート供試体を一定条件で養生する槽。\nコンクリート供試体を規定温度の水中で養生するための槽。試験材齢まで供試体を適切な条件に保つため、水温、循環、槽内の配置、識別を管理し、適用試験規格の養生条件を維持する。",
+      "de": "Tank used to cure concrete specimens.\nA water tank used to cure concrete specimens under controlled conditions until their test age. Water temperature, circulation where required, specimen spacing, identification, and overall storage conditions are managed to maintain the curing requirements of the applicable test standard.",
+      "c": "concrete",
+      "task": "cure_specimen"
+    },
+    {
+      "id": "q012_core_sampler",
+      "t": "tool",
+      "ja": "コア採取機",
+      "en": "Core Sampler",
+      "dj": "コンクリートから試験用コアを採取する機械。\n硬化したコンクリートや舗装などから円柱状のコア試料を採取するための穿孔機・採取装置。コア径、採取位置、鉄筋や埋設物との干渉、冷却水、機械の固定を計画し、採取後の孔処理と試料識別まで含めて管理する。",
+      "de": "Machine used to take concrete core samples.\nA coring machine or sampling setup used to remove cylindrical specimens from hardened concrete, pavement, or similar material. Core diameter and location, embedded reinforcement or services, cooling water, machine anchorage, hole repair, and specimen identification all need to be planned as part of the sampling work.",
+      "c": "inspection",
+      "task": "take_core_sample"
+    },
+    {
+      "id": "q012_dust_collector",
+      "t": "equipment",
+      "ja": "集じん機",
+      "en": "Dust Collector",
+      "dj": "切断や研削時の粉じんを吸引する機器。",
+      "de": "Equipment that collects dust during cutting or grinding.",
+      "c": "safety",
+      "task": "control_dust"
+    },
+    {
+      "id": "q012_shop_vacuum",
+      "t": "equipment",
+      "ja": "業務用掃除機",
+      "en": "Shop Vacuum",
+      "dj": "現場の粉じんや切粉を吸引する掃除機。",
+      "de": "Vacuum used for jobsite dust and debris.",
+      "c": "cleanup",
+      "task": "clean_site"
+    },
+    {
+      "id": "q012_air_compressor",
+      "t": "equipment",
+      "ja": "エアコンプレッサー",
+      "en": "Air Compressor",
+      "dj": "空圧工具に圧縮空気を供給する機械。",
+      "de": "Machine that supplies compressed air to pneumatic tools.",
+      "c": "equipment",
+      "task": "supply_air"
+    },
+    {
+      "id": "q012_extension_cord_reel",
+      "t": "equipment",
+      "ja": "コードリール",
+      "en": "Extension Cord Reel",
+      "dj": "電源を延長して巻き取り保管するリール。\n延長ケーブルをドラムへ巻き取り、仮設電源を作業場所まで配線するための器具。定格電圧・電流、接地、防水・防じん性能、漏電保護の要否を現場条件に合わせ、使用時は巻いたままの発熱やケーブル損傷を避ける。",
+      "de": "Reel used to extend and store power cable.\nA reel-mounted extension cable used to distribute temporary power to a work area. Voltage and current rating, grounding, environmental protection, and required residual-current protection must suit the site, and the cable should be used in a way that avoids heat buildup while coiled and prevents mechanical damage.",
+      "c": "electrical",
+      "task": "temporary_power",
+      "aj": [
+        "電工ドラム"
+      ],
+      "ae": [
+        "Extension cable reel"
+      ]
+    },
+    {
+      "id": "q012_temporary_distribution_box",
+      "t": "equipment",
+      "ja": "仮設分電盤",
+      "en": "Temporary Distribution Box",
+      "dj": "工事中の仮設電源を分岐する盤。",
+      "de": "Temporary panel used to distribute construction power.",
+      "c": "temporary_work",
+      "task": "temporary_power"
+    },
+    {
+      "id": "q012_warning_tape",
+      "t": "safety",
+      "ja": "立入禁止テープ",
+      "en": "Warning Tape",
+      "dj": "危険区域や立入禁止範囲を示すテープ。\n危険箇所や立入制限範囲を視覚的に示すための帯状標識材。軽量で仮設しやすい一方、転落防止用の強度を持つ防護柵ではないため、必要な物理的隔離がある場所では手すり・バリケード等と使い分ける。",
+      "de": "Tape used to mark restricted or hazardous areas.\nA lightweight marking tape used to make hazards or restricted areas visually obvious. It is quick to install but is not a load-bearing barrier or fall-protection guardrail, so locations requiring physical separation need appropriate barricades, rails, or other controls in addition to or instead of tape.",
+      "c": "safety",
+      "task": "mark_restricted_area"
+    },
+    {
+      "id": "q012_guardrail",
+      "t": "safety",
+      "ja": "仮設手すり",
+      "en": "Temporary Guardrail",
+      "dj": "墜落を防ぐための仮設手すり。",
+      "de": "Temporary rail used to prevent falls.",
+      "c": "safety",
+      "task": "fall_prevention"
+    },
+    {
+      "id": "q012_toe_board",
+      "t": "safety",
+      "ja": "幅木",
+      "en": "Toe Board",
+      "dj": "足場端部から物の落下を抑える板。\n足場や作業床の端部に立ち上げて設け、工具・資材などが外へ滑り落ちるのを抑える仮設安全部材。建築仕上げの幅木・巾木とは別物で、手すりや中さん等と組み合わせて端部防護を構成する。必要な高さ、隙間、固定方法は現場の安全基準に従う。",
+      "de": "Board that helps prevent objects falling from scaffold edges.\nA raised edge board installed along scaffold or work-platform edges to help prevent tools and materials from sliding or falling off. It is a temporary safety component, not an architectural baseboard or skirting board. Toe boards normally form part of an edge-protection system together with guardrails and other required members.",
+      "c": "safety",
+      "task": "falling_object_prevention"
+    },
+    {
+      "id": "q012_debris_net",
+      "t": "safety",
+      "ja": "養生ネット",
+      "en": "Debris Net",
+      "dj": "資材や粉じんの飛散・落下を抑えるネット。\n足場や作業床の外周などに設置し、工具・小片・施工くず等の飛散や落下を抑えるための仮設ネット。用途に応じた網目・強度・寸法の製品を選び、支持点へ連続して固定する。人の墜落を止める安全ネットとは用途・性能が異なる。",
+      "de": "Net used to reduce debris or dust spread.\nA temporary net installed around scaffolds or work platforms to help contain small tools, fragments, and construction debris. Mesh size, strength, and dimensions should suit the intended containment duty and the net must be continuously secured to suitable supports. It is distinct from a personnel fall-arrest safety net.",
+      "c": "safety",
+      "task": "contain_debris"
+    }
+  ]
+}

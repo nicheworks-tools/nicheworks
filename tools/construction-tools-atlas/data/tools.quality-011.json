@@ -1,1 +1,595 @@
-{"schema":"cta-compact-v1","quality_batch":"011","rows":[{"id":"q011_floor_leveler","t":"material","ja":"床レベラー","en":"Floor Leveler","dj":"床の不陸をならす流動性の高い下地調整材。","de":"Self-leveling material for correcting uneven floors.","c":"floor","task":"level_floor"},{"id":"q011_trowel","t":"tool","ja":"鏝","en":"Trowel","dj":"モルタルや左官材を塗り付ける手工具。","de":"Hand tool for applying mortar or plaster.","c":"finishing","task":"apply_mortar"},{"id":"q011_float","t":"tool","ja":"木鏝・フロート","en":"Float","dj":"モルタルやコンクリート表面を均す工具。","de":"Tool for leveling mortar or concrete surfaces.","c":"finishing","task":"finish_surface"},{"id":"q011_mortar_mixer","t":"tool","ja":"モルタルミキサー","en":"Mortar Mixer","dj":"モルタルミキサーは、モルタル・グラウト・補修材などを一定量ずつ均一に練り混ぜるための機械。ドラム式やパン式などがあり、材料の粘度・一回の練り量に合う方式を選び、混練時間や投入順序は材料の仕様に従う。","de":"A mortar mixer is a machine for mixing mortar, grout and repair compounds into consistent batches. Drum and pan mixers suit different material viscosities and batch sizes; loading sequence and mixing duration should follow the material specification.","c":"mortar","task":"mix_mortar"},{"id":"q011_joint_tape","t":"material","ja":"ジョイントテープ","en":"Joint Tape","dj":"ボード継ぎ目の割れを抑える補強テープ。","de":"Tape that reinforces drywall joints.","c":"drywall","task":"finish_joint"},{"id":"q011_putty_knife","t":"tool","ja":"パテベラ","en":"Putty Knife","dj":"パテを塗り広げて平滑にするヘラ。","de":"Blade for applying and smoothing compound.","c":"finishing","task":"apply_putty"},{"id":"q011_sanding_paper","t":"material","ja":"サンドペーパー","en":"Sanding Paper","dj":"サンドペーパーは、紙や布の基材に砥粒を固定した研磨材で、木材・パテ・塗膜・金属などの表面を削ったり整えたりする。番手が小さいほど一般に粗削り向きで、大きいほど仕上げ向き。対象材と必要な仕上がりに応じて砥粒と番手を使い分ける。","de":"Sanding paper is an abrasive sheet or cloth used to remove material and smooth wood, filler, paint or metal. Lower grit numbers generally cut more coarsely, while higher grits give finer finishes; choose the abrasive and grit for the surface and finishing stage.","c":"finishing","task":"sand_surface"},{"id":"q011_stud_finder","t":"tool","ja":"下地探し","en":"Stud Finder","dj":"壁内の柱や下地位置を推定する工具。","de":"Tool for locating studs behind walls.","c":"inspection","task":"locate_stud"},{"id":"q011_furring_channel","t":"material","ja":"野縁","en":"Furring Channel","dj":"天井や壁仕上げを受ける下地材。","de":"Framing member supporting ceiling or wall finishes.","c":"ceiling","task":"install_ceiling_frame"},{"id":"q011_chemical_anchor","t":"fastener","ja":"ケミカルアンカー","en":"Chemical Anchor","dj":"樹脂でボルトや鉄筋を固定するあと施工アンカー。","de":"Resin-based post-installed anchor.","c":"anchor","task":"install_anchor"},{"id":"q011_form_tie","t":"component","ja":"フォームタイ","en":"Form Tie","dj":"型枠の間隔を保持し側圧に抵抗する部材。","de":"Tie that keeps formwork spacing under concrete pressure.","c":"formwork","task":"assemble_formwork"},{"id":"q011_separator","t":"component","ja":"セパレーター","en":"Formwork Separator","dj":"型枠幅を一定に保つ間隔保持材。","de":"Spacer that maintains formwork width.","c":"formwork","task":"set_form_width"},{"id":"q011_plywood_formwork","t":"material","ja":"型枠合板","en":"Formwork Plywood","dj":"コンクリート型枠に使う合板。","de":"Plywood panel used for concrete forms.","c":"formwork","task":"cast_concrete"},{"id":"q011_concrete_slump","t":"test","ja":"スランプ","en":"Concrete Slump","dj":"生コンクリートの軟らかさを示す試験値。","de":"Test value showing fresh concrete consistency.","c":"concrete","task":"inspect_concrete"},{"id":"q011_curing_sheet","t":"material","ja":"養生シート","en":"Curing Sheet","dj":"表面を乾燥や汚れから守るシート。","de":"Sheet used to protect curing or finished surfaces.","c":"curing","task":"protect_surface"},{"id":"q011_spacer_block","t":"component","ja":"スペーサーブロック","en":"Spacer Block","dj":"鉄筋のかぶり厚さを確保する部材。","de":"Block used to maintain concrete cover.","c":"rebar","task":"set_rebar_cover"},{"id":"q011_chair_bar","t":"component","ja":"馬筋","en":"Chair Bar","dj":"上端筋などの高さを保つ支持材。","de":"Support used to hold upper reinforcement height.","c":"rebar","task":"support_rebar"},{"id":"q011_tie_wire","t":"material","ja":"結束線","en":"Tie Wire","dj":"鉄筋同士を結束する細い線材。","de":"Wire used to tie reinforcing bars.","c":"rebar","task":"tie_rebar"},{"id":"q011_wire_twister","t":"tool","ja":"ハッカー","en":"Rebar Tie Wire Twister","dj":"結束線をねじる鉄筋結束用工具。","de":"Tool for twisting rebar tie wire.","c":"rebar","task":"tie_rebar"},{"id":"q011_tile_spacer","t":"material","ja":"タイルスペーサー","en":"Tile Spacer","dj":"タイル目地幅を一定に保つ小部材。","de":"Small spacer that keeps tile joints uniform.","c":"tile","task":"set_tile"},{"id":"q011_notched_trowel","t":"tool","ja":"くし目ごて","en":"Notched Trowel","dj":"接着材を一定厚で塗るタイル用こて。","de":"Trowel that spreads adhesive with notches.","c":"tile","task":"apply_adhesive"},{"id":"q011_grout_float","t":"tool","ja":"目地ゴテ","en":"Grout Float","dj":"タイル目地材を押し込むゴム系工具。","de":"Rubber tool used to apply grout.","c":"tile","task":"apply_grout"},{"id":"q011_grout","t":"material","ja":"目地材","en":"Grout","dj":"タイル間の隙間を埋める材料。","de":"Material used to fill tile joints.","c":"tile","task":"fill_joint"},{"id":"q011_thinset_mortar","t":"material","ja":"タイル接着モルタル","en":"Thinset Mortar","dj":"タイルを下地に接着するモルタル。","de":"Mortar used to bond tile to a substrate.","c":"tile","task":"set_tile"},{"id":"q011_screed","t":"process","ja":"定規ずり","en":"Screeding","dj":"定規で面をならし高さや勾配を整える作業。","de":"Leveling material with a straightedge.","c":"floor","task":"level_surface"},{"id":"q011_roof_underlayment","t":"material","ja":"ルーフィング","en":"Roof Underlayment","dj":"屋根仕上げ下の二次防水シート。","de":"Secondary waterproof sheet beneath roofing.","c":"roof","task":"install_roofing"},{"id":"q011_flashing","t":"component","ja":"水切り","en":"Flashing","dj":"取り合い部で水を外へ逃がす部材。","de":"Component that directs water away from joints.","c":"roof","task":"install_flashing"},{"id":"q011_waterproof_tape","t":"material","ja":"防水テープ","en":"Waterproof Tape","dj":"重ねや貫通部を止水する粘着テープ。","de":"Adhesive tape for sealing laps and penetrations.","c":"waterproofing","task":"seal_lap"},{"id":"q011_bitumen_membrane","t":"material","ja":"改質アスファルト防水","en":"Modified Bitumen Membrane","dj":"アスファルト系シートで作る防水層。","de":"Waterproofing membrane made from modified bitumen sheets.","c":"waterproofing","task":"install_membrane"},{"id":"q011_drainage_mat","t":"material","ja":"排水マット","en":"Drainage Mat","dj":"水を逃がす排水層を作るマット材。","de":"Mat that creates a drainage layer.","c":"waterproofing","task":"drain_water"},{"id":"q011_firestop_sealant","t":"material","ja":"耐火シーリング材","en":"Firestop Sealant","dj":"防火区画の貫通部を塞ぐ耐火材。","de":"Fire-rated sealant for penetrations.","c":"firestop","task":"seal_penetration"},{"id":"q011_inspection_hatch","t":"component","ja":"床下点検口","en":"Inspection Hatch","dj":"床下を点検するための開閉口。","de":"Floor hatch used for underfloor inspection.","c":"access","task":"inspect_underfloor"},{"id":"q011_conduit_bender","t":"tool","ja":"電線管ベンダー","en":"Conduit Bender","dj":"電線管を曲げる工具。","de":"Tool used to bend electrical conduit.","c":"electrical","task":"bend_conduit"},{"id":"q011_knockout_punch","t":"tool","ja":"ノックアウトパンチ","en":"Knockout Punch","dj":"盤やボックスに丸穴を開ける工具。","de":"Tool for punching holes in boxes or panels.","c":"electrical","task":"make_hole"},{"id":"q011_terminal_block","t":"component","ja":"端子台","en":"Terminal Block","dj":"電線を接続・分岐する端子部品。","de":"Component for connecting or branching wires.","c":"electrical","task":"connect_wire"},{"id":"q011_clamp_meter","t":"tool","ja":"クランプメーター","en":"Clamp Meter","dj":"電線を挟んで電流を測る計測器。","de":"Meter that measures current by clamping a conductor.","c":"electrical","task":"measure_current"},{"id":"q011_insulation_tester","t":"tool","ja":"絶縁抵抗計","en":"Insulation Tester","dj":"配線や機器の絶縁状態を測る計器。","de":"Tester for measuring insulation resistance.","c":"electrical","task":"test_insulation"},{"id":"q011_distribution_board","t":"component","ja":"分電盤","en":"Distribution Board","dj":"電気回路を分岐し保護する盤。","de":"Panel that distributes and protects circuits.","c":"electrical","task":"wire_panel"},{"id":"q011_drain_trap","t":"component","ja":"排水トラップ","en":"Drain Trap","dj":"封水で臭気逆流を防ぐ排水部材。","de":"Drain fitting with a water seal to block odors.","c":"plumbing","task":"prevent_odor"},{"id":"q011_check_valve","t":"component","ja":"逆止弁","en":"Check Valve","dj":"逆止弁は、配管内の水やその他の流体を原則として一方向に流し、ポンプ停止時などの逆流を自動的に抑える弁。スイング式・リフト式・ばね式などがあり、流れ方向、圧力、取付姿勢、流体の性質に合わせて選ぶ。","de":"A check valve is a one-way valve that automatically restricts reverse flow in piping, such as when a pump stops. Swing, lift and spring-loaded types differ in operation; selection depends on flow direction, fluid, pressure and installation orientation.","c":"plumbing","task":"prevent_backflow"},{"id":"q011_flange","t":"component","ja":"フランジ","en":"Flange","dj":"配管や機器をボルト接続する部材。","de":"Bolted connection for pipe or equipment.","c":"plumbing","task":"connect_pipe"},{"id":"q011_union_joint","t":"component","ja":"ユニオン継手","en":"Union Joint","dj":"配管を分解しやすくする継手。","de":"Fitting that allows piping to be disconnected.","c":"plumbing","task":"maintain_pipe"},{"id":"q011_pipe_sleeve","t":"component","ja":"スリーブ","en":"Pipe Sleeve","dj":"壁や床の配管貫通用に設ける孔や筒材。","de":"Sleeve or opening for pipe penetrations.","c":"mep","task":"make_opening"},{"id":"q011_sleeve_opening","t":"process","ja":"スリーブ入れ","en":"Sleeve Setting","dj":"打設前に貫通位置へスリーブを設置する作業。","de":"Setting sleeves before concrete placement.","c":"mep","task":"set_sleeve"},{"id":"q011_core_sleeve","t":"component","ja":"コアスリーブ","en":"Core Sleeve","dj":"貫通部やコア抜きを想定したスリーブ。","de":"Sleeve prepared for core openings or penetrations.","c":"mep","task":"prepare_penetration"},{"id":"q011_expansion_joint","t":"component","ja":"伸縮目地","en":"Expansion Joint","dj":"温度変化や収縮の動きを吸収する目地。","de":"Joint that absorbs movement from temperature or shrinkage.","c":"joint","task":"control_movement"},{"id":"q011_cold_joint","t":"defect","ja":"コールドジョイント","en":"Cold Joint","dj":"時間差打設で一体化が弱くなる継ぎ目。","de":"Weak joint caused by delayed concrete placement.","c":"concrete","task":"avoid_defect"},{"id":"q011_honeycomb_concrete","t":"defect","ja":"ジャンカ","en":"Honeycomb Concrete","dj":"充填不足で粗骨材が露出した欠陥部。","de":"Concrete defect with voids and exposed aggregate.","c":"concrete","task":"repair_concrete"},{"id":"q011_laitance","t":"defect","ja":"レイタンス","en":"Laitance","dj":"表面に浮いた脆弱なセメント微粒分の層。","de":"Weak surface layer of cement fines.","c":"concrete","task":"remove_laitance"},{"id":"q011_epoxy_putty","t":"material","ja":"エポキシパテ","en":"Epoxy Putty","dj":"補修や接着に使うエポキシ系硬化材。","de":"Epoxy-based repair and bonding putty.","c":"repair","task":"repair_surface"},{"id":"q011_repair_mortar","t":"material","ja":"補修モルタル","en":"Repair Mortar","dj":"欠けや断面修復に使う補修用モルタル。","de":"Mortar used for patching and section repair.","c":"repair","task":"patch_concrete"},{"id":"q011_rust_inhibitive_primer","t":"material","ja":"錆止め塗料","en":"Rust-Inhibitive Primer","dj":"鉄部の錆を抑える下塗り塗料。","de":"Primer used to inhibit rust on steel.","c":"paint","task":"prime_steel"},{"id":"q011_anti_slip_tape","t":"material","ja":"滑り止めテープ","en":"Anti-Slip Tape","dj":"階段や床の滑りを抑えるざらつきテープ。","de":"Rough tape used to reduce slipping.","c":"safety","task":"prevent_slip"},{"id":"q011_safety_harness","t":"safety","ja":"安全帯・フルハーネス","en":"Safety Harness","dj":"高所作業で墜落を制止する保護具。","de":"Personal fall protection for work at height.","c":"safety","task":"fall_protection"}]}
+{
+  "schema": "cta-compact-v1",
+  "quality_batch": "011",
+  "rows": [
+    {
+      "id": "q011_floor_leveler",
+      "t": "material",
+      "ja": "床レベラー",
+      "en": "Floor Leveler",
+      "dj": "床の不陸をならす流動性の高い下地調整材。",
+      "de": "Self-leveling material for correcting uneven floors.",
+      "c": "floor",
+      "task": "level_floor"
+    },
+    {
+      "id": "q011_trowel",
+      "t": "tool",
+      "ja": "鏝",
+      "en": "Trowel",
+      "dj": "モルタルや左官材を塗り付ける手工具。",
+      "de": "Hand tool for applying mortar or plaster.",
+      "c": "finishing",
+      "task": "apply_mortar"
+    },
+    {
+      "id": "q011_float",
+      "t": "tool",
+      "ja": "木鏝・フロート",
+      "en": "Float",
+      "dj": "モルタルやコンクリート表面を均す工具。",
+      "de": "Tool for leveling mortar or concrete surfaces.",
+      "c": "finishing",
+      "task": "finish_surface"
+    },
+    {
+      "id": "q011_mortar_mixer",
+      "t": "tool",
+      "ja": "モルタルミキサー",
+      "en": "Mortar Mixer",
+      "dj": "モルタルミキサーは、モルタル・グラウト・補修材などを一定量ずつ均一に練り混ぜるための機械。ドラム式やパン式などがあり、材料の粘度・一回の練り量に合う方式を選び、混練時間や投入順序は材料の仕様に従う。",
+      "de": "A mortar mixer is a machine for mixing mortar, grout and repair compounds into consistent batches. Drum and pan mixers suit different material viscosities and batch sizes; loading sequence and mixing duration should follow the material specification.",
+      "c": "mortar",
+      "task": "mix_mortar"
+    },
+    {
+      "id": "q011_joint_tape",
+      "t": "material",
+      "ja": "ジョイントテープ",
+      "en": "Joint Tape",
+      "dj": "ボード継ぎ目の割れを抑える補強テープ。",
+      "de": "Tape that reinforces drywall joints.",
+      "c": "drywall",
+      "task": "finish_joint"
+    },
+    {
+      "id": "q011_putty_knife",
+      "t": "tool",
+      "ja": "パテベラ",
+      "en": "Putty Knife",
+      "dj": "パテを塗り広げて平滑にするヘラ。",
+      "de": "Blade for applying and smoothing compound.",
+      "c": "finishing",
+      "task": "apply_putty"
+    },
+    {
+      "id": "q011_sanding_paper",
+      "t": "material",
+      "ja": "サンドペーパー",
+      "en": "Sanding Paper",
+      "dj": "サンドペーパーは、紙や布の基材に砥粒を固定した研磨材で、木材・パテ・塗膜・金属などの表面を削ったり整えたりする。番手が小さいほど一般に粗削り向きで、大きいほど仕上げ向き。対象材と必要な仕上がりに応じて砥粒と番手を使い分ける。",
+      "de": "Sanding paper is an abrasive sheet or cloth used to remove material and smooth wood, filler, paint or metal. Lower grit numbers generally cut more coarsely, while higher grits give finer finishes; choose the abrasive and grit for the surface and finishing stage.",
+      "c": "finishing",
+      "task": "sand_surface"
+    },
+    {
+      "id": "q011_stud_finder",
+      "t": "tool",
+      "ja": "下地探し",
+      "en": "Stud Finder",
+      "dj": "壁内の柱や下地位置を推定する工具。",
+      "de": "Tool for locating studs behind walls.",
+      "c": "inspection",
+      "task": "locate_stud"
+    },
+    {
+      "id": "q011_furring_channel",
+      "t": "material",
+      "ja": "野縁",
+      "en": "Furring Channel",
+      "dj": "天井や壁仕上げを受ける下地材。\n天井や壁の仕上げ材を受ける細長い下地材。本項の「野縁」は主に天井下地を構成する部材として扱い、壁面に仕上げ材を留める「胴縁」とは別の概念として区別する。木製・軽量鋼製など下地方式により断面、支持方法、間隔が異なる。",
+      "de": "Framing member supporting ceiling or wall finishes.\nA narrow framing member that supports ceiling or wall finishes. In this entry, Japanese nokibuchi refers primarily to a ceiling-furring member and is kept distinct from a wall furring strip (dobuchi). Section, support method, and spacing vary with the framing system and material.",
+      "c": "ceiling",
+      "task": "install_ceiling_frame",
+      "aj": [
+        "天井野縁"
+      ],
+      "ae": [
+        "Ceiling furring channel"
+      ]
+    },
+    {
+      "id": "q011_chemical_anchor",
+      "t": "fastener",
+      "ja": "ケミカルアンカー",
+      "en": "Chemical Anchor",
+      "dj": "樹脂でボルトや鉄筋を固定するあと施工アンカー。",
+      "de": "Resin-based post-installed anchor.",
+      "c": "anchor",
+      "task": "install_anchor"
+    },
+    {
+      "id": "q011_form_tie",
+      "t": "component",
+      "ja": "フォームタイ",
+      "en": "Form Tie",
+      "dj": "型枠の間隔を保持し側圧に抵抗する部材。",
+      "de": "Tie that keeps formwork spacing under concrete pressure.",
+      "c": "formwork",
+      "task": "assemble_formwork"
+    },
+    {
+      "id": "q011_separator",
+      "t": "component",
+      "ja": "セパレーター",
+      "en": "Formwork Separator",
+      "dj": "型枠幅を一定に保つ間隔保持材。",
+      "de": "Spacer that maintains formwork width.",
+      "c": "formwork",
+      "task": "set_form_width"
+    },
+    {
+      "id": "q011_plywood_formwork",
+      "t": "material",
+      "ja": "型枠合板",
+      "en": "Formwork Plywood",
+      "dj": "コンクリート型枠に使う合板。",
+      "de": "Plywood panel used for concrete forms.",
+      "c": "formwork",
+      "task": "cast_concrete"
+    },
+    {
+      "id": "q011_concrete_slump",
+      "t": "test",
+      "ja": "スランプ",
+      "en": "Concrete Slump",
+      "dj": "生コンクリートの軟らかさを示す試験値。\nフレッシュコンクリートのコンシステンシーを、所定のスランプ試験で沈下量として表した値。施工時の扱いやすさを確認する代表的な指標だが、スランプ値だけでコンクリートの強度や品質全体が決まるわけではない。",
+      "de": "Test value showing fresh concrete consistency.\nA value obtained by the standardized slump test to indicate the consistency of fresh concrete as a measured drop. It is a common field indicator of handling consistency, but slump alone does not determine concrete strength or overall quality.",
+      "c": "concrete",
+      "task": "inspect_concrete",
+      "aj": [
+        "コンクリートスランプ",
+        "スランプ値"
+      ],
+      "ae": [
+        "Slump value"
+      ]
+    },
+    {
+      "id": "q011_curing_sheet",
+      "t": "material",
+      "ja": "養生シート",
+      "en": "Curing Sheet",
+      "dj": "表面を乾燥や汚れから守るシート。\nコンクリートやモルタルなどの養生中に表面を覆い、急激な乾燥を抑えて所定の養生状態を保つためのシート。本項では硬化・養生を目的とするシートを指し、搬入や内装作業で床や仕上げ面を傷・汚れから守る保護シートとは区別する。",
+      "de": "Sheet used to protect curing or finished surfaces.\nA sheet used during curing of concrete, mortar, or similar materials to cover the surface and limit rapid moisture loss. This entry refers to curing control, not a protective floor or finish covering used against dirt and physical damage during other work.",
+      "c": "curing",
+      "task": "protect_surface",
+      "aj": [
+        "コンクリート養生シート"
+      ],
+      "ae": [
+        "Concrete curing sheet"
+      ]
+    },
+    {
+      "id": "q011_spacer_block",
+      "t": "component",
+      "ja": "スペーサーブロック",
+      "en": "Spacer Block",
+      "dj": "鉄筋のかぶり厚さを確保する部材。",
+      "de": "Block used to maintain concrete cover.",
+      "c": "rebar",
+      "task": "set_rebar_cover"
+    },
+    {
+      "id": "q011_chair_bar",
+      "t": "component",
+      "ja": "馬筋",
+      "en": "Chair Bar",
+      "dj": "上端筋などの高さを保つ支持材。\nスラブなどで上端筋の高さを保持するために配置する鉄筋製の支持材。配筋中だけでなく、歩行や打設時にも所定位置を保てるよう、形状・高さ・配置間隔を配筋計画に合わせる。",
+      "de": "Support used to hold upper reinforcement height.\nA reinforcing-steel support used to hold upper reinforcement at the required elevation, commonly in slabs. Its height, shape, and spacing are coordinated with the reinforcement layout so the bars remain positioned during placing and construction traffic.",
+      "c": "rebar",
+      "task": "support_rebar"
+    },
+    {
+      "id": "q011_tie_wire",
+      "t": "material",
+      "ja": "結束線",
+      "en": "Tie Wire",
+      "dj": "鉄筋同士を結束する細い線材。\n鉄筋の交点などを仮固定して配筋位置を保持するために巻き付けてねじる細い線材。結束に使うハッカーや鉄筋結束機などの工具とは別物で、結束線そのものを指す。構造上の鉄筋継手の代わりになる部材でもない。",
+      "de": "Wire used to tie reinforcing bars.\nThin wire twisted around reinforcement intersections to hold bars in position during reinforcement work. It is the consumable wire itself, distinct from a tying hook or powered rebar-tying tool, and it is not a substitute for a structural reinforcement splice.",
+      "c": "rebar",
+      "task": "tie_rebar",
+      "aj": [
+        "鉄筋結束線"
+      ],
+      "ae": [
+        "Rebar tying wire"
+      ]
+    },
+    {
+      "id": "q011_wire_twister",
+      "t": "tool",
+      "ja": "ハッカー",
+      "en": "Rebar Tie Wire Twister",
+      "dj": "結束線をねじる鉄筋結束用工具。\n鉄筋の交点などに掛けた結束線を、先端のフックで引っ掛けてねじる手工具。現場ではハッカーなどと呼ばれ、配筋を所定位置に保持するための結束作業に使う。",
+      "de": "Tool for twisting rebar tie wire.\nA hand tool with a hooked end for twisting tie wire around reinforcement intersections. Often used for manual rebar tying, it helps hold bars in their intended position during reinforcement work.",
+      "c": "rebar",
+      "task": "tie_rebar"
+    },
+    {
+      "id": "q011_tile_spacer",
+      "t": "material",
+      "ja": "タイルスペーサー",
+      "en": "Tile Spacer",
+      "dj": "タイル目地幅を一定に保つ小部材。",
+      "de": "Small spacer that keeps tile joints uniform.",
+      "c": "tile",
+      "task": "set_tile"
+    },
+    {
+      "id": "q011_notched_trowel",
+      "t": "tool",
+      "ja": "くし目ごて",
+      "en": "Notched Trowel",
+      "dj": "接着材を一定厚で塗るタイル用こて。",
+      "de": "Trowel that spreads adhesive with notches.",
+      "c": "tile",
+      "task": "apply_adhesive"
+    },
+    {
+      "id": "q011_grout_float",
+      "t": "tool",
+      "ja": "目地ゴテ",
+      "en": "Grout Float",
+      "dj": "タイル目地材を押し込むゴム系工具。\nタイル目地材を目地へ押し込み、表面へ広げるためのゴム面を持つ工具。硬い金属鏝よりタイル表面へ追従しやすく、目地を充填した後の余分な材料をかき取る作業にも使う。",
+      "de": "Rubber tool used to apply grout.\nA rubber-faced hand tool used to press tile grout into joints and spread it across the tile surface. Its resilient face follows the surface better than a rigid metal trowel and also helps remove excess grout after filling.",
+      "c": "tile",
+      "task": "apply_grout"
+    },
+    {
+      "id": "q011_grout",
+      "t": "material",
+      "ja": "目地材",
+      "en": "Grout",
+      "dj": "タイル間の隙間を埋める材料。",
+      "de": "Material used to fill tile joints.",
+      "c": "tile",
+      "task": "fill_joint"
+    },
+    {
+      "id": "q011_thinset_mortar",
+      "t": "material",
+      "ja": "タイル接着モルタル",
+      "en": "Thinset Mortar",
+      "dj": "タイルを下地に接着するモルタル。\nタイルや石材を下地へ薄い接着層で張り付けるためのセメント系接着モルタル。製品ごとに対応下地、タイル種類、塗布厚、可使時間が異なるため、対象条件に合う材料を選ぶ。",
+      "de": "Mortar used to bond tile to a substrate.\nA cementitious bonding mortar used to set tile or stone in a relatively thin adhesive bed. Products differ in suitable substrates, tile types, bed thickness, and open or working time, so selection must match the installation conditions.",
+      "c": "tile",
+      "task": "set_tile"
+    },
+    {
+      "id": "q011_screed",
+      "t": "process",
+      "ja": "定規ずり",
+      "en": "Screeding",
+      "dj": "定規で面をならし高さや勾配を整える作業。\n打設・敷設したコンクリートやモルタルなどの表面を定規や直線材でならし、所定の高さや勾配へ整える作業。ここでは工程としての「定規ずり」を指し、ならしに使うScreed（定規・トンボ等）の工具そのものとは区別する。",
+      "de": "Leveling material with a straightedge.\nThe operation of striking off and leveling freshly placed concrete, mortar, or similar material with a straightedge or screed to establish the required elevation or slope. This entry describes the screeding process, not the screed tool itself.",
+      "c": "floor",
+      "task": "level_surface",
+      "aj": [
+        "定規ならし"
+      ],
+      "ae": [
+        "Screed leveling"
+      ]
+    },
+    {
+      "id": "q011_roof_underlayment",
+      "t": "material",
+      "ja": "ルーフィング",
+      "en": "Roof Underlayment",
+      "dj": "屋根仕上げ下の二次防水シート。",
+      "de": "Secondary waterproof sheet beneath roofing.",
+      "c": "roof",
+      "task": "install_roofing"
+    },
+    {
+      "id": "q011_flashing",
+      "t": "component",
+      "ja": "水切り",
+      "en": "Flashing",
+      "dj": "取り合い部で水を外へ逃がす部材。",
+      "de": "Component that directs water away from joints.",
+      "c": "roof",
+      "task": "install_flashing"
+    },
+    {
+      "id": "q011_waterproof_tape",
+      "t": "material",
+      "ja": "防水テープ",
+      "en": "Waterproof Tape",
+      "dj": "重ねや貫通部を止水する粘着テープ。",
+      "de": "Adhesive tape for sealing laps and penetrations.",
+      "c": "waterproofing",
+      "task": "seal_lap"
+    },
+    {
+      "id": "q011_bitumen_membrane",
+      "t": "material",
+      "ja": "改質アスファルト防水",
+      "en": "Modified Bitumen Membrane",
+      "dj": "アスファルト系シートで作る防水層。\nアスファルトにポリマーなどを加えて性能を調整したシート状防水材。屋根や地下外壁などの防水層に使われ、工法によりトーチ、粘着、接着など施工方式が異なる。",
+      "de": "Waterproofing membrane made from modified bitumen sheets.\nA sheet waterproofing material made from asphalt modified with polymers or similar additives. It is used in roof and below-grade waterproofing systems, with installation methods varying by product, including torch-applied, self-adhered, or bonded systems.",
+      "c": "waterproofing",
+      "task": "install_membrane"
+    },
+    {
+      "id": "q011_drainage_mat",
+      "t": "material",
+      "ja": "排水マット",
+      "en": "Drainage Mat",
+      "dj": "水を逃がす排水層を作るマット材。\n壁面や床下などで水を排水先へ導く空隙層をつくるマット材。防水層の外側や保護層と組み合わせて使われ、圧力を受けても排水経路が連続するよう納める。",
+      "de": "Mat that creates a drainage layer.\nA mat that creates a voided drainage layer to route water toward an outlet, often used outside waterproofing or with protection layers. The drainage path must remain continuous and functional under the expected loading and surrounding construction.",
+      "c": "waterproofing",
+      "task": "drain_water"
+    },
+    {
+      "id": "q011_firestop_sealant",
+      "t": "material",
+      "ja": "耐火シーリング材",
+      "en": "Firestop Sealant",
+      "dj": "防火区画の貫通部を塞ぐ耐火材。\n防火区画を貫通する配管・配線の周囲や指定された目地部で、隙間を充填するために使う耐火性能を持つシーリング材。防火区画貫通処理というシステム全体ではなく、その構成材料の一つを指す。要求性能は貫通物、開口、下地、充填深さなどを含む認定・指定仕様との組合せで確認する。",
+      "de": "Fire-rated sealant for penetrations.\nA fire-rated sealant used to fill specified gaps around penetrations or joints in fire-resistance-rated assemblies. It is one component of a firestop system rather than the whole firestopping method; suitability depends on the approved or specified assembly, including penetrant, opening, substrate, and required sealant depth.",
+      "c": "firestop",
+      "task": "seal_penetration",
+      "ae": [
+        "Fire-rated sealant"
+      ],
+      "aj": [
+        "防火シーリング材"
+      ]
+    },
+    {
+      "id": "q011_inspection_hatch",
+      "t": "component",
+      "ja": "床下点検口",
+      "en": "Inspection Hatch",
+      "dj": "床下を点検するための開閉口。\n床下の配管、基礎まわり、床下空間などを点検・保守するため、床に設ける開閉式の点検口。本項は床下点検口を対象とし、天井や壁に設ける一般的なAccess Panelとは設置部位と要求条件を分けて扱う。",
+      "de": "Floor hatch used for underfloor inspection.\nAn openable floor hatch that provides access for inspection or maintenance of underfloor services, foundations, or crawl spaces. This entry specifically covers an underfloor inspection hatch and is kept distinct from a general wall or ceiling access panel.",
+      "c": "access",
+      "task": "inspect_underfloor",
+      "aj": [
+        "床点検口"
+      ],
+      "ae": [
+        "Floor access hatch"
+      ]
+    },
+    {
+      "id": "q011_conduit_bender",
+      "t": "tool",
+      "ja": "電線管ベンダー",
+      "en": "Conduit Bender",
+      "dj": "電線管を曲げる工具。",
+      "de": "Tool used to bend electrical conduit.",
+      "c": "electrical",
+      "task": "bend_conduit"
+    },
+    {
+      "id": "q011_knockout_punch",
+      "t": "tool",
+      "ja": "ノックアウトパンチ",
+      "en": "Knockout Punch",
+      "dj": "盤やボックスに丸穴を開ける工具。\n分電盤、ボックス、薄板などに配管・配線用の丸穴を開けるパンチとダイスの工具。下穴へ軸を通して締め込み、板をせん断して比較的きれいな開口を作る。手動式と油圧式などがある。",
+      "de": "Tool for punching holes in boxes or panels.\nA punch-and-die tool for making round conduit or cable-entry holes in panels, boxes, and sheet material. A draw stud passes through a pilot hole and pulls the punch through the sheet; manual and hydraulic versions are common.",
+      "c": "electrical",
+      "task": "make_hole"
+    },
+    {
+      "id": "q011_terminal_block",
+      "t": "component",
+      "ja": "端子台",
+      "en": "Terminal Block",
+      "dj": "電線を接続・分岐する端子部品。\n複数の電線を端子で接続・中継・分岐するための絶縁された端子部品。ねじ式、ばね式など接続方式があり、盤内配線や制御回路で配線を整理し、保守しやすくするために使う。",
+      "de": "Component for connecting or branching wires.\nAn insulated terminal assembly used to connect, terminate, or distribute conductors. Screw-clamp and spring-clamp styles are common, and terminal blocks are widely used to organize panel and control wiring for installation and maintenance.",
+      "c": "electrical",
+      "task": "connect_wire"
+    },
+    {
+      "id": "q011_clamp_meter",
+      "t": "tool",
+      "ja": "クランプメーター",
+      "en": "Clamp Meter",
+      "dj": "電線を挟んで電流を測る計測器。\n導体をクランプで囲み、回路を切り離さずに電流を測定できる計測器。機種によって交流・直流電流のほか、電圧、抵抗、周波数などを測れる。測定方式と定格は機種ごとに異なる。",
+      "de": "Meter that measures current by clamping a conductor.\nA meter that measures current by clamping around a conductor without opening the circuit. Depending on the model it may measure AC and/or DC current as well as voltage, resistance, frequency, and other quantities; measurement method and ratings vary by instrument.",
+      "c": "electrical",
+      "task": "measure_current"
+    },
+    {
+      "id": "q011_insulation_tester",
+      "t": "tool",
+      "ja": "絶縁抵抗計",
+      "en": "Insulation Tester",
+      "dj": "配線や機器の絶縁状態を測る計器。\n配線や電気機器の絶縁抵抗を確認するため、規定の試験電圧を印加して抵抗値を測る計測器。一般の抵抗計とは用途と試験電圧が異なり、設備条件に合う試験方法を選ぶ必要がある。",
+      "de": "Tester for measuring insulation resistance.\nAn instrument that applies a specified test voltage to measure insulation resistance of wiring and electrical equipment. It differs from an ordinary resistance meter in purpose and test voltage, so the test method must suit the equipment and applicable requirements.",
+      "c": "electrical",
+      "task": "test_insulation"
+    },
+    {
+      "id": "q011_distribution_board",
+      "t": "component",
+      "ja": "分電盤",
+      "en": "Distribution Board",
+      "dj": "電気回路を分岐し保護する盤。\n受けた電源を複数の分岐回路へ配分し、主幹・分岐の遮断器などを収納する盤。住宅・建物設備では回路ごとの保護、開閉、識別をまとめる中核部となる。",
+      "de": "Panel that distributes and protects circuits.\nA panel that receives an electrical supply and distributes it to multiple branch circuits while housing main and branch protective devices. In building installations it provides a central point for circuit protection, switching, and identification.",
+      "c": "electrical",
+      "task": "wire_panel"
+    },
+    {
+      "id": "q011_drain_trap",
+      "t": "component",
+      "ja": "排水トラップ",
+      "en": "Drain Trap",
+      "dj": "封水で臭気逆流を防ぐ排水部材。",
+      "de": "Drain fitting with a water seal to block odors.",
+      "c": "plumbing",
+      "task": "prevent_odor"
+    },
+    {
+      "id": "q011_check_valve",
+      "t": "component",
+      "ja": "逆止弁",
+      "en": "Check Valve",
+      "dj": "逆止弁は、配管内の水やその他の流体を原則として一方向に流し、ポンプ停止時などの逆流を自動的に抑える弁。スイング式・リフト式・ばね式などがあり、流れ方向、圧力、取付姿勢、流体の性質に合わせて選ぶ。",
+      "de": "A check valve is a one-way valve that automatically restricts reverse flow in piping, such as when a pump stops. Swing, lift and spring-loaded types differ in operation; selection depends on flow direction, fluid, pressure and installation orientation.",
+      "c": "plumbing",
+      "task": "prevent_backflow"
+    },
+    {
+      "id": "q011_flange",
+      "t": "component",
+      "ja": "フランジ",
+      "en": "Flange",
+      "dj": "配管や機器をボルト接続する部材。\n配管、バルブ、機器などをボルトで着脱可能に接続するためのつば状接続部。フランジ面の形式、呼び径、圧力等級、材質、ボルト穴配置などを相互に適合させ、必要に応じてガスケットを挟む。",
+      "de": "Bolted connection for pipe or equipment.\nA rimmed connection used to bolt piping, valves, and equipment together so the joint can be assembled and dismantled. Facing, nominal size, pressure class, material, and bolt pattern must be compatible, with a gasket used where required by the joint design.",
+      "c": "plumbing",
+      "task": "connect_pipe",
+      "aj": [
+        "配管フランジ"
+      ],
+      "ae": [
+        "Pipe flange"
+      ]
+    },
+    {
+      "id": "q011_union_joint",
+      "t": "component",
+      "ja": "ユニオン継手",
+      "en": "Union Joint",
+      "dj": "配管を分解しやすくする継手。\n配管の途中を分解しやすくするため、中央のナット状部を緩めて両側を切り離せる継手。長い配管全体を回転させずに着脱できるため、機器まわりや保守が必要な箇所に使われる。",
+      "de": "Fitting that allows piping to be disconnected.\nA detachable pipe fitting that can be separated by loosening its central union nut, allowing a line to be disconnected without rotating long pipe runs. It is commonly used near equipment and locations expected to require maintenance.",
+      "c": "plumbing",
+      "task": "maintain_pipe"
+    },
+    {
+      "id": "q011_pipe_sleeve",
+      "t": "component",
+      "ja": "スリーブ",
+      "en": "Pipe Sleeve",
+      "dj": "壁や床の配管貫通用に設ける孔や筒材。",
+      "de": "Sleeve or opening for pipe penetrations.",
+      "c": "mep",
+      "task": "make_opening"
+    },
+    {
+      "id": "q011_sleeve_opening",
+      "t": "process",
+      "ja": "スリーブ入れ",
+      "en": "Sleeve Setting",
+      "dj": "打設前に貫通位置へスリーブを設置する作業。\nコンクリート打設前に、配管・ダクトなどの将来の貫通位置へスリーブや箱抜きを設置して開口を確保する作業。構造体ができた後の不要なはつりやコア抜きを避けるため、設備図と構造図の調整が重要になる。",
+      "de": "Setting sleeves before concrete placement.\nThe work of setting sleeves or blockouts before concrete placement to reserve future pipe, duct, or service penetrations. Coordination between building-services and structural drawings is important so later coring or demolition can be avoided where possible.",
+      "c": "mep",
+      "task": "set_sleeve"
+    },
+    {
+      "id": "q011_core_sleeve",
+      "t": "component",
+      "ja": "コアスリーブ",
+      "en": "Core Sleeve",
+      "dj": "貫通部やコア抜きを想定したスリーブ。\n設備貫通部やコア開口に関連して用いられるスリーブ・筒状部材の呼称。現場や仕様書によって、先行して埋め込むスリーブ、開口の内周を形成する部材など指す範囲が異なるため、図面上の定義を確認して扱う。",
+      "de": "Sleeve prepared for core openings or penetrations.\nA project-dependent term for a sleeve or tubular piece associated with service penetrations or core openings. It may refer to a pre-set embedded sleeve or a liner defining an opening, so the intended meaning should be confirmed from the project drawings and specification.",
+      "c": "mep",
+      "task": "prepare_penetration"
+    },
+    {
+      "id": "q011_expansion_joint",
+      "t": "component",
+      "ja": "伸縮目地",
+      "en": "Expansion Joint",
+      "dj": "温度変化や収縮の動きを吸収する目地。",
+      "de": "Joint that absorbs movement from temperature or shrinkage.",
+      "c": "joint",
+      "task": "control_movement"
+    },
+    {
+      "id": "q011_cold_joint",
+      "t": "defect",
+      "ja": "コールドジョイント",
+      "en": "Cold Joint",
+      "dj": "時間差打設で一体化が弱くなる継ぎ目。\nコンクリートの打込みが長く中断し、先に打った部分と後から打った部分が十分に一体化しにくくなって生じる意図しない打継ぎ状の境界。計画して位置と処理方法を定めるConstruction Joint（施工上の打継ぎ）とは区別する。影響は位置や構造・防水条件によって異なる。",
+      "de": "Weak joint caused by delayed concrete placement.\nAn unintended joint-like interface that can form when concrete placement is delayed long enough for the earlier lift to lose the condition needed for proper integration with later concrete. It is distinct from a planned construction joint whose location and treatment are specified in advance. Consequences depend on location and structural or watertightness requirements.",
+      "c": "concrete",
+      "task": "avoid_defect"
+    },
+    {
+      "id": "q011_honeycomb_concrete",
+      "t": "defect",
+      "ja": "ジャンカ",
+      "en": "Honeycomb Concrete",
+      "dj": "充填不足で粗骨材が露出した欠陥部。\n硬化したコンクリート表面や内部に空隙が残り、粗骨材が蜂の巣状に露出して見える欠陥。材料分離、締固め不足、型枠からのモルタル漏れ、打込み条件など複数の要因で生じる。程度により補修方法や評価が異なる。",
+      "de": "Concrete defect with voids and exposed aggregate.\nA concrete defect in which voids remain and coarse aggregate is visibly exposed in a honeycomb-like pattern. It can result from poor consolidation, segregation, grout loss through formwork, or placing conditions; assessment and repair depend on severity and location.",
+      "c": "concrete",
+      "task": "repair_concrete"
+    },
+    {
+      "id": "q011_laitance",
+      "t": "defect",
+      "ja": "レイタンス",
+      "en": "Laitance",
+      "dj": "表面に浮いた脆弱なセメント微粒分の層。\nコンクリートやモルタルの表面に生じる、セメント微粒分などを多く含む脆弱な薄層。ブリーディングなどに伴って形成されることがあり、そのまま上塗り・接着・打継ぎを行うと付着性能を妨げる場合がある。",
+      "de": "Weak surface layer of cement fines.\nA weak, fine-rich surface layer that can form on concrete or mortar, often associated with bleeding and settlement. If left in place it may interfere with adhesion of coatings, bonded toppings, repair materials, or subsequent concrete work.",
+      "c": "concrete",
+      "task": "remove_laitance"
+    },
+    {
+      "id": "q011_epoxy_putty",
+      "t": "material",
+      "ja": "エポキシパテ",
+      "en": "Epoxy Putty",
+      "dj": "補修や接着に使うエポキシ系硬化材。\nエポキシ樹脂を主成分とする、充填・成形・接着補修用のパテ状材料。一般に主剤と硬化剤を混合して使用し、欠損部の充填、すき間調整、部材補修などに用いる。製品によって硬化時間や対応下地が大きく異なる。",
+      "de": "Epoxy-based repair and bonding putty.\nA putty-like epoxy material used for filling, shaping, bonding, and repair. Many products use a resin and hardener mixed before application and are used for void filling, gap adjustment, and localized repairs; cure time and compatible substrates vary substantially by product.",
+      "c": "repair",
+      "task": "repair_surface"
+    },
+    {
+      "id": "q011_repair_mortar",
+      "t": "material",
+      "ja": "補修モルタル",
+      "en": "Repair Mortar",
+      "dj": "欠けや断面修復に使う補修用モルタル。\nコンクリートやモルタルの欠け、はつり跡、断面欠損などを埋めて形状を復旧するためのモルタル系補修材。補修材全般を指すRepair Patchより対象をモルタル系材料へ限定し、施工厚、下地状態、付着、収縮、養生条件を製品仕様に合わせて確認する。",
+      "de": "Mortar used for patching and section repair.\nA mortar-based repair material used to rebuild chipped, removed, or otherwise lost sections of concrete or mortar. It is narrower than a generic repair patch material and requires product-specific control of repair depth, substrate preparation, bond, shrinkage behavior, and curing.",
+      "c": "repair",
+      "task": "patch_concrete"
+    },
+    {
+      "id": "q011_rust_inhibitive_primer",
+      "t": "material",
+      "ja": "錆止め塗料",
+      "en": "Rust-Inhibitive Primer",
+      "dj": "鉄部の錆を抑える下塗り塗料。\n鉄鋼面の腐食を抑え、上塗り塗装の下地をつくるための防錆性を持つ下塗り塗料。さび転換材とは別の材料で、要求される素地調整、膜厚、上塗りとの組合せは塗装仕様によって決まる。",
+      "de": "Primer used to inhibit rust on steel.\nA corrosion-inhibiting primer applied to ferrous surfaces before subsequent coating. It is distinct from a rust converter; required surface preparation, film build, and compatibility with topcoats are defined by the coating system.",
+      "c": "paint",
+      "task": "prime_steel"
+    },
+    {
+      "id": "q011_anti_slip_tape",
+      "t": "material",
+      "ja": "滑り止めテープ",
+      "en": "Anti-Slip Tape",
+      "dj": "階段や床の滑りを抑えるざらつきテープ。\n表面に砥粒や凹凸を持たせ、階段踏面や床の滑りを抑える粘着テープ。既存床へ後施工しやすい一方、下地の汚れ・水分・凹凸や端部の浮きが接着耐久性に影響する。",
+      "de": "Rough tape used to reduce slipping.\nA self-adhesive tape with an abrasive or textured surface used to increase traction on stair treads and floors. It is easy to retrofit, but contamination, moisture, surface irregularity, and lifting edges can reduce adhesion and service life.",
+      "c": "safety",
+      "task": "prevent_slip"
+    },
+    {
+      "id": "q011_safety_harness",
+      "t": "safety",
+      "ja": "安全帯・フルハーネス",
+      "en": "Safety Harness",
+      "dj": "高所作業で墜落を制止する保護具。",
+      "de": "Personal fall protection for work at height.",
+      "c": "safety",
+      "task": "fall_protection"
+    }
+  ]
+}
