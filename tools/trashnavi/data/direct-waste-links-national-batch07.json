@@ -316,5 +316,33 @@
     "language": "ja",
     "service_provider": "留萌南部衛生組合",
     "scope_note": "小平町公式ページ。留萌市・増毛町・小平町の共同処理主体を明記し、組合のごみ分別・施設情報へ案内。具体的な分別品目や地区別収集日はリンク先の組合情報で確認すること。"
+  },
+  {
+    "pref": "北海道",
+    "city": "小平町",
+    "name": "留萌南部衛生組合 ごみ分別・粗大ごみ・自己搬入",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.rumoi-nanbu.jp/refuse_srt.html",
+    "lgcode": "014826",
+    "last_checked": "2026-11-01",
+    "status": "active",
+    "language": "ja",
+    "service_provider": "留萌南部衛生組合",
+    "scope_note": "小平町公式が共同処理を明示。組合公式の分別、粗大ごみ、自己搬入への各案内を掲載。"
+  },
+  {
+    "pref": "北海道",
+    "city": "小平町",
+    "name": "留萌南部衛生組合 小平地区・鬼鹿地区別ごみ収集日",
+    "type": "ごみ収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.rumoi-nanbu.jp/refuse_clct.html",
+    "lgcode": "014826",
+    "last_checked": "2026-11-01",
+    "status": "active",
+    "language": "ja",
+    "service_provider": "留萌南部衛生組合",
+    "scope_note": "組合公式で小平地区と鬼鹿地区を別々に案内。収集日を全町一律とみなさない。年度未推定。"
   }
 ]
