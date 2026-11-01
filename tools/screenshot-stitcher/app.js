@@ -7,6 +7,8 @@
     renderedBlob: null,
     renderedExt: "png"
   };
+  let renderRevision = 0;
+  let clearGeneration = 0;
 
   const t = {
     ja: {
@@ -64,6 +66,7 @@
       warnStrongHeight: "強い警告: 高さが30000pxを超えています。分割ZIP出力を強く推奨します。",
       warnPixels: "注意: 総ピクセル数が大きいため、スマホでは失敗する可能性があります。",
       fail: "処理に失敗しました。設定や枚数を減らして再試行してください。",
+      formatMismatch: "選択した形式をブラウザが出力できません。PNGなど別形式で再試行してください。誤った拡張子では保存しません。",
       pasted: "クリップボード画像を追加しました。",
       addedFiles: "{count}件の画像を追加しました。",
       skippedPrefix: "対応していない形式をスキップしました",
@@ -128,6 +131,7 @@
       warnStrongHeight: "Strong warning: output height exceeds 30000px. Split ZIP export is strongly recommended.",
       warnPixels: "Note: total pixels are high, so mobile devices may fail.",
       fail: "Rendering failed. Try fewer images or lower width.",
+      formatMismatch: "Your browser returned an unexpected image format. Try PNG or another browser. No mislabeled file was saved.",
       pasted: "Added image(s) from clipboard.",
       addedFiles: "Added {count} image(s).",
       skippedPrefix: "Skipped unsupported files",
@@ -197,6 +201,7 @@
   }
 
   function invalidateRender(message) {
+    ++renderRevision;
     state.renderedBlob = null;
     state.renderedCanvas = null;
     updateDownloadState();
@@ -208,6 +213,8 @@
     const files = Array.from(fileList || []);
     const skipped = [];
     let added = 0;
+    const generation = clearGeneration;
+    if (files.length) invalidateRender();
 
     for (const file of files) {
       if (!isSupportedImage(file)) {
@@ -216,6 +223,11 @@
       }
       try {
         const decoded = await decodeFile(file);
+        if (generation !== clearGeneration) {
+          URL.revokeObjectURL(decoded.url);
+          return { added: 0, skipped };
+        }
+        invalidateRender();
         state.items.push({
           id: makeId(),
           name: file.name || "image",
@@ -289,11 +301,10 @@
   }
 
   function clearAll() {
+    ++clearGeneration;
     state.items.forEach(revokeItemUrl);
     state.items = [];
-    state.renderedBlob = null;
-    state.renderedCanvas = null;
-    updateDownloadState();
+    invalidateRender();
     renderList();
     updateEstimate();
     const canvas = $("previewCanvas");
@@ -466,24 +477,34 @@
     const mime = format === "jpeg" ? "image/jpeg" : format === "webp" ? "image/webp" : "image/png";
     return new Promise((resolve, reject) => {
       canvas.toBlob((blob) => {
-        if (!blob) reject(new Error("Blob creation failed"));
-        else resolve(blob);
+        if (!blob) return reject(new Error("Blob creation failed"));
+        if (String(blob.type || "").toLowerCase() !== mime) {
+          const error = new Error("Unexpected canvas encoder format");
+          error.code = "ENCODING_FALLBACK";
+          return reject(error);
+        }
+        resolve(blob);
       }, mime, quality);
     });
   }
 
   async function handlePreview() {
+    invalidateRender();
+    const revision = renderRevision;
     try {
       const canvas = await buildRenderResult();
-      if (!canvas) return;
+      if (!canvas || revision !== renderRevision) return;
       const settings = getSettings();
-      state.renderedBlob = await canvasToBlob(canvas, settings.format, settings.quality);
+      const blob = await canvasToBlob(canvas, settings.format, settings.quality);
+      if (revision !== renderRevision) return;
+      state.renderedBlob = blob;
       state.renderedCanvas = canvas;
       state.renderedExt = settings.format === "jpeg" ? "jpg" : settings.format;
       updateDownloadState();
     } catch (err) {
+      if (revision !== renderRevision) return;
       console.error(err);
-      setStatus(text("fail"));
+      setStatus(text(err?.code === "ENCODING_FALLBACK" ? "formatMismatch" : "fail"));
     }
   }
 
@@ -603,8 +624,9 @@
   }
 
   async function handleSplitZip() {
+    const revision = renderRevision;
     try {
-      if (!state.renderedCanvas) {
+      if (!state.renderedCanvas || !state.renderedBlob) {
         setStatus(text("readyDownload"));
         return;
       }
@@ -624,6 +646,7 @@
         const pctx = part.getContext("2d");
         pctx.drawImage(canvas, 0, y, canvas.width, h, 0, 0, canvas.width, h);
         const blob = await canvasToBlob(part, settings.format, settings.quality);
+        if (revision !== renderRevision) return;
         segments.push({
           name: `screenshot-stitcher-${String(idx).padStart(3, "0")}.${state.renderedExt}`,
           blob
@@ -631,11 +654,13 @@
       }
 
       const zipBlob = await buildZip(segments);
+      if (revision !== renderRevision) return;
       triggerDownload(zipBlob, "screenshot-stitcher-split.zip");
       setStatus(text("zipDone"));
     } catch (err) {
+      if (revision !== renderRevision) return;
       console.error(err);
-      setStatus(text("fail"));
+      setStatus(text(err?.code === "ENCODING_FALLBACK" ? "formatMismatch" : "fail"));
     }
   }
 
