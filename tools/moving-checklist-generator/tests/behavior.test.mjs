@@ -29,7 +29,7 @@ assert.ok(packingPos >= 0 && affiliatePos > packingPos && officialFormPos > affi
 assert.equal(html.split('id="nwAmazonAffiliate"').length - 1, 1);
 assert.ok(html.includes('class="panel packing-readiness no-print"'),
   "packing shopping guide must not pollute printable moving checklist");
-assert.ok(html.includes('Buying products does not complete municipal'),
+assert.ok(app.includes('Buying products does not complete municipal'),
   "must clearly distinguish shopping from administrative tasks");
 assert.ok(html.includes("手元にある物を確認") && html.includes("再利用"), "re-use before buy");
 assert.ok(css.includes(".packing-list label"), "mobile packing-list styling");
