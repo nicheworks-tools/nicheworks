@@ -41,7 +41,7 @@ const {runPublicLoader}=require("./audit-public-image-inventory-v2.3.cjs");
  assert.equal(runtime.diagnostics.definitionPromotionsApplied,145,"loader did not apply all definitions");
  assert.equal(runtime.diagnostics.definitionPromotionsSourceDrift,0,"definition source was changed unexpectedly");
  assert.equal(runtime.diagnostics.definitionPromotionsMissingTargets,0,"overlay targets nonpublic id");
- assert.deepEqual(runtime.diagnostics.definitionPromotionsProblems,[],"definition overlay reports validation problems");
+ assert.equal(runtime.diagnostics.definitionPromotionsProblems.length,0,"definition overlay reports validation problems: "+runtime.diagnostics.definitionPromotionsProblems.join(", "));
  console.log("Construction Atlas dictionary substantive source: PASS "+JSON.stringify({
   publicCanonicals:ids.size,maintainedCompactCanonicals:maintained.length,
   promotedSourceBackedDefinitions:promoted.length,remainingShortWithRichNotes:pending.length
