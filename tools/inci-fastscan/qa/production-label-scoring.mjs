@@ -107,9 +107,49 @@ export function createProductionLabelScorer() {
     return stats;
   }
 
+  // Count independently annotated-name conflicts without disclosing any names.
+  // Source transcriptions can contain spelling and annotation mismatches;
+  // "mentioned" is a diagnostic proxy, not proof that an extra is valid.
+  const candidateNamesByIdentity = new Map();
+  for (const item of dictionary) {
+    const key = identity(item.en);
+    if (!key) continue;
+    if (!candidateNamesByIdentity.has(key)) candidateNamesByIdentity.set(key, []);
+    candidateNamesByIdentity.get(key).push(item.en, ...(item.alias || []));
+  }
+  function tokenize(value) {
+    return String(value || '').normalize('NFKC').toLowerCase()
+      .replace(/[^a-z0-9]+/g, ' ').replace(/\\s+/g, ' ').trim();
+  }
+  async function auditAnnotationExtras(cleanedOcrText, canonicalAnnotationList, independentRawLabel) {
+    assert.equal(typeof cleanedOcrText, 'string');
+    assert.ok(Array.isArray(canonicalAnnotationList));
+    assert.equal(typeof independentRawLabel, 'string');
+    const supported = uniqueMatched(await runtime.coreMatchIngredients(canonicalAnnotationList, dictionary));
+    const found = uniqueMatched((await runtime.coreAnalyzeIngredients(cleanedOcrText, dictionary)).results);
+    const label = ' ' + tokenize(independentRawLabel) + ' ';
+    let extras = 0;
+    let mentionedInSourceTranscription = 0;
+    let notMentionedInSourceTranscription = 0;
+    for (const key of found) {
+      if (supported.has(key)) continue;
+      extras += 1;
+      const candidates = candidateNamesByIdentity.get(key) || [];
+      const mentioned = candidates.some(value => {
+        const term = tokenize(value);
+        return term.length >= 3 && label.includes(' ' + term + ' ');
+      });
+      if (mentioned) mentionedInSourceTranscription += 1;
+      else notMentionedInSourceTranscription += 1;
+    }
+    assert.equal(extras, mentionedInSourceTranscription + notMentionedInSourceTranscription);
+    return { extras, mentionedInSourceTranscription, notMentionedInSourceTranscription };
+  }
+
   return Object.freeze({
     dictionaryCount: dictionary.length,
-    assess
+    assess,
+    auditAnnotationExtras
   });
 }
 
