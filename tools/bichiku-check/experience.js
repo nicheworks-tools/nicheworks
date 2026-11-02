@@ -71,8 +71,10 @@ function preserveOpen(){
 function conditions(a){
  if(goal==="food")return '<p>'+esc(a.waterConflict?T.waterShort:T.foodRequires)+'</p>'+
  '<label class="g-check"><input type="checkbox" data-setting="safeWaterConfirmed" '+(state.safeWaterConfirmed?"checked":"")+'>'+esc(T.waterConfirm)+'</label>'+
- '<label class="g-input">'+esc(T.prepLiters)+'<input type="number" min="0" step="0.1" inputmode="decimal" data-setting="prepWaterLiters" value="'+fmt(n(state.prepWaterLiters))+'"></label>'+
- '<p class="g-fine">'+esc(T.prepExplanation)+'</p><p>'+esc(T.waterRemaining)+': <strong>'+fmt(a.waterRemainingAfterPrep)+'L</strong></p>';
+ '<p class="g-fine">'+esc(T.prepExplanation)+'</p>'+
+ '<p class="g-water-summary">'+esc(T.prepAllocated)+': <strong>'+fmt(a.waterAllocation)+'L</strong></p>'+
+ '<p class="g-water-summary">'+esc(T.waterRemaining)+': <strong>'+fmt(a.waterRemainingAfterPrep)+'L</strong></p>'+
+ (a.uncheckedFoods.length?'<p class="g-fine">'+esc(T.prepUnchecked)+'</p>':"");
  if(goal==="toilet")return '<p>'+esc(T.toiletExplanation)+'</p>'+
  '<label class="g-check"><input type="checkbox" data-setting="toiletAssemblyConfirmed" '+(state.toiletAssemblyConfirmed?"checked":"")+'>'+esc(T.toiletConfirm)+'</label>';
  if(goal==="warmth")return '<p>'+esc(T.floorExplanation)+'</p><div class="g-layers">'+["sleepPad","blanket"].map(id=>{
@@ -104,8 +106,9 @@ function renderChoices(a){
  const arr=choices.filter(o=>g.members.includes(o.parent)&&allowedTab(o)&&(!search||Object.values(o.names).join(" ").toLowerCase().includes(search.toLowerCase())));
  if(!arr.length)return '<p class="g-fine">'+esc(T.noOptions)+'</p>';
  return arr.map(o=>{
- const v=getOption(o.id),countable=o.equivalence==="full"&&(!state.noHeat||!["heat","verify"].includes(o.prep))&&(!o.requiresWater||a.waterForPrep);
- const ready=countable||(o.id==="toiletBags"&&state.toiletAssemblyConfirmed);
+ const v=getOption(o.id),countable=o.equivalence==="full"&&(!state.noHeat||!["heat","verify"].includes(o.prep))&&(!o.requiresWater||(a.waterForPrep&&v.prepConfirmed===true&&n(v.prepWaterLiters)>0));
+ const unexpired=!v.expiry||v.expiry>=today();
+ const ready=n(v.qty)>0&&unexpired&&(countable||(o.id==="toiletBags"&&state.toiletAssemblyConfirmed));
  const name=o.names[lang]||o.names.ja;
  const warning=(O.notes||{})[o.warning]||"";
  return '<details class="g-option" data-option="'+o.id+'" '+(openOptions.has(o.id)?"open":"")+'>'+
@@ -114,6 +117,9 @@ function renderChoices(a){
  (o.sourceUrl?'<a href="'+esc(o.sourceUrl)+'" target="_blank" rel="noopener">'+esc(T.official)+'</a>':"")+
  '<div class="g-parent-fields"><label>'+esc(T.quantity)+'<input type="number" min="0" max="10000000" step="'+(o.parent==="water"?"0.5":"1")+'" inputmode="decimal" data-option-qty="'+o.id+'" value="'+fmt(n(v.qty))+'"></label>'+
  '<label>'+esc(T.expiry)+'<input type="date" data-option-expiry="'+o.id+'" value="'+esc(v.expiry||"")+'"></label></div>'+
+ (o.requiresWater?'<div class="g-water-item"><label class="g-input">'+esc(T.prepPerFood)+'<input type="number" min="0" max="10000000" step="0.1" inputmode="decimal" data-prep-liters="'+o.id+'" value="'+fmt(n(v.prepWaterLiters))+'"></label>'+
+ '<label class="g-check"><input type="checkbox" data-prep-confirm="'+o.id+'" '+(v.prepConfirmed===true?"checked":"")+'>'+esc(T.prepItemConfirm)+'</label>'+
+ '<p class="g-fine">'+esc(T.prepNumberWarning)+'</p></div>':"")+
  (o.query?'<div class="g-aff" data-option-aff="'+o.id+'"></div>':"")+'</div></details>';
  }).join("");
 }
@@ -223,9 +229,15 @@ result.addEventListener("change",e=>{
  if(id){const item=Object.assign({},getBasic(id));if(t.dataset.basic)item.qty=n(t.value);
   if(t.dataset.target){if(t.value==="")delete item.target;else item.target=n(t.value)}
   if(t.dataset.basicExpiry)item.expiry=t.value;state.stocks[key(id)]=item;save();preserveOpen();render();return}
- const optionId=t.dataset.optionQty||t.dataset.optionExpiry;
- if(optionId){const item=Object.assign({},getOption(optionId));if(t.dataset.optionQty)item.qty=n(t.value);
-  if(t.dataset.optionExpiry)item.expiry=t.value;state.variants[key(optionId)]=item;save();preserveOpen();render()}
+ const optionId=t.dataset.optionQty||t.dataset.optionExpiry||t.dataset.prepLiters||t.dataset.prepConfirm;
+ if(optionId){
+  const item=Object.assign({},getOption(optionId));
+  if(t.dataset.optionQty){item.qty=n(t.value);item.prepConfirmed=false}
+  if(t.dataset.optionExpiry)item.expiry=t.value;
+  if(t.dataset.prepLiters){item.prepWaterLiters=n(t.value);item.prepConfirmed=false}
+  if(t.dataset.prepConfirm)item.prepConfirmed=t.checked;
+  state.variants[key(optionId)]=item;save();preserveOpen();render()
+ }
 });
 const ref=document.getElementById("references");
 if(ref)ref.innerHTML='<h2>'+esc(L.references)+'</h2><p class="g-fine">'+esc(T.advice)+'</p><ul>'+
