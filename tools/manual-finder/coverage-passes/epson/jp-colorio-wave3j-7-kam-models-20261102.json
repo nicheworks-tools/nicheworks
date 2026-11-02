@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "maker": "Epson",
+  "scopeId": "ep-881a-882a-7-models-manual-and-kam-ink-20261102",
+  "scope": "EP-881AB, EP-881AN, EP-881AR, EP-881AW, EP-882AB, EP-882AR, EP-882AW only, model-specific Japanese manufacturer user guide and ink pages. Not an Epson full catalog.",
+  "asOf": "2026-11-02",
+  "region": "JP",
+  "language": "ja",
+  "status": "reviewed",
+  "sourceLevel": "A",
+  "allowedDomains": [
+    "www.epson.jp"
+  ],
+  "counts": {
+    "distinctModels": 7,
+    "officialManualPages": 7,
+    "newAmazonModelSearches": 7,
+    "manufacturerVerifiedInkOfferSearches": 14
+  },
+  "manufacturerCompatibilityLists": [
+    "https://www.epson.jp/products/supply/shoumouhin/data/shoumouhin/kam-6cl.htm",
+    "https://www.epson.jp/products/supply/shoumouhin/data/shoumouhin/kam-6cl-l.htm"
+  ],
+  "publishedManualDataFile": "tools/manual-finder/data/manuals.wave3.10.js",
+  "affiliateConfigFile": "tools/manual-finder/affiliate-config.js",
+  "reviewMethod": "All seven distinct exact Epson support/portal/used/{model}.htm pages visibly list the model and full PDF User Guide; all seven exact support/portal/shoumouhin/{model}.htm manufacturer pages list both KAM-6CL and KAM-6CL-L, and Epson KAM-6CL and KAM-6CL-L product compatibility tables independently enumerate the exact seven models.",
+  "records": [
+    {
+      "model": "EP-881AB",
+      "maker": "Epson",
+      "category": "プリンター・複合機",
+      "manualUrl": "https://www.epson.jp/support/portal/used/ep-881ab.htm",
+      "supportUrl": "https://www.epson.jp/support/portal/support_menu/ep-881ab.htm",
+      "consumablesUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-881ab.htm",
+      "inkCodes": [
+        "KAM-6CL",
+        "KAM-6CL-L"
+      ],
+      "state": "direct",
+      "reviewedAt": "2026-11-02",
+      "verification": "Model-specific manufacturer manual index has PDF User Guide; model-specific manufacturer consumables page and manufacturer exact-model compatibility tables both list ink SKUs."
+    },
+    {
+      "model": "EP-881AN",
+      "maker": "Epson",
+      "category": "プリンター・複合機",
+      "manualUrl": "https://www.epson.jp/support/portal/used/ep-881an.htm",
+      "supportUrl": "https://www.epson.jp/support/portal/support_menu/ep-881an.htm",
+      "consumablesUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-881an.htm",
+      "inkCodes": [
+        "KAM-6CL",
+        "KAM-6CL-L"
+      ],
+      "state": "direct",
+      "reviewedAt": "2026-11-02",
+      "verification": "Model-specific manufacturer manual index has PDF User Guide; model-specific manufacturer consumables page and manufacturer exact-model compatibility tables both list ink SKUs."
+    },
+    {
+      "model": "EP-881AR",
+      "maker": "Epson",
+      "category": "プリンター・複合機",
+      "manualUrl": "https://www.epson.jp/support/portal/used/ep-881ar.htm",
+      "supportUrl": "https://www.epson.jp/support/portal/support_menu/ep-881ar.htm",
+      "consumablesUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-881ar.htm",
+      "inkCodes": [
+        "KAM-6CL",
+        "KAM-6CL-L"
+      ],
+      "state": "direct",
+      "reviewedAt": "2026-11-02",
+      "verification": "Model-specific manufacturer manual index has PDF User Guide; model-specific manufacturer consumables page and manufacturer exact-model compatibility tables both list ink SKUs."
+    },
+    {
+      "model": "EP-881AW",
+      "maker": "Epson",
+      "category": "プリンター・複合機",
+      "manualUrl": "https://www.epson.jp/support/portal/used/ep-881aw.htm",
+      "supportUrl": "https://www.epson.jp/support/portal/support_menu/ep-881aw.htm",
+      "consumablesUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-881aw.htm",
+      "inkCodes": [
+        "KAM-6CL",
+        "KAM-6CL-L"
+      ],
+      "state": "direct",
+      "reviewedAt": "2026-11-02",
+      "verification": "Model-specific manufacturer manual index has PDF User Guide; model-specific manufacturer consumables page and manufacturer exact-model compatibility tables both list ink SKUs."
+    },
+    {
+      "model": "EP-882AB",
+      "maker": "Epson",
+      "category": "プリンター・複合機",
+      "manualUrl": "https://www.epson.jp/support/portal/used/ep-882ab.htm",
+      "supportUrl": "https://www.epson.jp/support/portal/support_menu/ep-882ab.htm",
+      "consumablesUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-882ab.htm",
+      "inkCodes": [
+        "KAM-6CL",
+        "KAM-6CL-L"
+      ],
+      "state": "direct",
+      "reviewedAt": "2026-11-02",
+      "verification": "Model-specific manufacturer manual index has PDF User Guide; model-specific manufacturer consumables page and manufacturer exact-model compatibility tables both list ink SKUs."
+    },
+    {
+      "model": "EP-882AR",
+      "maker": "Epson",
+      "category": "プリンター・複合機",
+      "manualUrl": "https://www.epson.jp/support/portal/used/ep-882ar.htm",
+      "supportUrl": "https://www.epson.jp/support/portal/support_menu/ep-882ar.htm",
+      "consumablesUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-882ar.htm",
+      "inkCodes": [
+        "KAM-6CL",
+        "KAM-6CL-L"
+      ],
+      "state": "direct",
+      "reviewedAt": "2026-11-02",
+      "verification": "Model-specific manufacturer manual index has PDF User Guide; model-specific manufacturer consumables page and manufacturer exact-model compatibility tables both list ink SKUs."
+    },
+    {
+      "model": "EP-882AW",
+      "maker": "Epson",
+      "category": "プリンター・複合機",
+      "manualUrl": "https://www.epson.jp/support/portal/used/ep-882aw.htm",
+      "supportUrl": "https://www.epson.jp/support/portal/support_menu/ep-882aw.htm",
+      "consumablesUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-882aw.htm",
+      "inkCodes": [
+        "KAM-6CL",
+        "KAM-6CL-L"
+      ],
+      "state": "direct",
+      "reviewedAt": "2026-11-02",
+      "verification": "Model-specific manufacturer manual index has PDF User Guide; model-specific manufacturer consumables page and manufacturer exact-model compatibility tables both list ink SKUs."
+    }
+  ]
+}
