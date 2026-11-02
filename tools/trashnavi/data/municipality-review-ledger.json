@@ -1559,12 +1559,12 @@
       "lgcode": "015857",
       "pref": "北海道",
       "municipality": "安平町",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
-      "service_provider": null,
-      "review_note": null
+      "coverage_state": "joint_service",
+      "reviewed_at": "2026-11-02",
+      "qualifying_source_count": 1,
+      "distinct_link_type_count": 1,
+      "service_provider": "安平・厚真行政事務組合",
+      "review_note": "安平町公式「生活環境」で収集・分別、地区別大型ごみ、じん芥処理場自己搬入と安平・厚真行政事務組合の担当を確認。公式ごみ専用直リンク1件。"
     },
     {
       "lgcode": "015865",
