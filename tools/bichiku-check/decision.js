@@ -19,7 +19,7 @@ function optionUsable(option,s){
  if(option.equivalence!=="full")return false;
  if(option.parent==="food"){
    if(s.noHeat&&(option.prep==="heat"||option.prep==="verify"))return false;
-   if(option.prep==="water"&&(!s.safeWaterConfirmed||s.prepWaterLiters<=0))return false;
+   if(option.requiresWater&&(!s.safeWaterConfirmed||s.prepWaterLiters<=0))return false;
  }
  return true;
 }
