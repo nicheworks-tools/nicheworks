@@ -93,3 +93,28 @@ The existing repo has fixed 89-tool spec, monetization, non-affiliate, and publi
 
 ## Expansion gates
 Track by locale: Search Console impressions/clicks for route, on-page result generation, coarse affiliate outbound click counts, and verified Amazon conversions from the Associates dashboard. Do not log household inputs. At day 30/90, decide continuation based on actual SEO and conversion data, not hypothetical revenue.
+
+## Guided decision UX v2 — 2026-11-02
+
+The four routes now load `experience.js` and `decision.js` instead of the previous `app.js` and `options-ui.js`. Those legacy files remain versioned for audit/rollback, but are not active. The established 44 parent categories and 81 concrete examples remain the shared underlying data; they are **not** displayed as a huge landing list.
+
+User journey:
+1. Choose **home/go-bag**, household size, time horizon, and outage/heat assumptions in a compact mobile input screen.
+2. Show **seven outcome cards**: food, drinking water, toilet, sleeping/warmth, power/cooking, hygiene/health, and evacuation/other. Only the purpose-based shortages appear at first.
+3. Enter a purpose to inspect parent targets and owned quantities, then compare **emergency-specific / everyday / improvised or conditional** named options, with warnings and manual expiry entries.
+4. Produce a selectable **missing-items-only shopping list** with Amazon Japan links where curated, and client-side CSV, copy, print or reset.
+
+### Composition and safety rules
+- A food requiring rehydration is counted only after the user confirms safe drinking water and enters the water litres allocated for food preparation according to the product's label. When tap water is unavailable, the allocation must fit stored drinking water. Water for food is allocated from the same water pool and is **not added twice** to the household's 3L/person/day planning target; the remaining amount is shown.
+- Instant noodles with only an experimental police cold-water example are *not* automatically counted as ready to eat in a no-heat scenario. Manufacturer instructions and hygiene remain authoritative.
+- Toilet bag/solidifier stock is credited only if the user explicitly confirms the complete assembly with compatible installation and safe sealed storage/disposal; otherwise it remains non-equivalent.
+- Sleeping floor insulation and body warmth require different classes of supplies. Foil sheets and cardboard remain supplementary or temporary options.
+- `core.calculate()` supports opt-in enforced-condition assessment, preserving the older API for existing tests. `decision.assessment()` returns the guided, dependency-aware values and seven goal groups.
+
+### Scope and known constraints
+- No product-specific verified recipes, calories or nutrition scoring, automatic amounts of food-preparation water, or evidence that an improvised shelter achieves a particular insulation value.
+- The category stock quantities are **unclassified extra holdings**; specific quantities are added separately. Avoid entering the same units twice.
+- No real-time Amazon pricing or paid advertising in staged preview. Shop links carry only fixed Japanese category queries, not user's family/outage data.
+- Staged `noindex,nofollow`, not registered in public index/sitemap, until a separate coordinated launch PR.
+- Unit tests include `tests/decision.test.cjs` and browser smoke targets the four-stage UI. Native language and actual-device usability review remain important.
+
