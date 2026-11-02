@@ -103,6 +103,21 @@ async function smoke(lang,allowPreviousAssetVersion) {
     }
     query('#langControl [data-lang="both"]').click();
     check(document.querySelectorAll("#detailDefinition .langTag").length>=2,"Both mode does not show bilingual definitions");
+    // Require at least one real wave3 alias search per active language once current assets deploy.
+    if(latest) {
+      const wave3Term=lang==="ja"?"構造梁":"Stone wool insulation";
+      const wave3Id=lang==="ja"?"beam":"rockwool";
+      input.value=wave3Term;
+      input.dispatchEvent(new Event("input",{bubbles:true}));
+      await sleep(160);
+      const first=query("#resultList .resultRow");
+      check(first?.dataset.entryId===wave3Id,
+        "Wave3 production alias not indexed or not ranked first: "+wave3Term+" -> "+wave3Id+" (first="+first?.dataset.entryId+")");
+      first.click();
+      await sleep(100);
+      check(query("#detailAliases")?.textContent.includes(wave3Term),
+        "Wave3 production search result does not display its reviewed alias: "+wave3Term);
+    }
     const viewport=window.innerWidth, clientWidth=document.documentElement.clientWidth;
     const overflow=Math.max(document.documentElement.scrollWidth,document.body.scrollWidth)-clientWidth;
     check(overflow<=3,"Page-wide horizontal overflow "+overflow+"px at "+viewport+"px");
