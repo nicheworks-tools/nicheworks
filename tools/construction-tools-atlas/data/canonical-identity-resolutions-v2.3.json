@@ -1,6 +1,6 @@
 {
   "schema": "cta-canonical-identity-resolutions-v2.3",
-  "version": "2026-09-16-q014-identity-closure-1",
+  "version": "2026-11-03-final-five-canonical-identity-1",
   "policy": {
     "purpose": "Record reviewed canonical naming, taxonomy, alias, and distinct-concept decisions discovered during q011/q012/q013/q014 identity closure.",
     "source_rows_remain_immutable_provenance": true,
@@ -105,6 +105,26 @@
         "en": "Bargeboard"
       },
       "reason": "破風板 is the gable-edge bargeboard; fascia/nose board is a separate eaves-edge canonical."
+    },
+    {
+      "id": "ground_fault_breaker",
+      "from": {
+        "en": "GFCI/RCD"
+      },
+      "to": {
+        "en": "Ground-fault circuit breaker"
+      },
+      "reason": "The source identifies a protective breaker rather than all GFCI/RCD devices; avoid aliasing the general device class to a breaker."
+    },
+    {
+      "id": "toolbox_talk",
+      "from": {
+        "ja": "朝礼（TBM）"
+      },
+      "to": {
+        "ja": "TBM（作業前安全打合せ）"
+      },
+      "reason": "TBM is a short task-specific pre-work safety briefing; a site-wide morning assembly is a broader meeting, not an equivalent name."
     }
   ],
   "type_overrides": [
@@ -305,6 +325,30 @@
       "from": "system",
       "to": "component",
       "reason": "The entry describes the ventilation/rainscreen batten member itself."
+    },
+    {
+      "id": "sandpaper",
+      "from": "tool",
+      "to": "material",
+      "reason": "Paper/cloth-backed abrasive sheet is a material, and must align with reviewed q011_sanding_paper."
+    },
+    {
+      "id": "as_built",
+      "from": "tool",
+      "to": "document",
+      "reason": "An as-built drawing is a document, not a physical tool."
+    },
+    {
+      "id": "ground_fault_breaker",
+      "from": "materials",
+      "to": "component",
+      "reason": "Residual-current/earth-leakage protective circuit breaker is installed electrical equipment, matching q015."
+    },
+    {
+      "id": "toolbox_talk",
+      "from": "site",
+      "to": "process",
+      "reason": "The short pre-task safety discussion is a process, matching q016_toolbox_meeting."
     }
   ],
   "alias_removals": [
