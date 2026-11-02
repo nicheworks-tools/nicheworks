@@ -11,6 +11,7 @@ import { createRequire } from 'node:module';
 import { performance } from 'node:perf_hooks';
 import { createWorker } from 'tesseract.js';
 import YAML from 'yaml';
+import { createProductionLabelScorer, aggregateProductionAssessments } from './production-label-scoring.mjs';
 
 const require = createRequire(import.meta.url);
 const parser = require('../../_shared/cosmetic-ingredient-parser.js');
@@ -69,6 +70,7 @@ function aggregate(rows, field) {
     ...(field === 'annotatedListMetrics' ? { totalOcrDurationMs: elapsedMs } : {})
   };
 }
+const productionScorer = createProductionLabelScorer();
 const results = [];
 // A/B only: never use the ground-truth annotations to pick OCR output at runtime.
 const experimental = { singleBlock: [], sparseText: [] };
@@ -107,7 +109,9 @@ try {
       annotatedListMetrics,
       rawTranscriptionMetrics,
       annotationOracleMetrics,
-      rawDirectMetrics: metric.score(gt.raw_ingredients_list, recognized?.data?.text || '', parser.splitIngredients)
+      rawDirectMetrics: metric.score(gt.raw_ingredients_list, recognized?.data?.text || '', parser.splitIngredients),
+      analysis: await productionScorer.assess(normalizedOcr, gt.INCI_list),
+      transcriptionOnlyAnalysis: await productionScorer.assess(annotatedRaw, gt.INCI_list)
     });
     console.log([
       'PHOTO', id, 'annotated ingredients', gt.INCI_list.length,
@@ -143,7 +147,8 @@ try {
         durationMs,
         annotatedListMetrics,
         rawTranscriptionMetrics,
-        rawDirectMetrics: metric.score(gt.raw_ingredients_list, directText, parser.splitIngredients)
+        rawDirectMetrics: metric.score(gt.raw_ingredients_list, directText, parser.splitIngredients),
+        analysis: await productionScorer.assess(processedText, gt.INCI_list)
       });
       console.log([
         'EXPERIMENT', variant.key, id,
@@ -175,7 +180,12 @@ const report = {
     productionSharedModules: [
       'tools/inci-fastscan/js/core_ocr_post.js',
       'tools/inci-fastscan/qa/photo_ocr_metrics.js',
-      'tools/_shared/cosmetic-ingredient-parser.js'
+      'tools/_shared/cosmetic-ingredient-parser.js',
+      'tools/inci-fastscan/js/core_parser.js',
+      'tools/inci-fastscan/js/core_analyze.js',
+      'tools/inci-fastscan/js/core_matcher.js',
+      'tools/inci-fastscan/js/generated_dictionary.js',
+      'tools/inci-fastscan/data/ingredients*.json'
     ],
     caveat: 'Exploratory Tesseract.js real-photo baseline. Does NOT exercise browser image preprocessing, phone cameras, Japanese OCR or full live FastScan UI. External annotations may contain spelling and alias variations. The annotation-only positive control estimates strict scoring disagreement on source ground truths without photo OCR.',
     passCriteria: 'All 12 photographs processed with real OCR and a per-photo numeric result; there is no fabricated accuracy threshold.'
@@ -192,6 +202,14 @@ const report = {
     samples: rows,
     caveat: 'Diagnostic only. No ground-truth oracle used at runtime; no production PSM changed.'
   }])),
+  productionDictionaryEvaluation: {
+    dictionaryRecords: productionScorer.dictionaryCount,
+    baseline: aggregateProductionAssessments(results),
+    annotationOnlyControl: aggregateProductionAssessments(results, 'transcriptionOnlyAnalysis'),
+    singleBlock: aggregateProductionAssessments(experimental.singleBlock),
+    sparseText: aggregateProductionAssessments(experimental.sparseText),
+    metricNotes: 'Strict canonical identity of recognized dictionary matches vs independently annotated INCI list; eligible denominator excludes names not found in the production dictionary. Each ingredient counted once after production deduplication. Extra matches not in source annotation are NOT proven false positives (annotation or OCR may be incomplete); user must review. Before/after differences measure only dictionary exact line-wrap repair, never ground-truth-guided correction. Control transcribes source label with no photo OCR; not OCR accuracy.'
+  },
   samples: results
 };
 fs.writeFileSync(outputFile, JSON.stringify(report, null, 2) + '\n', 'utf8');
@@ -215,5 +233,22 @@ for (const [name, group] of Object.entries(report.experimentalPageSegmentation))
     baselineExactRecallPercent: +(100 * a.pooledExactIngredientRecall).toFixed(2),
     baselineCerPercent: +(100 * r.pooledCharacterErrorRate).toFixed(2),
     rawPreCleanupCerPercent: +(100 * group.rawUnprocessed.pooledCharacterErrorRate).toFixed(2)
+  }));
+}
+
+for (const [variant, scores] of Object.entries(report.productionDictionaryEvaluation)) {
+  if (!scores || typeof scores !== 'object' || !('eligibleReferenceUniqueNames' in scores)) continue;
+  console.log('FASTSCAN_PRODUCTION_END_TO_END=' + JSON.stringify({
+    variant,
+    photos: scores.photos,
+    dictionaryRecords: productionScorer.dictionaryCount,
+    dictionarySupportedReferenceNames: scores.eligibleReferenceUniqueNames,
+    dictionaryUnsupportedReferenceItems: scores.dictionaryUnsupportedItems,
+    beforeRepairRecallPercent: scores.beforeRepairRecallOfDictionarySupported == null ? null : +(100 * scores.beforeRepairRecallOfDictionarySupported).toFixed(2),
+    afterRepairRecallPercent: scores.afterRepairRecallOfDictionarySupported == null ? null : +(100 * scores.afterRepairRecallOfDictionarySupported).toFixed(2),
+    beforeRepairExtraMatches: scores.beforeRepairExtraNotInAnnotation,
+    afterRepairExtraMatches: scores.afterRepairExtraNotInAnnotation,
+    exactJoinRepairs: scores.exactJoinRepairs,
+    threePartRepairs: scores.threePartRepairs
   }));
 }
