@@ -393,6 +393,7 @@ const downloadText = (filename, text) => {
 const copyText = async (text) => {
   if (!text.trim()) return false;
   try {
+    if (!navigator.clipboard?.writeText) throw new Error("clipboard_unavailable");
     await navigator.clipboard.writeText(text);
     return true;
   } catch {
@@ -400,9 +401,10 @@ const copyText = async (text) => {
     textarea.value = text;
     document.body.appendChild(textarea);
     textarea.select();
-    document.execCommand("copy");
+    let copied = false;
+    try { copied = document.execCommand("copy") === true; } catch (_) {}
     textarea.remove();
-    return true;
+    return copied;
   }
 };
 
@@ -589,9 +591,22 @@ const renderCustomRules = () => {
     button.addEventListener("click", () => {
       customRules.splice(Number(button.dataset.removeRule), 1);
       renderCustomRules();
+      invalidateRedaction();
       showToast(t("Custom ruleを削除しました", "Custom rule removed"));
     });
   });
+};
+
+const invalidateRedaction = () => {
+  // Secret-bearing input or rule changes make the previously redacted export
+  // obsolete. A stale output must not be copied as if it covered new secrets.
+  lastResult = null;
+  const output = el("outputText");
+  if (output) output.value = "";
+  updateSummary(emptyCounts());
+  renderFindings(null, null);
+  renderCoverage(null);
+  updateSafetySummary(null);
 };
 
 const setupProActions = () => {
@@ -611,6 +626,7 @@ const setupProActions = () => {
     }
     customRules.push({ label, prefix, minLength: Math.max(4, minLength), severity });
     renderCustomRules();
+    invalidateRedaction();
     showToast(t("Custom ruleを追加しました", "Custom rule added"));
   });
 
@@ -621,8 +637,8 @@ const setupProActions = () => {
   const copyAction = (id, builder, message) => {
     el(id)?.addEventListener("click", async () => {
       if (!ensureResult()) return;
-      await copyText(builder());
-      showToast(message);
+      const copied = await copyText(builder());
+      showToast(copied ? message : t("コピーできませんでした", "Could not copy"));
     });
   };
 
@@ -749,6 +765,12 @@ document.addEventListener("DOMContentLoaded", () => {
   setupProActions();
 
   redactBtn.addEventListener("click", runRedaction);
+  input?.addEventListener("input", invalidateRedaction);
+  ["modeApiKeys", "modeBearer", "modeJwt", "modePrivateKey",
+   "modeGenericSecret", "placeholderStyle", "keepLengthToggle"].forEach((id) => {
+    el(id)?.addEventListener("change", invalidateRedaction);
+  });
+  window.addEventListener("nw-pro-status-change", invalidateRedaction);
 
   document.querySelectorAll("[data-sample]").forEach((button) => {
     button.addEventListener("click", () => {
@@ -761,12 +783,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   clearBtn.addEventListener("click", () => {
     input.value = "";
-    output.value = "";
-    lastResult = null;
-    updateSummary(emptyCounts());
-    renderFindings(null, null);
-    renderCoverage(null);
-    updateSafetySummary(null);
+    invalidateRedaction();
     input.focus();
   });
 
@@ -776,18 +793,10 @@ document.addEventListener("DOMContentLoaded", () => {
       showToast(t("伏字済みテキストがありません", "No redacted text to copy"));
       return;
     }
-    try {
-      await copyText(text);
-      showToast(t("伏字済みテキストをコピーしました", "Copied redacted text"));
-    } catch {
-      const textarea = document.createElement("textarea");
-      textarea.value = text;
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand("copy");
-      textarea.remove();
-      showToast(t("伏字済みテキストをコピーしました", "Copied redacted text"));
-    }
+    const copied = await copyText(text);
+    showToast(copied
+      ? t("伏字済みテキストをコピーしました", "Copied redacted text")
+      : t("コピーできませんでした", "Could not copy"));
   });
 
   downloadBtn.addEventListener("click", () => {
