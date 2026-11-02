@@ -9,7 +9,7 @@
 - Publication contract: `canonical-100-v1`
 - Common specification: `common-spec/spec-ja.md`
 - Current dataset: `100 verified-publication patterns`
-- Additional published V2 supplement: `15 sourced JA/EN entries (115 total browsable; 230 static detail pages)`
+- Additional published V2 supplement: `20 sourced JA/EN entries (120 total browsable; 240 static detail pages)`
 - Product class: `static browser visual dictionary / discovery tool`
 - Monetization class: `AFFILIATE` (active Amazon.co.jp maintained-intent links)
 
@@ -203,3 +203,7 @@ Canonical v1 remains exactly 100 frozen reviewed records; independent `data/v2-e
 ## V2 supplement 3 (2026-11-02)
 
 Five new referenced entries: noshi-motif, goshoguruma, temari-motif, sankuzushi and kasuri. Ten new bilingual detail pages plus five original 1536 SVG schematics. The combined browser catalog is **115 entries** (frozen 100 and 15 source-reviewed supplement entries), with **230** static detail pages and 72 unverified, unpublished backlog concepts. **Kasuri is qualified as a textile patterning technique**, not a single fixed geometric pattern. CI checks source links, content, previewable diagrams, browser search and bilingual detail mounting. The 230/230 external audit is a separately selected post-deployment check.
+
+## V2 supplement 4: textile checks and stripes (2026-11-02)
+
+Five newly researched textile appearance terms are published in the versioned `data/v2-extension.json`: graph-check, shadow-check, pencil-stripe, hairline-stripe, candy-stripe. They have source links, representative original SVGs, bilingual definitions/identification cues and ten JA/EN static detail URLs. Combined runtime total: 120 entries; post-deployment details: 240 URLs; unpublished backlog: 67 candidates. Exact stripe widths and a single weave construction are not claimed universally. Separate strict live 240-URL verification is needed after deployment.
