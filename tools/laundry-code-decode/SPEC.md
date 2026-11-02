@@ -47,9 +47,9 @@ The standardized symbol meaning, the physical garment label, manufacturer instru
 - Keep a crawlable static overview of the five basic care-symbol shapes, official reading order, seven-table/43-symbol scope, and representative symbol-number examples so the core meaning is available before JavaScript renders the interactive grid.
 - Publish an in-page static index of exactly the canonical 43 JIS numbers with Japanese/English summaries and clickable `?jis=NNN` deep links, rather than adding separate duplicate pages.
 - Show a bilingual meaning and official symbol number when a symbol is selected.
-- Provide an experimental photo candidate search by comparing an uploaded image with the local SVG templates.
+- Provide an experimental photo candidate search by comparing an uploaded image with the local SVG templates. Each asynchronous comparison is bound to its photo and latest invocation; choosing/clearing a photo, switching category or search scope, or starting another comparison invalidates stale results and errors. Old photo load/error callbacks must not display or clear newer images.
 - Photo candidate search is not OCR and is not an authoritative automatic classifier.
-- Process the uploaded photo locally in the browser. No photo content is uploaded by this tool.
+- Process the uploaded photo locally in the browser. No photo content is uploaded by this tool. Invalid/new file selections immediately clear the previous preview and candidate set; previous object URLs are revoked without affecting later selections.
 - Allow copying the selected result and standard/safety context.
 - Restore a selected canonical symbol from the `jis` URL query parameter and allow copying its stable tool URL. Ignore missing, malformed, or unknown numbers.
 
@@ -110,6 +110,8 @@ The symbol grid and result areas reflow for narrow screens while retaining usabl
 
 ## Acceptance criteria
 
+- [ ] When photo candidate comparison is pending, changing/clearing the image, changing the category/scope or launching another comparison discards old candidates and errors. Late image load/error callbacks do not affect a new image.
+
 - [ ] `data.js` contains exactly 43 unique three-digit `jis` values matching the canonical publication contract.
 - [ ] No 20°C machine-wash symbol or three-dot tumble symbol exists.
 - [ ] P/F professional dry-clean records never use the very-gentle two-line modifier.
@@ -134,4 +136,5 @@ The symbol grid and result areas reflow for narrow screens while retaining usabl
 - `tools/laundry-code-decode/style.css`
 - `tools/laundry-code-decode/affiliate-config.js`
 - `tools/laundry-code-decode/tests/behavior.test.mjs`
+- `tools/laundry-code-decode/tests/photo-race.test.mjs`
 - `tools/laundry-code-decode/tests/behavior.test.mjs`
