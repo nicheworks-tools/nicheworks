@@ -178,6 +178,48 @@ assert.deepEqual(
 assert.equal(endToEnd.results[0].found, true);
 assert.equal(endToEnd.results[0].en, 'Sodium Hyaluronate');
 
+// Strict exact multi-ingredient rescue: only a unique full-line decomposition
+// into maintained names may split a single unlabeled OCR fragment.
+const exactStream = await analyze('Water Glycerin', repairDict);
+assert.deepEqual(Array.from(exactStream.list), ['Water', 'Glycerin']);
+assert.equal(exactStream.exactSequenceSplits, 1);
+assert.equal(exactStream.results.filter(item => item.found).length, 2);
+
+const unresolvedStream = await analyze('Water Glycerin Mystery', repairDict);
+assert.deepEqual(Array.from(unresolvedStream.list), ['Water Glycerin Mystery'],
+  'Do not discard unknown text just to create known ingredient matches');
+assert.equal(unresolvedStream.exactSequenceSplits, 0);
+
+const alreadyCanonical = await analyze('Cetearyl Alcohol', repairDict);
+assert.deepEqual(Array.from(alreadyCanonical.list), ['Cetearyl Alcohol']);
+assert.equal(alreadyCanonical.exactSequenceSplits, 0);
+
+const syntheticCompound = await analyze('Water Glycerin',
+  [...repairDict, { en: 'Water Glycerin', jp: [], alias: [] }]);
+assert.deepEqual(Array.from(syntheticCompound.list), ['Water Glycerin'],
+  'Do not split a complete maintained multiword INCI identity');
+assert.equal(syntheticCompound.exactSequenceSplits, 0);
+
+const japaneseSpacing = await analyze('水 グリセリン', repairDict);
+assert.deepEqual(Array.from(japaneseSpacing.list), ['水 グリセリン'],
+  'Experimental Latin-word segmentation must not alter Japanese OCR text');
+
+// Source labels sometimes use spaced dashes as ingredient delimiters.
+// Preserve PEG-20, numeric ranges, slash compounds and ordinary OCR defaults.
+const dashRaw = 'INGREDIENTS: WATER - GLYCERIN - PEG-20 - C12-15 ALKYL BENZOATE';
+const spaced = postProcess(dashRaw, { langHint: 'en', spacedDashDelimiter: true });
+assert.deepEqual(Array.from(parser.splitIngredients(spaced)),
+  ['WATER', 'GLYCERIN', 'PEG-20', 'C12-15 ALKYL BENZOATE']);
+assert.equal(postProcess(dashRaw, { langHint: 'en' }).includes('WATER - GLYCERIN'), true,
+  'Flag-free compatibility default remains unchanged');
+assert.equal(postProcess('全成分：水 - グリセリン',
+  { langHint: 'jp', spacedDashDelimiter: true }),
+  postProcess('全成分：水 - グリセリン', { langHint: 'jp' }));
+assert.deepEqual(Array.from(parser.splitIngredients(postProcess(
+  'INGREDIENTS: PEG/PPG-9/2 DIMETHYL ETHER - WATER',
+  { langHint: 'en', spacedDashDelimiter: true }))),
+  ['PEG/PPG-9/2 DIMETHYL ETHER', 'WATER']);
+
 // Character-confusion handling stays review-only: the input remains unmatched,
 // while a conservative OCR hint may be exposed to the user.
 const confusionDict = [
