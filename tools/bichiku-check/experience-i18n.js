@@ -7,5 +7,9 @@ en:{prepPerFood:"Drinking water for ALL registered portions of this item (L)",pr
 zh:{prepPerFood:"用于本品全部登记份数的饮用水（升）",prepItemConfirm:"已核对本品的处理方法与所需水量",prepAllocated:"已确认食品所需的总水量",prepUnchecked:"未确认每种食品的水量和方法时，不计入可用储备。",prepExplanation:"打开每种需水的食品，按商品标签填写全部登记份数的所需饮用水总量并确认方法；与饮用水储备统一计算，不重复增加。",foodRequires:"需泡发或煮制的食品须逐一确认处理方法和用水量才能计入。冷水实验不保证所有品牌的安全。",prepNumberWarning:"不同产品所需水量不同，本工具不推测。"},
 vi:{prepPerFood:"Nước uống cần cho TẤT CẢ phần ăn đã nhập của món này (L)",prepItemConfirm:"Tôi đã kiểm tra cách chế biến và lượng nước trên nhãn",prepAllocated:"Tổng nước chế biến đã xác nhận",prepUnchecked:"Món chưa xác nhận nước và cách chế biến riêng sẽ không được tính.",prepExplanation:"Mở từng món cần nước, nhập tổng lít nước an toàn cho mọi phần ăn theo nhãn sản phẩm và xác nhận cách làm. Nước được phân bổ một lần từ nguồn uống/nấu.",foodRequires:"Món cần nước chỉ được tính sau khi xác nhận phương pháp và lượng nước cho từng loại. Thử nghiệm ngâm lạnh không chứng minh an toàn mọi nhãn hiệu.",prepNumberWarning:"Lượng nước khác nhau theo sản phẩm; công cụ không đoán."}
 };
+extra.ja.groupGaps="不足項目";extra.ja.enterQuantity="所持数を入力して確認";extra.ja.expiredOption="登録した期限を過ぎています。";
+extra.en.groupGaps="missing categories";extra.en.enterQuantity="Enter what you own";extra.en.expiredOption="Past the recorded expiry date.";
+extra.zh.groupGaps="不足类别";extra.zh.enterQuantity="登记已有数量后判断";extra.zh.expiredOption="已超过登记的有效期。";
+extra.vi.groupGaps="nhóm còn thiếu";extra.vi.enterQuantity="Nhập số lượng đang có";extra.vi.expiredOption="Đã qua hạn dùng được nhập.";
 for(const [lang,text] of Object.entries(extra))Object.assign(window.BICHIKU_GUIDED_TEXT[lang],text);
 })();
