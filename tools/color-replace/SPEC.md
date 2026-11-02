@@ -67,6 +67,8 @@ The dual before/after canvas workspace benefits from width, while controls and p
 - [ ] Applying a destination color and tolerance updates the processed canvas without modifying the source file on disk.
 - [ ] Tolerance `0` remains `0` and therefore matches only pixels with exact RGB distance `0`; it is not replaced by the default `20`.
 - [ ] PNG download is available after processing and uses the processed canvas dimensions/content.
+- [ ] Outdated FileReader, image decoder and animation-frame callbacks are ignored after another file, Reset, or a changed replacement setting.
+- [ ] An unsupported or mislabeled Canvas output is not downloaded as PNG.
 - [ ] JP/EN switching preserves all image controls and privacy/format notices.
 
 ## Implementation evidence
