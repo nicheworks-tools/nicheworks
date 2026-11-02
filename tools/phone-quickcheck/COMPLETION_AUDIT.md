@@ -152,6 +152,13 @@ Phone QuickCheck v1 is complete under the maintained contract:
 
 Future work is maintenance: new models, source changes, corrections, and evidence upgrades. It is not part of the v1 closure backlog.
 
+## Post-v1 ManualFinder phone-to-accessory funnel — 2026-11-02
+
+To take advantage of ManualFinder's 553 GA4 landing sessions (28-day read-only sheet period 2026-10-03 to 2026-10-30), provide a cross-tool link **only on exact canonical Apple iPhone or Google Pixel models** present in both maintained datasets. ManualFinder's existing general intro link is retained. A small static `phone-quickcheck-match.js` contains only the current Apple/Google Phone QuickCheck canonical model names and rejects unknown models, unrelated PC models, and carrier-specific ambiguous makers. Its test compares every eligible model against `phones.json`; no per-visit cross-tool dataset fetch or raw user search transmission.
+
+Phone QuickCheck now accepts a `?model=...` query that preselects the exact canonical model only when present; unsupported values are silently ignored. GA4 event `manualfinder_phone_quickcheck_click` records only the existing coarse maker/category from the trusted result card, not the model or free-text search. ManualFinder official-source links and their established click-event semantics stay unchanged. Production Phone QuickCheck Chrome smoke verifies one real exact iPhone deep link at all 5 viewports, in addition to all maintained affiliate/regression cases.
+
+Actual user referrals, Amazon purchases and affiliate revenue are NOT verified by this implementation; report collection remains gated by GA4 read permissions and a dedicated Amazon Associates tracking ID. Neither Google nor Amazon authentication/ID is modified.
 ## Post-v1 monetization measurement — 2026-11-02
 
 The owned 28-day GSC/GA4 sheet (2026-10-03 through 2026-10-30; refreshed 2026-11-02) reports 229 site-wide Google clicks, 1,361 sessions, and 553 ManualFinder landing sessions. Phone QuickCheck was not in the top-200 GSC pages or exported GA4 landing rows. That does not prove zero total tool views or zero affiliate commissions. The sheet contains no Amazon payout or affiliate_outbound event counts, and Gmail produced no Associates earnings mail.
