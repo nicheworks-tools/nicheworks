@@ -154,6 +154,39 @@
       consumableOffer("kak-bk", "Epson KAK-BK", "Amazonで KAK-BK 対応インクを探す", "Find Epson KAK-BK ink on Amazon")
     ]),
 
+    consumableRow("Epson", "EP-812A", "https://www.epson.jp/support/portal/shoumouhin/ep-812a.htm", "2026-11-02", [
+      consumableOffer("sat-6cl", "Epson SAT-6CL", "Amazonで SAT-6CL 対応インクを探す", "Find Epson SAT-6CL ink on Amazon"),
+      consumableOffer("sat-bk", "Epson SAT-BK", "Amazonで SAT-BK 対応インクを探す", "Find Epson SAT-BK ink on Amazon")
+    ]),
+    consumableRow("Epson", "EP-813A", "https://www.epson.jp/support/portal/shoumouhin/ep-813a.htm", "2026-11-02", [
+      consumableOffer("sat-6cl", "Epson SAT-6CL", "Amazonで SAT-6CL 対応インクを探す", "Find Epson SAT-6CL ink on Amazon"),
+      consumableOffer("sat-bk", "Epson SAT-BK", "Amazonで SAT-BK 対応インクを探す", "Find Epson SAT-BK ink on Amazon")
+    ]),
+    consumableRow("Epson", "EP-814A", "https://www.epson.jp/support/portal/shoumouhin/ep-814a.htm", "2026-11-02", [
+      consumableOffer("sat-6cl", "Epson SAT-6CL", "Amazonで SAT-6CL 対応インクを探す", "Find Epson SAT-6CL ink on Amazon"),
+      consumableOffer("sat-bk", "Epson SAT-BK", "Amazonで SAT-BK 対応インクを探す", "Find Epson SAT-BK ink on Amazon")
+    ]),
+    consumableRow("Epson", "EP-815A", "https://www.epson.jp/support/portal/shoumouhin/ep-815a.htm", "2026-11-02", [
+      consumableOffer("sat-6cl", "Epson SAT-6CL", "Amazonで SAT-6CL 対応インクを探す", "Find Epson SAT-6CL ink on Amazon"),
+      consumableOffer("sat-bk", "Epson SAT-BK", "Amazonで SAT-BK 対応インクを探す", "Find Epson SAT-BK ink on Amazon")
+    ]),
+    consumableRow("Epson", "EP-816A", "https://www.epson.jp/support/portal/shoumouhin/ep-816a.htm", "2026-11-02", [
+      consumableOffer("sat-6cl", "Epson SAT-6CL", "Amazonで SAT-6CL 対応インクを探す", "Find Epson SAT-6CL ink on Amazon"),
+      consumableOffer("sat-bk", "Epson SAT-BK", "Amazonで SAT-BK 対応インクを探す", "Find Epson SAT-BK ink on Amazon")
+    ]),
+    consumableRow("Epson", "EP-715A", "https://www.epson.jp/support/portal/shoumouhin/ep-715a.htm", "2026-11-02", [
+      consumableOffer("sat-6cl", "Epson SAT-6CL", "Amazonで SAT-6CL 対応インクを探す", "Find Epson SAT-6CL ink on Amazon"),
+      consumableOffer("sat-bk", "Epson SAT-BK", "Amazonで SAT-BK 対応インクを探す", "Find Epson SAT-BK ink on Amazon")
+    ]),
+    consumableRow("Epson", "EW-052A", "https://www.epson.jp/support/portal/shoumouhin/ew-052a.htm", "2026-11-02", [
+      consumableOffer("mug-4cl", "Epson MUG-4CL", "Amazonで MUG-4CL 対応インクを探す", "Find Epson MUG-4CL ink on Amazon"),
+      consumableOffer("mug-bk", "Epson MUG-BK", "Amazonで MUG-BK 対応インクを探す", "Find Epson MUG-BK ink on Amazon")
+    ]),
+    consumableRow("Epson", "EW-452A", "https://www.epson.jp/support/portal/shoumouhin/ew-452a.htm", "2026-11-02", [
+      consumableOffer("mug-4cl", "Epson MUG-4CL", "Amazonで MUG-4CL 対応インクを探す", "Find Epson MUG-4CL ink on Amazon"),
+      consumableOffer("mug-bk", "Epson MUG-BK", "Amazonで MUG-BK 対応インクを探す", "Find Epson MUG-BK ink on Amazon")
+    ]),
+
     consumableRow("Canon", "TS8830", "https://personal.canon.jp/product/printer/pixus/lineup/ts8830/supply", "2026-09-14", [
       consumableOffer("bci331-330", "Canon BCI-331 BCI-330", "Amazonで BCI-331 / BCI-330 インクを探す", "Find Canon BCI-331 / BCI-330 ink on Amazon"),
       consumableOffer("bci331xl-330xl", "Canon BCI-331XL BCI-330XL", "Amazonで BCI-331XL / BCI-330XL インクを探す", "Find Canon BCI-331XL / BCI-330XL ink on Amazon")

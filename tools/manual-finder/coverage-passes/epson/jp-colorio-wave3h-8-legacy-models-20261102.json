@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "maker": "Epson",
+  "scopeId": "colorio-8-older-model-user-guide-and-ink-20261102",
+  "status": "reviewed",
+  "sourceLevel": "A",
+  "region": "JP",
+  "language": "ja",
+  "verifiedAt": "2026-11-02",
+  "scope": "Epson Colorio exact EP-812A, EP-813A, EP-814A, EP-815A, EP-816A, EP-715A, EW-052A and EW-452A Japanese manufacturer manual and matching ink-consumables pages. This is a bounded eight-model batch, not company-wide completion.",
+  "counts": {
+    "publishedManualModels": 8,
+    "newBasicAmazonModelSearches": 8,
+    "newExactInkSkuAffiliateSearches": 16,
+    "newConsumerPrinterDetailMappings": 8
+  },
+  "publicationFile": "tools/manual-finder/data/manuals.wave3.08.js",
+  "affiliateFile": "tools/manual-finder/affiliate-config.js",
+  "manufacturerDomains": [
+    "www.epson.jp"
+  ],
+  "records": [
+    {
+      "model": "EP-812A",
+      "category": "プリンター・複合機",
+      "maker": "Epson",
+      "manualUrl": "https://www.epson.jp/support/portal/used/ep-812a.htm",
+      "consumablesUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-812a.htm",
+      "inkCodes": [
+        "SAT-6CL",
+        "SAT-BK"
+      ],
+      "verifiedAt": "2026-11-02",
+      "state": "direct",
+      "manualEvidence": "Epson manufacturer model-specific page displays exact model identity and Web and PDF user-guide links",
+      "consumableEvidence": "Epson manufacturer model-specific consumables page lists the exact cartridge IDs under ink cartridge section",
+      "resolutionState": "direct_manual_page",
+      "notes": "Model-specific official manual-list page; no inference of cartridge compatibility across models."
+    },
+    {
+      "model": "EP-813A",
+      "category": "プリンター・複合機",
+      "maker": "Epson",
+      "manualUrl": "https://www.epson.jp/support/portal/used/ep-813a.htm",
+      "consumablesUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-813a.htm",
+      "inkCodes": [
+        "SAT-6CL",
+        "SAT-BK"
+      ],
+      "verifiedAt": "2026-11-02",
+      "state": "direct",
+      "manualEvidence": "Epson manufacturer model-specific page displays exact model identity and Web and PDF user-guide links",
+      "consumableEvidence": "Epson manufacturer model-specific consumables page lists the exact cartridge IDs under ink cartridge section",
+      "resolutionState": "direct_manual_page",
+      "notes": "Model-specific official manual-list page; no inference of cartridge compatibility across models."
+    },
+    {
+      "model": "EP-814A",
+      "category": "プリンター・複合機",
+      "maker": "Epson",
+      "manualUrl": "https://www.epson.jp/support/portal/used/ep-814a.htm",
+      "consumablesUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-814a.htm",
+      "inkCodes": [
+        "SAT-6CL",
+        "SAT-BK"
+      ],
+      "verifiedAt": "2026-11-02",
+      "state": "direct",
+      "manualEvidence": "Epson manufacturer model-specific page displays exact model identity and Web and PDF user-guide links",
+      "consumableEvidence": "Epson manufacturer model-specific consumables page lists the exact cartridge IDs under ink cartridge section",
+      "resolutionState": "direct_manual_page",
+      "notes": "Model-specific official manual-list page; no inference of cartridge compatibility across models."
+    },
+    {
+      "model": "EP-815A",
+      "category": "プリンター・複合機",
+      "maker": "Epson",
+      "manualUrl": "https://www.epson.jp/support/portal/used/ep-815a.htm",
+      "consumablesUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-815a.htm",
+      "inkCodes": [
+        "SAT-6CL",
+        "SAT-BK"
+      ],
+      "verifiedAt": "2026-11-02",
+      "state": "direct",
+      "manualEvidence": "Epson manufacturer model-specific page displays exact model identity and Web and PDF user-guide links",
+      "consumableEvidence": "Epson manufacturer model-specific consumables page lists the exact cartridge IDs under ink cartridge section",
+      "resolutionState": "direct_manual_page",
+      "notes": "Model-specific official manual-list page; no inference of cartridge compatibility across models."
+    },
+    {
+      "model": "EP-816A",
+      "category": "プリンター・複合機",
+      "maker": "Epson",
+      "manualUrl": "https://www.epson.jp/support/portal/used/ep-816a.htm",
+      "consumablesUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-816a.htm",
+      "inkCodes": [
+        "SAT-6CL",
+        "SAT-BK"
+      ],
+      "verifiedAt": "2026-11-02",
+      "state": "direct",
+      "manualEvidence": "Epson manufacturer model-specific page displays exact model identity and Web and PDF user-guide links",
+      "consumableEvidence": "Epson manufacturer model-specific consumables page lists the exact cartridge IDs under ink cartridge section",
+      "resolutionState": "direct_manual_page",
+      "notes": "Model-specific official manual-list page; no inference of cartridge compatibility across models."
+    },
+    {
+      "model": "EP-715A",
+      "category": "プリンター・複合機",
+      "maker": "Epson",
+      "manualUrl": "https://www.epson.jp/support/portal/used/ep-715a.htm",
+      "consumablesUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-715a.htm",
+      "inkCodes": [
+        "SAT-6CL",
+        "SAT-BK"
+      ],
+      "verifiedAt": "2026-11-02",
+      "state": "direct",
+      "manualEvidence": "Epson manufacturer model-specific page displays exact model identity and Web and PDF user-guide links",
+      "consumableEvidence": "Epson manufacturer model-specific consumables page lists the exact cartridge IDs under ink cartridge section",
+      "resolutionState": "direct_manual_page",
+      "notes": "Model-specific official manual-list page; no inference of cartridge compatibility across models."
+    },
+    {
+      "model": "EW-052A",
+      "category": "プリンター・複合機",
+      "maker": "Epson",
+      "manualUrl": "https://www.epson.jp/support/portal/used/ew-052a.htm",
+      "consumablesUrl": "https://www.epson.jp/support/portal/shoumouhin/ew-052a.htm",
+      "inkCodes": [
+        "MUG-4CL",
+        "MUG-BK"
+      ],
+      "verifiedAt": "2026-11-02",
+      "state": "direct",
+      "manualEvidence": "Epson manufacturer model-specific page displays exact model identity and Web and PDF user-guide links",
+      "consumableEvidence": "Epson manufacturer model-specific consumables page lists the exact cartridge IDs under ink cartridge section",
+      "resolutionState": "direct_manual_page",
+      "notes": "Model-specific official manual-list page; no inference of cartridge compatibility across models."
+    },
+    {
+      "model": "EW-452A",
+      "category": "プリンター・複合機",
+      "maker": "Epson",
+      "manualUrl": "https://www.epson.jp/support/portal/used/ew-452a.htm",
+      "consumablesUrl": "https://www.epson.jp/support/portal/shoumouhin/ew-452a.htm",
+      "inkCodes": [
+        "MUG-4CL",
+        "MUG-BK"
+      ],
+      "verifiedAt": "2026-11-02",
+      "state": "direct",
+      "manualEvidence": "Epson manufacturer model-specific page displays exact model identity and Web and PDF user-guide links",
+      "consumableEvidence": "Epson manufacturer model-specific consumables page lists the exact cartridge IDs under ink cartridge section",
+      "resolutionState": "direct_manual_page",
+      "notes": "Model-specific official manual-list page; no inference of cartridge compatibility across models."
+    }
+  ]
+}
