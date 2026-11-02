@@ -32,7 +32,7 @@ Japan-focused, mobile-first, free planning aid for Japanese users and foreign re
 - No automatic validation of whether an individual product is safe for allergies, religion-based dietary practices, children, or pets. Verify actual labels and consult specialists as appropriate.
 
 Primary public references:
-- [Prime Minister's Office, household preparedness](https://www.kantei.go.jp/jp/headline/bousai/sonae.html)
+- [Prime Minister's Office, household preparedness](https://www.bousai.go.jp/kyoiku/hokenkyousai/check.html)
 - [Government of Japan, preparation and toilet guidance](https://www.gov-online.go.jp/tokusyu/bousai/preparation.html)
 - [National Consumer Affairs Center, emergency supplies](https://www.kokusen.go.jp/mimamori/mj_mailmag/mj-shinsen498.html)
 
