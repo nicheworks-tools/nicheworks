@@ -1,6 +1,6 @@
 {
   "schema": "cta-definition-promotions-v2.3",
-  "version": "2026-11-01-source-backed-145",
+  "version": "2026-11-03-source-backed-144-active-1",
   "policy": {
     "source": "Existing public canonical bilingual definition and maintained subject-specific detail; no synthetic generated copy",
     "scope": "Only 145 previously short canonical definitions with eligible explanatory context",
@@ -651,13 +651,6 @@
       "expected_en": "Job-site slang. Meaning can vary by context. Clarify intent to avoid misunderstandings.",
       "definition_ja": "「引き渡し」：現場スラング。意味は状況や職種で揺れやすい。 地域や会社で意味が微妙に違うことがある。 現場で使われる略語や合図の言い方。",
       "definition_en": "Job-site slang. Meaning can vary by context. Clarify intent to avoid misunderstandings.\nThe process of transferring a completed building or system to the owner or operator. It commonly includes confirming inspections and corrections and delivering keys, operating information, as-built records, warranties, and maintenance documents."
-    },
-    {
-      "id": "as_built",
-      "expected_ja": "「竣工図（アズビルト）」：現場スラング。意味は状況や職種で揺れやすい。 誤解が出ないよう言い換えや確認をする。 現場で使われる略語や合図の言い方。",
-      "expected_en": "Job-site slang. Meaning can vary by context. Meaning can vary by company or region.",
-      "definition_ja": "「竣工図（アズビルト）」：現場スラング。意味は状況や職種で揺れやすい。 誤解が出ないよう言い換えや確認をする。 現場で使われる略語や合図の言い方。",
-      "definition_en": "Job-site slang. Meaning can vary by context. Meaning can vary by company or region.\nAs-built drawings or records showing the installed condition at completion, including actual locations, dimensions, routes, systems, and approved deviations from the design. They support future operation, maintenance, and alteration work."
     },
     {
       "id": "rfis",
