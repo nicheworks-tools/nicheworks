@@ -1,6 +1,6 @@
 {
   "schema": "cta-content-enrichment-v2.3",
-  "version": "2026-09-18-wave6f-roofing-closeout-measurement-1",
+  "version": "2026-09-18-wave6f-roofing-closeout-measurement-1-canonical-merge-20261103",
   "entries": [
     {
       "id": "touch_up",
@@ -211,7 +211,7 @@
       ]
     },
     {
-      "id": "as_built",
+      "id": "as_built_drawing",
       "wave": "content-wave-006f",
       "state": "expanded",
       "affiliate_review": "not_applicable",
