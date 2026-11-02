@@ -1,6 +1,6 @@
 {
   "schema": "cta-reviewed-aliases-v3",
-  "version": "2026-11-02-runtime-bilingual-alias-wave3-laminate-identity-1",
+  "version": "2026-11-02-runtime-bilingual-alias-wave3-ceiling-tile-identity-1",
   "note": "Curated field-specific aliases only. Never coerce known duplicate canonicals or technical near-misses into synonyms. Source guard is exact canonical JA/EN identity.",
   "entries": [
     {
@@ -741,6 +741,21 @@
         "現場養生"
       ],
       "add_en": []
+    },
+    {
+      "id": "q016_ceiling_tile",
+      "expected_ja": "システム天井用タイル",
+      "expected_en": "Ceiling Tile",
+      "add_ja": [
+        "吊り天井用化粧タイル"
+      ],
+      "add_en": [
+        "Suspended ceiling tile"
+      ],
+      "reason": "Narrow generic ceiling board to replaceable modular suspended-grid tile. Do not conflate direct-fixed board or separate acoustic subtype.",
+      "evidence_urls": [
+        "https://www.armstrongceilings.com/commercial/en/technical-downloads/ceiling-terms.html"
+      ]
     }
   ],
   "held_for_identity_review": [
@@ -755,12 +770,6 @@
       "ja": "サンドペーパー",
       "en": "Sanding Paper",
       "reason": "Sanding Paper and published sandpaper describe the same abrasion material; requires redirect/identity decision, not fabricated wording."
-    },
-    {
-      "id": "q016_ceiling_tile",
-      "ja": "天井板",
-      "en": "Ceiling Tile",
-      "reason": "Ceiling Tile overlaps separate ceiling_panel; distinguish grid tile, panel and fixed ceiling board before adding equivalents."
     },
     {
       "id": "as_built",
