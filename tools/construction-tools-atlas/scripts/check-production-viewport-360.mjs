@@ -7,9 +7,9 @@ import { spawn } from "node:child_process";
 
 
 const ORIGIN="https://nicheworks.app";
-const EXPECTED_ASSET_VERSION="20261102-reviewed-aliases-wave3-3";
-const PREVIOUS_ASSET_VERSION="20261102-reviewed-aliases-wave3-2";
-const SECOND_PREVIOUS_ASSET_VERSION="20261102-reviewed-aliases-wave3-1";
+const EXPECTED_ASSET_VERSION="20261102-reviewed-aliases-wave3-4";
+const PREVIOUS_ASSET_VERSION="20261102-reviewed-aliases-wave3-3";
+const SECOND_PREVIOUS_ASSET_VERSION="20261102-reviewed-aliases-wave3-2";
 const ALLOW_PREVIOUS_ASSET_VERSION=process.env.CTA_ALLOW_PREVIOUS_ASSET_VERSION==="1";
 
 const chrome = ["google-chrome", "google-chrome-stable", "chromium", "chromium-browser"].find(name =>
