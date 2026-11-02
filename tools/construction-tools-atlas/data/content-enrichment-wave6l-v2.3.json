@@ -1,6 +1,6 @@
 {
   "schema": "cta-content-enrichment-v2.3",
-  "version": "2026-09-18-wave6l-fallback-zero-1-canonical-merge-20261103",
+  "version": "2026-09-18-wave6l-fallback-zero-1-retired-archived-20261103",
   "entries": [
     {
       "id": "flashing_tape",
@@ -55,32 +55,6 @@
       ]
     },
     {
-      "id": "q015_earth_leakage_breaker",
-      "wave": "content-wave-006l",
-      "state": "expanded",
-      "affiliate_review": "mapped",
-      "detail_ja": "漏電・地絡による残留電流を検出し、所定値を超えると回路を遮断する漏電保護装置。定格電圧・電流・感度・遮断方式を回路用途に合わせる。",
-      "detail_en": "A ground-fault or residual-current protective device that disconnects a circuit when leakage current exceeds its trip threshold. Voltage, current, sensitivity, and interrupting characteristics must suit the circuit.",
-      "bullets_ja": [
-        "回路仕様に適合する定格・感度の機器を使用し、電気工事の適用基準に従う。",
-        "TEST機能など指定方法で定期確認し、正常動作しない機器を使用しない。",
-        "漏電保護だけに頼らず、接地・絶縁・過電流保護など他の保護も維持する。"
-      ],
-      "bullets_en": [
-        "Use a device with ratings and trip sensitivity appropriate for the circuit and applicable electrical rules.",
-        "Test operation by the specified method and remove malfunctioning devices from service.",
-        "Maintain grounding, insulation, and overcurrent protection rather than relying on residual-current protection alone."
-      ],
-      "examples_ja": [
-        "仮設電源回路へ適切な漏電遮断器を設置する。",
-        "定期点検でテストボタンによる動作を確認する。"
-      ],
-      "examples_en": [
-        "Provide suitable ground-fault protection on a temporary power circuit.",
-        "Verify trip operation using the device's prescribed test function."
-      ]
-    },
-    {
       "id": "deburring_tool",
       "wave": "content-wave-006l",
       "state": "expanded",
@@ -130,32 +104,6 @@
       "examples_en": [
         "Spread tile adhesive with the specified notch for large-format tile.",
         "Comb mortar in a consistent direction during floor-tile installation."
-      ]
-    },
-    {
-      "id": "q016_corner_trowel",
-      "wave": "content-wave-006l",
-      "state": "expanded",
-      "affiliate_review": "mapped",
-      "detail_ja": "左官材やパテなどの内角・外角を均一に整えるコーナーゴテ。用途に応じて内隅用・出隅用の形状を使い分ける。",
-      "detail_en": "A shaped trowel used to form and finish inside or outside corners in plaster, compound, or similar materials. Inside- and outside-corner profiles are selected to suit the work.",
-      "bullets_ja": [
-        "内角・外角に合う工具形状を選び、角度を崩さず一定圧で動かす。",
-        "材料の適切な硬化段階で仕上げ、過度な押さえで材料を掻き取らない。",
-        "角部へ付着した硬化材を除去し、エッジを滑らかに保つ。"
-      ],
-      "bullets_en": [
-        "Use the correct inside- or outside-corner profile and maintain consistent angle and pressure.",
-        "Finish at the appropriate stage of material set and avoid removing too much material.",
-        "Keep the tool edges clean and free of hardened compound that could scratch the finish."
-      ],
-      "examples_ja": [
-        "左官仕上げの入隅をコーナーゴテで整える。",
-        "パテ処理した角部を均一な形状に仕上げる。"
-      ],
-      "examples_en": [
-        "Finish an inside plaster corner with a corner trowel.",
-        "Shape a compound-coated corner to a consistent profile."
       ]
     },
     {
