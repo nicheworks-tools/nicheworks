@@ -285,12 +285,26 @@ function currentContext() {
   };
 }
 
+let generationRevision = 0;
+
+function invalidateGeneratedMessage() {
+  generationRevision += 1;
+  lastContext = null;
+  currentMessage = "";
+  document.getElementById("result-text").textContent = "";
+  document.getElementById("result-section").classList.add("hidden");
+  showProgress(false);
+  if (copyNotice) copyNotice.textContent = "";
+}
+
 function handleGenerate(regenerate) {
   const context = regenerate && lastContext ? { ...lastContext } : currentContext();
   if (!(context.purpose && context.culture && context.formality)) return;
   lastContext = context;
+  const revision = ++generationRevision;
   showProgress(true);
   window.setTimeout(() => {
+    if (revision !== generationRevision) return;
     const result = generateMessage(context);
     showProgress(false);
     if (result) renderResult(result);
@@ -339,8 +353,14 @@ document.addEventListener("DOMContentLoaded", () => {
     button.addEventListener("click", () => setLanguage(button.dataset.lang));
   });
   ["purpose", "culture", "formality"].forEach((id) => {
-    document.getElementById(id)?.addEventListener("change", validateRequired);
+    document.getElementById(id)?.addEventListener("change", () => {
+      invalidateGeneratedMessage();
+      validateRequired();
+    });
   });
+
+  document.getElementById("relationship")?.addEventListener("change", invalidateGeneratedMessage);
+  document.getElementById("keywords")?.addEventListener("input", invalidateGeneratedMessage);
 
   document.getElementById("generate-btn")?.addEventListener("click", () => handleGenerate(false));
   document.getElementById("regenerate-btn")?.addEventListener("click", () => handleGenerate(true));
