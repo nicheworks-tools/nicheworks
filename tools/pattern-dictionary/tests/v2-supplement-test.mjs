@@ -10,10 +10,10 @@ const app=fs.readFileSync(path.join(root,'app.js'),'utf8');
 const expected=["sakura-motif","ume-motif","kiku-motif","tsuru-motif","yukiwa","kanzemizu","shokko","matsukawabishi","bishamon-kikko","tachibana-motif"];
 const assert=(ok,s)=>{if(!ok)throw new Error(s)};
 assert(base.length===100,'v1 canonical source must remain frozen');
-assert(v2.schema_version==='pattern-dictionary-v2-supplement-2','v2 supplement schema mismatch');
-assert(v2.entries.length===10,'ten supplemental entries required');
-assert(new Set(v2.entries.map(x=>x.id)).size===10,'duplicate supplement IDs');
-assert(backlog.candidates.length===77,'remaining backlog count mismatch');
+assert(v2.schema_version==='pattern-dictionary-v2-supplement-3','v2 supplement schema mismatch');
+assert(v2.entries.length===15,'fifteen supplemental entries required');
+assert(new Set(v2.entries.map(x=>x.id)).size===15,'duplicate supplement IDs');
+assert(backlog.candidates.length===72,'remaining backlog count mismatch');
 for(const e of v2.entries){
  assert(expected.includes(e.id)&&!base.some(x=>x.id===e.id),'supplement ID unexpectedly overlaps v1 '+e.id);
  assert(e.production?.definition?.ja&&e.production?.definition?.en,'missing bilingual definition '+e.id);
@@ -41,7 +41,7 @@ for(const e of v2.entries){
 const yukiwa=v2.entries.find(x=>x.id==='yukiwa');
 assert(yukiwa.source.verification_state==='qualified'&&yukiwa.production.qualification?.ja&&yukiwa.production.qualification?.en,'yukiwa origin uncertainty must be preserved');
 assert(app.includes('fetch(V2)')&&app.includes('reference_path')&&app.includes('sourceMap[p.id]'),'runtime must use v2, original drawings and provenance');
-for(const [lang,file] of [['ja','index.html'],['en','en/index.html']])assert(fs.readFileSync(path.join(root,file),'utf8').includes('110'),lang+' homepage count not updated');
+for(const [lang,file] of [['ja','index.html'],['en','en/index.html']])assert(fs.readFileSync(path.join(root,file),'utf8').includes('115'),lang+' homepage count not updated');
 const cited=v2.entries.reduce((n,e)=>n+e.source.sources.length,0);
-assert(cited===23,'source-link count mismatch '+cited);
-console.log('OK: 110 browseable records, ten source-backed supplemental motifs, '+cited+' attribution links, ten 1536 SVG references, 20 static bilingual detail URLs and 77 remaining unpublished concepts.');
+assert(cited===38,'source-link count mismatch '+cited);
+console.log('OK: 115 browseable records, fifteen source-backed supplemental entries, '+cited+' attribution links, fifteen 1536 SVG references, 30 static bilingual detail URLs and 72 remaining unpublished concepts.');
