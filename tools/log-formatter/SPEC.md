@@ -32,6 +32,7 @@ Make pasted Nginx-style access logs and mixed text logs easier to inspect locall
 - Filtered visible log set and error-only subset.
 - Free clipboard copies and TXT download.
 - Current legacy Pro structured CSV/JSON export, Markdown report, regex-filter and detailed-analysis outputs.
+- For CSV only, prefix cells starting with spreadsheet formula operators with a text marker so untrusted log fields are not interpreted as spreadsheet formulas. Ordinary Nginx dash placeholders and numeric values remain unchanged. TXT/JSON and parsed content remain lossless.
 
 ## State and persistence
 
@@ -109,6 +110,7 @@ Large logs, filter controls, summaries, and formatted rows are desktop-oriented;
 - [ ] Free visible/error copy and TXT save remain available without Pro.
 - [ ] Current basic summaries remain available without Pro.
 - [ ] Current legacy Pro gates regex filtering, structured CSV/JSON exports, Markdown reporting, and detailed analysis.
+- [ ] All CSV fields escape spreadsheet formula-leading values, including when preceded by whitespace. Ordinary Nginx `-` placeholders and numeric fields remain unchanged; free TXT and Pro JSON exports are unmodified.
 - [ ] JP/EN and dark-display controls do not change the underlying log content or privacy warning.
 - [ ] The staged product-scoped wrapper defines exactly the five paid operations and delegates entitlement-state logic to the shared controller core.
 - [ ] Public runtime remains on the legacy gate until authoritative commercial configuration and an explicit migration are authorized.
@@ -117,6 +119,7 @@ Large logs, filter controls, summaries, and formatted rows are desktop-oriented;
 
 - `tools/log-formatter/index.html`
 - `tools/log-formatter/app.js`
+- `tools/log-formatter/tests/behavior.test.mjs`
 - `tools/log-formatter/pro-bridge.js`
 - `tools/log-formatter/style.css`
 - `tools/log-formatter/product-scoped-controller.mjs`

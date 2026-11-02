@@ -353,7 +353,17 @@ document.addEventListener("DOMContentLoaded", () => {
   function downloadFile(name, content, type) { const blob = new Blob([content], { type }); const url = URL.createObjectURL(blob); const a = document.createElement("a"); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); showMessage(t("download_ok"), "ok"); }
   function downloadVisibleTxt() { if (!state.lastVisibleLines.length) { showMessage(t("empty_copy"), "error"); return; } downloadFile(`logformatter-${stamp()}.txt`, state.lastVisibleLines.join("\n"), "text/plain;charset=utf-8"); }
 
-  function csvEscape(value) { const s = String(value ?? ""); return /[",\n\r]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s; }
+  function csvEscape(value) {
+    let s = String(value ?? "");
+    // Spreadsheet applications can execute formulas from CSV cells. Escape
+    // user-controlled log values that start with formula operators, including
+    // after leading whitespace/control chars. Preserve ordinary "-" and
+    // negative numbers commonly used in Nginx log size/referrer fields.
+    const formulaStart = /^[\s\uFEFF]*[=+@]/.test(s) ||
+      (/^[\s\uFEFF]*-/.test(s) && !/^[\s\uFEFF]*-(?:\d+(?:\.\d+)?|[\s]*)$/.test(s));
+    if (formulaStart) s = "'" + s;
+    return /[",\n\r]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+  }
   function rowToExport(row) { return { type: row.type, source: row.source, ip: row.ip || "", time: row.time || "", method: row.method || "", path: row.path || "", status: row.status || "", size: row.size || "", referer: row.referer || "", agent: row.agent || "", level: row.level || "", message: row.message || "", raw: row.raw || "", parsed: Boolean(row.parsed) }; }
   function buildCsv(rows) { const cols = ["type", "source", "ip", "time", "method", "path", "status", "size", "referer", "agent", "level", "message", "raw", "parsed"]; return [cols.join(","), ...rows.map((row) => { const out = rowToExport(row); return cols.map((col) => csvEscape(out[col])).join(","); })].join("\n"); }
   function exportCsv(errorsOnly = false) { if (!requirePro()) return; const rows = errorsOnly ? state.lastRows.filter(rowIsError) : state.lastRows; downloadFile(`logformatter-${errorsOnly ? "errors-" : ""}${stamp()}.csv`, buildCsv(rows), "text/csv;charset=utf-8"); }
