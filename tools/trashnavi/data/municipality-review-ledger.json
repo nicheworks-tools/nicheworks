@@ -1570,12 +1570,12 @@
       "lgcode": "015865",
       "pref": "北海道",
       "municipality": "むかわ町",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
-      "service_provider": null,
-      "review_note": null
+      "coverage_state": "joint_service",
+      "reviewed_at": "2026-11-02",
+      "qualifying_source_count": 1,
+      "distinct_link_type_count": 1,
+      "service_provider": "平取町外2町衛生施設組合",
+      "review_note": "むかわ町公式「ゴミの収集について」に分別・収集カレンダーと組合の担当が明記。公式ごみ専用直リンク1件。地区別日程は組合案内を参照。"
     },
     {
       "lgcode": "016012",
