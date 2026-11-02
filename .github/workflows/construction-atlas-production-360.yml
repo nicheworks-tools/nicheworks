@@ -1,0 +1,39 @@
+name: Construction Atlas production Chromium QA
+
+on:
+  pull_request:
+    paths:
+      - 'tools/construction-tools-atlas/scripts/check-production-viewport-360.mjs'
+      - '.github/workflows/construction-atlas-production-360.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '19 14 * * *' # Daily 23:19 JST (best effort; GitHub may delay scheduled runs)
+
+permissions:
+  contents: read
+
+jobs:
+  actual-production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Use Node 22 with built-in WebSocket
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify installed Chrome/Chromium
+        run: command -v google-chrome || command -v google-chrome-stable || command -v chromium
+      - name: Check live Chromium probe syntax
+        run: node --check tools/construction-tools-atlas/scripts/check-production-viewport-360.mjs
+      - name: Verify actual live nicheworks.app dictionary at 360px, 390px and desktop
+        run: node tools/construction-tools-atlas/scripts/check-production-viewport-360.mjs
+      - name: Preserve public viewport screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: construction-atlas-production-viewport
+          path: artifacts/construction-atlas-production-viewport/*.png
+          retention-days: 7
+          if-no-files-found: warn
