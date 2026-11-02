@@ -359,6 +359,35 @@
           </div>
         </section>
 
+        <section id="handoff-template" class="nw-section">
+          <div class="nw-section-heading">
+            <h2>5パックの作業引き継ぎテンプレート</h2>
+          </div>
+          <div class="nw-prose">
+            <p>5つの業務パックの出力を人が確認するための固定テンプレートです。コピーしてご自身の作業メモへ貼り付け、担当と根拠を記入してください。業務データの送信、承認、自動実行は行いません。</p>
+          </div>
+          <pre id="nwFivePackTemplate" class="nw-handoff-pre">【5パック引き継ぎ・下書き】
+対象案件 / 参照元 / 作成日: __________
+
+[ ] research-pack — 事実と出典・不明点・仮定・追加調査
+    確認根拠 / 担当: __________
+[ ] pm-pack — 対象範囲・マイルストーン・担当責任者・依存関係とリスク
+    確認根拠 / 担当: __________
+[ ] exec-assist-pack — 決裁事項・選択肢とトレードオフ・上位者への確認
+    確認根拠 / 担当: __________
+[ ] sales-pack — 見込み客・顧客の状況・回答下書き・未確認の約束事項
+    確認根拠 / 担当: __________
+[ ] cs-pack — 顧客影響・症状・エスカレーション担当・回答・次回連絡
+    確認根拠 / 担当: __________
+
+最終確認: 事実・権限・法務・顧客影響・情報セキュリティ・責任者承認
+判定: 下書き／レビュー未了。勝手に送信・公開・実行しない。</pre>
+          <div class="nw-handoff-controls">
+            <button id="nwFivePackCopy" type="button" class="nw-handoff-button">5パックの引き継ぎテンプレートをコピー</button>
+            <span id="nwFivePackStatus" role="status" aria-live="polite"></span>
+          </div>
+        </section>
+
         <section id="faq" class="nw-section">
           <div class="nw-section-heading">
             <h2>FAQ</h2>
@@ -464,5 +493,6 @@
         </div>
       </footer>
     </div>
+    <script src="../copy-handoff.js" defer></script>
   </body>
 </html>

@@ -642,3 +642,46 @@ li + li {
     padding: 16px;
   }
 }
+
+/* Static five-pack review handoff; no user material is retained or submitted. */
+.nw-handoff-pre {
+  margin: 12px 0;
+  border: 1px solid var(--nw-border);
+  border-radius: 12px;
+  background: #f8fafc;
+  color: var(--nw-text);
+  padding: 14px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 0.84rem;
+  line-height: 1.65;
+  max-height: 480px;
+  overflow: auto;
+}
+.nw-handoff-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+}
+.nw-handoff-button {
+  border: 1px solid var(--nw-border-strong);
+  border-radius: 999px;
+  background: #111827;
+  color: #fff;
+  min-height: 44px;
+  padding: 9px 16px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.nw-handoff-button:hover,
+.nw-handoff-button:focus-visible {
+  background: #334155;
+}
+#nwFivePackStatus { font-size: 0.9rem; color: var(--nw-text-soft); }
+@media (max-width: 760px) {
+  .nw-handoff-button { width: 100%; }
+  .nw-handoff-pre { font-size: 0.78rem; padding: 10px; }
+}
+
