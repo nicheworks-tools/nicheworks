@@ -135,7 +135,7 @@ try {
         { langHint: 'en', spacedDashDelimiter: true });
       segmentation[variant.key] = {
         durationMs,
-        annotatedMetrics: score(annotation.INCI_list.join('\\n'), cleaned, parser.splitIngredients),
+        annotatedMetrics: score(annotation.INCI_list.join('\n'), cleaned, parser.splitIngredients),
         rawTranscriptionMetrics: score(annotation.raw_ingredients_list, cleaned, parser.splitIngredients),
         analysis: await scorer.assess(cleaned, annotation.INCI_list)
       };
