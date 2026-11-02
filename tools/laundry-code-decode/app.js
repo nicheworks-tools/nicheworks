@@ -34,6 +34,8 @@ let currentLang = initialLang();
 let currentCat = "wash";
 let lastSymbol = null;
 let ocrObjectUrl = null;
+let photoRevision = 0;
+let comparisonRevision = 0;
 
 function norm(s) {
   return (s || "").toString().toLowerCase().replace(/\s+/g, " ").trim();
@@ -132,6 +134,10 @@ function applyLang(lang) {
 }
 
 function setCategory(cat) {
+  if (cat !== currentCat) {
+    ++comparisonRevision;
+    clearNode(candGrid);
+  }
   currentCat = cat;
   document.querySelectorAll(".cat-tab").forEach((b) => {
     b.classList.toggle("active", b.dataset.cat === currentCat);
@@ -393,6 +399,8 @@ function mseCanvas(a, b) {
 }
 
 async function runPhotoCandidates() {
+  const compareId = ++comparisonRevision;
+  const photoId = photoRevision;
   clearNode(candGrid);
 
   if (!ocrPreviewImg?.src || !ocrPreviewImg.complete || !ocrPreviewImg.naturalWidth) {
@@ -418,16 +426,20 @@ async function runPhotoCandidates() {
 
   try {
     for (const sym of candidates) {
+      if (compareId !== comparisonRevision || photoId !== photoRevision) return;
       const tpl = await svgToCanvas(sym, 96);
+      if (compareId !== comparisonRevision || photoId !== photoRevision) return;
       scored.push({ sym, score: mseCanvas(inputBW, tpl) });
     }
   } catch (_) {
+    if (compareId !== comparisonRevision || photoId !== photoRevision) return;
     const message = currentLang === "ja" ? "画像比較に失敗しました。別の画像で試してください。" : "Candidate comparison failed. Try another image.";
     setOcrStatus(message);
     toast(message);
     return;
   }
 
+  if (compareId !== comparisonRevision || photoId !== photoRevision) return;
   scored.sort((a, b) => a.score - b.score);
   const top = scored.slice(0, 3);
   if (top.length === 0) {
@@ -467,6 +479,8 @@ function revokeOcrObjectUrl() {
 }
 
 function clearPhotoCandidateState() {
+  ++photoRevision;
+  ++comparisonRevision;
   revokeOcrObjectUrl();
   if (ocrFile) ocrFile.value = "";
   if (ocrPreviewImg) {
@@ -478,9 +492,15 @@ function clearPhotoCandidateState() {
 }
 
 function handleImageFile(file) {
+  const photoId = ++photoRevision;
+  ++comparisonRevision;
   clearNode(candGrid);
   setOcrStatus("");
   revokeOcrObjectUrl();
+  if (ocrPreviewImg) {
+    ocrPreviewImg.removeAttribute("src");
+    ocrPreviewImg.style.display = "none";
+  }
   if (!file) return;
 
   if (!ALLOWED_IMAGE_TYPES.has(file.type)) {
@@ -502,11 +522,15 @@ function handleImageFile(file) {
   const url = URL.createObjectURL(file);
   ocrObjectUrl = url;
   ocrPreviewImg.onload = () => {
+    if (photoId !== photoRevision || ocrObjectUrl !== url ||
+        ocrPreviewImg.src !== url) return;
     ocrPreviewImg.style.display = "block";
     revokeOcrObjectUrl();
     setOcrStatus(currentLang === "ja" ? "画像を読み込みました。候補検索を実行してください。" : "Image loaded. Run candidate search.");
   };
   ocrPreviewImg.onerror = () => {
+    if (photoId !== photoRevision || ocrObjectUrl !== url ||
+        ocrPreviewImg.src !== url) return;
     const message = currentLang === "ja" ? "画像を読み込めませんでした。別の画像で試してください。" : "Could not load the image. Try another file.";
     clearPhotoCandidateState();
     toast(message);
@@ -523,7 +547,15 @@ document.querySelectorAll(".cat-tab").forEach((btn) => {
 });
 
 qEl?.addEventListener("input", renderSymbols);
-searchAllEl?.addEventListener("change", renderSymbols);
+searchAllEl?.addEventListener("change", () => {
+  ++comparisonRevision;
+  clearNode(candGrid);
+  renderSymbols();
+});
+ocrAllEl?.addEventListener("change", () => {
+  ++comparisonRevision;
+  clearNode(candGrid);
+});
 ocrFile?.addEventListener("change", (e) => handleImageFile(e.target.files?.[0]));
 ocrRun?.addEventListener("click", runPhotoCandidates);
 ocrClear?.addEventListener("click", clearPhotoCandidateState);
