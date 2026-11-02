@@ -9,6 +9,13 @@ on:
       - 'tools/inci-fastscan/qa/photo_ocr_metrics.js'
       - 'tools/inci-fastscan/js/core_ocr_post.js'
       - 'tools/_shared/cosmetic-ingredient-parser.js'
+      - 'tools/inci-fastscan/qa/production-label-scoring.mjs'
+      - 'tools/inci-fastscan/qa/check-production-label-scoring.mjs'
+      - 'tools/inci-fastscan/js/core_parser.js'
+      - 'tools/inci-fastscan/js/core_matcher.js'
+      - 'tools/inci-fastscan/js/core_analyze.js'
+      - 'tools/inci-fastscan/js/generated_dictionary.js'
+      - 'tools/inci-fastscan/data/ingredients*.json'
 
 permissions:
   contents: read
@@ -36,6 +43,11 @@ jobs:
         run: |
           npm init --yes >/dev/null
           npm install --no-save --no-package-lock --ignore-scripts tesseract.js@5.0.3 yaml@2.6.1
+
+      - name: Verify exact production dictionary-backed scoring before real photos
+        run: |
+          node --check tools/inci-fastscan/qa/production-label-scoring.mjs
+          node tools/inci-fastscan/qa/check-production-label-scoring.mjs
 
       - name: Fetch pinned real photo and ground-truth pairs (ephemeral, source GPL-3.0)
         shell: bash
