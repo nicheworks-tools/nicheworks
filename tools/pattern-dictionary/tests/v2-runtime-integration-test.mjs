@@ -30,10 +30,13 @@ const sources=await vm.runInContext('sources()',context);
 if(patterns.length!==115)throw new Error('browser runtime not serving 115 identities: '+patterns.length);
 for(const id of ['sakura-motif','ume-motif','kiku-motif','tsuru-motif','yukiwa','kanzemizu','shokko','matsukawabishi','bishamon-kikko','tachibana-motif','noshi-motif','goshoguruma','temari-motif','sankuzushi','kasuri']){
   const p=patterns.find(x=>x.id===id);
-  if(!p?.taxonomy?.types.includes('motif')||!p?.definition?.ja||!p?.definition?.en)throw new Error('v2 record not merged: '+id);
+  if(!p?.taxonomy?.types.includes(id==='kasuri'?'technique':'motif')||!p?.definition?.ja||!p?.definition?.en)throw new Error('v2 record not merged or concept type incorrect: '+id);
   if(!sources[id]?.sources?.length)throw new Error('v2 source links not merged: '+id);
   if(!p.reference_path.endsWith(id+'.svg'))throw new Error('reference path missing '+id);
 }
+
+const kasuri=patterns.find(p=>p.id==='kasuri');
+if(kasuri.verification_state!=='qualified'||kasuri.taxonomy.appearance.length!==0)throw new Error('Kasuri must remain a qualified technique with no universal appearance');
 for(const [lang,query,id] of [
  ['ja','桜文様','sakura-motif'],['ja','梅文様','ume-motif'],['ja','菊文様','kiku-motif'],
  ['ja','鶴文様','tsuru-motif'],['ja','雪輪文様','yukiwa'],
