@@ -27,6 +27,7 @@
   function safe(s) {return String(s==null?"":s).replace(/[&<>"']/g,function(x){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[x];});}
   function save() { try {localStorage.setItem(STORE,JSON.stringify(settings));}catch(_){} }
   function format(n) { return Number.isInteger(n) ? String(n) : String(Number(n.toFixed(2))); }
+  function todayLocal(){var d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
   function unit(id) {
     if(id==="water") return "L";
     if(id==="food") return lang==="ja"?"食":lang==="zh"?"餐":lang==="vi"?"bữa":"meals";
@@ -100,7 +101,7 @@
   }
   function renderResults() {
     if(!displayed) return;
-    var calc=core.calculate(catalog,settings,new Date().toISOString().slice(0,10));
+    var calc=core.calculate(catalog,settings,todayLocal());
     var critical=calc.items.filter(function(x){return x.missing>0 && x.priority===1;});
     var other=calc.items.filter(function(x){return x.missing>0 && x.priority!==1;});
     var covered=calc.items.filter(function(x){return x.missing===0;});
@@ -181,7 +182,7 @@
     var b=ev.target.closest("button");
     if(!b) return;
     if(b.dataset.filter) {preserveOpen();filter=b.dataset.filter;if(filter==="covered")expanded.complete=true;renderResults();return;}
-    var calc=core.calculate(catalog,settings,new Date().toISOString().slice(0,10));
+    var calc=core.calculate(catalog,settings,todayLocal());
     var rows=calc.items.filter(function(x){return x.missing>0;});
     if(b.id==="reset") {
       if(confirm(L.confirmReset)) {try{localStorage.removeItem(STORE);}catch(_){}settings=core.normalize({adults:1});displayed=false;results.hidden=true;renderSetup();disclosure.hidden=true;window.scrollTo({top:0,behavior:"smooth"});}
