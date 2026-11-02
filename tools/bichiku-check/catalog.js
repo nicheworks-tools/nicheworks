@@ -4,7 +4,7 @@
   "use strict";
   var rows = [
     ["water","food",1,"water","carryWater","保存水 飲料水 2L","飲料・調理用の水","Drinking and cooking water","饮用与烹饪用水","Nước uống và nấu ăn"],
-    ["food","food",1,"food","", "非常食 そのまま食べられる 缶詰 レトルト","食料（食事回数）","Meals / food portions","食物（餐次数）","Thực phẩm (số bữa)"],
+    ["food","food",1,"food","goFood", "非常食 そのまま食べられる 主食","主食として使える食品（食数目安）","Staple food portions (planning only)","可当作主食的食品（参考份数）","Phần ăn chính (chỉ ước tính)"],
     ["snack","food",2,"one","people","防災 携帯食 ビスケット","携帯食・おやつ","Portable food / snacks","便携食品／零食","Thực phẩm mang theo"],
     ["toilet","hygiene",1,"toilet","goToilet","携帯トイレ 防災 凝固剤","携帯トイレ（使用回数）","Portable toilet uses","应急厕所（使用次数）","Nhà vệ sinh di động (lượt)"],
     ["toiletPaper","hygiene",2,"two","one","トイレットペーパー 備蓄","トイレットペーパー","Toilet paper","卫生纸","Giấy vệ sinh"],
