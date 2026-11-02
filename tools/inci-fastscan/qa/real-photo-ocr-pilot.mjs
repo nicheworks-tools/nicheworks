@@ -208,7 +208,7 @@ try {
       const rawText = recognized?.data?.text || '';
       const cleanedText = processText.postProcessOcrText(
         processText.coreProcessOCRText(rawText), { langHint: 'en' });
-      const annotatedListMetrics = metric.score(gt.INCI_list.join('\\n'), cleanedText, parser.splitIngredients);
+      const annotatedListMetrics = metric.score(gt.INCI_list.join('\n'), cleanedText, parser.splitIngredients);
       const rawTranscriptionMetrics = metric.score(gt.raw_ingredients_list, cleanedText, parser.splitIngredients);
       const analysis = await productionScorer.assess(cleanedText, gt.INCI_list);
       imagePreprocessing[variant].push({
