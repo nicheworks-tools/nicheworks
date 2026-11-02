@@ -368,7 +368,10 @@
     if(!s || !/^[0-9,\-]+$/.test(s)) return { ok:false };
     const out = [];
     const seen = new Set();
-    for(const part of s.split(",").filter(Boolean)){
+    const parts = s.split(",");
+    // Never silently skip empty selections such as "1,,2", ",1" or "1,".
+    if(parts.some((part) => !part)) return { ok:false };
+    for(const part of parts){
       if(part.includes("-")){
         const bits = part.split("-");
         if(bits.length !== 2 || !bits[0] || !bits[1]) return { ok:false };
@@ -392,21 +395,37 @@
   }
 
   async function addFiles(files){
+    if(isBusy) return;
     const incoming = Array.from(files || []);
     if(incoming.length === 0) return;
     const pdfs = incoming.filter(isPdfLike);
     if(pdfs.length === 0){ showError("unsupported_file"); return; }
     if(shouldWarnFiles(pdfs) && !confirmLargeFiles(pdfs)) return;
-    const ready = await waitForLib(() => window.pdfjsLib && window.pdfjsLib.getDocument, 1600);
-    if(!ready){ showError("missing_pdfjs"); return; }
+    const originalFiles = state.files.length;
+    const originalPages = state.pages.length;
+    // Lock the editor before awaiting the library to prevent overlapping
+    // add/drop requests from mixing partially loaded PDF page sets.
     setBusy(true);
     hideStatus();
     try{
+      const ready = await waitForLib(() => window.pdfjsLib && window.pdfjsLib.getDocument, 1600);
+      if(!ready){ showError("missing_pdfjs"); return; }
       for(const file of pdfs){ await addOnePdf(file); }
       undo.lastDelete = null;
       renderAll();
       showStatus(msg("読み込み完了。ページを編集して保存できます。", "Loaded. You can edit pages and download."));
-    }catch(err){ console.error(err); showError(isProtectionError(err) ? "protected_or_special_pdf" : "too_large_or_memory"); }
+    }catch(err){
+      // A failed second/third PDF must not leave the first pages silently
+      // committed. Keep previous edits, but roll back this entire batch.
+      state.files.slice(originalFiles).forEach((f) => {
+        if(f.pdfDocPromise) f.pdfDocPromise.then((doc) => doc?.destroy?.()).catch(() => {});
+      });
+      state.files.length = originalFiles;
+      state.pages.length = originalPages;
+      renderAll();
+      console.error(err);
+      showError(isProtectionError(err) ? "protected_or_special_pdf" : "too_large_or_memory");
+    }
     finally{ setBusy(false); }
   }
   async function addOnePdf(file){
