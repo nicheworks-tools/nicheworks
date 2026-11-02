@@ -23,7 +23,7 @@
   var expandedItems={};
   var observed=false;
   var $ = function(id){return document.getElementById(id);};
-  var setup=$("setup"), results=$("results"), disclosure=$("affiliate-disclosure");
+  var setup=$("setup"), results=$("results");
   function safe(s) {return String(s==null?"":s).replace(/[&<>"']/g,function(x){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[x];});}
   function save() { try {localStorage.setItem(STORE,JSON.stringify(settings));}catch(_){} }
   function format(n) { return Number.isInteger(n) ? String(n) : String(Number(n.toFixed(2))); }
@@ -110,6 +110,7 @@
     var completeVisible=filter==="all" || filter==="covered";
     results.innerHTML =
       '<h2>'+safe(L.results)+'</h2>'+
+      '<p class="fine">'+safe(L.affiliateNote)+'</p><div id="affiliate-inline" class="affiliate-inline" hidden></div>'+
       '<div class="metrics"><div><strong>'+calc.coreMissingCount+'</strong><span>'+safe(L.core)+'</span></div>'+
       '<div><strong>'+calc.missingCount+'</strong><span>'+safe(L.shortages)+'</span></div>'+
       '<div><strong>'+calc.filledCount+'</strong><span>'+safe(L.complete)+'</span></div></div>'+
@@ -130,7 +131,7 @@
       var id=slot.getAttribute("data-aff");
       AMAZON.mount({container:slot,target:id,label:L.amazon,placement:"shortage_list",destinationKey:id,affiliateId:"bichiku_"+id,language:lang,className:"aff-link"});
     });
-    if(AMAZON) AMAZON.renderDisclosure(disclosure,{includeEnglish:lang==="en"});
+    if(AMAZON) AMAZON.renderDisclosure(results.querySelector("#affiliate-inline"),{includeEnglish:lang==="en"});
     if(!observed && AMAZON) {
       var count=results.querySelectorAll(".aff-link").length;
       if(count) { AMAZON.trackImpression({placement:"shortage_list",offerCount:count,language:lang}); observed=true; }
@@ -185,7 +186,7 @@
     var calc=core.calculate(catalog,settings,todayLocal());
     var rows=calc.items.filter(function(x){return x.missing>0;});
     if(b.id==="reset") {
-      if(confirm(L.confirmReset)) {try{localStorage.removeItem(STORE);}catch(_){}settings=core.normalize({adults:1});displayed=false;results.hidden=true;renderSetup();disclosure.hidden=true;window.scrollTo({top:0,behavior:"smooth"});}
+      if(confirm(L.confirmReset)) {try{localStorage.removeItem(STORE);}catch(_){}settings=core.normalize({adults:1});displayed=false;results.hidden=true;renderSetup();window.scrollTo({top:0,behavior:"smooth"});}
       return;
     }
     if(b.id==="printList") {
