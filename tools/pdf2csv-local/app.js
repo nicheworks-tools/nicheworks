@@ -558,7 +558,11 @@ const validateRange = (value) => {
     return { valid: false, error: { what: 'error.rangeInvalid.what', how: 'error.rangeInvalid.how' } };
   }
 
-  const segments = normalized.split(',').filter(Boolean);
+  const segments = normalized.split(',');
+  // Reject empty segments and malformed ranges rather than silently dropping pages.
+  if (segments.some((segment) => !/^[0-9]+(?:-[0-9]+)?$/.test(segment))) {
+    return { valid: false, error: { what: 'error.rangeInvalid.what', how: 'error.rangeInvalid.how' } };
+  }
   const pages = [];
 
   for (const segment of segments) {
