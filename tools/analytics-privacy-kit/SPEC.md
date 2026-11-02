@@ -16,6 +16,7 @@ Generate draft privacy-policy add-on text and analytics/advertising notices for 
 - Let the user choose Japanese or English output language independently of the UI language.
 - Generate short, standard, and detailed draft text variants from the selected inputs.
 - Support copying each generated variant, clearing the form, and downloading generated text as TXT.
+- Invalidate old generated drafts immediately when any site identity, contact, provider, or output-language input changes; copy/download must not offer a draft based on previous inputs while regeneration is pending or invalid. Silent auto-validation must not steal focus. Clearing the form cancels queued auto-generation.
 - Show explicit legal/compliance disclaimers: generated text is a draft and does not guarantee legal or platform compliance.
 
 ## Inputs
@@ -65,9 +66,12 @@ The primary workflow is a vertical form followed by generated text blocks and re
 - [ ] Copy and TXT download operate only on generated text and do not require sending the entered policy inputs to an application backend.
 - [ ] Switching JP/EN UI does not remove the legal disclaimer or provider controls.
 - [ ] Clear resets user-entered drafting state without creating stored history.
+- [ ] Invalid URL/email edits clear old drafts before the auto-render delay, preventing stale copy and TXT downloads. Auto validation does not steal focus.
+- [ ] A Clear action cancels any queued render, so old policy text cannot reappear afterwards.
 
 ## Implementation evidence
 
 - `tools/analytics-privacy-kit/index.html`
 - `tools/analytics-privacy-kit/app.js`
+- `tools/analytics-privacy-kit/tests/behavior.test.mjs`
 - `tools/analytics-privacy-kit/style.css`
