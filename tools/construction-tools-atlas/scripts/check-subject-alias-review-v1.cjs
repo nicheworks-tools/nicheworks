@@ -3,10 +3,13 @@ const fs=require("node:fs"),path=require("node:path"),assert=require("node:asser
 const {runPublicLoader}=require("./audit-public-image-inventory-v2.3.cjs");
 const search=require("../semantic-search-core.js");
 const review=JSON.parse(fs.readFileSync(path.join(__dirname,"..","data","subject-alias-review-v1.json"),"utf8"));
+const review2=JSON.parse(fs.readFileSync(path.join(__dirname,"..","data","subject-alias-review-v2.json"),"utf8"));
 const normalize=search.normalizeText;
 (async()=>{
   assert.equal(review.schema,"cta-subject-alias-review-v1");
-  assert.equal(review.entries.length,229,"reviewed alias wave1 must retain 232 distinct public entries");
+  assert.equal(review.entries.length,229,"reviewed alias wave1 must retain 229 distinct public entries");
+  assert.equal(review2.schema,"cta-subject-alias-review-v2");
+  assert.equal(review2.entries.length,173,"reviewed alias wave2 must retain 173 public entries");
   const runtime=await runPublicLoader();
   assert.equal(runtime.entries.length,870,"public canonical inventory must remain fixed");
   const byId=new Map(runtime.entries.map(e=>[e.id,e]));
@@ -26,7 +29,7 @@ const normalize=search.normalizeText;
 
   const engine=search.createEngine({signals:[],combinations:[]});
   const checked=new Set(),queries=[],collisions=[];
-  for(const row of review.entries){
+  for(const row of [...review.entries,...review2.entries]){
     const {id,ja,en}=row;
     assert(id&&!checked.has(id),"duplicate reviewed id "+id);checked.add(id);
     assert(Array.isArray(ja)&&ja.length&&Array.isArray(en)&&en.length,id+": JA/EN alias required");
@@ -50,9 +53,9 @@ const normalize=search.normalizeText;
   }
   assert.equal(collisions.length,0,"Curated alias collisions:\n"+collisions.join("\n"));
   const explicitBilingual=runtime.entries.filter(e=>e.aliases?.ja?.length&&e.aliases?.en?.length);
-  assert.equal(explicitBilingual.length,616,"runtime bilingual alias coverage regressed (387 + 229, including identity-resolution aliases)");
+  assert.equal(explicitBilingual.length,789,"runtime bilingual alias coverage regressed (387 + 229 + 173, including identity-resolution aliases)");
   const quality=JSON.parse(fs.readFileSync(path.join(__dirname,"..","data","public-content-quality-v2.3.json"),"utf8"));
-  assert.equal(quality.summary.explicit_bilingual_aliases,609,"source-reviewed bilingual alias count regressed (380 + 229)");
+  assert.equal(quality.summary.explicit_bilingual_aliases,782,"source-reviewed bilingual alias count regressed (380 + 229 + 173)");
   const samples=["q011_check_valve","q011_insulation_tester","q012_step_drill","q013_trench_box","q014_resin_sash","q015_cable_gland","q016_floor_sander","q017_pipe_threader"];
   for(const id of samples){
     const row=review.entries.find(r=>r.id===id);
@@ -61,6 +64,15 @@ const normalize=search.normalizeText;
       const ranks=runtime.entries.map(e=>({id:e.id,score:engine.scoreEntry(e,query,[])}))
         .sort((a,b)=>b.score-a.score).slice(0,5);
       assert(ranks.some(r=>r.id===id),"representative alias query fails top-5 ranking: "+id+" / "+query);
+    }
+  }
+  for(const id of ["q011_core_sleeve","q012_infrared_thermometer","q013_survey_stake","q014_asphalt_primer","q015_leak_detector","q016_hepa_filter","q017_survey_tripod"]){
+    const row=review2.entries.find(e=>e.id===id);
+    assert(row,"missing second-wave representative sample: "+id);
+    for(const query of [row.ja[0],row.en[0]]){
+      const ranks=runtime.entries.map(e=>({id:e.id,score:engine.scoreEntry(e,query,[])}))
+        .sort((a,b)=>b.score-a.score).slice(0,5);
+      assert(ranks.some(r=>r.id===id),"second-wave alias query fails top-5 ranking: "+id+" / "+query);
     }
   }
   console.log("Construction Atlas reviewed aliases: PASS "+JSON.stringify({
