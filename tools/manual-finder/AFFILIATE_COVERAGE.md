@@ -10,14 +10,14 @@ The printer-detail audit remains complete for the current canonical printer cata
 
 | Metric | Final audited value |
 | --- | ---: |
-| Printer records with a basic Amazon path | **315** |
-| Printer records with a verified detail handoff | **308** |
+| Printer records with a basic Amazon path | **324** |
+| Printer records with a verified detail handoff | **317** |
 | Reviewed printer-detail exclusions | **7** |
 | Actionable printer records still missing detail | **0** |
 
 Required printer reconciliation:
 
-`printer basic 315 = detail 308 + reviewed exclusion 7 + missing 0`
+`printer basic 324 = detail 317 + reviewed exclusion 7 + missing 0`
 
 The camera accessory audit independently reconciles as:
 
@@ -422,8 +422,8 @@ Unsupported categories, empty models, malformed URLs, wrong makers, wrong catego
 
 Printer-detail remains closed only while:
 
-- printer basic = 315
-- printer detail = 308
+- printer basic = 324
+- printer detail = 317
 - reviewed printer-detail exclusions = 7
 - printer missing detail = 0
 - the three missing-detail diagnostic structures remain empty
@@ -469,3 +469,7 @@ Wave 3G adds eight exact canonical printer model manual pages and eight tagged A
 ### Epson Colorio Wave 3H eight exact user-guide and ink handoffs (2026-11-02)
 
 Eight official Epson operating-manual model entries are newly indexed (EP-812A/813A/814A/815A/816A, EP-715A, EW-052A and EW-452A). The existing exact-model Amazon Associates template adds eight basic paths. Manufacturer-exact Epson model consumable directories establish 16 SKU-specific searches, one 6-/4-color multipack and one black cartridge for each. EP-family SAT-6CL + SAT-BK, EW-family MUG-4CL + MUG-BK. The live printer audit reconciles **315 basic = 308 detail + 7 exclusions + 0 missing**; model provenance in `coverage-passes/epson/jp-colorio-wave3h-8-legacy-models-20261102.json`. These are search links, not sales.
+
+### Epson Colorio Wave 3I exact compatibility/affiliate publication (2026-11-02)
+
+Nine official Epson manual-list destinations and **27 new tagged Amazon search paths** were added: nine manufacturer model search paths plus two exact ink SKU searches per model. All nine model-specific Epson `/shoumouhin/{model}.htm` pages explicitly confirm the mapping: EP-712A/713A/714A require SAT-6CL + SAT-BK; EP-883AW/AB/AR and EP-884AW/AB/AR use KAM-6CL + KAM-6CL-L. Each query is parameterized through the existing `nicheworks09-22` Amazon Associates configuration with site disclosure. No affiliate sales, clicks, or inventory are inferred. **Printer basic 324 = detail 317 + reviewed exclusions 7 + missing 0**. Source manifest: `coverage-passes/epson/jp-colorio-wave3i-9-legacy-models-20261102.json`.
