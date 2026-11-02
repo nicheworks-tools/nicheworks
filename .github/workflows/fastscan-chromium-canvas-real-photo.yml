@@ -6,6 +6,8 @@ on:
     paths:
       - '.github/workflows/fastscan-chromium-canvas-real-photo.yml'
       - 'tools/inci-fastscan/qa/chromium-canvas-real-photo-pilot.mjs'
+      - 'tools/inci-fastscan/qa/real-photo-loss-diagnostics.mjs'
+      - 'tools/inci-fastscan/qa/check-real-photo-loss-diagnostics.mjs'
       - 'tools/inci-fastscan/js/image_preprocess.js'
       - 'tools/inci-fastscan/js/core_ocr_post.js'
       - 'tools/inci-fastscan/qa/production-label-scoring.mjs'
@@ -64,6 +66,11 @@ jobs:
           done
           test "$(find "$FASTSCAN_PHOTO_CORPUS_DIR" -name '*.jpg' | wc -l)" -eq 12
           test "$(find "$FASTSCAN_PHOTO_CORPUS_DIR" -name '*.yaml' | wc -l)" -eq 12
+
+      - name: Verify diagnostic funnel and exact sequence segmentation without deploying
+        run: |
+          node --check tools/inci-fastscan/qa/real-photo-loss-diagnostics.mjs
+          node tools/inci-fastscan/qa/check-real-photo-loss-diagnostics.mjs
 
       - name: Measure source vs actual Chromium-canvas processed photo OCR
         run: |
