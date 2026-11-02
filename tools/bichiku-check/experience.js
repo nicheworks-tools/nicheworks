@@ -104,7 +104,7 @@ function renderChoices(a){
  const arr=choices.filter(o=>g.members.includes(o.parent)&&allowedTab(o)&&(!search||Object.values(o.names).join(" ").toLowerCase().includes(search.toLowerCase())));
  if(!arr.length)return '<p class="g-fine">'+esc(T.noOptions)+'</p>';
  return arr.map(o=>{
- const v=getOption(o.id),countable=o.equivalence==="full"&&(!state.noHeat||!["heat","verify"].includes(o.prep))&&(o.prep!=="water"||a.waterForPrep);
+ const v=getOption(o.id),countable=o.equivalence==="full"&&(!state.noHeat||!["heat","verify"].includes(o.prep))&&(!o.requiresWater||a.waterForPrep);
  const ready=countable||(o.id==="toiletBags"&&state.toiletAssemblyConfirmed);
  const name=o.names[lang]||o.names.ja;
  const warning=(O.notes||{})[o.warning]||"";
