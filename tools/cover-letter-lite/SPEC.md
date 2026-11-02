@@ -26,6 +26,7 @@ Do not add Amazon product offers merely to monetize the page. A future career/jo
 - Accept applicant name, company, role/title, key skills, and optional experience summary.
 - Support Formal/Neutral tone, Short/Medium length, and Formal/Modern/Entry-level/Direct/Skill-focused template styles.
 - Generate an English draft locally from the selected template and entered fields.
+- While a template file is being fetched, changing any form input cancels that draft; a late template response cannot replace the user's latest inputs or a newer generated draft. An already completed editable draft remains available after ordinary form edits until a new Generate action.
 - Keep a crawlable static guide to cover-letter structure (opening, fit, evidence, closing), template-style differences, and post-generation review before the interactive form.
 - Show a word count and allow copy or TXT save of the generated draft.
 - Keep the output explicitly positioned as an editable starting point that must be reviewed for the actual role/company.
@@ -70,6 +71,8 @@ The primary workflow is a vertical form followed by a generated draft and checkl
 
 ## Acceptance criteria
 
+- [ ] A slow template response cannot show a draft for old applicant/company/role values after the form changes during loading. The Generate button and status recover and an explicit second generation uses the latest values.
+
 - [ ] Supplying the required role details and submitting the form produces an editable English draft from the selected deterministic template.
 - [ ] Tone, length, and template-style selections affect the generated draft without an AI API request.
 - [ ] Copy and TXT save operate on the currently generated draft.
@@ -82,4 +85,5 @@ The primary workflow is a vertical form followed by a generated draft and checkl
 
 - `tools/cover-letter-lite/index.html`
 - `tools/cover-letter-lite/app.js`
+- `tools/cover-letter-lite/tests/behavior.test.mjs`
 - `tools/cover-letter-lite/style.css`
