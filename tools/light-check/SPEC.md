@@ -19,7 +19,7 @@ The tool MUST NOT use B/C/S/F values to claim a specific light is required, infe
 
 ## Current functional contract
 
-- Request browser camera access only after the user starts the tool and provide an explicit Stop action that releases camera use.
+- Request browser camera access only after the user starts the tool and provide an explicit Stop action that releases camera use. Stop must be visible and effective while camera permission or `video.play()` is pending; later-fulfilled old streams are immediately stopped, never analyzed.
 - Analyze camera frames locally and present compact B/C/S/F relative metrics plus explanatory result/how-to sheets.
 - Allow the user to capture a transient baseline B/C/S/F snapshot during an active camera session, view relative changes after adjusting lighting, copy the comparison and clear the baseline. Stopping, switching cameras or changing capture mode clears this snapshot; no video frames are retained.
 - Treat B as brightness-related comparison, C as color-cast-related comparison, S as contrast/shadow-related comparison, and F as a simple brightness-variation indicator.
@@ -69,6 +69,7 @@ The camera preview, compact metrics, bottom controls, and sheets are explicitly 
 ## Acceptance criteria
 
 - [ ] Camera analysis starts only after permission/user action and Stop ends active camera use.
+- [ ] Stop during pending `getUserMedia` or `video.play()` cancels that request; late results cannot assign or restart a camera. `pagehide` and `beforeunload` invalidate pending starts and release any active tracks.
 - [ ] Active video analysis produces the implemented relative B/C/S/F indicators without claiming lux or calibrated flicker values.
 - [ ] During active analysis, Save baseline records only camera-relative scalar/label metrics; the result sheet shows bilingual B before/after delta and C/S/F transitions. Clear, Stop, Flip and mode change discard it.
 - [ ] The baseline cannot be captured without a running camera and current measurement, cannot survive a browser restart, and never contains video frames.
@@ -86,3 +87,4 @@ The camera preview, compact metrics, bottom controls, and sheets are explicitly 
 - `tools/light-check/affiliate-config.js`
 - `tools/light-check/usage.html`
 - `tools/light-check/tests/behavior.test.mjs`
+- `tools/light-check/tests/camera-stop-race.test.mjs`
