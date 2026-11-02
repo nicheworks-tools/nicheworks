@@ -53,15 +53,17 @@
     var s = normalize(options);
     var stamp = /^\d{4}-\d{2}-\d{2}$/.test(String(today||"")) ? String(today) : new Date().toISOString().slice(0,10);
     var items = (catalog||[]).filter(function(i) { return active(i,s); }).map(function(i) {
-      var required = needs(i[s.mode],s);
       var key = s.mode+":"+i.id;
       var entry = s.stocks[key] || {};
+      var autoTarget = needs(i[s.mode],s);
+      var custom = entry.target !== "" && entry.target !== null && entry.target !== undefined && Number.isFinite(Number(entry.target));
+      var required = custom ? num(entry.target,autoTarget,0,10000000) : autoTarget;
       var owned = num(entry.qty,0,0,10000000);
       var expiry = /^\d{4}-\d{2}-\d{2}$/.test(String(entry.expiry||"")) ? entry.expiry : "";
       var expired = expiry !== "" && expiry < stamp;
       var effective = expired ? 0 : owned;
       var missing = Math.max(0,Math.round((required-effective)*100)/100);
-      return {item:i,key:key,required:required,owned:owned,effective:effective,expiry:expiry,expired:expired,missing:missing,priority:i.priority};
+      return {item:i,key:key,required:required,autoTarget:autoTarget,hasCustomTarget:custom,owned:owned,effective:effective,expiry:expiry,expired:expired,missing:missing,priority:i.priority};
     });
     items.sort(function(a,b) {return a.priority-b.priority || b.missing-a.missing || a.item.id.localeCompare(b.item.id);});
     return {
