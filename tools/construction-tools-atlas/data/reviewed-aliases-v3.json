@@ -1,0 +1,757 @@
+{
+  "schema": "cta-reviewed-aliases-v3",
+  "version": "2026-11-02-runtime-bilingual-alias-wave3",
+  "note": "Curated field-specific aliases only. Never coerce known duplicate canonicals or technical near-misses into synonyms. Source guard is exact canonical JA/EN identity.",
+  "entries": [
+    {
+      "id": "backer_rod",
+      "expected_ja": "バックアップ材",
+      "expected_en": "Backer rod",
+      "add_ja": [
+        "シーリング用バックアップ材"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "backhoe_loader",
+      "expected_ja": "バックホー（ローダー）",
+      "expected_en": "Backhoe loader",
+      "add_ja": [
+        "バックホーローダー"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "beam",
+      "expected_ja": "梁（はり）",
+      "expected_en": "Beam",
+      "add_ja": [
+        "構造梁"
+      ],
+      "add_en": [
+        "Structural beam"
+      ]
+    },
+    {
+      "id": "bolt_nut",
+      "expected_ja": "ボルト・ナット",
+      "expected_en": "Bolt & nut",
+      "add_ja": [
+        "ボルトナット"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "butyl_tape_002",
+      "expected_ja": "ブチルテープ",
+      "expected_en": "Butyl tape",
+      "add_ja": [
+        "ブチルゴムテープ"
+      ],
+      "add_en": [
+        "Butyl rubber sealing tape"
+      ]
+    },
+    {
+      "id": "caliper",
+      "expected_ja": "ノギス",
+      "expected_en": "Caliper",
+      "add_ja": [
+        "バーニヤノギス"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "cement_board",
+      "expected_ja": "セメントボード",
+      "expected_en": "Cement board",
+      "add_ja": [
+        "セメント系下地ボード"
+      ],
+      "add_en": [
+        "Cementitious board"
+      ]
+    },
+    {
+      "id": "change_order",
+      "expected_ja": "変更（チェンジ）",
+      "expected_en": "Change order",
+      "add_ja": [
+        "変更指示書"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "circuit_breaker",
+      "expected_ja": "ブレーカー",
+      "expected_en": "Circuit breaker",
+      "add_ja": [
+        "回路遮断器"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "cleanup_katazuke",
+      "expected_ja": "片付け",
+      "expected_en": "Cleanup (katazuke)",
+      "add_ja": [
+        "作業後の片付け"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "column",
+      "expected_ja": "柱（はしら）",
+      "expected_en": "Column",
+      "add_ja": [
+        "構造柱"
+      ],
+      "add_en": [
+        "Structural column"
+      ]
+    },
+    {
+      "id": "conduit",
+      "expected_ja": "電線管",
+      "expected_en": "Conduit",
+      "add_ja": [
+        "電気配線用管"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "conduit_pf",
+      "expected_ja": "PF管",
+      "expected_en": "PF conduit",
+      "add_ja": [
+        "PF可とう電線管"
+      ],
+      "add_en": [
+        "Flexible PF conduit"
+      ]
+    },
+    {
+      "id": "construction_adhesive_001",
+      "expected_ja": "建築用接着剤",
+      "expected_en": "Construction adhesive",
+      "add_ja": [
+        "建材用接着剤"
+      ],
+      "add_en": [
+        "Building construction adhesive"
+      ]
+    },
+    {
+      "id": "deburring_tool",
+      "expected_ja": "バリ取り工具",
+      "expected_en": "Deburring tool",
+      "add_ja": [
+        "バリ取り器"
+      ],
+      "add_en": [
+        "Burr removal tool"
+      ]
+    },
+    {
+      "id": "dial_gauge",
+      "expected_ja": "ダイヤルゲージ",
+      "expected_en": "Dial gauge",
+      "add_ja": [
+        "ダイヤルインジケータ"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "dump_truck",
+      "expected_ja": "ダンプ",
+      "expected_en": "Dump truck",
+      "add_ja": [
+        "ダンプカー"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "dust_control_008",
+      "expected_ja": "粉塵対策",
+      "expected_en": "Dust control",
+      "add_ja": [
+        "粉じん抑制対策"
+      ],
+      "add_en": [
+        "Construction dust suppression"
+      ]
+    },
+    {
+      "id": "fire_extinguisher",
+      "expected_ja": "消火器",
+      "expected_en": "Fire extinguisher",
+      "add_ja": [
+        "可搬式消火器"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "first_aid_kit",
+      "expected_ja": "救急箱",
+      "expected_en": "First-aid kit",
+      "add_ja": [
+        "応急手当箱"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "float_trowel",
+      "expected_ja": "ならし（フロート）",
+      "expected_en": "Float (trowel)",
+      "add_ja": [
+        "コンクリートならし鏝"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "formwork",
+      "expected_ja": "型枠",
+      "expected_en": "Formwork",
+      "add_ja": [
+        "コンクリート型枠"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "genba_site",
+      "expected_ja": "現場",
+      "expected_en": "Genba (site)",
+      "add_ja": [
+        "工事現場"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "generator",
+      "expected_ja": "発電機",
+      "expected_en": "Generator",
+      "add_ja": [
+        "現場用発電機"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "glasswool",
+      "expected_ja": "グラスウール",
+      "expected_en": "Fiberglass insulation",
+      "add_ja": [
+        "グラスウール断熱材"
+      ],
+      "add_en": [
+        "Glass fiber wool insulation"
+      ]
+    },
+    {
+      "id": "hand_signal",
+      "expected_ja": "合図（手合図）",
+      "expected_en": "Hand signal",
+      "add_ja": [
+        "作業手合図"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "hand_truck",
+      "expected_ja": "台車",
+      "expected_en": "Hand Truck",
+      "add_ja": [],
+      "add_en": [
+        "Manual material transport cart"
+      ]
+    },
+    {
+      "id": "handover",
+      "expected_ja": "引き渡し",
+      "expected_en": "Handover",
+      "add_ja": [
+        "工事引き渡し"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "heat_shrink_tubing",
+      "expected_ja": "熱収縮チューブ",
+      "expected_en": "Heat-shrink tubing",
+      "add_ja": [
+        "収縮チューブ"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "insulation",
+      "expected_ja": "断熱材",
+      "expected_en": "Insulation",
+      "add_ja": [
+        "断熱材料"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "joint_compound",
+      "expected_ja": "パテ",
+      "expected_en": "Joint compound",
+      "add_ja": [
+        "石膏ボード用パテ"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "joist",
+      "expected_ja": "根太（ねだ）",
+      "expected_en": "Joist",
+      "add_ja": [
+        "床根太"
+      ],
+      "add_en": [
+        "Floor joist"
+      ]
+    },
+    {
+      "id": "ky_hazard_prediction",
+      "expected_ja": "KY（危険予知）",
+      "expected_en": "KY (hazard prediction)",
+      "add_ja": [
+        "危険予知活動"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "masonry_chisel",
+      "expected_ja": "石工ノミ",
+      "expected_en": "Masonry Chisel",
+      "add_ja": [
+        "石工用ノミ"
+      ],
+      "add_en": [
+        "Stone masonry chisel"
+      ]
+    },
+    {
+      "id": "measuring_wheel",
+      "expected_ja": "測定車（ローラー）",
+      "expected_en": "Measuring wheel",
+      "add_ja": [
+        "距離測定ローラー"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "nails",
+      "expected_ja": "釘",
+      "expected_en": "Nails",
+      "add_ja": [
+        "建築用釘"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "osb",
+      "expected_ja": "OSB合板",
+      "expected_en": "OSB",
+      "add_ja": [
+        "OSBボード"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "pe_foam",
+      "expected_ja": "発泡シート（PE）",
+      "expected_en": "PE foam sheet",
+      "add_ja": [
+        "ポリエチレン発泡シート"
+      ],
+      "add_en": [
+        "Polyethylene foam sheet"
+      ]
+    },
+    {
+      "id": "plywood",
+      "expected_ja": "合板",
+      "expected_en": "Plywood",
+      "add_ja": [
+        "ベニヤ合板"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "ppe",
+      "expected_ja": "保護具（PPE）",
+      "expected_en": "PPE",
+      "add_ja": [
+        "個人用保護具"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "primer",
+      "expected_ja": "下塗り（プライマー）",
+      "expected_en": "Primer",
+      "add_ja": [
+        "下地用プライマー"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "q013_dolly",
+      "expected_ja": "平台車",
+      "expected_en": "Platform Dolly",
+      "add_ja": [
+        "プラットフォームドーリー"
+      ],
+      "add_en": [
+        "Low platform dolly"
+      ]
+    },
+    {
+      "id": "q013_gravel",
+      "expected_ja": "砕石",
+      "expected_en": "Crushed Stone",
+      "add_ja": [
+        "砕石材"
+      ],
+      "add_en": [
+        "Crushed rock aggregate"
+      ]
+    },
+    {
+      "id": "q013_sand",
+      "expected_ja": "砂",
+      "expected_en": "Sand",
+      "add_ja": [
+        "建設用砂"
+      ],
+      "add_en": [
+        "Construction fine aggregate"
+      ]
+    },
+    {
+      "id": "q014_handrail",
+      "expected_ja": "手すり",
+      "expected_en": "Handrail",
+      "add_ja": [
+        "歩行補助手すり"
+      ],
+      "add_en": [
+        "Graspable support handrail"
+      ]
+    },
+    {
+      "id": "q015_pump",
+      "expected_ja": "ポンプ",
+      "expected_en": "Pump",
+      "add_ja": [
+        "液体移送ポンプ"
+      ],
+      "add_en": [
+        "Fluid transfer pump"
+      ]
+    },
+    {
+      "id": "rafter",
+      "expected_ja": "垂木（たるき）",
+      "expected_en": "Rafter",
+      "add_ja": [
+        "屋根垂木"
+      ],
+      "add_en": [
+        "Roof rafter"
+      ]
+    },
+    {
+      "id": "respirator",
+      "expected_ja": "防毒マスク",
+      "expected_en": "Respirator",
+      "add_ja": [
+        "防毒用呼吸保護具"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "rfis",
+      "expected_ja": "質疑（RFI）",
+      "expected_en": "RFIs",
+      "add_ja": [
+        "工事質疑書"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "rockwool",
+      "expected_ja": "ロックウール",
+      "expected_en": "Rock wool",
+      "add_ja": [
+        "岩綿"
+      ],
+      "add_en": [
+        "Stone wool insulation"
+      ]
+    },
+    {
+      "id": "roofing_felt",
+      "expected_ja": "ルーフィング",
+      "expected_en": "Roofing felt",
+      "add_ja": [
+        "屋根用ルーフィング"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "safety_boots",
+      "expected_ja": "安全靴",
+      "expected_en": "Safety boots",
+      "add_ja": [
+        "つま先保護安全靴"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "sandpaper",
+      "expected_ja": "紙やすり",
+      "expected_en": "Sandpaper",
+      "add_ja": [
+        "研磨紙"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "seal_tape",
+      "expected_ja": "防水テープ",
+      "expected_en": "Seal tape",
+      "add_ja": [
+        "止水用テープ"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "shingle",
+      "expected_ja": "シングル材",
+      "expected_en": "Shingle",
+      "add_ja": [
+        "屋根用シングル材"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "sleeve_anchor",
+      "expected_ja": "スリーブアンカー",
+      "expected_en": "Sleeve anchor",
+      "add_ja": [
+        "拡張式スリーブアンカー"
+      ],
+      "add_en": [
+        "Expansion sleeve anchor"
+      ]
+    },
+    {
+      "id": "spotter",
+      "expected_ja": "誘導員",
+      "expected_en": "Spotter",
+      "add_ja": [
+        "車両誘導員"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "story_pole",
+      "expected_ja": "寸法棒（ストーリーポール）",
+      "expected_en": "Story pole",
+      "add_ja": [
+        "寸法写し棒"
+      ],
+      "add_en": [
+        "Layout story stick"
+      ]
+    },
+    {
+      "id": "stud",
+      "expected_ja": "間柱（まばしら）",
+      "expected_en": "Stud",
+      "add_ja": [
+        "壁下地間柱"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "threaded_rod",
+      "expected_ja": "全ねじ",
+      "expected_en": "Threaded rod",
+      "add_ja": [
+        "全ネジボルト"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "toggle_anchor",
+      "expected_ja": "トグルアンカー",
+      "expected_en": "Toggle anchor",
+      "add_ja": [
+        "トグル式アンカー"
+      ],
+      "add_en": [
+        "Hollow-wall toggle anchor"
+      ]
+    },
+    {
+      "id": "top_coat",
+      "expected_ja": "上塗り",
+      "expected_en": "Top coat",
+      "add_ja": [
+        "仕上げ塗り"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "torque",
+      "expected_ja": "トルク",
+      "expected_en": "Torque",
+      "add_ja": [
+        "回転力"
+      ],
+      "add_en": [
+        "Rotational torque"
+      ]
+    },
+    {
+      "id": "torque_wrench",
+      "expected_ja": "トルクレンチ",
+      "expected_en": "Torque wrench",
+      "add_ja": [
+        "締付トルクレンチ"
+      ],
+      "add_en": [
+        "Torque measuring wrench"
+      ]
+    },
+    {
+      "id": "touch_up",
+      "expected_ja": "タッチアップ",
+      "expected_en": "Touch-up",
+      "add_ja": [
+        "部分補修"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "vapor_barrier",
+      "expected_ja": "防湿シート",
+      "expected_en": "Vapor barrier",
+      "add_ja": [
+        "防湿層用シート"
+      ],
+      "add_en": [
+        "Vapor barrier membrane"
+      ]
+    },
+    {
+      "id": "voltage_tester",
+      "expected_ja": "検電器",
+      "expected_en": "Voltage tester",
+      "add_ja": [
+        "電圧検知器"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "waterproof_membrane",
+      "expected_ja": "防水シート",
+      "expected_en": "Waterproofing membrane",
+      "add_ja": [
+        "防水膜材"
+      ],
+      "add_en": [
+        "Waterproofing sheet membrane"
+      ]
+    },
+    {
+      "id": "wedge_anchor",
+      "expected_ja": "ウェッジアンカー",
+      "expected_en": "Wedge anchor",
+      "add_ja": [
+        "ウェッジ式拡張アンカー"
+      ],
+      "add_en": [
+        "Wedge expansion anchor"
+      ]
+    },
+    {
+      "id": "wrench",
+      "expected_ja": "レンチ",
+      "expected_en": "Wrench",
+      "add_ja": [
+        "締付けレンチ"
+      ],
+      "add_en": []
+    },
+    {
+      "id": "youshi_protection",
+      "expected_ja": "養生（ようじょう）",
+      "expected_en": "Youshi (protection)",
+      "add_ja": [
+        "現場養生"
+      ],
+      "add_en": []
+    }
+  ],
+  "held_for_identity_review": [
+    {
+      "id": "corner_float",
+      "ja": "コーナーゴテ",
+      "en": "Corner trowel"
+    },
+    {
+      "id": "primer_003",
+      "ja": "プライマー",
+      "en": "Primer"
+    },
+    {
+      "id": "q011_sanding_paper",
+      "ja": "サンドペーパー",
+      "en": "Sanding Paper"
+    },
+    {
+      "id": "q016_ceiling_tile",
+      "ja": "天井板",
+      "en": "Ceiling Tile"
+    },
+    {
+      "id": "q016_laminate_flooring",
+      "ja": "複合フローリング",
+      "en": "Laminate Flooring"
+    },
+    {
+      "id": "as_built",
+      "ja": "竣工図（アズビルト）",
+      "en": "As-built",
+      "reason": "Proposed 竣工図面 is already a searchable alias of as_built_drawing; canonical overlap"
+    },
+    {
+      "id": "ear_protection",
+      "ja": "耳栓・イヤーマフ",
+      "en": "Ear protection",
+      "reason": "聴覚保護具 belongs to separate hearing_protection canonical; terminology overlaps"
+    },
+    {
+      "id": "ground_fault_breaker",
+      "ja": "漏電遮断器",
+      "en": "GFCI/RCD",
+      "reason": "漏電ブレーカー is already indexed for q015_earth_leakage_breaker and gfci_rcd; requires canonical identity resolution"
+    },
+    {
+      "id": "soldering_iron",
+      "ja": "はんだごて",
+      "en": "Soldering iron",
+      "reason": "ハンダごて case-folds to the canonical はんだごて; redundant alias gives no search value"
+    },
+    {
+      "id": "toolbox_talk",
+      "ja": "朝礼（TBM）",
+      "en": "Toolbox talk",
+      "reason": "ツールボックスミーティング belongs to separate q016_toolbox_meeting canonical; requires identity review"
+    }
+  ]
+}

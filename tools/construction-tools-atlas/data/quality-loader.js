@@ -7,6 +7,8 @@
   const ENRICHMENT_PATH = "./data/content-enrichment-v2.3.json";
   const ENRICHMENT_MANIFEST_PATH = "./data/content-enrichment-manifest-v2.3.json";
   const DEFINITION_PROMOTIONS_PATH = "./data/definition-promotions-v2.3.json";
+  const REVIEWED_ALIASES_PATH = "./data/reviewed-aliases-v3.json";
+  const REVIEWED_ALIASES_VERSION = "20261102-runtime-reviewed-aliases-v3-1";
   const DEFINITION_PROMOTIONS_VERSION = "20261101-source-backed-145-1";
   const REDIRECT_PATH = "./data/canonical-redirects-v2.3.json";
   const IDENTITY_PATH = "./data/canonical-identity-resolutions-v2.3.json";
@@ -24,8 +26,10 @@
     if (!path) return null;
     try {
       const baseName = String(path).split("/").pop();
-      const url = baseName === "definition-promotions-v2.3.json"
-        ? path + "?v=" + DEFINITION_PROMOTIONS_VERSION
+      const url = baseName === "reviewed-aliases-v3.json"
+        ? path + "?v=" + REVIEWED_ALIASES_VERSION
+        : baseName === "definition-promotions-v2.3.json"
+          ? path + "?v=" + DEFINITION_PROMOTIONS_VERSION
         : REVIEWED_DEFINITION_PACKS.has(baseName)
           ? path + "?v=" + REVIEWED_DEFINITION_SOURCE_VERSION
           : path;
@@ -100,7 +104,8 @@
       favoriteIdsMigrated:0, contentEnriched:0, contentEnrichmentMissingTargets:0, contentEnrichmentMissingSample:[],
       contentEnrichmentDuplicateTargets:0, contentEnrichmentDuplicateSample:[],
       definitionPromotionsApplied:0, definitionPromotionsSourceDrift:0, definitionPromotionsMissingTargets:0,
-      definitionPromotionsProblems:[], removed:[]
+      definitionPromotionsProblems:[],
+      reviewedAliasesApplied:0, reviewedAliasesProblems:[], removed:[]
     };
   }
 
@@ -279,6 +284,37 @@
     }
   }
 
+  function applyReviewedAliases(merged, source, stats) {
+    if (source?.schema !== "cta-reviewed-aliases-v3" || !Array.isArray(source.entries)) {
+      stats.reviewedAliasesProblems.push("Missing or malformed curated alias wave3 source");
+      return;
+    }
+    const byId = new Map(merged.map(e => [text(e?.id), e]));
+    const seen = new Set();
+    for (const row of source.entries) {
+      const id = text(row?.id);
+      const target = byId.get(id);
+      const expectedJa = text(row?.expected_ja);
+      const expectedEn = text(row?.expected_en);
+      const addJa = unique(arr(row?.add_ja));
+      const addEn = unique(arr(row?.add_en));
+      if (!id || seen.has(id) || !target || !expectedJa || !expectedEn ||
+          text(target.term?.ja) !== expectedJa || text(target.term?.en) !== expectedEn ||
+          (!addJa.length && !addEn.length) ||
+          (addJa.length && target.aliases?.ja?.length) ||
+          (addEn.length && target.aliases?.en?.length)) {
+        stats.reviewedAliasesProblems.push("Invalid, duplicate, or source-drift alias id: " + id);
+        continue;
+      }
+      seen.add(id);
+      target.aliases ||= {ja:[], en:[]};
+      target.aliases.ja = unique([...arr(target.aliases.ja),...addJa]);
+      target.aliases.en = unique([...arr(target.aliases.en),...addEn]);
+      target.meta = { ...(target.meta || {}), reviewed_alias_wave3: text(source.version) };
+      stats.reviewedAliasesApplied += 1;
+    }
+  }
+
   function resolveCanonicalId(id) {
     let current = text(id); const redirects = window.CTA_CANONICAL_REDIRECTS || {}; const seen = new Set();
     while (current && Object.prototype.hasOwnProperty.call(redirects, current) && !seen.has(current)) { seen.add(current); current = text(redirects[current]); }
@@ -305,10 +341,11 @@
     const redirectPath = options.redirectPath || REDIRECT_PATH;
     const identityPath = options.identityResolutionPath || IDENTITY_PATH;
     const definitionPromotionsPath = options.definitionPromotionsPath || DEFINITION_PROMOTIONS_PATH;
+    const reviewedAliasesPath = options.reviewedAliasesPath || REVIEWED_ALIASES_PATH;
     const basePaths = Array.isArray(options.basePaths) ? options.basePaths : BASE_PATHS;
 
-    const [manifest, enrichmentManifest, redirects, identity, definitionPromotions] = await Promise.all([
-      fetchJson(manifestPath), fetchJson(enrichmentManifestPath), fetchJson(redirectPath), fetchJson(identityPath), fetchJson(definitionPromotionsPath)
+    const [manifest, enrichmentManifest, redirects, identity, definitionPromotions, reviewedAliases] = await Promise.all([
+      fetchJson(manifestPath), fetchJson(enrichmentManifestPath), fetchJson(redirectPath), fetchJson(identityPath), fetchJson(definitionPromotionsPath), fetchJson(reviewedAliasesPath)
     ]);
     const packPaths = manifestPaths(manifest);
     const enrichmentPaths = manifestPaths(enrichmentManifest);
@@ -325,10 +362,11 @@
     applyRedirects(merged, redirects, stats);
     const enrichedIds = new Set(); enrichments.forEach((enrichment) => applyEnrichment(merged, enrichment, stats, enrichedIds));
     applyDefinitionPromotions(merged, definitionPromotions, stats);
+    applyReviewedAliases(merged, reviewedAliases, stats);
     migrateFavorites(stats);
     stats.merged = merged.length; stats.removedCount = stats.raw - stats.merged;
     window.CTA_DATA_DIAGNOSTICS = stats;
-    if (stats.removedCount > 0 || stats.canonicalRedirectsApplied > 0 || stats.identityNameOverridesApplied > 0 || stats.identityTypeOverridesApplied > 0 || stats.identityAliasRemovalsApplied > 0 || stats.favoriteIdsMigrated > 0 || stats.contentEnriched > 0 || stats.contentEnrichmentMissingTargets > 0 || stats.contentEnrichmentDuplicateTargets > 0 || stats.definitionPromotionsApplied > 0 || stats.definitionPromotionsProblems.length > 0) {
+    if (stats.removedCount > 0 || stats.canonicalRedirectsApplied > 0 || stats.identityNameOverridesApplied > 0 || stats.identityTypeOverridesApplied > 0 || stats.identityAliasRemovalsApplied > 0 || stats.favoriteIdsMigrated > 0 || stats.contentEnriched > 0 || stats.contentEnrichmentMissingTargets > 0 || stats.contentEnrichmentDuplicateTargets > 0 || stats.definitionPromotionsApplied > 0 || stats.definitionPromotionsProblems.length > 0 || stats.reviewedAliasesApplied > 0 || stats.reviewedAliasesProblems.length > 0) {
       console.info("Construction Tools Atlas data dedupe/quarantine/redirect/enrichment", stats);
     }
     return merged;

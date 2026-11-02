@@ -7,8 +7,8 @@ import { spawn } from "node:child_process";
 
 
 const ORIGIN="https://nicheworks.app";
-const EXPECTED_ASSET_VERSION="20261102-reviewed-aliases-wave2-1";
-const PREVIOUS_ASSET_VERSION="20261102-reviewed-aliases-1";
+const EXPECTED_ASSET_VERSION="20261102-reviewed-aliases-wave3-1";
+const PREVIOUS_ASSET_VERSION="20261102-reviewed-aliases-wave2-1";
 const ALLOW_PREVIOUS_ASSET_VERSION=process.env.CTA_ALLOW_PREVIOUS_ASSET_VERSION==="1";
 
 const chrome = ["google-chrome", "google-chrome-stable", "chromium", "chromium-browser"].find(name =>
@@ -63,8 +63,8 @@ async function smoke(lang,allowPreviousAssetVersion) {
     }
     count=query("#resultCount")?.textContent?.trim()||"";
     assetVersion=document.querySelector('script[src*="quality-loader.js"]')?.getAttribute("src")||"";
-    const latest=assetVersion.includes("20261102-reviewed-aliases-wave2-1");
-    const previous=assetVersion.includes("20261102-reviewed-aliases-1");
+    const latest=assetVersion.includes("20261102-reviewed-aliases-wave3-1");
+    const previous=assetVersion.includes("20261102-reviewed-aliases-wave2-1");
     check(latest||(allowPreviousAssetVersion&&previous),
       "Production does not serve current dictionary source: "+assetVersion+" (PR rollout grace="+allowPreviousAssetVersion+")");
     check(/870/.test(count),"Public canonical catalog did not load 870 entries: "+count+" / "+(query("#loadingState")?.textContent||""));

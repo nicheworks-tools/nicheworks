@@ -33,6 +33,9 @@ jobs:
       - name: Check curated aliases and exact search ranking
         run: node tools/construction-tools-atlas/scripts/check-subject-alias-review-v1.cjs
 
+      - name: Report actual missing bilingual aliases from live dictionary loader
+        run: node tools/construction-tools-atlas/scripts/report-runtime-alias-gaps-v3.cjs --verbose
+
       - name: Check semantic search v2.3 regression
         run: node tools/construction-tools-atlas/scripts/check-semantic-search-v2.3.cjs
 
