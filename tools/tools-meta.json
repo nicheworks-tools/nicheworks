@@ -72,8 +72,8 @@
     "bichiku-check": {
       "title_ja": "防災備蓄チェック",
       "title_en": "BichikuCheck — Emergency Supplies for Japan",
-      "desc_ja": "家族の人数や停電・断水の条件に合わせて防災備蓄の不足品を計算し、非常食・日用品・代用品を比較できます。",
-      "desc_en": "Find household emergency supply gaps by scenario, compare regular groceries, emergency gear and conditional substitutes in four languages.",
+      "desc_ja": "防災備蓄の不足量を計算。非常食・普段の食品・防災用品・代用品を停電や断水の条件に合わせて確認できる無料ツール。",
+      "desc_en": "Check household emergency food, water, portable-toilet and sleeping-supply gaps; compare everyday items and substitutes in four languages.",
       "tags": [
         "disaster",
         "preparedness",
