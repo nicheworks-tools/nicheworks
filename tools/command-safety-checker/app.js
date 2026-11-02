@@ -241,18 +241,32 @@
     if (result.normalized) { normalizedCmdEl.textContent = result.normalized; normalizedWrap.hidden = false; } else { normalizedCmdEl.textContent = ""; normalizedWrap.hidden = true; }
   }
 
+  function invalidateAnalysis() {
+    // A report is valid only for the exact command text and OS that produced it.
+    // Editing either input must never leave a stale low-risk badge or copy payload.
+    window.__nw_lastResult = null;
+    if (resultSection) resultSection.hidden = true;
+    ["resultSummary", "findings", "saferSteps"].forEach((id) => {
+      const node = $(id);
+      if (node) node.textContent = "";
+    });
+    if (riskLevelEl) riskLevelEl.textContent = "";
+    if (normalizedCmdEl) normalizedCmdEl.textContent = "";
+    if (normalizedWrap) normalizedWrap.hidden = true;
+  }
   function handleAnalyze() {
     const normalized = trimLines(cmdInput?.value || "");
-    if (!normalized) { showToast(t("コマンドを入力してください", "Please paste a command")); return; }
+    if (!normalized) {
+      invalidateAnalysis();
+      showToast(t("コマンドを入力してください", "Please paste a command"));
+      return;
+    }
+    invalidateAnalysis();
     renderResult(analyzeCommand(normalized));
   }
   function handleClear() {
     if (cmdInput) cmdInput.value = "";
-    if (resultSection) resultSection.hidden = true;
-    ["resultSummary","findings","saferSteps"].forEach((id) => { const el = $(id); if (el) el.innerHTML = ""; });
-    if (normalizedCmdEl) normalizedCmdEl.textContent = "";
-    if (normalizedWrap) normalizedWrap.hidden = true;
-    window.__nw_lastResult = null;
+    invalidateAnalysis();
     showToast(t("クリアしました", "Cleared"));
   }
   function buildReportText(result) {
@@ -277,8 +291,10 @@
     catch {
       const ta = document.createElement("textarea");
       ta.value = text; ta.style.position = "fixed"; ta.style.left = "-9999px"; document.body.appendChild(ta); ta.select();
-      try { document.execCommand("copy"); showToast(t("コピーしました", "Copied")); }
-      catch { showToast(t("コピーに失敗しました", "Copy failed")); }
+      try {
+        const copied = document.execCommand("copy") === true;
+        showToast(copied ? t("コピーしました", "Copied") : t("コピーに失敗しました", "Copy failed"));
+      } catch { showToast(t("コピーに失敗しました", "Copy failed")); }
       finally { document.body.removeChild(ta); }
     }
   }
@@ -286,12 +302,15 @@
   analyzeBtn?.addEventListener("click", handleAnalyze);
   clearBtn?.addEventListener("click", handleClear);
   copyBtn?.addEventListener("click", copyResults);
+  cmdInput?.addEventListener("input", invalidateAnalysis);
+  osSelect?.addEventListener("change", invalidateAnalysis);
   cmdInput?.addEventListener("keydown", (event) => { if ((event.ctrlKey || event.metaKey) && event.key === "Enter") handleAnalyze(); });
   document.addEventListener("click", (event) => {
     const b = event.target.closest("[data-preset]");
     if (!b) return;
     if (cmdInput) cmdInput.value = b.dataset.preset || "";
     if (b.dataset.os && osSelect) osSelect.value = b.dataset.os;
+    invalidateAnalysis();
     cmdInput?.focus();
   });
 })();
