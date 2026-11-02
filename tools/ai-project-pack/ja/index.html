@@ -1,318 +1,49 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AI Project Pack｜単一リポジトリ型の運用パック解説 | NicheWorks</title>
-  <meta name="description" content="AI Project Pack｜単一リポジトリ型の運用パック解説 は、ブラウザだけで使えるNicheWorksの無料軽量ツールです。入力データをできるだけローカルで処理し、小さな作業を素早く片付けます。">
+  <meta name="description" content="AI Project Pack は、AI支援開発で current truth、decisions、pending items、next actions、sources、update logs を1つのAI-readable repoに整理する単一リポジトリ型の運用パックです。">
   <link rel="icon" href="/assets/favicon.ico">
   <link rel="canonical" href="https://nicheworks.app/tools/ai-project-pack/ja/">
-  <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/ai-project-pack/" />
-  <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/ai-project-pack/ja/" />
-  <link rel="alternate" hreflang="x-default" href="https://nicheworks.app/tools/ai-project-pack/" />
-  <meta property="og:type" content="website">
+  <link rel="alternate" hreflang="en" href="https://nicheworks.app/tools/ai-project-pack/">
+  <link rel="alternate" hreflang="ja" href="https://nicheworks.app/tools/ai-project-pack/ja/">
+  <link rel="alternate" hreflang="x-default" href="https://nicheworks.app/tools/ai-project-pack/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="NicheWorks">
   <meta property="og:title" content="AI Project Pack｜単一リポジトリ型の運用パック解説 | NicheWorks">
-  <meta property="og:description" content="AI Project Pack｜単一リポジトリ型の運用パック解説 は、ブラウザだけで使えるNicheWorksの無料軽量ツールです。入力データをできるだけローカルで処理し、小さな作業を素早く片付けます。">
+  <meta property="og:description" content="AI支援開発で current truth、decisions、pending items、next actions、sources、update logs を1つのAI-readable repoに整理する単一リポジトリ型の運用パックです。">
   <meta property="og:url" content="https://nicheworks.app/tools/ai-project-pack/ja/">
   <meta property="og:image" content="https://nicheworks.app/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="AI Project Pack｜単一リポジトリ型の運用パック解説 | NicheWorks">
-  <meta name="twitter:description" content="AI Project Pack｜単一リポジトリ型の運用パック解説 は、ブラウザだけで使えるNicheWorksの無料軽量ツールです。入力データをできるだけローカルで処理し、小さな作業を素早く片付けます。">
+  <meta name="twitter:description" content="AI支援開発で current truth、decisions、pending items、next actions、sources、update logs を1つのAI-readable repoに整理する単一リポジトリ型の運用パックです。">
   <meta name="twitter:image" content="https://nicheworks.app/assets/ogp.png">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-57QT78M3JB');
-  </script>
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "AI Project Pack",
-      "url": "https://nicheworks.app/tools/ai-project-pack/ja/",
-      "applicationCategory": "UtilityApplication",
-      "description": "AI Project Pack の公開説明ページ。current truth、decisions、pending items、next actions、sources、update logs を一つの AI-readable repo にまとめる単一リポジトリ型の運用パックです。",
-      "operatingSystem": "All",
-      "inLanguage": "ja"
-    }
-  </script>
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "inLanguage": "ja",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "AI Project Pack は Web サービスですか？",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "違います。主役はリポジトリそのもので、このページはその使い方を先に理解するための説明ページです。"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Codex がないと使えませんか？",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "いいえ。ChatGPT、Claude、Codex など、リポジトリ内ファイルを読める AI なら使えます。"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "基本の使い方は何ですか？",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "まず report-only で repo を読み、次に bounded safe-update を1回だけ行い、その後 update log を追記して次のセッションに引き継ぎます。"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "使うほど良くなりますか？",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "はい。ただし自動的に良くなるわけではなく、decisions、sources、pending、update logs を整合的に積み上げたときに強くなります。"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "将来、簡易版サイトは作られますか？",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "可能性はあります。ただし主役は今後もリポジトリであり、簡易版ができてもそれは入口や導入版としての位置づけになる想定です。"
-          }
-        }
-      ]
-    }
-  </script>
-  <link rel="stylesheet" href="../style.css" />
   <meta name="robots" content="index,follow">
   <link rel="apple-touch-icon" href="/assets/favicon.ico">
-  <meta property="og:site_name" content="NicheWorks">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-57QT78M3JB"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-57QT78M3JB');</script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879006623791275" crossorigin="anonymous"></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"AI Project Pack","name":"AI Project Pack","url":"https://nicheworks.app/tools/ai-project-pack/ja/","description":"AI Project Pack の公開説明ページ。current truth、decisions、pending items、next actions、sources、update logs を一つの AI-readable repo にまとめる単一リポジトリ型の運用パックです。","inLanguage":"ja","dateModified":"2026-05-06","about":["single-repository operating pack","AI-assisted development","AI-readable repo","current truth","bounded safe-update"],"publisher":{"@type":"Organization","name":"NicheWorks","url":"https://nicheworks.app/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"ja","mainEntity":[{"@type":"Question","name":"AI Project Pack は Web サービスですか？","acceptedAnswer":{"@type":"Answer","text":"違います。主役はリポジトリそのもので、このページはその使い方を先に理解するための説明ページです。"}},{"@type":"Question","name":"Codex がないと使えませんか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。ChatGPT、Claude、Codex など、リポジトリ内ファイルを読める AI なら使えます。"}},{"@type":"Question","name":"safe-update とは何ですか？","acceptedAnswer":{"@type":"Answer","text":"safe-update は安全を保証する更新ではなく、範囲を限定したレビュー可能な更新という意味です。更新後は touched files と git diff を確認してください。"}},{"@type":"Question","name":"AIが提案した更新をそのまま反映してよいですか？","acceptedAnswer":{"@type":"Answer","text":"推奨しません。提案差分として扱い、diff、根拠、権限、未決事項を確認してから反映してください。"}},{"@type":"Question","name":"リポジトリはどこで開きますか？","acceptedAnswer":{"@type":"Answer","text":"リポジトリはGitHubで開きます。GitHub側の規約、プライバシーポリシー、可用性が適用されます。"}}]}</script>
+  <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-  <header class="site-head">
-    <div class="wrap site-head-inner">
-      <a class="brand" href="https://nicheworks.app/">NicheWorks</a>
-      <nav class="head-links" aria-label="ページリンク">
-        <a href="https://nicheworks.app/">Home</a>
-        <a href="/tools/ai-project-pack/">View in English</a>
-        <a href="https://github.com/nicheworks-tools/ai-project-pack/tree/main" target="_blank" rel="noopener">GitHub</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <div class="wrap">
-      <section class="hero" aria-labelledby="page-title">
-        <p class="eyebrow">Single-repo operating pack guide</p>
-        <h1 id="page-title">AI Project Pack</h1>
-        <p class="lead">AI を使った開発で、current truth、decisions、pending items、next actions、sources、update logs を一つの AI-readable repo にまとめ、毎回のセッションで文脈を作り直さなくてよくするための単一リポジトリ型運用パックです。</p>
-        <div class="meta-row">
-          <span>公開元: <a href="https://nicheworks.app/">NicheWorks</a></span>
-          <span><a href="/tools/ai-project-pack/">View in English</a></span>
-        </div>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="https://github.com/nicheworks-tools/ai-project-pack/tree/main" target="_blank" rel="noopener">GitHub リポジトリを見る</a>
-          <a class="btn btn-secondary" href="#how-it-works">仕組みを見る</a>
-          <a class="btn btn-secondary" href="#support">このプロジェクトを支援する</a>
-        </div>
-
-        <div class="quick-grid" aria-label="クイック情報">
-          <div class="card quick-card">
-            <p class="quick-card-title">Current status</p>
-            <strong>Public v1 公開中</strong>
-            <span>このリポジトリは draft ではなく、最初から使うための公開版として置かれています。</span>
-          </div>
-          <div class="card quick-card">
-            <p class="quick-card-title">Core loop</p>
-            <strong>Report-only → safe-update → update log</strong>
-            <span>最初に読む、次に小さく更新する、最後に次のセッションへ引き継ぐ、という流れで使います。</span>
-          </div>
-          <div class="card quick-card">
-            <p class="quick-card-title">Repository shape</p>
-            <strong>単一の AI-readable repo</strong>
-            <span>core files、examples、playbooks、adapters、templates、updates が一つのリポジトリにまとまっています。</span>
-          </div>
-          <div class="card quick-card">
-            <p class="quick-card-title">Model styles</p>
-            <strong>ChatGPT / Claude / Codex</strong>
-            <span>曖昧さ整理、根拠整理、bounded repo edits など、モデル別の入口も含んでいます。</span>
-          </div>
-        </div>
-
-        <div class="quick-nav" aria-label="このページの目次">
-          <strong>このページの目次</strong>
-          <div class="quick-nav-links">
-            <a href="#what-it-is">これは何か</a>
-            <a href="#why-it-exists">なぜ作られたか</a>
-            <a href="#who-its-for">誰向けか</a>
-            <a href="#what-is-inside">中身</a>
-            <a href="#how-it-works">仕組み</a>
-            <a href="#first-use-flow">初回の使い方</a>
-            <a href="#future-lite">将来の簡易版</a>
-            <a href="#faq">FAQ</a>
-            <a href="#support">支援</a>
-          </div>
-        </div>
-      </section>
-
-      <div class="nw-donate" aria-labelledby="support-top-title">
-        <h2 id="support-top-title">今後の保守や実例追加を支援する</h2>
-        <p>このページやリポジトリが役立った場合、今後の実例追加、validation 改善、説明更新の支援につながります。</p>
-        <div class="nw-donate-links">
-          <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
-          <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
-        </div>
-      </div>
-
-      <section id="what-it-is">
-        <h2>これは何か</h2>
-        <p>AI Project Pack は、AI を使った開発のための public な単一リポジトリ型 operating pack です。新しい AI セッションが始まるたびに「何が真実で、何が未決で、次に何をすべきか」を再構築するのではなく、同じ repo から始められるようにします。</p>
-        <p>主役はリポジトリそのもので、このページはそのリポジトリを先に理解するための説明ページです。</p>
-        <p>メモリサービスでも、自律的なマネージャーでも、ホスト型プラットフォームでもありません。あくまで reviewable な text-first operating repo です。</p>
-      </section>
-
-      <section id="why-it-exists">
-        <h2>なぜ作られたか</h2>
-        <p>開発プロジェクトは、決定事項がチャットに埋もれ、未決事項が勝手に確定扱いされ、source が見えなくなり、新しいモデルや新しいセッションのたびに文脈を作り直すことで劣化します。</p>
-        <p>AI Project Pack は、それを防ぐために以下を分離して持たせます。</p>
-        <ul>
-          <li>current truth</li>
-          <li>decisions</li>
-          <li>pending items</li>
-          <li>next actions</li>
-          <li>sources</li>
-          <li>append-only update logs</li>
-        </ul>
-      </section>
-
-      <section id="who-its-for">
-        <h2>誰向けか</h2>
-        <p>AI セッションのたびに文脈がリセットされ、プロジェクト品質が落ちる人向けです。</p>
-        <ul>
-          <li>AI を併用した product / technical planning</li>
-          <li>根拠の質が重要な research-heavy implementation</li>
-          <li>OSS の公開準備や handoff を伴う作業</li>
-          <li>人間 + AI の混成で、変更履歴を監査可能にしたいチーム</li>
-        </ul>
-        <p>逆に、自動で全部進める project manager や SaaS を探している場合は向きません。</p>
-      </section>
-
-      <section id="what-is-inside">
-        <h2>リポジトリの中身</h2>
-        <p>このリポジトリは、AI が毎回読んで判断し、必要なら小さく更新できる operating surface として整理されています。</p>
-        <h3>Core operating files</h3>
-        <p><code>current-truth.md</code>、<code>decisions.md</code>、<code>pending.md</code>、<code>next-actions.md</code>、<code>sources.md</code>、<code>updates/</code>。</p>
-        <h3>Operational guidance</h3>
-        <p><code>examples/</code>、<code>playbooks/</code>、<code>adapters/</code>、<code>docs/</code>、<code>templates/</code>、そして <code>scripts/validate_repo.py</code> による validation。</p>
-      </section>
-
-      <section id="how-it-works">
-        <h2>どう動くか</h2>
-        <p>設計は単純です。読み、まずは編集せずに把握し、小さく更新し、その結果を残します。</p>
-        <div class="flow-list">
-          <div class="flow-step"><strong>1. repo を読む</strong>README、AGENTS、core files を順に読んで現在地を把握します。</div>
-          <div class="flow-step"><strong>2. report-only を行う</strong>いきなり編集せず、まず何が整合していて何が未決かを返します。</div>
-          <div class="flow-step"><strong>3. bounded safe-update を1回だけ行う</strong>必要最小限のファイルだけを更新し、未決事項は未決のまま残します。</div>
-          <div class="flow-step"><strong>4. update log を追記する</strong>次のモデルや次のセッションがすぐ再開できるように、変更を append-only で残します。</div>
-        </div>
-      </section>
-
-      <section id="first-use-flow">
-        <h2>初回の使い方</h2>
-        <p>初めて使うときは、次の流れだけで十分です。</p>
-        <ol>
-          <li>リポジトリを開く</li>
-          <li><code>README.md</code> と <code>AGENTS.md</code> を読む</li>
-          <li><code>current-truth.md</code>、<code>decisions.md</code>、<code>pending.md</code>、<code>next-actions.md</code>、<code>sources.md</code> を読む</li>
-          <li>report-only を実行する</li>
-          <li>bounded safe-update を1回だけ承認する</li>
-          <li>dated update log を追記する</li>
-          <li>次回はその repo から再開する</li>
-        </ol>
-        <p>examples には、report-only 出力、safe-update 範囲、touched-files、handoff まで具体的に入っています。</p>
-      </section>
-
-      <section id="why-different">
-        <h2>何が違うのか</h2>
-        <p>これは単なる prompt pack ではありません。read order、bounded update rules、source-aware claims、append-only history、session restart quality まで含めた operating surface です。</p>
-      </section>
-
-      <section id="future-lite">
-        <h2>将来の簡易版について</h2>
-        <p>将来的に browser 上で軽く試せる lightweight builder が追加される可能性はあります。ただし主役は今後も repo のままです。</p>
-        <p>もし簡易版が追加されるなら、project snapshot、decisions、pending、next actions、sources、AI prompts を軽く組み立てて repo 導線につなぐ導入版になる想定です。</p>
-      </section>
-
-      <section id="faq">
-        <h2>FAQ</h2>
-        <div class="faq-list">
-          <div class="faq-item">
-            <h3>AI Project Pack は Web サービスですか？</h3>
-            <p>違います。主役はリポジトリそのもので、このページはその使い方を先に理解するための説明ページです。</p>
-          </div>
-          <div class="faq-item">
-            <h3>Codex がないと使えませんか？</h3>
-            <p>いいえ。ChatGPT、Claude、Codex など、リポジトリ内ファイルを読める AI なら使えます。</p>
-          </div>
-          <div class="faq-item">
-            <h3>基本の使い方は何ですか？</h3>
-            <p>まず report-only で repo を読み、次に bounded safe-update を1回だけ行い、その後 update log を追記して次のセッションに引き継ぎます。</p>
-          </div>
-          <div class="faq-item">
-            <h3>使うほど良くなりますか？</h3>
-            <p>はい。ただし自動的に良くなるわけではなく、decisions、sources、pending、update logs を整合的に積み上げたときに強くなります。</p>
-          </div>
-          <div class="faq-item">
-            <h3>将来、簡易版サイトは作られますか？</h3>
-            <p>可能性はあります。ただし主役は今後もリポジトリであり、簡易版ができてもそれは入口や導入版としての位置づけになる想定です。</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="links">
-        <h2>関連リンク</h2>
-        <div class="button-row">
-          <a class="btn btn-primary" href="https://github.com/nicheworks-tools/ai-project-pack/tree/main" target="_blank" rel="noopener">GitHub リポジトリを開く</a>
-          <a class="btn btn-secondary" href="https://nicheworks.app/">NicheWorks を見る</a>
-          <a class="btn btn-secondary" href="/tools/ai-project-pack/">View in English</a>
-        </div>
-      </section>
-
-      <div class="nw-donate" id="support" aria-labelledby="support-title">
-        <h2 id="support-title">このプロジェクトを支援する</h2>
-        <p>このページやリポジトリが役立った場合、今後の保守、validation 改善、追加実例の公開を支援できます。</p>
-        <div class="nw-donate-links">
-          <a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a>
-          <a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a>
-        </div>
-      </div>
-
-      <section class="disclaimer" aria-labelledby="disclaimer-title">
-        <h2 id="disclaimer-title">免責事項</h2>
-        <p>このページおよびリンク先のリポジトリは、情報提供と実務上のワークフロー整理を目的として公開されています。内容の完全性、特定目的への適合性、継続的な提供は保証されません。実際の開発・運用への適用は利用者自身の判断で行ってください。内容は予告なく更新または変更される場合があります。</p>
-      </section>
-
-      <div class="nw-links" aria-label="他ツール">
-        <span>関連ツール</span>
-        <a href="https://nicheworks.app/tools/codex-work-os/">codex-work-os</a>
-        <a href="https://nicheworks.app/tools/codex-product-shipping-playbooks/">codex-product-shipping-playbooks</a>
-        <a href="https://nicheworks.app/tools/log-formatter/">LogFormatter</a>
-      </div>
-    </div>
-  </main>
-
-  <footer class="foot">
-    <div class="wrap">
-      <p>公開元: <a href="https://nicheworks.app/">NicheWorks</a> · <a href="/tools/ai-project-pack/">View in English</a> · <a href="https://github.com/nicheworks-tools/ai-project-pack/tree/main" target="_blank" rel="noopener">GitHub</a></p>
-    </div>
-  </footer>
-
-  <a class="floating-support" href="#support" aria-label="支援セクションへ移動">支援する</a>
+  <header class="site-head"><div class="wrap site-head-inner"><a class="brand" href="https://nicheworks.app/">NicheWorks</a><nav class="head-links" aria-label="ページリンク"><a href="https://nicheworks.app/">Home</a><a href="/tools/ai-project-pack/">View in English</a><a href="https://github.com/nicheworks-tools/ai-project-pack/tree/main" target="_blank" rel="noopener">GitHub</a></nav></div></header>
+  <main><div class="wrap">
+    <section class="hero" aria-labelledby="page-title"><p class="eyebrow">Single-repo operating pack guide</p><h1 id="page-title">AI Project Pack</h1><p class="lead">AI を使った開発で、current truth、decisions、pending items、next actions、sources、update logs を一つの AI-readable repo にまとめ、毎回のセッションで文脈を作り直さなくてよくするための単一リポジトリ型運用パックです。</p><div class="meta-row"><span>公開元: <a href="https://nicheworks.app/">NicheWorks</a></span><span><a href="/tools/ai-project-pack/">View in English</a></span></div><div class="hero-actions"><a class="btn btn-primary" href="https://github.com/nicheworks-tools/ai-project-pack/tree/main" target="_blank" rel="noopener">GitHub リポジトリを見る</a><a class="btn btn-secondary" href="#how-it-works">仕組みを見る</a></div><section class="card warning" aria-labelledby="important-note-title"><h2 id="important-note-title">重要な注意</h2><p>AI Project Pack は、AI支援開発のためのリポジトリ運用補助です。人間の確認、コードレビュー、セキュリティ確認、法務確認、プロダクト責任、リリース判断を代替しません。</p><p>実プロジェクトへAI生成の更新を反映する前に、差分、根拠、権限、未決事項を必ず確認してください。</p></section><div class="quick-grid" aria-label="クイック情報"><div class="card quick-card"><p class="quick-card-title">Current status</p><strong>Public v1 公開中 · ページ最終確認日: 2026-05-06</strong><span>このリポジトリは初回利用できる公開版です。最新状態はGitHub上のリポジトリを確認してください。</span></div><div class="card quick-card"><p class="quick-card-title">Core loop</p><strong>Report-only → safe-update → update log</strong><span>最初に読み、小さく更新し、次のセッションへ引き継ぐ流れで使います。</span></div><div class="card quick-card"><p class="quick-card-title">Repository shape</p><strong>単一の AI-readable repo</strong><span>current truth、decisions、pending、next actions、sources、examples、playbooks、updates が一つにまとまっています。</span></div><div class="card quick-card"><p class="quick-card-title">Model styles</p><strong>ChatGPT / Claude / Codex</strong><span>曖昧さ整理、根拠整理、bounded repo edits など、モデル別の入口も含んでいます。</span></div></div><div class="quick-nav" aria-label="このページの目次"><strong>このページの目次</strong><div class="quick-nav-links"><a href="#what-it-is">これは何か</a><a href="#why-it-exists">なぜ作られたか</a><a href="#what-is-inside">中身</a><a href="#how-it-works">仕組み</a><a href="#faq">FAQ</a><a href="#support">支援</a></div></div></section>
+    <section id="what-it-is"><h2>これは何か</h2><p>AI Project Pack は、AI を使った開発のための public な単一リポジトリ型 operating pack です。ブラウザ入力ツール、メモリサービス、自律的なマネージャー、ホスト型プラットフォームではありません。主役はリポジトリそのもので、このページはそのリポジトリを先に理解するための説明ページです。</p></section>
+    <section id="why-it-exists"><h2>なぜ作られたか</h2><p>開発プロジェクトは、決定事項がチャットに埋もれ、未決事項が勝手に確定扱いされ、source が見えなくなり、新しいモデルや新しいセッションのたびに文脈を作り直すことで劣化します。AI Project Pack は current truth、decisions、pending items、next actions、sources、append-only update logs を分離して持たせます。</p></section>
+    <section id="what-is-inside"><h2>リポジトリの中身</h2><p>Core files は <code>current-truth.md</code>、<code>decisions.md</code>、<code>pending.md</code>、<code>next-actions.md</code>、<code>sources.md</code>、<code>updates/</code> です。<code>examples/</code>、<code>playbooks/</code>、<code>adapters/</code>、<code>docs/</code>、<code>templates/</code>、validation scripts も含みます。</p></section>
+    <section id="how-it-works"><h2>どう動くか</h2><div class="flow-list"><div class="flow-step"><strong>1. repo を読む</strong>README、AGENTS、core files を順に読んで現在地を把握します。</div><div class="flow-step"><strong>2. report-only を行う</strong>いきなり編集せず、まず何が整合していて何が未決かを返します。</div><div class="flow-step"><strong>3. bounded safe-update を1回だけ行う</strong>safe-update は「安全を保証する更新」ではなく、「範囲を限定したレビュー可能な更新」という意味です。実行後は touched files と <code>git diff</code> を確認してください。</div><div class="flow-step"><strong>4. update log を追記する</strong>次のモデルや次のセッションがすぐ再開できるように、変更を append-only で残します。</div></div></section>
+    <section id="first-use-flow"><h2>初回の使い方</h2><ol><li>リポジトリを開く</li><li><code>README.md</code>、<code>AGENTS.md</code>、core files を読む</li><li>report-only を実行する</li><li>bounded safe-update を1回だけ承認する</li><li>touched files、<code>git diff</code>、根拠、権限、未決事項を確認する</li><li>dated update log を追記する</li><li>次回はその repo から再開する</li></ol></section>
+    <section id="faq"><h2>FAQ</h2><div class="faq-list"><div class="faq-item"><h3>AI Project Pack は Web サービスですか？</h3><p>違います。主役はリポジトリそのものです。</p></div><div class="faq-item"><h3>Codex がないと使えませんか？</h3><p>いいえ。リポジトリ内ファイルを読める AI なら使えます。</p></div><div class="faq-item"><h3>safe-update とは何ですか？</h3><p>安全を保証する更新ではなく、範囲を限定したレビュー可能な更新という意味です。更新後は touched files と <code>git diff</code> を確認してください。</p></div><div class="faq-item"><h3>AIが提案した更新をそのまま反映してよいですか？</h3><p>推奨しません。提案差分として扱い、diff、根拠、権限、未決事項を確認してから反映してください。</p></div><div class="faq-item"><h3>リポジトリはどこで開きますか？</h3><p>リポジトリはGitHubで開きます。GitHub側の規約、プライバシーポリシー、可用性が適用されます。</p></div></div></section>
+    <section id="links"><h2>関連リンク</h2><p>リポジトリはGitHubで開きます。GitHub側の規約、プライバシーポリシー、可用性が適用されます。</p><div class="button-row"><a class="btn btn-primary" href="https://github.com/nicheworks-tools/ai-project-pack/tree/main" target="_blank" rel="noopener">GitHub リポジトリを開く</a><a class="btn btn-secondary" href="https://nicheworks.app/">NicheWorks を見る</a><a class="btn btn-secondary" href="/tools/ai-project-pack/">View in English</a></div></section>
+    <div class="nw-donate" id="support" aria-labelledby="support-title"><h2 id="support-title">このプロジェクトを支援する</h2><p>このページやリポジトリが役立った場合、今後の保守、validation 改善、追加実例の公開を支援できます。OFUSE / Ko-fi は外部サービスで開きます。</p><div class="nw-donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">💌 OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">☕ Ko-fi</a></div></div>
+    <section class="disclaimer" aria-labelledby="disclaimer-title"><h2 id="disclaimer-title">免責事項</h2><p>このページおよびリンク先のリポジトリは、情報提供と実務上のワークフロー整理を目的として公開されています。内容の完全性、特定目的への適合性、継続的な提供は保証されません。実際の開発・運用への適用は利用者自身の判断で行ってください。内容は予告なく更新または変更される場合があります。</p><p>このページでは解析・広告タグが読み込まれる場合があります。GitHub、OFUSE、Ko-fi は外部サービスであり、それぞれの規約、プライバシーポリシー、可用性が適用されます。</p></section>
+    <div class="nw-links" aria-label="他ツール"><span>関連ツール</span><a href="https://nicheworks.app/tools/codex-work-os/">Codex Work OS</a><a href="https://nicheworks.app/tools/codex-product-shipping-playbooks/">Codex Product Shipping Playbooks</a><a href="https://nicheworks.app/tools/release-guardian/">Release Guardian</a><a href="https://nicheworks.app/tools/microtool-launch-checklist/">Microtool Launch Checklist</a></div>
+  </div></main>
+  <footer class="foot"><div class="wrap"><p>公開元: <a href="https://nicheworks.app/">NicheWorks</a> · <a href="/tools/ai-project-pack/">View in English</a> · <a href="https://github.com/nicheworks-tools/ai-project-pack/tree/main" target="_blank" rel="noopener">GitHub</a></p></div></footer>
 </body>
 </html>
