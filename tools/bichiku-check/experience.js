@@ -53,7 +53,7 @@ function count(row){
 function groupCards(a){
  return a.groups.map(g=>{
  const r=g.primary,missing=g.missingCategories>0;
- return '<article class="g-goal"><div class="g-goal-head"><strong>'+esc(T[g.id])+'</strong><span class="'+(missing?"g-danger":"g-ok")+'">'+esc(r.missing?T.missing:T.ready)+' '+(r.missing?fmt(r.missing)+unit(r.item.id):"")+'</span></div>'+
+ return '<article class="g-goal"><div class="g-goal-head"><strong>'+esc(T[g.id])+'</strong><span class="'+(missing?"g-danger":"g-ok")+'">'+(missing?esc(r.missing?T.missing:T.groupGaps)+' '+(r.missing?fmt(r.missing)+unit(r.item.id):g.missingCategories):esc(T.ready))+'</span></div>'+
  meter(r)+'<div class="g-count">'+count(r)+'</div><p class="g-fine">'+esc(T[g.id+"Hint"])+'</p>'+
  '<button type="button" data-goal="'+g.id+'" class="g-open">'+esc(T.open)+' →</button></article>';
  }).join("");
@@ -109,11 +109,12 @@ function renderChoices(a){
  const v=getOption(o.id),countable=o.equivalence==="full"&&(!state.noHeat||!["heat","verify"].includes(o.prep))&&(!o.requiresWater||(a.waterForPrep&&v.prepConfirmed===true&&n(v.prepWaterLiters)>0));
  const unexpired=!v.expiry||v.expiry>=today();
  const ready=n(v.qty)>0&&unexpired&&(countable||(o.id==="toiletBags"&&state.toiletAssemblyConfirmed));
+ const itemStatus=n(v.qty)===0?T.enterQuantity:!unexpired?T.expiredOption:o.equivalence!=="full"&&o.id!=="toiletBags"?T.notEquivalent:ready?T.counted:T.notReady;
  const name=o.names[lang]||o.names.ja;
  const warning=(O.notes||{})[o.warning]||"";
  return '<details class="g-option" data-option="'+o.id+'" '+(openOptions.has(o.id)?"open":"")+'>'+
  '<summary><strong>'+esc(name)+'</strong><small>'+esc(O[o.kind]||o.kind)+'</small></summary>'+
- '<div class="g-option-body"><p>'+esc(warning)+'</p><p class="'+(ready?"g-ok":"g-pending")+'">'+esc(ready?T.counted:T.notEquivalent)+'</p>'+
+ '<div class="g-option-body"><p>'+esc(warning)+'</p><p class="'+(ready?"g-ok":"g-pending")+'">'+esc(itemStatus)+'</p>'+
  (o.sourceUrl?'<a href="'+esc(o.sourceUrl)+'" target="_blank" rel="noopener">'+esc(T.official)+'</a>':"")+
  '<div class="g-parent-fields"><label>'+esc(T.quantity)+'<input type="number" min="0" max="10000000" step="'+(o.parent==="water"?"0.5":"1")+'" inputmode="decimal" data-option-qty="'+o.id+'" value="'+fmt(n(v.qty))+'"></label>'+
  '<label>'+esc(T.expiry)+'<input type="date" data-option-expiry="'+o.id+'" value="'+esc(v.expiry||"")+'"></label></div>'+
