@@ -51,7 +51,7 @@ async function smoke(lang) {
   const check=(ok,message)=>{if(!ok)throw Error(message);};
   const query=(selector)=>document.querySelector(selector);
   let candidate="", count="", selected="";
-  const assetVersion=document.querySelector('script[src*="quality-loader.js"]')?.getAttribute("src")||"";
+  let assetVersion="";
   try{
     for(let i=0;i<150;i++){
       const loaded=query("#loadingState")?.hidden;
@@ -60,6 +60,7 @@ async function smoke(lang) {
       await sleep(120);
     }
     count=query("#resultCount")?.textContent?.trim()||"";
+    assetVersion=document.querySelector('script[src*="quality-loader.js"]')?.getAttribute("src")||"";
     check(assetVersion.includes("20261102-reviewed-aliases-1"),"Production asset version is stale/unexpected: "+assetVersion);
     check(/870/.test(count),"Public canonical catalog did not load 870 entries: "+count+" / "+(query("#loadingState")?.textContent||""));
     check(document.querySelectorAll("#resultList .resultRow").length>=40,"Initial list is missing real dictionary items");
