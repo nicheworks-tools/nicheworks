@@ -101,5 +101,7 @@ for(const [lang,d] of Object.entries(dict)) {
   for(const key of Object.keys(dict.ja)) if(!(key in d))throw Error(lang+" missing "+key);
   for(const key of Object.keys(dict.ja.notes)) if(!(key in d.notes))throw Error(lang+" warning missing "+key);
 }
+dict.ja.sourceLink="公式資料・実験例を確認";dict.en.sourceLink="Read official guidance / experiment";dict.zh.sourceLink="查看官方资料／实验例";dict.vi.sourceLink="Xem tài liệu / thí nghiệm chính thức";
+dict.ja.totalStock="使える数量（合計）";dict.en.totalStock="Usable total";dict.zh.totalStock="可用数量（合计）";dict.vi.totalStock="Tổng số dùng được";
 window.BICHIKU_OPTIONS_UI = Object.freeze(dict);
 })();
