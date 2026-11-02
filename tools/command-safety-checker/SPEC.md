@@ -14,6 +14,7 @@ Help users inspect AI-generated shell or PowerShell commands before execution by
 - Accept multi-line command text and an OS mode for Linux/macOS shell or Windows PowerShell.
 - Detect implemented risky patterns including destructive deletion, remote script execution, privilege escalation, disk operations, selected PowerShell hazards, environment/private-key exposure, and data-exfiltration-like command patterns.
 - Return risk level, category, reason, verification guidance, and safer-alternative guidance for findings.
+- Treat each result as bound to the exact command input and selected OS at check time. Any input change, OS change, or sample replacement hides/invalidates the old risk badge, findings, and copyable report until the user checks again; an empty recheck must not preserve stale warnings. Browser clipboard fallback must report failure when `execCommand('copy')` returns false.
 - Keep the free checker usable without Pro.
 - With the current live legacy NicheWorks Pro gate active, generate review-oriented deliverables including review Markdown, Codex safety-check task text, GitHub Issue draft, and JSON/Markdown exports.
 - Provide JP/EN UI and explicit wording that a finding/result does not certify command safety.
@@ -101,6 +102,9 @@ Large code input and review output benefit from desktop width, while the primary
 - The staged product-scoped contract does not authorize a product ID, price, Stripe Price ID, production feature namespace, or live checkout by itself.
 
 ## Acceptance criteria
+
+- [ ] Editing command text, selecting a different OS, or picking a preset invalidates a previous risk report and prevents copying the stale command. Rechecking empty input clears the previous report.
+- [ ] A clipboard fallback returning false does not show a success message.
 
 - [ ] A supported risky Unix or PowerShell sample produces a finding with risk/category/reason guidance rather than executing the command.
 - [ ] Empty or benign input does not imply a cryptographic or formal safety guarantee.
