@@ -122,6 +122,7 @@
     const value = Number(raw);
     if (!Number.isFinite(value)) return { ok: false, value: 0, error: `${label}: 数値を入力してください。` };
     if (value < 0) return { ok: false, value: 0, error: `${label}: 負数は使えません。` };
+    if (!Number.isInteger(value)) return { ok: false, value: 0, error: `${label}: 円単位の整数で入力してください。` };
     if (value > MAX_AMOUNT) return { ok: false, value: 0, error: `${label}: ${MAX_AMOUNT.toLocaleString("ja-JP")}円以下で入力してください。` };
     return { ok: true, value };
   };
@@ -135,6 +136,7 @@
     const value = Number(raw);
     if (!Number.isFinite(value)) return { ok: false, value: 0, error: `${label}: enter a number.` };
     if (value < 0) return { ok: false, value: 0, error: `${label}: negative values are not allowed.` };
+    if (!Number.isInteger(value)) return { ok: false, value: 0, error: `${label}: enter a whole number of JPY (no fractional yen).` };
     if (value > MAX_AMOUNT) return { ok: false, value: 0, error: `${label}: enter ${MAX_AMOUNT.toLocaleString("en-US")} JPY or less.` };
     return { ok: true, value };
   };
