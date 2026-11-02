@@ -271,25 +271,24 @@
       var key = row.normalized.toLowerCase();
       counts[key] = (counts[key] || 0) + 1;
     });
-    var seen = Object.create(null);
+    // Reserve every candidate, including names appearing later in the input.
+    // Otherwise "report, report, report_2" may yield a duplicate "report_2".
+    var reserved = new Set(baseRows.map(function (row) { return row.normalized.toLowerCase(); }));
+    var used = new Set();
     baseRows.forEach(function (row) {
       var key = row.normalized.toLowerCase();
       if (counts[key] > 1) row.duplicate = true;
-      if (optDeduplicate && optDeduplicate.checked) {
-        seen[key] = (seen[key] || 0) + 1;
-        if (seen[key] > 1) {
-          var numbered = addNumberSuffix(row.normalized, seen[key]);
-          var nextKey = numbered.toLowerCase();
-          while (seen[nextKey]) {
-            seen[key] += 1;
-            numbered = addNumberSuffix(row.normalized, seen[key]);
-            nextKey = numbered.toLowerCase();
-          }
-          row.normalized = numbered;
-          row.duplicateFixed = true;
-          seen[nextKey] = 1;
+      if (optDeduplicate && optDeduplicate.checked && used.has(key)) {
+        var suffix = 2;
+        var numbered = addNumberSuffix(row.normalized, suffix);
+        while (reserved.has(numbered.toLowerCase()) || used.has(numbered.toLowerCase())) {
+          suffix += 1;
+          numbered = addNumberSuffix(row.normalized, suffix);
         }
+        row.normalized = numbered;
+        row.duplicateFixed = true;
       }
+      used.add(row.normalized.toLowerCase());
       row.warnings = getNameWarnings(row.normalized);
     });
     return baseRows;
