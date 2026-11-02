@@ -1,6 +1,6 @@
 {
   "schema": "cta-canonical-redirects-v2.3",
-  "version": "2026-09-16-q014-identity-closure-1",
+  "version": "2026-11-03-final-five-canonical-identity-1",
   "policy": {
     "purpose": "Retire confirmed duplicate public canonicals without breaking legacy IDs, search vocabulary, images, or favorites.",
     "source_records_remain_stored": true,
@@ -340,6 +340,31 @@
       "from": "q014_masking_for_sealant",
       "to": "masking_tape",
       "reason": "same masking-tape material; q014 only narrows the use case"
+    },
+    {
+      "from": "corner_float",
+      "to": "q016_corner_trowel",
+      "reason": "same inside/outside corner finishing trowel; not an independent corner float"
+    },
+    {
+      "from": "sandpaper",
+      "to": "q011_sanding_paper",
+      "reason": "same sheet/cloth-backed abrasive; keep reviewed material definition and grain/finish guidance"
+    },
+    {
+      "from": "as_built",
+      "to": "as_built_drawing",
+      "reason": "same installed-condition record drawing, not a separate slang object"
+    },
+    {
+      "from": "ground_fault_breaker",
+      "to": "q015_earth_leakage_breaker",
+      "reason": "same leakage-current protective breaker; distinct from general GFCI/RCD device class"
+    },
+    {
+      "from": "toolbox_talk",
+      "to": "q016_toolbox_meeting",
+      "reason": "same short pre-task safety briefing; generic site morning assembly is not necessarily TBM"
     }
   ]
 }
