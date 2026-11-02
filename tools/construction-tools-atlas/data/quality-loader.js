@@ -16,6 +16,7 @@
   const GENERATED_FILLER_BATCHES = new Set(["direct-5000", "atlas-expand-5000"]);
   const FAVORITES_KEY = "cta_favs";
   const REVIEWED_DEFINITION_SOURCE_VERSION = "20261103-final-five-identities-1";
+  const REVIEWED_ENRICHMENT_PACKS = new Set(["content-enrichment-wave6e-v2.3.json","content-enrichment-wave6f-v2.3.json","content-enrichment-wave6k-v2.3.json","content-enrichment-wave6l-v2.3.json"]);
   const REVIEWED_DEFINITION_PACKS = new Set(["tools.quality-011.json","tools.quality-012.json","tools.quality-013.json","tools.quality-014.json","tools.quality-015.json","tools.quality-016.json","tools.quality-017.json"]);
 
   const text = (value) => typeof value === "string" ? value.trim() : "";
@@ -33,7 +34,7 @@
           ? path + "?v=" + DEFINITION_PROMOTIONS_VERSION
         : (baseName === "canonical-redirects-v2.3.json" || baseName === "canonical-identity-resolutions-v2.3.json")
           ? path + "?v=" + CANONICAL_IDENTITY_VERSION
-        : REVIEWED_DEFINITION_PACKS.has(baseName)
+        : (REVIEWED_ENRICHMENT_PACKS.has(baseName) || REVIEWED_DEFINITION_PACKS.has(baseName))
           ? path + "?v=" + REVIEWED_DEFINITION_SOURCE_VERSION
           : path;
       const response = await originalFetch(url);
