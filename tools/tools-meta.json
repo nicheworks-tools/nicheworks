@@ -1,6 +1,26 @@
 {
-  "updatedAt": "2026-09-14",
+  "updatedAt": "2026-11-03",
   "items": {
+    "_template": {
+      "title_ja": "{MAIN_KEYWORD}｜{TOOL_SHORT_NAME}",
+      "title_en": "_template",
+      "desc_ja": "{MAIN_KEYWORD}｜{TOOL_SHORT_NAME} は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツールです。",
+      "desc_en": "_template is a lightweight NicheWorks browser tool for small, practical tasks.",
+      "tags": [
+        "_template"
+      ]
+    },
+    "ai-interaction-atlas": {
+      "title_ja": "About AI Interaction Atlas",
+      "title_en": "Ai Interaction Atlas",
+      "desc_ja": "About AI Interaction Atlas は、ブラウザだけで使えるNicheWorksの無料軽量ツールです。入力データをできるだけローカルで処理し、小さな作業を素早く片付けます。",
+      "desc_en": "Ai Interaction Atlas is a lightweight NicheWorks browser tool for small, practical tasks.",
+      "tags": [
+        "ai",
+        "interaction",
+        "atlas"
+      ]
+    },
     "ai-project-pack": {
       "title_ja": "AIプロジェクトパック",
       "title_en": "AI Project Pack",
@@ -47,6 +67,19 @@
         "resume",
         "paste",
         "job"
+      ]
+    },
+    "bichiku-check": {
+      "title_ja": "防災備蓄チェック",
+      "title_en": "BichikuCheck — Emergency Supplies for Japan",
+      "desc_ja": "家族の人数や停電・断水の条件に合わせて防災備蓄の不足品を計算し、非常食・日用品・代用品を比較できます。",
+      "desc_en": "Find household emergency supply gaps by scenario, compare regular groceries, emergency gear and conditional substitutes in four languages.",
+      "tags": [
+        "disaster",
+        "preparedness",
+        "emergency",
+        "stockpile",
+        "affiliate"
       ]
     },
     "codex-product-shipping-playbooks": {
@@ -217,6 +250,16 @@
         "life"
       ]
     },
+    "earth-alerts": {
+      "title_ja": "Earth Alerts",
+      "title_en": "Earth Alerts",
+      "desc_ja": "Earth Alertsは、地球観測ワークフロー向けのしきい値やアラートルールを事前確認する予定の準備中ページです。通知送信やDiscord・メール連携はまだ有効ではありません。",
+      "desc_en": "Coming soon page for future threshold and alert-rule previews for Earth observation workflows.",
+      "tags": [
+        "earth",
+        "alerts"
+      ]
+    },
     "earth-map-suite": {
       "title_ja": "Earth Map Suite",
       "title_en": "Earth Map Suite",
@@ -227,6 +270,16 @@
         "geo",
         "earth",
         "utility"
+      ]
+    },
+    "earth-timeseries": {
+      "title_ja": "Earth Timeseries",
+      "title_en": "Earth Timeseries",
+      "desc_ja": "Earth Timeseriesは、地点ベースの地球観測メタデータやデータを時系列で整理する予定の準備中ページです。現在このページでは観測値の取得やラスター降水量のサンプリングは行いません。",
+      "desc_en": "Coming soon page for a future point-based Earth observation time-series utility.",
+      "tags": [
+        "earth",
+        "timeseries"
       ]
     },
     "exif-cleaner-mini": {
@@ -589,6 +642,18 @@
         "check"
       ]
     },
+    "name-old-kanji-checker": {
+      "title_ja": "人名旧字体チェッカー | Name Old Kanji Checker",
+      "title_en": "Name Old Kanji Checker",
+      "desc_ja": "人名旧字体チェッカー | Name Old Kanji Checker は、ブラウザだけで使えるNicheWorksの無料軽量ツールです。入力データをできるだけローカルで処理し、小さな作業を素早く片付けます。",
+      "desc_en": "Name Old Kanji Checker is a lightweight NicheWorks browser tool for small, practical tasks.",
+      "tags": [
+        "name",
+        "old",
+        "kanji",
+        "checker"
+      ]
+    },
     "newsletter-kit-generator": {
       "title_ja": "ニュースレター構成キット",
       "title_en": "Newsletter Kit Generator",
@@ -635,6 +700,30 @@
         "image",
         "social",
         "design"
+      ]
+    },
+    "old-document-kanji-highlighter": {
+      "title_ja": "古文書旧字体ハイライター｜Old Document Kanji Highlighter",
+      "title_en": "Old Document Kanji Highlighter",
+      "desc_ja": "古い文章・碑文・古地図説明・旧公文書風テキストに含まれる旧字体・異体字をハイライトし、現代表記との対応を確認するための参考ツールです。翻訳・解読・学術的判定を行うものではありません。",
+      "desc_en": "Old Document Kanji Highlighter is a lightweight NicheWorks browser tool for small, practical tasks.",
+      "tags": [
+        "old",
+        "document",
+        "kanji",
+        "highlighter"
+      ]
+    },
+    "old-kanji-ocr-scanner": {
+      "title_ja": "旧字体OCRスキャナー | Old Kanji OCR Scanner",
+      "title_en": "Old Kanji Ocr Scanner",
+      "desc_ja": "画像やスマホ撮影画像から旧字体・異体字を確認するためのOCR入口です。初期版では画像を読み込み、OCR結果と旧字体検出へつなぐための準備画面を提供します。 / An OCR entry point for checking old or variant kanji from images or smartphone photos. This initial version prepares image loading, preview, and later OCR/detection flows.",
+      "desc_en": "Old Kanji Ocr Scanner is a lightweight NicheWorks browser tool for small, practical tasks.",
+      "tags": [
+        "old",
+        "kanji",
+        "ocr",
+        "scanner"
       ]
     },
     "old-kanji-reference": {
@@ -685,6 +774,28 @@
         "guide"
       ]
     },
+    "pattern-atlas": {
+      "title_ja": "Pattern Atlas HTML Mock",
+      "title_en": "Pattern Atlas",
+      "desc_ja": "Pattern Atlas HTML Mock は、ブラウザだけで使えるNicheWorksの無料軽量ツールです。入力データをできるだけローカルで処理し、小さな作業を素早く片付けます。",
+      "desc_en": "Pattern Atlas is a lightweight NicheWorks browser tool for small, practical tasks.",
+      "tags": [
+        "pattern",
+        "atlas"
+      ]
+    },
+    "pattern-dictionary": {
+      "title_ja": "模様辞典",
+      "title_en": "Pattern Dictionary",
+      "desc_ja": "名前が分からない模様を、曖昧な言葉や画像一覧から探し、正式名称や似た柄まで確認できる視覚模様辞典です。",
+      "desc_en": "Identify patterns from rough descriptions, image browsing, similar designs, and common look-alikes.",
+      "tags": [
+        "pattern",
+        "dictionary",
+        "visual",
+        "search"
+      ]
+    },
     "pdf-page-tools-mini": {
       "title_ja": "PDFページ操作ミニ",
       "title_en": "PDF Page Tools Mini",
@@ -709,6 +820,31 @@
         "local"
       ]
     },
+    "phone-quickcheck": {
+      "title_ja": "スマホ QuickCheck",
+      "title_en": "Phone QuickCheck",
+      "desc_ja": "スマホのサイズ・重さ・充電端子・充電器条件・モバイルバッテリー充電回数の目安と公式情報を素早く確認します。",
+      "desc_en": "Quickly check phone size, weight, charging port, charger requirements, power-bank estimates, and official information.",
+      "tags": [
+        "phone",
+        "smartphone",
+        "charging",
+        "size",
+        "battery"
+      ]
+    },
+    "place-old-kanji-checker": {
+      "title_ja": "地名旧字体チェッカー | Place Old Kanji Checker",
+      "title_en": "Place Old Kanji Checker",
+      "desc_ja": "地名・住所・駅名・古地図・古い看板などに含まれる旧字体・異体字候補を確認するための参考ツールです。正式な住所表記・行政上の地名・登記・郵便・契約書類では、必ず実際の登録表記を確認してください。",
+      "desc_en": "Place Old Kanji Checker is a lightweight NicheWorks browser tool for small, practical tasks.",
+      "tags": [
+        "place",
+        "old",
+        "kanji",
+        "checker"
+      ]
+    },
     "product-founder-os": {
       "title_ja": "個人開発者OS",
       "title_en": "Product Founder OS",
@@ -719,6 +855,18 @@
         "founder",
         "startup",
         "workflow"
+      ]
+    },
+    "reconcile": {
+      "title_ja": "CSV・Excel取引照合｜Reconcile",
+      "title_en": "CSV / Excel Reconciliation — Reconcile",
+      "desc_ja": "2つのCSV・Excel取引データをブラウザ内で照合し、確認が必要な差分・候補・重複を抽出します。",
+      "desc_en": "Reconcile two CSV or Excel transaction datasets locally in your browser and isolate exceptions for manual review.",
+      "tags": [
+        "csv",
+        "xlsx",
+        "reconciliation",
+        "accounting"
       ]
     },
     "redirect-unwrapper": {
@@ -755,6 +903,18 @@
         "file",
         "batch",
         "organize"
+      ]
+    },
+    "screenshot-canvas": {
+      "title_ja": "スクショ自由配置・比較",
+      "title_en": "Screenshot Canvas",
+      "desc_ja": "複数の画像を自由に配置・重ね合わせて比較し、PNGで保存できます。",
+      "desc_en": "Arrange and compare multiple screenshots on a canvas and export PNG.",
+      "tags": [
+        "screenshot",
+        "image",
+        "compare",
+        "canvas"
       ]
     },
     "screenshot-stitcher": {
@@ -853,6 +1013,17 @@
         "reference"
       ]
     },
+    "unicode-kanji-checker": {
+      "title_ja": "Unicode漢字チェッカー | Unicode Kanji Checker",
+      "title_en": "Unicode Kanji Checker",
+      "desc_ja": "漢字・旧字体・異体字のUnicodeコードポイント、HTMLエンティティ、表示環境の注意、旧字体一覧との対応を確認するためのブラウザ内ツールです。",
+      "desc_en": "Unicode Kanji Checker is a lightweight NicheWorks browser tool for small, practical tasks.",
+      "tags": [
+        "unicode",
+        "kanji",
+        "checker"
+      ]
+    },
     "unitmaster": {
       "title_ja": "単位変換マスター",
       "title_en": "UnitMaster",
@@ -875,6 +1046,17 @@
         "title",
         "collector",
         "docs"
+      ]
+    },
+    "variant-kanji-compare": {
+      "title_ja": "異体字比較ツール | Variant Kanji Compare",
+      "title_en": "Variant Kanji Compare",
+      "desc_ja": "見た目が近い漢字・旧字体・異体字を並べて、Unicode、HTMLエンティティ、字形差、表示環境の注意を確認するブラウザ内ツールです。",
+      "desc_en": "Variant Kanji Compare is a lightweight NicheWorks browser tool for small, practical tasks.",
+      "tags": [
+        "variant",
+        "kanji",
+        "compare"
       ]
     },
     "vibe-lexicon": {
@@ -923,175 +1105,6 @@
         "network",
         "speed",
         "life"
-      ]
-    },
-    "_template": {
-      "title_ja": "{MAIN_KEYWORD}｜{TOOL_SHORT_NAME}",
-      "title_en": "_template",
-      "desc_ja": "{MAIN_KEYWORD}｜{TOOL_SHORT_NAME} は、NicheWorks のブラウザ完結型ページです。小さな作業を軽くするための無料ツールです。",
-      "desc_en": "_template is a lightweight NicheWorks browser tool for small, practical tasks.",
-      "tags": [
-        "_template"
-      ]
-    },
-    "ai-interaction-atlas": {
-      "title_ja": "About AI Interaction Atlas",
-      "title_en": "Ai Interaction Atlas",
-      "desc_ja": "About AI Interaction Atlas は、ブラウザだけで使えるNicheWorksの無料軽量ツールです。入力データをできるだけローカルで処理し、小さな作業を素早く片付けます。",
-      "desc_en": "Ai Interaction Atlas is a lightweight NicheWorks browser tool for small, practical tasks.",
-      "tags": [
-        "ai",
-        "interaction",
-        "atlas"
-      ]
-    },
-    "earth-alerts": {
-      "title_ja": "Earth Alerts",
-      "title_en": "Earth Alerts",
-      "desc_ja": "Earth Alertsは、地球観測ワークフロー向けのしきい値やアラートルールを事前確認する予定の準備中ページです。通知送信やDiscord・メール連携はまだ有効ではありません。",
-      "desc_en": "Coming soon page for future threshold and alert-rule previews for Earth observation workflows.",
-      "tags": [
-        "earth",
-        "alerts"
-      ]
-    },
-    "earth-timeseries": {
-      "title_ja": "Earth Timeseries",
-      "title_en": "Earth Timeseries",
-      "desc_ja": "Earth Timeseriesは、地点ベースの地球観測メタデータやデータを時系列で整理する予定の準備中ページです。現在このページでは観測値の取得やラスター降水量のサンプリングは行いません。",
-      "desc_en": "Coming soon page for a future point-based Earth observation time-series utility.",
-      "tags": [
-        "earth",
-        "timeseries"
-      ]
-    },
-    "name-old-kanji-checker": {
-      "title_ja": "人名旧字体チェッカー | Name Old Kanji Checker",
-      "title_en": "Name Old Kanji Checker",
-      "desc_ja": "人名旧字体チェッカー | Name Old Kanji Checker は、ブラウザだけで使えるNicheWorksの無料軽量ツールです。入力データをできるだけローカルで処理し、小さな作業を素早く片付けます。",
-      "desc_en": "Name Old Kanji Checker is a lightweight NicheWorks browser tool for small, practical tasks.",
-      "tags": [
-        "name",
-        "old",
-        "kanji",
-        "checker"
-      ]
-    },
-    "place-old-kanji-checker": {
-      "title_ja": "地名旧字体チェッカー | Place Old Kanji Checker",
-      "title_en": "Place Old Kanji Checker",
-      "desc_ja": "地名・住所・駅名・古地図・古い看板などに含まれる旧字体・異体字候補を確認するための参考ツールです。正式な住所表記・行政上の地名・登記・郵便・契約書類では、必ず実際の登録表記を確認してください。",
-      "desc_en": "Place Old Kanji Checker is a lightweight NicheWorks browser tool for small, practical tasks.",
-      "tags": [
-        "place",
-        "old",
-        "kanji",
-        "checker"
-      ]
-    },
-    "old-document-kanji-highlighter": {
-      "title_ja": "古文書旧字体ハイライター｜Old Document Kanji Highlighter",
-      "title_en": "Old Document Kanji Highlighter",
-      "desc_ja": "古い文章・碑文・古地図説明・旧公文書風テキストに含まれる旧字体・異体字をハイライトし、現代表記との対応を確認するための参考ツールです。翻訳・解読・学術的判定を行うものではありません。",
-      "desc_en": "Old Document Kanji Highlighter is a lightweight NicheWorks browser tool for small, practical tasks.",
-      "tags": [
-        "old",
-        "document",
-        "kanji",
-        "highlighter"
-      ]
-    },
-    "unicode-kanji-checker": {
-      "title_ja": "Unicode漢字チェッカー | Unicode Kanji Checker",
-      "title_en": "Unicode Kanji Checker",
-      "desc_ja": "漢字・旧字体・異体字のUnicodeコードポイント、HTMLエンティティ、表示環境の注意、旧字体一覧との対応を確認するためのブラウザ内ツールです。",
-      "desc_en": "Unicode Kanji Checker is a lightweight NicheWorks browser tool for small, practical tasks.",
-      "tags": [
-        "unicode",
-        "kanji",
-        "checker"
-      ]
-    },
-    "variant-kanji-compare": {
-      "title_ja": "異体字比較ツール | Variant Kanji Compare",
-      "title_en": "Variant Kanji Compare",
-      "desc_ja": "見た目が近い漢字・旧字体・異体字を並べて、Unicode、HTMLエンティティ、字形差、表示環境の注意を確認するブラウザ内ツールです。",
-      "desc_en": "Variant Kanji Compare is a lightweight NicheWorks browser tool for small, practical tasks.",
-      "tags": [
-        "variant",
-        "kanji",
-        "compare"
-      ]
-    },
-    "pattern-atlas": {
-      "title_ja": "Pattern Atlas HTML Mock",
-      "title_en": "Pattern Atlas",
-      "desc_ja": "Pattern Atlas HTML Mock は、ブラウザだけで使えるNicheWorksの無料軽量ツールです。入力データをできるだけローカルで処理し、小さな作業を素早く片付けます。",
-      "desc_en": "Pattern Atlas is a lightweight NicheWorks browser tool for small, practical tasks.",
-      "tags": [
-        "pattern",
-        "atlas"
-      ]
-    },
-    "pattern-dictionary": {
-      "title_ja": "模様辞典",
-      "title_en": "Pattern Dictionary",
-      "desc_ja": "名前が分からない模様を、曖昧な言葉や画像一覧から探し、正式名称や似た柄まで確認できる視覚模様辞典です。",
-      "desc_en": "Identify patterns from rough descriptions, image browsing, similar designs, and common look-alikes.",
-      "tags": [
-        "pattern",
-        "dictionary",
-        "visual",
-        "search"
-      ]
-    },
-    "old-kanji-ocr-scanner": {
-      "title_ja": "旧字体OCRスキャナー | Old Kanji OCR Scanner",
-      "title_en": "Old Kanji Ocr Scanner",
-      "desc_ja": "画像やスマホ撮影画像から旧字体・異体字を確認するためのOCR入口です。初期版では画像を読み込み、OCR結果と旧字体検出へつなぐための準備画面を提供します。 / An OCR entry point for checking old or variant kanji from images or smartphone photos. This initial version prepares image loading, preview, and later OCR/detection flows.",
-      "desc_en": "Old Kanji Ocr Scanner is a lightweight NicheWorks browser tool for small, practical tasks.",
-      "tags": [
-        "old",
-        "kanji",
-        "ocr",
-        "scanner"
-      ]
-    },
-    "reconcile": {
-      "title_ja": "CSV・Excel取引照合｜Reconcile",
-      "title_en": "CSV / Excel Reconciliation — Reconcile",
-      "desc_ja": "2つのCSV・Excel取引データをブラウザ内で照合し、確認が必要な差分・候補・重複を抽出します。",
-      "desc_en": "Reconcile two CSV or Excel transaction datasets locally in your browser and isolate exceptions for manual review.",
-      "tags": [
-        "csv",
-        "xlsx",
-        "reconciliation",
-        "accounting"
-      ]
-    },
-    "phone-quickcheck": {
-      "title_ja": "スマホ QuickCheck",
-      "title_en": "Phone QuickCheck",
-      "desc_ja": "スマホのサイズ・重さ・充電端子・充電器条件・モバイルバッテリー充電回数の目安と公式情報を素早く確認します。",
-      "desc_en": "Quickly check phone size, weight, charging port, charger requirements, power-bank estimates, and official information.",
-      "tags": [
-        "phone",
-        "smartphone",
-        "charging",
-        "size",
-        "battery"
-      ]
-    },
-    "screenshot-canvas": {
-      "title_ja": "スクショ自由配置・比較",
-      "title_en": "Screenshot Canvas",
-      "desc_ja": "複数の画像を自由に配置・重ね合わせて比較し、PNGで保存できます。",
-      "desc_en": "Arrange and compare multiple screenshots on a canvas and export PNG.",
-      "tags": [
-        "screenshot",
-        "image",
-        "compare",
-        "canvas"
       ]
     }
   }
