@@ -17,7 +17,7 @@ const normalize=search.normalizeText;
   assert.equal(runtime.entries.length,870,"public canonical inventory must remain fixed");
   const byId=new Map(runtime.entries.map(e=>[e.id,e]));
   assert.equal(byId.size,870,"duplicate public canonical IDs");
-  assert.equal(runtime.diagnostics?.reviewedAliasesApplied,76,"wave3 aliases missing from real loaded runtime");
+  assert.equal(runtime.diagnostics?.reviewedAliasesApplied,76,"wave3 aliases missing from real loaded runtime: "+JSON.stringify(runtime.diagnostics?.reviewedAliasesProblems));
   assert.deepEqual(Array.from(runtime.diagnostics?.reviewedAliasesProblems||[]),[],"wave3 application must have no drift/errors");
 
   const owners=new Map(),terms=new Map();
