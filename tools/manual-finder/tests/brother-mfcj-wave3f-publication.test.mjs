@@ -45,7 +45,7 @@ for(const row of live){
  }
 }
 const docs=fs.readFileSync(new URL("AFFILIATE_COVERAGE.md",root),"utf8");
-assert.ok(docs.includes("printer basic 299 = detail 292 + reviewed exclusion 7 + missing 0"));
+assert.ok(docs.includes("printer basic 307 = detail 300 + reviewed exclusion 7 + missing 0"));
 const inventory=fs.readFileSync(new URL("COVERAGE.md",root),"utf8");
-assert.ok(inventory.includes("**2,521 verified model/caliber rows**"));
+assert.ok(inventory.includes("**2,529 verified model/caliber rows**"));
 console.log("Brother MFC-J Wave 3F: 8 official user-guide entries, 8 tagged model searches, 16 official ink handoffs validated.");
