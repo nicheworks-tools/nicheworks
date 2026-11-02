@@ -119,7 +119,7 @@ export function createProductionLabelScorer() {
   }
   function tokenize(value) {
     return String(value || '').normalize('NFKC').toLowerCase()
-      .replace(/[^a-z0-9]+/g, ' ').replace(/\\s+/g, ' ').trim();
+      .replace(/[^a-z0-9]+/g, ' ').replace(/\s+/g, ' ').trim();
   }
   async function auditAnnotationExtras(cleanedOcrText, canonicalAnnotationList, independentRawLabel) {
     assert.equal(typeof cleanedOcrText, 'string');
