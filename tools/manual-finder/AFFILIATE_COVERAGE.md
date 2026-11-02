@@ -10,14 +10,14 @@ The printer-detail audit remains complete for the current canonical printer cata
 
 | Metric | Final audited value |
 | --- | ---: |
-| Printer records with a basic Amazon path | **299** |
-| Printer records with a verified detail handoff | **292** |
+| Printer records with a basic Amazon path | **307** |
+| Printer records with a verified detail handoff | **300** |
 | Reviewed printer-detail exclusions | **7** |
 | Actionable printer records still missing detail | **0** |
 
 Required printer reconciliation:
 
-`printer basic 299 = detail 292 + reviewed exclusion 7 + missing 0`
+`printer basic 307 = detail 300 + reviewed exclusion 7 + missing 0`
 
 The camera accessory audit independently reconciles as:
 
@@ -422,8 +422,8 @@ Unsupported categories, empty models, malformed URLs, wrong makers, wrong catego
 
 Printer-detail remains closed only while:
 
-- printer basic = 299
-- printer detail = 292
+- printer basic = 307
+- printer detail = 300
 - reviewed printer-detail exclusions = 7
 - printer missing detail = 0
 - the three missing-detail diagnostic structures remain empty
@@ -461,3 +461,7 @@ Manufacturer official Japan lens manual-index pass adds **137 verified exact Can
 ### Brother MFC-J eight new manuals and exact ink purchase-search handoffs — Wave 3F (2026-11-02)
 
 Eight exact manufacturer-confirmed MFC-J printer model identities were added to official manual search, each with a canonical Amazon model search and **two official compatibility-backed ink SKU purchase searches**: LC516BK/LC516XLBK (MFC-J4950DN); LC512-4PK/LC512XL-4PK (MFC-J7110CDW, MFC-J7210CDW, MFC-J7310CDW); LC517XLBK/LC517XLC (MFC-J7510CDW and MFC-J7610CDW); and LC511-4PK/LC511BK-2PK (MFC-J742DN and MFC-J742DWN). Evidence: manufacturer consumable catalog per model, listed in `coverage-passes/brother/jp-mfcj-8-printer-manual-ink-20261102.json`. **Printer detail reconciliation: 299 basic = 292 verified detail + 7 reviewed exclusion + 0 missing.** These are 16 new tagged query paths, not verified traffic or sales.
+
+### Epson Colorio eight-model official manual and ink Amazon handoffs (2026-11-02)
+
+Wave 3G adds eight exact canonical printer model manual pages and eight tagged Amazon model searches. An independent model-specific Epson manufacturer consumable page documents each of the eight: the six EP-885A/EP-886A color variants match KAM-6CL and KAM-6CL-L, EP-716A matches SAT-6CL and SAT-BK, EP-717A matches KAK-6CL and KAK-BK. This enables 16 **additional** manufacturer compatibility-backed tagged Amazon SKU search offers. Evidence: `coverage-passes/epson/jp-colorio-8-model-manual-ink-20261102.json`. No inferred cartridge-family mapping and no conversions are claimed. The reconciled printer state is **307 basic = 300 detail + 7 reviewed exclusions + 0 missing**.

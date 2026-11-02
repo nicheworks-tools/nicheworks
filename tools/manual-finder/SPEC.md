@@ -136,7 +136,7 @@ ManualFinder is an `AFFILIATE` tool, but commerce is an optional next-action lay
 - Consumer and office-printer consumable mappings remain official-evidence backed and exact-model scoped.
 - Public retail codes are retained only when verified; `tonerCodes: []` remains valid when exact applicability is proven but a public retail SKU is not.
 - Every canonical printer with a basic Amazon path must have verified detail or an explicit reviewed exclusion.
-- The current audited printer state is **299 basic = 292 detail + 7 reviewed exclusions + 0 missing detail**.
+- The current audited printer state is **307 basic = 300 detail + 7 reviewed exclusions + 0 missing detail**.
 - Reviewed exclusions remain in `affiliate-printer-detail-exclusions.js`.
 - KYOCERA remains closed at **123 = 120 detail + 3 reviewed exclusions + 0 missing**.
 
@@ -205,7 +205,7 @@ The directory/search cards are usable on mobile while desktop width improves bro
 - [x] Manufacturer-defined shared destinations remain explicit shared targets.
 - [x] Japanese and English canonical pages provide equivalent core behavior and disclaimers.
 - [x] Dynamic Amazon searches are deterministic and generated only from canonical metadata.
-- [x] The printer audit remains **299 basic = 292 detail + 7 reviewed exclusions + 0 missing detail**.
+- [x] The printer audit remains **307 basic = 300 detail + 7 reviewed exclusions + 0 missing detail**.
 - [x] KYOCERA remains **123 = 120 detail + 3 reviewed exclusions + 0 missing**.
 - [x] Nikon camera accessory coverage remains **14 detail + 0 reviewed exclusions + 0 missing**.
 - [x] DJI Waves 1–41 preserve exact reviewed boundaries and do not infer neighboring product names.
@@ -403,4 +403,8 @@ The nine manufacturer-listed Japanese lens manual categories on `https://canon.j
 
 ## Brother JP Wave 3F (2026-11-02)
 
-Eight new distinct MFC-J official manufacturer user-guide identities (6 direct, 2 vendor-shared DN/DWN official guide page) have matching manufacturer-only exact-model ink compatibility evidence. The existing eligible model Amazon handoff applies to each; 16 additional two-per-printer ink search handoffs are enabled using the existing tagged Associates configuration, disclosure, and privacy-safe analytics. Printer audit becomes **299 basic = 292 detail + 7 reviewed exclusions + 0 missing detail**. The Wave 3F source review manifest is `coverage-passes/brother/jp-mfcj-8-printer-manual-ink-20261102.json`, the published dataset is `data/manuals.wave3.06.js`; no assumption about combined models other than the explicitly manufacturer-defined 742DN/DWN share.
+Eight new distinct MFC-J official manufacturer user-guide identities (6 direct, 2 vendor-shared DN/DWN official guide page) have matching manufacturer-only exact-model ink compatibility evidence. The existing eligible model Amazon handoff applies to each; 16 additional two-per-printer ink search handoffs are enabled using the existing tagged Associates configuration, disclosure, and privacy-safe analytics. Printer audit becomes **307 basic = 300 detail + 7 reviewed exclusions + 0 missing detail**. The Wave 3F source review manifest is `coverage-passes/brother/jp-mfcj-8-printer-manual-ink-20261102.json`, the published dataset is `data/manuals.wave3.06.js`; no assumption about combined models other than the explicitly manufacturer-defined 742DN/DWN share.
+
+## Epson JP Colorio Wave 3G: eight verified manual-and-ink models (2026-11-02)
+
+The Canonical printer index adds exact EP-885AW/AB/AR and EP-886AW/AB/AR, EP-716A and EP-717A models through the registered Wave 3G data batch. Epson official `/support/portal/used/{model}.htm` documents the model and lists operating manuals; eight exact official `/support/portal/shoumouhin/{model}.htm` compatibility catalogs justify two SKU-specific Amazon searches per model (KAM-6CL + KAM-6CL-L for the six 885/886 variants, SAT-6CL + SAT-BK for EP-716A, and KAK-6CL + KAK-BK for EP-717A). Source audit: `coverage-passes/epson/jp-colorio-8-model-manual-ink-20261102.json`; public batch: `data/manuals.wave3.07.js`. The runtime tracks eight new canonical model search paths and 16 verified ink-specific paths with disclosure. This wave increases the printer audit to **307 basic = 300 detail + 7 reviewed exclusions + 0 missing detail** without claiming sales.

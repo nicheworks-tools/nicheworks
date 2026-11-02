@@ -1,0 +1,25 @@
+name: ManualFinder Epson Colorio 8 manual + 16 verified ink affiliate paths
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/**'
+      - '.github/workflows/manualfinder-epson-colorio-wave3g.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  epson-colorio-wave3g:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact official Epson manual and manufacturer ink compatibility assertions
+        run: |
+          node tools/manual-finder/tests/epson-colorio-wave3g-publication.test.mjs
+          node tools/manual-finder/tests/brother-mfcj-wave3f-publication.test.mjs
+          node tools/manual-finder/tests/xiaomi-jp-mobile-publication.test.mjs
+          node tools/manual-finder/tests/affiliate-coverage.test.mjs
+          node tools/manual-finder/tests/affiliate-doc-sync.test.mjs
