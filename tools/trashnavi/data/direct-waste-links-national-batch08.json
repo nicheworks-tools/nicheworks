@@ -637,5 +637,44 @@
     "status": "active",
     "language": "ja",
     "scope_note": "鹿追町公式。資源ごみのひまわりセンターなど直接搬入施設の利用案内。"
+  },
+  {
+    "pref": "北海道",
+    "city": "日高町",
+    "name": "ごみ分別大辞典",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.hidaka.hokkaido.jp/dictionary/",
+    "lgcode": "016012",
+    "last_checked": "2026-11-03",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "2024年12月20日更新。分別検索。"
+  },
+  {
+    "pref": "北海道",
+    "city": "日高町",
+    "name": "ごみの処理について（平取町外2町衛生施設組合）",
+    "type": "ごみ処理・持込施設",
+    "link_type": "dropoff_facility",
+    "url": "https://www.town.hidaka.hokkaido.jp/life/?content=750",
+    "lgcode": "016012",
+    "last_checked": "2026-11-03",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "2024年12月4日更新。3町共同処理を明示。施設詳細は組合公式参照。"
+  },
+  {
+    "pref": "北海道",
+    "city": "日高町",
+    "name": "指定袋およびごみ処理証紙の種類について",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.hidaka.hokkaido.jp/life/?content=754",
+    "lgcode": "016012",
+    "last_checked": "2026-11-03",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "2026年4月1日更新。指定袋8種類・証紙2種類、大型ごみ料金等。"
   }
 ]
