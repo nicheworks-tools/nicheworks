@@ -306,7 +306,7 @@ function setupFastCheck() {
 
     try {
       const text = await runOCR(file, "eng", update => updateOcrProgress(status, progress, update), typeof fastScanImageOptions === "function" ? fastScanImageOptions("ocr-file-fast") : { quarterTurns: typeof fastScanImageRotation === "function" ? fastScanImageRotation("ocr-file-fast") : 0 });
-      const processed = postProcessOcrText(text, { langHint: "en" });
+      const processed = postProcessOcrText(text, { langHint: "en", spacedDashDelimiter: true });
       document.getElementById("fast-input").value = processed;
       completeOcrProgress(progress);
       setStatus(status, getText("ocrDone"), "status-ok");
