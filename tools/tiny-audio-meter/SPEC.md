@@ -21,8 +21,8 @@
 
 ## Current functional contract
 
-- Browser microphone streamを開始し、Stopで全trackとanimation loopを終了する。
-- permission後に`audioinput`を列挙し、複数入力があれば切り替えられる。
+- Browser microphone streamを開始し、Stopで全trackとanimation loopを終了する。マイク権限待ち・入力取得中でもStopを操作可能にし、後から許可された旧streamは即時track.stop()して解析開始を防ぐ。
+- permission後に`audioinput`を列挙し、複数入力があれば切り替えられる。Stop・再開始・pagehideをまたぐ非同期permission/device-list resultは新しいマイク状態へ反映しない。
 - `echoCancellation=false`、`noiseSuppression=false`、`autoGainControl=false`を要求するが、browser/OS/deviceが無視する可能性があるためreported stateを表示する。
 - Web Audio time-domain dataからRMSを計算し約`-60..0 dB`のrelative input levelとして表示する。dB SPLではない。
 - pitchは約100ms cadence、概ね60–1200Hzのnormalized autocorrelationで推定し、低confidence結果をHz/noteから除外する。
@@ -140,6 +140,9 @@ Live values remain first. Baseline/ambient/snapshot/segment/conditions are secon
 
 ## Acceptance criteria
 
+- [ ] Permission promptが未解決でもStopボタンを押せる。Stop / 新しいStart / pagehide後に旧getUserMediaが成功しても、返ったtrackは即座に終了し、録音・表示・RAFを再開しない。
+- [ ] 古いmicrophone trackの`ended`通知や古いdevice enumeration結果は新しい録音セッションを停止・上書きしない。
+
 - [ ] microphone permission後にrelative level、pitch/note/confidence、spectrum/peakが更新される。
 - [ ] EC / NS / AGCをOFF要求し、reported statesを表示する。
 - [ ] multiple audioinputを切替でき、device identifierを永続保存しない。
@@ -154,6 +157,7 @@ Live values remain first. Baseline/ambient/snapshot/segment/conditions are secon
 
 - `tools/tiny-audio-meter/index.html`
 - `tools/tiny-audio-meter/app.js`
+- `tools/tiny-audio-meter/tests/permission-race.test.mjs`
 - `tools/tiny-audio-meter/comparison.js`
 - `tools/tiny-audio-meter/ambient-reference.js`
 - `tools/tiny-audio-meter/records-export.js`
