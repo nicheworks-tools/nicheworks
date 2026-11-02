@@ -14,11 +14,11 @@ const concurrency=Math.max(1,Math.min(16,Number(process.env.PATTERN_DICTIONARY_P
 const timeoutMs=Math.max(5000,Number(process.env.PATTERN_DICTIONARY_PRODUCTION_SEO_TIMEOUT_MS||20000));
 const retries=Math.max(0,Math.min(3,Number(process.env.PATTERN_DICTIONARY_PRODUCTION_SEO_RETRIES||2)));
 
-if(patterns.length!==100||v2.entries.length!==10)throw new Error(`Expected 100 baseline and 10 supplemental patterns in source, got ${patterns.length}/${v2.entries.length}`);
-// PR validation audits the currently deployed edition (five supplements). After production deployment,
-// set PATTERN_DICTIONARY_LIVE_SUPPLEMENT_COUNT=10 to require all 220 URLs on the live site.
-const liveSupplementCount=Number(process.env.PATTERN_DICTIONARY_LIVE_SUPPLEMENT_COUNT ?? '5');
-if(![5,10].includes(liveSupplementCount))throw new Error('Live supplement count must be 5 or 10');
+if(patterns.length!==100||v2.entries.length!==15)throw new Error(`Expected 100 baseline and 15 supplemental patterns in source, got ${patterns.length}/${v2.entries.length}`);
+// PR validation audits the currently deployed edition (ten supplements). After production deployment,
+// set PATTERN_DICTIONARY_LIVE_SUPPLEMENT_COUNT=15 to require all 230 URLs on the live site.
+const liveSupplementCount=Number(process.env.PATTERN_DICTIONARY_LIVE_SUPPLEMENT_COUNT ?? '10');
+if(![5,10,15].includes(liveSupplementCount))throw new Error('Live supplement count must be 5, 10 or 15');
 const allPublished=[...patterns,...v2.entries.slice(0,liveSupplementCount).map(e=>({id:e.id}))];
 if(new Set(allPublished.map(p=>p.id)).size!==100+liveSupplementCount)throw new Error('Duplicate or unexpected published pattern identity');
 
@@ -181,5 +181,5 @@ if(!sitemap.ok||failed.length){
   console.error(`Production SEO audit failed: sitemapOk=${sitemap.ok}, detailFailures=${failed.length}`);
   process.exitCode=1;
 }else{
-  console.log('OK: production sitemap is healthy and all ${detailTargets.length} Pattern Dictionary detail URLs return direct HTTP 200 with exact canonical, index/follow, reciprocal JA/EN hreflang, and sitemap coverage.');
+  console.log(`OK: production sitemap is healthy and all ${detailTargets.length} Pattern Dictionary detail URLs return direct HTTP 200 with exact canonical, index/follow, reciprocal JA/EN hreflang, and sitemap coverage.`);
 }

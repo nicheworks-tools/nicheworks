@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1536" viewBox="0 0 1536 1536" role="img" aria-label="sankuzushi original editorial schematic illustration">
+<rect width="1536" height="1536" fill="#faf5e9"/>
+<defs><g id="motif"><g stroke="#355c82" stroke-linecap="square" stroke-width="16"><path d="M-161 -179V-93"/><path d="M-136 -179V-93"/><path d="M-111 -179V-93"/><path d="M-43 -161H43"/><path d="M-43 -136H43"/><path d="M-43 -111H43"/><path d="M111 -179V-93"/><path d="M136 -179V-93"/><path d="M161 -179V-93"/><path d="M-179 -25H-93"/><path d="M-179 0H-93"/><path d="M-179 25H-93"/><path d="M-25 -43V43"/><path d="M0 -43V43"/><path d="M25 -43V43"/><path d="M93 -25H179"/><path d="M93 0H179"/><path d="M93 25H179"/><path d="M-161 93V179"/><path d="M-136 93V179"/><path d="M-111 93V179"/><path d="M-43 111H43"/><path d="M-43 136H43"/><path d="M-43 161H43"/><path d="M111 93V179"/><path d="M136 93V179"/><path d="M161 93V179"/></g></g></defs>
+<use href="#motif" transform="translate(256 256)"/>
+<use href="#motif" transform="translate(768 256)"/>
+<use href="#motif" transform="translate(1280 256)"/>
+<use href="#motif" transform="translate(256 768)"/>
+<use href="#motif" transform="translate(768 768)"/>
+<use href="#motif" transform="translate(1280 768)"/>
+<use href="#motif" transform="translate(256 1280)"/>
+<use href="#motif" transform="translate(768 1280)"/>
+<use href="#motif" transform="translate(1280 1280)"/>
+</svg>

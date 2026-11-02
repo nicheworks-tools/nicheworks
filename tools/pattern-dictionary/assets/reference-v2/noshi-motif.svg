@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1536" viewBox="0 0 1536 1536" role="img" aria-label="noshi-motif original editorial schematic illustration">
+<rect width="1536" height="1536" fill="#faf5e9"/>
+<defs><g id="motif"><g fill="none" stroke-linecap="round"><path d="M-165 -135 Q-34 -84 18 -13 Q65 52 162 118" stroke="#ad3f46" stroke-width="25"/><path d="M-175 -65 Q-57 -40 20 -7 Q91 33 163 58" stroke="#e4a454" stroke-width="24"/><path d="M-168 10 Q-62 -11 8 -10 Q73 -10 158 -16" stroke="#4d7b88" stroke-width="23"/><path d="M-157 78 Q-56 28 3 -8 Q85 -62 160 -104" stroke="#b17899" stroke-width="22"/><path d="M-147 140 Q-41 63 14 -7 Q80 -88 141 -159" stroke="#86974e" stroke-width="21"/><path d="M-20 -54 Q12 -78 39 -20 Q54 10 9 41 L-26 19Z" fill="#7c4c60" stroke="#faf3e6" stroke-width="5"/></g><g fill="none" stroke="#f8ead3" stroke-width="3" stroke-dasharray="9 16"><path d="M-165 -135 Q-34 -84 18 -13 Q65 52 162 118"/><path d="M-175 -65 Q-57 -40 20 -7 Q91 33 163 58"/><path d="M-168 10 Q-62 -11 8 -10 Q73 -10 158 -16"/><path d="M-157 78 Q-56 28 3 -8 Q85 -62 160 -104"/></g></g></defs>
+<use href="#motif" transform="translate(256 256)"/>
+<use href="#motif" transform="translate(768 256)"/>
+<use href="#motif" transform="translate(1280 256)"/>
+<use href="#motif" transform="translate(256 768)"/>
+<use href="#motif" transform="translate(768 768)"/>
+<use href="#motif" transform="translate(1280 768)"/>
+<use href="#motif" transform="translate(256 1280)"/>
+<use href="#motif" transform="translate(768 1280)"/>
+<use href="#motif" transform="translate(1280 1280)"/>
+</svg>

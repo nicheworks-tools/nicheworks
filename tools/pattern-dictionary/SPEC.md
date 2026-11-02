@@ -9,7 +9,7 @@
 - Publication contract: `canonical-100-v1`
 - Common specification: `common-spec/spec-ja.md`
 - Current dataset: `100 verified-publication patterns`
-- Additional published V2 supplement: `10 sourced JA/EN motif entries (110 total browsable; 220 static detail pages)`
+- Additional published V2 supplement: `15 sourced JA/EN entries (115 total browsable; 230 static detail pages)`
 - Product class: `static browser visual dictionary / discovery tool`
 - Monetization class: `AFFILIATE` (active Amazon.co.jp maintained-intent links)
 
@@ -199,3 +199,7 @@ Version `pattern-dictionary-v2-supplement-1` adds 5 source-reviewed terms — sa
 ## Versioned expansion status (2026-11-02)
 
 Canonical v1 remains exactly 100 frozen reviewed records; independent `data/v2-extension.json` now publishes ten source-checked Japanese motifs (Kanzemizu, Shokko, Matsukawabishi, Bishamon Kikko, Tachibana are the second wave) with original repeat-vector images and twenty new JA/EN detail URLs across the two waves. The user-facing runtime combines the frozen v1 and v2 supplement to provide 110 searchable/browseable records. Total indexable detail routes after production deploy: 220. Candidate coverage backlog now has 77 unpublished concepts. The Shokko design family is explicitly qualified. The production audit supports the 210-URL pre-deployment live baseline and explicit 220-URL post-deployment verification; a pass against 210 does not establish 220 new-page delivery.
+
+## V2 supplement 3 (2026-11-02)
+
+Five new referenced entries: noshi-motif, goshoguruma, temari-motif, sankuzushi and kasuri. Ten new bilingual detail pages plus five original 1536 SVG schematics. The combined browser catalog is **115 entries** (frozen 100 and 15 source-reviewed supplement entries), with **230** static detail pages and 72 unverified, unpublished backlog concepts. **Kasuri is qualified as a textile patterning technique**, not a single fixed geometric pattern. CI checks source links, content, previewable diagrams, browser search and bilingual detail mounting. The 230/230 external audit is a separately selected post-deployment check.
