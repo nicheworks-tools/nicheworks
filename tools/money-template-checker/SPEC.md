@@ -12,7 +12,7 @@ Provide a simple JPY household-budget organization check from monthly income, sp
 ## Current functional contract
 
 - Require monthly net income and accept optional fixed-cost, variable-cost, and savings-target totals.
-- Treat all monetary values as Japanese yen even when the UI is English.
+- Treat all monetary values as Japanese yen even when the UI is English. Require whole JPY values for input: fractional yen are rejected rather than accepted and silently rounded in summaries or CSV/Markdown exports.
 - Calculate remaining balance and percentage-based reference checks when income is greater than zero.
 - Surface reference warnings around fixed costs over 60%, variable costs over 50%, and savings targets over 30% of income.
 - Skip percentage judgments when income is zero.
@@ -64,6 +64,7 @@ The primary interaction is four numeric fields followed by a single result and e
 ## Acceptance criteria
 
 - [ ] All displayed/exported monetary amounts are treated as JPY in both languages.
+- [ ] Fractional JPY values are rejected with clear language-appropriate validation; zero and valid integer yen values remain accepted, with no rounding discrepancy.
 - [ ] Input amounts and results are not written to localStorage; only `nw_lang` may persist.
 - [ ] Percentage warnings are not presented as valid ratios when income is zero.
 - [ ] Copy, Markdown download, and CSV download operate on the locally generated result/template.
