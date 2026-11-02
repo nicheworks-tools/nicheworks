@@ -2,8 +2,8 @@
   "schema_version": 1,
   "generated_from": "tools/tools-index.json",
   "common_specification": "common-spec/spec-ja.md",
-  "registered_tool_count": 89,
-  "record_count": 89,
+  "registered_tool_count": 90,
+  "record_count": 90,
   "status_enum": [
     "PASS",
     "FIX",
@@ -11,7 +11,7 @@
     "NEEDS_DECISION"
   ],
   "counts": {
-    "PASS": 88,
+    "PASS": 89,
     "FIX": 1,
     "BLOCKED": 0,
     "NEEDS_DECISION": 0
@@ -448,6 +448,113 @@
       "recommendation_only_gaps": [
         "Behavior-level automated tests are absent."
       ]
+    },
+    {
+      "slug": "bichiku-check",
+      "display_name": {
+        "ja": "防災備蓄チェック",
+        "en": "BichikuCheck"
+      },
+      "implementation": "tools/bichiku-check/",
+      "active_state": "active",
+      "category": [
+        "disaster",
+        "emergency",
+        "stockpile",
+        "home",
+        "alternatives"
+      ],
+      "spec": "docs/tools/bichiku-check.md",
+      "spec_coverage": "complete",
+      "implementation_exists": true,
+      "layout_class": "mobile-oriented",
+      "language_policy": "four separate JA/EN/zh-CN/vi entry pages",
+      "functional_completeness": "documented-current-contract",
+      "inputs_summary": "Household counts, home/go-bag mode, 3/7/14 days, outage/heat scenarios, stocks and expiry, per-food water volume and method confirmations, toilet-assembly confirmations, selected missing categories.",
+      "outputs_summary": "Seven preparedness gap goals; 44 broad categories and 81 specific dedicated/everyday/substitute candidates; usable shortages, condition cautions, optional Amazon Japan search, CSV/print/copy.",
+      "network_dependency": {
+        "status": "present",
+        "external_hosts": [
+          "www.amazon.co.jp",
+          "www.bousai.go.jp",
+          "www.gov-online.go.jp",
+          "www.maff.go.jp",
+          "www.keishicho.metro.tokyo.lg.jp",
+          "ofuse.me",
+          "ko-fi.com"
+        ]
+      },
+      "storage": {
+        "localStorage": true,
+        "sessionStorage": false
+      },
+      "capabilities": {
+        "copy": true,
+        "download": true
+      },
+      "responsive_status": "no-observed-defect",
+      "usage_status": "optional-absent",
+      "faq_status": "optional-absent",
+      "ga4_status": "present",
+      "adsense_status": "present",
+      "canonical_status": "present",
+      "json_ld_status": "present",
+      "donation_status": "present",
+      "privacy_compliance": "documented",
+      "functional_test_status": "behavior-test-present",
+      "automated_tests": [
+        "tools/bichiku-check/tests/core.test.cjs",
+        "tools/bichiku-check/tests/decision.test.cjs",
+        "tools/bichiku-check/tests/mobile.smoke.mjs"
+      ],
+      "outstanding_issues": [],
+      "final_state": "PASS",
+      "evidence": [
+        "tools/bichiku-check/index.html",
+        "tools/bichiku-check/en/index.html",
+        "tools/bichiku-check/zh-cn/index.html",
+        "tools/bichiku-check/vi/index.html",
+        "tools/bichiku-check/experience.js",
+        "tools/bichiku-check/decision.js",
+        "tools/bichiku-check/core.js",
+        "tools/bichiku-check/options.js",
+        "tools/bichiku-check/guided.css",
+        "tools/bichiku-check/tests/decision.test.cjs",
+        "tools/bichiku-check/tests/mobile.smoke.mjs"
+      ],
+      "usage_html_present": false,
+      "usage_en_html_present": false,
+      "common_spec_compliance": "no-hard-gap-found",
+      "obvious_broken_or_incomplete_behavior": [],
+      "help_documentation": {
+        "main_page_summary": "required-and-present",
+        "usage": "optional-absent",
+        "faq": "optional-absent",
+        "usage_evidence": [],
+        "usage_language_coverage": {
+          "ja": true,
+          "en": true,
+          "zh": true,
+          "vi": true
+        }
+      },
+      "test_evidence": [
+        {
+          "path": "tools/bichiku-check/tests/core.test.cjs",
+          "classification": "behavior test"
+        },
+        {
+          "path": "tools/bichiku-check/tests/decision.test.cjs",
+          "classification": "behavior test"
+        },
+        {
+          "path": "tools/bichiku-check/tests/mobile.smoke.mjs",
+          "classification": "behavior test"
+        }
+      ],
+      "decision_gaps": [],
+      "hard_compliance_gaps": [],
+      "recommendation_only_gaps": []
     },
     {
       "slug": "codex-product-shipping-playbooks",
