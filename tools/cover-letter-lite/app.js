@@ -171,6 +171,19 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
+  const cancelPendingDraft = () => {
+    if (!generateBtn.disabled) return;
+    ++draftRevision;
+    generateBtn.disabled = false;
+    generateBtn.textContent = "Generate Draft";
+    outputArea.textContent = "";
+    wordCountEl.textContent = "";
+    outputContainer.style.display = "none";
+    setStatus("Inputs changed while the template was loading. Generate again.", "warning");
+  };
+  form.addEventListener("input", cancelPendingDraft);
+  form.addEventListener("change", cancelPendingDraft);
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const revision = ++draftRevision;
@@ -188,6 +201,8 @@ document.addEventListener("DOMContentLoaded", () => {
     generateBtn.disabled = true;
     generateBtn.textContent = "Generating...";
     setStatus("");
+    outputArea.textContent = "";
+    wordCountEl.textContent = "";
     outputContainer.style.display = "none";
 
     try {
