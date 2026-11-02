@@ -5,6 +5,11 @@ on:
     paths:
       - 'tools/construction-tools-atlas/scripts/check-production-viewport-360.mjs'
       - '.github/workflows/construction-atlas-production-360.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/construction-tools-atlas/**'
+      - '.github/workflows/construction-atlas-production-360.yml'
   workflow_dispatch:
   schedule:
     - cron: '19 14 * * *' # Daily 23:19 JST (best effort; GitHub may delay scheduled runs)
@@ -31,7 +36,18 @@ jobs:
         env:
           # PR tests run before the Pages deployment; nightly/dispatch must require current release.
           CTA_ALLOW_PREVIOUS_ASSET_VERSION: ${{ github.event_name == 'pull_request' && '1' || '0' }}
-        run: node tools/construction-tools-atlas/scripts/check-production-viewport-360.mjs
+        shell: bash
+        run: |
+          # Cloudflare may deploy after the main push. Retry strict current-version checks.
+          attempts=1
+          if [[ "${{ github.event_name }}" == "push" ]]; then attempts=8; fi
+          for ((i=1; i<=attempts; i++)); do
+            if node tools/construction-tools-atlas/scripts/check-production-viewport-360.mjs; then
+              exit 0
+            fi
+            if ((i==attempts)); then exit 1; fi
+            sleep 45
+          done
       - name: Preserve public viewport screenshots
         if: always()
         uses: actions/upload-artifact@v4
