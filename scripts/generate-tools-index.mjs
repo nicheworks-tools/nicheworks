@@ -5,6 +5,7 @@ const ROOT = process.cwd();
 const TOOLS_DIR = path.join(ROOT, "tools");
 const INDEX_PATH = path.join(TOOLS_DIR, "tools-index.json");
 const CENTRAL_META_PATH = path.join(TOOLS_DIR, "tools-meta.json");
+const STAGED_PATH = path.join(TOOLS_DIR, "staged-tools.json");
 
 const EXCLUDE = new Set(["_codex", "_template", "earth-alerts", "earth-timeseries"]);
 
@@ -23,6 +24,12 @@ const existingBySlug = new Map(
     ? existingIndex.items.filter((item) => item?.slug).map((item) => [item.slug, item])
     : []
 );
+const stagedRegistry = readJson(STAGED_PATH, { items: [] });
+const stagedSlugs = new Set(
+  Array.isArray(stagedRegistry.items)
+    ? stagedRegistry.items.map((item) => item?.slug).filter(Boolean)
+    : []
+);
 const centralMeta = readJson(CENTRAL_META_PATH, { items: {} });
 const centralItems = centralMeta && typeof centralMeta.items === "object" ? centralMeta.items : {};
 
@@ -30,7 +37,7 @@ const isToolDir = (name) => {
   if (!name) return false;
   if (name.startsWith(".")) return false;
   if (name.startsWith("_")) return false;
-  if (EXCLUDE.has(name)) return false;
+  if (EXCLUDE.has(name) || stagedSlugs.has(name)) return false;
   const p = path.join(TOOLS_DIR, name);
   try {
     if (!statSync(p).isDirectory()) return false;
@@ -39,8 +46,8 @@ const isToolDir = (name) => {
   }
 
   // The public tools index is a registry of publishable tool routes, not every
-  // working directory under tools/. Staged sources such as index.staged.html
-  // must remain unregistered until they are intentionally promoted to index.html.
+  // working directory under tools/. Explicit staged tools are excluded even
+  // when they have a complete index.html for manual preview and QA.
   return existsSync(path.join(p, "index.html"));
 };
 
