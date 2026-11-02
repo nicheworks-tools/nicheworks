@@ -239,6 +239,13 @@ async function browserSmoke(){
       // Verify actually rendered Amazon handoffs, not merely config or JSON placeholders.
       const affiliateExpression='(()=>{const mobile=matchMedia("(max-width: 900px)").matches;const root=document.querySelector(mobile?"#sheetDetail":"#desktopDetail");const links=[...root.querySelectorAll(".affiliate-btn.amazon-cta")].map(a=>({label:a.textContent,href:a.href,rel:a.rel,target:a.target,visible:a.getClientRects().length>0}));return {links,disclosure:root.querySelector(".amazon-disclosure")?.textContent||"",lang:document.documentElement.lang};})()';
       const enOffers=await until(async()=>{const o=await evalJs(affiliateExpression);return o.links.length===3?o:null;},9000);
+      // Smoke-test the real event handler without a network GA4 event or Amazon navigation.
+      const clickEvent=await evalJs('(()=>{const mobile=matchMedia("(max-width: 900px)").matches;const root=document.querySelector(mobile?"#sheetDetail":"#desktopDetail");const link=root.querySelector(".affiliate-btn.amazon-cta");if(!link)return null;const original=window.gtag;const captured=[];try{window.gtag=(...args)=>captured.push(args);link.addEventListener("click",e=>e.preventDefault(),{once:true});link.click();}finally{window.gtag=original;}const event=captured.find(args=>args[0]==="event"&&args[1]==="affiliate_outbound");return event?event[2]:null;})()');
+      assert.ok(clickEvent,width+'px: shared helper did not emit affiliate_outbound');
+      assert.equal(clickEvent.tool_slug,'phone-quickcheck',width+'px: wrong affiliate tool');
+      assert.match(clickEvent.affiliate_id,/^phone_fcnt_[a-z0-9-]+$/,width+'px: missing coarse brand/offer ID');
+      assert.ok(['cable','wired_charger','wireless_charger','power_bank'].includes(clickEvent.destination_key),width+'px: invalid affiliate destination key');
+      assert.equal(clickEvent.placement,width<=900?'mobile_sheet':'desktop_detail',width+'px: wrong affiliate placement');
       assert.equal(enOffers.lang,'en',width+'px: expected English affiliate text');
       assert.ok(enOffers.links.some(a=>a.label.includes('Find USB-PD chargers')&&a.label.includes('verify wattage')),width+'px: missing source-aware generic USB-PD offer');
       assert.ok(enOffers.disclosure.includes('As an Amazon Associate'),width+'px: English Associates disclosure missing');

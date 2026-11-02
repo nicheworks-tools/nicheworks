@@ -60,6 +60,10 @@ check(runtime.includes('helper.mountUrl'), 'runtime must use shared mountUrl hel
 check(runtime.includes('helper.renderDisclosure'), 'runtime must render Associates disclosure');
 check(runtime.includes('desktop_detail') && runtime.includes('mobile_sheet'), 'runtime must use coarse desktop/mobile placements');
 check(!runtime.includes('searchInput'), 'user search text must not enter affiliate runtime');
+check(runtime.includes('affiliateId: "phone_" + makerBucket + "_" + offer.key'), 'manufacturer/category affiliate bucket missing');
+check(runtime.includes('root.dataset.affiliateManufacturer'), 'affiliate bucket must come from canonical detail');
+check(!runtime.includes('selectedId'), 'click analytics must not include model history');
+check(read('tools/phone-quickcheck/app.js').includes('root.dataset.affiliateManufacturer = phone?.manufacturer'), 'canonical manufacturer attribute missing from detail render');
 
 const html = read(htmlRel);
 const helperPos = html.indexOf('/assets/amazon-affiliate.js');

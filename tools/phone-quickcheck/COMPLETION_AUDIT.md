@@ -152,6 +152,16 @@ Phone QuickCheck v1 is complete under the maintained contract:
 
 Future work is maintenance: new models, source changes, corrections, and evidence upgrades. It is not part of the v1 closure backlog.
 
+## Post-v1 monetization measurement — 2026-11-02
+
+The owned 28-day GSC/GA4 sheet (2026-10-03 through 2026-10-30; refreshed 2026-11-02) reports 229 site-wide Google clicks, 1,361 sessions, and 553 ManualFinder landing sessions. Phone QuickCheck was not in the top-200 GSC pages or exported GA4 landing rows. That does not prove zero total tool views or zero affiliate commissions. The sheet contains no Amazon payout or affiliate_outbound event counts, and Gmail produced no Associates earnings mail.
+
+The existing shared helper already emits affiliate_outbound on explicit Amazon link clicks. This release supplies a coarse and stable affiliate_id (phone_manufacturer_accessory-key), using only the canonical manufacturer and fixed catalog item key. User input, selected model history, account data and search terms remain absent. Existing merchant, placement, destination_key, tag and URL semantics are unchanged; the generic helper remains the only event owner.
+
+ManualFinder now links to Phone QuickCheck from its contextual introductory help (JP + EN), in addition to its existing lower-page related link. The new link does not interrupt core manual search. No per-model SEO pages or product claims are created.
+
+GA4 custom reporting/configuration and Amazon Associates payout data must still be verified separately; a valid event is not proof of clicks, referrals or purchases. Production Chrome smoke locally replaces gtag for a synthetic click and cancels navigation, asserting event format without sending fake traffic.
+
 ## Post-v1 maintenance Wave 31 — 2026-11-02
 
 Added five exact Japan-market SKUs with manufacturer/carrier evidence, **236 → 241 devices**, unchanged **11 manufacturers / 36 foldables**. Samsung Galaxy S23 Ultra **SC-52D** (docomo 2023) is distinguished from overseas variants and exposes carrier-confirmed **USB PD Revision 3.1, PPS support and Qi**, 5,000mAh, 6.8in, 163×78×8.9mm / 234g and an included C-to-C cable but **no wall adapter**. Docomo's own technical support spec and exact SC-52D manual establish the above; no unverified wattage maximum is asserted.

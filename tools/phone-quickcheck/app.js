@@ -340,8 +340,11 @@
   function renderDetails() {
     const phone = state.phones.find((item) => item.id === state.selectedId) || null;
     const html = phone ? detailHtml(phone) : emptyHtml(state.loadError ? msg('loadErrorTitle') : msg('preparingTitle'), state.loadError ? msg('loadErrorBody') : msg('preparingBody'));
-    $('#desktopDetail').innerHTML = html;
-    $('#sheetDetail').innerHTML = html;
+    // Bucket the canonical manufacturer, never the user's model-search string.
+    for (const root of [$('#desktopDetail'), $('#sheetDetail')]) {
+      root.dataset.affiliateManufacturer = phone?.manufacturer || '';
+      root.innerHTML = html;
+    }
   }
 
   function detailHtml(phone) {
