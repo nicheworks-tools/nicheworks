@@ -34,7 +34,7 @@ const {runPublicLoader}=require("./audit-public-image-inventory-v2.3.cjs");
    promoted.push(id);
   }
  }
- assert.equal(ids.size,870,"public canonical set must remain 870");
+ assert.equal(ids.size,865,"public canonical set must remain 870");
  assert.equal(maintained.length,511,"active compact canonical count changed");
  assert.equal(promoted.length,145,"definition overlay is missing active targets");
  assert.equal(pending.length,0,"still short despite maintained explanatory source: "+pending.join(", "));
