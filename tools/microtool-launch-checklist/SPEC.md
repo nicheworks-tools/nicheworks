@@ -32,7 +32,9 @@ Generate a lightweight pre-launch checklist for small web tools so a publisher c
 
 ## State and persistence
 
-Generated checklist content is page state and is not stored as checklist history. Display language may be retained in this browser by the shared language layer.
+Generated checklist content is page state and is not stored as checklist history.
+
+Changing the selected tool type invalidates the old checklist and disables copying and exports until the new type is generated. Display language may be retained in this browser by the shared language layer.
 
 ## Privacy and network behavior
 
