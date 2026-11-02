@@ -119,6 +119,8 @@
       if (required) return { ok: false, value: 0, error: `${label}: 未入力です。` };
       return { ok: true, value: 0, empty: true };
     }
+    if (/^-[0-9]+$/.test(raw)) return { ok: false, value: 0, error: `${label}: 負数は使えません。` };
+    if (!/^[0-9]+$/.test(raw)) return { ok: false, value: 0, error: `${label}: 0以上の整数（円）を入力してください。` };
     const value = Number(raw);
     if (!Number.isFinite(value)) return { ok: false, value: 0, error: `${label}: 数値を入力してください。` };
     if (value < 0) return { ok: false, value: 0, error: `${label}: 負数は使えません。` };
@@ -132,6 +134,8 @@
       if (required) return { ok: false, value: 0, error: `${label}: required.` };
       return { ok: true, value: 0, empty: true };
     }
+    if (/^-[0-9]+$/.test(raw)) return { ok: false, value: 0, error: `${label}: negative values are not allowed.` };
+    if (!/^[0-9]+$/.test(raw)) return { ok: false, value: 0, error: `${label}: enter whole-number JPY (digits only).` };
     const value = Number(raw);
     if (!Number.isFinite(value)) return { ok: false, value: 0, error: `${label}: enter a number.` };
     if (value < 0) return { ok: false, value: 0, error: `${label}: negative values are not allowed.` };
