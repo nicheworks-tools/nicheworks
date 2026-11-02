@@ -7,6 +7,7 @@ on:
       - '.github/workflows/fastscan-japanese-real-photo.yml'
       - 'tools/inci-fastscan/qa/japanese-real-photo-corpus.mjs'
       - 'tools/inci-fastscan/qa/chromium-japanese-real-photo-pilot.mjs'
+      - 'tools/inci-fastscan/qa/check-japanese-real-photo-corpus.mjs'
       - 'tools/inci-fastscan/qa/production-label-scoring.mjs'
       - 'tools/inci-fastscan/js/core_ocr_post.js'
       - 'tools/inci-fastscan/js/image_preprocess.js'
@@ -45,6 +46,7 @@ jobs:
           node --check tools/inci-fastscan/qa/japanese-real-photo-corpus.mjs
           node --check tools/inci-fastscan/qa/chromium-japanese-real-photo-pilot.mjs
           node tools/inci-fastscan/qa/check-production-label-scoring.mjs
+          node tools/inci-fastscan/qa/check-japanese-real-photo-corpus.mjs
 
       - name: Retrieve actual publicly pictured Japanese ingredient labels (temporary)
         shell: bash
