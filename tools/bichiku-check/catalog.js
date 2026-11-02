@@ -4,7 +4,7 @@
   "use strict";
   var rows = [
     ["water","food",1,"water","carryWater","保存水 飲料水 2L","飲料・調理用の水","Drinking and cooking water","饮用与烹饪用水","Nước uống và nấu ăn"],
-    ["food","food",1,"food","", "非常食 そのまま食べられる 缶詰 レトルト","食料（食事回数）","Meals / food portions","食物（餐次数）","Thực phẩm (số bữa)"],
+    ["food","food",1,"food","goFood", "非常食 そのまま食べられる 主食","主食として使える食品（食数目安）","Staple food portions (planning only)","可当作主食的食品（参考份数）","Phần ăn chính (chỉ ước tính)"],
     ["snack","food",2,"one","people","防災 携帯食 ビスケット","携帯食・おやつ","Portable food / snacks","便携食品／零食","Thực phẩm mang theo"],
     ["toilet","hygiene",1,"toilet","goToilet","携帯トイレ 防災 凝固剤","携帯トイレ（使用回数）","Portable toilet uses","应急厕所（使用次数）","Nhà vệ sinh di động (lượt)"],
     ["toiletPaper","hygiene",2,"two","one","トイレットペーパー 備蓄","トイレットペーパー","Toilet paper","卫生纸","Giấy vệ sinh"],
@@ -33,6 +33,7 @@
     ["towels","health",2,"people","people","タオル 速乾 防災","タオル","Towels","毛巾","Khăn"],
     ["clothes","health",2,"people","people","防災 着替え 衣類","着替え・下着","Spare clothes / underwear","换洗衣物／内衣","Quần áo / đồ lót dự phòng"],
     ["blanket","health",2,"one","people","エマージェンシーシート 防災","保温・防寒用品","Warmth / emergency blankets","保暖用品／急救毯","Đồ giữ ấm / chăn khẩn cấp"],
+    ["sleepPad","health",2,"people","people","キャンプ 断熱 マット 防災","床からの冷えを防ぐマット","Floor-insulating sleeping mat","隔离地面寒气的睡垫","Đệm cách nhiệt khỏi sàn"],
     ["cooling","health",3,"one","", "冷却タオル 防災 暑さ対策","暑さ対策用品","Hot-weather supplies","防暑用品","Đồ chống nóng"],
     ["whistle","evac",2,"people","people","防災 ホイッスル","ホイッスル","Emergency whistle","求救哨","Còi cứu hộ"],
     ["helmet","evac",2,"people","people","防災 ヘルメット","頭部保護用品","Head protection","头部防护用品","Đồ bảo vệ đầu"],

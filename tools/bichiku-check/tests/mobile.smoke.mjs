@@ -57,6 +57,15 @@ try {
     assert.match(href,/tag=nicheworks09-22/);
     assert.equal(await affiliate.getAttribute("rel"),"sponsored noopener");
     assert.match(await page.locator("#affiliate-inline").innerText(),/Amazon/);
+    assert.equal(await page.locator("#specific-options:not([hidden])").count(),1,"specific options panel should be shown");
+    await page.locator("#specific-toggle").click();
+    assert.ok((await page.locator(".specific-option").count())>=25,"expected rich food/substitute options");
+    await page.locator('[data-options-filter="warmth"]').click();
+    assert.equal(await page.locator('.specific-option[data-option="foamMat"]').count(),1);
+    await page.locator('.specific-option[data-option="aluminumSheet"] summary').click();
+    assert.equal(await page.locator('.specific-option[data-option="aluminumSheet"] .specific-limit').count(),1,"foil must not auto-satisfy warmth");
+    await page.locator('[data-options-filter="food"]').click();
+    assert.equal(await page.locator('.specific-option[data-option="cupNoodles"]').count(),1);
 
     if(width===390) {
       const target=page.locator("#qty-water");
@@ -67,11 +76,20 @@ try {
       await page.locator("#target-water").fill("25");
       await page.locator("#target-water").press("Tab");
       assert.equal(await page.locator("#target-water").inputValue(),"25");
+      await page.locator('.specific-option[data-option="alphaRice"] summary').click();
+      await page.locator('.specific-option[data-option="alphaRice"] .specific-qty').fill("3");
+      await page.locator('.specific-option[data-option="alphaRice"] .specific-qty').press("Tab");
+      assert.equal(await page.locator('.specific-option[data-option="alphaRice"] .specific-qty').inputValue(),"3");
+      const groupFood=await page.locator('li[data-item="food"]').innerText();
+      assert.match(groupFood,/18/,"alpha rice should reduce 21 planned staple portions by 3");
       await page.reload({waitUntil:"domcontentloaded"});
       await page.locator("#calculate").click();
       assert.equal(await page.locator("#qty-water").inputValue(),"12","stock not retained");
       await page.locator('.item[data-item="water"] .item-detail summary').click();
       assert.equal(await page.locator("#target-water").inputValue(),"25","target not retained");
+      await page.locator("#specific-toggle").click();
+      await page.locator('.specific-option[data-option="alphaRice"] summary').click();
+      assert.equal(await page.locator('.specific-option[data-option="alphaRice"] .specific-qty').inputValue(),"3","specific item stock not retained");
     }
     await page.screenshot({path:path.join(outDir,"width-"+width+".png"),fullPage:true});
     assert.deepEqual(exceptions,[],"page script exception at "+width);
