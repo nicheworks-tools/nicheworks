@@ -1,0 +1,54 @@
+[
+  {
+    "pref": "北海道",
+    "city": "幕別町",
+    "name": "家庭ごみの出し方",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.makubetsu.lg.jp/kurashi/gomi/kateigomi/928.html",
+    "lgcode": "016438",
+    "last_checked": "2026-11-03",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "2026年8月28日更新。家庭ごみの分別・排出方法。収集日午前8時まで。"
+  },
+  {
+    "pref": "北海道",
+    "city": "幕別町",
+    "name": "令和8年度ごみカレンダー案内",
+    "type": "ごみ収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.town.makubetsu.lg.jp/kurashi/gomi/kateigomi/922.html",
+    "lgcode": "016438",
+    "last_checked": "2026-11-03",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "2026年3月10日更新。令和8年度の地域別カレンダーへの案内。地区別日程を全町共通と扱わない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "幕別町",
+    "name": "大型ごみの出し方",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.town.makubetsu.lg.jp/kurashi/gomi/kateigomi/916.html",
+    "lgcode": "016438",
+    "last_checked": "2026-11-03",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "2025年5月1日更新。幕別地域・忠類地域で申込窓口・収集日が異なる。予約制・処理券。"
+  },
+  {
+    "pref": "北海道",
+    "city": "幕別町",
+    "name": "ごみ分別辞典",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.makubetsu.lg.jp/kurashi/gomi/kateigomi/bumbetsujiten/903.html",
+    "lgcode": "016438",
+    "last_checked": "2026-11-03",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "2025年2月17日更新。品目別の分別検索。"
+  }
+]
