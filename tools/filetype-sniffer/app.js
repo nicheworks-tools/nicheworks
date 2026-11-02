@@ -20,6 +20,7 @@ const READABLE_LANG = document.documentElement.lang === 'en' ? 'en' : 'ja';
 
 let currentFile = null;
 let currentSummaryText = '';
+let analysisRevision = 0;
 
 const UI_TEXT = {
   ja: {
@@ -325,24 +326,36 @@ function setProgress(active) {
 }
 
 async function analyzeFile(file) {
-  if (!file) return;
+  if (!file || file !== currentFile) return;
+  const revision = ++analysisRevision;
+  clearAnalysisResult();
   setProgress(true);
   try {
     const buffer = await file.slice(0, READ_LIMIT_BYTES).arrayBuffer();
+    if (revision !== analysisRevision || file !== currentFile) return;
     showResult(file, detect(new DataView(buffer)), buffer.byteLength);
   } catch (error) {
+    if (revision !== analysisRevision || file !== currentFile) return;
     console.error(error);
     updateWarning(t.readFailed);
   } finally {
-    setProgress(false);
+    if (revision === analysisRevision) setProgress(false);
   }
+}
+
+function clearAnalysisResult() {
+  currentSummaryText = '';
+  if (jsonOutput) jsonOutput.textContent = '';
+  if (summaryContent) summaryContent.innerHTML = '';
+  if (resultSection) resultSection.style.display = 'none';
+  updateWarning('');
 }
 
 function handleFileSelection(file) {
   if (!file) return;
+  ++analysisRevision;
   currentFile = file;
-  currentSummaryText = '';
-  if (jsonOutput) jsonOutput.textContent = '';
+  clearAnalysisResult();
   if (selectedFileName) selectedFileName.textContent = file.name;
   if (dropZone) dropZone.classList.add('has-file');
   analyzeFile(file);
@@ -420,14 +433,12 @@ if (dropZone) {
 if (analyzeBtn) analyzeBtn.addEventListener('click', () => currentFile ? analyzeFile(currentFile) : updateWarning(t.selectFile));
 if (resetBtn) {
   resetBtn.addEventListener('click', () => {
+    ++analysisRevision;
     currentFile = null;
-    currentSummaryText = '';
     if (fileInput) fileInput.value = '';
     if (selectedFileName) selectedFileName.textContent = t.noFile;
     if (dropZone) dropZone.classList.remove('has-file', 'dragover');
-    if (resultSection) resultSection.style.display = 'none';
-    if (summaryContent) summaryContent.innerHTML = '';
-    if (jsonOutput) jsonOutput.textContent = '';
-    updateWarning('');
+    clearAnalysisResult();
+    setProgress(false);
   });
 }
