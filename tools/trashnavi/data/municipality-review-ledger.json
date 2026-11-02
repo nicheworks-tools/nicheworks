@@ -1592,12 +1592,12 @@
       "lgcode": "016021",
       "pref": "北海道",
       "municipality": "平取町",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
-      "service_provider": null,
-      "review_note": null
+      "coverage_state": "joint_service",
+      "reviewed_at": "2026-11-02",
+      "qualifying_source_count": 1,
+      "distinct_link_type_count": 1,
+      "service_provider": "平取町外2町衛生施設組合",
+      "review_note": "平取町公式「ゴミの分け方・出し方」を一次確認。町公式ページが組合・分別大辞典・平取町地区別収集カレンダーへの案内を掲載。地区別日程を全町共通化しない。"
     },
     {
       "lgcode": "016047",
