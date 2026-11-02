@@ -1,15 +1,7 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-02",
+  "updated": "2026-11-03",
   "items": [
-    {
-      "slug": "bichiku-check",
-      "state": "staged-unregistered",
-      "robots": "noindex,nofollow",
-      "sitemap": false,
-      "public_discovery": false,
-      "reason": "Four-language disaster planner awaiting mobile UX and safety-copy review plus affiliate eligibility validation before public registration"
-    },
     {
       "slug": "earth-alerts",
       "state": "staged-unregistered",
