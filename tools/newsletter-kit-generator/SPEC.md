@@ -15,7 +15,8 @@ Generate a lightweight bilingual newsletter planning kit from a theme, audience,
 - Generate a deterministic template containing subject ideas, issue structure, CTA ideas, and a sponsor pitch.
 - Produce both Japanese and English sections in the generated kit regardless of the current UI language.
 - Substitute explicit missing-input placeholders rather than blocking generation.
-- Allow the generated kit to be copied to the clipboard.
+- Allow the generated kit to be copied to the clipboard and downloaded locally as a UTF-8 TXT file.
+- Invalidate generated output and disable copy/TXT actions immediately if theme, audience or frequency changes, until the user generates a new kit. Clipboard fallback must respect browser copy success/failure.
 - Switch the surrounding UI between JP and EN.
 - Use local templates only; no AI generation backend is involved.
 
@@ -30,7 +31,7 @@ Generate a lightweight bilingual newsletter planning kit from a theme, audience,
 
 - JP subject ideas, structure, CTA, and sponsor pitch.
 - EN subject ideas, structure, CTA, and sponsor pitch.
-- Clipboard copy of the full bilingual kit.
+- Clipboard copy and local TXT download of the full bilingual kit.
 
 ## State and persistence
 
@@ -57,17 +58,19 @@ The tool is three text inputs, generate/copy actions, and one output area.
 - Generated copy is fixed-template drafting, not adaptive AI writing.
 - The tool does not send newsletters, manage subscriber lists, or integrate with an email service.
 - It does not validate advertising disclosures, sponsor contracts, email consent, or deliverability.
-- Current implementation provides copy but no dedicated file-download action for the newsletter kit.
+- Drafts remain editable starting points; they must be reviewed for actual sponsor claims, editorial content, and subscriber consent before sending. The tool does not send newsletters.
 
 ## Acceptance criteria
 
 - [ ] Generation works locally with any combination of filled or blank theme/audience/frequency inputs.
 - [ ] The output always contains both JP and EN sections even when only one UI language is visible.
 - [ ] Missing inputs use explicit placeholder text rather than invented user details.
-- [ ] Clipboard copy copies the generated local template without an AI/API request.
+- [ ] Clipboard copy and TXT download operate on the current generated bilingual kit without an AI/API request.
+- [ ] Editing any input immediately invalidates the previous output and disables stale copy/download until a new generation. Failed Clipboard API and fallback must not falsely report success.
 
 ## Implementation evidence
 
 - `tools/newsletter-kit-generator/index.html`
 - `tools/newsletter-kit-generator/app.js`
+- `tools/newsletter-kit-generator/tests/behavior.test.mjs`
 - `tools/newsletter-kit-generator/style.css`
