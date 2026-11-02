@@ -19,7 +19,7 @@ function optionUsable(option,s){
  if(option.equivalence!=="full")return false;
  if(option.parent==="food"){
    if(s.noHeat&&(option.prep==="heat"||option.prep==="verify"))return false;
-   if(option.prep==="water"&&!s.safeWaterConfirmed)return false;
+   if(option.prep==="water"&&(!s.safeWaterConfirmed||s.prepWaterLiters<=0))return false;
  }
  return true;
 }
@@ -56,7 +56,7 @@ function assessment(catalog,options,source,today){
  const stored=storedWater(s,options,now);
  const waterForPrep=s.safeWaterConfirmed&&s.prepWaterLiters>0&&(!s.waterOut||stored>=s.prepWaterLiters);
  // The safe-water input is a user-confirmed *total allocation* and is never a manufactured per-serving number.
- const readiness=Object.assign({},s,{safeWaterConfirmed:waterForPrep});
+ const readiness=Object.assign({},s,{safeWaterConfirmed:waterForPrep,enforceConditions:true});
  const core=root.BichikuCore;
  if(!core)throw Error("BichikuCore is required");
  const calc=core.calculate(catalog,readiness,now,options);
