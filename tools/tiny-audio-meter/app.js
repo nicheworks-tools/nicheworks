@@ -83,6 +83,7 @@
   let freqData = null;
   let rafId = null;
   let starting = false;
+  let micRequestRevision = 0;
   let lastPitchAt = 0;
   let selectedDeviceId = "";
   let snapshots = [];
@@ -255,9 +256,11 @@
   function updateControls() {
     const running = isMicRunning();
     els.micButton.disabled = starting || running;
-    els.micButton.hidden = running;
-    els.stopMicButton.disabled = !running;
-    els.stopMicButton.hidden = !running;
+    els.micButton.hidden = running || starting;
+    // Allow Stop while the browser's permission prompt / device acquisition
+    // is still pending; it will invalidate and close any late stream.
+    els.stopMicButton.disabled = !(running || starting);
+    els.stopMicButton.hidden = !(running || starting);
     els.snapshotButton.disabled = !running;
     els.segmentStart.disabled = !running || segment.active;
     els.segmentStop.disabled = !segment.active;
@@ -265,10 +268,11 @@
     els.resetButton.hidden = snapshots.length === 0 && !lastSegment;
   }
 
-  async function enumerateInputs() {
+  async function enumerateInputs(requestRevision) {
     if (!navigator.mediaDevices?.enumerateDevices) return;
     try {
       const devices = (await navigator.mediaDevices.enumerateDevices()).filter((device) => device.kind === "audioinput");
+      if (requestRevision !== micRequestRevision) return;
       const currentValue = selectedDeviceId || mediaStream?.getAudioTracks?.()[0]?.getSettings?.().deviceId || "";
       els.deviceSelect.replaceChildren();
       devices.forEach((device, index) => {
@@ -384,6 +388,7 @@
       return;
     }
 
+    const revision = ++micRequestRevision;
     starting = true;
     setMicBadge("pending");
     setStatus(options.switching ? m("switching") : m("starting"));
@@ -393,33 +398,42 @@
       cleanupAudio();
       const AudioContextCtor = window.AudioContext || window.webkitAudioContext;
       if (!AudioContextCtor) throw new Error("AudioContext unavailable");
-      mediaStream = await navigator.mediaDevices.getUserMedia(buildAudioConstraints(deviceId));
-      selectedDeviceId = mediaStream.getAudioTracks()[0]?.getSettings?.().deviceId || deviceId || "";
+      const acquired = await navigator.mediaDevices.getUserMedia(buildAudioConstraints(deviceId));
+      if (revision !== micRequestRevision) {
+        acquired.getTracks().forEach((track) => track.stop());
+        return;
+      }
+      mediaStream = acquired;
+      selectedDeviceId = acquired.getAudioTracks()[0]?.getSettings?.().deviceId || deviceId || "";
       audioCtx = new AudioContextCtor();
       analyser = audioCtx.createAnalyser();
       analyser.fftSize = FFT_SIZE;
       analyser.smoothingTimeConstant = 0.72;
-      const source = audioCtx.createMediaStreamSource(mediaStream);
+      const source = audioCtx.createMediaStreamSource(acquired);
       source.connect(analyser);
       timeData = new Float32Array(analyser.fftSize);
       freqData = new Uint8Array(analyser.frequencyBinCount);
       lastPitchAt = 0;
-      mediaStream.getAudioTracks().forEach((track) => track.addEventListener("ended", () => {
-        if (isMicRunning()) stopMic({ silent: true });
+      acquired.getAudioTracks().forEach((track) => track.addEventListener("ended", () => {
+        if (mediaStream === acquired && isMicRunning()) stopMic({ silent: true });
       }, { once: true }));
-      renderProcessingSettings(mediaStream.getAudioTracks()[0]);
-      await enumerateInputs();
+      renderProcessingSettings(acquired.getAudioTracks()[0]);
+      await enumerateInputs(revision);
+      if (revision !== micRequestRevision) return;
       setStatus(m("micOn"), "success");
       setMicBadge("on");
       rafId = requestAnimationFrame(frame);
     } catch (error) {
+      if (revision !== micRequestRevision) return;
       cleanupAudio();
       const denied = error?.name === "NotAllowedError" || error?.name === "SecurityError";
       setStatus(denied ? m("denied") : m("error"), "error");
       setMicBadge("off");
     } finally {
-      starting = false;
-      updateControls();
+      if (revision === micRequestRevision) {
+        starting = false;
+        updateControls();
+      }
     }
   }
 
@@ -436,6 +450,8 @@
   }
 
   function stopMic(options = {}) {
+    ++micRequestRevision;
+    starting = false;
     if (segment.active) finishSegment(true);
     cleanupAudio();
     resetLiveUI();
@@ -660,7 +676,11 @@
     els.segmentStop.addEventListener("click", () => finishSegment(false));
     els.resetButton.addEventListener("click", resetRecords);
     window.addEventListener("resize", () => { if (isMicRunning()) drawSpectrum(); });
-    window.addEventListener("pagehide", () => cleanupAudio(), { once: true });
+    window.addEventListener("pagehide", () => {
+      ++micRequestRevision;
+      starting = false;
+      cleanupAudio();
+    }, { once: true });
   }
 
   function init() {
