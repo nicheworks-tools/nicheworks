@@ -27,8 +27,8 @@ const context=vm.createContext({fetch:fetchStatic,URL,URLSearchParams,document:d
 vm.runInContext(noBoot,context,{timeout:3000});
 const patterns=await vm.runInContext('patterns()',context);
 const sources=await vm.runInContext('sources()',context);
-if(patterns.length!==110)throw new Error('browser runtime not serving 110 identities: '+patterns.length);
-for(const id of ['sakura-motif','ume-motif','kiku-motif','tsuru-motif','yukiwa','kanzemizu','shokko','matsukawabishi','bishamon-kikko','tachibana-motif']){
+if(patterns.length!==115)throw new Error('browser runtime not serving 115 identities: '+patterns.length);
+for(const id of ['sakura-motif','ume-motif','kiku-motif','tsuru-motif','yukiwa','kanzemizu','shokko','matsukawabishi','bishamon-kikko','tachibana-motif','noshi-motif','goshoguruma','temari-motif','sankuzushi','kasuri']){
   const p=patterns.find(x=>x.id===id);
   if(!p?.taxonomy?.types.includes('motif')||!p?.definition?.ja||!p?.definition?.en)throw new Error('v2 record not merged: '+id);
   if(!sources[id]?.sources?.length)throw new Error('v2 source links not merged: '+id);
@@ -45,14 +45,19 @@ for(const [lang,query,id] of [
  ['ja','橘文様','tachibana-motif'],
  ['en','Kanze Water Motif','kanzemizu'],['en','Shokko Brocade Motif','shokko'],
  ['en','Pine-Bark Diamond Motif','matsukawabishi'],
- ['en','Bishamon Kikko Triple-Hexagon Motif','bishamon-kikko'],['en','Tachibana Citrus Motif','tachibana-motif']
+ ['en','Bishamon Kikko Triple-Hexagon Motif','bishamon-kikko'],['en','Tachibana Citrus Motif','tachibana-motif'],
+ ['ja','束ね熨斗文様','noshi-motif'],['ja','御所車文様','goshoguruma'],
+ ['ja','手毬文様','temari-motif'],['ja','三崩し文様','sankuzushi'],['ja','絣','kasuri'],
+ ['en','Bundled Noshi Motif','noshi-motif'],['en','Gosho-guruma Carriage Motif','goshoguruma'],
+ ['en','Temari Ball Motif','temari-motif'],['en','Sankuzushi Three-Bar Motif','sankuzushi'],
+ ['en','Kasuri Resist-Dyed Weave','kasuri']
 ]){
  const res=await vm.runInContext('rank('+JSON.stringify(query)+','+JSON.stringify(lang)+')',context);
  if(res.results[0]?.pattern.id!==id)throw new Error('wrong v2 search ranking '+lang+' '+query+': '+res.results[0]?.pattern.id);
 }
 for(const lang of ['ja','en']){
  activeLang=lang;
- for(const id of ['sakura-motif','ume-motif','kiku-motif','tsuru-motif','yukiwa','kanzemizu','shokko','matsukawabishi','bishamon-kikko','tachibana-motif']){
+ for(const id of ['sakura-motif','ume-motif','kiku-motif','tsuru-motif','yukiwa','kanzemizu','shokko','matsukawabishi','bishamon-kikko','tachibana-motif','noshi-motif','goshoguruma','temari-motif','sankuzushi','kasuri']){
   activePattern=id;nodes['#detail'].innerHTML='';
   await vm.runInContext('initDetail('+JSON.stringify(lang)+')',context);
   const html=nodes['#detail'].innerHTML;
@@ -63,5 +68,5 @@ for(const lang of ['ja','en']){
 }
 activeLang='ja';nodes['#pattern-grid'].innerHTML='';nodes['#pattern-count'].textContent='';
 await vm.runInContext("initHome('ja')",context);
-if(nodes['#pattern-count'].textContent!=='110件')throw new Error('JA home count is not 110');
-console.log('OK: browser runtime loads 110 terms; 20 supplemental search forms resolve correctly; 20 bilingual detail panels show SVG and sources; home lists 110.');
+if(nodes['#pattern-count'].textContent!=='115件')throw new Error('JA home count is not 115');
+console.log('OK: browser runtime loads 115 terms; 30 supplemental search forms resolve correctly; 30 bilingual detail panels show SVG and sources; home lists 115.');
