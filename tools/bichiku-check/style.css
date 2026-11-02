@@ -81,9 +81,9 @@ a{color:#075e6c;overflow-wrap:anywhere}
 .result-buttons button{min-height:45px;border:1px solid #b6c7ce;border-radius:6px;background:#fff;font-weight:700;color:var(--ink)}
 .fine,.compliance p{font-size:12px;line-height:1.6;color:var(--sub)}
 .compliance{margin-top:15px;border-top:1px solid var(--line);padding-top:8px}
-#affiliate-disclosure{padding:0 3px;font-size:12px;color:var(--sub)}
-#affiliate-disclosure[hidden]{display:none}
-#affiliate-disclosure p{margin:5px 0}
+#affiliate-inline{padding:7px 10px;background:#f6f8f9;border-left:3px solid #8ea9b0;font-size:12px;color:var(--sub);margin-bottom:13px}
+#affiliate-inline[hidden]{display:none}
+#affiliate-inline p{margin:4px 0}
 .info-panel{background:#fff;border:1px solid var(--line);border-radius:10px;margin:14px 0 0;padding:15px 14px}
 .info-panel h2{font-size:17px;margin:0 0 8px}
 .info-panel ul{padding-left:22px;margin:0 0 10px}
