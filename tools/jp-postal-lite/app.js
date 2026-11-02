@@ -324,6 +324,13 @@ function addVisibleResults() {
     : "表示中の住所はすべて追加済みです");
 }
 
+function removeOutputRow(target) {
+  const liveIndex = outputRows.indexOf(target);
+  if (liveIndex === -1) return false;
+  outputRows.splice(liveIndex, 1);
+  return true;
+}
+
 function renderOutput() {
   outputListEl.innerHTML = "";
   outputListEl.classList.remove("empty");
@@ -339,7 +346,7 @@ function renderOutput() {
     outputListEl.classList.add("empty");
     return;
   }
-  outputRows.forEach((item, index) => {
+  outputRows.forEach((item) => {
     const row = document.createElement("div");
     row.className = "output-row";
     const text = document.createElement("div");
@@ -349,10 +356,16 @@ function renderOutput() {
     remove.className = "remove-btn";
     remove.textContent = "×";
     remove.setAttribute("aria-label", "この行を削除");
+    let removing = false;
     remove.addEventListener("click", () => {
+      if (removing) return;
+      removing = true;
+      remove.disabled = true;
       row.classList.add("fade-out");
       setTimeout(() => {
-        outputRows.splice(index, 1);
+        // The list may have changed while the 240ms animation ran.
+        // Remove this exact record, not the now-stale render-time index.
+        if (!removeOutputRow(item)) return;
         renderOutput();
         showToast("出力リストから削除しました");
       }, 240);
