@@ -1,0 +1,172 @@
+{
+  "schema": "cta-retired-content-enrichment-v2.3",
+  "version": "2026-11-03-five-canonical-identity-closure-1",
+  "policy": {
+    "purpose": "Preserve source-backed JA/EN details for retired duplicate IDs without duplicate enrichment ownership in the live dictionary.",
+    "source_records_immutable": true,
+    "active_enrichment_only_for_public_canonicals": true,
+    "redirects_must_resolve_source_to_target": true
+  },
+  "records": [
+    {
+      "source_id": "sandpaper",
+      "target_id": "q011_sanding_paper",
+      "origin_file": "content-enrichment-wave6e-v2.3.json",
+      "original_patch": {
+        "id": "sandpaper",
+        "wave": "content-wave-006e",
+        "state": "expanded",
+        "affiliate_review": "mapped",
+        "detail_ja": "紙や布などの基材に研磨材を付着させた研磨シート。木材、塗膜、パテ、金属などの下地調整に使い、番手、研磨材、乾式・湿式適性を対象に合わせる。",
+        "detail_en": "Abrasive sheet or paper used for surface preparation on wood, coatings, fillers, metals, and other materials. Grit, abrasive type, backing, and wet/dry suitability should match the substrate and finish.",
+        "bullets_ja": [
+          "粗い番手から必要に応じて細かい番手へ進め、削り過ぎを避ける。",
+          "対象材に合う研磨材を選び、目詰まりや摩耗した紙やすりは交換する。",
+          "研磨粉じんを集じん・清掃し、必要な呼吸・目の保護具を使用する。"
+        ],
+        "bullets_en": [
+          "Progress from coarse to finer grits as needed and avoid removing more material than required.",
+          "Choose an abrasive suited to the substrate and replace sheets that are clogged or worn.",
+          "Control sanding dust with extraction or cleanup and use appropriate respiratory and eye protection."
+        ],
+        "examples_ja": [
+          "パテ乾燥後に紙やすりで面を平滑にする。",
+          "木部塗装前に番手を上げながら研磨する。"
+        ],
+        "examples_en": [
+          "Smooth cured filler with sandpaper before finishing.",
+          "Sand timber with progressively finer grits before coating."
+        ]
+      },
+      "reason": "Retired duplicate: reviewed detail preserved for traceability; maintained target definitions and enrichments remain active."
+    },
+    {
+      "source_id": "as_built",
+      "target_id": "as_built_drawing",
+      "origin_file": "content-enrichment-wave6f-v2.3.json",
+      "original_patch": {
+        "id": "as_built",
+        "wave": "content-wave-006f",
+        "state": "expanded",
+        "affiliate_review": "not_applicable",
+        "detail_ja": "施工完了時の実際の位置・寸法・系統・変更内容を反映した竣工図・記録図。設計図から変更された配管、機器、開口、ルートなどを将来の維持管理で追えるよう更新する。",
+        "detail_en": "As-built drawings or records showing the installed condition at completion, including actual locations, dimensions, routes, systems, and approved deviations from the design. They support future operation, maintenance, and alteration work.",
+        "bullets_ja": [
+          "施工中の変更を後から記憶で補わず、決定・施工時点で追記できる運用にする。",
+          "変更箇所の位置・寸法・系統・参照番号を明確にし、曖昧な手書き指示だけで残さない。",
+          "最終版の版数・日付・承認状態を管理し、古い図面と混同しない。"
+        ],
+        "bullets_en": [
+          "Capture field changes as they occur rather than reconstructing them from memory at the end of the project.",
+          "Record changed locations, dimensions, routes, and reference numbers clearly rather than relying on ambiguous notes.",
+          "Control final revision, date, and approval status so superseded drawings are not confused with the record set."
+        ],
+        "examples_ja": [
+          "現場変更した配管ルートを竣工図へ反映する。",
+          "機器の最終設置位置と型式を記録図へ追記する。"
+        ],
+        "examples_en": [
+          "Update the as-built drawing with a field-rerouted pipe run.",
+          "Record the final equipment location and identification in the completion drawings."
+        ]
+      },
+      "reason": "Retired duplicate: reviewed detail preserved for traceability; maintained target definitions and enrichments remain active."
+    },
+    {
+      "source_id": "toolbox_talk",
+      "target_id": "q016_toolbox_meeting",
+      "origin_file": "content-enrichment-wave6k-v2.3.json",
+      "original_patch": {
+        "id": "toolbox_talk",
+        "wave": "content-wave-006k",
+        "state": "expanded",
+        "affiliate_review": "not_applicable",
+        "detail_ja": "作業開始前に、その日の作業内容・危険源・変更点・役割・緊急事項などを短時間で共有する安全ミーティング。参加者が理解したか確認することが重要。",
+        "detail_en": "A short pre-task safety meeting used to review the day's work, hazards, changes, responsibilities, and urgent site information. Effective talks include confirmation that workers understand the controls.",
+        "bullets_ja": [
+          "その日の実作業に関係する危険と変更点に絞り、形式的な読み上げだけにしない。",
+          "新規入場者や言語差を考慮し、質問・復唱などで理解を確認する。",
+          "重大な変更があった場合は朝礼後でも再度集まり、内容を更新する。"
+        ],
+        "bullets_en": [
+          "Focus on hazards and changes relevant to the actual task rather than treating the talk as a rote checklist.",
+          "Account for new workers and language differences and confirm understanding through questions or repeat-back.",
+          "Reconvene and update the briefing if significant conditions change after the initial talk."
+        ],
+        "examples_ja": [
+          "朝礼で当日のクレーン作業と立入禁止範囲を共有する。",
+          "午後の工程変更後に短い追加TBMを実施する。"
+        ],
+        "examples_en": [
+          "Review crane activity and exclusion zones during the morning toolbox talk.",
+          "Hold a short follow-up talk after an afternoon method change."
+        ]
+      },
+      "reason": "Retired duplicate: reviewed detail preserved for traceability; maintained target definitions and enrichments remain active."
+    },
+    {
+      "source_id": "ground_fault_breaker",
+      "target_id": "q015_earth_leakage_breaker",
+      "origin_file": "content-enrichment-wave6l-v2.3.json",
+      "original_patch": {
+        "id": "ground_fault_breaker",
+        "wave": "content-wave-006l",
+        "state": "expanded",
+        "affiliate_review": "mapped",
+        "detail_ja": "漏電・地絡による残留電流を検出し、所定値を超えると回路を遮断する漏電保護装置。定格電圧・電流・感度・遮断方式を回路用途に合わせる。",
+        "detail_en": "A ground-fault or residual-current protective device that disconnects a circuit when leakage current exceeds its trip threshold. Voltage, current, sensitivity, and interrupting characteristics must suit the circuit.",
+        "bullets_ja": [
+          "回路仕様に適合する定格・感度の機器を使用し、電気工事の適用基準に従う。",
+          "TEST機能など指定方法で定期確認し、正常動作しない機器を使用しない。",
+          "漏電保護だけに頼らず、接地・絶縁・過電流保護など他の保護も維持する。"
+        ],
+        "bullets_en": [
+          "Use a device with ratings and trip sensitivity appropriate for the circuit and applicable electrical rules.",
+          "Test operation by the specified method and remove malfunctioning devices from service.",
+          "Maintain grounding, insulation, and overcurrent protection rather than relying on residual-current protection alone."
+        ],
+        "examples_ja": [
+          "仮設電源回路へ適切な漏電遮断器を設置する。",
+          "定期点検でテストボタンによる動作を確認する。"
+        ],
+        "examples_en": [
+          "Provide suitable ground-fault protection on a temporary power circuit.",
+          "Verify trip operation using the device's prescribed test function."
+        ]
+      },
+      "reason": "Retired duplicate: reviewed detail preserved for traceability; maintained target definitions and enrichments remain active."
+    },
+    {
+      "source_id": "corner_float",
+      "target_id": "q016_corner_trowel",
+      "origin_file": "content-enrichment-wave6l-v2.3.json",
+      "original_patch": {
+        "id": "corner_float",
+        "wave": "content-wave-006l",
+        "state": "expanded",
+        "affiliate_review": "mapped",
+        "detail_ja": "左官材やパテなどの内角・外角を均一に整えるコーナーゴテ。用途に応じて内隅用・出隅用の形状を使い分ける。",
+        "detail_en": "A shaped trowel used to form and finish inside or outside corners in plaster, compound, or similar materials. Inside- and outside-corner profiles are selected to suit the work.",
+        "bullets_ja": [
+          "内角・外角に合う工具形状を選び、角度を崩さず一定圧で動かす。",
+          "材料の適切な硬化段階で仕上げ、過度な押さえで材料を掻き取らない。",
+          "角部へ付着した硬化材を除去し、エッジを滑らかに保つ。"
+        ],
+        "bullets_en": [
+          "Use the correct inside- or outside-corner profile and maintain consistent angle and pressure.",
+          "Finish at the appropriate stage of material set and avoid removing too much material.",
+          "Keep the tool edges clean and free of hardened compound that could scratch the finish."
+        ],
+        "examples_ja": [
+          "左官仕上げの入隅をコーナーゴテで整える。",
+          "パテ処理した角部を均一な形状に仕上げる。"
+        ],
+        "examples_en": [
+          "Finish an inside plaster corner with a corner trowel.",
+          "Shape a compound-coated corner to a consistent profile."
+        ]
+      },
+      "reason": "Retired duplicate: reviewed detail preserved for traceability; maintained target definitions and enrichments remain active."
+    }
+  ]
+}
