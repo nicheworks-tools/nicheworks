@@ -752,10 +752,9 @@ function bindEvents() {
   document.getElementById("copyQuestionsBtn")?.addEventListener("click", handleCopyQuestions);
   document.getElementById("downloadBtn")?.addEventListener("click", handleDownload);
   document.getElementById("onlyMatchedToggle")?.addEventListener("change", renderAll);
-  document.getElementById("contractText")?.addEventListener("input", () => {
-    const textarea = document.getElementById("contractText");
-    if (!textarea.value.trim()) renderAll();
-  });
+  // Keep findings, counters, highlights and exports in sync with every edit.
+  // Previously only clearing the input refreshed results, leaving stale findings visible.
+  document.getElementById("contractText")?.addEventListener("input", renderAll);
 }
 
 function init() {
