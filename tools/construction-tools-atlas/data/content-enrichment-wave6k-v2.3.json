@@ -1,6 +1,6 @@
 {
   "schema": "cta-content-enrichment-v2.3",
-  "version": "2026-09-18-wave6k-finishes-insulation-waterproofing-1",
+  "version": "2026-09-18-wave6k-finishes-insulation-waterproofing-1-canonical-merge-20261103",
   "entries": [
     {
       "id": "mud_pan",
@@ -263,7 +263,7 @@
       ]
     },
     {
-      "id": "toolbox_talk",
+      "id": "q016_toolbox_meeting",
       "wave": "content-wave-006k",
       "state": "expanded",
       "affiliate_review": "not_applicable",
