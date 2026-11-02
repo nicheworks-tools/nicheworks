@@ -13,9 +13,9 @@ WebPまたはAVIF画像をbrowser native decodeとCanvasでPNGまたはJPEGへ1�
 
 - file pickerまたはdrag & dropで1枚のWebP/AVIFを受け付ける。
 - MIME typeまたはfilename extensionでWebP/AVIF候補をcheckする。
-- browserのImage decodeでsourceを読み、Canvasへ描画する。
+- browserのImage decodeでsourceを読み、Canvasへ描画する。decode用object URLはその読み込み操作自身でrevokeし、選択ファイルの変更・Reset時には以前のasync結果を無効化する。
 - PNGは`image/png`として書き出し、browser/Canvasが保持できるtransparencyを維持する。
-- JPEGはCanvasをwhiteでfillしてから描画し、`image/jpeg` quality 0.92で書き出すためtransparencyはwhite backgroundになる。
+- JPEGはCanvasをwhiteでfillしてから描画し、`image/jpeg` quality 0.92で書き出すためtransparencyはwhite backgroundになる。選択した出力形式とBlobの実際のMIMEが一致しないブラウザフォールバックは保存せずエラー表示する。
 - original/converted file sizeとdimensionsを表示し、converted Blobをpreview/downloadできる。
 - reset時にobject URLをrevokeし、page-memory stateをclearする。
 - JA/EN UIを同一pageで切り替える。
@@ -74,10 +74,13 @@ single-file drop zone、conversion buttons、preview/downloadを縦方向中心�
 - [ ] 同じsourceをJPEGへ変換でき、transparent areaはwhite backgroundになる。
 - [ ] 複数file選択時は1枚のみ対応であることをerror表示する。
 - [ ] unsupported/broken/undecodable imageで変換を偽成功させずerror表示する。
+- [ ] 変換中に別ファイルを選んだ場合やResetした場合、古い非同期結果はプレビュー/ダウンロードに現れず、元画像URLも処理ごとに解放される。
+- [ ] 出力Blobが要求したPNG/JPEG以外を返した場合は誤った拡張子でダウンロードせず、言語別エラーを表示する。
 - [ ] original/converted sizeとdimensionsを表示する。
 - [ ] selected imageをserver-side conversion APIへuploadしない。
 
 ## Implementation evidence
 
 - `tools/webp-avif-converter/index.html` — single-file WebP/AVIF input、PNG/JPEG actions、privacy/format/metadata limitations。
+- `tools/webp-avif-converter/tests/behavior.test.mjs` — async競合・MIME不一致・正常保存の回帰テスト。
 - `tools/webp-avif-converter/app.js` — file validation、native decode、Canvas PNG/JPEG conversion、JPEG white fill/0.92 quality、object URL cleanup、language persistence。
