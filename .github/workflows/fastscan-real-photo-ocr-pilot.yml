@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/fastscan-real-photo-ocr-pilot.yml'
       - 'tools/inci-fastscan/qa/real-photo-ocr-pilot.mjs'
+      - 'tools/inci-fastscan/js/image_preprocess.js'
       - 'tools/inci-fastscan/qa/photo_ocr_metrics.js'
       - 'tools/inci-fastscan/js/core_ocr_post.js'
       - 'tools/_shared/cosmetic-ingredient-parser.js'
@@ -22,7 +23,7 @@ permissions:
 
 jobs:
   english-photo-ocr-pilot:
-    name: 12 actual label photos / EN baseline
+    name: 12 actual EN photos / OCR and preprocessing A-B
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
@@ -42,7 +43,7 @@ jobs:
       - name: Install exact OCR runner dependencies (runner only)
         run: |
           npm init --yes >/dev/null
-          npm install --no-save --no-package-lock --ignore-scripts tesseract.js@5.0.3 yaml@2.6.1
+          npm install --no-save --no-package-lock --ignore-scripts tesseract.js@5.0.3 yaml@2.6.1 sharp@0.33.5
 
       - name: Verify exact production dictionary-backed scoring before real photos
         run: |
