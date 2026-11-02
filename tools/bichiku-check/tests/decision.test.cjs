@@ -24,7 +24,7 @@ test("water-prepared alpha rice is never silently credited without a confirmed s
 });
 test("safe water + quantified allocation permits only explicitly usable food, from the SAME water pool",()=>{
  const a=assess({noHeat:true,waterOut:true,safeWaterConfirmed:true,prepWaterLiters:1,
-  stocks:{"home:water":{qty:4}},variants:{"home:alphaRice":{qty:4},"home:cupNoodles":{qty:8}}});
+  stocks:{"home:water":{qty:4}},variants:{"home:alphaRice":{qty:4,prepConfirmed:true,prepWaterLiters:1},"home:cupNoodles":{qty:8}}});
  assert.equal(row(a,"food").effective,4);
  assert.equal(row(a,"food").missing,5);
  assert.equal(row(a,"water").effective,4); // No phantom extra water or double subtraction
@@ -33,7 +33,7 @@ test("safe water + quantified allocation permits only explicitly usable food, fr
 });
 test("insufficient stored water during water outage invalidates water-prepared food",()=>{
  const a=assess({noHeat:true,waterOut:true,safeWaterConfirmed:true,prepWaterLiters:6,
-  stocks:{"home:water":{qty:4}},variants:{"home:alphaRice":{qty:4}}});
+  stocks:{"home:water":{qty:4}},variants:{"home:alphaRice":{qty:4,prepConfirmed:true,prepWaterLiters:6}}});
  assert.equal(a.waterConflict,true);
  assert.equal(a.waterForPrep,false);
  assert.equal(row(a,"food").effective,0);
@@ -74,7 +74,38 @@ test("water-dependent cooked noodles are NOT credited during an outage without s
  assert.equal(row(a,"food").effective,2); // The heating-only pack rice is not modeled as water-dependent
  assert.equal(row(a,"food").missing,7);
  const b=assess({waterOut:true,noHeat:false,safeWaterConfirmed:true,prepWaterLiters:1,
-  stocks:{"home:water":{qty:3}},variants:{"home:cupNoodles":{qty:9}}});
+  stocks:{"home:water":{qty:3}},variants:{"home:cupNoodles":{qty:9,prepConfirmed:true,prepWaterLiters:1}}});
  assert.equal(row(b,"food").effective,9);
  assert.equal(b.waterRemainingAfterPrep,2);
+});
+
+test("legacy global water volume is insufficient: each water-dependent item needs its own confirmation",()=>{
+ const a=assess({waterOut:true,noHeat:true,safeWaterConfirmed:true,prepWaterLiters:500,
+  stocks:{"home:water":{qty:20}},variants:{"home:alphaRice":{qty:8},"home:emergencyPorridge":{qty:3}}});
+ assert.equal(row(a,"food").effective,0);
+ assert.equal(a.waterAllocation,0);
+ assert.ok(a.uncheckedFoods.includes("alphaRice"));
+ assert.ok(a.uncheckedFoods.includes("emergencyPorridge"));
+});
+test("one confirmed food does not grant water-preparation permission to unconfirmed foods",()=>{
+ const a=assess({noHeat:true,waterOut:true,safeWaterConfirmed:true,stocks:{"home:water":{qty:6}},
+  variants:{"home:alphaRice":{qty:3,prepWaterLiters:0.9,prepConfirmed:true},
+            "home:emergencyPorridge":{qty:6}}});
+ assert.equal(a.waterAllocation,0.9);
+ assert.equal(row(a,"food").effective,3);
+ assert.equal(row(a,"food").missing,6);
+});
+test("all water-dependent foods are conservatively blocked when summed allocations exceed bottled water",()=>{
+ const a=assess({noHeat:true,waterOut:true,safeWaterConfirmed:true,stocks:{"home:water":{qty:2}},
+  variants:{"home:alphaRice":{qty:3,prepWaterLiters:1.2,prepConfirmed:true},
+            "home:emergencyPorridge":{qty:3,prepWaterLiters:1.2,prepConfirmed:true}}});
+ assert.equal(a.waterAllocation,2.4);
+ assert.equal(a.waterConflict,true);
+ assert.equal(row(a,"food").effective,0);
+});
+test("expired confirmed water-dependent food cannot consume water or cover a shortage",()=>{
+ const a=assess({noHeat:true,waterOut:true,safeWaterConfirmed:true,stocks:{"home:water":{qty:6}},
+  variants:{"home:alphaRice":{qty:3,prepWaterLiters:1.2,prepConfirmed:true,expiry:"2026-10-01"}}});
+ assert.equal(a.waterAllocation,0);
+ assert.equal(row(a,"food").effective,0);
 });
