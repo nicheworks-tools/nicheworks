@@ -136,4 +136,29 @@ assert.equal(capped.rows.length, 50, 'only currently displayed maximum 50 matche
 const preserved = JSON.parse(evaluate('JSON.stringify(mergePostalRows([{ postal_hyphen: "150-0001", full: "東京都渋谷区神宮前" }], []))'));
 assert.equal(preserved.rows.length, 1, 'empty search leaves prior export list intact');
 
+
+// Removal happens after a 240ms animation. Its original list index can be stale
+// if several rows are removed quickly or bulk-add replaces the array.
+const removal = JSON.parse(evaluate("JSON.stringify((() => {" +
+  " outputRows = [{ postal_hyphen: 'A', full: 'first' }, { postal_hyphen: 'B', full: 'second' }, { postal_hyphen: 'C', full: 'third' }];" +
+  " const first = outputRows[0]; const third = outputRows[2];" +
+  " const firstOk = removeOutputRow(first); const thirdOk = removeOutputRow(third);" +
+  " return { firstOk, thirdOk, rows: outputRows.map(row => row.postal_hyphen) };" +
+  "})())"));
+assert.equal(removal.firstOk, true);
+assert.equal(removal.thirdOk, true);
+assert.deepEqual(removal.rows, ['B'],
+  'removing two rows must preserve the unrelated middle record');
+
+const afterClear = JSON.parse(evaluate("JSON.stringify((() => {" +
+  " outputRows = [{ postal_hyphen: 'A', full: 'old' }]; const oldRef = outputRows[0];" +
+  " outputRows = [{ postal_hyphen: 'A', full: 'new' }];" +
+  " return { removed: removeOutputRow(oldRef), rows: outputRows.map(row => row.full) };" +
+  "})())"));
+assert.equal(afterClear.removed, false, 'an old animation must not remove newly re-added data');
+assert.deepEqual(afterClear.rows, ['new']);
+assert.ok(source.includes('if (removing) return;'), 'repeated clicks must not schedule duplicate removals');
+assert.ok(source.includes('if (!removeOutputRow(item)) return;'),
+  'the animated action must use the record identity rather than its stale index');
+
 console.log('JP Postal Lite behavior test passed.');
