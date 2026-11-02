@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-11-01T00:00:00.000Z",
-  "total": 89,
+  "total": 90,
   "items": [
     {
       "slug": "ai-interaction-atlas",
@@ -65,6 +65,14 @@
         "paste",
         "job"
       ]
+    },
+    {
+      "slug": "bichiku-check",
+      "title_en": "bichiku-check",
+      "title_ja": "bichiku-check",
+      "desc_en": "",
+      "desc_ja": "",
+      "tags": []
     },
     {
       "slug": "codex-product-shipping-playbooks",
