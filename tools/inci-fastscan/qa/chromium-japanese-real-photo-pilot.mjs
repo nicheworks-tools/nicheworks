@@ -129,7 +129,7 @@ assert.equal(original.eligibleReferenceUniqueNames, enhanced.eligibleReferenceUn
   'Compared arms must use the same canonical supported name denominator');
 assert.ok(original.eligibleReferenceUniqueNames > 0,
   'Must have actual dictionary-covered Japanese source ingredient identities');
-const sourceControl = sum('sourceControl');
+const sourceControl = aggregateProductionAssessments(results.map(row => ({ analysis: row.sourceControl })));
 assert.equal(sourceControl.afterRepairHits, sourceControl.eligibleReferenceUniqueNames,
   'Published reference token self-match must be complete on supported entries');
 
