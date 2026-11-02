@@ -54,6 +54,9 @@
 
     const placement = root.id === "sheetDetail" ? "mobile_sheet" : "desktop_detail";
     const lang = currentLang();
+    const knownMakers = new Set(["apple", "fcnt", "google", "samsung", "sony", "sharp", "oppo", "xiaomi", "motorola", "nothing", "zte"]);
+    const maker = String(root.dataset.affiliateManufacturer || "").trim().toLowerCase();
+    const makerBucket = knownMakers.has(maker) ? maker : "other";
 
     for (const offer of offers) {
       const slot = document.createElement("div");
@@ -65,6 +68,7 @@
         url: offer.url,
         label: lang === "en" ? offer.labelEn : offer.labelJa,
         placement,
+        affiliateId: "phone_" + makerBucket + "_" + offer.key,
         className: "affiliate-btn amazon-cta"
       });
     }
