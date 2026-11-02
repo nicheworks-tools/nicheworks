@@ -7,7 +7,7 @@ on:
         description: 'Number of V2 terms already deployed (5, 10 or 15; confirm deployment before strict audit)'
         type: choice
         required: true
-        default: '5'
+        default: '10'
         options:
           - '5'
           - '10'
@@ -48,7 +48,7 @@ jobs:
 
       - name: Audit currently deployed detail URLs (210 baseline, 220 or 230 post-deploy)
         env:
-          PATTERN_DICTIONARY_LIVE_SUPPLEMENT_COUNT: ${{ inputs.liveSupplementCount || '5' }}
+          PATTERN_DICTIONARY_LIVE_SUPPLEMENT_COUNT: ${{ inputs.liveSupplementCount || '10' }}
           PATTERN_DICTIONARY_PRODUCTION_SEO_REPORT: pattern-dictionary-production-seo-report.json
           PATTERN_DICTIONARY_PRODUCTION_SEO_CONCURRENCY: '8'
           PATTERN_DICTIONARY_PRODUCTION_SEO_TIMEOUT_MS: '20000'
