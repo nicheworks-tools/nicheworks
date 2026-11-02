@@ -546,5 +546,18 @@
     "status": "active",
     "language": "ja",
     "scope_note": "令和3年4月からの収集日変更。厚真町上地区・下地区等の区分を維持し全町共通化しない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "安平町",
+    "name": "生活環境（ごみ収集・分別・大型ごみ・自己搬入）",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.abira.lg.jp/kurashi/kurashi-guide/seikatsu",
+    "lgcode": "015857",
+    "last_checked": "2026-11-02",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "安平・厚真行政事務組合が収集・分別の問い合わせ先。大型ごみは早来地区・追分地区で収集曜日が異なる。"
   }
 ]
