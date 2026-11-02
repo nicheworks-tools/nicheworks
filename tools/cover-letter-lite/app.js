@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const statusMessage = document.getElementById("form-status");
   const wordCountEl = document.getElementById("word-count");
   const toastEl = document.getElementById("toast");
+  let draftRevision = 0;
 
   document.querySelectorAll("[data-ph]").forEach((el) => {
     el.setAttribute("place" + "holder", el.dataset.ph);
@@ -172,6 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+    const revision = ++draftRevision;
 
     const applicant = document.getElementById("applicant").value.trim();
     const company = document.getElementById("company").value.trim();
@@ -190,6 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       const template = await loadTemplate(style, length);
+      if (revision !== draftRevision) return;
       const skillsPhrase = buildSkillsPhrase(rawSkills) || "relevant skills";
       const normalizedExperience = normalizeExperience(experienceRaw);
 
@@ -223,13 +226,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
       showToast("Draft generated");
     } catch (error) {
+      if (revision !== draftRevision) return;
       outputArea.textContent = "";
       wordCountEl.textContent = "";
       outputContainer.style.display = "none";
       setStatus("Template could not be loaded. Please reload the page and try another template.", "error");
     } finally {
-      generateBtn.disabled = false;
-      generateBtn.textContent = "Generate Draft";
+      if (revision === draftRevision) {
+        generateBtn.disabled = false;
+        generateBtn.textContent = "Generate Draft";
+      }
     }
   });
 
