@@ -598,5 +598,44 @@
     "status": "active",
     "language": "ja",
     "scope_note": "西興部村公式FAQ。分別、粗大ごみ、地区別収集日、処理場への直接搬入を案内。地区ごとに収集日が異なるため村全域共通の日程として扱わない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "鹿追町",
+    "name": "ごみと資源の分別方法（令和8年度カレンダー・令和6年改訂ハンドブック）",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.shikaoi.lg.jp/kurashi/life/gomi_recycle/bunbetsu/",
+    "lgcode": "016349",
+    "last_checked": "2026-11-02",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "鹿追町公式。令和8年度ごみカレンダー、令和6年4月改訂分別ハンドブック、家庭ごみ直接搬入を案内。"
+  },
+  {
+    "pref": "北海道",
+    "city": "鹿追町",
+    "name": "大型ごみ収集について（一般家庭）",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.town.shikaoi.lg.jp/kurashi/life/gomi_recycle/ogata_gomi/",
+    "lgcode": "016349",
+    "last_checked": "2026-11-02",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "鹿追町公式。令和8年度春の大型ごみ収集、指定シール、収集対象外品目と直接搬入先を案内。"
+  },
+  {
+    "pref": "北海道",
+    "city": "鹿追町",
+    "name": "収集日以外にごみを処分したいとき",
+    "type": "持込施設",
+    "link_type": "dropoff_facility",
+    "url": "https://www.town.shikaoi.lg.jp/kurashi/life/gomi_recycle/gomi_shobun/",
+    "lgcode": "016349",
+    "last_checked": "2026-11-02",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "鹿追町公式。資源ごみのひまわりセンターなど直接搬入施設の利用案内。"
   }
 ]
