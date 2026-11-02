@@ -77,12 +77,13 @@
   const prepState = Object.create(null);
   root.fastScanImageRotation = fileId => rotationState[fileId] || 0;
   root.fastScanImageOptions = fileId => {
-    const state = prepState[fileId] || { crop: { left: 0, right: 0, top: 0, bottom: 0 }, contrastPercent: 100, deskewDegrees: 0 };
+    const state = prepState[fileId] || { crop: { left: 0, right: 0, top: 0, bottom: 0 }, contrastPercent: 100, deskewDegrees: 0, enhanceForOcr: false };
     return {
       quarterTurns: rotationState[fileId] || 0,
       crop: { ...state.crop },
       contrastPercent: state.contrastPercent,
-      deskewDegrees: state.deskewDegrees
+      deskewDegrees: state.deskewDegrees,
+      enhanceForOcr: state.enhanceForOcr === true
     };
   };
 
@@ -227,6 +228,13 @@
       textFor(uiLanguage(), '文字コントラスト', 'Text contrast') + '</span>' +
       '<input type="range" data-ocr-contrast min="100" max="180" step="10" value="100">' +
       '<output>100%</output></label>' +
+      '<label class="ocr-image-enhance"><input type="checkbox" data-ocr-enhance>' +
+      '<span data-lang-text data-ja="文字を見やすく補正（実験・手動）" data-en="Enhance text (experimental, opt-in)">' +
+      textFor(uiLanguage(), '文字を見やすく補正（実験・手動）', 'Enhance text (experimental, opt-in)') + '</span></label>' +
+      '<p class="ocr-image-enhance-hint" data-lang-text data-ja="グレー化・濃淡調整・必要な場合の拡大。画像によって逆効果になるため、OCR後に必ず原本と見比べてください。" ' +
+      'data-en="Grayscale, contrast stretch and bounded enlargement. Some labels may scan worse. Always compare OCR text with the original.">' +
+      textFor(uiLanguage(), 'グレー化・濃淡調整・必要な場合の拡大。画像によって逆効果になるため、OCR後に必ず原本と見比べてください。',
+        'Grayscale, contrast stretch and bounded enlargement. Some labels may scan worse. Always compare OCR text with the original.') + '</p>' +
       '<button type="button" class="ocr-image-adjust-reset" data-lang-text ' +
       'data-ja="補正をリセット" data-en="Reset adjustments">' +
       textFor(uiLanguage(), '補正をリセット', 'Reset adjustments') + '</button></details>';
@@ -249,15 +257,20 @@
     const cropSliders = [...preview.querySelectorAll('[data-ocr-crop]')];
     const contrastSlider = preview.querySelector('[data-ocr-contrast]');
     const deskewSlider = preview.querySelector('[data-ocr-deskew]');
+    const enhancementToggle = preview.querySelector('[data-ocr-enhance]');
     let objectUrl = null;
     let previewVersion = 0;
     let previewTimer = null;
-    prepState[config.fileId] = { crop: { left: 0, right: 0, top: 0, bottom: 0 }, contrastPercent: 100, deskewDegrees: 0 };
+    prepState[config.fileId] = { crop: { left: 0, right: 0, top: 0, bottom: 0 }, contrastPercent: 100, deskewDegrees: 0, enhanceForOcr: false };
 
     function readControls() {
       const crop = {};
       for (const slider of cropSliders) crop[slider.dataset.ocrCrop] = Number(slider.value);
-      prepState[config.fileId] = { crop, contrastPercent: Number(contrastSlider.value), deskewDegrees: Number(deskewSlider.value) };
+      prepState[config.fileId] = {
+        crop, contrastPercent: Number(contrastSlider.value),
+        deskewDegrees: Number(deskewSlider.value),
+        enhanceForOcr: enhancementToggle.checked
+      };
       for (const slider of [...cropSliders, contrastSlider]) {
         slider.nextElementSibling.textContent = slider.value + '%';
       }
@@ -269,6 +282,7 @@
       if (resetContrast) {
         contrastSlider.value = '100';
         deskewSlider.value = '0';
+        enhancementToggle.checked = false;
       }
       readControls();
     }
@@ -325,7 +339,8 @@
         const trimmed = Object.values(options.crop).some(value => value > 0);
         const adjustments = (options.deskewDegrees ? ' / tilt ' + options.deskewDegrees + '°' : '') +
           (trimmed ? ' / Crop' : '') +
-          (options.contrastPercent !== 100 ? ' / ' + options.contrastPercent + '% contrast' : '');
+          (options.contrastPercent !== 100 ? ' / ' + options.contrastPercent + '% contrast' : '') +
+          (options.enhanceForOcr ? ' / experimental grayscale+upscale' : '');
         label.textContent = textFor(
           uiLanguage(),
           '選択画像 · ' + kb + ' KB · 回転 ' + options.quarterTurns * 90 + '°' + adjustments,
@@ -387,6 +402,11 @@
       });
     });
     contrastSlider.addEventListener('input', () => {
+      readControls();
+      markOcrTextStale();
+      schedulePreview();
+    });
+    enhancementToggle.addEventListener('change', () => {
       readControls();
       markOcrTextStale();
       schedulePreview();

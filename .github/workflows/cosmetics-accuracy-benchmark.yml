@@ -59,6 +59,7 @@ on:
       - 'tools/_shared/check-fastscan-image-rotation.mjs'
       - 'tools/_shared/check-fastscan-image-crop-contrast.mjs'
       - 'tools/_shared/check-fastscan-image-deskew.mjs'
+      - 'tools/_shared/check-fastscan-image-enhancement.mjs'
       - 'tools/_shared/check-fastscan-photo-ocr-metrics.mjs'
       - 'tools/_shared/check-fastscan-result-controls.mjs'
       - 'tools/_shared/check-fastscan-review-queue.mjs'
@@ -244,6 +245,7 @@ jobs:
           node --check tools/_shared/check-fastscan-image-rotation.mjs
           node --check tools/_shared/check-fastscan-image-crop-contrast.mjs
           node --check tools/_shared/check-fastscan-image-deskew.mjs
+          node --check tools/_shared/check-fastscan-image-enhancement.mjs
           node --check tools/_shared/check-fastscan-photo-ocr-metrics.mjs
           node --check tools/inci-fastscan/qa/photo_ocr_metrics.js
           node --check tools/inci-fastscan/qa/photo_ocr_runner.js
@@ -280,6 +282,8 @@ jobs:
         run: node tools/_shared/check-fastscan-image-crop-contrast.mjs
       - name: FastScan manual deskew regression
         run: node tools/_shared/check-fastscan-image-deskew.mjs
+      - name: FastScan opt-in browser image enhancement regression
+        run: node tools/_shared/check-fastscan-image-enhancement.mjs
       - name: FastScan real-photo OCR metric runner regression
         run: node tools/_shared/check-fastscan-photo-ocr-metrics.mjs
       - name: FastScan result controls regression

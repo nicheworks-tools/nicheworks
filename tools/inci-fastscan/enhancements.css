@@ -98,6 +98,25 @@
 .ocr-image-control output {
   font-variant-numeric: tabular-nums;
 }
+.ocr-image-enhance {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin: 14px 0 3px;
+  font-size: .88rem;
+  line-height: 1.5;
+  cursor: pointer;
+}
+.ocr-image-enhance input[type="checkbox"] {
+  margin: 4px 0 0;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  accent-color: #2563eb;
+}
+.ocr-image-enhance-hint {
+  margin: 3px 0 12px;
+}
 .ocr-image-adjust-reset {
   min-height: 38px;
   padding: 6px 12px;

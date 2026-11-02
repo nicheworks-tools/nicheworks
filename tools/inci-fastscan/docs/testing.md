@@ -86,6 +86,14 @@ node tools/_shared/check-fastscan-photo-ocr-metrics.mjs
 ```
 This checks metric mathematics and wiring, **not** Tesseract recognition quality on real photographs. Changes in the image options must invalidate stale measurements. For real-annotation sets, a bad recognition result is diagnostic information, not permission to silently alter the transcription or auto-correct exact dictionary matches.
 
+## Opt-in browser-local OCR enhancement (experimental, 2026-11-02)
+
+Both English and Japanese OCR photo interfaces now have an **off-by-default** "Enhance text" checkbox inside photo adjustments. Enabling it uses the existing shared browser canvas preview-and-recognize pipeline: grayscale conversion, fixed 1%/99% luminance histogram stretch, and up to 2× high-quality canvas enlargement capped at 3072px. The mode remains opt-in because some labels can become harder to read; the user can compare with the original photo, reset it, and correct recognized text before dictionary analysis. The photo and text stay local, with no new network/image upload feature. The checkbox change marks any earlier OCR result stale.
+
+**Evidence boundary:** the [72-run external photo preprocessing experiment](https://github.com/nicheworks-tools/nicheworks/actions/runs/41386084537) used Node.js `sharp`, **not** this browser canvas implementation. On 12 pinned genuine English ingredient-label photos, the strongest fixed sharp recipe improved production dictionary-supported name recall **58/233 (24.89%) → 82/233 (35.19%)**, a gain of 24 source-backed matches / 10.30 percentage points. Grayscale + normalization without upscaling achieved 77/233 (33.05%) and grayscale + sharpening achieved 68/233 (29.18%). Although these support testing grayscale/contrast/enlargement, they **do not establish a 35.19% browser success rate**: canvas and sharp differ in intensity mapping and resizing. A phone/Japanese/browser-parity study is still required; the result is not general accuracy approval.
+
+Automated regression: `node tools/_shared/check-fastscan-image-enhancement.mjs` checks untouched default-image handling, concrete grayscale pixel writes, upscale and memory cap, expected failure handling and blob-URL release, bilingual option wiring, optional QA comparison and photo privacy. The noindex QA page at `tools/inci-fastscan/qa/photo-ocr-benchmark.html` now exposes the same checkbox so manual testers can compare original and browser-enhanced scans of a **single independently transcribed real label**.
+
 ## External annotated real-photo OCR pilot (12 English-language labels)
 
 An independent real-photo baseline can run in GitHub Actions via
