@@ -11,11 +11,11 @@ Edit page order and composition of one or more PDFs entirely in the browser, the
 
 ## Current functional contract
 
-- Accept one or more PDF files through picker or drag-and-drop.
+- Accept one or more PDF files through picker or drag-and-drop. Treat a multi-file add as one atomic batch: if any PDF fails to parse, remove only newly loaded pages/documents and preserve all pre-existing edits. Ignore concurrent add/drop attempts while loading.
 - Load pages into a merged page view using bundled PDF libraries.
 - Delete, reorder, and rotate pages in the current merged output.
 - Support a single undo step for page-edit operations.
-- Extract selected page ranges such as `1-3,5,8-10` into a separate downloaded PDF.
+- Extract selected page ranges such as `1-3,5,8-10` into a separate downloaded PDF. Empty comma-delimited tokens, e.g. `,1`, `1,`, or `1,,2`, are invalid; never silently omit them.
 - Save the current merged/edited pages as a new PDF file.
 - Allow adding additional PDFs and resetting the editor.
 - Keep original input PDFs unchanged.
@@ -64,8 +64,9 @@ Multiple files, page thumbnails/list operations, range extraction, and reorder c
 
 - [ ] Local PDFs can be combined into a current-page merged view without uploading their contents.
 - [ ] Reorder/delete/rotate operations change only the in-memory output plan and saved new PDF, never the original files.
-- [ ] Valid visible-page ranges can be extracted into a separate PDF and invalid ranges surface a recoverable error.
+- [ ] Valid visible-page ranges can be extracted into a separate PDF and invalid ranges surface a recoverable error. Empty/duplicate delimiters must not be silently accepted.
 - [ ] Password/protection failures are reported rather than silently producing corrupted output.
+- [ ] An import batch containing a valid PDF followed by a corrupt PDF rolls back all pages in that batch without removing previously edited pages. Concurrent import attempts cannot interleave.
 - [ ] Save produces a separate edited PDF from the current page order/rotation state.
 
 ## Implementation evidence
@@ -75,3 +76,5 @@ Multiple files, page thumbnails/list operations, range extraction, and reorder c
 - `tools/pdf-page-tools-mini/vendor/pdf-lib/pdf-lib.min.js`
 - `tools/pdf-page-tools-mini/vendor/pdfjs/pdfjs-setup.mjs`
 - `tools/pdf-page-tools-mini/style.css`
+
+- `tools/pdf-page-tools-mini/tests/behavior.test.mjs` — strict range, atomic multi-file load, concurrent add regression.
