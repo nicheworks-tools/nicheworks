@@ -1,0 +1,184 @@
+{
+  "schemaVersion": 1,
+  "maker": "Epson",
+  "scopeId": "colorio-nine-exact-manual-and-ink-models-20261102",
+  "scope": "Nine verified Epson Colorio models: EP-712A/713A/714A, and all three exact color variants each of EP-883A and EP-884A. Not Epson's full product population.",
+  "reviewedAt": "2026-11-02",
+  "status": "reviewed",
+  "region": "JP",
+  "language": "ja",
+  "allowedDomains": [
+    "www.epson.jp"
+  ],
+  "counts": {
+    "officialManualModels": 9,
+    "newBasicTaggedModelSearches": 9,
+    "newVerifiedTaggedInkSearches": 18
+  },
+  "publicationFile": "tools/manual-finder/data/manuals.wave3.09.js",
+  "affiliateFile": "tools/manual-finder/affiliate-config.js",
+  "records": [
+    {
+      "model": "EP-712A",
+      "maker": "Epson",
+      "category": "プリンター・複合機",
+      "manualUrl": "https://www.epson.jp/support/portal/used/ep-712a.htm",
+      "supportUrl": "https://www.epson.jp/support/portal/support_menu/ep-712a.htm",
+      "consumablesUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-712a.htm",
+      "inkCodes": [
+        "SAT-6CL",
+        "SAT-BK"
+      ],
+      "manualEvidence": "Epson manufacturer manual page names exact model, Web user's guide and downloadable PDF user guide",
+      "inkEvidence": "Epson manufacturer's exact model consumables catalog explicitly includes both ink codes",
+      "reviewedAt": "2026-11-02",
+      "state": "direct",
+      "sourceLevel": "A",
+      "manualKind": "manufacturer_model_manual_index"
+    },
+    {
+      "model": "EP-713A",
+      "maker": "Epson",
+      "category": "プリンター・複合機",
+      "manualUrl": "https://www.epson.jp/support/portal/used/ep-713a.htm",
+      "supportUrl": "https://www.epson.jp/support/portal/support_menu/ep-713a.htm",
+      "consumablesUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-713a.htm",
+      "inkCodes": [
+        "SAT-6CL",
+        "SAT-BK"
+      ],
+      "manualEvidence": "Epson manufacturer manual page names exact model, Web user's guide and downloadable PDF user guide",
+      "inkEvidence": "Epson manufacturer's exact model consumables catalog explicitly includes both ink codes",
+      "reviewedAt": "2026-11-02",
+      "state": "direct",
+      "sourceLevel": "A",
+      "manualKind": "manufacturer_model_manual_index"
+    },
+    {
+      "model": "EP-714A",
+      "maker": "Epson",
+      "category": "プリンター・複合機",
+      "manualUrl": "https://www.epson.jp/support/portal/used/ep-714a.htm",
+      "supportUrl": "https://www.epson.jp/support/portal/support_menu/ep-714a.htm",
+      "consumablesUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-714a.htm",
+      "inkCodes": [
+        "SAT-6CL",
+        "SAT-BK"
+      ],
+      "manualEvidence": "Epson manufacturer manual page names exact model, Web user's guide and downloadable PDF user guide",
+      "inkEvidence": "Epson manufacturer's exact model consumables catalog explicitly includes both ink codes",
+      "reviewedAt": "2026-11-02",
+      "state": "direct",
+      "sourceLevel": "A",
+      "manualKind": "manufacturer_model_manual_index"
+    },
+    {
+      "model": "EP-883AW",
+      "maker": "Epson",
+      "category": "プリンター・複合機",
+      "manualUrl": "https://www.epson.jp/support/portal/used/ep-883aw.htm",
+      "supportUrl": "https://www.epson.jp/support/portal/support_menu/ep-883aw.htm",
+      "consumablesUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-883aw.htm",
+      "inkCodes": [
+        "KAM-6CL",
+        "KAM-6CL-L"
+      ],
+      "manualEvidence": "Epson manufacturer manual page names exact model, Web user's guide and downloadable PDF user guide",
+      "inkEvidence": "Epson manufacturer's exact model consumables catalog explicitly includes both ink codes",
+      "reviewedAt": "2026-11-02",
+      "state": "direct",
+      "sourceLevel": "A",
+      "manualKind": "manufacturer_model_manual_index"
+    },
+    {
+      "model": "EP-883AB",
+      "maker": "Epson",
+      "category": "プリンター・複合機",
+      "manualUrl": "https://www.epson.jp/support/portal/used/ep-883ab.htm",
+      "supportUrl": "https://www.epson.jp/support/portal/support_menu/ep-883ab.htm",
+      "consumablesUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-883ab.htm",
+      "inkCodes": [
+        "KAM-6CL",
+        "KAM-6CL-L"
+      ],
+      "manualEvidence": "Epson manufacturer manual page names exact model, Web user's guide and downloadable PDF user guide",
+      "inkEvidence": "Epson manufacturer's exact model consumables catalog explicitly includes both ink codes",
+      "reviewedAt": "2026-11-02",
+      "state": "direct",
+      "sourceLevel": "A",
+      "manualKind": "manufacturer_model_manual_index"
+    },
+    {
+      "model": "EP-883AR",
+      "maker": "Epson",
+      "category": "プリンター・複合機",
+      "manualUrl": "https://www.epson.jp/support/portal/used/ep-883ar.htm",
+      "supportUrl": "https://www.epson.jp/support/portal/support_menu/ep-883ar.htm",
+      "consumablesUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-883ar.htm",
+      "inkCodes": [
+        "KAM-6CL",
+        "KAM-6CL-L"
+      ],
+      "manualEvidence": "Epson manufacturer manual page names exact model, Web user's guide and downloadable PDF user guide",
+      "inkEvidence": "Epson manufacturer's exact model consumables catalog explicitly includes both ink codes",
+      "reviewedAt": "2026-11-02",
+      "state": "direct",
+      "sourceLevel": "A",
+      "manualKind": "manufacturer_model_manual_index"
+    },
+    {
+      "model": "EP-884AW",
+      "maker": "Epson",
+      "category": "プリンター・複合機",
+      "manualUrl": "https://www.epson.jp/support/portal/used/ep-884aw.htm",
+      "supportUrl": "https://www.epson.jp/support/portal/support_menu/ep-884aw.htm",
+      "consumablesUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-884aw.htm",
+      "inkCodes": [
+        "KAM-6CL",
+        "KAM-6CL-L"
+      ],
+      "manualEvidence": "Epson manufacturer manual page names exact model, Web user's guide and downloadable PDF user guide",
+      "inkEvidence": "Epson manufacturer's exact model consumables catalog explicitly includes both ink codes",
+      "reviewedAt": "2026-11-02",
+      "state": "direct",
+      "sourceLevel": "A",
+      "manualKind": "manufacturer_model_manual_index"
+    },
+    {
+      "model": "EP-884AB",
+      "maker": "Epson",
+      "category": "プリンター・複合機",
+      "manualUrl": "https://www.epson.jp/support/portal/used/ep-884ab.htm",
+      "supportUrl": "https://www.epson.jp/support/portal/support_menu/ep-884ab.htm",
+      "consumablesUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-884ab.htm",
+      "inkCodes": [
+        "KAM-6CL",
+        "KAM-6CL-L"
+      ],
+      "manualEvidence": "Epson manufacturer manual page names exact model, Web user's guide and downloadable PDF user guide",
+      "inkEvidence": "Epson manufacturer's exact model consumables catalog explicitly includes both ink codes",
+      "reviewedAt": "2026-11-02",
+      "state": "direct",
+      "sourceLevel": "A",
+      "manualKind": "manufacturer_model_manual_index"
+    },
+    {
+      "model": "EP-884AR",
+      "maker": "Epson",
+      "category": "プリンター・複合機",
+      "manualUrl": "https://www.epson.jp/support/portal/used/ep-884ar.htm",
+      "supportUrl": "https://www.epson.jp/support/portal/support_menu/ep-884ar.htm",
+      "consumablesUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-884ar.htm",
+      "inkCodes": [
+        "KAM-6CL",
+        "KAM-6CL-L"
+      ],
+      "manualEvidence": "Epson manufacturer manual page names exact model, Web user's guide and downloadable PDF user guide",
+      "inkEvidence": "Epson manufacturer's exact model consumables catalog explicitly includes both ink codes",
+      "reviewedAt": "2026-11-02",
+      "state": "direct",
+      "sourceLevel": "A",
+      "manualKind": "manufacturer_model_manual_index"
+    }
+  ]
+}
