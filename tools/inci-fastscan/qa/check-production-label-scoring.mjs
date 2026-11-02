@@ -29,6 +29,23 @@ assert.equal(extra.afterRepair.exactReferenceHits, 1);
 assert.equal(extra.afterRepair.extraMatchesNotInAnnotation, 1,
   'Extra dictionary matches must be visible rather than treated as true annotations');
 
+const sourceMentionedExtra = await scorer.auditAnnotationExtras(
+  'Water\nGlycerin', ['Water'], 'INGREDIENTS: WATER - GLYCERIN');
+assert.deepEqual(sourceMentionedExtra, {
+  extras: 1, mentionedInSourceTranscription: 1,
+  notMentionedInSourceTranscription: 0
+}, 'An annotation-absent exact name occurring in raw package text is not automatically a false positive');
+const sourceMissingExtra = await scorer.auditAnnotationExtras(
+  'Water\nGlycerin', ['Water'], 'INGREDIENTS: WATER');
+assert.deepEqual(sourceMissingExtra, {
+  extras: 1, mentionedInSourceTranscription: 0,
+  notMentionedInSourceTranscription: 1
+}, 'An annotation-absent extra missing from the imperfect transcription stays unverified');
+const noExtraEvidence = await scorer.auditAnnotationExtras('Water', ['Water'], 'INGREDIENTS: WATER');
+assert.equal(noExtraEvidence.extras, 0);
+assert.ok(!JSON.stringify(sourceMentionedExtra).includes('Glycerin'),
+  'Extra audit report cannot leak ingredient strings');
+
 const unsupported = await scorer.assess('Water', ['Water', 'TotallyUnknownFabricatedINCI']);
 assert.equal(unsupported.annotationDictionaryUnsupportedItems, 1);
 assert.equal(unsupported.eligibleReferenceUniqueNames, 1);

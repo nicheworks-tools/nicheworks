@@ -51,6 +51,12 @@ const context = await browser.newContext({
 const page = await context.newPage();
 const worker = await createWorker('eng');
 const results = [];
+// Fixed, annotation-independent segmentation trials on the SAME
+// Chromium-canvas-enhanced PNG as PSM6 production. No runtime oracle.
+const alternatePsm = Object.freeze([
+  { key: 'singleColumn', mode: '4' },
+  { key: 'sparseText', mode: '11' }
+]);
 try {
   await page.goto('about:blank');
   // Load the ACTUAL product image processor into Chromium without a site/CDN.
@@ -58,6 +64,9 @@ try {
   assert.equal(await page.evaluate(() => typeof window.prepareFastScanOcrImage), 'function');
 
   for (const id of ids) {
+    // The worker persists parameters across photos; reset the baseline before
+    // every sample so previous candidate PSM never contaminates production.
+    await worker.setParameters({ tessedit_pageseg_mode: '6' });
     const imageFile = path.join(corpusDir, id + '.jpg');
     const annotation = YAML.parse(fs.readFileSync(path.join(corpusDir, id + '.yaml'), 'utf8'));
     assert.equal(annotation.image_name, id + '.jpg');
@@ -74,6 +83,7 @@ try {
       { langHint: 'en', spacedDashDelimiter: true });
     const baseline = {
       spacedDash: await scorer.assess(baselineDashText, annotation.INCI_list),
+      sourceExtraAudit: await scorer.auditAnnotationExtras(baselineDashText, annotation.INCI_list, annotation.raw_ingredients_list),
       durationMs: baselineDurationMs,
       annotatedMetrics: score(annotation.INCI_list.join('\n'), baselineText, parser.splitIngredients),
       rawTranscriptionMetrics: score(annotation.raw_ingredients_list, baselineText, parser.splitIngredients),
@@ -109,13 +119,37 @@ try {
       { langHint: 'en', spacedDashDelimiter: true });
     const enhanced = {
       spacedDash: await scorer.assess(enhancedDashText, annotation.INCI_list),
+      sourceExtraAudit: await scorer.auditAnnotationExtras(enhancedDashText, annotation.INCI_list, annotation.raw_ingredients_list),
       durationMs: enhancedDurationMs,
       annotatedMetrics: score(annotation.INCI_list.join('\n'), enhancedText, parser.splitIngredients),
       rawTranscriptionMetrics: score(annotation.raw_ingredients_list, enhancedText, parser.splitIngredients),
       analysis: await scorer.assess(enhancedText, annotation.INCI_list),
       loss: await lossDiagnostics.assess(enhancedOcr?.data?.text || '', enhancedText, annotation.INCI_list)
     };
-    results.push({ id, referenceIngredientCount: annotation.INCI_list.length, baseline, enhanced });
+    const segmentation = {};
+    for (const variant of alternatePsm) {
+      await worker.setParameters({ tessedit_pageseg_mode: variant.mode });
+      const started = performance.now();
+      const altOcr = await worker.recognize(Buffer.from(processedBase64, 'base64'));
+      const durationMs = Math.round(performance.now() - started);
+      const cleaned = post.postProcessOcrText(
+        post.coreProcessOCRText(altOcr?.data?.text || ''),
+        { langHint: 'en', spacedDashDelimiter: true });
+      segmentation[variant.key] = {
+        durationMs,
+        annotatedMetrics: score(annotation.INCI_list.join('\n'), cleaned, parser.splitIngredients),
+        rawTranscriptionMetrics: score(annotation.raw_ingredients_list, cleaned, parser.splitIngredients),
+        analysis: await scorer.assess(cleaned, annotation.INCI_list),
+        sourceExtraAudit: await scorer.auditAnnotationExtras(cleaned, annotation.INCI_list, annotation.raw_ingredients_list)
+      };
+      console.log('CHROMIUM_PSM_PHOTO=' + JSON.stringify({
+        id, variant: variant.key, mode: variant.mode,
+        durationMs, referenceNames: segmentation[variant.key].analysis.eligibleReferenceUniqueNames,
+        hits: segmentation[variant.key].analysis.afterRepair.exactReferenceHits,
+        extras: segmentation[variant.key].analysis.afterRepair.extraMatchesNotInAnnotation
+      }));
+    }
+    results.push({ id, referenceIngredientCount: annotation.INCI_list.length, baseline, enhanced, segmentation });
     console.log('CHROMIUM_CANVAS_PHOTO=' + JSON.stringify({
       id,
       baselineDictionaryHits: baseline.analysis.afterRepair.exactReferenceHits,
@@ -132,6 +166,18 @@ try {
   await browser.close();
 }
 assert.equal(results.length, 12);
+
+function summarizeSourceExtraAudits(rows) {
+  const summary = { photos: rows.length, extras: 0,
+    mentionedInSourceTranscription: 0, notMentionedInSourceTranscription: 0 };
+  for (const row of rows) {
+    assert.equal(row.extras, row.mentionedInSourceTranscription + row.notMentionedInSourceTranscription);
+    for (const k of ['extras', 'mentionedInSourceTranscription', 'notMentionedInSourceTranscription']) {
+      summary[k] += row[k];
+    }
+  }
+  return summary;
+}
 
 function aggregatePhotoMetrics(rows, slot, key) {
   const metrics = rows.map(row => row[slot][key]);
@@ -173,6 +219,30 @@ const report = {
   productionDictionaryRecords: scorer.dictionaryCount,
   productionDictionaryBaseline: baseline,
   productionDictionaryEnhancedCanvas: enhanced,
+  photoSegmentationExperiment: Object.fromEntries(alternatePsm.map(variant => {
+    const rows = results.map(row => row.segmentation[variant.key]);
+    const numeric = aggregateProductionAssessments(rows.map(analysis => ({ analysis: analysis.analysis })));
+    return [variant.key, {
+      pageSegMode: variant.mode,
+      photoCount: 12,
+      comparisonBaseline: 'chromiumCanvas with default PSM6, spaced-dash production cleanup',
+      productionDictionary: numeric,
+      sourceExtraAudit: summarizeSourceExtraAudits(rows.map(row => row.sourceExtraAudit)),
+      pooledStrictAnnotated: aggregatePhotoMetrics(results.map((row) => ({
+        candidate: row.segmentation[variant.key]
+      })), 'candidate', 'annotatedMetrics'),
+      pooledTranscription: aggregatePhotoMetrics(results.map((row) => ({
+        candidate: row.segmentation[variant.key]
+      })), 'candidate', 'rawTranscriptionMetrics'),
+      perPhoto: rows.map((row, i) => ({ id: ids[i], durationMs: row.durationMs, analysis: row.analysis,
+        annotatedMetrics: row.annotatedMetrics, rawTranscriptionMetrics: row.rawTranscriptionMetrics }))
+    }];
+  })),
+  sourceExtraAudit: {
+    original: summarizeSourceExtraAudits(results.map(row => row.baseline.sourceExtraAudit)),
+    chromiumCanvas: summarizeSourceExtraAudits(results.map(row => row.enhanced.sourceExtraAudit)),
+    interpretation: 'Counting source-transcribed mentions of annotation-absent recognized dictionary names is diagnostic only, not a verified true/false positive classification.'
+  },
   spacedDashExperiment: {
     original: aggregateProductionAssessments(results.map(row => ({ analysis: row.baseline.spacedDash }))),
     chromiumCanvas: aggregateProductionAssessments(results.map(row => ({ analysis: row.enhanced.spacedDash }))),
@@ -221,5 +291,34 @@ for (const [name, scores] of Object.entries(report.spacedDashExperiment)) {
     extraMatchesNotInAnnotation: scores.afterRepairExtraNotInAnnotation,
     defaultHits: name === 'original' ? baseline.afterRepairHits : enhanced.afterRepairHits,
     defaultExtras: name === 'original' ? baseline.afterRepairExtraNotInAnnotation : enhanced.afterRepairExtraNotInAnnotation
+  }));
+}
+
+for (const [key, row] of Object.entries(report.photoSegmentationExperiment)) {
+  const x = row.productionDictionary;
+  console.log('FASTSCAN_CHROMIUM_PSM_EXPERIMENT=' + JSON.stringify({
+    mode: row.pageSegMode,
+    variant: key,
+    photos: x.photos,
+    supportedNames: x.eligibleReferenceUniqueNames,
+    exactHits: x.afterRepairHits,
+    recallPercent: +(100 * x.afterRepairRecallOfDictionarySupported).toFixed(2),
+    extras: x.afterRepairExtraNotInAnnotation,
+    extrasMentionedInRawSource: row.sourceExtraAudit.mentionedInSourceTranscription,
+    extrasAbsentFromRawSource: row.sourceExtraAudit.notMentionedInSourceTranscription,
+    wrapRepairs: x.exactJoinRepairs,
+    sequenceSplits: x.exactSequenceSplits,
+    rawTranscriptionCerPercent: +(100 * row.pooledTranscription.pooledCharacterErrorRate).toFixed(2),
+    productionPsm6Hits: report.spacedDashExperiment.chromiumCanvas.afterRepairHits,
+    productionPsm6Extras: report.spacedDashExperiment.chromiumCanvas.afterRepairExtraNotInAnnotation
+  }));
+}
+
+for (const [name, row] of Object.entries(report.sourceExtraAudit)) {
+  if (!row || typeof row !== 'object' || !('extras' in row)) continue;
+  console.log('FASTSCAN_SOURCE_EXTRA_AUDIT=' + JSON.stringify({
+    name, photos: row.photos, extras: row.extras,
+    mentionedInSourceTranscription: row.mentionedInSourceTranscription,
+    notMentionedInSourceTranscription: row.notMentionedInSourceTranscription
   }));
 }
