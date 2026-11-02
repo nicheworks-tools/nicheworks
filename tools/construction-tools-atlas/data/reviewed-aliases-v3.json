@@ -1,7 +1,7 @@
 {
   "schema": "cta-reviewed-aliases-v3",
-  "version": "2026-11-02-runtime-bilingual-alias-wave3-ceiling-tile-identity-1",
-  "note": "Curated field-specific aliases only. Never coerce known duplicate canonicals or technical near-misses into synonyms. Source guard is exact canonical JA/EN identity.",
+  "version": "2026-11-03-five-canonical-redirects-closed",
+  "note": "All prior reviewed aliases remain. Remaining five duplicate concepts are retired through source-backed canonical redirects with corrected misleading names; no synthetic JA/EN synonyms.",
   "entries": [
     {
       "id": "backer_rod",
@@ -758,36 +758,5 @@
       ]
     }
   ],
-  "held_for_identity_review": [
-    {
-      "id": "corner_float",
-      "ja": "コーナーゴテ",
-      "en": "Corner trowel",
-      "reason": "Corner finishing trowel overlaps q016_corner_trowel; distinguish float versus trowel from source evidence first."
-    },
-    {
-      "id": "q011_sanding_paper",
-      "ja": "サンドペーパー",
-      "en": "Sanding Paper",
-      "reason": "Sanding Paper and published sandpaper describe the same abrasion material; requires redirect/identity decision, not fabricated wording."
-    },
-    {
-      "id": "as_built",
-      "ja": "竣工図（アズビルト）",
-      "en": "As-built",
-      "reason": "'As-built' / '竣工図' overlaps separately maintained as_built_drawing; avoid alias ownership collision until canonical identity resolved."
-    },
-    {
-      "id": "ground_fault_breaker",
-      "ja": "漏電遮断器",
-      "en": "GFCI/RCD",
-      "reason": "Ground-fault breaker overlaps q015_earth_leakage_breaker and gfci_rcd; do not attach generic 漏電ブレーカー alias to multiple IDs."
-    },
-    {
-      "id": "toolbox_talk",
-      "ja": "朝礼（TBM）",
-      "en": "Toolbox talk",
-      "reason": "Toolbox talk overlaps separately maintained q016_toolbox_meeting; first establish whether they are distinct or should redirect."
-    }
-  ]
+  "held_for_identity_review": []
 }
