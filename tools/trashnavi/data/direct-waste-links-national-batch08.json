@@ -559,5 +559,18 @@
     "status": "active",
     "language": "ja",
     "scope_note": "安平・厚真行政事務組合が収集・分別の問い合わせ先。大型ごみは早来地区・追分地区で収集曜日が異なる。"
+  },
+  {
+    "pref": "北海道",
+    "city": "むかわ町",
+    "name": "ゴミの収集について（分別・収集カレンダー案内）",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.mukawa.lg.jp/2027.htm",
+    "lgcode": "015865",
+    "last_checked": "2026-11-02",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "平取町外2町衛生施設組合がごみ収集・分別を担当。地区別収集カレンダーは組合サイトを参照。町全域共通の日程として扱わない。"
   }
 ]
