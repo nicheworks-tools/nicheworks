@@ -109,11 +109,13 @@
   };
 
   const debounce = (fn, ms = 150) => {
-    let t = null;
-    return (...args) => {
-      clearTimeout(t);
-      t = setTimeout(() => fn(...args), ms);
+    let timer = null;
+    const scheduled = (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => { timer = null; fn(...args); }, ms);
     };
+    scheduled.cancel = () => { clearTimeout(timer); timer = null; };
+    return scheduled;
   };
 
   const providerCatalog = [
@@ -252,19 +254,32 @@
       const urlValue = siteUrl.value.trim();
       const emailValue = contactEmail.value.trim();
       if (!isValidUrl(urlValue)) {
-        if (showErrors) showToast("invalidUrl", "error");
-        siteUrl.focus();
+        if (showErrors) {
+          showToast("invalidUrl", "error");
+          siteUrl.focus();
+        }
         return null;
       }
       if (!isValidEmail(emailValue)) {
-        if (showErrors) showToast("invalidEmail", "error");
-        contactEmail.focus();
+        if (showErrors) {
+          showToast("invalidEmail", "error");
+          contactEmail.focus();
+        }
         return null;
       }
       return { lang: langMode.value, siteName: siteName.value.trim(), siteUrl: urlValue, contactEmail: emailValue, providers: getProviders() };
     };
 
+    const invalidateDraft = () => {
+      // While someone edits the actual tracker list/contact/URL, a previous
+      // privacy policy must not remain available for copy or download.
+      outShort.value = "";
+      outStandard.value = "";
+      outDetailed.value = "";
+    };
+
     const render = ({ showErrors = true } = {}) => {
+      invalidateDraft();
       const inputs = buildInputs({ showErrors });
       if (!inputs) return false;
       outShort.value = buildCopy(inputs, "short");
@@ -274,6 +289,7 @@
     };
 
     const clearAll = () => {
+      autoRender.cancel();
       siteName.value = "";
       siteUrl.value = "";
       contactEmail.value = "";
@@ -282,9 +298,7 @@
         const el = document.getElementById(provider.id);
         if (el) el.checked = provider.id === "useGA4";
       });
-      outShort.value = "";
-      outStandard.value = "";
-      outDetailed.value = "";
+      invalidateDraft();
       showToast("cleared");
     };
 
@@ -320,10 +334,12 @@
     document.getElementById("copyDetailedBtn").addEventListener("click", () => copyOutput(outDetailed));
 
     const autoRender = debounce(() => render({ showErrors: false }), 200);
-    [siteName, siteUrl, contactEmail, langMode].forEach((el) => el.addEventListener("input", autoRender));
+    const scheduleDraft = () => { invalidateDraft(); autoRender(); };
+    [siteName, siteUrl, contactEmail].forEach((el) => el.addEventListener("input", scheduleDraft));
+    langMode.addEventListener("change", scheduleDraft);
     providerCatalog.forEach((provider) => {
       const el = document.getElementById(provider.id);
-      if (el) el.addEventListener("change", autoRender);
+      if (el) el.addEventListener("change", scheduleDraft);
     });
   };
 
