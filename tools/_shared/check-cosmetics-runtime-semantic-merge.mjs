@@ -20,8 +20,8 @@ const DATA_FILES = [
 const records = DATA_FILES.flatMap((file) => JSON.parse(fs.readFileSync(file, 'utf8')));
 const merged = parser.mergeDictionaryRecords(records);
 
-assert.equal(records.length, 725, 'PR40 baseline expects the current 725 maintained source records');
-assert.equal(merged.length, 599, 'PR40 baseline expects 599 canonical runtime identities');
+assert.equal(records.length, 737, 'Cohort 4 Wave 1 expects 737 maintained source records after 12 intentional additions');
+assert.equal(merged.length, 608, 'Cohort 4 Wave 1 expects 608 canonical runtime identities after 9 new identities and 3 finite aliases');
 
 const safetyConflicts = merged.filter((item) => Array.isArray(item.semantic_conflicts?.safety));
 const categoryConflicts = merged.filter((item) => Array.isArray(item.semantic_conflicts?.category));
