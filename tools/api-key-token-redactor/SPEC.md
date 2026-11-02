@@ -19,6 +19,7 @@ Detect likely secrets in pasted logs, configuration text, `.env`, JSON, curl com
 - Produce redacted output plus category/severity counts and findings based on the original input.
 - Do not expose raw first/last credential fragments in visible finding previews, copied review material, or downloaded finding/audit artifacts; finding previews may retain only non-secret context plus a redacted marker.
 - Provide sample inputs, clear/reset behavior, clipboard copy, and TXT download.
+- Invalidate the previous redacted output, finding counts/previews and copy/download eligibility whenever input text, enabled detector categories, replacement style, keep-length preference, verified entitlement status or custom-rule set changes. Only a fresh redaction can re-enable exports. Clipboard fallback must not report success when the browser copy command returns false.
 - Switch the same page between Japanese and English UI.
 - Current legacy shared Pro exposes custom secret rules, redaction profiles, audit/handoff templates, and findings exports behind the Pro-only section.
 
@@ -102,6 +103,9 @@ The workflow supports narrow-screen use but also relies on large text areas, fin
 
 ## Acceptance criteria
 
+- [ ] Changing pasted input or the enabled detectors/replacement options immediately clears the previous result and prevents copying or downloading a stale masked value; a new redaction restores correct output.
+- [ ] Changes to custom detection rules and the Pro-active state invalidate existing findings. Both clipboard API and the `execCommand` fallback report actual success/failure instead of a false success.
+
 - [ ] Supported secret patterns in sample or pasted text can be detected and replaced according to the selected masking mode.
 - [ ] Category and severity counts reflect the current findings and clear/reset removes the current working result.
 - [ ] Free copy/download uses the redacted output rather than the original secret-bearing input.
@@ -118,6 +122,7 @@ The workflow supports narrow-screen use but also relies on large text areas, fin
 
 - `tools/api-key-token-redactor/index.html`
 - `tools/api-key-token-redactor/app.js`
+- `tools/api-key-token-redactor/tests/behavior.test.mjs`
 - `tools/api-key-token-redactor/pro-bridge.js`
 - `tools/api-key-token-redactor/product-scoped-controller.mjs`
 - `scripts/check-api-key-redactor-product-scoped-staging.mjs`
