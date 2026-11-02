@@ -1,6 +1,6 @@
 {
   "schema": "cta-reviewed-aliases-v3",
-  "version": "2026-11-02-runtime-bilingual-alias-wave3",
+  "version": "2026-11-02-runtime-bilingual-alias-wave3-refined-1",
   "note": "Curated field-specific aliases only. Never coerce known duplicate canonicals or technical near-misses into synonyms. Source guard is exact canonical JA/EN identity.",
   "entries": [
     {
@@ -180,6 +180,15 @@
       "add_en": [
         "Construction dust suppression"
       ]
+    },
+    {
+      "id": "ear_protection",
+      "expected_ja": "耳栓・イヤーマフ",
+      "expected_en": "Ear protection",
+      "add_ja": [
+        "耳栓とイヤーマフ"
+      ],
+      "add_en": []
     },
     {
       "id": "fire_extinguisher",
@@ -397,6 +406,17 @@
       "add_en": []
     },
     {
+      "id": "primer_003",
+      "expected_ja": "プライマー",
+      "expected_en": "Primer",
+      "add_ja": [
+        "塗装・接着用プライマー"
+      ],
+      "add_en": [
+        "Adhesion-promoting primer"
+      ]
+    },
+    {
       "id": "q013_dolly",
       "expected_ja": "平台車",
       "expected_en": "Platform Dolly",
@@ -546,6 +566,15 @@
       "add_en": [
         "Expansion sleeve anchor"
       ]
+    },
+    {
+      "id": "soldering_iron",
+      "expected_ja": "はんだごて",
+      "expected_en": "Soldering iron",
+      "add_ja": [
+        "半田ごて"
+      ],
+      "add_en": []
     },
     {
       "id": "spotter",
@@ -701,57 +730,44 @@
     {
       "id": "corner_float",
       "ja": "コーナーゴテ",
-      "en": "Corner trowel"
-    },
-    {
-      "id": "primer_003",
-      "ja": "プライマー",
-      "en": "Primer"
+      "en": "Corner trowel",
+      "reason": "Corner finishing trowel overlaps q016_corner_trowel; distinguish float versus trowel from source evidence first."
     },
     {
       "id": "q011_sanding_paper",
       "ja": "サンドペーパー",
-      "en": "Sanding Paper"
+      "en": "Sanding Paper",
+      "reason": "Sanding Paper and published sandpaper describe the same abrasion material; requires redirect/identity decision, not fabricated wording."
     },
     {
       "id": "q016_ceiling_tile",
       "ja": "天井板",
-      "en": "Ceiling Tile"
+      "en": "Ceiling Tile",
+      "reason": "Ceiling Tile overlaps separate ceiling_panel; distinguish grid tile, panel and fixed ceiling board before adding equivalents."
     },
     {
       "id": "q016_laminate_flooring",
       "ja": "複合フローリング",
-      "en": "Laminate Flooring"
+      "en": "Laminate Flooring",
+      "reason": "複合フローリング can mean engineered wood whereas 'Laminate Flooring' is not necessarily the same product; bilingual canonical identity review first."
     },
     {
       "id": "as_built",
       "ja": "竣工図（アズビルト）",
       "en": "As-built",
-      "reason": "Proposed 竣工図面 is already a searchable alias of as_built_drawing; canonical overlap"
-    },
-    {
-      "id": "ear_protection",
-      "ja": "耳栓・イヤーマフ",
-      "en": "Ear protection",
-      "reason": "聴覚保護具 belongs to separate hearing_protection canonical; terminology overlaps"
+      "reason": "'As-built' / '竣工図' overlaps separately maintained as_built_drawing; avoid alias ownership collision until canonical identity resolved."
     },
     {
       "id": "ground_fault_breaker",
       "ja": "漏電遮断器",
       "en": "GFCI/RCD",
-      "reason": "漏電ブレーカー is already indexed for q015_earth_leakage_breaker and gfci_rcd; requires canonical identity resolution"
-    },
-    {
-      "id": "soldering_iron",
-      "ja": "はんだごて",
-      "en": "Soldering iron",
-      "reason": "ハンダごて case-folds to the canonical はんだごて; redundant alias gives no search value"
+      "reason": "Ground-fault breaker overlaps q015_earth_leakage_breaker and gfci_rcd; do not attach generic 漏電ブレーカー alias to multiple IDs."
     },
     {
       "id": "toolbox_talk",
       "ja": "朝礼（TBM）",
       "en": "Toolbox talk",
-      "reason": "ツールボックスミーティング belongs to separate q016_toolbox_meeting canonical; requires identity review"
+      "reason": "Toolbox talk overlaps separately maintained q016_toolbox_meeting; first establish whether they are distinct or should redirect."
     }
   ]
 }
