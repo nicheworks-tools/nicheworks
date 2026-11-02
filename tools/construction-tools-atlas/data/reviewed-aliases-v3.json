@@ -1,7 +1,7 @@
 {
   "schema": "cta-reviewed-aliases-v3",
   "version": "2026-11-03-five-canonical-redirects-closed",
-  "note": "All prior reviewed aliases remain. Remaining five duplicate concepts are retired through source-backed canonical redirects with corrected misleading names; no synthetic JA/EN synonyms.",
+  "note": "75 maintained reviewed v3 patches remain. The retired sandpaper alias 研磨紙 was promoted into the surviving q011_sanding_paper source; five duplicate identities are redirected with no filler synonyms.",
   "entries": [
     {
       "id": "backer_rod",
@@ -543,15 +543,6 @@
       "expected_en": "Safety boots",
       "add_ja": [
         "つま先保護安全靴"
-      ],
-      "add_en": []
-    },
-    {
-      "id": "sandpaper",
-      "expected_ja": "紙やすり",
-      "expected_en": "Sandpaper",
-      "add_ja": [
-        "研磨紙"
       ],
       "add_en": []
     },
