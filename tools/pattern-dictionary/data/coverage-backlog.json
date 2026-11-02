@@ -13,56 +13,6 @@
   ],
   "candidates": [
     {
-      "id": "noshi-motif",
-      "name": {
-        "ja": "熨斗文様",
-        "en": "Noshi motif"
-      },
-      "domain": "japanese-motifs",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
-      "id": "goshoguruma",
-      "name": {
-        "ja": "御所車文様",
-        "en": "Court carriage motif"
-      },
-      "domain": "japanese-motifs",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
-      "id": "temari-motif",
-      "name": {
-        "ja": "手毬文様",
-        "en": "Temari ball motif"
-      },
-      "domain": "japanese-motifs",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
-      "id": "sankuzushi",
-      "name": {
-        "ja": "三崩し",
-        "en": "Three-block stripe motif"
-      },
-      "domain": "japanese-motifs",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
-      "id": "kasuri",
-      "name": {
-        "ja": "絣",
-        "en": "Kasuri weaving/dyeing"
-      },
-      "domain": "japanese-motifs",
-      "proposed_type": "technique",
-      "status": "candidate-unverified"
-    },
-    {
       "id": "nishijin-ori",
       "name": {
         "ja": "西陣織",
