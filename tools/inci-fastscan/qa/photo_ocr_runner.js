@@ -73,7 +73,7 @@
     if (crop.left + crop.right > 90 || crop.top + crop.bottom > 90) {
       throw new Error('Combined crop on each axis must leave at least 10% of the photo.');
     }
-    return { quarterTurns, deskewDegrees, contrastPercent, crop };
+    return { quarterTurns, deskewDegrees, contrastPercent, crop, enhanceForOcr: byId('qa-enhance').checked };
   }
 
   async function showPreparedPreview(file, options, expectedRevision) {
@@ -111,7 +111,7 @@
     let options;
     try {
       options = kind === 'baseline'
-        ? { quarterTurns: 0, deskewDegrees: 0, contrastPercent: 100,
+        ? { quarterTurns: 0, deskewDegrees: 0, contrastPercent: 100, enhanceForOcr: false,
             crop: { left: 0, right: 0, top: 0, bottom: 0 } }
         : readAdjustments();
     } catch (error) {
