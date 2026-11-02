@@ -28,6 +28,7 @@ async function httpSmoke(){
   assert.ok(data[''].includes(count+'機種'),'HTML count is stale');
   assert.ok(data[''].includes('id="phoneList"'),'HTML list missing');
   assert.ok(data['app.js'].includes("wirelessStatus === 'not_supported'"),'Live JS is stale');
+  assert.ok(data['app.js'].includes("const deepPhone ="),'Live JS lacks the exact-model deep-link deployment');
   assert.ok(data['style.css'].includes('.bottom-sheet'),'Live CSS missing');
   assert.ok(data['style.css'].includes('.bottom-sheet .detail-title{padding-right:46px}'),'Live CSS missing mobile close-button collision fix');
   const livePayload = JSON.parse(data['data/phones.json']);
@@ -317,7 +318,7 @@ async function browserSmoke(){
       }
       // Verify a real exact-model inbound link works on the public URL without a thin model page.
       await send('Page.navigate',{url:url.origin+url.pathname+'?model=iPhone%2011'});
-      const deepLink=await until(()=>evalJs('(()=>{const input=document.querySelector("#searchInput");const row=document.querySelector(".phone-row[data-phone-id=apple-iphone-11]");const detail=document.querySelector("#desktopDetail");return {ready:input?.value==="iPhone 11"&&row&&document.querySelectorAll(".phone-row").length===1,detail:detail?.textContent.includes("iPhone 11")};})()'),9000);
+      const deepLink=await until(async()=>{const s=await evalJs('(()=>{const input=document.querySelector("#searchInput");const row=document.querySelector(".phone-row[data-phone-id=apple-iphone-11]");const detail=document.querySelector("#desktopDetail");const rows=document.querySelectorAll(".phone-row").length;return {href:location.href,search:input?.value||"",rows,hasRow:!!row,ready:input?.value==="iPhone 11"&&!!row&&row.classList.contains("active")&&rows>=1,detail:!!detail?.textContent.includes("iPhone 11")};})()');if(!s?.ready||!s?.detail)throw new Error('ManualFinder model deep-link diagnostics: '+JSON.stringify(s));return s;},9000);
       assert.ok(deepLink.ready&&deepLink.detail,width+'px ManualFinder exact-model landing did not preselect the iPhone');
       console.log('ManualFinder deep-link PASS: '+width+'px, canonical iPhone 11 preselection');
       console.log('Wave31 JP PASS: '+width+'px, five new phones and tagged accessory CTA');
