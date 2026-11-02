@@ -12,7 +12,7 @@ const fmt=x=>Number.isInteger(x)?String(x):String(Math.round(x*100)/100);
 const unit=id=>id==="water"?"L":id==="food"?T.unitMeals:id==="toilet"?T.unitUses:"";
 const today=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
 let state=Object.assign({},defaults),stage="setup",goal="food",tab="emergency",search="",showAll=false;
-let openOptions=new Set(),openParents=new Set(),selected=null,impression=false;
+let openOptions=new Set(),openParents=new Set(),selected=null,impression=false,advancedOpen=false;
 try{const saved=JSON.parse(localStorage.getItem("bichiku-check-v1")||"null");if(saved&&typeof saved==="object"&&!Array.isArray(saved))state=Object.assign({},defaults,saved)}catch(_){}
 if(!state.stocks||Array.isArray(state.stocks))state.stocks={};
 if(!state.variants||Array.isArray(state.variants))state.variants={};
@@ -39,7 +39,7 @@ function renderSetup(){
  (state.mode==="home"?'<label class="field-title">'+esc(L.days)+'</label>'+segment("days",[3,7,14],["3","7","14"]):"")+'</fieldset>'+
  '<fieldset class="field"><legend class="field-title">'+esc(T.scenario)+'</legend><div class="g-scenarios">'+["powerOut","waterOut","noHeat"].map(k=>
  '<label class="g-check"><input type="checkbox" data-condition="'+k+'" '+(state[k]?"checked":"")+'><span>'+esc(T[k])+'</span></label>').join("")+'</div></fieldset>'+
- '<details class="advanced"><summary>'+esc(T.moreSettings)+'</summary>'+stepper("infants",L.infants)+stepper("pets",L.pets)+
+ '<details class="advanced" '+(advancedOpen?"open":"")+'><summary>'+esc(T.moreSettings)+'</summary>'+stepper("infants",L.infants)+stepper("pets",L.pets)+
  '<label class="g-check"><input type="checkbox" data-condition="diet" '+(state.diet?"checked":"")+'>'+esc(T.diet)+'</label></details>'+
  '<button class="primary wide" id="calculate" type="button">'+esc(T.calculate)+' ↓</button><p class="g-fine">'+esc(T.localOnly)+'</p>';
 }
@@ -183,6 +183,7 @@ function changeStage(next,id){
  stage=next;render(true);
 }
 setup.addEventListener("click",e=>{
+ const advanced=setup.querySelector("details.advanced");if(advanced)advancedOpen=advanced.open;
  const inc=e.target.closest("[data-inc]");
  if(inc){const id=inc.dataset.field;state[id]=Math.max(id==="adults"?1:0,Math.min(["adults","children"].includes(id)?15:10,n(state[id])+Number(inc.dataset.inc)));save();renderSetup();return}
  const select=e.target.closest("[data-select]");
