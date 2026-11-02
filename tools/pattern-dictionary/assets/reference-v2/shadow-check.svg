@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1536" viewBox="0 0 1536 1536" role="img" aria-label="shadow-check original comparison schematic">
+<rect width="1536" height="1536" fill="#f8f7f4"/>
+<defs><g id="motif"><rect x="-190" y="-190" width="380" height="380" fill="#d3d4d5"/><g><rect x="-185" y="-190" width="12" height="380" fill="#bfc0c1" opacity=".64"/><rect x="-190" y="-185" width="380" height="12" fill="#b6b8ba" opacity=".44"/><rect x="-139" y="-190" width="12" height="380" fill="#e0e0e1" opacity=".64"/><rect x="-190" y="-139" width="380" height="12" fill="#eeeeef" opacity=".44"/><rect x="-93" y="-190" width="12" height="380" fill="#bfc0c1" opacity=".64"/><rect x="-190" y="-93" width="380" height="12" fill="#b6b8ba" opacity=".44"/><rect x="-47" y="-190" width="12" height="380" fill="#e0e0e1" opacity=".64"/><rect x="-190" y="-47" width="380" height="12" fill="#eeeeef" opacity=".44"/><rect x="-1" y="-190" width="12" height="380" fill="#bfc0c1" opacity=".64"/><rect x="-190" y="-1" width="380" height="12" fill="#b6b8ba" opacity=".44"/><rect x="45" y="-190" width="12" height="380" fill="#e0e0e1" opacity=".64"/><rect x="-190" y="45" width="380" height="12" fill="#eeeeef" opacity=".44"/><rect x="91" y="-190" width="12" height="380" fill="#bfc0c1" opacity=".64"/><rect x="-190" y="91" width="380" height="12" fill="#b6b8ba" opacity=".44"/><rect x="137" y="-190" width="12" height="380" fill="#e0e0e1" opacity=".64"/><rect x="-190" y="137" width="380" height="12" fill="#eeeeef" opacity=".44"/><rect x="183" y="-190" width="12" height="380" fill="#bfc0c1" opacity=".64"/><rect x="-190" y="183" width="380" height="12" fill="#b6b8ba" opacity=".44"/></g></g></defs>
+<use href="#motif" transform="translate(256 256)"/>
+<use href="#motif" transform="translate(768 256)"/>
+<use href="#motif" transform="translate(1280 256)"/>
+<use href="#motif" transform="translate(256 768)"/>
+<use href="#motif" transform="translate(768 768)"/>
+<use href="#motif" transform="translate(1280 768)"/>
+<use href="#motif" transform="translate(256 1280)"/>
+<use href="#motif" transform="translate(768 1280)"/>
+<use href="#motif" transform="translate(1280 1280)"/>
+</svg>
