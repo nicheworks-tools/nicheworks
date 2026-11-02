@@ -362,6 +362,35 @@
           </div>
         </section>
 
+        <section id="handoff-template" class="nw-section">
+          <div class="nw-section-heading">
+            <h2>Copyable five-pack work handoff</h2>
+          </div>
+          <div class="nw-prose">
+            <p>A fixed human-review checklist for the five domain packs. Copy it into your own working notes, add evidence and owner details, and review before sending or acting. This guide does not submit business data, approve drafts or execute any pack.</p>
+          </div>
+          <pre id="nwFivePackTemplate" class="nw-handoff-pre">[Five-pack handoff — DRAFT, NOT READY TO SEND]
+Work item / source / date: __________
+
+[ ] research-pack — Facts and sources; unknowns; assumptions; open research questions
+    Evidence / owner: __________
+[ ] pm-pack — Scope; milestones; accountable owner; dependencies and risks
+    Evidence / owner: __________
+[ ] exec-assist-pack — Decisions requested; options and tradeoffs; executive follow-up
+    Evidence / owner: __________
+[ ] sales-pack — Prospect or customer context; response draft; promises to validate
+    Evidence / owner: __________
+[ ] cs-pack — Customer impact; symptoms; escalation owner; response and next update
+    Evidence / owner: __________
+
+Final review: facts, permissions, legal, customer impact, security and responsible owner
+Status: DRAFT, review pending. Do not send, publish or execute without approval.</pre>
+          <div class="nw-handoff-controls">
+            <button id="nwFivePackCopy" type="button" class="nw-handoff-button">Copy the five-pack handoff</button>
+            <span id="nwFivePackStatus" role="status" aria-live="polite"></span>
+          </div>
+        </section>
+
         <section id="faq" class="nw-section">
           <div class="nw-section-heading">
             <h2>FAQ</h2>
@@ -467,5 +496,6 @@
         </div>
       </footer>
     </div>
+    <script src="./copy-handoff.js" defer></script>
   </body>
 </html>
