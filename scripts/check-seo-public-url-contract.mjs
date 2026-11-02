@@ -60,24 +60,24 @@ function typeIncludesWebApplication(value) {
   return value === 'WebApplication' || (Array.isArray(value) && value.includes('WebApplication'));
 }
 
-function collectWebApplications(value, output = []) {
+function collectWebApplications(value, output = [], allowedType = 'WebApplication') {
   if (Array.isArray(value)) {
-    for (const item of value) collectWebApplications(item, output);
+    for (const item of value) collectWebApplications(item, output, allowedType);
     return output;
   }
   if (!value || typeof value !== 'object') return output;
-  if (typeIncludesWebApplication(value['@type'])) output.push(value);
-  for (const child of Object.values(value)) collectWebApplications(child, output);
+  if (value['@type'] === allowedType || (Array.isArray(value['@type']) && value['@type'].includes(allowedType))) output.push(value);
+  for (const child of Object.values(value)) collectWebApplications(child, output, allowedType);
   return output;
 }
 
-function webApplications(html, fileLabel) {
+function webApplications(html, fileLabel, allowedType = 'WebApplication') {
   const apps = [];
   for (const match of html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
     const raw = match[1].trim();
     if (!raw) continue;
     try {
-      collectWebApplications(JSON.parse(raw), apps);
+      collectWebApplications(JSON.parse(raw), apps, allowedType);
     } catch (error) {
       fail(`${fileLabel}: invalid JSON-LD: ${error.message}`);
     }
@@ -144,13 +144,14 @@ for (const item of items) {
     fail(`${slug}: og:url mismatch: expected ${expectedUrl}; found ${ogUrls[0] || '(empty)'}`);
   }
 
-  const apps = webApplications(html, relativeFile);
+  const schemaType = slug === 'release-guardian' ? 'TechArticle' : 'WebApplication';
+  const apps = webApplications(html, relativeFile, schemaType);
   if (apps.length === 0) {
-    fail(`${slug}: missing WebApplication JSON-LD`);
+    fail(`${slug}: missing ${schemaType} JSON-LD`);
   } else {
     for (const app of apps) {
       if (app.url !== expectedUrl) {
-        fail(`${slug}: WebApplication url mismatch: expected ${expectedUrl}; found ${JSON.stringify(app.url ?? null)}`);
+        fail(`${slug}: ${schemaType} url mismatch: expected ${expectedUrl}; found ${JSON.stringify(app.url ?? null)}`);
       }
     }
   }
