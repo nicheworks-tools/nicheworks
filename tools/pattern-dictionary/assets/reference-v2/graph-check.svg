@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1536" viewBox="0 0 1536 1536" role="img" aria-label="graph-check original comparison schematic">
+<rect width="1536" height="1536" fill="#f8f7f4"/>
+<defs><g id="motif"><rect x="-190" y="-190" width="380" height="380" fill="#fffaf2"/><g stroke="#6b8cae" stroke-width="4"><path d="M-170 -190V190 M-190 -170H190"/><path d="M-136 -190V190 M-190 -136H190"/><path d="M-102 -190V190 M-190 -102H190"/><path d="M-68 -190V190 M-190 -68H190"/><path d="M-34 -190V190 M-190 -34H190"/><path d="M0 -190V190 M-190 0H190"/><path d="M34 -190V190 M-190 34H190"/><path d="M68 -190V190 M-190 68H190"/><path d="M102 -190V190 M-190 102H190"/><path d="M136 -190V190 M-190 136H190"/><path d="M170 -190V190 M-190 170H190"/></g></g></defs>
+<use href="#motif" transform="translate(256 256)"/>
+<use href="#motif" transform="translate(768 256)"/>
+<use href="#motif" transform="translate(1280 256)"/>
+<use href="#motif" transform="translate(256 768)"/>
+<use href="#motif" transform="translate(768 768)"/>
+<use href="#motif" transform="translate(1280 768)"/>
+<use href="#motif" transform="translate(256 1280)"/>
+<use href="#motif" transform="translate(768 1280)"/>
+<use href="#motif" transform="translate(1280 1280)"/>
+</svg>
