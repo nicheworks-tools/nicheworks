@@ -31,7 +31,7 @@ test('editing contract text immediately refreshes counters and highlights', () =
   element('contractText').value = 'The liability cap applies.';
   input();
   assert.equal(element('totalHits').textContent, '1');
-  assert.match(element('highlightPreview').innerHTML, /<mark[^>]*>liability<\\/mark>/);
+  assert.ok(element('highlightPreview').innerHTML.includes('>liability</mark>'));
 
   element('contractText').value = 'No relevant terms here.';
   input();
