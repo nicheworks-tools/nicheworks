@@ -10,14 +10,14 @@ The printer-detail audit remains complete for the current canonical printer cata
 
 | Metric | Final audited value |
 | --- | ---: |
-| Printer records with a basic Amazon path | **324** |
-| Printer records with a verified detail handoff | **317** |
+| Printer records with a basic Amazon path | **331** |
+| Printer records with a verified detail handoff | **324** |
 | Reviewed printer-detail exclusions | **7** |
 | Actionable printer records still missing detail | **0** |
 
 Required printer reconciliation:
 
-`printer basic 324 = detail 317 + reviewed exclusion 7 + missing 0`
+`printer basic 331 = detail 324 + reviewed exclusion 7 + missing 0`
 
 The camera accessory audit independently reconciles as:
 
@@ -422,8 +422,8 @@ Unsupported categories, empty models, malformed URLs, wrong makers, wrong catego
 
 Printer-detail remains closed only while:
 
-- printer basic = 324
-- printer detail = 317
+- printer basic = 331
+- printer detail = 324
 - reviewed printer-detail exclusions = 7
 - printer missing detail = 0
 - the three missing-detail diagnostic structures remain empty
@@ -473,3 +473,7 @@ Eight official Epson operating-manual model entries are newly indexed (EP-812A/8
 ### Epson Colorio Wave 3I exact compatibility/affiliate publication (2026-11-02)
 
 Nine official Epson manual-list destinations and **27 new tagged Amazon search paths** were added: nine manufacturer model search paths plus two exact ink SKU searches per model. All nine model-specific Epson `/shoumouhin/{model}.htm` pages explicitly confirm the mapping: EP-712A/713A/714A require SAT-6CL + SAT-BK; EP-883AW/AB/AR and EP-884AW/AB/AR use KAM-6CL + KAM-6CL-L. Each query is parameterized through the existing `nicheworks09-22` Amazon Associates configuration with site disclosure. No affiliate sales, clicks, or inventory are inferred. **Printer basic 324 = detail 317 + reviewed exclusions 7 + missing 0**. Source manifest: `coverage-passes/epson/jp-colorio-wave3i-9-legacy-models-20261102.json`.
+
+### Epson EP-881A/882A official manual and tagged ink handoffs (2026-11-02)
+
+Seven exact Epson manufacturer user-manual model pages, each individually matched to its model-specific Epson KAM ink catalog, enable seven new canonical exact-model Amazon handoffs plus fourteen manufacturer-compatible `KAM-6CL`/`KAM-6CL-L` ink pack search handoffs. Official manufacturer compatibility-table cross-check is in `coverage-passes/epson/jp-colorio-wave3j-7-kam-models-20261102.json`. Uses existing `nicheworks09-22` Amazon Associates query builder, link disclosure and click instrumentation. Printer audit **331 basic = 324 detail + 7 exclusions + 0 missing**. These are tagged search paths, not purchases or income.
