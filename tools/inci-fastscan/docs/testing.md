@@ -94,6 +94,22 @@ Both English and Japanese OCR photo interfaces now have an **off-by-default** "E
 
 Automated regression: `node tools/_shared/check-fastscan-image-enhancement.mjs` checks untouched default-image handling, concrete grayscale pixel writes, upscale and memory cap, expected failure handling and blob-URL release, bilingual option wiring, optional QA comparison and photo privacy. The noindex QA page at `tools/inci-fastscan/qa/photo-ocr-benchmark.html` now exposes the same checkbox so manual testers can compare original and browser-enhanced scans of a **single independently transcribed real label**.
 
+## Same-pixel Chromium alternative OCR modes and annotation-extra audit (2026-11-02)
+
+[Real photo QA run #41401053171](https://github.com/nicheworks-tools/nicheworks/actions/runs/41401053171) compared **PSM6, PSM4 and PSM11 on exactly the same 12 real English label photos** with the browser's actual `enhanceForOcr` canvas pixels, pinned Tesseract.js 5.0.3 English OCR, production spaced-dash cleanup and 1,169-entry FastScan dictionary. Unlike the older comparison on original photos, this A/B holds the postprocessor, enhanced pixels and current production parser fixed. The worker is reset to PSM6 before the first recognition on every photo to avoid experimental-parameter carryover.
+
+| Segmentation on Chromium-enhanced photos | Reference-supported exact matches | Recall / 233 | Dictionary matches not in annotation |
+| --- | ---: | ---: | ---: |
+| **PSM6 current default** | **102** | **43.78%** | 7 |
+| PSM4 single column | 86 | 36.91% | 10 |
+| PSM11 sparse text | 93 | 39.91% | 9 |
+
+**Decision:** retain PSM6 as the production default. The other two modes lower pooled exact-name recall by 16 and 9 names respectively, even though individual photos may differ. They also increase annotation-absent dictionary matches. No source-annotation-guided per-photo OCR mode selection or automatic multi-mode combination was implemented.
+
+The same CI run independently assessed the **seven PSM6 matches missing from the canonical reference annotation** against the dataset's original `raw_ingredients_list` source-label transcription. **All seven had a dictionary name or alias appearing as a complete word/phrase in that transcription**. For PSM4 it was 10/10; for PSM11 it was 8/9. This is evidence that annotation-only counts can understate correct extraction, **not proof** that every match is valid: the transcription may itself be wrong, names may be ambiguous, and a phrase can occur in unexpected context. Thus these numbers are neither confirmed false positives nor fully independently verified matches. The audit reports strictly numeric counts, with no photo, OCR text or ingredient identity in CI logs or artifacts.
+
+The photo corpus still lacks an independently labeled Japanese counterpart and a real mobile-device test. Exactly **131/233** dictionary-supported reference names remain unrecognized under the best current English Chromium-canvas and PSM6 settings. No device, Japanese-label or fully in-browser Tesseract certification is implied.
+
 ## English OCR source-delimiter and exact-dictionary rescue (2026-11-02)
 
 [Combined Chromium real-photo QA run #41389981946](https://github.com/nicheworks-tools/nicheworks/actions/runs/41389981946) tested the **same 12 real English ingredient-label images** and same 1,169-record production dictionary, comparing old punctuation processing against explicitly enabled **spaced-dash delimiters** plus a unique full-line **dictionary-exact known-name sequence splitter**. The browser loaded the actual `image_preprocess.js` enhancement at an emulated 360px viewport; the pinned Tesseract.js 5.0.3 `eng` worker ran in Node. Source images/annotations and recognized OCR text remained ephemeral; only numeric metrics were uploaded. The new source example `3253581766538.yaml` contains genuinely hyphen-separated names such as `AQUA/WATER - GLYCERIN - CETEARYL ALCOHOL`. Previous postprocessing split commas/newlines but not these **spaced delimiters**.
