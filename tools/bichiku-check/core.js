@@ -17,7 +17,8 @@
       noHeat: !!s.noHeat,
       diet: !!s.diet,
       budget: num(s.budget, 0, 0, 10000000),
-      stocks: s.stocks && typeof s.stocks === "object" ? s.stocks : {}
+      stocks: s.stocks && typeof s.stocks === "object" && !Array.isArray(s.stocks) ? s.stocks : {},
+      variants: s.variants && typeof s.variants === "object" && !Array.isArray(s.variants) ? s.variants : {}
     };
   }
   function needs(rule, s) {
@@ -49,21 +50,45 @@
     if (item.conditional === "diet" && !s.diet) return false;
     return true;
   }
-  function calculate(catalog, options, today) {
+  function optionAvailable(option, settings) {
+    if (option.equivalence !== "full") return false;
+    if (option.parent === "food" && settings.noHeat && ["heat","verify"].includes(option.prep)) return false;
+    return true;
+  }
+  function calculate(catalog, options, today, optionCatalog) {
     var s = normalize(options);
     var stamp = /^\d{4}-\d{2}-\d{2}$/.test(String(today||"")) ? String(today) : new Date().toISOString().slice(0,10);
+    var fullOptionsByParent = new Map();
+    (optionCatalog || []).forEach(function(option) {
+      if(option.equivalence !== "full") return;
+      var group = fullOptionsByParent.get(option.parent) || [];
+      group.push(option);
+      fullOptionsByParent.set(option.parent, group);
+    });
     var items = (catalog||[]).filter(function(i) { return active(i,s); }).map(function(i) {
       var key = s.mode+":"+i.id;
       var entry = s.stocks[key] || {};
       var autoTarget = needs(i[s.mode],s);
       var custom = entry.target !== "" && entry.target !== null && entry.target !== undefined && Number.isFinite(Number(entry.target));
       var required = custom ? num(entry.target,autoTarget,0,10000000) : autoTarget;
-      var owned = num(entry.qty,0,0,10000000);
+      var ownedManual = num(entry.qty,0,0,10000000);
+      var variantOwned = 0, variantEffective = 0, excludedVariants = 0;
+      (fullOptionsByParent.get(i.id) || []).forEach(function(option) {
+        var variant = s.variants[s.mode+":"+option.id] || {};
+        var qty = num(variant.qty,0,0,10000000);
+        if(!qty) return;
+        var optionExpiry = /^\\d{4}-\\d{2}-\\d{2}$/.test(String(variant.expiry||"")) ? variant.expiry : "";
+        var usable = (!optionExpiry || optionExpiry >= stamp) && optionAvailable(option,s);
+        variantOwned += qty;
+        if(usable) variantEffective += qty;
+        else excludedVariants += qty;
+      });
+      var owned = ownedManual + variantOwned;
       var expiry = /^\d{4}-\d{2}-\d{2}$/.test(String(entry.expiry||"")) ? entry.expiry : "";
       var expired = expiry !== "" && expiry < stamp;
-      var effective = expired ? 0 : owned;
+      var effective = (expired ? 0 : ownedManual) + variantEffective;
       var missing = Math.max(0,Math.round((required-effective)*100)/100);
-      return {item:i,key:key,required:required,autoTarget:autoTarget,hasCustomTarget:custom,owned:owned,effective:effective,expiry:expiry,expired:expired,missing:missing,priority:i.priority};
+      return {item:i,key:key,required:required,autoTarget:autoTarget,hasCustomTarget:custom,ownedManual:ownedManual,variantOwned:variantOwned,excludedVariants:excludedVariants,owned:owned,effective:effective,expiry:expiry,expired:expired,missing:missing,priority:i.priority};
     });
     items.sort(function(a,b) {return a.priority-b.priority || b.missing-a.missing || a.item.id.localeCompare(b.item.id);});
     return {
@@ -73,7 +98,7 @@
       filledCount:items.filter(function(x){return x.missing===0;}).length
     };
   }
-  var api = Object.freeze({normalize:normalize,needs:needs,calculate:calculate});
+  var api = Object.freeze({normalize:normalize,needs:needs,optionAvailable:optionAvailable,calculate:calculate});
   root.BichikuCore = api;
   if(typeof module==="object" && module.exports) module.exports=api;
 })(typeof globalThis === "object" ? globalThis : this);
