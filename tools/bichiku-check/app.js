@@ -94,6 +94,7 @@
       '<div class="item-main"><span class="item-name">'+safe(i.names[lang] || i.names.ja)+'</span>'+
       '<span class="priority priority-'+i.priority+'">'+safe(urgency)+'</span></div>'+
       '<div class="item-count"><span>'+safe(L.needed)+': <strong>'+format(x.required)+safe(unit(i.id))+'</strong></span>'+
+      '<span>'+safe(choiceLabels.totalStock||L.owned)+': <strong>'+format(x.effective)+safe(unit(i.id))+'</strong></span>'+
       '<span class="'+(need?"shortage":"ok")+'">'+safe(need?L.missing:L.complete)+': <strong>'+format(need)+safe(unit(i.id))+'</strong></span></div>'+
       '<div class="item-actions"><label for="'+qtyId+'">'+safe(specificOptions.some(function(o){return o.parent===i.id;})?choiceLabels.unchanged:L.owned)+'<input id="'+qtyId+'" class="qty" data-id="'+i.id+'" type="number" min="0" max="10000000" step="'+(i.id==="water"?"0.5":"1")+'" inputmode="decimal" value="'+format(stock)+'"></label>'+
       (a?'<span class="aff-slot" data-aff="'+i.id+'"></span>':"")+'</div>'+
@@ -119,6 +120,7 @@
     var completeVisible=filter==="all" || filter==="covered";
     results.innerHTML =
       '<h2>'+safe(L.results)+'</h2>'+
+      '<p class="fine">'+safe(choiceLabels.integrated||"")+'</p>'+
       '<p class="fine">'+safe(L.affiliateNote)+'</p><div id="affiliate-inline" class="affiliate-inline" hidden></div>'+
       '<div class="metrics"><div><strong>'+calc.coreMissingCount+'</strong><span>'+safe(L.core)+'</span></div>'+
       '<div><strong>'+calc.missingCount+'</strong><span>'+safe(L.shortages)+'</span></div>'+
