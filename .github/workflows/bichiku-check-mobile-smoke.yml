@@ -1,0 +1,41 @@
+name: BichikuCheck mobile viewport smoke
+
+on:
+  pull_request:
+    paths:
+      - "tools/bichiku-check/**"
+      - ".github/workflows/bichiku-check-mobile-smoke.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Test core calculations
+        run: node --test tools/bichiku-check/tests/core.test.cjs
+      - name: Install test-only Playwright
+        run: npm install --no-save --package-lock=false playwright@1.58.2
+      - name: Install Chromium for screenshot and viewport checks
+        run: npx playwright install --with-deps chromium
+      - name: Test 320–1280px and all four locales
+        run: |
+          python3 -m http.server 8877 --directory . > /tmp/bichiku-http.log 2>&1 &
+          sleep 2
+          node tools/bichiku-check/tests/mobile.smoke.mjs http://127.0.0.1:8877
+      - name: Upload review screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bichiku-mobile-screenshots
+          path: bichiku-smoke-artifacts/
+          if-no-files-found: ignore
