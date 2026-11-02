@@ -33,7 +33,9 @@
   var namesInput = document.getElementById("namesInput");
   var loadNamesButton = document.getElementById("loadNamesButton");
   var pasteStatus = document.getElementById("pasteStatus");
-  var fileSelectButton = document.getElementById("fileSelectButton");
+  var fileSelectionStatus = document.getElementById("fileSelectionStatus");
+  var selectedFileNames = document.getElementById("selectedFileNames");
+  var selectedFileCount = document.getElementById("selectedFileCount");
   var dropzone = document.getElementById("dropzone");
   var runButton = document.getElementById("runButton");
   var copyTsvButton = document.getElementById("copyTsvButton");
@@ -57,17 +59,72 @@
   var originalNames = [];
   var currentRows = [];
 
-  function setFilesFromList(fileList) {
-    originalNames = [];
+  var MAX_FILE_NAMES = 500;
+
+  function renderSelectedFiles() {
+    if (selectedFileCount) selectedFileCount.textContent = originalNames.length + "件";
+    if (fileInput) {
+      if (originalNames.length > 0) fileInput.classList.add("has-appended-files");
+      else fileInput.classList.remove("has-appended-files");
+      fileInput.setAttribute("aria-label", originalNames.length
+        ? "ファイルを追加（現在" + originalNames.length + "件追加済み）"
+        : "ファイルを選択（複数可）");
+    }
+    if (!selectedFileNames) return;
+    selectedFileNames.replaceChildren();
+    if (!originalNames.length) {
+      var empty = document.createElement("li");
+      empty.className = "selected-file-empty";
+      empty.textContent = "まだファイル名が追加されていません。";
+      selectedFileNames.appendChild(empty);
+      return;
+    }
+    originalNames.forEach(function (name, index) {
+      var li = document.createElement("li");
+      var label = document.createElement("span");
+      label.className = "selected-file-name";
+      label.textContent = String(index + 1) + ". " + name;
+      var remove = document.createElement("button");
+      remove.type = "button";
+      remove.className = "selected-file-remove";
+      remove.textContent = "削除";
+      remove.setAttribute("aria-label", name + " を一覧から削除");
+      remove.addEventListener("click", function () {
+        originalNames.splice(index, 1);
+        renderPreview([]);
+        renderSelectedFiles();
+        if (fileSelectionStatus) {
+          fileSelectionStatus.textContent = "1件削除しました。合計" + originalNames.length + "件。";
+        }
+      });
+      li.appendChild(label);
+      li.appendChild(remove);
+      selectedFileNames.appendChild(li);
+    });
+  }
+
+  function setFilesFromList(fileList, source) {
+    if (!fileList || !fileList.length) return;
+    var next = [];
+    for (var i = 0; i < fileList.length; i++) {
+      var f = fileList[i];
+      if (f && typeof f.name === "string" && f.name) next.push(f.name);
+    }
+    if (!next.length) return;
+    if (originalNames.length + next.length > MAX_FILE_NAMES) {
+      if (fileSelectionStatus) fileSelectionStatus.textContent = "ファイル名は合計500件まで追加できます。先に不要な名前を削除してください。";
+      return;
+    }
+    // Add names, not File objects: content is neither read nor uploaded.
+    Array.prototype.push.apply(originalNames, next);
     currentRows = [];
     if (namesInput) namesInput.value = "";
     if (pasteStatus) pasteStatus.textContent = "";
-    if (!fileList) return;
-    for (var i = 0; i < fileList.length; i++) {
-      var f = fileList[i];
-      if (f && typeof f.name === "string") originalNames.push(f.name);
-    }
     renderPreview([]);
+    renderSelectedFiles();
+    if (fileSelectionStatus) {
+      fileSelectionStatus.textContent = next.length + "件追加（" + (source === "drop" ? "ドロップ" : "選択") + "）。合計" + originalNames.length + "件。ファイルは送信されません。";
+    }
   }
 
   function parseFilenameLines(text) {
@@ -88,6 +145,8 @@
     currentRows = [];
     if (fileInput) fileInput.value = "";
     renderPreview([]);
+    renderSelectedFiles();
+    if (fileSelectionStatus) fileSelectionStatus.textContent = "貼り付けた名前一覧に置き換えました。ファイルは送信されません。";
     if (pasteStatus) pasteStatus.textContent = t.pasteLoaded.replace("{count}", String(originalNames.length));
   }
 
@@ -347,11 +406,16 @@
     setTimeout(function () { URL.revokeObjectURL(url); }, 500);
   }
 
+  renderSelectedFiles();
   if (loadNamesButton) loadNamesButton.addEventListener("click", loadPastedNames);
 
-  if (fileSelectButton && fileInput) {
-    fileSelectButton.addEventListener("click", function () { fileInput.click(); });
-    fileInput.addEventListener("change", function (e) { setFilesFromList(e.target.files); });
+  if (fileInput) {
+    fileInput.addEventListener("change", function (e) {
+      // Native file input: avoid programmatic dialog opening, particularly on macOS browsers.
+      setFilesFromList(e.target.files, "picker");
+      // This tool only needs filenames. Clearing permits choosing the same file again.
+      fileInput.value = "";
+    });
   }
 
   if (dropzone) {
@@ -372,8 +436,8 @@
       if (!dt) return;
       var files = dt.files;
       if (files && files.length > 0) {
-        setFilesFromList(files);
-        if (fileInput) fileInput.files = files;
+        // FileList is browser-managed and may be read-only. Read names without assigning to it.
+        setFilesFromList(files, "drop");
       }
     });
   }
@@ -406,6 +470,7 @@
       originalNames = [];
       currentRows = [];
       if (fileInput) fileInput.value = "";
+      if (fileSelectionStatus) fileSelectionStatus.textContent = "ファイル名のみ読み取ります。ファイルは送信されません。";
       if (namesInput) namesInput.value = "";
       if (pasteStatus) pasteStatus.textContent = "";
       if (resultBody) resultBody.innerHTML = "";
@@ -415,6 +480,7 @@
         noFilesMessage.classList.remove("hidden");
       }
       renderSummary([], false);
+      renderSelectedFiles();
       setOutputEnabled(false);
       if (copyStatus) copyStatus.textContent = "";
     });
