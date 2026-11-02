@@ -23,6 +23,8 @@ const MAX_FRAME_TIME = 12;
 
 let baseImageData = null;
 let processing = false;
+// Increment whenever an in-flight decode or pixel operation becomes obsolete.
+let operationRevision = 0;
 let scaleRatio = 1;
 let hasResult = false;
 let toastTimer = null;
@@ -303,7 +305,9 @@ function clearAfterCanvas() {
 }
 
 function markResultStale() {
-  if (!baseImageData || !hasResult) return;
+  if (!baseImageData || (!hasResult && !processing)) return;
+  ++operationRevision;
+  processing = false;
   hasResult = false;
   clearAfterCanvas();
   setSummary('stale');
@@ -311,30 +315,40 @@ function markResultStale() {
 }
 
 function loadImage(file) {
-  if (!file || !file.type.startsWith('image/')) {
+  // Only a currently selected image may set the preview or trigger a warning.
+  const revision = ++operationRevision;
+  processing = false;
+  hasResult = false;
+  baseImageData = null;
+  scaleRatio = 1;
+  clearCanvases();
+  setSummary('empty');
+  updateScaleNote();
+  setButtonsDisabled(false);
+
+  if (!file || !/^image\/(png|jpeg|webp)$/.test(file.type)) {
     showToast(t('imageLoadError'));
     return;
   }
 
   const reader = new FileReader();
   processing = true;
-  hasResult = false;
-  setSummary('empty');
   setButtonsDisabled(true);
 
   reader.onerror = () => {
+    if (revision !== operationRevision) return;
     processing = false;
-    baseImageData = null;
     setButtonsDisabled(false);
     showToast(t('fileReadError'));
   };
 
   reader.onload = (event) => {
+    if (revision !== operationRevision) return;
     const img = new Image();
 
     img.onerror = () => {
+      if (revision !== operationRevision) return;
       processing = false;
-      baseImageData = null;
       clearCanvases();
       updateScaleNote();
       setButtonsDisabled(false);
@@ -342,7 +356,9 @@ function loadImage(file) {
     };
 
     img.onload = () => {
+      if (revision !== operationRevision) return;
       try {
+        if (!img.naturalWidth || !img.naturalHeight) throw new Error('empty image');
         const megapixels = (img.naturalWidth * img.naturalHeight) / 1_000_000;
         scaleRatio = megapixels > MAX_MEGAPIXELS ? Math.sqrt(MAX_MEGAPIXELS / megapixels) : 1;
         const width = Math.max(1, Math.round(img.naturalWidth * scaleRatio));
@@ -368,6 +384,7 @@ function loadImage(file) {
         updateScaleNote();
         setButtonsDisabled(false);
       } catch (error) {
+        if (revision !== operationRevision) return;
         processing = false;
         baseImageData = null;
         clearCanvases();
@@ -389,6 +406,7 @@ function applyReplacement() {
     return;
   }
 
+  const revision = ++operationRevision;
   processing = true;
   hasResult = false;
   setButtonsDisabled(true);
@@ -408,6 +426,7 @@ function applyReplacement() {
   let i = 0;
 
   const step = () => {
+    if (revision !== operationRevision) return;
     const start = performance.now();
     while (i < total) {
       const dr = data[i] - src.r;
@@ -426,6 +445,7 @@ function applyReplacement() {
       }
     }
 
+    if (revision !== operationRevision) return;
     if (i < total) {
       requestAnimationFrame(step);
       return;
@@ -476,6 +496,7 @@ function pickColor(event) {
 }
 
 function resetAll() {
+  ++operationRevision;
   srcColorInput.value = defaults.src;
   dstColorInput.value = defaults.dst;
   toleranceInput.value = defaults.tolerance;
@@ -492,14 +513,16 @@ function resetAll() {
 }
 
 function downloadImage() {
-  if (!hasResult || !canvasAfter.width || !canvasAfter.height) {
+  if (processing || !hasResult || !canvasAfter.width || !canvasAfter.height) {
     showToast(t('applyFirst'));
     return;
   }
 
   try {
+    const pngUrl = canvasAfter.toDataURL('image/png');
+    if (!/^data:image\/png(?:;|,)/i.test(pngUrl)) throw new Error('incorrect PNG output');
     const link = document.createElement('a');
-    link.href = canvasAfter.toDataURL('image/png');
+    link.href = pngUrl;
     link.download = 'color-replaced.png';
     link.click();
   } catch (error) {
