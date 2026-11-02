@@ -4,15 +4,6 @@
   "note": "Curated field-specific aliases only. Never coerce known duplicate canonicals or technical near-misses into synonyms. Source guard is exact canonical JA/EN identity.",
   "entries": [
     {
-      "id": "as_built",
-      "expected_ja": "竣工図（アズビルト）",
-      "expected_en": "As-built",
-      "add_ja": [
-        "竣工図面"
-      ],
-      "add_en": []
-    },
-    {
       "id": "backer_rod",
       "expected_ja": "バックアップ材",
       "expected_en": "Backer rod",
@@ -191,15 +182,6 @@
       ]
     },
     {
-      "id": "ear_protection",
-      "expected_ja": "耳栓・イヤーマフ",
-      "expected_en": "Ear protection",
-      "add_ja": [
-        "聴覚保護具"
-      ],
-      "add_en": []
-    },
-    {
       "id": "fire_extinguisher",
       "expected_ja": "消火器",
       "expected_en": "Fire extinguisher",
@@ -262,17 +244,6 @@
       ],
       "add_en": [
         "Glass fiber wool insulation"
-      ]
-    },
-    {
-      "id": "ground_fault_breaker",
-      "expected_ja": "漏電遮断器",
-      "expected_en": "GFCI/RCD",
-      "add_ja": [
-        "漏電ブレーカー"
-      ],
-      "add_en": [
-        "Residual-current protective device"
       ]
     },
     {
@@ -577,15 +548,6 @@
       ]
     },
     {
-      "id": "soldering_iron",
-      "expected_ja": "はんだごて",
-      "expected_en": "Soldering iron",
-      "add_ja": [
-        "ハンダごて"
-      ],
-      "add_en": []
-    },
-    {
       "id": "spotter",
       "expected_ja": "誘導員",
       "expected_en": "Spotter",
@@ -632,17 +594,6 @@
       ],
       "add_en": [
         "Hollow-wall toggle anchor"
-      ]
-    },
-    {
-      "id": "toolbox_talk",
-      "expected_ja": "朝礼（TBM）",
-      "expected_en": "Toolbox talk",
-      "add_ja": [
-        "ツールボックスミーティング"
-      ],
-      "add_en": [
-        "Pre-task safety briefing"
       ]
     },
     {
@@ -771,6 +722,36 @@
       "id": "q016_laminate_flooring",
       "ja": "複合フローリング",
       "en": "Laminate Flooring"
+    },
+    {
+      "id": "as_built",
+      "ja": "竣工図（アズビルト）",
+      "en": "As-built",
+      "reason": "Proposed 竣工図面 is already a searchable alias of as_built_drawing; canonical overlap"
+    },
+    {
+      "id": "ear_protection",
+      "ja": "耳栓・イヤーマフ",
+      "en": "Ear protection",
+      "reason": "聴覚保護具 belongs to separate hearing_protection canonical; terminology overlaps"
+    },
+    {
+      "id": "ground_fault_breaker",
+      "ja": "漏電遮断器",
+      "en": "GFCI/RCD",
+      "reason": "漏電ブレーカー is already indexed for q015_earth_leakage_breaker and gfci_rcd; requires canonical identity resolution"
+    },
+    {
+      "id": "soldering_iron",
+      "ja": "はんだごて",
+      "en": "Soldering iron",
+      "reason": "ハンダごて case-folds to the canonical はんだごて; redundant alias gives no search value"
+    },
+    {
+      "id": "toolbox_talk",
+      "ja": "朝礼（TBM）",
+      "en": "Toolbox talk",
+      "reason": "ツールボックスミーティング belongs to separate q016_toolbox_meeting canonical; requires identity review"
     }
   ]
 }
