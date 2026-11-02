@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-lifecycle-v2.3",
-  "version": "2026-10-31-reviewed-image-wave9-four-1",
+  "version": "2026-11-03-retired-five-canonical-provenance-1",
   "candidates": [
     {
       "id": "existing:allen_key",
@@ -744,20 +744,6 @@
           "reason": "Carry forward existing formal-image decision from image-wave1-sources-v2.3.json (angle_grinder); no new independent review. Existing subject review: Real angle grinder with side handle and abrasive disc; canonical subject is clearly identifiable.",
           "candidate_id": "existing:angle_grinder",
           "candidate_sha256": "78ea53030f6cc7ae1f6ebd6dc91160a48276ab550f30df3124d34c7762a60e36",
-          "hold": null
-        }
-      ]
-    },
-    {
-      "entry_id": "as_built",
-      "history": [
-        {
-          "state": "not_required",
-          "at": "2026-09-18T12:49:59Z",
-          "actor": "lifecycle-migration",
-          "reason": "Record-drawing concept whose meaning is defined by documentation state, not by the appearance of a unique physical subject.",
-          "candidate_id": null,
-          "candidate_sha256": null,
           "hold": null
         }
       ]
@@ -2310,29 +2296,6 @@
       ]
     },
     {
-      "entry_id": "corner_float",
-      "history": [
-        {
-          "state": "unreviewed",
-          "at": "2026-09-18T12:49:59Z",
-          "actor": "lifecycle-migration",
-          "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
-          "candidate_id": null,
-          "candidate_sha256": null,
-          "hold": null
-        },
-        {
-          "state": "awaiting_source",
-          "at": "2026-09-18T13:40:00Z",
-          "actor": "gpt-5.6-sol",
-          "reason": "A corner trowel has a characteristic angled blade geometry for inside/outside corners; a subject-matched photograph is appropriate.",
-          "candidate_id": null,
-          "candidate_sha256": null,
-          "hold": null
-        }
-      ]
-    },
-    {
       "entry_id": "cover_meter",
       "history": [
         {
@@ -3823,29 +3786,6 @@
           "at": "2026-09-18T13:44:00Z",
           "actor": "gpt-5.6-sol",
           "reason": "Fiberglass insulation is a physical fibrous insulation product with recognizable batt/roll form; a reviewed photograph is useful for this surviving canonical.",
-          "candidate_id": null,
-          "candidate_sha256": null,
-          "hold": null
-        }
-      ]
-    },
-    {
-      "entry_id": "ground_fault_breaker",
-      "history": [
-        {
-          "state": "unreviewed",
-          "at": "2026-09-18T12:49:59Z",
-          "actor": "lifecycle-migration",
-          "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
-          "candidate_id": null,
-          "candidate_sha256": null,
-          "hold": null
-        },
-        {
-          "state": "awaiting_source",
-          "at": "2026-09-18T13:44:00Z",
-          "actor": "gpt-5.6-sol",
-          "reason": "A ground-fault breaker is a physical electrical safety device with recognizable breaker form; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
@@ -18719,29 +18659,6 @@
       ]
     },
     {
-      "entry_id": "sandpaper",
-      "history": [
-        {
-          "state": "unreviewed",
-          "at": "2026-09-18T12:49:59Z",
-          "actor": "lifecycle-migration",
-          "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
-          "candidate_id": null,
-          "candidate_sha256": null,
-          "hold": null
-        },
-        {
-          "state": "awaiting_source",
-          "at": "2026-09-18T15:42:00Z",
-          "actor": "gpt-5.6-sol",
-          "reason": "Sandpaper is a physical abrasive sheet/disc material with recognizable grit-backed form; a reviewed photograph is useful.",
-          "candidate_id": null,
-          "candidate_sha256": null,
-          "hold": null
-        }
-      ]
-    },
-    {
       "entry_id": "scaffold",
       "history": [
         {
@@ -20138,29 +20055,6 @@
       ]
     },
     {
-      "entry_id": "toolbox_talk",
-      "history": [
-        {
-          "state": "unreviewed",
-          "at": "2026-09-18T12:49:59Z",
-          "actor": "lifecycle-migration",
-          "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
-          "candidate_id": null,
-          "candidate_sha256": null,
-          "hold": null
-        },
-        {
-          "state": "not_required",
-          "at": "2026-09-18T15:46:00Z",
-          "actor": "gpt-5.6-sol",
-          "reason": "The canonical is a short pre-work safety briefing practice, not a unique physical subject; meeting location, participants, and format vary by site.",
-          "candidate_id": null,
-          "candidate_sha256": null,
-          "hold": null
-        }
-      ]
-    },
-    {
       "entry_id": "top_coat",
       "history": [
         {
@@ -21072,6 +20966,129 @@
           "hold": null
         }
       ]
+    }
+  ],
+  "retired_canonicals": [
+    {
+      "entry_id": "as_built",
+      "redirect_to": "as_built_drawing",
+      "history": [
+        {
+          "state": "not_required",
+          "at": "2026-09-18T12:49:59Z",
+          "actor": "lifecycle-migration",
+          "reason": "Record-drawing concept whose meaning is defined by documentation state, not by the appearance of a unique physical subject.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        }
+      ],
+      "former_image_exception": "Record-drawing concept whose meaning is defined by documentation state, not by the appearance of a unique physical subject.",
+      "reason": "Duplicate canonical consolidated into maintained target; original lifecycle history preserved for audit."
+    },
+    {
+      "entry_id": "corner_float",
+      "redirect_to": "q016_corner_trowel",
+      "history": [
+        {
+          "state": "unreviewed",
+          "at": "2026-09-18T12:49:59Z",
+          "actor": "lifecycle-migration",
+          "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:40:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A corner trowel has a characteristic angled blade geometry for inside/outside corners; a subject-matched photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        }
+      ],
+      "former_image_exception": null,
+      "reason": "Duplicate canonical consolidated into maintained target; original lifecycle history preserved for audit."
+    },
+    {
+      "entry_id": "ground_fault_breaker",
+      "redirect_to": "q015_earth_leakage_breaker",
+      "history": [
+        {
+          "state": "unreviewed",
+          "at": "2026-09-18T12:49:59Z",
+          "actor": "lifecycle-migration",
+          "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T13:44:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "A ground-fault breaker is a physical electrical safety device with recognizable breaker form; a reviewed photograph is appropriate.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        }
+      ],
+      "former_image_exception": null,
+      "reason": "Duplicate canonical consolidated into maintained target; original lifecycle history preserved for audit."
+    },
+    {
+      "entry_id": "sandpaper",
+      "redirect_to": "q011_sanding_paper",
+      "history": [
+        {
+          "state": "unreviewed",
+          "at": "2026-09-18T12:49:59Z",
+          "actor": "lifecycle-migration",
+          "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "awaiting_source",
+          "at": "2026-09-18T15:42:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "Sandpaper is a physical abrasive sheet/disc material with recognizable grit-backed form; a reviewed photograph is useful.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        }
+      ],
+      "former_image_exception": null,
+      "reason": "Duplicate canonical consolidated into maintained target; original lifecycle history preserved for audit."
+    },
+    {
+      "entry_id": "toolbox_talk",
+      "redirect_to": "q016_toolbox_meeting",
+      "history": [
+        {
+          "state": "unreviewed",
+          "at": "2026-09-18T12:49:59Z",
+          "actor": "lifecycle-migration",
+          "reason": "Applicability has not been reviewed; no requirement is inferred from missing imagery.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "not_required",
+          "at": "2026-09-18T15:46:00Z",
+          "actor": "gpt-5.6-sol",
+          "reason": "The canonical is a short pre-work safety briefing practice, not a unique physical subject; meeting location, participants, and format vary by site.",
+          "candidate_id": null,
+          "candidate_sha256": null,
+          "hold": null
+        }
+      ],
+      "former_image_exception": "The canonical is a short pre-work safety briefing practice, not a unique physical subject; meeting location, participants, and format vary by site.",
+      "reason": "Duplicate canonical consolidated into maintained target; original lifecycle history preserved for audit."
     }
   ]
 }
