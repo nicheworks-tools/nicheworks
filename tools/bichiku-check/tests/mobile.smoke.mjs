@@ -71,8 +71,9 @@ try{
  await page.locator('input[data-option-qty="alphaRice"]').press("Tab");
  assert.match(await page.locator(".g-detail-status").innerText(),/21/,"no safe-water confirmation should block rice portions");
  await page.locator('input[data-setting="safeWaterConfirmed"]').check();
- await page.locator('input[data-setting="prepWaterLiters"]').fill("1");
- await page.locator('input[data-setting="prepWaterLiters"]').press("Tab");
+ await page.locator('input[data-prep-liters="alphaRice"]').fill("1");
+ await page.locator('input[data-prep-liters="alphaRice"]').press("Tab");
+ await page.locator('input[data-prep-confirm="alphaRice"]').check();
  assert.match(await page.locator(".g-detail-status").innerText(),/21/,"no stored water on outage");
  await page.locator("button[data-back]").click();
  await page.locator('button[data-goal="water"]').click();

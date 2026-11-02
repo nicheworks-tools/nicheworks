@@ -19,7 +19,7 @@ function optionUsable(option,s){
  if(option.equivalence!=="full")return false;
  if(option.parent==="food"){
    if(s.noHeat&&(option.prep==="heat"||option.prep==="verify"))return false;
-   if(option.requiresWater&&(!s.safeWaterConfirmed||s.prepWaterLiters<=0))return false;
+   if(option.requiresWater&&(!s.safeWaterConfirmed||!s.prepWaterSufficient))return false;
  }
  return true;
 }
@@ -54,9 +54,18 @@ function normalize(s){
 function assessment(catalog,options,source,today){
  const s=normalize(source),now=validDate(today)||new Date().toISOString().slice(0,10);
  const stored=storedWater(s,options,now);
- const waterForPrep=s.safeWaterConfirmed&&s.prepWaterLiters>0&&(!s.waterOut||stored>=s.prepWaterLiters);
- // The safe-water input is a user-confirmed *total allocation* and is never a manufactured per-serving number.
- const readiness=Object.assign({},s,{safeWaterConfirmed:waterForPrep,enforceConditions:true});
+ // Each water-dependent food must have its own complete, package-checked water allocation.
+ // An old saved global water number cannot automatically verify any food item.
+ const waterDetails=(options||[]).filter(o=>o.parent==="food"&&o.requiresWater&&o.equivalence==="full")
+   .map(o=>({option:o,entry:(s.variants||{})[s.mode+":"+o.id]||{}}))
+   .filter(x=>numeric(x.entry.qty)>0&&unexpired(x.entry,now)&&
+     (!s.noHeat||!["heat","verify"].includes(x.option.prep)));
+ const checked=waterDetails.filter(x=>x.entry.prepConfirmed===true&&numeric(x.entry.prepWaterLiters)>0);
+ const waterAllocation=round(checked.reduce((sum,x)=>sum+numeric(x.entry.prepWaterLiters),0));
+ const uncheckedFoods=waterDetails.filter(x=>!checked.includes(x)).map(x=>x.option.id);
+ const waterConflict=s.waterOut&&waterAllocation>stored;
+ const waterForPrep=s.safeWaterConfirmed&&waterAllocation>0&&!waterConflict;
+ const readiness=Object.assign({},s,{prepWaterSufficient:waterForPrep,enforceConditions:true});
  const core=root.BichikuCore;
  if(!core)throw Error("BichikuCore is required");
  const calc=core.calculate(catalog,readiness,now,options);
@@ -80,11 +89,9 @@ function assessment(catalog,options,source,today){
  const water=byId.get("water");
  const food=byId.get("food");
  const pad=byId.get("sleepPad"),warmth=byId.get("blanket");
- const waterConflict=s.waterOut&&s.prepWaterLiters>stored;
- const waterAllocation=s.safeWaterConfirmed?s.prepWaterLiters:0;
  const combinations=[
    {id:"foodPrep",type:waterForPrep?"ready":"review",
-    amount:waterAllocation,available:stored,condition:waterForPrep,requires:["safeWaterConfirmed","prepWaterLiters"],
+    amount:waterAllocation,available:stored,condition:waterForPrep,requires:["safeWaterConfirmed","perItemPrepConfirmed","perItemWaterLiters"],
     note:waterConflict?"prepWaterInsufficient":s.safeWaterConfirmed?"waterAllocation":"prepWaterUnconfirmed"},
    {id:"toiletAssembly",type:assemblyUses>0?"ready":"review",amount:assemblyUses,condition:s.toiletAssemblyConfirmed,
     requires:["toiletAssemblyConfirmed","toiletBags"],note:assemblyUses?"toiletReady":"toiletReview"},
@@ -97,7 +104,7 @@ function assessment(catalog,options,source,today){
  calc.coreMissingCount=calc.items.filter(x=>x.priority===1&&x.missing>0).length;
  calc.filledCount=calc.items.filter(x=>x.missing===0).length;
  return {settings:s,calc,groups:status,combinations,waterForPrep,waterStored:stored,
-   waterAllocation,waterRemainingAfterPrep:round(Math.max(0,stored-waterAllocation)),
+   waterAllocation,uncheckedFoods,waterRemainingAfterPrep:round(Math.max(0,stored-waterAllocation)),
    food,water,pad,warmth,waterConflict};
 }
 const api=Object.freeze({assessment,groups,optionUsable,storedWater});

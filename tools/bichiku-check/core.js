@@ -18,6 +18,7 @@
       powerOut: !!s.powerOut,
       waterOut: !!s.waterOut,
       safeWaterConfirmed: !!s.safeWaterConfirmed,
+      prepWaterSufficient: !!s.prepWaterSufficient,
       prepWaterLiters: num(s.prepWaterLiters,0,0,10000000),
       enforceConditions: !!s.enforceConditions,
       toiletAssemblyConfirmed: !!s.toiletAssemblyConfirmed,
@@ -57,10 +58,15 @@
     if (item.conditional === "diet" && !s.diet) return false;
     return true;
   }
-  function optionAvailable(option, settings) {
+  function optionAvailable(option, settings, stockEntry) {
     if (option.equivalence !== "full") return false;
     if (option.parent === "food" && settings.noHeat && ["heat","verify"].includes(option.prep)) return false;
-    if (option.parent === "food" && option.requiresWater && settings.enforceConditions && (!settings.safeWaterConfirmed || settings.prepWaterLiters <= 0)) return false;
+    // Only the user's per-item confirmed total volume may qualify a water-dependent product.
+    // The older single global litres value must never credit unlimited servings.
+    if (option.parent === "food" && option.requiresWater && settings.enforceConditions) {
+      if (!settings.safeWaterConfirmed || !settings.prepWaterSufficient) return false;
+      if (!stockEntry || stockEntry.prepConfirmed !== true || !(num(stockEntry.prepWaterLiters,0,0,10000000)>0)) return false;
+    }
     return true;
   }
   function calculate(catalog, options, today, optionCatalog) {
@@ -86,7 +92,7 @@
         var qty = num(variant.qty,0,0,10000000);
         if(!qty) return;
         var optionExpiry = /^\d{4}-\d{2}-\d{2}$/.test(String(variant.expiry||"")) ? variant.expiry : "";
-        var usable = (!optionExpiry || optionExpiry >= stamp) && optionAvailable(option,s);
+        var usable = (!optionExpiry || optionExpiry >= stamp) && optionAvailable(option,s,variant);
         variantOwned += qty;
         if(usable) variantEffective += qty;
         else excludedVariants += qty;

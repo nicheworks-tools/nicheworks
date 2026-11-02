@@ -32,7 +32,7 @@ Japan-focused, mobile-first, free planning aid for Japanese users and foreign re
 - No automatic validation of whether an individual product is safe for allergies, religion-based dietary practices, children, or pets. Verify actual labels and consult specialists as appropriate.
 
 Primary public references:
-- [Prime Minister's Office, household preparedness](https://www.kantei.go.jp/jp/headline/bousai/sonae.html)
+- [Prime Minister's Office, household preparedness](https://www.bousai.go.jp/kyoiku/hokenkyousai/check.html)
 - [Government of Japan, preparation and toilet guidance](https://www.gov-online.go.jp/tokusyu/bousai/preparation.html)
 - [National Consumer Affairs Center, emergency supplies](https://www.kokusen.go.jp/mimamori/mj_mailmag/mj-shinsen498.html)
 
@@ -105,7 +105,7 @@ User journey:
 4. Produce a selectable **missing-items-only shopping list** with Amazon Japan links where curated, and client-side CSV, copy, print or reset.
 
 ### Composition and safety rules
-- A food requiring rehydration is counted only after the user confirms safe drinking water and enters the water litres allocated for food preparation according to the product's label. When tap water is unavailable, the allocation must fit stored drinking water. Water for food is allocated from the same water pool and is **not added twice** to the household's 3L/person/day planning target; the remaining amount is shown.
+- A food requiring preparation water is counted only after the user confirms safe drinking water, opens **each specific food**, records the total litres required for **all of its registered portions**, and checks that specific product's preparation instructions. Editing quantity or water volume invalidates its confirmation. Older stored global water quantities are never treated as confirmation for multiple foods. When tap water is unavailable, the allocation must fit stored drinking water. Water for food is allocated from the same water pool and is **not added twice** to the household's 3L/person/day planning target; the remaining amount is shown.
 - Instant noodles with only an experimental police cold-water example are *not* automatically counted as ready to eat in a no-heat scenario. Manufacturer instructions and hygiene remain authoritative.
 - Toilet bag/solidifier stock is credited only if the user explicitly confirms the complete assembly with compatible installation and safe sealed storage/disposal; otherwise it remains non-equivalent.
 - Sleeping floor insulation and body warmth require different classes of supplies. Foil sheets and cardboard remain supplementary or temporary options.

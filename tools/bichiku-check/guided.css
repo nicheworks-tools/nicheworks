@@ -110,3 +110,11 @@ body[data-stage]:not([data-stage="setup"]) .workspace{align-items:start}
  #results{border:0;padding:0}
  .g-shopping{display:block}
 }
+
+.g-water-item{margin-top:12px;padding:10px;border:1px solid #cedfe2;background:#f6f9fa;border-radius:9px}
+.g-water-item .g-input{display:block;font-size:13px;line-height:1.5;font-weight:700}
+.g-water-item .g-check{margin:10px 0;background:#fff}
+.g-water-item .g-fine{margin:7px 0 0}
+.g-water-summary{font-size:13px;color:var(--ink);padding:7px 9px;background:#fff;border:1px solid var(--line);border-radius:6px}
+.g-water-summary strong{font-variant-numeric:tabular-nums}
+@media print{.g-water-item{display:none!important}}
