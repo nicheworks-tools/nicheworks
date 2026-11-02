@@ -7,7 +7,7 @@ const v2=JSON.parse(fs.readFileSync(path.join(root,'data/v2-extension.json'),'ut
 const backlog=JSON.parse(fs.readFileSync(path.join(root,'data/coverage-backlog.json'),'utf8'));
 const sitemap=fs.readFileSync(path.resolve(root,'..','..','sitemap.xml'),'utf8');
 const app=fs.readFileSync(path.join(root,'app.js'),'utf8');
-const expected=["sakura-motif","ume-motif","kiku-motif","tsuru-motif","yukiwa","kanzemizu","shokko","matsukawabishi","bishamon-kikko","tachibana-motif"];
+const expected=['sakura-motif','ume-motif','kiku-motif','tsuru-motif','yukiwa','kanzemizu','shokko','matsukawabishi','bishamon-kikko','tachibana-motif','noshi-motif','goshoguruma','temari-motif','sankuzushi','kasuri'];
 const assert=(ok,s)=>{if(!ok)throw new Error(s)};
 assert(base.length===100,'v1 canonical source must remain frozen');
 assert(v2.schema_version==='pattern-dictionary-v2-supplement-3','v2 supplement schema mismatch');
