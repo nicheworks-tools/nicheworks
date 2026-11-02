@@ -28,6 +28,9 @@ jobs:
       - name: Check live Chromium probe syntax
         run: node --check tools/construction-tools-atlas/scripts/check-production-viewport-360.mjs
       - name: Verify actual live nicheworks.app dictionary at 360px, 390px and desktop
+        env:
+          # PR tests run before the Pages deployment; nightly/dispatch must require current release.
+          CTA_ALLOW_PREVIOUS_ASSET_VERSION: ${{ github.event_name == 'pull_request' && '1' || '0' }}
         run: node tools/construction-tools-atlas/scripts/check-production-viewport-360.mjs
       - name: Preserve public viewport screenshots
         if: always()
