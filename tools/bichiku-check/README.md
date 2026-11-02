@@ -44,7 +44,7 @@ Primary public references:
 - No invented Amazon prices, stock, reviews, brand rankings, or claims of budget optimization. If unit pricing is added later, it must be sourced/dated or explicitly user-provided.
 - No Amazon affiliate redirect until the user requests a result and clicks a category link.
 - OFUSE and Ko-fi are both present, away from ads.
-- Existing GA4, Cloudflare Analytics, and AdSense loader preserved; `ad-top` reserved but **no guessed AdSense unit ID**. A live display unit requires a verified slot ID before claiming ad monetization is active.
+- Existing GA4 and Cloudflare Analytics loaders are included. **AdSense is intentionally withheld while the tool is staged** to satisfy the NicheWorks AdSense review-surface contract. `ad-top` is reserved but no ad unit ID is guessed. Add the verified AdSense script/slot only in the public-release PR.
 - Existing Amazon tag in source code is not proof of current Associates account eligibility or actual affiliate revenue; verify in the account.
 
 ## Privacy / technical
