@@ -63,8 +63,8 @@ test("go-bag calculation does not require a full seven-day water stockpile", () 
 });
 
 test("specific alternatives have complete labels, valid parent roles and localized warnings",()=>{
-  assert.equal(choices.length,79);
-  assert.equal(new Set(choices.map(o=>o.id)).size,79);
+  assert.equal(choices.length,81);
+  assert.equal(new Set(choices.map(o=>o.id)).size,81);
   for(const o of choices){
     assert.ok(cat.some(i=>i.id===o.parent),"missing parent "+o.id);
     assert.ok(["full","conditional","supplement"].includes(o.equivalence),o.id);
