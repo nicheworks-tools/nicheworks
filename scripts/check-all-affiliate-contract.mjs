@@ -9,6 +9,7 @@ const check = (condition, message) => { if (!condition) failures.push(message); 
 const TRACKING_ID = 'nicheworks09-22';
 
 const expectedAffiliate = [
+  'bichiku-check',
   'construction-tools-atlas',
   'cosmetic-ingredient-checker-lite',
   'dry-meter',
@@ -35,6 +36,21 @@ const classification = json('MONETIZATION_CLASSIFICATION.json');
 const actualAffiliate = [...(classification.classes?.AFFILIATE || [])].sort();
 check(JSON.stringify(actualAffiliate) === JSON.stringify([...expectedAffiliate].sort()),
   `canonical AFFILIATE set mismatch: expected ${expectedAffiliate.length}, got ${actualAffiliate.length}`);
+
+
+const bichikuHtml = read('tools/bichiku-check/index.html');
+const bichikuRuntime = read('tools/bichiku-check/experience.js');
+const bichikuOptions = read('tools/bichiku-check/options.js');
+check(bichikuHtml.includes('/assets/amazon-affiliate.js'), 'BichikuCheck: shared affiliate helper missing');
+check(bichikuRuntime.includes('affiliate.configure({enabled:true,tool:"bichiku-check",targets:targetUrls})'),
+  'BichikuCheck: shared helper configuration absent');
+check(bichikuRuntime.includes('u.searchParams.set("k",query)') && bichikuRuntime.includes('u.searchParams.set("tag","nicheworks09-22")'),
+  'BichikuCheck: fixed curated Amazon Japan searches missing');
+check(bichikuRuntime.includes('affiliate.renderDisclosure(notice'), 'BichikuCheck: Associates disclosure missing');
+check(!bichikuRuntime.includes('gtag("event"') && !bichikuRuntime.includes("gtag('event'"),
+  'BichikuCheck: must not bypass shared affiliate analytics');
+check(!bichikuOptions.includes('location.search') && !bichikuRuntime.includes('location.search'),
+  'BichikuCheck: user- or URL-derived shopping terms forbidden');
 
 const helper = read('assets/amazon-affiliate.js');
 for (const needle of [
