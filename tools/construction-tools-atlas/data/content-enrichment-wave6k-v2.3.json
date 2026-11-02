@@ -1,6 +1,6 @@
 {
   "schema": "cta-content-enrichment-v2.3",
-  "version": "2026-09-18-wave6k-finishes-insulation-waterproofing-1-canonical-merge-20261103",
+  "version": "2026-09-18-wave6k-finishes-insulation-waterproofing-1-retired-archived-20261103",
   "entries": [
     {
       "id": "mud_pan",
@@ -260,32 +260,6 @@
       "examples_en": [
         "Install a continuous vapor barrier at the specified side of an insulated wall.",
         "Seal pipe penetrations through the vapor-control layer with compatible tape."
-      ]
-    },
-    {
-      "id": "q016_toolbox_meeting",
-      "wave": "content-wave-006k",
-      "state": "expanded",
-      "affiliate_review": "not_applicable",
-      "detail_ja": "作業開始前に、その日の作業内容・危険源・変更点・役割・緊急事項などを短時間で共有する安全ミーティング。参加者が理解したか確認することが重要。",
-      "detail_en": "A short pre-task safety meeting used to review the day's work, hazards, changes, responsibilities, and urgent site information. Effective talks include confirmation that workers understand the controls.",
-      "bullets_ja": [
-        "その日の実作業に関係する危険と変更点に絞り、形式的な読み上げだけにしない。",
-        "新規入場者や言語差を考慮し、質問・復唱などで理解を確認する。",
-        "重大な変更があった場合は朝礼後でも再度集まり、内容を更新する。"
-      ],
-      "bullets_en": [
-        "Focus on hazards and changes relevant to the actual task rather than treating the talk as a rote checklist.",
-        "Account for new workers and language differences and confirm understanding through questions or repeat-back.",
-        "Reconvene and update the briefing if significant conditions change after the initial talk."
-      ],
-      "examples_ja": [
-        "朝礼で当日のクレーン作業と立入禁止範囲を共有する。",
-        "午後の工程変更後に短い追加TBMを実施する。"
-      ],
-      "examples_en": [
-        "Review crane activity and exclusion zones during the morning toolbox talk.",
-        "Hold a short follow-up talk after an afternoon method change."
       ]
     },
     {
