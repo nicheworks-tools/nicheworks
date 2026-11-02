@@ -317,7 +317,7 @@ async function browserSmoke(){
       }
       // Verify a real exact-model inbound link works on the public URL without a thin model page.
       await send('Page.navigate',{url:url.origin+url.pathname+'?model=iPhone%2011'});
-      const deepLink=await until(()=>evalJs('(()=>{const input=document.querySelector("#searchInput");const row=document.querySelector(".phone-row[data-phone-id=apple-iphone-11]");const detail=document.querySelector("#desktopDetail");return {ready:input?.value==="iPhone 11"&&row&&document.querySelectorAll(".phone-row").length===1,detail:detail?.textContent.includes("iPhone 11")};})()'),9000);
+      const deepLink=await until(async()=>{const s=await evalJs('(()=>{const input=document.querySelector("#searchInput");const row=document.querySelector(".phone-row[data-phone-id=apple-iphone-11]");const detail=document.querySelector("#desktopDetail");return {ready:input?.value==="iPhone 11"&&row&&document.querySelectorAll(".phone-row").length===1,detail:detail?.textContent.includes("iPhone 11")};})()');return s?.ready&&s?.detail?s:null;},9000);
       assert.ok(deepLink.ready&&deepLink.detail,width+'px ManualFinder exact-model landing did not preselect the iPhone');
       console.log('ManualFinder deep-link PASS: '+width+'px, canonical iPhone 11 preselection');
       console.log('Wave31 JP PASS: '+width+'px, five new phones and tagged accessory CTA');
