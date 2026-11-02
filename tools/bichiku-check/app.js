@@ -188,7 +188,14 @@
       if(confirm(L.confirmReset)) {try{localStorage.removeItem(STORE);}catch(_){}settings=core.normalize({adults:1});displayed=false;results.hidden=true;renderSetup();disclosure.hidden=true;window.scrollTo({top:0,behavior:"smooth"});}
       return;
     }
-    if(b.id==="printList") {window.print();return;}
+    if(b.id==="printList") {
+      preserveOpen();
+      var priorFilter=filter, priorExpanded=Object.assign({},expanded);
+      filter="all"; expanded={critical:true,other:true,complete:true};
+      renderResults();
+      window.addEventListener("afterprint",function(){filter=priorFilter;expanded=priorExpanded;renderResults();},{once:true});
+      window.print();return;
+    }
     if(b.id==="copyList") {
       var txt=L.results+"\n"+rows.map(function(x){return x.item.names[lang]+" — "+L.missing+": "+format(x.missing)+unit(x.item.id);}).join("\n");
       if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(function(){b.textContent=L.copied;}).catch(function(){fallbackCopy(txt,b);});
