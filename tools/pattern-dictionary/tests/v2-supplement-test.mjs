@@ -7,13 +7,13 @@ const v2=JSON.parse(fs.readFileSync(path.join(root,'data/v2-extension.json'),'ut
 const backlog=JSON.parse(fs.readFileSync(path.join(root,'data/coverage-backlog.json'),'utf8'));
 const sitemap=fs.readFileSync(path.resolve(root,'..','..','sitemap.xml'),'utf8');
 const app=fs.readFileSync(path.join(root,'app.js'),'utf8');
-const expected=['sakura-motif','ume-motif','kiku-motif','tsuru-motif','yukiwa','kanzemizu','shokko','matsukawabishi','bishamon-kikko','tachibana-motif','noshi-motif','goshoguruma','temari-motif','sankuzushi','kasuri'];
+const expected=["sakura-motif","ume-motif","kiku-motif","tsuru-motif","yukiwa","kanzemizu","shokko","matsukawabishi","bishamon-kikko","tachibana-motif","noshi-motif","goshoguruma","temari-motif","sankuzushi","kasuri","graph-check","shadow-check","pencil-stripe","hairline-stripe","candy-stripe"];
 const assert=(ok,s)=>{if(!ok)throw new Error(s)};
 assert(base.length===100,'v1 canonical source must remain frozen');
-assert(v2.schema_version==='pattern-dictionary-v2-supplement-3','v2 supplement schema mismatch');
-assert(v2.entries.length===15,'fifteen supplemental entries required');
-assert(new Set(v2.entries.map(x=>x.id)).size===15,'duplicate supplement IDs');
-assert(backlog.candidates.length===72,'remaining backlog count mismatch');
+assert(v2.schema_version==='pattern-dictionary-v2-supplement-4','v2 supplement schema mismatch');
+assert(v2.entries.length===20,'twenty supplemental entries required');
+assert(new Set(v2.entries.map(x=>x.id)).size===20,'duplicate supplement IDs');
+assert(backlog.candidates.length===67,'remaining backlog count mismatch');
 for(const e of v2.entries){
  assert(expected.includes(e.id)&&!base.some(x=>x.id===e.id),'supplement ID unexpectedly overlaps v1 '+e.id);
  assert(e.production?.definition?.ja&&e.production?.definition?.en,'missing bilingual definition '+e.id);
@@ -44,7 +44,7 @@ assert(kasuri.runtime.taxonomy.appearance.length===0,'kasuri cannot be reduced t
 const yukiwa=v2.entries.find(x=>x.id==='yukiwa');
 assert(yukiwa.source.verification_state==='qualified'&&yukiwa.production.qualification?.ja&&yukiwa.production.qualification?.en,'yukiwa origin uncertainty must be preserved');
 assert(app.includes('fetch(V2)')&&app.includes('reference_path')&&app.includes('sourceMap[p.id]'),'runtime must use v2, original drawings and provenance');
-for(const [lang,file] of [['ja','index.html'],['en','en/index.html']])assert(fs.readFileSync(path.join(root,file),'utf8').includes('115'),lang+' homepage count not updated');
+for(const [lang,file] of [['ja','index.html'],['en','en/index.html']])assert(fs.readFileSync(path.join(root,file),'utf8').includes('120'),lang+' homepage count not updated');
 const cited=v2.entries.reduce((n,e)=>n+e.source.sources.length,0);
-assert(cited===38,'source-link count mismatch '+cited);
-console.log('OK: 115 browseable records, fifteen source-backed supplemental entries, '+cited+' attribution links, fifteen 1536 SVG references, 30 static bilingual detail URLs and 72 remaining unpublished concepts.');
+assert(cited===52,'source-link count mismatch '+cited);
+console.log('OK: 120 browseable records, twenty source-backed supplemental entries, '+cited+' attribution links, twenty 1536 SVG references, 40 static bilingual detail URLs and 67 remaining unpublished concepts.');
