@@ -45,7 +45,7 @@ async function patterns(){
         relationships:p.relationships,search_terms:p.search_terms,families:p.families,motifs:p.motifs,
         visual:p.visual,uses:p.uses,culture:p.culture,taxonomy:p.taxonomy,reference_path:p.reference_path};
     });
-    if(base.length!==100||supplement.length!==15||new Set([...published,...supplement].map(p=>p.id)).size!==115)throw new Error('Unexpected published dictionary identities');
+    if(base.length!==100||supplement.length!==20||new Set([...published,...supplement].map(p=>p.id)).size!==120)throw new Error('Unexpected published dictionary identities');
     return [...published,...supplement];
   }));
 }

@@ -49,7 +49,7 @@ for(const record of sources.patterns){
 }
 const candidates=backlog.candidates;
 assert(backlog.status==='not-published-not-verified','coverage inventory must not suggest publication');
-assert(candidates.length>=70,'coverage breadth unexpectedly shrank');
+assert(candidates.length>=60,'coverage breadth unexpectedly shrank; remaining candidate queue must be maintained');
 const candidateIds=new Set();
 for(const item of candidates){
   assert(!ids.has(item.id)&&!candidateIds.has(item.id),'duplicate or canonical-overlapping expansion candidate '+item.id);

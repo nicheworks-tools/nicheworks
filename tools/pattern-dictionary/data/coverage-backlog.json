@@ -23,60 +23,10 @@
       "status": "candidate-unverified"
     },
     {
-      "id": "graph-check",
-      "name": {
-        "ja": "グラフチェック",
-        "en": "Graph check"
-      },
-      "domain": "checks-and-stripes",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
       "id": "micro-check",
       "name": {
         "ja": "マイクロチェック",
         "en": "Micro check"
-      },
-      "domain": "checks-and-stripes",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
-      "id": "shadow-check",
-      "name": {
-        "ja": "シャドーチェック",
-        "en": "Shadow check"
-      },
-      "domain": "checks-and-stripes",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
-      "id": "candy-stripe",
-      "name": {
-        "ja": "キャンディストライプ",
-        "en": "Candy stripe"
-      },
-      "domain": "checks-and-stripes",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
-      "id": "pencil-stripe",
-      "name": {
-        "ja": "ペンシルストライプ",
-        "en": "Pencil stripe"
-      },
-      "domain": "checks-and-stripes",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
-      "id": "hairline-stripe",
-      "name": {
-        "ja": "ヘアラインストライプ",
-        "en": "Hairline stripe"
       },
       "domain": "checks-and-stripes",
       "proposed_type": "motif",

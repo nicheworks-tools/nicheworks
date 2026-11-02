@@ -1,7 +1,7 @@
 {
-  "schema_version": "pattern-dictionary-v2-supplement-3",
+  "schema_version": "pattern-dictionary-v2-supplement-4",
   "updated": "2026-11-02",
-  "publication_note": "Fifteen referenced and originally illustrated supplementary entries in three five-item waves beyond frozen canonical 100. Motif families and textile techniques are distinguished, and representative drawings do not assert universal appearance.",
+  "publication_note": "Twenty source-attributed original-diagram bilingual supplement entries beyond frozen 100. Width/color/style conventions are described without fabricated exact standards.",
   "entries": [
     {
       "id": "sakura-motif",
@@ -3420,6 +3420,1119 @@
         "size": "1536x1536",
         "status": "original-editorial-vector",
         "claim": "Representative schematic illustration only, never museum-collection reproduction or a claim of universal appearance."
+      }
+    },
+    {
+      "id": "graph-check",
+      "uses": {
+        "ja": [
+          "ドレスシャツ",
+          "カジュアルシャツ",
+          "織物",
+          "文房具風デザイン"
+        ],
+        "en": [
+          "dress shirts",
+          "casual shirts",
+          "woven fabrics",
+          "graphic design"
+        ]
+      },
+      "source": {
+        "pattern_id": "graph-check",
+        "verification_state": "verified",
+        "term_scope": "Fine, evenly spaced orthogonal lines making a graph-paper-like grid; distinct from much larger windowpane checks",
+        "verified_names": {
+          "ja": "グラフチェック",
+          "en": "Graph Check"
+        },
+        "verified_aliases": {
+          "ja": [
+            "方眼チェック",
+            "ラインチェック",
+            "グラフ格子"
+          ],
+          "en": [
+            "graph check pattern",
+            "line check",
+            "graph-paper check"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "小学館『デジタル大辞泉』／コトバンク",
+            "url": "https://kotobank.jp/word/%E3%81%90%E3%82%89%E3%81%B5%E3%81%A1%E3%81%88%E3%81%A4%E3%81%8F-485719",
+            "supports": [
+              "Fine graph-paper style grid and common shirt use"
+            ]
+          },
+          {
+            "publisher": "FASHIONSNAP / グラフチェック用語集",
+            "url": "https://www.fashionsnap.com/dictionary/graph-check/",
+            "supports": [
+              "Graph check and line check as names for a fine line grid"
+            ]
+          },
+          {
+            "publisher": "ユニクロ / シャツの定番チェック柄",
+            "url": "https://www.uniqlo.com/jp/ja/news/topics/2017090502/",
+            "supports": [
+              "Orthogonal fine lines, typically single accent color"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "graph-check",
+        "review_state": "source-reviewed",
+        "verification_state": "verified",
+        "names": {
+          "ja": "グラフチェック",
+          "en": "Graph Check"
+        },
+        "aliases": {
+          "ja": [
+            "方眼チェック",
+            "ラインチェック",
+            "グラフ格子"
+          ],
+          "en": [
+            "graph check pattern",
+            "line check",
+            "graph-paper check"
+          ]
+        },
+        "term_scope": "Fine, evenly spaced orthogonal lines making a graph-paper-like grid; distinct from much larger windowpane checks",
+        "definition": {
+          "ja": "方眼紙のように細い縦線と横線をほぼ等間隔に交差させた格子柄。線そのものが格子を作り、色で塗り分けた市松や、幅のある帯を重ねるギンガムとは異なります。一般にシャツ地などに用いられます。",
+          "en": "A check made from fine, regularly spaced vertical and horizontal lines, resembling graph paper. Its grid comes from narrow outlines rather than alternating filled squares or broad crossing bands, and it is common in shirting."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "縦線・横線とも細く、四角い方眼の幅がほぼ等しい",
+            "塗りつぶされた市松や幅広のギンガム格子とは違います",
+            "ウィンドウペーンより細かい格子として呼ばれることが多いですが、大きさに絶対的な境界はありません"
+          ],
+          "en": [
+            "Look for a regular, fine orthogonal grid like graph paper",
+            "Cells are outlined by narrow lines rather than solid alternating squares",
+            "It is usually smaller than windowpane check, without a universal size cutoff"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "ドレスシャツ",
+            "カジュアルシャツ",
+            "織物",
+            "文房具風デザイン"
+          ],
+          "en": [
+            "dress shirts",
+            "casual shirts",
+            "woven fabrics",
+            "graphic design"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "white",
+            "blue"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Representative source-informed recognition palette; the identified structure is not tied to one colorway."
+        }
+      },
+      "runtime": {
+        "id": "graph-check",
+        "names": {
+          "ja": "グラフチェック",
+          "en": "Graph Check"
+        },
+        "aliases": {
+          "ja": [
+            "方眼チェック",
+            "ラインチェック",
+            "グラフ格子"
+          ],
+          "en": [
+            "graph check pattern",
+            "line check",
+            "graph-paper check"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "方眼紙みたいな細い格子",
+            "グラフチェック シャツ",
+            "薄い線で四角く区切った布の柄"
+          ],
+          "en": [
+            "graph paper check shirt fabric",
+            "fine line check cloth",
+            "small square grid pattern"
+          ]
+        },
+        "families": [
+          "check",
+          "geometric"
+        ],
+        "motifs": [
+          "方眼紙",
+          "細い直交線"
+        ],
+        "visual": {
+          "geometry": [
+            "check",
+            "geometric"
+          ],
+          "line": [
+            "straight"
+          ],
+          "density": [
+            "fine"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "white",
+            "blue"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Representative editorial palette."
+        },
+        "uses": [
+          "fashion",
+          "textile"
+        ],
+        "culture": [],
+        "relationships": {
+          "similar": [
+            "windowpane-check",
+            "koushi",
+            "gingham"
+          ],
+          "often_confused_with": [
+            "windowpane-check",
+            "gingham"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "方眼紙のように細い縦線と横線をほぼ等間隔に交差させた格子柄。線そのものが格子を作り、色で塗り分けた市松や、幅のある帯を重ねるギンガムとは異なります。一般にシャツ地などに用いられます。",
+          "en": "A check made from fine, regularly spaced vertical and horizontal lines, resembling graph paper. Its grid comes from narrow outlines rather than alternating filled squares or broad crossing bands, and it is common in shirting."
+        },
+        "reference_path": "assets/reference-v2/graph-check.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "check",
+            "geometric"
+          ],
+          "contexts": []
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/graph-check.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Original editorial schematic; no source image reproduced. Width/color/texture vary in real goods."
+      }
+    },
+    {
+      "id": "shadow-check",
+      "uses": {
+        "ja": [
+          "スーツ地",
+          "ドレスシャツ",
+          "ジャケット",
+          "フォーマル素材"
+        ],
+        "en": [
+          "suitings",
+          "dress shirts",
+          "jackets",
+          "formal textiles"
+        ]
+      },
+      "source": {
+        "pattern_id": "shadow-check",
+        "verification_state": "verified",
+        "term_scope": "Subtle check made visible through differences in weave, twist, luster or same-family color rather than strong contrasting printed lines",
+        "verified_names": {
+          "ja": "シャドーチェック",
+          "en": "Shadow Check"
+        },
+        "verified_aliases": {
+          "ja": [
+            "シャドウチェック",
+            "陰影チェック",
+            "同色格子"
+          ],
+          "en": [
+            "shadow check pattern",
+            "tonal check",
+            "shadow plaid"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "東京都洋服商工協同組合 / 柄の表現",
+            "url": "https://www.yohfuku.or.jp/knowledge/fabric/fabric3/",
+            "supports": [
+              "Shadow check achieved by twisting/weaving directional light effects"
+            ]
+          },
+          {
+            "publisher": "SUNWELL / チェック柄の種類一覧",
+            "url": "https://www.sunwell-net.jp/shop/e/ecolumn8/",
+            "supports": [
+              "Shadow check appears through light, weave and close tonal coloring"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "shadow-check",
+        "review_state": "source-reviewed",
+        "verification_state": "verified",
+        "names": {
+          "ja": "シャドーチェック",
+          "en": "Shadow Check"
+        },
+        "aliases": {
+          "ja": [
+            "シャドウチェック",
+            "陰影チェック",
+            "同色格子"
+          ],
+          "en": [
+            "shadow check pattern",
+            "tonal check",
+            "shadow plaid"
+          ]
+        },
+        "term_scope": "Subtle check made visible through differences in weave, twist, luster or same-family color rather than strong contrasting printed lines",
+        "definition": {
+          "ja": "光の当たり方や織りの光沢差・糸の撚り方・同系色の濃淡によって、控えめな格子が浮き上がって見える柄。離れると無地に見えることもあり、強い色線で描く通常のチェックとは識別方法が違います。",
+          "en": "A subtle check whose grid becomes visible through weave structure, yarn twist, luster or small tonal differences rather than strongly contrasting stripes. At some angles it looks nearly plain; at others a restrained grid appears."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "角度や光源によって格子の見え方が変わります",
+            "色差が小さく、遠目に無地のような作例があります",
+            "線の輪郭より織り組織・光沢による陰影が主役です"
+          ],
+          "en": [
+            "A grid can appear or disappear as the light or viewing angle changes",
+            "Tone differences are typically subtle and can resemble solid fabric from afar",
+            "Surface reflection or weave contrasts matter more than bold printed outlines"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "スーツ地",
+            "ドレスシャツ",
+            "ジャケット",
+            "フォーマル素材"
+          ],
+          "en": [
+            "suitings",
+            "dress shirts",
+            "jackets",
+            "formal textiles"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "gray",
+            "charcoal"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Representative source-informed recognition palette; the identified structure is not tied to one colorway."
+        }
+      },
+      "runtime": {
+        "id": "shadow-check",
+        "names": {
+          "ja": "シャドーチェック",
+          "en": "Shadow Check"
+        },
+        "aliases": {
+          "ja": [
+            "シャドウチェック",
+            "陰影チェック",
+            "同色格子"
+          ],
+          "en": [
+            "shadow check pattern",
+            "tonal check",
+            "shadow plaid"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "光で浮かび上がる格子",
+            "シャドーチェック スーツ",
+            "同系色で目立たない格子柄"
+          ],
+          "en": [
+            "subtle tonal check fabric",
+            "shadow check suiting",
+            "check visible only in light"
+          ]
+        },
+        "families": [
+          "check",
+          "textile"
+        ],
+        "motifs": [
+          "陰影",
+          "織りの光沢"
+        ],
+        "visual": {
+          "geometry": [
+            "check",
+            "textile"
+          ],
+          "line": [
+            "straight"
+          ],
+          "density": [
+            "fine"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "gray",
+            "charcoal"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Representative editorial palette."
+        },
+        "uses": [
+          "fashion",
+          "textile"
+        ],
+        "culture": [],
+        "relationships": {
+          "similar": [
+            "glen-check",
+            "graph-check",
+            "windowpane-check"
+          ],
+          "often_confused_with": [
+            "graph-check",
+            "glen-check"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "光の当たり方や織りの光沢差・糸の撚り方・同系色の濃淡によって、控えめな格子が浮き上がって見える柄。離れると無地に見えることもあり、強い色線で描く通常のチェックとは識別方法が違います。",
+          "en": "A subtle check whose grid becomes visible through weave structure, yarn twist, luster or small tonal differences rather than strongly contrasting stripes. At some angles it looks nearly plain; at others a restrained grid appears."
+        },
+        "reference_path": "assets/reference-v2/shadow-check.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "check",
+            "textile"
+          ],
+          "contexts": []
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/shadow-check.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Original editorial schematic; no source image reproduced. Width/color/texture vary in real goods."
+      }
+    },
+    {
+      "id": "pencil-stripe",
+      "uses": {
+        "ja": [
+          "スーツ",
+          "ドレスシャツ",
+          "ジャケット",
+          "パンツ"
+        ],
+        "en": [
+          "suits",
+          "dress shirts",
+          "jackets",
+          "trousers"
+        ]
+      },
+      "source": {
+        "pattern_id": "pencil-stripe",
+        "verification_state": "verified",
+        "term_scope": "Fine, clear, regularly spaced stripe comparable to an outline drawn in pencil; category boundaries with pin/chalk stripes are conventional",
+        "verified_names": {
+          "ja": "ペンシルストライプ",
+          "en": "Pencil Stripe"
+        },
+        "verified_aliases": {
+          "ja": [
+            "鉛筆縞",
+            "ペンシル縞"
+          ],
+          "en": [
+            "pencil stripe pattern",
+            "pencil-line stripe"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "FASHIONSNAP / ペンシルストライプ用語集",
+            "url": "https://www.fashionsnap.com/dictionary/pencil-stripe/",
+            "supports": [
+              "Fine equal-spaced pencil-like stripes; distinctions from pin and chalk stripes"
+            ]
+          },
+          {
+            "publisher": "TEXTILE NET / ストライプ柄の種類",
+            "url": "https://contents.textile-net.jp/reading-material/stripe-2021/index.html",
+            "supports": [
+              "Pencil stripes are described as broader than pinstripes"
+            ]
+          },
+          {
+            "publisher": "SUNWELL / ストライプ柄特集",
+            "url": "https://www.sunwell-net.jp/shop/e/ecolumn7/",
+            "supports": [
+              "Pencil-like clear stripe used in shirt and suiting fabrics"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "pencil-stripe",
+        "review_state": "source-reviewed",
+        "verification_state": "verified",
+        "names": {
+          "ja": "ペンシルストライプ",
+          "en": "Pencil Stripe"
+        },
+        "aliases": {
+          "ja": [
+            "鉛筆縞",
+            "ペンシル縞"
+          ],
+          "en": [
+            "pencil stripe pattern",
+            "pencil-line stripe"
+          ]
+        },
+        "term_scope": "Fine, clear, regularly spaced stripe comparable to an outline drawn in pencil; category boundaries with pin/chalk stripes are conventional",
+        "definition": {
+          "ja": "鉛筆で線を引いたように細く輪郭の明瞭な縦縞が等間隔に並ぶ柄。ピンストライプより線がやや太く、チョークストライプほど幅広・柔らかい輪郭ではないと説明されますが、線幅には統一規格がありません。",
+          "en": "A regular stripe of fine, crisply outlined lines resembling pencil strokes. It is commonly described as more apparent than pinstripes but narrower and sharper than chalk stripes; there is no universal fixed line-width threshold."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "均等な間隔で平行な細い線が並びます",
+            "ピンストライプよりやや明瞭で、チョークストライプよりシャープな輪郭が典型です",
+            "線幅の分類は業界や製品によって重なります"
+          ],
+          "en": [
+            "Regularly spaced thin lines have a clear, pencil-like edge",
+            "Typically bolder than pinstripes but slimmer and sharper than chalk stripes",
+            "Exact width categories overlap among fabrics"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "スーツ",
+            "ドレスシャツ",
+            "ジャケット",
+            "パンツ"
+          ],
+          "en": [
+            "suits",
+            "dress shirts",
+            "jackets",
+            "trousers"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "navy",
+            "white"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Representative source-informed recognition palette; the identified structure is not tied to one colorway."
+        }
+      },
+      "runtime": {
+        "id": "pencil-stripe",
+        "names": {
+          "ja": "ペンシルストライプ",
+          "en": "Pencil Stripe"
+        },
+        "aliases": {
+          "ja": [
+            "鉛筆縞",
+            "ペンシル縞"
+          ],
+          "en": [
+            "pencil stripe pattern",
+            "pencil-line stripe"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "鉛筆で引いた細い線のスーツ柄",
+            "ペンシルストライプ と ピンストライプ",
+            "細くはっきりした縦縞"
+          ],
+          "en": [
+            "pencil thin clear stripe suit",
+            "pencil stripe vs pinstripe",
+            "sharp narrow vertical stripe pattern"
+          ]
+        },
+        "families": [
+          "stripe"
+        ],
+        "motifs": [
+          "鉛筆の線",
+          "細いたて縞"
+        ],
+        "visual": {
+          "geometry": [
+            "stripe"
+          ],
+          "line": [
+            "straight"
+          ],
+          "density": [
+            "fine"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "navy",
+            "white"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Representative editorial palette."
+        },
+        "uses": [
+          "fashion",
+          "textile"
+        ],
+        "culture": [],
+        "relationships": {
+          "similar": [
+            "pinstripe",
+            "chalk-stripe",
+            "hairline-stripe"
+          ],
+          "often_confused_with": [
+            "pinstripe",
+            "chalk-stripe"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "鉛筆で線を引いたように細く輪郭の明瞭な縦縞が等間隔に並ぶ柄。ピンストライプより線がやや太く、チョークストライプほど幅広・柔らかい輪郭ではないと説明されますが、線幅には統一規格がありません。",
+          "en": "A regular stripe of fine, crisply outlined lines resembling pencil strokes. It is commonly described as more apparent than pinstripes but narrower and sharper than chalk stripes; there is no universal fixed line-width threshold."
+        },
+        "reference_path": "assets/reference-v2/pencil-stripe.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "stripe"
+          ],
+          "contexts": []
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/pencil-stripe.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Original editorial schematic; no source image reproduced. Width/color/texture vary in real goods."
+      }
+    },
+    {
+      "id": "hairline-stripe",
+      "uses": {
+        "ja": [
+          "スーツ地",
+          "シャツ",
+          "パンツ",
+          "織物"
+        ],
+        "en": [
+          "suitings",
+          "shirts",
+          "trousers",
+          "woven textiles"
+        ]
+      },
+      "source": {
+        "pattern_id": "hairline-stripe",
+        "verification_state": "verified",
+        "term_scope": "Extremely fine close parallel lines resembling hair; depending on fabric, it may also describe a woven structure, so illustration is representative",
+        "verified_names": {
+          "ja": "ヘアラインストライプ",
+          "en": "Hairline Stripe"
+        },
+        "verified_aliases": {
+          "ja": [
+            "ヘアライン縞",
+            "刷毛目縞",
+            "千筋"
+          ],
+          "en": [
+            "hairline stripe pattern",
+            "hairline weave",
+            "fine hairline stripe"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "ファーストリテイリング / ヘアライン ストライプ用語集",
+            "url": "https://www.fastretailing.com/jp/glossary/442.html",
+            "supports": [
+              "Very fine close-spaced woven line effect and textile aliases"
+            ]
+          },
+          {
+            "publisher": "SUNWELL / ストライプ柄特集",
+            "url": "https://www.sunwell-net.jp/shop/e/ecolumn7/",
+            "supports": [
+              "Hairline visually near-solid because of extreme fine strokes"
+            ]
+          },
+          {
+            "publisher": "ApparelX Wiki / ヘアラインストライプ",
+            "url": "https://www.apparelx.jp/wiki/hairline-stripe",
+            "supports": [
+              "Fine close lines, pattern name and overlap with other trade categories"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "hairline-stripe",
+        "review_state": "source-reviewed",
+        "verification_state": "verified",
+        "names": {
+          "ja": "ヘアラインストライプ",
+          "en": "Hairline Stripe"
+        },
+        "aliases": {
+          "ja": [
+            "ヘアライン縞",
+            "刷毛目縞",
+            "千筋"
+          ],
+          "en": [
+            "hairline stripe pattern",
+            "hairline weave",
+            "fine hairline stripe"
+          ]
+        },
+        "term_scope": "Extremely fine close parallel lines resembling hair; depending on fabric, it may also describe a woven structure, so illustration is representative",
+        "definition": {
+          "ja": "髪の毛のようにごく細い線が狭い間隔で多数並ぶ縞模様。濃淡の異なる糸を交互に織って表す場合には刷毛目などとも呼ばれ、遠目には無地に近く見えます。ピンストライプと呼称が重なる例もありますが、密集した極細線が特徴です。",
+          "en": "A very fine and closely spaced stripe whose parallel marks resemble hairs and can look nearly plain at a distance. In woven versions alternating light and dark yarns may create a brushed or hairline texture; the trade name overlaps other fine-stripe categories."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "線が極細で、一本ずつの間隔が非常に狭い",
+            "遠くから見ると無地か淡い面に見えることがあります",
+            "太く間隔の開いたピンストライプやペンシルストライプと対比します"
+          ],
+          "en": [
+            "Extremely narrow lines sit close together",
+            "The texture may look nearly solid at viewing distance",
+            "Compare with more widely spaced pinstripe and pencil stripe"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "スーツ地",
+            "シャツ",
+            "パンツ",
+            "織物"
+          ],
+          "en": [
+            "suitings",
+            "shirts",
+            "trousers",
+            "woven textiles"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "navy",
+            "white"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Representative source-informed recognition palette; the identified structure is not tied to one colorway."
+        }
+      },
+      "runtime": {
+        "id": "hairline-stripe",
+        "names": {
+          "ja": "ヘアラインストライプ",
+          "en": "Hairline Stripe"
+        },
+        "aliases": {
+          "ja": [
+            "ヘアライン縞",
+            "刷毛目縞",
+            "千筋"
+          ],
+          "en": [
+            "hairline stripe pattern",
+            "hairline weave",
+            "fine hairline stripe"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "髪の毛みたいな極細縞",
+            "ヘアラインストライプ 生地",
+            "刷毛目 縞柄"
+          ],
+          "en": [
+            "very fine close stripe fabric",
+            "hairline stripe suiting",
+            "hairline stripe versus pinstripe"
+          ]
+        },
+        "families": [
+          "stripe",
+          "weave"
+        ],
+        "motifs": [
+          "極細線",
+          "刷毛目"
+        ],
+        "visual": {
+          "geometry": [
+            "stripe",
+            "weave"
+          ],
+          "line": [
+            "straight"
+          ],
+          "density": [
+            "fine"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "navy",
+            "white"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Representative editorial palette."
+        },
+        "uses": [
+          "fashion",
+          "textile"
+        ],
+        "culture": [],
+        "relationships": {
+          "similar": [
+            "pinstripe",
+            "pencil-stripe",
+            "chalk-stripe"
+          ],
+          "often_confused_with": [
+            "pinstripe",
+            "pencil-stripe"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "髪の毛のようにごく細い線が狭い間隔で多数並ぶ縞模様。濃淡の異なる糸を交互に織って表す場合には刷毛目などとも呼ばれ、遠目には無地に近く見えます。ピンストライプと呼称が重なる例もありますが、密集した極細線が特徴です。",
+          "en": "A very fine and closely spaced stripe whose parallel marks resemble hairs and can look nearly plain at a distance. In woven versions alternating light and dark yarns may create a brushed or hairline texture; the trade name overlaps other fine-stripe categories."
+        },
+        "reference_path": "assets/reference-v2/hairline-stripe.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "stripe",
+            "weave"
+          ],
+          "contexts": []
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/hairline-stripe.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Original editorial schematic; no source image reproduced. Width/color/texture vary in real goods."
+      }
+    },
+    {
+      "id": "candy-stripe",
+      "uses": {
+        "ja": [
+          "シャツ",
+          "子ども服",
+          "カジュアル生地",
+          "雑貨"
+        ],
+        "en": [
+          "shirts",
+          "children's apparel",
+          "casual fabrics",
+          "accessories"
+        ]
+      },
+      "source": {
+        "pattern_id": "candy-stripe",
+        "verification_state": "verified",
+        "term_scope": "Bright, crisp, often relatively narrow colored stripes on a white or light background, commonly used in shirts; not a material or weave specification",
+        "verified_names": {
+          "ja": "キャンディストライプ",
+          "en": "Candy Stripe"
+        },
+        "verified_aliases": {
+          "ja": [
+            "キャンディーストライプ",
+            "キャンディ縞"
+          ],
+          "en": [
+            "candy stripe pattern",
+            "candy-cane stripe",
+            "candy-striped cloth"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "FASHIONSNAP / キャンディストライプ用語集",
+            "url": "https://www.fashionsnap.com/dictionary/candy-stripe/",
+            "supports": [
+              "Bright colored narrow stripes on white and shirt use"
+            ]
+          },
+          {
+            "publisher": "TEXTILE NET / ストライプ柄の種類",
+            "url": "https://contents.textile-net.jp/reading-material/stripe-2021/index.html",
+            "supports": [
+              "Bright fine stripes on white with candy wrapping color examples"
+            ]
+          },
+          {
+            "publisher": "ApparelX Wiki / キャンディストライプ",
+            "url": "https://www.iteams.jp/wiki/candy-stripe",
+            "supports": [
+              "Regular light-and-bright stripe visual category"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "candy-stripe",
+        "review_state": "source-reviewed",
+        "verification_state": "verified",
+        "names": {
+          "ja": "キャンディストライプ",
+          "en": "Candy Stripe"
+        },
+        "aliases": {
+          "ja": [
+            "キャンディーストライプ",
+            "キャンディ縞"
+          ],
+          "en": [
+            "candy stripe pattern",
+            "candy-cane stripe",
+            "candy-striped cloth"
+          ]
+        },
+        "term_scope": "Bright, crisp, often relatively narrow colored stripes on a white or light background, commonly used in shirts; not a material or weave specification",
+        "definition": {
+          "ja": "白や淡色の地に赤・青など鮮やかな細い色線を繰り返す縞模様。菓子の棒やキャンディケインを連想させる配色から呼ばれ、シャツ地などに見られます。使われる色や線の幅は固定されていません。",
+          "en": "A playful stripe with crisp, relatively narrow bright colors on a white or pale background, recalling candy sticks or candy canes. Often used in shirts, it names a visual color-and-stripe effect rather than a particular fabric or weave."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "白・淡色の背景に明るい色線が繰り返されます",
+            "同幅や細幅の直線的な縞が多いですが、色の組み合わせに固定規格はありません",
+            "細さそのものより、キャンディを連想させるはっきりした配色が重要です"
+          ],
+          "en": [
+            "Bright colored stripes usually alternate with a light background",
+            "Crisp, fairly slim repeating stripes are common but exact widths vary",
+            "Distinguish the bright candy-like color pairing from formal pin- or pencil-stripe suiting"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "シャツ",
+            "子ども服",
+            "カジュアル生地",
+            "雑貨"
+          ],
+          "en": [
+            "shirts",
+            "children's apparel",
+            "casual fabrics",
+            "accessories"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "white",
+            "red"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Representative source-informed recognition palette; the identified structure is not tied to one colorway."
+        }
+      },
+      "runtime": {
+        "id": "candy-stripe",
+        "names": {
+          "ja": "キャンディストライプ",
+          "en": "Candy Stripe"
+        },
+        "aliases": {
+          "ja": [
+            "キャンディーストライプ",
+            "キャンディ縞"
+          ],
+          "en": [
+            "candy stripe pattern",
+            "candy-cane stripe",
+            "candy-striped cloth"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "白地に赤い細い線のキャンディ柄",
+            "キャンディストライプ シャツ",
+            "カラフルな細い縦縞"
+          ],
+          "en": [
+            "candy stripe shirt",
+            "bright red white candy thin stripes",
+            "colored candy cane stripe textile"
+          ]
+        },
+        "families": [
+          "stripe"
+        ],
+        "motifs": [
+          "明るい色線",
+          "白地"
+        ],
+        "visual": {
+          "geometry": [
+            "stripe"
+          ],
+          "line": [
+            "straight"
+          ],
+          "density": [
+            "fine"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "white",
+            "red"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Representative editorial palette."
+        },
+        "uses": [
+          "fashion",
+          "textile"
+        ],
+        "culture": [],
+        "relationships": {
+          "similar": [
+            "bengal-stripe",
+            "awning-stripe",
+            "pencil-stripe"
+          ],
+          "often_confused_with": [
+            "bengal-stripe",
+            "pencil-stripe"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "白や淡色の地に赤・青など鮮やかな細い色線を繰り返す縞模様。菓子の棒やキャンディケインを連想させる配色から呼ばれ、シャツ地などに見られます。使われる色や線の幅は固定されていません。",
+          "en": "A playful stripe with crisp, relatively narrow bright colors on a white or pale background, recalling candy sticks or candy canes. Often used in shirts, it names a visual color-and-stripe effect rather than a particular fabric or weave."
+        },
+        "reference_path": "assets/reference-v2/candy-stripe.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "stripe"
+          ],
+          "contexts": []
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/candy-stripe.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Original editorial schematic; no source image reproduced. Width/color/texture vary in real goods."
       }
     }
   ]

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1536" viewBox="0 0 1536 1536" role="img" aria-label="pencil-stripe original comparison schematic">
+<rect width="1536" height="1536" fill="#f8f7f4"/>
+<defs><g id="motif"><rect x="-190" y="-190" width="380" height="380" fill="#263e63"/><g stroke="#eef0eb" stroke-width="8"><path d="M-174 -190V190"/><path d="M-135 -190V190"/><path d="M-96 -190V190"/><path d="M-57 -190V190"/><path d="M-18 -190V190"/><path d="M21 -190V190"/><path d="M60 -190V190"/><path d="M99 -190V190"/><path d="M138 -190V190"/><path d="M177 -190V190"/></g></g></defs>
+<use href="#motif" transform="translate(256 256)"/>
+<use href="#motif" transform="translate(768 256)"/>
+<use href="#motif" transform="translate(1280 256)"/>
+<use href="#motif" transform="translate(256 768)"/>
+<use href="#motif" transform="translate(768 768)"/>
+<use href="#motif" transform="translate(1280 768)"/>
+<use href="#motif" transform="translate(256 1280)"/>
+<use href="#motif" transform="translate(768 1280)"/>
+<use href="#motif" transform="translate(1280 1280)"/>
+</svg>

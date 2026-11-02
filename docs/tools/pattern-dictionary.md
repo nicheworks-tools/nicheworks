@@ -177,3 +177,7 @@ A separate `v2-extension.json` now contributes 5 additional Japanese named motif
 ## Pattern Dictionary supplementary coverage wave 3 (2026-11-02)
 
 Five new source-led bilingual entries are included in versioned `v2-extension.json`: Bundled Noshi, Gosho-guruma Carriage, Temari Ball, Sankuzushi Three-Bar Motif and Kasuri Resist-Dyed Weave. Runtime coverage: **115**. Static JA/EN detail URLs: **230**. Unverified candidate backlog: **72**. Kasuri is categorized as a qualified technique (not a universal repeat). Strict 230 URL production monitoring must follow deployment.
+
+## Pattern Dictionary V2 wave 4 — checks and stripes (2026-11-02)
+
+Five new source-backed bilingual pattern names: graph check, shadow check, pencil stripe, hairline stripe and candy stripe. New sources and original 1536 SVG schematics, ten more static detail pages, and twenty new exact-language browser regression queries. Combined dictionary: 120 terms (100 frozen v1 and twenty V2 supplement entries), 240 potential detail URLs, with 67 unreviewed candidates outside public runtime and sitemap. Strict post-deployment 240-page audit is supported.
