@@ -57,7 +57,7 @@ function names(e){return{ja:text(e?.term?.ja),en:text(e?.term?.en),aja:arr(e?.al
   if(activeIds.length!==98)throw new Error(`Expected 98 active q014 canonicals, got ${activeIds.length}`);
 
   const rt=await runtime();
-  if(rt.entries.length!==870)throw new Error(`Expected 870 public runtime entries after q014 closure, got ${rt.entries.length}`);
+  if(rt.entries.length!==865)throw new Error(`Expected 865 public runtime entries after q014 closure, got ${rt.entries.length}`);
   const byId=new Map(rt.entries.map(e=>[text(e.id),e]));
   for(const id of EXPECTED_REDIRECTS.keys())if(byId.has(id))throw new Error(`${id}: redirected q014 duplicate is still public`);
   for(const id of activeIds)if(!byId.has(id))throw new Error(`${id}: active q014 canonical missing from runtime`);
