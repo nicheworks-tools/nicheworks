@@ -21,6 +21,7 @@
     latest: null,
     baseline: null,
   };
+  let cameraRevision = 0;
 
   const $ = (id) => document.getElementById(id);
 
@@ -122,12 +123,13 @@
 
   function updateButtons() {
     if (els.btnStart) {
-      els.btnStart.hidden = state.running;
+      els.btnStart.hidden = state.running || state.busy;
       els.btnStart.disabled = state.busy || state.running;
     }
     if (els.btnStop) {
-      els.btnStop.hidden = !state.running;
-      els.btnStop.disabled = !state.running;
+      // Stop must be available during a pending camera permission prompt.
+      els.btnStop.hidden = !(state.running || state.busy);
+      els.btnStop.disabled = !(state.running || state.busy);
     }
     if (els.btnFlip) els.btnFlip.disabled = state.busy || !state.running;
     if (els.btnBaseline) els.btnBaseline.disabled = state.busy || !state.running || !state.latest;
@@ -198,6 +200,7 @@
   }
 
   function hardStopCamera() {
+    ++cameraRevision;
     if (state.rafId) cancelAnimationFrame(state.rafId);
     state.rafId = 0;
     stopStream(state.stream);
@@ -228,12 +231,14 @@
     updateStatus("starting");
     hideAlert();
 
+    let revision = cameraRevision;
     try {
       if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
         throw new Error("getUserMedia_not_supported");
       }
 
       hardStopCamera();
+      revision = cameraRevision;
       const size = state.liteMode ? { width: 320, height: 240 } : { width: 1280, height: 720 };
       const constraints = {
         video: {
@@ -245,10 +250,15 @@
       };
 
       const stream = await navigator.mediaDevices.getUserMedia(constraints);
+      if (revision !== cameraRevision) {
+        stopStream(stream);
+        return;
+      }
       state.stream = stream;
       if (els.video) {
         els.video.srcObject = stream;
         await els.video.play();
+        if (revision !== cameraRevision) return;
       }
       state.latest = null;
       state.running = true;
@@ -261,16 +271,18 @@
       updateMetricsText();
       state.rafId = requestAnimationFrame(runFrameLoop);
     } catch (err) {
+      if (revision !== cameraRevision) return;
       hardStopCamera();
+      setBusy(false);
       const msg = explainCameraError(err);
       showAlert(msg.ja, msg.en);
     } finally {
-      setBusy(false);
+      if (revision === cameraRevision) setBusy(false);
     }
   }
 
   function stopCamera() {
-    if (state.busy && !state.running) return;
+    // Do not ignore Stop when camera permission/play() is still unresolved.
     setBusy(true);
     updateStatus("stopping");
     hardStopCamera();
@@ -686,8 +698,8 @@
       if (event.key === "Escape") closeSheets();
     });
 
-    window.addEventListener("pagehide", hardStopCamera);
-    window.addEventListener("beforeunload", hardStopCamera);
+    window.addEventListener("pagehide", () => { hardStopCamera(); setBusy(false); });
+    window.addEventListener("beforeunload", () => { hardStopCamera(); setBusy(false); });
   }
 
   function init() {
