@@ -502,7 +502,13 @@
       "dj": "外壁の出隅・入隅を仕上げる部材。\n外壁の出隅でサイディングや金属外装の端部を受け、角部を仕上げるための役物。意匠だけでなく、外装端部の保持、所定の目地確保、背面の透湿防水層・通気層を損なわない納まりが必要になる。",
       "de": "Trim used to finish outside or inside wall corners.\nA trim or accessory used at an external wall corner to receive and finish the edges of siding or metal cladding. It is not merely decorative; it helps define panel termination and joint geometry while the weather-resistive layer and cavity behind it must remain functional.",
       "c": "exterior",
-      "task": "finish_corner"
+      "task": "finish_corner",
+      "aj": [
+        "外壁出隅材"
+      ],
+      "ae": [
+        "Exterior cladding corner trim"
+      ]
     },
     {
       "id": "q014_fascia_board",
@@ -751,7 +757,13 @@
       "dj": "扉を開閉するための取っ手。\n扉を押す・引く・ラッチを操作するために手で握る建具金物。レバーハンドル、ノブ、固定ハンドルなど形式があり、ラッチ操作型では角芯や錠ケースとの位置合わせが必要。使用者や用途に応じて形状と取付高さを選ぶ。",
       "de": "Handle used to operate a door.\nDoor hardware gripped by the user to push, pull, or operate the latch. Common forms include lever handles, knobs, and fixed pulls. Operating handles require correct alignment with the spindle and lock case, and shape and mounting height should suit the intended users and application.",
       "c": "hardware",
-      "task": "install_handle"
+      "task": "install_handle",
+      "aj": [
+        "扉ハンドル"
+      ],
+      "ae": [
+        "Door operating handle"
+      ]
     },
     {
       "id": "q014_push_plate",
@@ -761,7 +773,13 @@
       "dj": "扉を押して開けるための保護板。\n扉を手で押す位置へ取り付け、表面の汚れ・擦れ・局所的な損傷を抑える保護板。ステンレスなどの板材が多く、扉の操作位置に合わせて平らに固定する。",
       "de": "Plate used to push a door open and protect its surface.\nA protective plate installed at the hand-push area of a door to reduce soiling, abrasion, and localized surface damage. It is commonly stainless steel or similar sheet material and should be fixed flat at the natural operating position.",
       "c": "hardware",
-      "task": "install_door_hardware"
+      "task": "install_door_hardware",
+      "aj": [
+        "ドア押し板"
+      ],
+      "ae": [
+        "Door push plate"
+      ]
     },
     {
       "id": "q014_pull_handle",
@@ -771,7 +789,13 @@
       "dj": "扉や引戸を引くための金物。\n扉を引いて開けるための固定式ハンドル。棒状・弓形などがあり、重量のある扉では十分な下地と固定強度が必要。両面に取り付ける場合は芯位置を合わせて扉を挟み込む構成も多い。",
       "de": "Handle used to pull a door or sliding panel.\nA fixed handle used to pull a door open. Bar and bow-shaped forms are common, and heavy doors require adequate backing and secure fixings. Paired handles are often aligned through the leaf and clamped or through-bolted together.",
       "c": "hardware",
-      "task": "install_handle"
+      "task": "install_handle",
+      "aj": [
+        "扉引き手"
+      ],
+      "ae": [
+        "Door pull grip"
+      ]
     },
     {
       "id": "q014_sliding_door_rail",
@@ -871,7 +895,13 @@
       "dj": "外壁を保護し仕上げる屋外用塗料。\n外壁や屋外部材の表面を保護し、色・艶などの意匠を整えるための塗装材料。下地材や既存塗膜に適合する下塗りと上塗りを組み合わせ、劣化部の補修、洗浄、乾燥、規定塗布量と塗重ね時間を管理して性能を確保する。",
       "de": "Paint used to protect and finish exterior walls.\nA coating system used to protect exterior walls or outdoor components while providing color and finish. Compatible primers and topcoats must be selected for the substrate and existing coating, with surface repair, cleaning, drying, application rate, and recoat interval controlled to achieve the intended performance.",
       "c": "paint",
-      "task": "paint_exterior"
+      "task": "paint_exterior",
+      "aj": [
+        "外装塗料"
+      ],
+      "ae": [
+        "External wall paint"
+      ]
     },
     {
       "id": "q014_elastomeric_paint",
@@ -881,7 +911,13 @@
       "dj": "伸縮性を持つ外装用塗膜材。\n外壁などの細かな動きに追従しやすい弾性を持つ塗膜仕上げ材。ひび割れ追従性を期待して使われるが、下地の割れ幅や含水状態、既存塗膜との相性によって性能が変わるため、下地処理と仕様確認が重要になる。",
       "de": "Flexible coating used on exterior surfaces.\nA flexible exterior coating designed to tolerate limited substrate movement and bridge fine cracking. Its performance depends on crack width, substrate moisture, and compatibility with existing coatings, so surface preparation and system selection are critical.",
       "c": "paint",
-      "task": "paint_exterior"
+      "task": "paint_exterior",
+      "aj": [
+        "弾性外壁塗料"
+      ],
+      "ae": [
+        "Elastomeric wall coating"
+      ]
     },
     {
       "id": "q014_sealer_coat",
@@ -987,7 +1023,13 @@
       "dj": "仕上げ床を傷や汚れから守る養生板。\n完成または既存の床を、搬入・施工中の傷、打痕、汚れから守るために敷く養生板。樹脂中空板、紙系ボード、合板系などがあり、床材と荷重条件に合わせて選ぶ。",
       "de": "Board used to protect finished floors during work.\nProtective board laid over finished or existing floors to reduce scratches, impact damage, and contamination during construction or moving work. Plastic corrugated board, paper-based board, and wood-based products are selected according to floor finish and loading.",
       "c": "curing",
-      "task": "protect_floor"
+      "task": "protect_floor",
+      "aj": [
+        "床保護ボード"
+      ],
+      "ae": [
+        "Protective floor board"
+      ]
     },
     {
       "id": "q014_corner_guard",
@@ -1023,7 +1065,13 @@
       "dj": "手すりや柵を支える縦部材。\n手すり壁やガードレールの横桟・笠木を支持し、外力を床や構造体へ伝える縦支柱。手すりとして見た目が似ていても、転落防止に使う場合は支柱間隔、固定強度、全体剛性が重要になる。",
       "de": "Vertical post supporting a guardrail or handrail.\nA vertical post that supports rails or top members in a guard assembly and transfers lateral loads to the floor or structure. When used for fall protection, post spacing, anchorage, and system stiffness are critical rather than appearance alone.",
       "c": "hardware",
-      "task": "install_guardrail"
+      "task": "install_guardrail",
+      "aj": [
+        "手摺支柱"
+      ],
+      "ae": [
+        "Railing support post"
+      ]
     },
     {
       "id": "q014_baluster",
@@ -1033,7 +1081,13 @@
       "dj": "手すりや柵の間を埋める縦材。\n手すりや柵の上部材と下部材の間に並べる細い縦部材。意匠だけでなく、開口寸法を制限して人や物の通り抜けを防ぐ役割を持つ場合があり、配置間隔と固定方法が重要。",
       "de": "Vertical member between handrail and base.\nA slender vertical member installed between the upper and lower members of a railing or balustrade. Besides appearance, balusters may limit opening size to reduce passage of people or objects, making spacing and attachment important.",
       "c": "hardware",
-      "task": "install_railing"
+      "task": "install_railing",
+      "aj": [
+        "手すり子"
+      ],
+      "ae": [
+        "Railing baluster"
+      ]
     },
     {
       "id": "q014_exterior_fence",
@@ -1043,7 +1097,13 @@
       "dj": "敷地境界や安全区画を示す外構部材。\n敷地境界、目隠し、安全区画などを目的に屋外へ設ける連続した柵。メッシュ、アルミ形材、木質、樹脂など形式があり、目的に応じて高さ、透過性、風荷重、基礎・支柱仕様を決める。",
       "de": "Exterior barrier used for boundaries or safety zones.\nA continuous exterior barrier used for property boundaries, screening, or controlled areas. Mesh, aluminum, timber, and composite systems differ in height, openness, wind loading, and foundation or post requirements.",
       "c": "exterior_site",
-      "task": "install_fence"
+      "task": "install_fence",
+      "aj": [
+        "外構フェンス"
+      ],
+      "ae": [
+        "Boundary fence"
+      ]
     },
     {
       "id": "q014_fence_post",
@@ -1053,7 +1113,13 @@
       "dj": "フェンス本体を支える柱。\nフェンスパネルや横桟を支持し、風圧や接触荷重を基礎へ伝える縦支柱。製品システムごとに断面、ピッチ、埋込み・ベース固定方法が決まっており、単独部材ではなくフェンス全体として選定する。",
       "de": "Post that supports fence panels.\nA vertical post that supports fence panels or rails and transfers wind and contact loads into the foundation. Section size, spacing, embedment, and base fixing are normally defined as part of the complete fence system.",
       "c": "exterior_site",
-      "task": "install_fence"
+      "task": "install_fence",
+      "aj": [
+        "フェンスポスト"
+      ],
+      "ae": [
+        "Fence support post"
+      ]
     },
     {
       "id": "q014_gate",
@@ -1063,7 +1129,13 @@
       "dj": "敷地や通路の出入口に設ける開閉扉。\n敷地や通路の開口部に設け、必要に応じて開閉・施錠できる門扉。片開き、両開き、引戸などがあり、開口幅、重量、風荷重、ヒンジまたはレール、ラッチ・錠との組み合わせで機能する。",
       "de": "Movable entrance panel for a site or path.\nAn operable gate installed at an exterior entrance or controlled passage. Swing, double-leaf, and sliding forms depend on opening width, gate weight, wind loading, hinge or track hardware, and compatible latching or locking components.",
       "c": "exterior_site",
-      "task": "install_gate"
+      "task": "install_gate",
+      "aj": [
+        "エントランス門扉"
+      ],
+      "ae": [
+        "Entrance gate"
+      ]
     },
     {
       "id": "q014_gate_hinge",
@@ -1073,7 +1145,13 @@
       "dj": "門扉を回転支持する金物。\n門扉の扉体を柱や枠に取り付け、開閉時の回転軸となる金物。扉の重量、幅、開き角度、屋外での腐食条件に合う形式と耐荷重を選び、上下の軸芯を正確に合わせる必要がある。",
       "de": "Hinge used to support and swing a gate.\nHardware that supports a gate leaf on a post or frame and provides its pivot for opening and closing. Hinge type and load capacity must suit the gate weight, width, swing angle, and outdoor corrosion exposure, with the hinge axes aligned accurately.",
       "c": "hardware",
-      "task": "install_gate"
+      "task": "install_gate",
+      "aj": [
+        "門扉用蝶番"
+      ],
+      "ae": [
+        "Gate hinge fitting"
+      ]
     },
     {
       "id": "q014_gate_latch",
@@ -1083,7 +1161,13 @@
       "dj": "門扉を閉じた状態で保持する金物。\n門扉を閉じた位置で保持するための掛け金・ラッチ金物。片開き・両開き、施錠の要否、扉のたわみや風による動きに合わせて形式を選び、受け側との位置を正確に合わせる。",
       "de": "Latch used to keep a gate closed.\nLatch hardware used to hold a gate in the closed position. The type should match single- or double-leaf operation, locking requirements, and expected gate movement from sag or wind, with the latch and keeper aligned correctly.",
       "c": "hardware",
-      "task": "install_gate"
+      "task": "install_gate",
+      "aj": [
+        "門扉掛け金"
+      ],
+      "ae": [
+        "Gate catch latch"
+      ]
     },
     {
       "id": "q014_interlocking_paver",
@@ -1093,7 +1177,13 @@
       "dj": "舗装面に敷き並べる噛み合わせ式ブロック。\n側面形状や目地を利用して互いに噛み合うよう敷設するコンクリート系舗装ブロック。歩道、アプローチ、駐車場などに使われ、仕上がりと耐久性は路盤、敷砂、目地砂、転圧の施工品質に大きく左右される。",
       "de": "Paving block installed in interlocking patterns.\nConcrete paving blocks laid in patterns that interlock through their shape and joints. They are used for walks, approaches, and parking areas, and performance depends strongly on base preparation, bedding sand, joint sand, and compaction.",
       "c": "paving",
-      "task": "lay_paver"
+      "task": "lay_paver",
+      "aj": [
+        "インターロッキング舗装ブロック"
+      ],
+      "ae": [
+        "Interlocking paving block"
+      ]
     },
     {
       "id": "q014_concrete_paver",
@@ -1103,7 +1193,13 @@
       "dj": "歩道や庭に敷くコンクリート平板。\n歩道、テラス、庭の通路などに敷く板状のプレキャストコンクリート舗装材。寸法や厚さ、表面仕上げが多様で、下地の平坦性と支持力、目地幅、排水勾配を整えて据え付ける。",
       "de": "Concrete slab used for paths and exterior paving.\nPrecast concrete paving slabs used for paths, terraces, and garden areas. They are available in many sizes, thicknesses, and finishes and require a flat, adequately supported base with controlled joints and drainage slope.",
       "c": "paving",
-      "task": "lay_paver"
+      "task": "lay_paver",
+      "aj": [
+        "コンクリート平板"
+      ],
+      "ae": [
+        "Concrete paving slab"
+      ]
     },
     {
       "id": "q014_paving_stone",
@@ -1113,7 +1209,13 @@
       "dj": "外構舗装に使う石材。\n天然石または石材加工品を歩道、広場、アプローチなどの舗装面に使う材料。石種、厚さ、表面仕上げによって滑り抵抗や耐久性、色むらが異なり、下地方式と目地材も用途に合わせて選ぶ。",
       "de": "Stone used for exterior paving.\nNatural or fabricated stone used as paving for walks, plazas, and approaches. Stone type, thickness, and surface finish affect slip resistance, durability, and appearance, while bedding and joint materials must suit the application.",
       "c": "paving",
-      "task": "lay_stone"
+      "task": "lay_stone",
+      "aj": [
+        "舗装石"
+      ],
+      "ae": [
+        "Stone paving unit"
+      ]
     },
     {
       "id": "q014_curb_block",
@@ -1123,7 +1225,13 @@
       "dj": "車道や歩道の端部を区切るブロック。\n歩道、車道、駐車場、植栽帯などの境界を明確にし、舗装端部を保持するプレキャストコンクリート部材。通り、高さ、基礎コンクリート、背面支持を整え、車両乗入れ部や排水部では専用品を使い分ける。",
       "de": "Block used to define the edge of pavement or sidewalk.\nPrecast concrete unit used to define and restrain the edges of sidewalks, roads, parking areas, and planting zones. Line, level, foundation concrete, and backing must be controlled, with purpose-made units used at driveways and drainage transitions.",
       "c": "paving",
-      "task": "install_curb"
+      "task": "install_curb",
+      "aj": [
+        "境界縁石"
+      ],
+      "ae": [
+        "Kerb block"
+      ]
     },
     {
       "id": "q014_granite_curb",
@@ -1133,7 +1241,13 @@
       "dj": "石材でできた耐久性の高い縁石。\n御影石などの花崗岩を加工した縁石で、耐摩耗性と耐候性を生かして歩道や広場の境界に使う。天然石のため寸法・色調にばらつきがあり、重量も大きいので、据付精度と揚重方法を事前に確認する。",
       "de": "Durable curb made from granite.\nCurb made from dressed granite, used at sidewalks and plazas for its abrasion and weather resistance. Natural variation in dimensions and appearance, together with high unit weight, makes setting accuracy and handling methods important.",
       "c": "paving",
-      "task": "install_curb"
+      "task": "install_curb",
+      "aj": [
+        "御影縁石"
+      ],
+      "ae": [
+        "Granite kerbstone"
+      ]
     },
     {
       "id": "q014_asphalt_mix",
@@ -1159,7 +1273,13 @@
       "dj": "アスファルト層同士の接着を高める乳剤。\n既設舗装や下層アスファルトの表面へ薄く散布し、新しいアスファルト層との層間接着を確保するための瀝青乳剤。散布量不足でも過多でもずれや汚れの原因になるため、清掃・均一散布・養生が重要。",
       "de": "Bituminous emulsion used to bond asphalt layers.\nBituminous emulsion applied in a thin film to an existing or lower asphalt layer to promote bond with a new asphalt course. Both under- and over-application can cause interface problems, so cleaning, uniform application, and break time are important.",
       "c": "paving",
-      "task": "bond_asphalt"
+      "task": "bond_asphalt",
+      "aj": [
+        "タック乳剤"
+      ],
+      "ae": [
+        "Asphalt tack coat emulsion"
+      ]
     },
     {
       "id": "q014_asphalt_primer",
@@ -1169,7 +1289,13 @@
       "dj": "路盤と舗装層の接着や防水を助ける乳剤。\n粒状路盤などの吸収性下地へ瀝青材料を浸透させ、表面を安定させて上部アスファルト層とのなじみを良くするプライムコート。タックコートとは対象下地と目的が異なり、設計・仕様に応じて使い分ける。",
       "de": "Bituminous coat applied to a base before asphalt paving.\nBituminous prime coat applied to an absorbent granular base to penetrate and stabilize the surface before asphalt paving. It differs from tack coat in substrate and purpose and should be used only where required by the pavement specification.",
       "c": "paving",
-      "task": "prepare_base"
+      "task": "prepare_base",
+      "aj": [
+        "路盤プライムコート"
+      ],
+      "ae": [
+        "Bituminous prime coat"
+      ]
     },
     {
       "id": "q014_vibratory_roller",
@@ -1179,7 +1305,13 @@
       "dj": "舗装や路盤を振動で締め固める機械。\n鋼製ドラムの自重に振動を加え、路盤やアスファルトを締め固める自走式転圧機械。材料、層厚、温度、振動設定、走行速度、転圧回数の組み合わせで締固め効果が変わる。",
       "de": "Roller used to compact pavement or base layers by vibration.\nSelf-propelled compaction equipment that combines steel-drum weight with vibration to compact base material or asphalt. Compaction depends on material, lift thickness, temperature, vibration setting, travel speed, and pass count.",
       "c": "paving",
-      "task": "compact_pavement"
+      "task": "compact_pavement",
+      "aj": [
+        "振動式ローラー"
+      ],
+      "ae": [
+        "Vibratory compaction roller"
+      ]
     },
     {
       "id": "q014_hand_roller",
@@ -1189,7 +1321,13 @@
       "dj": "小規模舗装を締め固める手押しローラー。\n作業者が後方から操作して小規模な舗装や路盤を締め固める小型ローラー。大型ローラーが入れない通路、端部、補修部などに使い、機種により振動式・静的式がある。",
       "de": "Walk-behind roller used for small paving areas.\nSmall roller operated by a walking operator for compacting limited pavement or base areas. It is used in narrow access, edges, and repairs where larger rollers cannot work and may be vibratory or static depending on the machine.",
       "c": "paving",
-      "task": "compact_pavement"
+      "task": "compact_pavement",
+      "aj": [
+        "手押しローラー"
+      ],
+      "ae": [
+        "Pedestrian roller"
+      ]
     },
     {
       "id": "q014_asphalt_rake",
@@ -1199,7 +1337,13 @@
       "dj": "アスファルト合材をならすレーキ。\n高温のアスファルト合材を人力で広げ、厚さや材料分布を整えるための舗装用レーキ。通常の園芸レーキより高温材料への耐久性と舗装作業向けの形状を持ち、フィニッシャーが届かない端部や補修で使う。",
       "de": "Rake used to spread and level asphalt mix.\nPaving rake used to spread hot asphalt mix by hand and correct thickness or material distribution. It is built for hot paving material rather than garden work and is commonly used at edges, repairs, and areas a paver cannot reach.",
       "c": "paving",
-      "task": "spread_asphalt"
+      "task": "spread_asphalt",
+      "aj": [
+        "舗装レーキ"
+      ],
+      "ae": [
+        "Asphalt paving rake"
+      ]
     },
     {
       "id": "q014_lute_rake",
@@ -1209,7 +1353,13 @@
       "dj": "舗装面を平滑にならす長柄の工具。\nアスファルト舗装の表面を引き均し、細かな高低差や材料分布を調整する長柄のルート。広い直線状のヘッドを使い、レーキよりも最終的な面の整形に向く。",
       "de": "Long-handled tool used to smooth asphalt surfaces.\nLong-handled asphalt lute used to strike off and fine-grade hot mix, correcting small surface irregularities and material distribution. Its broad straight head is suited to final hand shaping more than aggressive raking.",
       "c": "paving",
-      "task": "level_asphalt"
+      "task": "level_asphalt",
+      "aj": [
+        "アスファルトルート"
+      ],
+      "ae": [
+        "Asphalt lute rake"
+      ]
     },
     {
       "id": "q014_paver_machine",
@@ -1219,7 +1369,13 @@
       "dj": "アスファルトを敷き均す舗装機械。\nダンプなどから受けたアスファルト合材を連続的に送り、所定幅・厚さで敷き均す舗装機械。スクリードの設定、供給量、走行速度、基準高さの管理が舗装面の平坦性と初期締固めに直結する。",
       "de": "Machine used to place and level asphalt pavement.\nPaving machine that receives asphalt mix, conveys it continuously, and lays it at a controlled width and thickness. Screed setup, material feed, travel speed, and grade control directly affect mat smoothness and initial compaction.",
       "c": "paving",
-      "task": "pave_asphalt"
+      "task": "pave_asphalt",
+      "aj": [
+        "アスファルト舗装機"
+      ],
+      "ae": [
+        "Asphalt paving machine"
+      ]
     },
     {
       "id": "q014_line_marking_paint",
@@ -1245,7 +1401,13 @@
       "dj": "地表水を線状に集めて流す排水溝。\n地表水を線状に集めて排水するため、舗装や床面に連続して設ける溝状の排水設備。流量、勾配、車両荷重、接続先に応じて溝本体とグレーチングを選定し、周囲舗装と一体で高さ・固定を管理する。",
       "de": "Linear drain used to collect surface water.\nLinear drainage system installed continuously in pavement or floors to collect surface water. Channel body and grating are selected for flow capacity, slope, traffic loading, and outlet conditions, with level and anchorage coordinated with the surrounding pavement.",
       "c": "drainage",
-      "task": "install_drain"
+      "task": "install_drain",
+      "aj": [
+        "線状排水溝"
+      ],
+      "ae": [
+        "Linear trench drain"
+      ]
     },
     {
       "id": "q014_grating",
@@ -1255,7 +1417,13 @@
       "dj": "側溝や排水桝を覆う格子状の蓋。\n側溝、集水桝、開口部の上に載せ、排水を通しながら人や車両の通行面を確保する格子状の蓋。材質、寸法、目の細かさ、滑り止め、荷重区分を使用場所に合わせて選ぶ。",
       "de": "Grid cover used over drains or pits.\nOpen-grid cover placed over drains, pits, or openings to admit water while providing a walking or traffic surface. Material, size, mesh spacing, slip resistance, and load class must suit the installation location.",
       "c": "drainage",
-      "task": "cover_drain"
+      "task": "cover_drain",
+      "aj": [
+        "溝ふたグレーチング"
+      ],
+      "ae": [
+        "Drainage grating"
+      ]
     },
     {
       "id": "q014_drain_channel",
@@ -1265,7 +1433,13 @@
       "dj": "水を一定方向へ流すU字状の排水部材。\n雨水や洗浄水を所定方向へ導くためのU字形・溝形の排水部材。プレキャストコンクリート、樹脂、金属などがあり、必要流量、勾配、接続方法、周囲の荷重条件に応じて選定する。",
       "de": "Channel used to convey surface water.\nU-shaped or formed drainage channel used to convey rainwater or wash water in a controlled direction. Precast concrete, polymer, and metal systems are selected according to flow, slope, connection method, and surrounding loads.",
       "c": "drainage",
-      "task": "drain_surface"
+      "task": "drain_surface",
+      "aj": [
+        "排水溝チャンネル"
+      ],
+      "ae": [
+        "Drainage trough channel"
+      ]
     },
     {
       "id": "q014_stormwater_inlet",
@@ -1291,7 +1465,13 @@
       "dj": "排水や土砂を一時的に受ける桝。\n排水経路の途中で水を集め、流れの方向変更、管接続、点検、土砂沈殿などを行う桝状の構造物。用途により集水桝・会所桝などと呼ばれ、管底と桝底、泥溜め、蓋高さを現場条件に合わせる。",
       "de": "Pit used to collect water or sediment.\nPit or chamber inserted in a drainage system to collect water, change direction, connect pipes, provide inspection access, or settle sediment. Pipe inverts, pit bottom, sump depth, and cover level are coordinated to the site function.",
       "c": "drainage",
-      "task": "collect_water"
+      "task": "collect_water",
+      "aj": [
+        "集水ピット桝"
+      ],
+      "ae": [
+        "Drainage catchpit"
+      ]
     },
     {
       "id": "q014_sediment_trap",
@@ -1301,7 +1481,13 @@
       "dj": "土砂を沈めて排水管への流入を抑える部分。\n排水中の砂、泥、細かな固形物を沈降・捕捉し、下流配管への流入を減らすための泥溜め部。定期清掃を前提とするため、容量だけでなくアクセス性と清掃周期の設定が重要になる。",
       "de": "Trap that captures sediment before water enters drainage lines.\nSump or trap that settles sand, mud, and small solids from drainage water before they enter downstream piping. Because captured sediment must be removed, access and maintenance frequency are as important as storage volume.",
       "c": "drainage",
-      "task": "control_sediment"
+      "task": "control_sediment",
+      "aj": [
+        "土砂溜め"
+      ],
+      "ae": [
+        "Silt trap"
+      ]
     },
     {
       "id": "q014_drain_cover",
@@ -1311,7 +1497,13 @@
       "dj": "排水口を保護する蓋。\n排水口や小型排水桝の開口を覆い、異物の落下や人の踏み込みを防ぎながら水を通す蓋。丸形・角形、樹脂・金属などがあり、開口寸法、荷重、通水面積、固定方法を確認して選ぶ。",
       "de": "Cover installed over a drain opening.\nCover placed over a drain opening or small basin to admit water while limiting debris entry and accidental stepping into the opening. Shape, material, opening size, load capacity, free area, and fixing method must match the drain.",
       "c": "drainage",
-      "task": "cover_drain"
+      "task": "cover_drain",
+      "aj": [
+        "排水溝ふた"
+      ],
+      "ae": [
+        "Drain channel cover"
+      ]
     },
     {
       "id": "q014_permeable_paver",
@@ -1321,7 +1513,13 @@
       "dj": "雨水を地中へ浸透させる舗装材。\n雨水を目地や材料内部から下層へ浸透させ、表面流出を抑える舗装ブロック・平板。透水性能はブロックだけでなく目地材、敷砂、透水性路盤、下地土の条件で決まるため、舗装断面全体で設計する。",
       "de": "Paver that allows water to pass through the surface.\nPaver or slab designed to let rainfall infiltrate through joints or the unit into the layers below, reducing surface runoff. Performance depends on the complete section—including joint material, bedding, permeable base, and subgrade—not on the paver alone.",
       "c": "paving",
-      "task": "manage_runoff"
+      "task": "manage_runoff",
+      "aj": [
+        "透水ブロック"
+      ],
+      "ae": [
+        "Permeable paving block"
+      ]
     },
     {
       "id": "q014_drainage_slope",
@@ -1331,7 +1529,13 @@
       "dj": "水を流すために設ける床や舗装の傾き。\n床、屋上、舗装面などに水が滞留しないよう、排水口や側溝へ向けて設ける仕上げ面の傾き。勾配率だけでなく、水下の位置、仕上げ厚、出入口や周辺高さとの取り合いを同時に調整する施工条件。",
       "de": "Slope provided to direct water toward drainage.\nFinished surface fall provided on floors, roofs, or pavement so water flows toward drains or channels instead of ponding. The design must coordinate slope rate, low points, finish thickness, thresholds, and surrounding elevations.",
       "c": "drainage",
-      "task": "set_slope"
+      "task": "set_slope",
+      "aj": [
+        "水勾配"
+      ],
+      "ae": [
+        "Drainage gradient"
+      ]
     },
     {
       "id": "q014_expansion_joint_filler",
@@ -1341,7 +1545,13 @@
       "dj": "伸縮目地に入れる圧縮性の充填材。\nコンクリートや舗装の伸縮目地内に設け、部材の膨張・収縮を許容しながら目地幅を保持する圧縮性の充填材。上部にシーリングを設ける場合は、フィラー高さとシーリング深さを分けて納める。",
       "de": "Compressible filler used in expansion joints.\nCompressible filler installed in expansion joints to maintain joint width while allowing adjacent concrete or paving to move. Where sealant is used above it, filler elevation and sealant depth must be detailed separately.",
       "c": "joint",
-      "task": "fill_joint"
+      "task": "fill_joint",
+      "aj": [
+        "伸縮目地充填材"
+      ],
+      "ae": [
+        "Expansion gap filler"
+      ]
     },
     {
       "id": "q014_joint_sealant_exterior",
@@ -1351,7 +1561,13 @@
       "dj": "外壁や建具まわりの目地を防水する材料。\n外壁材、建具、笠木などの取り合い目地へ充填し、雨水侵入を抑えながら部材の相対変位に追従する弾性シーリング材。目地幅・深さ、被着体、プライマー、バックアップ材、三面接着防止を一体で管理する。",
       "de": "Sealant used for exterior wall or opening joints.\nElastic sealant installed in exterior joints between cladding, frames, copings, and similar components to resist rain penetration while accommodating relative movement. Joint width and depth, substrate, primer, backing, and prevention of three-sided adhesion must be coordinated.",
       "c": "sealant",
-      "task": "seal_exterior_joint"
+      "task": "seal_exterior_joint",
+      "aj": [
+        "外壁目地シール材"
+      ],
+      "ae": [
+        "Exterior joint sealing compound"
+      ]
     },
     {
       "id": "q014_polyurethane_sealant",
@@ -1361,7 +1577,13 @@
       "dj": "外装目地に使う弾性シーリング材。\nポリウレタン樹脂を主成分とする弾性シーリング材で、コンクリートや外装目地などに用いられる。製品により耐候性や塗装適性が異なるため、露出条件と仕上げ仕様を確認し、指定プライマーを併用する。",
       "de": "Elastic sealant commonly used for exterior joints.\nElastic sealant based on polyurethane resin, commonly used in concrete and exterior joints. Weather exposure and paintability vary by product, so the finish system and exposure condition must be checked and the specified primer used.",
       "c": "sealant",
-      "task": "seal_joint"
+      "task": "seal_joint",
+      "aj": [
+        "ウレタンシーリング材"
+      ],
+      "ae": [
+        "Polyurethane joint sealant"
+      ]
     },
     {
       "id": "q014_modified_silicone_sealant",
@@ -1371,7 +1593,13 @@
       "dj": "塗装性や耐候性を持つシーリング材。\n変成シリコーン系ポリマーを主成分とし、耐候性と幅広い被着体への接着性を持つシーリング材。外装目地や建具周りに多く使われるが、塗料との相性や表面汚染の可能性は製品仕様で確認する。",
       "de": "Weather-resistant sealant with paintable properties.\nSealant based on modified-silicone polymer, offering weather resistance and adhesion to a broad range of substrates. It is widely used at exterior joints and openings, but coating compatibility and possible surface staining must be checked for the specific product.",
       "c": "sealant",
-      "task": "seal_joint"
+      "task": "seal_joint",
+      "aj": [
+        "変成シリコンシーリング材"
+      ],
+      "ae": [
+        "Modified silyl sealant"
+      ]
     },
     {
       "id": "q014_masking_for_sealant",
@@ -1391,7 +1619,13 @@
       "dj": "シーリング材を押さえ均す工具。\n充填したシーリング材を目地内へ押し込み、表面を均して所定形状に仕上げるためのヘラ。目地幅や仕上げ形状に合う刃幅・硬さを選び、シール材が被着面へ十分密着するよう連続して押さえる。",
       "de": "Spatula used to tool and smooth sealant.\nHand tool used to press freshly applied sealant into a joint and shape the exposed surface. Blade width and stiffness should match the joint and desired profile so the sealant is tooled continuously against the bond surfaces.",
       "c": "sealant",
-      "task": "tool_sealant"
+      "task": "tool_sealant",
+      "aj": [
+        "コーキングヘラ"
+      ],
+      "ae": [
+        "Joint sealant spatula"
+      ]
     },
     {
       "id": "q014_backer_tape",
@@ -1401,7 +1635,13 @@
       "dj": "三面接着を避けるために目地底へ貼るテープ。\nシーリング目地の底面に貼り、シーリング材が底面へ接着するのを防いで二面接着を成立させるテープ状のボンドブレーカー。バックアップ材を入れられない浅い目地などで使い、目地幅に合う寸法を選ぶ。",
       "de": "Tape used to prevent three-sided sealant adhesion.\nBond-breaker tape applied to the bottom of a sealant joint to prevent adhesion on the third side and maintain two-sided bonding. It is used where a conventional backing rod cannot be fitted, with width selected to suit the joint.",
       "c": "sealant",
-      "task": "prepare_joint"
+      "task": "prepare_joint",
+      "aj": [
+        "ボンドブレーカーテープ"
+      ],
+      "ae": [
+        "Bond-breaking tape"
+      ]
     },
     {
       "id": "q014_glass_suction_cup",
@@ -1411,7 +1651,13 @@
       "dj": "ガラスやパネルを持ち運ぶ吸着工具。\nガラスや平滑なパネル表面へ吸着させ、持ち上げ・位置調整を補助する吸盤工具。対象重量と表面状態に合う定格を選び、吸着前の清掃と真空保持確認を行う。",
       "de": "Suction tool used to carry glass or panels.\nSuction handling tool attached to smooth glass or panel surfaces to assist lifting and positioning. Rated capacity must suit the load and surface, with cleaning and vacuum retention checked before movement.",
       "c": "opening",
-      "task": "handle_glass"
+      "task": "handle_glass",
+      "aj": [
+        "ガラス運搬吸盤"
+      ],
+      "ae": [
+        "Glass handling suction lifter"
+      ]
     },
     {
       "id": "q014_panel_lifter_exterior",
@@ -1421,7 +1667,13 @@
       "dj": "外壁パネルを持ち上げて位置合わせする機器。\n外装パネルや板材を持ち上げ、所定位置へ保持・位置合わせするための補助工具。対象パネルの重量、厚さ、表面形状に適合する方式を選び、落下防止と作業者の挟まれ防止を優先する。",
       "de": "Lifter used to position exterior panels.\nHandling aid used to lift, hold, and position exterior panels or sheet materials. The lifting method must suit panel weight, thickness, and surface geometry, with fall prevention and pinch-point control prioritized.",
       "c": "exterior",
-      "task": "install_panel"
+      "task": "install_panel",
+      "aj": [
+        "外壁パネル吊り具"
+      ],
+      "ae": [
+        "Exterior panel lifting tool"
+      ]
     }
   ]
 }
