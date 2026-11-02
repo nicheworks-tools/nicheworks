@@ -1,6 +1,6 @@
 {
   "schema": "cta-content-enrichment-v2.3",
-  "version": "2026-09-18-wave6l-fallback-zero-1",
+  "version": "2026-09-18-wave6l-fallback-zero-1-canonical-merge-20261103",
   "entries": [
     {
       "id": "flashing_tape",
@@ -55,7 +55,7 @@
       ]
     },
     {
-      "id": "ground_fault_breaker",
+      "id": "q015_earth_leakage_breaker",
       "wave": "content-wave-006l",
       "state": "expanded",
       "affiliate_review": "mapped",
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "corner_float",
+      "id": "q016_corner_trowel",
       "wave": "content-wave-006l",
       "state": "expanded",
       "affiliate_review": "mapped",
