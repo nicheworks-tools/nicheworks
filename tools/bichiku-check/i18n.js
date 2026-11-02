@@ -15,7 +15,7 @@ var keys = [
 var all = {
 ja: [
 "備える条件を設定","自宅で備える","持ち出し袋","人数・家族構成","大人","子ども","乳児","ペット","日数","追加条件",
-"火・お湯が使えない想定（飲用水はある）","食事制限・アレルギーへの対応が必要","購入予算（円・任意）","価格を自動取得しないため、予算内に収まるとの判定はしません。","不足品を確認","不足品とチェックリスト","必要目安","自宅にある数","不足",
+"火・お湯が使えない（飲用水は別途必要）","食事制限・アレルギーへの対応が必要","購入予算（円・任意）","価格を自動取得しないため、予算内に収まるとの判定はしません。","不足品を確認","不足品とチェックリスト","必要目安","自宅にある数","不足",
 "期限（任意）","期限切れ","優先","確認","追加候補","Amazonで探す","家にある数を入れると不足数量を差し引きます。必要数量は初期目安であり、個別事情に合わせて調整してください。",
 "優先項目の不足","不足のある項目","足りている項目","すべて","不足のみ","備蓄済み","印刷","CSV保存",
 "リストをコピー","データを削除","この端末の保存データを削除しますか？","入力した項目では不足がありません。","調理できない場合、食料の欄には開封して食べられる食品など、実際に使える食数だけを入れてください。","自宅で過ごすための備蓄です。飲用・調理用の水とは別に生活用水も検討してください。","持ち出し品の数量は携行例です。自宅の3〜14日分と混同せず、重さ・避難経路を確認してください。",
@@ -25,7 +25,7 @@ ja: [
 "持ち出し用の水は1人0.5Lの携行例で、1日分の水量ではありません。主食は1人3食（1日分）の準備例です。","その他の個数は公式な最低基準ではなく、初期チェック用の仮置きです。","© NicheWorks — Small Web Tools for Boring Tasks","言語","必要数・期限を調整","必要数（変更可）"],
 en: [
 "Set up your plan","Stay-at-home supplies","Go-bag checklist","Household","Adults","Children","Infants","Pets","Days","Additional needs",
-"No stove or hot water (safe drinking water available)","Dietary restrictions or allergies","Shopping budget (JPY, optional)","No live prices are retrieved; we cannot verify that items fit your budget.","Check what is missing","Your shortages and checklist","Suggested target","You already have","Still needed",
+"No stove or hot water (safe water needed separately)","Dietary restrictions or allergies","Shopping budget (JPY, optional)","No live prices are retrieved; we cannot verify that items fit your budget.","Check what is missing","Your shortages and checklist","Suggested target","You already have","Still needed",
 "Expiry (optional)","Expired","Top priority","Review","Optional","Search on Amazon Japan","Enter what you already have; only the remaining amount is shown. Targets are starting estimates, not a guarantee of sufficiency.",
 "Critical shortages","Items missing","Items covered","All","Missing only","Covered only","Print","Export CSV",
 "Copy list","Delete saved data","Delete this device's saved data?","No shortages in the items shown.","If you cannot cook, count only food you can actually eat without heating or preparation water.","For staying at home. Remember that utility water is separate from drinking/cooking water.","Go-bag quantities are examples for carrying, NOT a 3–14-day household reserve. Check bag weight and evacuation routes.",
@@ -35,7 +35,7 @@ en: [
 "Go-bag water uses an illustrative 0.5L/person, NOT a full-day supply. Staple food is 3 portions/person (one-day example).","Other item counts are initial checklist suggestions, NOT official minimum quantities.","© NicheWorks — Small Web Tools for Boring Tasks","Language","Adjust target or expiry","Target (editable)"],
 zh: [
 "设置备灾条件","居家储备","应急背包","家庭人数","成人","儿童","婴儿","宠物","储备天数","额外需求",
-"无法加热（有安全饮用水）","有饮食限制或过敏需求","购物预算（日元，可选）","不获取实时价格，因此无法判断是否在预算内。","查看缺少的物品","缺少的物品与清单","建议数量","已有数量","仍需补充",
+"无法加热（需另备安全饮用水）","有饮食限制或过敏需求","购物预算（日元，可选）","不获取实时价格，因此无法判断是否在预算内。","查看缺少的物品","缺少的物品与清单","建议数量","已有数量","仍需补充",
 "有效期（可选）","已过期","优先","需确认","可选","在日本亚马逊查找","填写家中现有数量，系统会计算不足部分。建议数量仅为初步参考。",
 "重要物品缺口","不足项目","已备齐项目","全部","仅看不足","仅看已备","打印","导出CSV",
 "复制清单","删除保存的数据","确定删除此设备保存的数据吗？","当前项目没有不足。","无法加热时，只计入无需烹饪及用水、可以实际食用的食品。","这是居家备灾计划。饮用和烹饪用水以外还应考虑生活用水。","背包数量仅为携带参考，不代表居家3至14天的储备。请检查重量及避难路线。",
@@ -45,7 +45,7 @@ zh: [
 "应急背包的水按每人0.5升示例计算，不代表一天的用量；主食按每人3份（一天示例）计算。","其他物品数量仅为清单初始建议，并非官方最低要求。","© NicheWorks — Small Web Tools for Boring Tasks","语言","调整数量或有效期","需要数量（可调整）"],
 vi: [
 "Thiết lập nhu cầu","Dự trữ tại nhà","Túi sơ tán","Thành viên gia đình","Người lớn","Trẻ em","Trẻ sơ sinh","Thú cưng","Số ngày","Nhu cầu khác",
-"Không có bếp/nước nóng (vẫn có nước uống an toàn)","Có dị ứng hoặc chế độ ăn riêng","Ngân sách mua sắm (JPY, tùy chọn)","Không lấy giá trực tiếp nên không thể xác nhận phù hợp ngân sách.","Kiểm tra đồ còn thiếu","Danh sách đồ còn thiếu","Mức gợi ý","Đã có","Còn thiếu",
+"Không có bếp/nước nóng (cần nước uống an toàn riêng)","Có dị ứng hoặc chế độ ăn riêng","Ngân sách mua sắm (JPY, tùy chọn)","Không lấy giá trực tiếp nên không thể xác nhận phù hợp ngân sách.","Kiểm tra đồ còn thiếu","Danh sách đồ còn thiếu","Mức gợi ý","Đã có","Còn thiếu",
 "Hạn dùng (tùy chọn)","Đã hết hạn","Ưu tiên cao","Cần kiểm tra","Tùy chọn","Tìm trên Amazon Nhật","Nhập số lượng đang có để tính phần thiếu. Số lượng chỉ là mức gợi ý ban đầu.",
 "Thiếu đồ thiết yếu","Mục còn thiếu","Mục đã đủ","Tất cả","Chỉ thiếu","Đã đủ","In","Xuất CSV",
 "Sao chép danh sách","Xóa dữ liệu đã lưu","Xóa dữ liệu lưu trên thiết bị này?","Không còn mục nào thiếu.","Nếu không thể nấu, chỉ tính các suất ăn có thể dùng ngay mà không cần đun hoặc nước nấu.","Dùng để dự trữ tại nhà. Nước sinh hoạt cần tính riêng với nước uống và nấu ăn.","Số lượng trong túi sơ tán là ví dụ mang theo, KHÔNG phải dự trữ tại nhà 3–14 ngày. Hãy kiểm tra trọng lượng và đường sơ tán.",
