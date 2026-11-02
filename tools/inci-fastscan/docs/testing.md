@@ -94,6 +94,17 @@ Both English and Japanese OCR photo interfaces now have an **off-by-default** "E
 
 Automated regression: `node tools/_shared/check-fastscan-image-enhancement.mjs` checks untouched default-image handling, concrete grayscale pixel writes, upscale and memory cap, expected failure handling and blob-URL release, bilingual option wiring, optional QA comparison and photo privacy. The noindex QA page at `tools/inci-fastscan/qa/photo-ocr-benchmark.html` now exposes the same checkbox so manual testers can compare original and browser-enhanced scans of a **single independently transcribed real label**.
 
+## Actual Chromium-canvas 12-real-photo OCR result (2026-11-02)
+
+[CI workflow run 41387468917](https://github.com/nicheworks-tools/nicheworks/actions/runs/41387468917) executed **24 genuine OCR recognitions** over the 12 independently annotated English product-label photos, using exactly the same pinned Tesseract.js 5.0.3 English Node OCR worker and the full 1,169-record FastScan dictionary, parser, conservative 2/3-line repair and matcher. Chromium at an emulated **360px** mobile viewport loaded `tools/inci-fastscan/js/image_preprocess.js` and prepared the enhanced image through the **real browser canvas code**. Only the numeric-only `fastscan-chromium-canvas-real-photo-metrics` artifact was uploaded; photos, human annotation text and recognized OCR text were not shared.
+
+| Path | Supported canonical reference hits | Recall on supported 233 names | Dictionary matches outside annotation | Exact wrap repairs |
+| --- | ---: | ---: | ---: | ---: |
+| Original JPEG | **58/233** | **24.89%** | 1 | 3 |
+| Chromium-canvas enhancement (opt-in) | **76/233** | **32.62%** | 2 | 10 |
+
+The browser code recovers **18 additional reference names / +7.73 percentage points** overall on this small English corpus. This is lower than the offline `sharp` recipe's 82/233: the two image-processing implementations must **not** be presented as identical. Some individual photos lose matching names after enhancement (e.g., one source image went 19 to 18 hits), and the number of matches absent from annotations increased from 1 to 2. Those extra matches cannot automatically be classified as incorrect; annotations may be imperfect. **Keep enhancement OFF by default and optional.** This does not prove 32.62% performance in Japanese labels, actual handsets, other lighting/curved packaging, or fully in-browser Tesseract execution: Chromium rendered the enhanced pixels but the controlled OCR worker ran in Node. The overall OCR quality is still inadequate for automatic trust; users must review the editable text. No safety inference is based on an OCR match.
+
 ## External annotated real-photo OCR pilot (12 English-language labels)
 
 An independent real-photo baseline can run in GitHub Actions via
