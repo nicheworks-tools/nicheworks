@@ -14,6 +14,7 @@ import { chromium } from 'playwright';
 import { createWorker } from 'tesseract.js';
 import YAML from 'yaml';
 import { createProductionLabelScorer, aggregateProductionAssessments } from './production-label-scoring.mjs';
+import { createOcrLossDiagnostics, summarizeOcrLoss } from './real-photo-loss-diagnostics.mjs';
 
 const require = createRequire(import.meta.url);
 const parser = require('../../_shared/cosmetic-ingredient-parser.js');
@@ -41,6 +42,7 @@ vm.runInNewContext(
   postScope, { filename: 'core_ocr_post.js' });
 const post = postScope.FastScanPost;
 const scorer = createProductionLabelScorer();
+const lossDiagnostics = createOcrLossDiagnostics();
 
 const browser = await chromium.launch({ headless: true });
 const context = await browser.newContext({
@@ -71,7 +73,8 @@ try {
       durationMs: baselineDurationMs,
       annotatedMetrics: score(annotation.INCI_list.join('\n'), baselineText, parser.splitIngredients),
       rawTranscriptionMetrics: score(annotation.raw_ingredients_list, baselineText, parser.splitIngredients),
-      analysis: await scorer.assess(baselineText, annotation.INCI_list)
+      analysis: await scorer.assess(baselineText, annotation.INCI_list),
+      loss: await lossDiagnostics.assess(baselineOcr?.data?.text || '', baselineText, annotation.INCI_list)
     };
 
     const inputBase64 = fs.readFileSync(imageFile).toString('base64');
@@ -101,7 +104,8 @@ try {
       durationMs: enhancedDurationMs,
       annotatedMetrics: score(annotation.INCI_list.join('\n'), enhancedText, parser.splitIngredients),
       rawTranscriptionMetrics: score(annotation.raw_ingredients_list, enhancedText, parser.splitIngredients),
-      analysis: await scorer.assess(enhancedText, annotation.INCI_list)
+      analysis: await scorer.assess(enhancedText, annotation.INCI_list),
+      loss: await lossDiagnostics.assess(enhancedOcr?.data?.text || '', enhancedText, annotation.INCI_list)
     };
     results.push({ id, referenceIngredientCount: annotation.INCI_list.length, baseline, enhanced });
     console.log('CHROMIUM_CANVAS_PHOTO=' + JSON.stringify({
@@ -161,6 +165,11 @@ const report = {
   productionDictionaryRecords: scorer.dictionaryCount,
   productionDictionaryBaseline: baseline,
   productionDictionaryEnhancedCanvas: enhanced,
+  extractionLossFunnel: {
+    original: summarizeOcrLoss(results.map(row => row.baseline.loss), 'original'),
+    chromiumCanvas: summarizeOcrLoss(results.map(row => row.enhanced.loss), 'chromiumCanvas'),
+    caveat: 'Searches exact known dictionary aliases in OCR words as a rough diagnostic, not OCR correctness proof; whole-line exact dictionary-sequence splitter is RESEARCH ONLY and not enabled in the user interface. Metrics contain no image/ingredient strings. No annotation supplied to the splitter.'
+  },
   strictAnnotatedBaseline: aggregatePhotoMetrics(results, 'baseline', 'annotatedMetrics'),
   strictAnnotatedEnhancedCanvas: aggregatePhotoMetrics(results, 'enhanced', 'annotatedMetrics'),
   transcriptionCerBaseline: aggregatePhotoMetrics(results, 'baseline', 'rawTranscriptionMetrics'),
@@ -181,4 +190,9 @@ for (const [name, row] of [['original', baseline], ['chromiumCanvas', enhanced]]
     threePartRepairs: row.threePartRepairs,
     report: reportFile
   }));
+}
+
+for (const [name, totals] of Object.entries(report.extractionLossFunnel)) {
+  if (!totals || typeof totals !== 'object' || !('supportedReferences' in totals)) continue;
+  console.log('FASTSCAN_OCR_LOSS_FUNNEL=' + JSON.stringify(totals));
 }
