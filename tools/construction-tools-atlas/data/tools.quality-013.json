@@ -90,7 +90,13 @@
       "dj": "足場荷重を地面へ分散する板。\n足場支柱から地盤へ伝わる荷重を分散するため、ベース金具の下などに敷く板材。局部沈下や支柱のめり込みを抑える役割がある。地盤の強度・平坦性、板の割れや腐朽、ベースの載り位置を確認する。",
       "de": "Board that spreads scaffold loads to the ground.\nA sole board placed beneath scaffold bases to spread loads into the ground and reduce local settlement. It supports the base rather than adjusting scaffold height. Check ground bearing, level seating, board condition, and the position of the base on the board.",
       "c": "temporary_work",
-      "task": "support_scaffold"
+      "task": "support_scaffold",
+      "aj": [
+        "足場用敷板"
+      ],
+      "ae": [
+        "Scaffold sole board"
+      ]
     },
     {
       "id": "q013_scaffold_ladder",
@@ -212,7 +218,13 @@
       "dj": "ワイヤーやロッドの張力を調整する金具。\n中央胴を回して左右のねじ端を出入りさせ、ワイヤー、ロッド、ブレースなどの張力や長さを調整する金具。ねじのかかり代を確保し、曲げ荷重を与えず軸方向に使う。端部形状と定格も接続用途に合わせる。",
       "de": "Fitting used to adjust tension in rods or cables.\nA fitting with opposite threaded ends that adjusts tension or effective length in wire, rod, or bracing by rotating its body. Maintain adequate thread engagement and load it axially rather than in bending. End fittings and capacity must match the connection.",
       "c": "lifting",
-      "task": "adjust_tension"
+      "task": "adjust_tension",
+      "aj": [
+        "張力調整ターンバックル"
+      ],
+      "ae": [
+        "Tensioning turnbuckle"
+      ]
     },
     {
       "id": "q013_lever_hoist",
@@ -539,7 +551,13 @@
       "dj": "土や砕石をならす櫛状の工具。\n櫛状の歯と長柄を持ち、土や砕石を引き寄せたり広げたりして地表をならす手工具。コンクリートレーキやアスファルトレーキとは対象材が異なる。歯の曲がり・欠損、柄の緩みを確認し、周囲へ振り回さない。",
       "de": "Tool used to level soil or gravel.\nA long-handled rake with teeth used to pull, spread, and level soil or gravel. It is distinct from concrete and asphalt rakes, which are shaped for different materials. Inspect teeth and handle attachment and maintain clearance when swinging or pulling the tool.",
       "c": "earthwork",
-      "task": "level_soil"
+      "task": "level_soil",
+      "aj": [
+        "土ならしレーキ"
+      ],
+      "ae": [
+        "Landscape rake"
+      ]
     },
     {
       "id": "q013_gravel",
@@ -569,7 +587,13 @@
       "dj": "掘削後の空間を埋め戻す土。\n掘削した溝・基礎周囲・構造物背面などを復旧するために戻す土質材料。掘削土を再利用する場合も購入材を使う場合も、粒径、含水状態、異物、締固め性を確認する。厚い一層を一度に埋めず、必要な層厚で締め固める。",
       "de": "Soil used to refill an excavation.\nSoil or engineered fill used to refill excavations, trenches, foundation spaces, and areas behind structures. Whether reused excavated soil or imported fill is used, check particle size, moisture, debris, and compactability. Place and compact in controlled lifts rather than one deep layer.",
       "c": "earthwork",
-      "task": "backfill"
+      "task": "backfill",
+      "aj": [
+        "埋め戻し土"
+      ],
+      "ae": [
+        "Backfill material"
+      ]
     },
     {
       "id": "q013_geotextile",
@@ -579,7 +603,13 @@
       "dj": "土の分離、補強、排水に使う繊維シート。\n合成繊維などで作られた透水性シートで、土層の分離、ろ過、排水、補強、保護などに用いる。用途に応じて強度、開孔性、透水性、耐久性の異なる種類を選ぶ。重ね幅、損傷、しわ、施工中の土砂混入を管理する。",
       "de": "Fabric used for soil separation, reinforcement, or drainage.\nA permeable synthetic textile used for separation, filtration, drainage, reinforcement, or protection in soil works. Product strength, opening size, permeability, and durability are selected for the intended function. Installation requires control of overlaps, tears, wrinkles, and contamination.",
       "c": "earthwork",
-      "task": "stabilize_ground"
+      "task": "stabilize_ground",
+      "aj": [
+        "土木用ジオテキスタイル"
+      ],
+      "ae": [
+        "Geosynthetic textile"
+      ]
     },
     {
       "id": "q013_weed_barrier",
@@ -605,7 +635,13 @@
       "dj": "地中の水を集めて排水する管。\n地中へ設けて地下水や浸透水を集め、所定の放流先へ導く暗渠排水用の管。用途により有孔管・無孔管を使い分け、勾配、接続、周囲の排水材、土砂流入防止を計画する。つぶれや逆勾配は排水性能を損なう。",
       "de": "Pipe used to collect and drain subsurface water.\nA buried pipe used to collect and convey groundwater or infiltrating water to a planned outlet. Perforated and solid sections are selected according to the drainage layout. Slope, joints, surrounding drainage aggregate, and control of soil intrusion are critical to performance.",
       "c": "drainage",
-      "task": "install_drain"
+      "task": "install_drain",
+      "aj": [
+        "地中排水管"
+      ],
+      "ae": [
+        "Subsurface drain pipe"
+      ]
     },
     {
       "id": "q013_perforated_pipe",
@@ -631,7 +667,13 @@
       "dj": "水を通しやすい排水層用の砕石。\n水を通しやすい粒度の砕石・砂利で、暗渠管周囲や基礎・擁壁背面などの排水層を形成する材料。細粒分が多いと目詰まりしやすいため、指定粒度と清浄度を守り、必要に応じてフィルター材と組み合わせる。",
       "de": "Gravel used to create a drainage layer.\nClean, free-draining gravel or crushed stone used around subsurface drains and in drainage layers behind foundations or retaining structures. Excess fines reduce permeability, so specified grading and cleanliness are important. It is often combined with filter geotextile to limit soil migration.",
       "c": "drainage",
-      "task": "make_drainage_layer"
+      "task": "make_drainage_layer",
+      "aj": [
+        "排水用砕石"
+      ],
+      "ae": [
+        "Drainage crushed aggregate"
+      ]
     },
     {
       "id": "q013_catch_basin",
@@ -641,7 +683,13 @@
       "dj": "雨水や排水を集める桝。\n雨水や地表排水を一度集め、排水管へ接続する桝状の構造・部材。流入口、流出口、底部、蓋などで構成され、土砂やごみの点検・清掃点にもなる。高さ、勾配、接続管の出入り、蓋の納まりを確認する。",
       "de": "Basin that collects stormwater or drainage.\nA basin that collects surface or storm water and connects it to drainage piping. It typically includes inlets, outlets, a sump or base, and a cover and also provides a point for sediment removal and maintenance. Elevation, pipe connections, flow path, and cover seating must be coordinated.",
       "c": "drainage",
-      "task": "collect_water"
+      "task": "collect_water",
+      "aj": [
+        "集水ます"
+      ],
+      "ae": [
+        "Catch basin inlet"
+      ]
     },
     {
       "id": "q013_manhole_cover",
@@ -763,7 +811,13 @@
       "dj": "位置や高さの基準を示す杭。\n測量点、通り、位置、高さなどの基準を現場へ保持するために地面へ打ち込む杭。木杭や樹脂杭などがあり、上端や側面へ番号・高さ・基準線を記す。施工中に動かされたり抜かれたりしないよう識別・保護する。",
       "de": "Stake used to mark survey points or levels.\nA stake driven into the ground to preserve survey points, alignment, position, or elevation references on site. Wood, plastic, and other types may carry point numbers, level marks, or layout lines. It must be clearly identified and protected from accidental movement or removal.",
       "c": "survey",
-      "task": "mark_point"
+      "task": "mark_point",
+      "aj": [
+        "測量用杭"
+      ],
+      "ae": [
+        "Survey marker stake"
+      ]
     },
     {
       "id": "q013_level_staff",
@@ -841,7 +895,13 @@
       "dj": "位置や注意箇所を示す色付きテープ。\n測量点、埋設物、立入注意箇所、資材位置などを目立たせるために結び付ける色付きの薄いテープ。位置を示す目印であり、荷重を受ける固定材や立入防止設備ではない。色の意味を現場内で統一し、不要になったものは回収する。",
       "de": "Colored tape used to mark points or hazards.\nA brightly colored thin tape used to make survey points, utilities, hazard locations, or material positions visible. It is an identification marker, not a load-bearing tie or a physical barricade. Color meanings should be consistent on the site and obsolete tape should be removed.",
       "c": "layout",
-      "task": "mark_point"
+      "task": "mark_point",
+      "aj": [
+        "測量目印テープ"
+      ],
+      "ae": [
+        "Survey flagging tape"
+      ]
     },
     {
       "id": "q013_batter_board",
@@ -851,7 +911,13 @@
       "dj": "建物位置や基準線を保持する仮設板。\n建物の通り芯や基礎位置、高さ基準を掘削範囲の外側へ保持する遣り方の水平板。杭に取り付けた貫へ釘や印を設け、水糸を張って基準線を復元する。位置や高さが動くと施工全体へ影響するため、堅固に固定して保護する。",
       "de": "Temporary board used to hold layout lines.\nA horizontal layout board fixed to stakes outside an excavation to preserve building lines, foundation positions, and level references. Nails or marks on the board carry string lines that can re-establish layout after excavation begins. Because movement affects downstream work, batter boards must be stable and protected.",
       "c": "layout",
-      "task": "set_building_line"
+      "task": "set_building_line",
+      "aj": [
+        "遣り方板"
+      ],
+      "ae": [
+        "Setting-out batter board"
+      ]
     },
     {
       "id": "q013_line_level",
@@ -887,7 +953,13 @@
       "dj": "所定の勾配を確認するための定規。\n法面や排水勾配など、所定の傾きを現場で確認・再現するための基準板・定規。設計勾配に合わせて作り、土工や仕上げ面へ当てて傾きを比較する。基準となる方向や上下を明確にし、変形した定規を使わない。",
       "de": "Guide used to check a specified slope.\nA template or guide used to check and reproduce a specified slope on earthwork, drainage surfaces, or similar work. It is made to the design gradient and compared against the constructed surface. Orientation must be clear and a warped or damaged template should not be relied upon.",
       "c": "layout",
-      "task": "check_slope"
+      "task": "check_slope",
+      "aj": [
+        "勾配板"
+      ],
+      "ae": [
+        "Slope setting board"
+      ]
     },
     {
       "id": "q013_panel_carrier",
@@ -897,7 +969,13 @@
       "dj": "石膏ボードなどの板材を運ぶ持ち手。\n石膏ボードや合板などの板材の下端・側面を保持し、人力搬送しやすくする持ち手工具。板の縁へ荷重を集中させるため、適合厚さと工具の掛かりを確認する。搬送経路の幅、段差、風、周囲の人にも注意する。",
       "de": "Handle used to carry sheet panels.\nA hand carrier that grips or supports the edge of drywall, plywood, or other sheet panels to make manual handling easier. Because load is concentrated at the panel edge, the tool must suit the panel thickness and seat securely. Route width, steps, wind, and nearby workers also affect safe handling.",
       "c": "drywall",
-      "task": "carry_board"
+      "task": "carry_board",
+      "aj": [
+        "ボード運搬具"
+      ],
+      "ae": [
+        "Panel carrying handle"
+      ]
     },
     {
       "id": "q013_drywall_rasp",
@@ -949,7 +1027,13 @@
       "dj": "カッターナイフの交換用刃。\nカッターナイフに装着する折刃式の交換刃で、先端の区画を折って新しい刃先を出せる消耗品。指定サイズのホルダーへ使用し、折る際の飛散と鋭利な使用済み片に注意する。刃を長く出し過ぎると折損しやすい。",
       "de": "Replacement blade for utility knives.\nA segmented replacement blade for a utility knife, designed so a worn tip section can be snapped off to expose a fresh edge. It must match the knife holder, and the snapping process creates a sharp fragment that requires controlled handling. Excessive blade extension increases breakage risk.",
       "c": "cutting",
-      "task": "replace_blade"
+      "task": "replace_blade",
+      "aj": [
+        "折刃式カッター替刃"
+      ],
+      "ae": [
+        "Snap-off utility blade"
+      ]
     },
     {
       "id": "q013_straightedge",
@@ -959,7 +1043,13 @@
       "dj": "直線確認やカットガイドに使う定規。\n長い直線基準を作り、面の通り確認、墨付け、切断ガイドなどに使う直線定規。目盛りを持たない製品もあり、主目的は直線性の基準を提供すること。反り・打痕・縁の損傷が精度に影響する。",
       "de": "Straight guide used for layout or cutting.\nA rigid straight guide used to check surface straightness, mark lines, or guide cutting. Many straightedges are not primarily measuring scales; their key function is providing a true linear reference. Bowing, dents, and damaged edges reduce accuracy.",
       "c": "layout",
-      "task": "mark_line"
+      "task": "mark_line",
+      "aj": [
+        "ストレートエッジ定規"
+      ],
+      "ae": [
+        "Precision straightedge"
+      ]
     },
     {
       "id": "q013_metal_ruler",
@@ -969,7 +1059,13 @@
       "dj": "寸法測定や直線引きに使う金属定規。\n鋼やステンレスなどの薄い直定規に目盛りを刻んだ測定工具。短い寸法測定、墨付け、直線確認に使う。端面摩耗、曲がり、ゼロ位置の欠け、目盛りの読み違いに注意し、精密測定が必要な場合は適切な測定器へ切り替える。",
       "de": "Steel ruler used for measuring and marking.\nA graduated steel or stainless ruler used for short measurements, marking, and straight-line reference. Wear at the end, bending, damaged zero reference, and reading error affect results. For tighter tolerances, use an appropriate precision measuring instrument instead.",
       "c": "measurement",
-      "task": "measure_length"
+      "task": "measure_length",
+      "aj": [
+        "金属製直尺"
+      ],
+      "ae": [
+        "Metal straight ruler"
+      ]
     },
     {
       "id": "q013_tape_measure",
@@ -989,7 +1085,13 @@
       "dj": "長距離の寸法を測る巻き取り式テープ。\n数十メートルなど比較的長い距離を測るため、ケースやリールへ巻き取る長尺の巻尺。一般的なコンベックスより長距離測定に向き、鋼製・樹脂繊維製などがある。張力、たるみ、温度、勾配、始点位置が測定誤差に影響する。",
       "de": "Long measuring tape used for site dimensions.\nA long reel tape used to measure site distances beyond the convenient range of a retractable pocket tape. Steel and synthetic-fiber tapes are common. Applied tension, sag, temperature, slope, and start-point definition can all affect longer measurements.",
       "c": "measurement",
-      "task": "measure_distance"
+      "task": "measure_distance",
+      "aj": [
+        "長尺巻尺"
+      ],
+      "ae": [
+        "Long measuring tape"
+      ]
     },
     {
       "id": "q013_marker_pen",
@@ -1019,7 +1121,13 @@
       "dj": "金属面に細い線を刻む工具。\n硬い鋭利な先端で金属表面へ細いけがき線を刻む手工具。鉛筆やマーカーより消えにくく細い基準線を作れる一方、仕上げ面へ永久傷を付けるため使用箇所を選ぶ。先端を鋭利に保ち、滑って手を刺さないよう扱う。",
       "de": "Pointed tool used to mark metal surfaces.\nA pointed hand tool used to scratch a fine layout line into metal. It produces a thinner and more durable mark than pencil or ink but permanently scores the surface, so it should be used only where such marking is acceptable. Keep the point in good condition and control slips.",
       "c": "metalwork",
-      "task": "scribe_line"
+      "task": "scribe_line",
+      "aj": [
+        "スクライバー"
+      ],
+      "ae": [
+        "Metal marking scriber"
+      ]
     },
     {
       "id": "q013_center_punch",
@@ -1045,7 +1153,13 @@
       "dj": "ピンやリベットを打ち抜く棒状工具。\nピン、ダウエル、リベット等を穴から押し出したり打ち込んだりするための細長い棒状ポンチ。先端径を対象ピンより適切に小さく選び、穴縁へ噛み込ませない。曲がったポンチやまくれた打撃頭は安全上使用しない。",
       "de": "Punch used to drive pins or rivets.\nA slender punch used to drive pins, dowels, or similar fasteners into or out of holes. Tip diameter should suit the pin so the punch enters the hole without wedging against its edge. Bent punches and mushroomed struck heads should be removed from service.",
       "c": "metalwork",
-      "task": "remove_pin"
+      "task": "remove_pin",
+      "aj": [
+        "ピン抜きポンチ"
+      ],
+      "ae": [
+        "Pin drive punch"
+      ]
     },
     {
       "id": "q013_file_flat",
@@ -1055,7 +1169,13 @@
       "dj": "金属や樹脂の平面を削る手工具。\n平らな面と直線状の刃を持ち、金属や樹脂の平面・角部を削る手やすり。切断後のバリ落とし、寸法微調整、面の修正に使う。目詰まりを清掃し、柄を付けずにむき出しの中子を押す使い方を避ける。",
       "de": "Hand file used to shape flat surfaces.\nA hand file with flat faces used to shape flat metal or plastic surfaces, remove burrs, and make small dimensional corrections. Keep the teeth clean and use a proper handle on the tang so the bare tang is not driven into the hand.",
       "c": "metalwork",
-      "task": "file_surface"
+      "task": "file_surface",
+      "aj": [
+        "平形やすり"
+      ],
+      "ae": [
+        "Flat hand file"
+      ]
     },
     {
       "id": "q013_file_round",
@@ -1065,7 +1185,13 @@
       "dj": "穴や曲面を削る丸いヤスリ。\n円形断面を持ち、穴の内面や凹曲面を削るための丸やすり。穴径の拡大や曲面のバリ取りに使うが、削り過ぎると穴の真円度や位置を損なう。対象穴より適切に細い径を選ぶ。",
       "de": "Round file used to shape holes or curves.\nA circular-section hand file used to shape holes, internal curves, and concave surfaces. It can enlarge a hole or remove internal burrs, but excessive filing can distort roundness and location. Select a file diameter appropriate to the opening.",
       "c": "metalwork",
-      "task": "file_hole"
+      "task": "file_hole",
+      "aj": [
+        "丸形やすり"
+      ],
+      "ae": [
+        "Round hand file"
+      ]
     },
     {
       "id": "q013_file_half_round",
@@ -1075,7 +1201,13 @@
       "dj": "平面と曲面の両方に使えるヤスリ。\n片面が平面、反対面が丸みを持つ半丸断面の手やすり。1本で平面と凹曲面の両方を加工でき、金属部品の形状合わせやバリ取りに便利。使用する面を加工形状に合わせ、角を不用意に削り落とさない。",
       "de": "File with flat and curved faces for shaping.\nA hand file with one flat face and one curved face, allowing both flat and concave surfaces to be shaped with one tool. It is useful for fitting and deburring metal parts. Use the face that matches the work geometry and avoid unintentionally rounding required corners.",
       "c": "metalwork",
-      "task": "file_surface"
+      "task": "file_surface",
+      "aj": [
+        "半丸形やすり"
+      ],
+      "ae": [
+        "Half-round hand file"
+      ]
     },
     {
       "id": "q013_putty_scraper",
@@ -1095,7 +1227,13 @@
       "dj": "錆や汚れをこすり落とす金属ブラシ。\n鋼線やステンレス線などの毛を植えた手持ちブラシで、金属面の浮き錆、汚れ、弱い塗膜などをこすり落とす工具。回転式ワイヤーホイールとは異なり手作業で使う。母材や仕上げを傷めない線材と硬さを選び、飛散片に備える。",
       "de": "Metal brush used to remove rust or dirt.\nA hand brush with steel, stainless, or similar wire bristles used to remove loose rust, dirt, and weak coating from metal surfaces. Unlike a powered wire wheel, it is operated manually. Select bristle material and stiffness to suit the substrate and protect against loose wire fragments.",
       "c": "surface_prep",
-      "task": "remove_rust"
+      "task": "remove_rust",
+      "aj": [
+        "手用ワイヤーブラシ"
+      ],
+      "ae": [
+        "Hand wire brush"
+      ]
     },
     {
       "id": "q013_paint_roller",

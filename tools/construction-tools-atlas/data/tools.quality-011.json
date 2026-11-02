@@ -489,7 +489,13 @@
       "dj": "電気回路を分岐し保護する盤。\n受けた電源を複数の分岐回路へ配分し、主幹・分岐の遮断器などを収納する盤。住宅・建物設備では回路ごとの保護、開閉、識別をまとめる中核部となる。",
       "de": "Panel that distributes and protects circuits.\nA panel that receives an electrical supply and distributes it to multiple branch circuits while housing main and branch protective devices. In building installations it provides a central point for circuit protection, switching, and identification.",
       "c": "electrical",
-      "task": "wire_panel"
+      "task": "wire_panel",
+      "aj": [
+        "分電ブレーカー盤"
+      ],
+      "ae": [
+        "Electrical distribution panel"
+      ]
     },
     {
       "id": "q011_drain_trap",
@@ -567,7 +573,13 @@
       "dj": "打設前に貫通位置へスリーブを設置する作業。\nコンクリート打設前に、配管・ダクトなどの将来の貫通位置へスリーブや箱抜きを設置して開口を確保する作業。構造体ができた後の不要なはつりやコア抜きを避けるため、設備図と構造図の調整が重要になる。",
       "de": "Setting sleeves before concrete placement.\nThe work of setting sleeves or blockouts before concrete placement to reserve future pipe, duct, or service penetrations. Coordination between building-services and structural drawings is important so later coring or demolition can be avoided where possible.",
       "c": "mep",
-      "task": "set_sleeve"
+      "task": "set_sleeve",
+      "aj": [
+        "スリーブ設置"
+      ],
+      "ae": [
+        "Sleeve installation"
+      ]
     },
     {
       "id": "q011_core_sleeve",
@@ -577,7 +589,13 @@
       "dj": "貫通部やコア抜きを想定したスリーブ。\n設備貫通部やコア開口に関連して用いられるスリーブ・筒状部材の呼称。現場や仕様書によって、先行して埋め込むスリーブ、開口の内周を形成する部材など指す範囲が異なるため、図面上の定義を確認して扱う。",
       "de": "Sleeve prepared for core openings or penetrations.\nA project-dependent term for a sleeve or tubular piece associated with service penetrations or core openings. It may refer to a pre-set embedded sleeve or a liner defining an opening, so the intended meaning should be confirmed from the project drawings and specification.",
       "c": "mep",
-      "task": "prepare_penetration"
+      "task": "prepare_penetration",
+      "aj": [
+        "コア抜き用スリーブ"
+      ],
+      "ae": [
+        "Core-drilled opening sleeve"
+      ]
     },
     {
       "id": "q011_expansion_joint",
@@ -597,7 +615,13 @@
       "dj": "時間差打設で一体化が弱くなる継ぎ目。\nコンクリートの打込みが長く中断し、先に打った部分と後から打った部分が十分に一体化しにくくなって生じる意図しない打継ぎ状の境界。計画して位置と処理方法を定めるConstruction Joint（施工上の打継ぎ）とは区別する。影響は位置や構造・防水条件によって異なる。",
       "de": "Weak joint caused by delayed concrete placement.\nAn unintended joint-like interface that can form when concrete placement is delayed long enough for the earlier lift to lose the condition needed for proper integration with later concrete. It is distinct from a planned construction joint whose location and treatment are specified in advance. Consequences depend on location and structural or watertightness requirements.",
       "c": "concrete",
-      "task": "avoid_defect"
+      "task": "avoid_defect",
+      "aj": [
+        "コンクリートコールドジョイント"
+      ],
+      "ae": [
+        "Cold joint in concrete"
+      ]
     },
     {
       "id": "q011_honeycomb_concrete",

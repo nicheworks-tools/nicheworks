@@ -1,0 +1,1564 @@
+{
+  "schema": "cta-subject-alias-review-v2",
+  "version": "2026-11-02-bilingual-search-wave2",
+  "notes": "Explicit manually curated trade names and close English synonyms only. Different technical concepts are not aliased. Full 870-canonical collision checks required prior to merge.",
+  "entries": [
+    {
+      "id": "q011_distribution_board",
+      "ja": [
+        "分電ブレーカー盤"
+      ],
+      "en": [
+        "Electrical distribution panel"
+      ]
+    },
+    {
+      "id": "q011_sleeve_opening",
+      "ja": [
+        "スリーブ設置"
+      ],
+      "en": [
+        "Sleeve installation"
+      ]
+    },
+    {
+      "id": "q011_core_sleeve",
+      "ja": [
+        "コア抜き用スリーブ"
+      ],
+      "en": [
+        "Core-drilled opening sleeve"
+      ]
+    },
+    {
+      "id": "q011_cold_joint",
+      "ja": [
+        "コンクリートコールドジョイント"
+      ],
+      "en": [
+        "Cold joint in concrete"
+      ]
+    },
+    {
+      "id": "q012_framing_square",
+      "ja": [
+        "大工用大矩"
+      ],
+      "en": [
+        "Large framing square"
+      ]
+    },
+    {
+      "id": "q012_marking_gauge",
+      "ja": [
+        "木工筋引き器"
+      ],
+      "en": [
+        "Wood marking gauge"
+      ]
+    },
+    {
+      "id": "q012_block_plane",
+      "ja": [
+        "小型鉋"
+      ],
+      "en": [
+        "Small block plane"
+      ]
+    },
+    {
+      "id": "q012_coping_saw",
+      "ja": [
+        "糸ノコギリ"
+      ],
+      "en": [
+        "Fine-blade coping saw"
+      ]
+    },
+    {
+      "id": "q012_cup_wheel",
+      "ja": [
+        "ダイヤカップ"
+      ],
+      "en": [
+        "Diamond cup grinding wheel"
+      ]
+    },
+    {
+      "id": "q012_cold_chisel",
+      "ja": [
+        "金属用タガネ"
+      ],
+      "en": [
+        "Metal-cutting cold chisel"
+      ]
+    },
+    {
+      "id": "q012_bolster_chisel",
+      "ja": [
+        "ワイドタガネ"
+      ],
+      "en": [
+        "Wide bolster chisel"
+      ]
+    },
+    {
+      "id": "q012_nail_puller",
+      "ja": [
+        "釘引き"
+      ],
+      "en": [
+        "Nail extracting tool"
+      ]
+    },
+    {
+      "id": "q012_hand_shear",
+      "ja": [
+        "金切鋏"
+      ],
+      "en": [
+        "Sheet metal snips"
+      ]
+    },
+    {
+      "id": "q012_nibbler",
+      "ja": [
+        "板金ニブラー"
+      ],
+      "en": [
+        "Sheet metal nibbler"
+      ]
+    },
+    {
+      "id": "q012_channel_nut",
+      "ja": [
+        "ストラットナット"
+      ],
+      "en": [
+        "Strut channel nut"
+      ]
+    },
+    {
+      "id": "q012_unistrut_channel",
+      "ja": [
+        "ストラットチャンネル"
+      ],
+      "en": [
+        "Metal framing strut channel"
+      ]
+    },
+    {
+      "id": "q012_pipe_clamp",
+      "ja": [
+        "パイプ固定バンド"
+      ],
+      "en": [
+        "Pipe fixing clamp"
+      ]
+    },
+    {
+      "id": "q012_hanger_clamp",
+      "ja": [
+        "吊り配管バンド"
+      ],
+      "en": [
+        "Pipe hanger clamp"
+      ]
+    },
+    {
+      "id": "q012_rubber_mount",
+      "ja": [
+        "防振マウント"
+      ],
+      "en": [
+        "Vibration-isolating rubber mount"
+      ]
+    },
+    {
+      "id": "q012_base_plate",
+      "ja": [
+        "柱脚ベースプレート"
+      ],
+      "en": [
+        "Column base plate"
+      ]
+    },
+    {
+      "id": "q012_gusset_plate",
+      "ja": [
+        "接合ガセット"
+      ],
+      "en": [
+        "Steel gusset plate"
+      ]
+    },
+    {
+      "id": "q012_grout_under_base",
+      "ja": [
+        "ベースプレート下グラウト"
+      ],
+      "en": [
+        "Base plate grouting"
+      ]
+    },
+    {
+      "id": "q012_epoxy_anchor_adhesive",
+      "ja": [
+        "樹脂アンカー接着剤"
+      ],
+      "en": [
+        "Epoxy anchor adhesive"
+      ]
+    },
+    {
+      "id": "q012_blow_pump",
+      "ja": [
+        "穿孔穴清掃ポンプ"
+      ],
+      "en": [
+        "Anchor hole air blower"
+      ]
+    },
+    {
+      "id": "q012_embed_plate",
+      "ja": [
+        "埋設プレート"
+      ],
+      "en": [
+        "Cast-in steel plate"
+      ]
+    },
+    {
+      "id": "q012_anchor_template",
+      "ja": [
+        "アンカーボルト定規"
+      ],
+      "en": [
+        "Anchor bolt positioning template"
+      ]
+    },
+    {
+      "id": "q012_infrared_thermometer",
+      "ja": [
+        "非接触温度計"
+      ],
+      "en": [
+        "Non-contact infrared thermometer"
+      ]
+    },
+    {
+      "id": "q012_air_meter",
+      "ja": [
+        "コンクリート空気量計"
+      ],
+      "en": [
+        "Concrete air-content meter"
+      ]
+    },
+    {
+      "id": "q012_concrete_cylinder_mold",
+      "ja": [
+        "コンクリート供試体モールド"
+      ],
+      "en": [
+        "Concrete test cylinder mould"
+      ]
+    },
+    {
+      "id": "q012_curing_tank",
+      "ja": [
+        "供試体養生槽"
+      ],
+      "en": [
+        "Concrete specimen curing tank"
+      ]
+    },
+    {
+      "id": "q012_core_sampler",
+      "ja": [
+        "コンクリートコア採取機"
+      ],
+      "en": [
+        "Concrete core sampling machine"
+      ]
+    },
+    {
+      "id": "q012_warning_tape",
+      "ja": [
+        "危険表示テープ"
+      ],
+      "en": [
+        "Barricade warning tape"
+      ]
+    },
+    {
+      "id": "q012_toe_board",
+      "ja": [
+        "落下防止幅木"
+      ],
+      "en": [
+        "Scaffold toe board"
+      ]
+    },
+    {
+      "id": "q012_debris_net",
+      "ja": [
+        "飛散防止ネット"
+      ],
+      "en": [
+        "Scaffolding debris net"
+      ]
+    },
+    {
+      "id": "q013_base_plate_scaffold",
+      "ja": [
+        "足場用敷板"
+      ],
+      "en": [
+        "Scaffold sole board"
+      ]
+    },
+    {
+      "id": "q013_turnbuckle",
+      "ja": [
+        "張力調整ターンバックル"
+      ],
+      "en": [
+        "Tensioning turnbuckle"
+      ]
+    },
+    {
+      "id": "q013_soil_rake",
+      "ja": [
+        "土ならしレーキ"
+      ],
+      "en": [
+        "Landscape rake"
+      ]
+    },
+    {
+      "id": "q013_backfill_soil",
+      "ja": [
+        "埋め戻し土"
+      ],
+      "en": [
+        "Backfill material"
+      ]
+    },
+    {
+      "id": "q013_geotextile",
+      "ja": [
+        "土木用ジオテキスタイル"
+      ],
+      "en": [
+        "Geosynthetic textile"
+      ]
+    },
+    {
+      "id": "q013_drain_pipe",
+      "ja": [
+        "地中排水管"
+      ],
+      "en": [
+        "Subsurface drain pipe"
+      ]
+    },
+    {
+      "id": "q013_drain_gravel",
+      "ja": [
+        "排水用砕石"
+      ],
+      "en": [
+        "Drainage crushed aggregate"
+      ]
+    },
+    {
+      "id": "q013_catch_basin",
+      "ja": [
+        "集水ます"
+      ],
+      "en": [
+        "Catch basin inlet"
+      ]
+    },
+    {
+      "id": "q013_survey_stake",
+      "ja": [
+        "測量用杭"
+      ],
+      "en": [
+        "Survey marker stake"
+      ]
+    },
+    {
+      "id": "q013_flagging_tape",
+      "ja": [
+        "測量目印テープ"
+      ],
+      "en": [
+        "Survey flagging tape"
+      ]
+    },
+    {
+      "id": "q013_batter_board",
+      "ja": [
+        "遣り方板"
+      ],
+      "en": [
+        "Setting-out batter board"
+      ]
+    },
+    {
+      "id": "q013_slope_board",
+      "ja": [
+        "勾配板"
+      ],
+      "en": [
+        "Slope setting board"
+      ]
+    },
+    {
+      "id": "q013_panel_carrier",
+      "ja": [
+        "ボード運搬具"
+      ],
+      "en": [
+        "Panel carrying handle"
+      ]
+    },
+    {
+      "id": "q013_snap_off_blade",
+      "ja": [
+        "折刃式カッター替刃"
+      ],
+      "en": [
+        "Snap-off utility blade"
+      ]
+    },
+    {
+      "id": "q013_straightedge",
+      "ja": [
+        "ストレートエッジ定規"
+      ],
+      "en": [
+        "Precision straightedge"
+      ]
+    },
+    {
+      "id": "q013_metal_ruler",
+      "ja": [
+        "金属製直尺"
+      ],
+      "en": [
+        "Metal straight ruler"
+      ]
+    },
+    {
+      "id": "q013_long_tape",
+      "ja": [
+        "長尺巻尺"
+      ],
+      "en": [
+        "Long measuring tape"
+      ]
+    },
+    {
+      "id": "q013_scribe",
+      "ja": [
+        "スクライバー"
+      ],
+      "en": [
+        "Metal marking scriber"
+      ]
+    },
+    {
+      "id": "q013_pin_punch",
+      "ja": [
+        "ピン抜きポンチ"
+      ],
+      "en": [
+        "Pin drive punch"
+      ]
+    },
+    {
+      "id": "q013_file_flat",
+      "ja": [
+        "平形やすり"
+      ],
+      "en": [
+        "Flat hand file"
+      ]
+    },
+    {
+      "id": "q013_file_round",
+      "ja": [
+        "丸形やすり"
+      ],
+      "en": [
+        "Round hand file"
+      ]
+    },
+    {
+      "id": "q013_file_half_round",
+      "ja": [
+        "半丸形やすり"
+      ],
+      "en": [
+        "Half-round hand file"
+      ]
+    },
+    {
+      "id": "q013_wire_hand_brush",
+      "ja": [
+        "手用ワイヤーブラシ"
+      ],
+      "en": [
+        "Hand wire brush"
+      ]
+    },
+    {
+      "id": "q014_exterior_corner_trim",
+      "ja": [
+        "外壁出隅材"
+      ],
+      "en": [
+        "Exterior cladding corner trim"
+      ]
+    },
+    {
+      "id": "q014_door_handle",
+      "ja": [
+        "扉ハンドル"
+      ],
+      "en": [
+        "Door operating handle"
+      ]
+    },
+    {
+      "id": "q014_push_plate",
+      "ja": [
+        "ドア押し板"
+      ],
+      "en": [
+        "Door push plate"
+      ]
+    },
+    {
+      "id": "q014_pull_handle",
+      "ja": [
+        "扉引き手"
+      ],
+      "en": [
+        "Door pull grip"
+      ]
+    },
+    {
+      "id": "q014_exterior_paint",
+      "ja": [
+        "外装塗料"
+      ],
+      "en": [
+        "External wall paint"
+      ]
+    },
+    {
+      "id": "q014_elastomeric_paint",
+      "ja": [
+        "弾性外壁塗料"
+      ],
+      "en": [
+        "Elastomeric wall coating"
+      ]
+    },
+    {
+      "id": "q014_floor_protection_board",
+      "ja": [
+        "床保護ボード"
+      ],
+      "en": [
+        "Protective floor board"
+      ]
+    },
+    {
+      "id": "q014_guard_post",
+      "ja": [
+        "手摺支柱"
+      ],
+      "en": [
+        "Railing support post"
+      ]
+    },
+    {
+      "id": "q014_baluster",
+      "ja": [
+        "手すり子"
+      ],
+      "en": [
+        "Railing baluster"
+      ]
+    },
+    {
+      "id": "q014_exterior_fence",
+      "ja": [
+        "外構フェンス"
+      ],
+      "en": [
+        "Boundary fence"
+      ]
+    },
+    {
+      "id": "q014_fence_post",
+      "ja": [
+        "フェンスポスト"
+      ],
+      "en": [
+        "Fence support post"
+      ]
+    },
+    {
+      "id": "q014_gate",
+      "ja": [
+        "エントランス門扉"
+      ],
+      "en": [
+        "Entrance gate"
+      ]
+    },
+    {
+      "id": "q014_gate_hinge",
+      "ja": [
+        "門扉用蝶番"
+      ],
+      "en": [
+        "Gate hinge fitting"
+      ]
+    },
+    {
+      "id": "q014_gate_latch",
+      "ja": [
+        "門扉掛け金"
+      ],
+      "en": [
+        "Gate catch latch"
+      ]
+    },
+    {
+      "id": "q014_interlocking_paver",
+      "ja": [
+        "インターロッキング舗装ブロック"
+      ],
+      "en": [
+        "Interlocking paving block"
+      ]
+    },
+    {
+      "id": "q014_concrete_paver",
+      "ja": [
+        "コンクリート平板"
+      ],
+      "en": [
+        "Concrete paving slab"
+      ]
+    },
+    {
+      "id": "q014_paving_stone",
+      "ja": [
+        "舗装石"
+      ],
+      "en": [
+        "Stone paving unit"
+      ]
+    },
+    {
+      "id": "q014_curb_block",
+      "ja": [
+        "境界縁石"
+      ],
+      "en": [
+        "Kerb block"
+      ]
+    },
+    {
+      "id": "q014_granite_curb",
+      "ja": [
+        "御影縁石"
+      ],
+      "en": [
+        "Granite kerbstone"
+      ]
+    },
+    {
+      "id": "q014_asphalt_tack_coat",
+      "ja": [
+        "タック乳剤"
+      ],
+      "en": [
+        "Asphalt tack coat emulsion"
+      ]
+    },
+    {
+      "id": "q014_asphalt_primer",
+      "ja": [
+        "路盤プライムコート"
+      ],
+      "en": [
+        "Bituminous prime coat"
+      ]
+    },
+    {
+      "id": "q014_vibratory_roller",
+      "ja": [
+        "振動式ローラー"
+      ],
+      "en": [
+        "Vibratory compaction roller"
+      ]
+    },
+    {
+      "id": "q014_hand_roller",
+      "ja": [
+        "手押しローラー"
+      ],
+      "en": [
+        "Pedestrian roller"
+      ]
+    },
+    {
+      "id": "q014_asphalt_rake",
+      "ja": [
+        "舗装レーキ"
+      ],
+      "en": [
+        "Asphalt paving rake"
+      ]
+    },
+    {
+      "id": "q014_lute_rake",
+      "ja": [
+        "アスファルトルート"
+      ],
+      "en": [
+        "Asphalt lute rake"
+      ]
+    },
+    {
+      "id": "q014_paver_machine",
+      "ja": [
+        "アスファルト舗装機"
+      ],
+      "en": [
+        "Asphalt paving machine"
+      ]
+    },
+    {
+      "id": "q014_trench_drain",
+      "ja": [
+        "線状排水溝"
+      ],
+      "en": [
+        "Linear trench drain"
+      ]
+    },
+    {
+      "id": "q014_grating",
+      "ja": [
+        "溝ふたグレーチング"
+      ],
+      "en": [
+        "Drainage grating"
+      ]
+    },
+    {
+      "id": "q014_drain_channel",
+      "ja": [
+        "排水溝チャンネル"
+      ],
+      "en": [
+        "Drainage trough channel"
+      ]
+    },
+    {
+      "id": "q014_catchpit",
+      "ja": [
+        "集水ピット桝"
+      ],
+      "en": [
+        "Drainage catchpit"
+      ]
+    },
+    {
+      "id": "q014_sediment_trap",
+      "ja": [
+        "土砂溜め"
+      ],
+      "en": [
+        "Silt trap"
+      ]
+    },
+    {
+      "id": "q014_drain_cover",
+      "ja": [
+        "排水溝ふた"
+      ],
+      "en": [
+        "Drain channel cover"
+      ]
+    },
+    {
+      "id": "q014_permeable_paver",
+      "ja": [
+        "透水ブロック"
+      ],
+      "en": [
+        "Permeable paving block"
+      ]
+    },
+    {
+      "id": "q014_drainage_slope",
+      "ja": [
+        "水勾配"
+      ],
+      "en": [
+        "Drainage gradient"
+      ]
+    },
+    {
+      "id": "q014_expansion_joint_filler",
+      "ja": [
+        "伸縮目地充填材"
+      ],
+      "en": [
+        "Expansion gap filler"
+      ]
+    },
+    {
+      "id": "q014_joint_sealant_exterior",
+      "ja": [
+        "外壁目地シール材"
+      ],
+      "en": [
+        "Exterior joint sealing compound"
+      ]
+    },
+    {
+      "id": "q014_polyurethane_sealant",
+      "ja": [
+        "ウレタンシーリング材"
+      ],
+      "en": [
+        "Polyurethane joint sealant"
+      ]
+    },
+    {
+      "id": "q014_modified_silicone_sealant",
+      "ja": [
+        "変成シリコンシーリング材"
+      ],
+      "en": [
+        "Modified silyl sealant"
+      ]
+    },
+    {
+      "id": "q014_sealant_spatula",
+      "ja": [
+        "コーキングヘラ"
+      ],
+      "en": [
+        "Joint sealant spatula"
+      ]
+    },
+    {
+      "id": "q014_backer_tape",
+      "ja": [
+        "ボンドブレーカーテープ"
+      ],
+      "en": [
+        "Bond-breaking tape"
+      ]
+    },
+    {
+      "id": "q014_glass_suction_cup",
+      "ja": [
+        "ガラス運搬吸盤"
+      ],
+      "en": [
+        "Glass handling suction lifter"
+      ]
+    },
+    {
+      "id": "q014_panel_lifter_exterior",
+      "ja": [
+        "外壁パネル吊り具"
+      ],
+      "en": [
+        "Exterior panel lifting tool"
+      ]
+    },
+    {
+      "id": "q015_gate_valve",
+      "ja": [
+        "ゲートバルブ"
+      ],
+      "en": [
+        "Gate shutoff valve"
+      ]
+    },
+    {
+      "id": "q015_urinal",
+      "ja": [
+        "小便用衛生器具"
+      ],
+      "en": [
+        "Urinal fixture"
+      ]
+    },
+    {
+      "id": "q015_insulation_tape",
+      "ja": [
+        "配管保温テープ"
+      ],
+      "en": [
+        "Thermal insulation wrap tape"
+      ]
+    },
+    {
+      "id": "q015_flexible_duct",
+      "ja": [
+        "フレキダクト"
+      ],
+      "en": [
+        "Flexible air duct"
+      ]
+    },
+    {
+      "id": "q015_drain_up_piping",
+      "ja": [
+        "空調ドレン管"
+      ],
+      "en": [
+        "Air-conditioning condensate drain"
+      ]
+    },
+    {
+      "id": "q015_condensate_pump",
+      "ja": [
+        "凝縮水排水ポンプ"
+      ],
+      "en": [
+        "Condensate lift pump"
+      ]
+    },
+    {
+      "id": "q015_drain_trap_hvac",
+      "ja": [
+        "空調排水トラップ"
+      ],
+      "en": [
+        "Air-conditioner condensate trap"
+      ]
+    },
+    {
+      "id": "q015_pipe_sleeve_firestop",
+      "ja": [
+        "区画貫通スリーブ"
+      ],
+      "en": [
+        "Fire barrier penetration sleeve"
+      ]
+    },
+    {
+      "id": "q015_wall_sleeve",
+      "ja": [
+        "配管壁貫通スリーブ"
+      ],
+      "en": [
+        "Wall penetration sleeve"
+      ]
+    },
+    {
+      "id": "q015_floor_sleeve",
+      "ja": [
+        "配管床貫通スリーブ"
+      ],
+      "en": [
+        "Floor penetration sleeve"
+      ]
+    },
+    {
+      "id": "q015_sleeve_ring",
+      "ja": [
+        "スリーブ固定リング"
+      ],
+      "en": [
+        "Pipe sleeve ring"
+      ]
+    },
+    {
+      "id": "q015_firestop_mortar",
+      "ja": [
+        "防火区画貫通モルタル"
+      ],
+      "en": [
+        "Fire stopping mortar"
+      ]
+    },
+    {
+      "id": "q015_firestop_board",
+      "ja": [
+        "防火区画貫通処理ボード"
+      ],
+      "en": [
+        "Fire barrier board"
+      ]
+    },
+    {
+      "id": "q015_intumescent_wrap",
+      "ja": [
+        "熱膨張巻き付け材"
+      ],
+      "en": [
+        "Intumescent pipe wrap"
+      ]
+    },
+    {
+      "id": "q015_firestop_coller",
+      "ja": [
+        "防火カラー"
+      ],
+      "en": [
+        "Fire stopping collar"
+      ]
+    },
+    {
+      "id": "q015_pipe_support",
+      "ja": [
+        "配管サポート"
+      ],
+      "en": [
+        "Pipe supporting bracket"
+      ]
+    },
+    {
+      "id": "q015_trapeze_hanger",
+      "ja": [
+        "門型配管吊り金具"
+      ],
+      "en": [
+        "Trapeze pipe hanger"
+      ]
+    },
+    {
+      "id": "q015_clevis_hanger",
+      "ja": [
+        "クレビス吊り金具"
+      ],
+      "en": [
+        "Clevis pipe hanger"
+      ]
+    },
+    {
+      "id": "q015_pipe_shoe",
+      "ja": [
+        "配管シュー"
+      ],
+      "en": [
+        "Pipe support shoe"
+      ]
+    },
+    {
+      "id": "q015_pipe_saddle",
+      "ja": [
+        "配管サドル"
+      ],
+      "en": [
+        "Saddle pipe clamp"
+      ]
+    },
+    {
+      "id": "q015_riser_clamp",
+      "ja": [
+        "立て管バンド"
+      ],
+      "en": [
+        "Vertical pipe riser clamp"
+      ]
+    },
+    {
+      "id": "q015_anti_vibration_hanger",
+      "ja": [
+        "防振ハンガー"
+      ],
+      "en": [
+        "Vibration isolator hanger"
+      ]
+    },
+    {
+      "id": "q015_equipment_anchor",
+      "ja": [
+        "機器固定アンカー"
+      ],
+      "en": [
+        "Plant equipment anchoring bolt"
+      ]
+    },
+    {
+      "id": "q015_equipment_pad",
+      "ja": [
+        "設備据付パッド"
+      ],
+      "en": [
+        "Equipment mounting pad"
+      ]
+    },
+    {
+      "id": "q015_access_door_mep",
+      "ja": [
+        "設備用点検扉"
+      ],
+      "en": [
+        "Building services access hatch"
+      ]
+    },
+    {
+      "id": "q015_balancing_valve",
+      "ja": [
+        "流量調整弁"
+      ],
+      "en": [
+        "Hydronic balancing valve"
+      ]
+    },
+    {
+      "id": "q015_air_vent_valve",
+      "ja": [
+        "エア抜き弁"
+      ],
+      "en": [
+        "Air release valve"
+      ]
+    },
+    {
+      "id": "q015_drain_valve",
+      "ja": [
+        "排水弁"
+      ],
+      "en": [
+        "Drain-off valve"
+      ]
+    },
+    {
+      "id": "q015_temperature_gauge",
+      "ja": [
+        "配管温度計"
+      ],
+      "en": [
+        "Temperature indicator gauge"
+      ]
+    },
+    {
+      "id": "q015_flow_meter",
+      "ja": [
+        "流量測定器"
+      ],
+      "en": [
+        "Flowmeter instrument"
+      ]
+    },
+    {
+      "id": "q015_test_plug",
+      "ja": [
+        "試験プラグ"
+      ],
+      "en": [
+        "Pressure test plug"
+      ]
+    },
+    {
+      "id": "q015_pressure_test_pump",
+      "ja": [
+        "耐圧試験ポンプ"
+      ],
+      "en": [
+        "Hydrostatic test pump"
+      ]
+    },
+    {
+      "id": "q015_leak_detector",
+      "ja": [
+        "漏水センサー"
+      ],
+      "en": [
+        "Water leak detector"
+      ]
+    },
+    {
+      "id": "q015_smoke_tester",
+      "ja": [
+        "スモークテスター"
+      ],
+      "en": [
+        "Smoke testing device"
+      ]
+    },
+    {
+      "id": "q015_manometer",
+      "ja": [
+        "差圧測定マノメーター"
+      ],
+      "en": [
+        "Pressure manometer"
+      ]
+    },
+    {
+      "id": "q015_filter_unit",
+      "ja": [
+        "空調エアフィルター"
+      ],
+      "en": [
+        "Air filtration unit"
+      ]
+    },
+    {
+      "id": "q015_filter_frame",
+      "ja": [
+        "エアフィルター枠"
+      ],
+      "en": [
+        "Air filter holding frame"
+      ]
+    },
+    {
+      "id": "q015_access_panel_duct",
+      "ja": [
+        "ダクト点検扉"
+      ],
+      "en": [
+        "Duct inspection hatch"
+      ]
+    },
+    {
+      "id": "q015_louver",
+      "ja": [
+        "通風ルーバー"
+      ],
+      "en": [
+        "Ventilation louvre"
+      ]
+    },
+    {
+      "id": "q015_weather_louver",
+      "ja": [
+        "防雨ガラリ"
+      ],
+      "en": [
+        "Rain-resistant louvre"
+      ]
+    },
+    {
+      "id": "q015_flexible_connector",
+      "ja": [
+        "防振キャンバス継手"
+      ],
+      "en": [
+        "Flexible canvas duct connector"
+      ]
+    },
+    {
+      "id": "q016_wallpaper_brush",
+      "ja": [
+        "クロス撫で刷毛"
+      ],
+      "en": [
+        "Wallpaper paperhanging brush"
+      ]
+    },
+    {
+      "id": "q016_oil_based_paint",
+      "ja": [
+        "溶剤系塗料"
+      ],
+      "en": [
+        "Solvent-based paint"
+      ]
+    },
+    {
+      "id": "q016_drop_cloth",
+      "ja": [
+        "塗装用養生布"
+      ],
+      "en": [
+        "Painter's drop cloth"
+      ]
+    },
+    {
+      "id": "q016_tile_wedge",
+      "ja": [
+        "タイル高さ調整くさび"
+      ],
+      "en": [
+        "Tile leveling shim"
+      ]
+    },
+    {
+      "id": "q016_plaster_trowel",
+      "ja": [
+        "左官仕上げ鏝"
+      ],
+      "en": [
+        "Plaster finishing trowel"
+      ]
+    },
+    {
+      "id": "q016_corner_trowel",
+      "ja": [
+        "隅仕上げ鏝"
+      ],
+      "en": [
+        "Corner finishing trowel"
+      ]
+    },
+    {
+      "id": "q016_repair_patch",
+      "ja": [
+        "壁面補修パッチ"
+      ],
+      "en": [
+        "Surface repair patch"
+      ]
+    },
+    {
+      "id": "q016_wall_repair_mesh",
+      "ja": [
+        "壁面補修網"
+      ],
+      "en": [
+        "Wall patch reinforcement mesh"
+      ]
+    },
+    {
+      "id": "q016_spackling_paste",
+      "ja": [
+        "スパックリングパテ"
+      ],
+      "en": [
+        "Spackle compound"
+      ]
+    },
+    {
+      "id": "q016_crack_filler",
+      "ja": [
+        "クラック補修材"
+      ],
+      "en": [
+        "Crack repair filler"
+      ]
+    },
+    {
+      "id": "q016_floor_hardener",
+      "ja": [
+        "床面硬化剤"
+      ],
+      "en": [
+        "Concrete floor hardener"
+      ]
+    },
+    {
+      "id": "q016_concrete_sealer",
+      "ja": [
+        "コンクリート表面シーラー"
+      ],
+      "en": [
+        "Concrete surface sealer"
+      ]
+    },
+    {
+      "id": "q016_floor_polisher",
+      "ja": [
+        "フロアポリッシャー"
+      ],
+      "en": [
+        "Floor buffing machine"
+      ]
+    },
+    {
+      "id": "q016_moisture_barrier_coating",
+      "ja": [
+        "防湿コーティング"
+      ],
+      "en": [
+        "Moisture-blocking coating"
+      ]
+    },
+    {
+      "id": "q016_subfloor_level_check",
+      "ja": [
+        "床下地の水平確認"
+      ],
+      "en": [
+        "Subfloor level inspection"
+      ]
+    },
+    {
+      "id": "q016_flatness_check",
+      "ja": [
+        "平坦度検査"
+      ],
+      "en": [
+        "Surface flatness inspection"
+      ]
+    },
+    {
+      "id": "q016_cross_cut_tester",
+      "ja": [
+        "クロスカット付着試験器"
+      ],
+      "en": [
+        "Cross-hatch adhesion tester"
+      ]
+    },
+    {
+      "id": "q016_coating_thickness_gauge",
+      "ja": [
+        "塗膜厚測定器"
+      ],
+      "en": [
+        "Paint film thickness gauge"
+      ]
+    },
+    {
+      "id": "q016_color_sample_board",
+      "ja": [
+        "塗装色見本板"
+      ],
+      "en": [
+        "Paint colour sample board"
+      ]
+    },
+    {
+      "id": "q016_finish_sample",
+      "ja": [
+        "仕上材サンプル"
+      ],
+      "en": [
+        "Finish material sample"
+      ]
+    },
+    {
+      "id": "q016_mockup_panel",
+      "ja": [
+        "仕上げモックアップ"
+      ],
+      "en": [
+        "Sample mock-up panel"
+      ]
+    },
+    {
+      "id": "q016_snagging",
+      "ja": [
+        "竣工前仕上げチェック"
+      ],
+      "en": [
+        "Defect punch-list inspection"
+      ]
+    },
+    {
+      "id": "q016_blue_tape_walk",
+      "ja": [
+        "ブルーテープ検査"
+      ],
+      "en": [
+        "Blue tape inspection walk"
+      ]
+    },
+    {
+      "id": "q016_scratch_guard",
+      "ja": [
+        "傷付き防止フィルム"
+      ],
+      "en": [
+        "Surface scratch guard film"
+      ]
+    },
+    {
+      "id": "q016_corner_protection_tape",
+      "ja": [
+        "出隅保護テープ"
+      ],
+      "en": [
+        "Corner guard tape"
+      ]
+    },
+    {
+      "id": "q016_temporary_floor_mat",
+      "ja": [
+        "床仮養生マット"
+      ],
+      "en": [
+        "Temporary protective floor mat"
+      ]
+    },
+    {
+      "id": "q016_dust_barrier",
+      "ja": [
+        "粉じん飛散防止養生"
+      ],
+      "en": [
+        "Dust containment barrier"
+      ]
+    },
+    {
+      "id": "q016_zip_wall",
+      "ja": [
+        "ジップウォール"
+      ],
+      "en": [
+        "Temporary dust containment wall"
+      ]
+    },
+    {
+      "id": "q016_negative_air_machine",
+      "ja": [
+        "負圧集塵機"
+      ],
+      "en": [
+        "Negative-pressure air scrubber"
+      ]
+    },
+    {
+      "id": "q016_hepa_filter",
+      "ja": [
+        "高性能微粒子エアフィルター"
+      ],
+      "en": [
+        "High-efficiency particulate air filter"
+      ]
+    },
+    {
+      "id": "q016_daily_safety_check",
+      "ja": [
+        "毎日の安全点検"
+      ],
+      "en": [
+        "Daily worksite safety check"
+      ]
+    },
+    {
+      "id": "q017_workbench",
+      "ja": [
+        "ワークベンチ"
+      ],
+      "en": [
+        "Workbench table"
+      ]
+    },
+    {
+      "id": "q017_survey_tripod",
+      "ja": [
+        "測量用三脚"
+      ],
+      "en": [
+        "Survey instrument tripod"
+      ]
+    }
+  ]
+}
