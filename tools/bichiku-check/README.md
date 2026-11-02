@@ -1,6 +1,6 @@
 # BichikuCheck — disaster stockpile and go-bag planner
 
-Status: **review candidate on a feature branch**. Do not present as live until the PR is merged and Cloudflare Pages has deployed it.
+Status: **staged, unregistered review candidate on a feature branch**. Four routes use `noindex,nofollow` and are intentionally absent from the public tools index/sitemap until launch gates pass. Do not present as publicly launched.
 
 ## Audience and product value
 Japan-focused, mobile-first, free planning aid for Japanese users and foreign residents of Japan. The distinct consumer task is to subtract household inventory from suggested preparedness targets, optionally override targets, and immediately find missing categories on Amazon Japan. Not an official safety service, nutritional calculator, real-time alert service, or shopping comparison engine.
@@ -66,6 +66,9 @@ Review checklist before merge:
 7. Check Cloudflare Pages preview, browser console, GA4 outbound event, production AdSense ad unit configuration and Amazon Associates account eligibility.
 
 **Not shipped in this first implementation:** automatic current-price comparison, a true price-aware budget planner, multi-lot expiry tracking, automated expiry notifications, store stock feeds, dynamic safety alerts, live translations, PDF export, and guaranteed suitability scoring.
+
+## Publication gate
+The existing repo has fixed 89-tool spec, monetization, non-affiliate, and publishing audits. When choosing to publish as a 90th tool, coordinate public registry (`tools/tools-index.json`), sitemap, tools spec manifest, monetization ledger, non-affiliate classification, and all audit denominators. Do not change unrelated ledgers while this tool is only staged. Switch all four locales to `index,follow` and remove the staged-tools registry row only in the publication PR. Verify account setup and customer-facing translations first.
 
 ## Expansion gates
 Track by locale: Search Console impressions/clicks for route, on-page result generation, coarse affiliate outbound click counts, and verified Amazon conversions from the Associates dashboard. Do not log household inputs. At day 30/90, decide continuation based on actual SEO and conversion data, not hypothetical revenue.
