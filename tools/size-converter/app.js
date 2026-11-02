@@ -147,8 +147,20 @@
   }
 
   function inputNumber(input) { return parseDecimal(input?.value); }
-  function normalizeSize(value) { return String(value ?? "").trim().toUpperCase().replace(/CM$/i, "").replace(/[–—−]/g, "-").replace(/\s+/g, ""); }
-  function parseSizeEntry(raw) { const text = String(raw || "").trim(); const match = /^(JP|US|EU)\s*[:\-]?\s*(.+)$/i.exec(text); return match ? { system: match[1].toLowerCase(), value: match[2] } : { system: els.base.value, value: text }; }
+  function normalizeSize(value) {
+    // Interpret common retail half-size notation without synthesizing new
+    // conversion rows: "8 1/2", "8-1/2", "8½" and full-width digits.
+    let text = String(value ?? "").replace(/½/g, " 1/2").normalize("NFKC").trim().toUpperCase();
+    text = text.replace(/[–—−]/g, "-").replace(/\s*CM$/i, "").replace(",", ".");
+    const half = /^(\d+)\s*[- ]\s*1\s*\/\s*2$/.exec(text);
+    if (half) return String(Number(half[1]) + 0.5);
+    return text.replace(/\s+/g, "");
+  }
+  function parseSizeEntry(raw) {
+    const text = String(raw || "").replace(/½/g, " 1/2").normalize("NFKC").trim();
+    const match = /^(JP|US|EU)\s*[:\-]?\s*(.+)$/i.exec(text);
+    return match ? { system: match[1].toLowerCase(), value: match[2] } : { system: els.base.value, value: text };
+  }
 
   function applyLang(lang) {
     currentLang = lang === "en" ? "en" : "ja";
@@ -172,7 +184,23 @@
     renderQuickResult();
   }
 
-  function findSizeIndex(system, value) { const wanted = normalizeSize(value); if (!wanted) return -1; return rows().findIndex((row) => normalizeSize(row[system]) === wanted); }
+  function findSizeIndex(system, value) {
+    const wanted = normalizeSize(value);
+    if (!wanted || !["jp", "us", "eu"].includes(system)) return -1;
+    const chartRows = rows();
+    const exact = chartRows.findIndex((row) => normalizeSize(row[system]) === wanted);
+    if (exact >= 0) return exact;
+    // Women's clothing has displayed numeric ranges such as US 2–4 and
+    // EU 34–36. A number within an existing range may resolve to that row,
+    // but other categories and out-of-range values never interpolate.
+    if (els.category.value !== "clothing" || els.gender.value !== "women" ||
+        !["us", "eu"].includes(system) || !/^\d+$/.test(wanted)) return -1;
+    const numeric = Number(wanted);
+    return chartRows.findIndex((row) => {
+      const range = /^(\d+)-(\d+)$/.exec(normalizeSize(row[system]));
+      return Boolean(range && numeric >= Number(range[1]) && numeric <= Number(range[2]));
+    });
+  }
 
   function resolveSizeInput() {
     const parsed = parseSizeEntry(els.sizeInput.value);
