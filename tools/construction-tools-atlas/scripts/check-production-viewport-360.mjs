@@ -7,7 +7,9 @@ import { spawn } from "node:child_process";
 
 
 const ORIGIN="https://nicheworks.app";
-const EXPECTED_ASSET_VERSION="20261102-reviewed-aliases-1";
+const EXPECTED_ASSET_VERSION="20261102-reviewed-aliases-wave2-1";
+const PREVIOUS_ASSET_VERSION="20261102-reviewed-aliases-1";
+const ALLOW_PREVIOUS_ASSET_VERSION=process.env.CTA_ALLOW_PREVIOUS_ASSET_VERSION==="1";
 
 const chrome = ["google-chrome", "google-chrome-stable", "chromium", "chromium-browser"].find(name =>
   (process.env.PATH || "").split(path.delimiter).some(dir => fs.existsSync(path.join(dir, name)))
@@ -46,7 +48,7 @@ const until = async (predicate, retries = 80) => {
   throw Error("Timed out waiting for browser condition");
 };
 
-async function smoke(lang) {
+async function smoke(lang,allowPreviousAssetVersion) {
   const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
   const check=(ok,message)=>{if(!ok)throw Error(message);};
   const query=(selector)=>document.querySelector(selector);
@@ -61,7 +63,10 @@ async function smoke(lang) {
     }
     count=query("#resultCount")?.textContent?.trim()||"";
     assetVersion=document.querySelector('script[src*="quality-loader.js"]')?.getAttribute("src")||"";
-    check(assetVersion.includes("20261102-reviewed-aliases-1"),"Production asset version is stale/unexpected: "+assetVersion);
+    const latest=assetVersion.includes("20261102-reviewed-aliases-wave2-1");
+    const previous=assetVersion.includes("20261102-reviewed-aliases-1");
+    check(latest||(allowPreviousAssetVersion&&previous),
+      "Production does not serve current dictionary source: "+assetVersion+" (PR rollout grace="+allowPreviousAssetVersion+")");
     check(/870/.test(count),"Public canonical catalog did not load 870 entries: "+count+" / "+(query("#loadingState")?.textContent||""));
     check(document.querySelectorAll("#resultList .resultRow").length>=40,"Initial list is missing real dictionary items");
     check(document.querySelectorAll("#dictionaryJumpButtons button").length>=3,"Quick entry navigation missing");
@@ -164,7 +169,7 @@ try {
     const url = ORIGIN + route;
     await call("Page.navigate", { url });
     await until(async () => (await evaluate("location.href")).startsWith(url));
-    const result = await evaluate("(" + smoke.toString() + ")(" + JSON.stringify(lang) + ")");
+    const result = await evaluate("(" + smoke.toString() + ")(" + JSON.stringify(lang) + "," + JSON.stringify(ALLOW_PREVIOUS_ASSET_VERSION) + ")");
     const screenshot=await call("Page.captureScreenshot",{format:"png",fromSurface:true,captureBeyondViewport:false});
     const outDir=path.join(process.cwd(),"artifacts","construction-atlas-production-viewport");
     fs.mkdirSync(outDir,{recursive:true});
