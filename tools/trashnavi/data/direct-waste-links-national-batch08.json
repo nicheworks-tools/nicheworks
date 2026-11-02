@@ -572,5 +572,18 @@
     "status": "active",
     "language": "ja",
     "scope_note": "平取町外2町衛生施設組合がごみ収集・分別を担当。地区別収集カレンダーは組合サイトを参照。町全域共通の日程として扱わない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "平取町",
+    "name": "ゴミの分け方・出し方",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.biratori.hokkaido.jp/kurashi/seikatsukankyo/eisei/1/833.html",
+    "lgcode": "016021",
+    "last_checked": "2026-11-02",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "平取町公式。平取町外2町衛生施設組合、ごみ分別大辞典、平取町地区別ごみ収集カレンダーへの案内。地区ごとの収集日差に注意。"
   }
 ]
