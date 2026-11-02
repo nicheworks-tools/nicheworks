@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
+import { execFileSync } from 'node:child_process';
 
 const root = process.cwd();
 const failures = [];
@@ -99,3 +100,6 @@ if (failures.length) {
 }
 
 console.log(`Phone QuickCheck affiliate contract passed: ${accessoryKeys.length} accessory classes, fixed tracking ID, shared helper/disclosure, no user-query handoff.`);
+
+// The owned GA4→Sheets adapter is an additive, direct-Google integration.
+execFileSync(process.execPath, ['scripts/analytics/test-phone-quickcheck-ga4.mjs'], { stdio: 'inherit' });
