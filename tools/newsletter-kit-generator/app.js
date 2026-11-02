@@ -53,8 +53,7 @@
       document.body.appendChild(ta);
       ta.select();
       try {
-        document.execCommand("copy");
-        return true;
+        return document.execCommand("copy") === true;
       } catch (e) {
         return false;
       } finally {
@@ -140,7 +139,10 @@ const initNewsletterKit = () => {
       <button id="generateBtnEn" class="btn primary" type="button" data-i18n="en" style="display:none;">Generate kit</button>
       <button id="copyBtn" class="btn" type="button" data-i18n="ja">コピー</button>
       <button id="copyBtnEn" class="btn" type="button" data-i18n="en" style="display:none;">Copy</button>
+      <button id="downloadKitBtn" class="btn" type="button" data-i18n="ja">TXT保存</button>
+      <button id="downloadKitBtnEn" class="btn" type="button" data-i18n="en" style="display:none;">Save TXT</button>
     </div>
+    <p id="kitStatus" class="nw-note" role="status" aria-live="polite"></p>
     <div class="field">
       <label class="label">
         <span data-i18n="ja">出力</span>
@@ -156,6 +158,16 @@ const initNewsletterKit = () => {
   const output = root.querySelector("#kitOutput");
   const generateButtons = [root.querySelector("#generateBtn"), root.querySelector("#generateBtnEn")];
   const copyButtons = [root.querySelector("#copyBtn"), root.querySelector("#copyBtnEn")];
+  const downloadButtons = [root.querySelector("#downloadKitBtn"), root.querySelector("#downloadKitBtnEn")];
+  const status = root.querySelector("#kitStatus");
+  let generatedFor = null;
+  const snapshot = () => JSON.stringify([themeInput.value, audienceInput.value, frequencyInput.value]);
+  const message = (ja, en) => document.documentElement.lang === "en" ? en : ja;
+  const isFresh = () => generatedFor !== null && generatedFor === snapshot() && Boolean(output.textContent.trim());
+  const setStatus = (ja, en) => { status.textContent = message(ja, en); };
+  const setExportEnabled = (enabled) => {
+    [...copyButtons, ...downloadButtons].forEach((button) => { button.disabled = !enabled; });
+  };
 
   const buildKit = () => {
     const theme = themeInput.value.trim() || "(テーマ未入力)";
@@ -199,12 +211,34 @@ const initNewsletterKit = () => {
 
   const render = () => {
     output.textContent = buildKit();
+    generatedFor = snapshot();
+    setExportEnabled(true);
+    setStatus("生成しました。配信前にスポンサー・同意・表現を確認してください。", "Generated. Review sponsorship, consent and wording before sending.");
   };
 
+  const invalidate = () => {
+    generatedFor = null;
+    output.textContent = "";
+    setExportEnabled(false);
+    setStatus("入力が変わりました。キットを再生成してください。", "Inputs changed. Generate the kit again.");
+  };
+
+  [themeInput, audienceInput, frequencyInput].forEach((input) => input.addEventListener("input", invalidate));
   generateButtons.forEach((btn) => btn.addEventListener("click", render));
   copyButtons.forEach((btn) => btn.addEventListener("click", async () => {
-    const ok = await window.NW.copyToClipboard(output.textContent || "");
-    if (!ok) alert("Copy failed");
+    if (!isFresh()) return;
+    const ok = await window.NW.copyToClipboard(output.textContent);
+    setStatus(ok ? "コピーしました。" : "コピーできませんでした。選択してコピーしてください。",
+      ok ? "Copied." : "Copy failed. Select and copy manually.");
+  }));
+  downloadButtons.forEach((btn) => btn.addEventListener("click", () => {
+    if (!isFresh()) return;
+    try {
+      window.NW.downloadText("newsletter-kit-ja-en.txt", output.textContent);
+      setStatus("TXTを保存しました。", "TXT saved.");
+    } catch (_) {
+      setStatus("TXTの保存に失敗しました。", "TXT download failed.");
+    }
   }));
 
   render();
