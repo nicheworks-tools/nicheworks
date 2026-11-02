@@ -92,6 +92,37 @@ try{
  console.log("PASS conditional preparation, water allocation, and inventory persistence");
  passed++;await ctx.close();
 
+ // Verify blackout is a real condition, not only a visual checkbox.
+ {
+  const {ctx,page,exceptions}=await open(390);
+  await page.locator('input[data-condition="powerOut"]').check();
+  await page.locator("#calculate").click();
+  await page.locator('button[data-goal="food"]').click();
+  assert.equal(await page.locator('input[data-setting="offGridHeatConfirmed"]').count(),1);
+  await page.locator('button[data-tab="everyday"]').click();
+  await page.locator('details.g-option[data-option="packRice"] summary').click();
+  await page.locator('input[data-option-qty="packRice"]').fill("3");
+  await page.locator('input[data-option-qty="packRice"]').press("Tab");
+  assert.match(await page.locator(".g-detail-status").innerText(),/21/,"unmitigated blackout excludes heated rice");
+  await page.locator('input[data-setting="offGridHeatConfirmed"]').check();
+  assert.match(await page.locator(".g-detail-status").innerText(),/18/,"confirmed off-grid heat qualifies three portions");
+  await page.locator("button[data-shopping]").first().click();
+  assert.equal(await page.locator("#g-shop-selected strong").innerText(),"8","only visible eight rows initially selected");
+  await page.locator("button[data-more]").click();
+  assert.ok(await page.locator(".g-shop-row").count()>8);
+  assert.equal(await page.locator('input[data-shop]').nth(8).isChecked(),false,"collapsed items must begin unchecked");
+  await page.locator('input[data-shop]').nth(8).check();
+  assert.equal(await page.locator("#g-shop-selected strong").innerText(),"9");
+  await page.locator("button[data-more]").click();
+  await page.evaluate(()=>{window.print=()=>{window.__printText=document.querySelector("#g-print-list")?.innerText||""}});
+  await page.locator("#printList").click();
+  const printed=await page.evaluate(()=>window.__printText);
+  assert.equal(printed.split("\n").filter(x=>/—/.test(x)).length,9,"print must include all nine deliberately selected items");
+  assert.deepEqual(exceptions,[]);
+  console.log("PASS 390px blackout heating and explicit shopping + print selections");
+  passed++;await ctx.close();
+ }
+
  for(const [locale,dir] of locales){
   const {ctx,page,exceptions}=await open(390,dir);
   assert.equal(await page.locator("html").getAttribute("lang"),locale);
