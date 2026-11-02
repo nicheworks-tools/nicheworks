@@ -123,3 +123,19 @@ body[data-stage]:not([data-stage="setup"]) .workspace{align-items:start}
 #howto>h2{font-size:17px;margin:14px 0 6px}
 #howto>h3{font-size:14px;margin:14px 0 5px}
 #howto>p{font-size:13px;line-height:1.7;margin:6px 0 10px;color:var(--sub)}
+
+/* Shopping output must match explicit checked items, even when extra rows are collapsed. */
+.g-shop-counter{font-size:13px;font-weight:650;color:var(--ink);margin:10px 0}
+.g-shop-counter strong{font-size:16px;color:#0d696a;font-variant-numeric:tabular-nums}
+.g-print-list{display:none}
+@media print{
+ body[data-stage="shopping"] .g-shopping,
+ body[data-stage="shopping"] #affiliate-inline,
+ body[data-stage="shopping"] .g-link,
+ body[data-stage="shopping"] .g-shop-counter,
+ body[data-stage="shopping"] .g-fine,
+ body[data-stage="shopping"] .g-lead{display:none!important}
+ body[data-stage="shopping"] .g-print-list{display:block!important;color:#111;font-size:14px}
+ body[data-stage="shopping"] .g-print-list h2{font-size:19px}
+ body[data-stage="shopping"] .g-print-list li{margin:10px 0}
+}

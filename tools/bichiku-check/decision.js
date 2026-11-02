@@ -19,6 +19,7 @@ function optionUsable(option,s){
  if(option.equivalence!=="full")return false;
  if(option.parent==="food"){
    if(s.noHeat&&(option.prep==="heat"||option.prep==="verify"))return false;
+   if(s.powerOut&&!s.offGridHeatConfirmed&&option.prep==="heat")return false;
    if(option.requiresWater&&(!s.safeWaterConfirmed||!s.prepWaterSufficient))return false;
  }
  return true;
@@ -46,6 +47,7 @@ function normalize(s){
  s=s||{};
  return Object.assign({},s,{
    powerOut:!!s.powerOut,waterOut:!!s.waterOut,noHeat:!!s.noHeat,
+   offGridHeatConfirmed:!!s.offGridHeatConfirmed,
    safeWaterConfirmed:!!s.safeWaterConfirmed,
    prepWaterLiters:numeric(s.prepWaterLiters),
    toiletAssemblyConfirmed:!!s.toiletAssemblyConfirmed
@@ -59,7 +61,8 @@ function assessment(catalog,options,source,today){
  const waterDetails=(options||[]).filter(o=>o.parent==="food"&&o.requiresWater&&o.equivalence==="full")
    .map(o=>({option:o,entry:(s.variants||{})[s.mode+":"+o.id]||{}}))
    .filter(x=>numeric(x.entry.qty)>0&&unexpired(x.entry,now)&&
-     (!s.noHeat||!["heat","verify"].includes(x.option.prep)));
+     (!s.noHeat||!["heat","verify"].includes(x.option.prep))&&
+     (!s.powerOut||s.offGridHeatConfirmed||x.option.prep!=="heat"));
  const checked=waterDetails.filter(x=>x.entry.prepConfirmed===true&&numeric(x.entry.prepWaterLiters)>0);
  const waterAllocation=round(checked.reduce((sum,x)=>sum+numeric(x.entry.prepWaterLiters),0));
  const uncheckedFoods=waterDetails.filter(x=>!checked.includes(x)).map(x=>x.option.id);
@@ -103,7 +106,8 @@ function assessment(catalog,options,source,today){
  calc.missingCount=calc.items.filter(x=>x.missing>0).length;
  calc.coreMissingCount=calc.items.filter(x=>x.priority===1&&x.missing>0).length;
  calc.filledCount=calc.items.filter(x=>x.missing===0).length;
- return {settings:s,calc,groups:status,combinations,waterForPrep,waterStored:stored,
+ return {settings:s,calc,groups:status,combinations,
+   heatReady:!s.noHeat&&(!s.powerOut||s.offGridHeatConfirmed),waterForPrep,waterStored:stored,
    waterAllocation,uncheckedFoods,waterRemainingAfterPrep:round(Math.max(0,stored-waterAllocation)),
    food,water,pad,warmth,waterConflict};
 }

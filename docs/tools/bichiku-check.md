@@ -74,3 +74,8 @@ The initial screen tells users to enter household scenario, inspect the seven go
 ## 15. Explicit tool-specific exceptions
 
 BichikuCheck is mobile-oriented; desktop uses a separate two-column result experience rather than a giant card grid. Four independent language URLs instead of a single JA/EN toggle are deliberate to serve residents with different reading languages. Required water and staple portions are general planning units, not a medically or nutritionally complete emergency supply. No manual AdSense slot ID is invented because it is not verified. No background reminder monitoring, product price API or notification infrastructure.
+
+
+### 2026-11-03 production follow-up
+
+Power-out mode requires explicit confirmation of an off-grid stove, sufficient fuel and a safe location before any heat-dependent food becomes usable; no-heat mode overrides confirmation. This is checked separately from food-specific drinking-water volume. Retail or safety claims are never inferred from merely checking a box. In the shopping step, only the first eight visible missing categories are initially selected, hidden categories are unchecked until chosen, and copy/CSV/print output only user-selected deficits (including any manually added after expanding).

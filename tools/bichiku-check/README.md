@@ -118,3 +118,12 @@ User journey:
 - Staged `noindex,nofollow`, not registered in public index/sitemap, until a separate coordinated launch PR.
 - Unit tests include `tests/decision.test.cjs` and browser smoke targets the four-stage UI. Native language and actual-device usability review remain important.
 
+
+
+## Blackout and shopping-selection correctness (2026-11-03)
+
+- Selecting **power outage** now affects readiness of products that require heating. They are not credited until the user explicitly confirms a non-electric cooking device, adequate fuel and a safe place to use it. The separate **no heating possible** scenario always wins, regardless of that confirmation. Changing the outage/heat scenario invalidates the earlier off-grid confirmation.
+- For water-dependent heated foods, both the confirmed per-item safe-water allocation and off-grid heat requirements apply. Food that cannot be heated during the blackout does not silently reserve preparation water.
+- Safety: follow equipment instructions and provide adequate ventilation; do **not** use portable generators or charcoal burners indoors or in tents. Reference: https://www.caa.go.jp/policies/policy/consumer_safety/caution/caution_063/
+- The shopping list initially displays and selects **only eight priority missing categories**. Others are explicitly unchecked until the user expands the list and selects them. A counter shows the number selected. Copy/CSV/print are based strictly on selections; print creates a separate selected-only layout that includes manually checked items even after the list has been collapsed.
+- Automated regression now tests power-out heating and the hidden-item selection/print mismatch at mobile width 390px, in addition to previous 7 widths and four locales.

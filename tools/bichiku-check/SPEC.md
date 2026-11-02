@@ -66,3 +66,10 @@ No automatically verified recipes, brand-specific nutrition or allergens, comple
 - `tools/bichiku-check/tests/core.test.cjs`, `decision.test.cjs`, `mobile.smoke.mjs`.
 - `tools/bichiku-check/README.md`.
 - Official references: https://www.bousai.go.jp/kyoiku/hokenkyousai/check.html, https://www.maff.go.jp/j/syokuiku/plan/4_plan/togo/html/part8.html, https://www.gov-online.go.jp/tokusyu/bousai/preparation.html.
+
+
+## Post-release behavior correction (2026-11-03)
+
+Selecting a power outage is not cosmetic: full-equivalence food needing heat is excluded unless the user separately confirms an appropriate non-electric cooking method, adequate fuel and a safe location. The no-heat scenario supersedes that confirmation. Water-dependent heated food still requires per-item method/water confirmation and sufficient safe-water allocation; a prohibited heating scenario does not allocate its prep water. Consumer Affairs Agency cooking/generator safety reference: https://www.caa.go.jp/policies/policy/consumer_safety/caution/caution_063/ . An acknowledgement is a planning input, not proof of actual safety.
+
+Shopping initially selects the first eight visible missing categories only. More categories start unchecked until expanded. Copy, CSV and printing include the selected subset, with a print-specific selected-item rendering. The user can select additional categories explicitly. No hidden default items are exported.

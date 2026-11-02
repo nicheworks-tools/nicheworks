@@ -109,3 +109,34 @@ test("expired confirmed water-dependent food cannot consume water or cover a sho
  assert.equal(a.waterAllocation,0);
  assert.equal(row(a,"food").effective,0);
 });
+
+test("power outage is not cosmetic: hot food is excluded without verified independent heat",()=>{
+ const stock={variants:{"home:packRice":{qty:3},"home:kanpan":{qty:2}}};
+ const normal=assess(stock);
+ assert.equal(row(normal,"food").effective,5);
+ const blackout=assess({...stock,powerOut:true});
+ assert.equal(row(blackout,"food").effective,2,"Only ready-to-eat food should count during unmitigated outage");
+ assert.equal(blackout.heatReady,false);
+ const prepared=assess({...stock,powerOut:true,offGridHeatConfirmed:true});
+ assert.equal(row(prepared,"food").effective,5);
+ assert.equal(prepared.heatReady,true);
+});
+test("declared no-heat scenario overrides any power-out alternative heating confirmation",()=>{
+ const a=assess({powerOut:true,noHeat:true,offGridHeatConfirmed:true,
+  variants:{"home:packRice":{qty:3},"home:kanpan":{qty:2}}});
+ assert.equal(row(a,"food").effective,2);
+ assert.equal(a.heatReady,false);
+});
+test("water-dependent noodles in blackout require BOTH safe measured water and off-grid heat",()=>{
+ const stock={powerOut:true,waterOut:true,safeWaterConfirmed:true,stocks:{"home:water":{qty:5}},
+  variants:{"home:cupNoodles":{qty:3,prepConfirmed:true,prepWaterLiters:1.5}}};
+ const noHeat=assess(stock);
+ assert.equal(row(noHeat,"food").effective,0);
+ assert.equal(noHeat.waterAllocation,0,"Heating-inaccessible products must not reserve cooking water");
+ const ready=assess({...stock,offGridHeatConfirmed:true});
+ assert.equal(row(ready,"food").effective,3);
+ assert.equal(ready.waterAllocation,1.5);
+ assert.equal(ready.waterRemainingAfterPrep,3.5);
+ const noSafeWater=assess({...stock,offGridHeatConfirmed:true,safeWaterConfirmed:false});
+ assert.equal(row(noSafeWater,"food").effective,0);
+});

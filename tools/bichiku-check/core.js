@@ -16,6 +16,7 @@
       days: [3, 7, 14].includes(Number(s.days)) ? Number(s.days) : 7,
       noHeat: !!s.noHeat,
       powerOut: !!s.powerOut,
+      offGridHeatConfirmed: !!s.offGridHeatConfirmed,
       waterOut: !!s.waterOut,
       safeWaterConfirmed: !!s.safeWaterConfirmed,
       prepWaterSufficient: !!s.prepWaterSufficient,
@@ -61,6 +62,10 @@
   function optionAvailable(option, settings, stockEntry) {
     if (option.equivalence !== "full") return false;
     if (option.parent === "food" && settings.noHeat && ["heat","verify"].includes(option.prep)) return false;
+    // Power outage removes ordinary electricity-dependent cooking until the user
+    // explicitly confirms a fuelled, safely usable off-grid heating alternative.
+    if (option.parent === "food" && option.prep === "heat" && settings.enforceConditions &&
+        settings.powerOut && !settings.offGridHeatConfirmed) return false;
     // Only the user's per-item confirmed total volume may qualify a water-dependent product.
     // The older single global litres value must never credit unlimited servings.
     if (option.parent === "food" && option.requiresWater && settings.enforceConditions) {
