@@ -106,7 +106,10 @@ has('tools/release-guardian/index.html', 'commit or stash');
 has('tools/release-guardian/SPEC.md', 'not a security, legal, accessibility, privacy, or compliance audit');
 
 // 71. Rename Wizard — filename-only normalization and mapping export; no content reads/renames.
-has('tools/rename-wizard/app.js', 'originalNames.push(f.name)');
+has('tools/rename-wizard/app.js', 'Array.prototype.push.apply(originalNames, next);');
+has('tools/rename-wizard/app.js', 'renderSelectedFiles()');
+has('tools/rename-wizard/app.js', 'MAX_FILE_NAMES = 500');
+lacks('tools/rename-wizard/app.js', 'fileInput.files =', 'read-only FileList assignment');
 has('tools/rename-wizard/app.js', 'str.normalize("NFKC")');
 has('tools/rename-wizard/app.js', 'function rowsToTsv(rows)');
 has('tools/rename-wizard/app.js', 'function rowsToCsv(rows)');

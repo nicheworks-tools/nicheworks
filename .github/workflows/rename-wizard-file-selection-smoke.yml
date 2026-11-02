@@ -1,0 +1,30 @@
+name: Rename Wizard file selection smoke
+
+on:
+  pull_request:
+    paths:
+      - 'tools/rename-wizard/**'
+      - 'scripts/tests/rename-wizard-file-selection-smoke.mjs'
+      - '.github/workflows/rename-wizard-file-selection-smoke.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'tools/rename-wizard/**'
+      - 'scripts/tests/rename-wizard-file-selection-smoke.mjs'
+      - '.github/workflows/rename-wizard-file-selection-smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rename-wizard-input:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check JavaScript syntax
+        run: node --check tools/rename-wizard/app.js
+      - name: Verify file selection UX without uploading files
+        run: node scripts/tests/rename-wizard-file-selection-smoke.mjs

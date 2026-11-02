@@ -128,8 +128,13 @@
       <div id="dropzone" class="dropzone">
         <p class="drop-main">ここにファイルをドラッグ＆ドロップ</p>
         <p class="drop-sub">または</p>
-        <button id="fileSelectButton" class="btn">ファイルを選択</button>
-        <input id="fileInput" type="file" multiple class="file-input" />
+        <input id="fileInput" type="file" multiple class="file-input" aria-label="ファイルを選択（複数可）" />
+        <p id="fileSelectionStatus" class="file-selection-status" role="status" aria-live="polite">ファイル名のみ読み取ります。ファイルは送信されません。</p>
+        <div class="selected-files-panel" aria-label="選択されたファイル名">
+          <p class="selected-files-heading">追加済みファイル名 <strong id="selectedFileCount">0件</strong></p>
+          <p class="selected-files-help">何度でも「ファイルを選択」またはドラッグ＆ドロップで追加できます。個別削除は下の一覧から行えます。</p>
+          <ul id="selectedFileNames" class="selected-file-list"></ul>
+        </div>
       </div>
 
       <div class="filename-paste">
