@@ -11,6 +11,7 @@ import { createRequire } from 'node:module';
 import { performance } from 'node:perf_hooks';
 import { createWorker } from 'tesseract.js';
 import YAML from 'yaml';
+import sharp from 'sharp';
 import { createProductionLabelScorer, aggregateProductionAssessments } from './production-label-scoring.mjs';
 
 const require = createRequire(import.meta.url);
@@ -74,6 +75,37 @@ const productionScorer = createProductionLabelScorer();
 const results = [];
 // A/B only: never use the ground-truth annotations to pick OCR output at runtime.
 const experimental = { singleBlock: [], sparseText: [] };
+// Fixed photo preparations evaluated identically on the pinned corpus. Never
+// pick the per-photo winner using the reference transcript (data leakage).
+const imagePreprocessing = {
+  grayscaleNormalize: [],
+  grayscaleSharpen: [],
+  grayscaleUpscale: []
+};
+const prepSettings = Object.freeze({
+  grayscaleNormalize: 'Grayscale + full-range contrast normalization, native resolution',
+  grayscaleSharpen: 'Grayscale + mild 1.25 gain + sigma 0.8 sharpen, native resolution',
+  grayscaleUpscale: 'Grayscale + contrast normalization + up to 2x Lanczos3 enlargement (3072px cap)'
+});
+
+async function prepareVariant(imageFile, variant) {
+  const processor = sharp(imageFile, { failOn: 'error' });
+  const metadata = await processor.metadata();
+  assert.ok(metadata.width > 0 && metadata.height > 0, 'Valid source image dimensions required');
+  if (variant === 'grayscaleNormalize') {
+    return processor.grayscale().normalize().png().toBuffer();
+  }
+  if (variant === 'grayscaleSharpen') {
+    return processor.grayscale().linear(1.25, -32).sharpen({ sigma: 0.8 }).png().toBuffer();
+  }
+  if (variant === 'grayscaleUpscale') {
+    const factor = Math.max(1, Math.min(2, 3072 / Math.max(metadata.width, metadata.height)));
+    const width = Math.max(1, Math.round(metadata.width * factor));
+    const height = Math.max(1, Math.round(metadata.height * factor));
+    return processor.grayscale().normalize().resize(width, height, { kernel: 'lanczos3' }).png().toBuffer();
+  }
+  throw new Error('Unknown fixed preprocessing variant: ' + variant);
+}
 const worker = await createWorker('eng');
 try {
   for (const id of ids) {
@@ -158,6 +190,41 @@ try {
       ].join(' | '));
     }
   }
+
+  // PSM6 matches the default page segmentation in the baseline. Compare
+  // fixed offline pixel transforms under a constant OCR segmentation mode.
+  // These sharp transforms are NOT the browser canvas preprocessor. Their
+  // results are diagnostic; they cannot silently become mobile defaults.
+  await worker.setParameters({ tessedit_pageseg_mode: '6' });
+  for (const variant of Object.keys(imagePreprocessing)) {
+    for (const id of ids) {
+      const imageFile = path.join(datasetDir, id + '.jpg');
+      const gt = YAML.parse(fs.readFileSync(path.join(datasetDir, id + '.yaml'), 'utf8'));
+      const imageBytes = await prepareVariant(imageFile, variant);
+      assert.ok(imageBytes.length > 1000, id + ': processed image must not be empty');
+      const started = performance.now();
+      const recognized = await worker.recognize(imageBytes);
+      const durationMs = Math.round(performance.now() - started);
+      const rawText = recognized?.data?.text || '';
+      const cleanedText = processText.postProcessOcrText(
+        processText.coreProcessOCRText(rawText), { langHint: 'en' });
+      const annotatedListMetrics = metric.score(gt.INCI_list.join('\\n'), cleanedText, parser.splitIngredients);
+      const rawTranscriptionMetrics = metric.score(gt.raw_ingredients_list, cleanedText, parser.splitIngredients);
+      const analysis = await productionScorer.assess(cleanedText, gt.INCI_list);
+      imagePreprocessing[variant].push({
+        id, durationMs, annotatedListMetrics, rawTranscriptionMetrics, analysis
+      });
+      console.log('PREPROCESS_PHOTO=' + JSON.stringify({
+        variant, id,
+        exactRecallPercent: +(100 * annotatedListMetrics.exactIngredientRecall).toFixed(2),
+        rawTranscriptionCerPercent: +(100 * rawTranscriptionMetrics.characterErrorRate).toFixed(2),
+        dictionarySupportedHitsAfterRepair: analysis.afterRepair.exactReferenceHits,
+        dictionarySupportedReferenceNames: analysis.eligibleReferenceUniqueNames,
+        matchedNamesNotInAnnotation: analysis.afterRepair.extraMatchesNotInAnnotation,
+        durationMs
+      }));
+    }
+  }
 } finally {
   await worker.terminate();
 }
@@ -165,6 +232,9 @@ try {
 assert.equal(results.length, 12, 'all twelve real-photo baseline samples must finish');
 assert.equal(experimental.singleBlock.length, 12, 'all single-block photos must finish');
 assert.equal(experimental.sparseText.length, 12, 'all sparse-text photos must finish');
+for (const [variant, rows] of Object.entries(imagePreprocessing)) {
+  assert.equal(rows.length, 12, variant + ': all 12 photo experiments must finish');
+}
 const report = {
   schema: 'fastscan-external-real-photo-pilot-v1',
   corpus: {
@@ -176,7 +246,7 @@ const report = {
     sampleCount: results.length
   },
   method: {
-    model: 'Tesseract.js 5.0.3 eng worker, unmodified photos; baseline default PSM, fixed PSM6/11 experiments',
+    model: 'Tesseract.js 5.0.3 eng worker, unmodified photos; baseline PSM6/11, fixed offline sharp image-preprocessing experiments',
     productionSharedModules: [
       'tools/inci-fastscan/js/core_ocr_post.js',
       'tools/inci-fastscan/qa/photo_ocr_metrics.js',
@@ -202,6 +272,17 @@ const report = {
     samples: rows,
     caveat: 'Diagnostic only. No ground-truth oracle used at runtime; no production PSM changed.'
   }])),
+  imagePreprocessingExperiment: Object.fromEntries(
+    Object.entries(imagePreprocessing).map(([name, rows]) => [name, {
+      recipe: prepSettings[name],
+      engine: 'Tesseract.js eng, PSM6; sharp Node.js offline transformation (NOT browser canvas parity)',
+      aggregateAnnotatedList: aggregate(rows, 'annotatedListMetrics'),
+      aggregateRawTranscription: aggregate(rows, 'rawTranscriptionMetrics'),
+      dictionary: aggregateProductionAssessments(rows),
+      samples: rows,
+      caveat: 'Exploratory study on pinned public real photos; no per-photo oracle selection; never claim production gains without separate browser parity and mobile/jpn QA.'
+    }])
+  ),
   productionDictionaryEvaluation: {
     dictionaryRecords: productionScorer.dictionaryCount,
     baseline: aggregateProductionAssessments(results),
@@ -250,5 +331,22 @@ for (const [variant, scores] of Object.entries(report.productionDictionaryEvalua
     afterRepairExtraMatches: scores.afterRepairExtraNotInAnnotation,
     exactJoinRepairs: scores.exactJoinRepairs,
     threePartRepairs: scores.threePartRepairs
+  }));
+}
+
+for (const [variant, group] of Object.entries(report.imagePreprocessingExperiment)) {
+  const m = group.dictionary;
+  console.log('FASTSCAN_PREPROCESS_A_B=' + JSON.stringify({
+    variant,
+    photos: m.photos,
+    supportedReferenceNames: m.eligibleReferenceUniqueNames,
+    dictionaryHitsBeforeRepair: m.beforeRepairHits,
+    dictionaryHitsAfterRepair: m.afterRepairHits,
+    dictionaryRecallBeforePercent: +(100 * m.beforeRepairRecallOfDictionarySupported).toFixed(2),
+    dictionaryRecallAfterPercent: +(100 * m.afterRepairRecallOfDictionarySupported).toFixed(2),
+    strictAnnotatedExactRecallPercent: +(100 * group.aggregateAnnotatedList.pooledExactIngredientRecall).toFixed(2),
+    rawTranscriptionCerPercent: +(100 * group.aggregateRawTranscription.pooledCharacterErrorRate).toFixed(2),
+    additionalMatchesNotInAnnotations: m.afterRepairExtraNotInAnnotation,
+    baselineDefaultDictionaryHitsAfterRepair: report.productionDictionaryEvaluation.baseline.afterRepairHits
   }));
 }
