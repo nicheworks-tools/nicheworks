@@ -187,6 +187,43 @@
       consumableOffer("mug-bk", "Epson MUG-BK", "Amazonで MUG-BK 対応インクを探す", "Find Epson MUG-BK ink on Amazon")
     ]),
 
+    consumableRow("Epson", "EP-712A", "https://www.epson.jp/support/portal/shoumouhin/ep-712a.htm", "2026-11-02", [
+      consumableOffer("sat-6cl", "Epson SAT-6CL", "Amazonで SAT-6CL 対応インクを探す", "Find Epson SAT-6CL ink on Amazon"),
+      consumableOffer("sat-bk", "Epson SAT-BK", "Amazonで SAT-BK 対応インクを探す", "Find Epson SAT-BK ink on Amazon")
+    ]),
+    consumableRow("Epson", "EP-713A", "https://www.epson.jp/support/portal/shoumouhin/ep-713a.htm", "2026-11-02", [
+      consumableOffer("sat-6cl", "Epson SAT-6CL", "Amazonで SAT-6CL 対応インクを探す", "Find Epson SAT-6CL ink on Amazon"),
+      consumableOffer("sat-bk", "Epson SAT-BK", "Amazonで SAT-BK 対応インクを探す", "Find Epson SAT-BK ink on Amazon")
+    ]),
+    consumableRow("Epson", "EP-714A", "https://www.epson.jp/support/portal/shoumouhin/ep-714a.htm", "2026-11-02", [
+      consumableOffer("sat-6cl", "Epson SAT-6CL", "Amazonで SAT-6CL 対応インクを探す", "Find Epson SAT-6CL ink on Amazon"),
+      consumableOffer("sat-bk", "Epson SAT-BK", "Amazonで SAT-BK 対応インクを探す", "Find Epson SAT-BK ink on Amazon")
+    ]),
+    consumableRow("Epson", "EP-883AW", "https://www.epson.jp/support/portal/shoumouhin/ep-883aw.htm", "2026-11-02", [
+      consumableOffer("kam-6cl", "Epson KAM-6CL", "Amazonで KAM-6CL 対応インクを探す", "Find Epson KAM-6CL ink on Amazon"),
+      consumableOffer("kam-6cl-l", "Epson KAM-6CL-L", "Amazonで KAM-6CL-L 対応インクを探す", "Find Epson KAM-6CL-L ink on Amazon")
+    ]),
+    consumableRow("Epson", "EP-883AB", "https://www.epson.jp/support/portal/shoumouhin/ep-883ab.htm", "2026-11-02", [
+      consumableOffer("kam-6cl", "Epson KAM-6CL", "Amazonで KAM-6CL 対応インクを探す", "Find Epson KAM-6CL ink on Amazon"),
+      consumableOffer("kam-6cl-l", "Epson KAM-6CL-L", "Amazonで KAM-6CL-L 対応インクを探す", "Find Epson KAM-6CL-L ink on Amazon")
+    ]),
+    consumableRow("Epson", "EP-883AR", "https://www.epson.jp/support/portal/shoumouhin/ep-883ar.htm", "2026-11-02", [
+      consumableOffer("kam-6cl", "Epson KAM-6CL", "Amazonで KAM-6CL 対応インクを探す", "Find Epson KAM-6CL ink on Amazon"),
+      consumableOffer("kam-6cl-l", "Epson KAM-6CL-L", "Amazonで KAM-6CL-L 対応インクを探す", "Find Epson KAM-6CL-L ink on Amazon")
+    ]),
+    consumableRow("Epson", "EP-884AW", "https://www.epson.jp/support/portal/shoumouhin/ep-884aw.htm", "2026-11-02", [
+      consumableOffer("kam-6cl", "Epson KAM-6CL", "Amazonで KAM-6CL 対応インクを探す", "Find Epson KAM-6CL ink on Amazon"),
+      consumableOffer("kam-6cl-l", "Epson KAM-6CL-L", "Amazonで KAM-6CL-L 対応インクを探す", "Find Epson KAM-6CL-L ink on Amazon")
+    ]),
+    consumableRow("Epson", "EP-884AB", "https://www.epson.jp/support/portal/shoumouhin/ep-884ab.htm", "2026-11-02", [
+      consumableOffer("kam-6cl", "Epson KAM-6CL", "Amazonで KAM-6CL 対応インクを探す", "Find Epson KAM-6CL ink on Amazon"),
+      consumableOffer("kam-6cl-l", "Epson KAM-6CL-L", "Amazonで KAM-6CL-L 対応インクを探す", "Find Epson KAM-6CL-L ink on Amazon")
+    ]),
+    consumableRow("Epson", "EP-884AR", "https://www.epson.jp/support/portal/shoumouhin/ep-884ar.htm", "2026-11-02", [
+      consumableOffer("kam-6cl", "Epson KAM-6CL", "Amazonで KAM-6CL 対応インクを探す", "Find Epson KAM-6CL ink on Amazon"),
+      consumableOffer("kam-6cl-l", "Epson KAM-6CL-L", "Amazonで KAM-6CL-L 対応インクを探す", "Find Epson KAM-6CL-L ink on Amazon")
+    ]),
+
     consumableRow("Canon", "TS8830", "https://personal.canon.jp/product/printer/pixus/lineup/ts8830/supply", "2026-09-14", [
       consumableOffer("bci331-330", "Canon BCI-331 BCI-330", "Amazonで BCI-331 / BCI-330 インクを探す", "Find Canon BCI-331 / BCI-330 ink on Amazon"),
       consumableOffer("bci331xl-330xl", "Canon BCI-331XL BCI-330XL", "Amazonで BCI-331XL / BCI-330XL インクを探す", "Find Canon BCI-331XL / BCI-330XL ink on Amazon")

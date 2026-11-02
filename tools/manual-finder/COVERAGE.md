@@ -17,7 +17,7 @@ All future model-level expansion must follow `COVERAGE_PASS_WORKFLOW.md`. Script
 
 ## Current verified model-level inventory
 
-With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifilm GFX/X, VAIO JP start-guide PCs, Samsung JP Galaxy smartphones, dynabook JP 2024–2026 PCs, Fujitsu FMWORLD LIFEBOOK U business PCs, Google Pixel JP model-specific safety/support documentation, Motorola JP current smartphone lineup, ASUS JP Vivobook series, and Xiaomi JP smartphone/tablet user-guide index, the accepted dataset contains **2,537 verified model/caliber rows**. **2,094 are outside Seiko**. Coverage-Pass publication contributes **997 reviewed rows across thirteen bounded manufacturer scopes**. The Xiaomi JP 60-device source reconciles to 59 positively verified manufacturer PDF guides and one held co-branded Leica model; 59 guide rows are published. This is not Xiaomi company-wide coverage.
+With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifilm GFX/X, VAIO JP start-guide PCs, Samsung JP Galaxy smartphones, dynabook JP 2024–2026 PCs, Fujitsu FMWORLD LIFEBOOK U business PCs, Google Pixel JP model-specific safety/support documentation, Motorola JP current smartphone lineup, ASUS JP Vivobook series, and Xiaomi JP smartphone/tablet user-guide index, the accepted dataset contains **2,546 verified model/caliber rows**. **2,103 are outside Seiko**. Coverage-Pass publication contributes **997 reviewed rows across thirteen bounded manufacturer scopes**. The Xiaomi JP 60-device source reconciles to 59 positively verified manufacturer PDF guides and one held co-branded Leica model; 59 guide rows are published. This is not Xiaomi company-wide coverage.
 
 | Maker / dataset identity | Verified rows | Current state | Notes |
 | --- | ---: | --- | --- |
@@ -49,10 +49,10 @@ With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifil
 | Nikon | 14 | expanded | Wave 3A covers all 14 mirrorless-camera models explicitly listed in Nikon's current Japanese Web-manual portal mirrorless section. Company-wide coverage is not complete. |
 | Brother | 21 | expanded | Waves 3B+3F: 13 legacy MFC-J manual pages and 8 newly manufacturer-verified models (6 direct + 2 official shared manual identities), with 16 manufacturer-verified ink Amazon search offers. The separate legacy held model is unchanged. |
 | Insta360 | 7 | expanded | Product-specific official online manuals. |
-| Epson | 22 | expanded | Colorio Waves 3D+3G+3H: six base models, eight EP-885A/886A/716A/717A models, and eight EP-812A/813A/814A/815A/816A/715A/EW-052A/EW-452A exact official manuals with individually verified ink searches. |
+| Epson | 31 | expanded | Colorio Waves 3D+3G+3H+3I: 6 baseline, 8 Wave 3G, 8 Wave 3H and 9 Wave 3I exact manufacturer manual model entries with model-verified ink search paths. |
 | Canon | 143 | expanded | Six Wave 3E PIXUS printers plus 137 distinct official RF/EF-series lens instruction manual rows (123 direct + 14 shared) from Canon Japan nine-section lens-manual index. Lens scope does not claim Canon company-wide completeness; manufacturer direct PDFs verified. |
 | Hisense | 2 | expanded | Exact TV function-manual targets; coverage is still very thin. |
-| **Total** | **2,537** |  |  |
+| **Total** | **2,546** |  |  |
 
 Counts above are accepted repository rows, not estimates of manufacturer catalog size.
 
@@ -69,7 +69,7 @@ Counts above are accepted repository rows, not estimates of manufacturer catalog
 | 5 | Nikon | **expanded — 14** | Mirrorless Web-manual section covered in Wave 3A; rotate away |
 | 6 | Fujifilm | **expanded — 56** | JP GFX + X-series camera-manual-index scope is published and coverage-pass-complete at 52 direct + 4 shared + 0 held; FinePix and broader Fujifilm remain incomplete |
 | 7 | Brother | **expanded — 21** | Eight additional 2026 MFC-J printers from official model user-guide/ink pages; MFC-J6990CDW remains held |
-| 8 | Epson | **expanded — 22** | Three bounded waves: six baseline Colorio + eight 2026 Wave 3G + eight Wave 3H exact official manuals and compatible ink mapping; Epson-wide scope incomplete |
+| 8 | Epson | **expanded — 31** | Four bounded waves: 6+8+8+9 exact official Colorio manual models with manufacturer-confirmed ink links; Epson-wide scope incomplete |
 | 9 | HP | generic-only | PC/mobile queue |
 | 10 | Dell | generic-only | PC/mobile queue |
 | 11 | Lenovo | generic-only | PC/mobile queue |
@@ -245,3 +245,7 @@ Eight exact official manufacturer Japanese manual destinations are added: EP-885
 ### Epson Japan Colorio Wave 3H eight manufacturer manual and ink mappings (2026-11-02)
 
 Eight manufacturer model-specific official user-guide lists were confirmed: EP-812A, EP-813A, EP-814A, EP-815A, EP-816A, EP-715A, EW-052A, EW-452A. All have an explicit named User Guide in the Epson `/support/portal/used/{model}.htm` page, including PDF guides; the correspondingly named `/support/portal/shoumouhin/{model}.htm` proves each exact ink model mapping. The six EP-series models link SAT-6CL six-color packs and SAT-BK black cartridges; both EW-series models link MUG-4CL four-color packs and MUG-BK black. The eight new printer records enable eight model searches and 16 ink searches using the existing `nicheworks09-22` Amazon tag. Evidence: `coverage-passes/epson/jp-colorio-wave3h-8-legacy-models-20261102.json`, published through `data/manuals.wave3.08.js`. Scoped legacy+mid-generation model batch only, no catalog-wide Epson claim. Accepted manual catalog 2,537; Epson 22.
+
+### Epson Japan Colorio Wave 3I nine exact models (2026-11-02)
+
+Nine previously unindexed models have independent manufacturer manual pages (`https://www.epson.jp/support/portal/used/{model}.htm`) with a named Web User's Guide and PDF User's Guide: EP-712A, EP-713A, EP-714A, EP-883AW/AB/AR, EP-884AW/AB/AR. Their exact manufacturer consumable pages (`/support/portal/shoumouhin/{model}.htm`) individually list both accepted ink SKUs: SAT-6CL + SAT-BK for the three EP-71xA units, and KAM-6CL + KAM-6CL-L for the six EP-883A/884A color variants. Published as `data/manuals.wave3.09.js`; reviewed source manifest `coverage-passes/epson/jp-colorio-wave3i-9-legacy-models-20261102.json`. Each of nine devices gains an existing tagged exact-model Amazon query and two SKU-tagged compatible-ink search offers; **9 new manual rows + 27 tagged search paths (9 model/18 ink)**. No claim of Epson-wide completeness or measured sales.

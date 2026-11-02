@@ -51,8 +51,8 @@ for(const row of published){
 const coverage=fs.readFileSync(new URL('COVERAGE.md',root),'utf8');
 const affiliate=fs.readFileSync(new URL('AFFILIATE_COVERAGE.md',root),'utf8');
 const spec=fs.readFileSync(new URL('SPEC.md',root),'utf8');
-assert.ok(coverage.includes('**2,537 verified model/caliber rows**'));
-assert.ok(coverage.includes('| Epson | 22 | expanded |'));
-assert.ok(affiliate.includes('printer basic 315 = detail 308 + reviewed exclusion 7 + missing 0'));
-assert.ok(spec.includes('**315 basic = 308 detail + 7 reviewed exclusions + 0 missing detail**'));
+assert.ok(coverage.includes('**2,546 verified model/caliber rows**'));
+assert.ok(coverage.includes('| Epson | 31 | expanded |'));
+assert.ok(affiliate.includes('printer basic 324 = detail 317 + reviewed exclusion 7 + missing 0'));
+assert.ok(spec.includes('**324 basic = 317 detail + 7 reviewed exclusions + 0 missing detail**'));
 console.log('Epson Colorio Wave 3H: eight official manual pages, eight model Amazon searches and sixteen manufacturer-confirmed ink searches passed.');
