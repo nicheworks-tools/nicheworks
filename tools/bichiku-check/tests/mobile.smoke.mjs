@@ -39,7 +39,7 @@ try{
    result:document.querySelector("#results").getBoundingClientRect().toJSON()
   }));
   if(width>=769)assert.ok(boxes.result.x>=boxes.setup.x+boxes.setup.width-1,"desktop must be side by side");
-  else assert.ok(boxes.result.y>=boxes.setup.y,"mobile result must remain main scroll");
+  else {assert.equal(await page.locator("#setup").isVisible(),false,"mobile should show one stage at a time");assert.equal(await page.locator("#results").isVisible(),true);const overflow=await page.locator("#results").evaluate(el=>getComputedStyle(el).overflowY);assert.notEqual(overflow,"auto","no nested result scrollbar");}
   await page.locator('button[data-goal="food"]').click();
   assert.equal(await page.locator("body").getAttribute("data-stage"),"detail");
   assert.ok(await page.locator("details.g-option").count()>=1);
