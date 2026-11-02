@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "registry": "tools/tools-index.json",
-  "required_complete": 89,
-  "complete": 89,
+  "required_complete": 90,
+  "complete": 90,
   "pending": 0,
   "items": [
     {
@@ -29,6 +29,11 @@
       "slug": "ats-paste-doctor",
       "state": "complete",
       "spec": "tools/ats-paste-doctor/SPEC.md"
+    },
+    {
+      "slug": "bichiku-check",
+      "state": "complete",
+      "spec": "tools/bichiku-check/SPEC.md"
     },
     {
       "slug": "codex-product-shipping-playbooks",
