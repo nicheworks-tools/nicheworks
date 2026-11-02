@@ -5,7 +5,7 @@ const lang=document.body.getAttribute("data-lang")||"ja",L=window.BICHIKU_I18N[l
 const O=window.BICHIKU_OPTIONS_UI[lang],catalog=window.BICHIKU_CATALOG,choices=window.BICHIKU_OPTIONS;
 const decision=window.BichikuDecision,affiliate=window.NWAmazonAffiliate;
 const setup=document.getElementById("setup"),result=document.getElementById("results");
-const defaults={mode:"home",adults:1,children:0,infants:0,pets:0,days:7,powerOut:false,waterOut:false,noHeat:false,diet:false,safeWaterConfirmed:false,prepWaterLiters:0,toiletAssemblyConfirmed:false,stocks:{},variants:{}};
+const defaults={mode:"home",adults:1,children:0,infants:0,pets:0,days:7,powerOut:false,waterOut:false,noHeat:false,offGridHeatConfirmed:false,diet:false,safeWaterConfirmed:false,prepWaterLiters:0,toiletAssemblyConfirmed:false,stocks:{},variants:{}};
 const key=id=>state.mode+":"+id,esc=x=>String(x==null?"":x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const n=x=>Number.isFinite(Number(x))?Math.min(10000000,Math.max(0,Number(x))):0;
 const fmt=x=>Number.isInteger(x)?String(x):String(Math.round(x*100)/100);
@@ -71,6 +71,7 @@ function preserveOpen(){
 function conditions(a){
  if(goal==="food")return '<p>'+esc(a.waterConflict?T.waterShort:T.foodRequires)+'</p>'+
  '<label class="g-check"><input type="checkbox" data-setting="safeWaterConfirmed" '+(state.safeWaterConfirmed?"checked":"")+'>'+esc(T.waterConfirm)+'</label>'+
+ (state.powerOut&&!state.noHeat?'<p class="g-pending">'+esc(T.heatUnconfirmed)+'</p><label class="g-check"><input type="checkbox" data-setting="offGridHeatConfirmed" '+(state.offGridHeatConfirmed?"checked":"")+'>'+esc(T.heatConfirm)+'</label><p class="g-fine">'+esc(T.heatSafety)+' <a href="https://www.caa.go.jp/policies/policy/consumer_safety/caution/caution_063/" rel="noopener" target="_blank">'+esc(T.heatHelp)+'</a></p>':"")+
  '<p class="g-fine">'+esc(T.prepExplanation)+'</p>'+
  '<p class="g-water-summary">'+esc(T.prepAllocated)+': <strong>'+fmt(a.waterAllocation)+'L</strong></p>'+
  '<p class="g-water-summary">'+esc(T.waterRemaining)+': <strong>'+fmt(a.waterRemainingAfterPrep)+'L</strong></p>'+
@@ -106,7 +107,7 @@ function renderChoices(a){
  const arr=choices.filter(o=>g.members.includes(o.parent)&&allowedTab(o)&&(!search||Object.values(o.names).join(" ").toLowerCase().includes(search.toLowerCase())));
  if(!arr.length)return '<p class="g-fine">'+esc(T.noOptions)+'</p>';
  return arr.map(o=>{
- const v=getOption(o.id),countable=o.equivalence==="full"&&(!state.noHeat||!["heat","verify"].includes(o.prep))&&(!o.requiresWater||(a.waterForPrep&&v.prepConfirmed===true&&n(v.prepWaterLiters)>0));
+ const v=getOption(o.id),countable=o.equivalence==="full"&&(!state.noHeat||!["heat","verify"].includes(o.prep))&&(!state.powerOut||state.offGridHeatConfirmed||o.prep!=="heat")&&(!o.requiresWater||(a.waterForPrep&&v.prepConfirmed===true&&n(v.prepWaterLiters)>0));
  const unexpired=!v.expiry||v.expiry>=today();
  const ready=n(v.qty)>0&&unexpired&&(countable||(o.id==="toiletBags"&&state.toiletAssemblyConfirmed));
  const itemStatus=n(v.qty)===0?T.enterQuantity:!unexpired?T.expiredOption:o.equivalence!=="full"&&o.id!=="toiletBags"?T.notEquivalent:ready?T.counted:T.notReady;
@@ -140,7 +141,8 @@ function detailPage(a){
 }
 function shoppingRows(a){
  const arr=a.calc.items.filter(x=>x.missing>0);
- if(selected===null)selected=new Set(arr.map(x=>x.item.id));
+ // Never include undisplayed items in copy/CSV/print by default.
+ if(selected===null)selected=new Set(arr.slice(0,8).map(x=>x.item.id));
  return (showAll?arr:arr.slice(0,8)).map(row=>{
  const id=row.item.id,check=selected.has(id);
  return '<div class="g-shop-row"><label class="g-shop-check"><input type="checkbox" data-shop="'+id+'" '+(check?"checked":"")+'>'+
@@ -152,10 +154,14 @@ function shoppingPage(a){
  const missing=a.calc.items.filter(x=>x.missing>0);
  return '<div class="g-head"><button type="button" data-back class="g-link">← '+esc(T.back)+'</button>'+
  '<button data-edit type="button" class="g-link">'+esc(T.edit)+'</button></div><h2>'+esc(T.step4)+'</h2>'+
- '<p class="g-lead">'+esc(T.shopHelp)+'</p><p class="g-fine">'+esc(T.disclosure)+'</p>'+
+ '<p class="g-lead">'+esc(T.shopHelp)+'</p>'+
+ '<p class="g-fine">'+esc(T.shopShowing)+'</p>'+
+ '<p id="g-shop-selected" class="g-shop-counter">'+esc(T.shopSelected)+': <strong>'+(selected===null?Math.min(missing.length,8):missing.filter(x=>selected.has(x.item.id)).length)+'</strong></p>'+
+ '<p class="g-fine">'+esc(T.disclosure)+'</p>'+
  '<div id="affiliate-inline" class="affiliate-inline"></div>'+
  '<div class="g-shopping">'+(missing.length?shoppingRows(a):'<p>'+esc(T.noShortage)+'</p>')+'</div>'+
- (missing.length>8?'<button class="g-link" type="button" data-more>'+esc(T.allItems)+'</button>':"")+
+ (missing.length>8?'<button class="g-link" type="button" data-more>'+esc(showAll?T.shopCollapse:T.allItems)+'</button>':"")+
+ '<div id="g-print-list" class="g-print-list" aria-hidden="true"></div>'+
  '<div class="g-actions"><button id="copyList" type="button">'+esc(T.copy)+'</button><button id="exportCsv" type="button">'+esc(T.csv)+'</button>'+
  '<button id="printList" type="button">'+esc(T.print)+'</button><button id="reset" type="button">'+esc(T.reset)+'</button></div>';
 }
@@ -195,9 +201,9 @@ setup.addEventListener("click",e=>{
  if(inc){const id=inc.dataset.field;state[id]=Math.max(id==="adults"?1:0,Math.min(["adults","children"].includes(id)?15:10,n(state[id])+Number(inc.dataset.inc)));save();renderSetup();return}
  const select=e.target.closest("[data-select]");
  if(select){state[select.dataset.select]=select.dataset.select==="days"?Number(select.dataset.value):select.dataset.value;save();renderSetup();return}
- if(e.target.closest("#calculate")){selected=null;changeStage("results")}
+ if(e.target.closest("#calculate")){selected=null;showAll=false;changeStage("results")}
 });
-setup.addEventListener("change",e=>{if(e.target.dataset.condition){state[e.target.dataset.condition]=e.target.checked;save()}});
+setup.addEventListener("change",e=>{if(e.target.dataset.condition){const id=e.target.dataset.condition;state[id]=e.target.checked;if(id==="powerOut"||id==="noHeat")state.offGridHeatConfirmed=false;save()}});
 result.addEventListener("click",e=>{
  const b=e.target.closest("button");if(!b)return;
  if(b.hasAttribute("data-edit")){stage="setup";render();setup.scrollIntoView({behavior:"smooth",block:"start"});return}
@@ -209,7 +215,11 @@ result.addEventListener("click",e=>{
  if(b.id==="reset"){if(confirm(T.resetConfirm)){try{localStorage.removeItem("bichiku-check-v1")}catch(_){}state=Object.assign({},defaults);state.stocks={};state.variants={};selected=null;stage="setup";render();setup.scrollIntoView({behavior:"smooth",block:"start"})}return}
  if(["copyList","exportCsv","printList"].includes(b.id)){
   const rows=calc().calc.items.filter(x=>x.missing>0&&selected&&selected.has(x.item.id));
-  if(b.id==="printList"){window.print();return}
+  if(b.id==="printList"){
+   const preview=result.querySelector("#g-print-list");
+   if(preview)preview.innerHTML='<h2>'+esc(T.printHeading)+'</h2><ul>'+rows.map(x=>'<li>'+esc(x.item.names[lang]||x.item.names.ja)+' — '+fmt(x.missing)+unit(x.item.id)+'</li>').join("")+'</ul>';
+   window.print();return
+  }
   if(b.id==="copyList"){
    const content=T.step4+"\n"+rows.map(x=>(x.item.names[lang]||x.item.names.ja)+" : "+fmt(x.missing)+unit(x.item.id)).join("\n");
    if(navigator.clipboard)navigator.clipboard.writeText(content).then(()=>{b.textContent=L.copied}).catch(()=>{});
