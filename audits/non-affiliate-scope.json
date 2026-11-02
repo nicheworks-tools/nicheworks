@@ -1,9 +1,9 @@
 {
   "schemaVersion": "nicheworks-non-affiliate-scope-v1",
-  "updated": "2026-11-02",
-  "registryTotal": 89,
+  "updated": "2026-11-03",
+  "registryTotal": 90,
   "excludedClass": "AFFILIATE",
-  "excludedCount": 20,
+  "excludedCount": 21,
   "inScopeCount": 69,
   "source": "MONETIZATION_CLASSIFICATION.json",
   "counts": {
@@ -94,6 +94,7 @@
     ]
   },
   "excludedAffiliateSlugs": [
+    "bichiku-check",
     "construction-tools-atlas",
     "cosmetic-ingredient-checker-lite",
     "dry-meter",

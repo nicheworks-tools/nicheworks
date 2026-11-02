@@ -118,3 +118,8 @@ body[data-stage]:not([data-stage="setup"]) .workspace{align-items:start}
 .g-water-summary{font-size:13px;color:var(--ink);padding:7px 9px;background:#fff;border:1px solid var(--line);border-radius:6px}
 .g-water-summary strong{font-variant-numeric:tabular-nums}
 @media print{.g-water-item{display:none!important}}
+
+#howto>summary{cursor:pointer;display:flex;align-items:center;min-height:46px;font-size:15px}
+#howto>h2{font-size:17px;margin:14px 0 6px}
+#howto>h3{font-size:14px;margin:14px 0 5px}
+#howto>p{font-size:13px;line-height:1.7;margin:6px 0 10px;color:var(--sub)}

@@ -132,7 +132,7 @@ function detailPage(a){
  '<div class="g-detail-status"><strong>'+esc(T.missing)+': '+fmt(r.missing)+unit(r.item.id)+'</strong>'+meter(r)+'<p>'+count(r)+'</p></div>'+
  '<section class="g-conditions"><h3>'+esc(T.conditionsTitle)+'</h3>'+conditions(a)+'</section>'+
  '<section><h3>'+esc(T.stock)+'</h3>'+parentRows(a)+'</section>'+
- '<section><h3>'+esc(T.step3)+'</h3><div class="g-tabs">'+["emergency","everyday","fallback"].map(id=>
+ '<section><h3>'+esc(T.step3)+'</h3><p class="g-fine">'+esc(T.disclosure)+'</p><div id="affiliate-inline" class="affiliate-inline"></div><div class="g-tabs">'+["emergency","everyday","fallback"].map(id=>
  '<button type="button" data-tab="'+id+'" class="'+(tab===id?"active":"")+'" aria-pressed="'+(tab===id)+'">'+esc(T[id])+'</button>').join("")+'</div>'+
  '<label class="g-search">'+esc(T.search)+'<input id="g-search" type="search" value="'+esc(search)+'" placeholder="'+esc(T.search)+'"></label>'+
  '<div id="g-choice-list">'+renderChoices(a)+'</div></section>'+
