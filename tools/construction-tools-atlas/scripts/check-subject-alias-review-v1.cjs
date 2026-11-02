@@ -67,7 +67,7 @@ const normalize=search.normalizeText;
   assert.equal(explicitBilingual.length,863,"runtime bilingual alias coverage regressed (789 pre-wave3 + 71 reviewed patches)");
   const held=review3.held_for_identity_review || [];
   assert.equal(held.length,7,"exactly seven canonicals require evidence-backed identity decisions");
-  const gaps=runtime.entries.filter(e=>!e.aliases?.ja?.length||!e.aliases?.en?.length).map(e=>e.id).sort();
+  const gaps=Array.from(runtime.entries).filter(e=>!e.aliases?.ja?.length||!e.aliases?.en?.length).map(e=>e.id).sort();
   assert.deepEqual(gaps,held.map(e=>e.id).sort(),"unresolved alias gaps must match the documented identity review set");
   for(const item of held)assert(String(item.reason||"").length>=25,item.id+": reason required");
   const quality=JSON.parse(fs.readFileSync(path.join(__dirname,"..","data","public-content-quality-v2.3.json"),"utf8"));
