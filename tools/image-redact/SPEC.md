@@ -11,12 +11,12 @@ Hide sensitive visual regions in screenshots/photos with solid blackout, blur, o
 
 ## Current functional contract
 
-- Accept PNG, JPEG, and WebP images through file selection or drag-and-drop.
+- Accept PNG, JPEG, and WebP images through file selection or drag-and-drop. A newer load or Clear All invalidates pending older decode callbacks, so a previous sensitive image cannot return after another selection.
 - Provide Canvas view controls including fit, 100%, zoom, and Add/Edit/Pan interaction modes.
 - Create multiple rectangular redaction masks and support selecting, moving, duplicating, deleting, and clearing masks.
 - Support Solid, Blur, and Pixelate mask types with adjustable strength; recommend Solid for critical information and stronger settings for Blur/Pixelate.
 - Provide preview-lock and a pre-save safety checklist covering names, addresses, identifiers, QR/barcodes, faces, plates, context clues, and mask strength.
-- Save the rendered result as PNG.
+- Save the rendered result as PNG. If a mask/image changes while asynchronous PNG encoding is pending, discard that old output and ask the user to preview/save again. Reject any non-PNG Blob MIME rather than giving it a PNG extension.
 - Downscale very large images when needed for browser protection as implemented.
 - Provide JP/EN UI and explicitly separate visual redaction from EXIF/metadata cleaning.
 
@@ -65,11 +65,13 @@ The Canvas/mask-control editor benefits from desktop width but includes explicit
 - [ ] A supported image can be loaded and multiple redaction rectangles can be added/edited without intentional application upload.
 - [ ] Solid, Blur, and Pixelate masks render according to the selected type/strength and can be individually managed.
 - [ ] The pre-save safety checklist remains accessible and saving exports the current rendered result as PNG.
+- [ ] A stale image decode cannot replace the current edit after a later file selection or Clear All. An in-flight save is invalidated by source or mask changes and non-PNG output is never downloadable.
 - [ ] JP/EN and mobile interaction modes preserve the same manual redaction capabilities and metadata disclaimer.
 
 ## Implementation evidence
 
 - `tools/image-redact/index.html`
 - `tools/image-redact/app.js`
+- `tools/image-redact/tests/behavior.test.mjs`
 - `tools/image-redact/style.css`
 - `tools/image-redact/image-redact-safety.css`
