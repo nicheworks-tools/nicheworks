@@ -16,7 +16,7 @@ Search Japanese postal-code reference data by prefecture and partial address, co
 - Return up to 50 matching postal-code/address candidates and show data-load failures rather than treating empty/corrupt data as valid.
 - Allow result rows to be copied or added to an output list.
 - Allow adding only the currently visible search results (at most 50 records) in one action, deduplicating on postal code plus address against existing output rows; repeated bulk-add is idempotent.
-- Allow output-list rows to be removed/cleared and download `postal_code,address` CSV.
+- Allow output-list rows to be removed/cleared and download `postal_code,address` CSV. The animated row-removal callback must remove the exact original record object, not a potentially stale array index; repeated clicks on a fading row are ignored. Clearing/re-adding an equivalent row during animation cannot delete the new record.
 - Display dataset coverage/check-date information without claiming that the NicheWorks check date is the official address-change effective date.
 
 ## Inputs
@@ -64,6 +64,7 @@ Prefecture/query controls, result cards, and output list are designed as a stack
 
 - [ ] Selecting a loaded prefecture and entering at least two address characters returns matching bundled-data candidates or a clear no-result/load-error state.
 - [ ] Result rows can be added to and removed from the output list without modifying source postal data.
+- [ ] Two concurrent animated removals delete only their respective original records; bulk-add/reordering/clearing during a 240ms animation must not cause a stale callback to delete an unrelated or newly re-added record.
 - [ ] Bulk-add includes no more than the visible first 50 search results, prevents duplicate postal-code/address rows, and never reuses results from an earlier search while a new search is loading.
 - [ ] CSV download contains the selected rows in `postal_code,address` form.
 - [ ] The UI keeps the official-information disclaimer and does not claim external backup JSON retrieval.
