@@ -14,7 +14,7 @@ Generate batch filename cleanup candidates from selected local file names withou
 - Accept multiple local files through picker or drag-and-drop and use their file names only.
 - Alternatively accept up to 500 newline-separated filenames as paste-only text (maximum 100,000 characters); this mode never requires access to any physical file or file content.
 - Generate candidate names using configurable rules including Unicode NFKC width normalization, whitespace→underscore, lowercase extension, optional lowercase base name, separator collapse, edge trimming, and forbidden-character replacement.
-- Detect candidate-name collisions and optionally append `_2`, `_3`, and later suffixes.
+- Detect candidate-name collisions and optionally append `_2`, `_3`, and later suffixes. When numbering is enabled, reserve *all* originally generated candidate names (including names later in the file list), compare case-insensitively, and select the first suffix that cannot collide with either a reserved or already assigned name.
 - Warn about Windows reserved names and problematic filename shapes such as excessive length, leading dots, trailing dots, or trailing spaces.
 - Show an original→candidate preview table with status/warnings.
 - Copy the mapping as TSV and download it as CSV from both Japanese and English public pages, including the paste-only workflow.
@@ -68,6 +68,7 @@ Multiple-file controls and the original/candidate/status/warning table are most 
 - [ ] Both JA and EN forms have the same core controls, including TSV copy, CSV download, deduplication, results summary and filename paste.
 - [ ] Enabled normalization rules deterministically change candidate names and disabled rules do not silently apply.
 - [ ] Duplicate candidate names are detected and can be disambiguated with sequential suffixes.
+- [ ] `report.txt`, `report.txt`, `report_2.txt`, and case variants produce four unique output names with deduplication enabled; disabling deduplication preserves names and duplicate warnings.
 - [ ] TSV/CSV export contains the preview mapping and does not modify the selected local files.
 - [ ] The UI continues to state that the tool does not perform actual renames or execution-command generation.
 
