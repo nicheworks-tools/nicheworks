@@ -585,5 +585,18 @@
     "status": "active",
     "language": "ja",
     "scope_note": "平取町公式。平取町外2町衛生施設組合、ごみ分別大辞典、平取町地区別ごみ収集カレンダーへの案内。地区ごとの収集日差に注意。"
+  },
+  {
+    "pref": "北海道",
+    "city": "西興部村",
+    "name": "ごみに関するよくある質問（分別・収集日・粗大ごみ・直接搬入）",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.vill.nishiokoppe.lg.jp/feeuub0000001yny.html",
+    "lgcode": "015628",
+    "last_checked": "2026-11-02",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "西興部村公式FAQ。分別、粗大ごみ、地区別収集日、処理場への直接搬入を案内。地区ごとに収集日が異なるため村全域共通の日程として扱わない。"
   }
 ]
