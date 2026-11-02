@@ -14,6 +14,8 @@ const rows=[
 ["packRice","food","staple","normal","heat","full","cook","パックご飯 レトルト","パックご飯（通常品）","Packaged cooked rice (usually heat)","包装米饭（通常需加热）","Cơm đóng gói (thường cần hâm)"],
 ["instantRice","food","staple","normal","verify","conditional","package","即席ごはん 水だけ","即席ご飯（製品条件を確認）","Instant rice (check label)","速食米饭（查说明）","Cơm ăn liền (xem nhãn)"],
 ["cupNoodles","food","staple","normal","heat","full","noColdAssumption","カップラーメン 防災 備蓄","カップ麺","Cup noodles","杯装方便面","Mì ly"],
+["cupYakisoba","food","staple","normal","heat","full","noColdAssumption","カップ焼きそば 備蓄","カップ焼きそば","Cup yakisoba","杯装炒面","Mì xào ly"],
+["cupUdon","food","staple","normal","heat","full","noColdAssumption","カップうどん 備蓄","カップうどん","Cup udon","杯装乌冬面","Mì udon ly"],
 ["bagNoodles","food","staple","normal","heat","full","noColdAssumption","袋麺 インスタントラーメン","袋入り即席麺","Packet instant noodles","袋装方便面","Mì gói"],
 ["instantOats","food","staple","normal","verify","conditional","oats","インスタント オートミール","インスタントオートミール","Instant oats","即食燕麦片","Yến mạch ăn liền"],
 ["rolledOats","food","staple","normal","heat","full","oats","ロールドオーツ オートミール","ロールドオーツ（通常は加熱）","Rolled oats (typically cooked)","传统燕麦片（通常需加热）","Yến mạch cán (thường cần nấu)"],
@@ -89,5 +91,14 @@ const options=rows.map(r=>({id:r[0],parent:r[1],role:r[2],kind:r[3],prep:r[4],eq
 const ids=new Set(options.map(o=>o.id));
 if(ids.size!==options.length) throw Error("duplicate option ids");
 if(options.some(o=>Object.values(o.names).some(v=>!v)))throw Error("translation missing");
+const officialExamples={
+ alphaRice:"https://www.maff.go.jp/j/zyukyu/foodstock/chapter06.html",
+ cupNoodles:"https://www.keishicho.metro.tokyo.lg.jp/kurashi/saigai/yakudachi/food/instantnoodles/899806935150493697.html",
+ cupYakisoba:"https://www.keishicho.metro.tokyo.lg.jp/kurashi/saigai/yakudachi/food/instantnoodles/1012154906709405696.html",
+ cupUdon:"https://www.keishicho.metro.tokyo.lg.jp/kurashi/saigai/yakudachi/food/instantnoodles/1098362102173974528.html",
+ cardboard:"https://www.gov-online.go.jp/tokusyu/bousai/shelter.html",
+ trashBagToilet:"https://www.koho.metro.tokyo.lg.jp/2025/09/01-1.html"
+};
+options.forEach(o=>{if(officialExamples[o.id])o.sourceUrl=officialExamples[o.id]});
 window.BICHIKU_OPTIONS=Object.freeze(options);
 })();
