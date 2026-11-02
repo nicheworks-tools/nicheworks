@@ -114,6 +114,7 @@
   function setText(el, text){ if(el) el.textContent = text; }
 
   function setMode(mode){
+    if(MODE !== mode && last.score) clearOutputs();
     MODE = mode;
     const t = I18N[MODE];
     root.lang = MODE === "JP" ? "ja" : "en";
@@ -266,9 +267,11 @@
   function wire(){
     els.modeJP?.addEventListener("click", () => setMode("JP"));
     els.modeEN?.addEventListener("click", () => setMode("EN"));
+    els.text?.addEventListener("input", clearOutputs);
+    els.contractType?.addEventListener("change", clearOutputs);
     els.analyze?.addEventListener("click", analyze);
     els.clear?.addEventListener("click", () => { if(els.text) els.text.value = ""; clearOutputs(); });
-    els.pasteExample?.addEventListener("click", () => { if(els.text) els.text.value = MODE === "JP" ? EX_JP : EX_EN; toast("Example pasted"); });
+    els.pasteExample?.addEventListener("click", () => { if(els.text) els.text.value = MODE === "JP" ? EX_JP : EX_EN; clearOutputs(); toast("Example pasted"); });
     els.showAll?.addEventListener("click", () => { forceAll = true; renderFindings(); });
     els.copyFindings?.addEventListener("click", () => copyText(isPro() ? fullMarkdown() : liteMarkdown()));
     els.downloadMd?.addEventListener("click", () => { if(!last.score) return toast(I18N[MODE].noMarkdown); if(!isPro()) return lockPreview(); download("contract-risk-review.md", fullMarkdown()); });
