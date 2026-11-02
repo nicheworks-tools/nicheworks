@@ -12,12 +12,12 @@ const normalize=search.normalizeText;
   assert.equal(review2.schema,"cta-subject-alias-review-v2");
   assert.equal(review2.entries.length,173,"reviewed alias wave2 must retain 173 public entries");
   assert.equal(review3.schema,"cta-reviewed-aliases-v3");
-  assert.equal(review3.entries.length,76,"reviewed alias wave3 must retain 75 exact-identity reviewed public terms");
+  assert.equal(review3.entries.length,75,"reviewed alias wave3 must retain 75 exact-identity reviewed public terms");
   const runtime=await runPublicLoader();
   assert.equal(runtime.entries.length,865,"public canonical inventory must remain fixed");
   const byId=new Map(runtime.entries.map(e=>[e.id,e]));
   assert.equal(byId.size,865,"duplicate public canonical IDs");
-  assert.equal(runtime.diagnostics?.reviewedAliasesApplied,76,"wave3 aliases missing from real loaded runtime: "+JSON.stringify(runtime.diagnostics?.reviewedAliasesProblems));
+  assert.equal(runtime.diagnostics?.reviewedAliasesApplied,75,"wave3 aliases missing from real loaded runtime: "+JSON.stringify(runtime.diagnostics?.reviewedAliasesProblems));
   assert.deepEqual(Array.from(runtime.diagnostics?.reviewedAliasesProblems||[]),[],"wave3 application must have no drift/errors");
 
   const owners=new Map(),terms=new Map();
@@ -79,6 +79,7 @@ const normalize=search.normalizeText;
   assert(!acousticTile?.aliases?.en?.includes("Suspended ceiling tile"),"generic modular tile alias must not shadow acoustic subtype");
   const held=review3.held_for_identity_review || [];
   assert.equal(held.length,0,"all formerly held duplicate identities must be resolved through canonical redirects");
+  assert(byId.get("q011_sanding_paper")?.aliases?.ja?.includes("研磨紙"),"source-reviewed abrasive paper alias must survive duplicate retirement");
   const retired={"corner_float":"q016_corner_trowel","sandpaper":"q011_sanding_paper","as_built":"as_built_drawing","ground_fault_breaker":"q015_earth_leakage_breaker","toolbox_talk":"q016_toolbox_meeting"};
   for(const [from,to] of Object.entries(retired)){
     assert(!byId.has(from),from+": duplicate record must no longer be public");
