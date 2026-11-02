@@ -34,6 +34,7 @@
   };
 
   let armed = false;
+  let armedKey = null;
 
   function toast(message) {
     const element = $('toast');
@@ -47,9 +48,14 @@
   }
 
   function fmt(value) {
-    if (!value) return '';
-    const date = new Date(`${value}T00:00:00`);
-    return Number.isNaN(date.getTime()) ? '' : value;
+    // The browser may normalize invalid dates such as February 31 into March.
+    if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return '';
+    const [year, month, day] = value.split('-').map(Number);
+    const date = new Date(0);
+    date.setUTCFullYear(year, month - 1, day);
+    return date.getUTCFullYear() === year &&
+      date.getUTCMonth() === month - 1 &&
+      date.getUTCDate() === day ? value : '';
   }
 
   function homeType() {
@@ -141,18 +147,22 @@
   function clearChecks() {
     const context = ctx();
     if (!context) return toast('退去日 / 引っ越し日を入力してください。');
-    if (!armed) {
+    if (!armed || armedKey !== context.key) {
       armed = true;
+      armedKey = context.key;
       $('btnClear').textContent = 'もう一度押すと全解除';
-      toast('全解除する場合はもう一度押してください。');
+      toast('この条件のチェックを全解除するには、もう一度押してください。');
       setTimeout(() => {
+        if (armedKey !== context.key) return;
         armed = false;
+        armedKey = null;
         $('btnClear').textContent = 'チェック全解除';
       }, 4500);
       return;
     }
     localStorage.removeItem(context.key);
     armed = false;
+    armedKey = null;
     render();
     toast('チェックを全解除しました。');
   }
@@ -208,6 +218,9 @@
   }
 
   function reset() {
+    armed = false;
+    armedKey = null;
+    $('btnClear').textContent = 'チェック全解除';
     $('moveDate').value = '';
     $('homeType').value = 'rental';
     $('result').hidden = true;
@@ -227,8 +240,26 @@
       render();
     });
     $('btnDeleteLastData').addEventListener('click', () => {
+      let last = null;
+      try { last = JSON.parse(localStorage.getItem(LAST) || 'null'); } catch (_) {}
+      const date = fmt(last?.dateStr);
+      const type = last?.homeType;
+      if (date && (type === 'rental' || type === 'owned')) {
+        localStorage.removeItem(`nw_moving_final_v1:${date}:${type}`);
+        // Do not keep displaying checkmarks from a just-deleted condition.
+        const active = ctx();
+        if (active && active.date === date && active.homeType === type) {
+          $('result').hidden = true;
+          $('taskList').textContent = '';
+          $('progressFill').style.width = '0%';
+          $('progressText').textContent = '0 / 0 完了';
+        }
+      }
       localStorage.removeItem(LAST);
-      toast('前回条件の保存を削除しました。');
+      armed = false;
+      armedKey = null;
+      $('btnClear').textContent = 'チェック全解除';
+      toast('前回条件と保存済みチェックを削除しました。');
     });
     $('btnCopyTxt').addEventListener('click', copyTxt);
     $('btnSaveTxt').addEventListener('click', saveTxt);

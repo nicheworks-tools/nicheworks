@@ -21,14 +21,14 @@ Rental is the primary public search intent. The `owned` mode remains available o
 
 ## Current functional contract
 
-- Require an exit/handoff date and accept home type (`rental` or `owned`).
+- Require an exit/handoff date and accept home type (`rental` or `owned`). Reject impossible calendar dates (e.g., 2026-02-31) rather than allowing JavaScript Date normalization to create a misleading saved-state key.
 - Generate a final-stage checklist and completion progress for the selected conditions.
 - Keep a crawlable static move-out guide in the initial HTML covering inspection/handoff timing, keys/return items, condition photos, meter checks, remaining belongings, and the contract-guidance boundary.
 - Add a separate temporary five-item handoff-essentials check (keys, papers, photo equipment, notes, optional protection supplies) before the FAQ, with general Amazon accessory offers nearby. These temporary checkboxes do not modify persisted checklist progress, infer lease/legal requirements, or appear in printed output.
 - Rental output focuses on inspection timing, key return, room/equipment photos, meter records, insurance/contract confirmation, refund contact details, return items, and restoration-related source checking.
 - Owned output focuses on final shutoff/locking, handoff documents/keys, condition photos, handoff contacts, vacancy setup, continuing contracts, equipment condition, and record retention.
 - Persist exit/handoff date, home type, and checkbox state in the current browser.
-- Allow clearing completion state, resetting inputs, deleting the current condition's saved state, and deleting the previously used condition's saved state.
+- Allow clearing completion state, resetting inputs, deleting the current condition's saved state, and deleting the previously used condition's saved state. The previous-condition deletion removes both its actual keyed checklist data and last-condition pointer, not merely the pointer. Clearing checkboxes requires a confirmation scoped to the same date/home-type condition.
 - Allow checklist TXT copy, TXT download, and browser print/PDF.
 - Include a non-persistent inspection/handoff memo template for date/time, contact, keys, meter photos, observed damage/equipment, and shared notes.
 - Do not require or load any NicheWorks Pro entitlement, paid unlock, or product-specific payment bridge.
@@ -80,6 +80,9 @@ The canonical monetization class is `AFFILIATE`. The live commerce block uses th
 
 ## Acceptance criteria
 
+- [ ] Nonexistent dates are rejected, including invalid leap days and impossible month/day combinations.
+- [ ] Deleting the previous condition removes its saved checkboxes as well as the last-condition pointer. Changing date/type during a two-click clear sequence requires fresh confirmation and must never clear a different condition.
+
 - [ ] Five static handoff-preparation items have native temporary checkboxes and prioritize official management instructions over purchases.
 - [ ] The general fixed Amazon links appear beside this guide, never as a response to checklist state; no extra shopping content is printed.
 
@@ -98,6 +101,7 @@ The canonical monetization class is `AFFILIATE`. The live commerce block uses th
 
 - `tools/moving-lease-final-check/index.html`
 - `tools/moving-lease-final-check/app.js`
+- `tools/moving-lease-final-check/tests/state-validation.test.mjs`
 - `tools/moving-lease-final-check/style.css`
 - `tools/moving-lease-final-check/affiliate-config.js`
 - `tools/moving-lease-final-check/tests/behavior.test.mjs`
