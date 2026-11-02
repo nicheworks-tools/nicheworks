@@ -60,7 +60,7 @@
   function optionAvailable(option, settings) {
     if (option.equivalence !== "full") return false;
     if (option.parent === "food" && settings.noHeat && ["heat","verify"].includes(option.prep)) return false;
-    if (option.parent === "food" && option.prep === "water" && settings.enforceConditions && (!settings.safeWaterConfirmed || settings.prepWaterLiters <= 0)) return false;
+    if (option.parent === "food" && option.requiresWater && settings.enforceConditions && (!settings.safeWaterConfirmed || settings.prepWaterLiters <= 0)) return false;
     return true;
   }
   function calculate(catalog, options, today, optionCatalog) {
