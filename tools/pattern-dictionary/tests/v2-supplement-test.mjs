@@ -20,7 +20,7 @@ for(const e of v2.entries){
  assert((e.production.distinguishing_features.ja||[]).length>=3&&(e.production.distinguishing_features.en||[]).length>=3,'missing comparison cues '+e.id);
  assert(e.source?.sources?.length>=2,'missing independent attribution links '+e.id);
  assert(e.production.verification_state===e.source.verification_state,'source verification mismatch '+e.id);
- assert((e.runtime?.taxonomy?.types||[]).includes('motif'),'classification mismatch '+e.id);
+ assert((e.runtime?.taxonomy?.types||[]).includes(e.id==='kasuri'?'technique':'motif'),'classification mismatch '+e.id);
  assert(!backlog.candidates.some(x=>x.id===e.id),'published supplement still in backlog '+e.id);
  for(const s of e.source.sources){const u=new URL(s.url);assert(u.protocol==='https:','non-HTTPS source '+e.id);assert(s.publisher&&s.supports?.length,'unsupported source '+e.id)}
  const svg=fs.readFileSync(path.join(root,e.reference.path),'utf8');
@@ -38,6 +38,9 @@ for(const e of v2.entries){
   assert(html.includes('hreflang="ja"')&&html.includes('hreflang="en"'),'language links missing '+rel);
  }
 }
+const kasuri=v2.entries.find(x=>x.id==='kasuri');
+assert(kasuri.production.verification_state==='qualified'&&kasuri.production.qualification?.ja&&kasuri.production.qualification?.en,'kasuri technique and qualified scope must be preserved');
+assert(kasuri.runtime.taxonomy.appearance.length===0,'kasuri cannot be reduced to one fixed pattern image');
 const yukiwa=v2.entries.find(x=>x.id==='yukiwa');
 assert(yukiwa.source.verification_state==='qualified'&&yukiwa.production.qualification?.ja&&yukiwa.production.qualification?.en,'yukiwa origin uncertainty must be preserved');
 assert(app.includes('fetch(V2)')&&app.includes('reference_path')&&app.includes('sourceMap[p.id]'),'runtime must use v2, original drawings and provenance');
