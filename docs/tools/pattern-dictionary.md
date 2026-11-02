@@ -173,3 +173,7 @@ A separate `v2-extension.json` now contributes 5 additional Japanese named motif
 ## Pattern Dictionary supplemental coverage wave 2 (2026-11-02)
 
 10 source-reviewed Japanese V2 motifs are now separate from frozen canonical 100, totaling 110 browser entries. Wave 2 adds Kanze Water, Shokko, Pine-Bark Diamond, Bishamon Kikko and Tachibana with original 1536px vector schematics, 10 more JA/EN detail routes and corresponding sitemap URLs (220 total). Editorial backlog is 77 unpublished candidate records. Strict post-deployment 220/220 live SEO audit remains separate from the PR's previous 210-page production baseline.
+
+## Pattern Dictionary supplementary coverage wave 3 (2026-11-02)
+
+Five new source-led bilingual entries are included in versioned `v2-extension.json`: Bundled Noshi, Gosho-guruma Carriage, Temari Ball, Sankuzushi Three-Bar Motif and Kasuri Resist-Dyed Weave. Runtime coverage: **115**. Static JA/EN detail URLs: **230**. Unverified candidate backlog: **72**. Kasuri is categorized as a qualified technique (not a universal repeat). Strict 230 URL production monitoring must follow deployment.
