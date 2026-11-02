@@ -53,7 +53,7 @@ const coverage=fs.readFileSync(new URL("COVERAGE.md",root),"utf8");
 const affiliate=fs.readFileSync(new URL("AFFILIATE_COVERAGE.md",root),"utf8");
 const spec=fs.readFileSync(new URL("SPEC.md",root),"utf8");
 assert.ok(coverage.includes("**2,537 verified model/caliber rows**"));
-assert.ok(coverage.includes("| Epson | 14 | expanded |"));
+assert.ok(coverage.includes("| Epson | 22 | expanded |"));
 assert.ok(affiliate.includes("printer basic 315 = detail 308 + reviewed exclusion 7 + missing 0"));
 assert.ok(spec.includes("**315 basic = 308 detail + 7 reviewed exclusions + 0 missing detail**"));
 console.log("Epson Colorio Wave 3G: 8 exact official manual links, 8 Amazon model searches, 16 exact compatible ink Amazon searches passed.");
