@@ -92,6 +92,14 @@ function postProcessOcrText(rawText, options = {}) {
 
     if (!cleaned) continue;
 
+    // Fixed experimental treatment of explicit spaced dashes used as INCI
+    // item separators on some actual English packaging photos. No splitting
+    // of in-name hyphens (PEG-20, C12-15, etc.) or slash compound names.
+    // Keep disabled by default until real-photo QA quantifies false splits.
+    if (options.spacedDashDelimiter === true && langHint === "en") {
+      cleaned = cleaned.replace(/\s+[-\u2013\u2014]\s+/g, ",");
+    }
+
     if (langHint === "jp") {
       cleaned = normalizeJapaneseSpacing(cleaned);
     }

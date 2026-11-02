@@ -14,6 +14,7 @@ import { chromium } from 'playwright';
 import { createWorker } from 'tesseract.js';
 import YAML from 'yaml';
 import { createProductionLabelScorer, aggregateProductionAssessments } from './production-label-scoring.mjs';
+import { createOcrLossDiagnostics, summarizeOcrLoss } from './real-photo-loss-diagnostics.mjs';
 
 const require = createRequire(import.meta.url);
 const parser = require('../../_shared/cosmetic-ingredient-parser.js');
@@ -41,6 +42,7 @@ vm.runInNewContext(
   postScope, { filename: 'core_ocr_post.js' });
 const post = postScope.FastScanPost;
 const scorer = createProductionLabelScorer();
+const lossDiagnostics = createOcrLossDiagnostics();
 
 const browser = await chromium.launch({ headless: true });
 const context = await browser.newContext({
@@ -67,11 +69,16 @@ try {
     const baselineDurationMs = Math.round(performance.now() - baselineStart);
     const baselineText = post.postProcessOcrText(
       post.coreProcessOCRText(baselineOcr?.data?.text || ''), { langHint: 'en' });
+    const baselineDashText = post.postProcessOcrText(
+      post.coreProcessOCRText(baselineOcr?.data?.text || ''),
+      { langHint: 'en', spacedDashDelimiter: true });
     const baseline = {
+      spacedDash: await scorer.assess(baselineDashText, annotation.INCI_list),
       durationMs: baselineDurationMs,
       annotatedMetrics: score(annotation.INCI_list.join('\n'), baselineText, parser.splitIngredients),
       rawTranscriptionMetrics: score(annotation.raw_ingredients_list, baselineText, parser.splitIngredients),
-      analysis: await scorer.assess(baselineText, annotation.INCI_list)
+      analysis: await scorer.assess(baselineText, annotation.INCI_list),
+      loss: await lossDiagnostics.assess(baselineOcr?.data?.text || '', baselineText, annotation.INCI_list)
     };
 
     const inputBase64 = fs.readFileSync(imageFile).toString('base64');
@@ -97,11 +104,16 @@ try {
     const enhancedDurationMs = Math.round(performance.now() - enhancedStart);
     const enhancedText = post.postProcessOcrText(
       post.coreProcessOCRText(enhancedOcr?.data?.text || ''), { langHint: 'en' });
+    const enhancedDashText = post.postProcessOcrText(
+      post.coreProcessOCRText(enhancedOcr?.data?.text || ''),
+      { langHint: 'en', spacedDashDelimiter: true });
     const enhanced = {
+      spacedDash: await scorer.assess(enhancedDashText, annotation.INCI_list),
       durationMs: enhancedDurationMs,
       annotatedMetrics: score(annotation.INCI_list.join('\n'), enhancedText, parser.splitIngredients),
       rawTranscriptionMetrics: score(annotation.raw_ingredients_list, enhancedText, parser.splitIngredients),
-      analysis: await scorer.assess(enhancedText, annotation.INCI_list)
+      analysis: await scorer.assess(enhancedText, annotation.INCI_list),
+      loss: await lossDiagnostics.assess(enhancedOcr?.data?.text || '', enhancedText, annotation.INCI_list)
     };
     results.push({ id, referenceIngredientCount: annotation.INCI_list.length, baseline, enhanced });
     console.log('CHROMIUM_CANVAS_PHOTO=' + JSON.stringify({
@@ -161,6 +173,16 @@ const report = {
   productionDictionaryRecords: scorer.dictionaryCount,
   productionDictionaryBaseline: baseline,
   productionDictionaryEnhancedCanvas: enhanced,
+  spacedDashExperiment: {
+    original: aggregateProductionAssessments(results.map(row => ({ analysis: row.baseline.spacedDash }))),
+    chromiumCanvas: aggregateProductionAssessments(results.map(row => ({ analysis: row.enhanced.spacedDash }))),
+    note: 'Gated experiment only. Replaces spaces-enclosed dash/en/em dash in English product label lines with ingredient separators. Preserves in-name nonspaced hyphens. No production default has changed, and reference annotations are never used to decide splits.'
+  },
+  extractionLossFunnel: {
+    original: summarizeOcrLoss(results.map(row => row.baseline.loss), 'original'),
+    chromiumCanvas: summarizeOcrLoss(results.map(row => row.enhanced.loss), 'chromiumCanvas'),
+    caveat: 'Searches exact known dictionary aliases in OCR words as a rough diagnostic, not OCR correctness proof; whole-line exact dictionary-sequence splitter is RESEARCH ONLY and not enabled in the user interface. Metrics contain no image/ingredient strings. No annotation supplied to the splitter.'
+  },
   strictAnnotatedBaseline: aggregatePhotoMetrics(results, 'baseline', 'annotatedMetrics'),
   strictAnnotatedEnhancedCanvas: aggregatePhotoMetrics(results, 'enhanced', 'annotatedMetrics'),
   transcriptionCerBaseline: aggregatePhotoMetrics(results, 'baseline', 'rawTranscriptionMetrics'),
@@ -180,5 +202,24 @@ for (const [name, row] of [['original', baseline], ['chromiumCanvas', enhanced]]
     exactJoinRepairs: row.exactJoinRepairs,
     threePartRepairs: row.threePartRepairs,
     report: reportFile
+  }));
+}
+
+for (const [name, totals] of Object.entries(report.extractionLossFunnel)) {
+  if (!totals || typeof totals !== 'object' || !('supportedReferences' in totals)) continue;
+  console.log('FASTSCAN_OCR_LOSS_FUNNEL=' + JSON.stringify(totals));
+}
+
+for (const [name, scores] of Object.entries(report.spacedDashExperiment)) {
+  if (!scores || typeof scores !== 'object' || !('supportedReferences' in scores) && !('eligibleReferenceUniqueNames' in scores)) continue;
+  console.log('FASTSCAN_SPACED_DASH_EXPERIMENT=' + JSON.stringify({
+    name,
+    referenceNames: scores.eligibleReferenceUniqueNames,
+    beforeRepairHits: scores.beforeRepairHits,
+    afterRepairHits: scores.afterRepairHits,
+    recallPercent: +(100 * scores.afterRepairRecallOfDictionarySupported).toFixed(2),
+    extraMatchesNotInAnnotation: scores.afterRepairExtraNotInAnnotation,
+    defaultHits: name === 'original' ? baseline.afterRepairHits : enhanced.afterRepairHits,
+    defaultExtras: name === 'original' ? baseline.afterRepairExtraNotInAnnotation : enhanced.afterRepairExtraNotInAnnotation
   }));
 }

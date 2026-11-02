@@ -99,6 +99,7 @@ export function createProductionLabelScorer() {
       beforeRepair: compareToReference(before, expectedSet),
       afterRepair: compareToReference(after.results, expectedSet),
       exactJoinRepairs: after.repairs.length,
+      exactSequenceSplits: after.exactSequenceSplits || 0,
       threePartRepairs: after.repairs.filter(repair => repair.from.length === 3).length
     };
     // Metric safety: don't serialize source INCI, original OCR or suggestions.
@@ -128,6 +129,7 @@ export function aggregateProductionAssessments(rows, field = 'analysis') {
     beforeRepairUnmatchedTokens: 0,
     afterRepairUnmatchedTokens: 0,
     exactJoinRepairs: 0,
+    exactSequenceSplits: 0,
     threePartRepairs: 0
   };
   for (const row of rows) {
@@ -147,6 +149,7 @@ export function aggregateProductionAssessments(rows, field = 'analysis') {
     aggregate.beforeRepairUnmatchedTokens += item.beforeRepair.unmatchedItems;
     aggregate.afterRepairUnmatchedTokens += item.afterRepair.unmatchedItems;
     aggregate.exactJoinRepairs += item.exactJoinRepairs;
+    aggregate.exactSequenceSplits += item.exactSequenceSplits;
     aggregate.threePartRepairs += item.threePartRepairs;
   }
   aggregate.beforeRepairRecallOfDictionarySupported = aggregate.eligibleReferenceUniqueNames
