@@ -5,10 +5,70 @@ function coreNormalizeInput(rawText) {
 async function coreAnalyzeIngredients(rawText, dict) {
   const preparedText = coreNormalizeInput(rawText);
   const parsedList = coreParseIngredients(preparedText);
-  const repaired = repairWrappedIngredientFragments(parsedList, dict);
+  const separated = splitExactIngredientSequences(parsedList, dict);
+  const repaired = repairWrappedIngredientFragments(separated.list, dict);
   const results = await coreMatchIngredients(repaired.list, dict);
 
-  return { list: repaired.list, results, repairs: repaired.repairs };
+  return {
+    list: repaired.list, results, repairs: repaired.repairs,
+    exactSequenceSplits: separated.splitCount
+  };
+}
+
+
+// OCR may omit delimiters between two otherwise perfectly recognized names.
+// Separate ONLY when an entire unknown Latin fragment admits exactly ONE
+// full-coverage decomposition into 2+ exact maintained names or aliases.
+// Never infer missing names, discard unmatched text, or split an already
+// recognized full INCI name. This is deterministic dictionary segmentation,
+// not fuzzy correction or a claimed cosmetic safety classification.
+function splitExactIngredientSequences(list, dict) {
+  const names = buildKnownIngredientNameMap(dict);
+  const output = [];
+  let splitCount = 0;
+  for (const original of Array.isArray(list) ? list : []) {
+    const text = String(original || "").normalize("NFKC").trim().replace(/\s+/g, " ");
+    if (!text || text.length > 160 || !/^[A-Za-z0-9\s.\-]+$/.test(text) ||
+        isKnownIngredientName(text, names)) {
+      output.push(original);
+      continue;
+    }
+    const words = text.split(" ");
+    if (words.length < 2 || words.length > 20) {
+      output.push(original);
+      continue;
+    }
+    const paths = Array.from({ length: words.length + 1 }, () => []);
+    paths[words.length] = [[]];
+    for (let i = words.length - 1; i >= 0; i -= 1) {
+      for (let j = i + 1; j <= Math.min(words.length, i + 8); j += 1) {
+        const phrase = words.slice(i, j).join(" ");
+        if (!isKnownIngredientName(phrase, names)) continue;
+        for (const tail of paths[j]) {
+          paths[i].push([phrase, ...tail]);
+          if (paths[i].length > 1) break;
+        }
+        if (paths[i].length > 1) break;
+      }
+    }
+    const unique = paths[0].length === 1 ? paths[0][0] : null;
+    if (unique && unique.length >= 2) {
+      output.push(...unique);
+      splitCount += 1;
+    } else output.push(original);
+  }
+  // coreParseIngredients() de-duplicates input names. Apply the same policy
+  // after splitting so a rescued ingredient cannot appear twice by accident.
+  const deduped = [];
+  const seen = new Set();
+  for (const value of output) {
+    const key = ingredientRepairKey(value) ||
+      "raw:" + String(value || "").normalize("NFKC").toLowerCase().trim();
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    deduped.push(value);
+  }
+  return { list: deduped, splitCount };
 }
 
 function repairWrappedIngredientFragments(list, dict) {
