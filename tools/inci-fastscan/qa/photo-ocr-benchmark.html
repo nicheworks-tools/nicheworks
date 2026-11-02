@@ -40,10 +40,10 @@
   <script defer src="https://unpkg.com/tesseract.js@5.0.3/dist/tesseract.min.js"></script>
   <script defer src="/tools/_shared/cosmetic-ingredient-parser.js?v=20261101-note-wave32"></script>
   <script defer src="../js/core_ocr_post.js?v=20260916-role-first-3"></script>
-  <script defer src="../js/image_preprocess.js?v=20261031-manual-deskew-1"></script>
+  <script defer src="../js/image_preprocess.js?v=20261102-browser-enhance-1"></script>
   <script defer src="../js/web_ocr.js?v=20261031-crop-contrast-1"></script>
   <script defer src="./photo_ocr_metrics.js?v=20261031-qa-photo2"></script>
-  <script defer src="./photo_ocr_runner.js?v=20261031-qa-photo2"></script>
+  <script defer src="./photo_ocr_runner.js?v=20261102-browser-enhance-1"></script>
 </head>
 <body>
   <a href="../">← INCI FastScan</a>
@@ -83,6 +83,8 @@
           <input type="range" id="qa-contrast" min="100" max="180" step="10" value="100">
         </div>
       </div>
+      <label for="qa-enhance"><input id="qa-enhance" type="checkbox"> Grayscale + contrast normalization + bounded enlargement (experimental)</label>
+      <p class="micro muted">Opt-in only. Browser canvas processing differs from the offline sharp research. Inspect and correct the resulting OCR text.</p>
       <div class="crop">
         <div><label for="qa-crop-left">Crop left %</label><input id="qa-crop-left" type="number" min="0" max="90" step="5" value="0"></div>
         <div><label for="qa-crop-right">Crop right %</label><input id="qa-crop-right" type="number" min="0" max="90" step="5" value="0"></div>
