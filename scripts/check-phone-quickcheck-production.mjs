@@ -28,6 +28,7 @@ async function httpSmoke(){
   assert.ok(data[''].includes(count+'機種'),'HTML count is stale');
   assert.ok(data[''].includes('id="phoneList"'),'HTML list missing');
   assert.ok(data['app.js'].includes("wirelessStatus === 'not_supported'"),'Live JS is stale');
+  assert.ok(data['app.js'].includes("const deepPhone ="),'Live JS lacks the exact-model deep-link deployment');
   assert.ok(data['style.css'].includes('.bottom-sheet'),'Live CSS missing');
   assert.ok(data['style.css'].includes('.bottom-sheet .detail-title{padding-right:46px}'),'Live CSS missing mobile close-button collision fix');
   const livePayload = JSON.parse(data['data/phones.json']);
