@@ -1,7 +1,7 @@
 {
-  "schema_version": "pattern-dictionary-v2-supplement-2",
+  "schema_version": "pattern-dictionary-v2-supplement-3",
   "updated": "2026-11-02",
-  "publication_note": "Ten source-checked and illustrated supplemental motifs in two releases beyond frozen canonical 100. Original editorial vectors are representative diagrams, not museum images; several named design families admit variation.",
+  "publication_note": "Fifteen referenced and originally illustrated supplementary entries in three five-item waves beyond frozen canonical 100. Motif families and textile techniques are distinguished, and representative drawings do not assert universal appearance.",
   "entries": [
     {
       "id": "sakura-motif",
@@ -2253,6 +2253,1173 @@
         "size": "1536x1536",
         "status": "original-editorial-vector",
         "claim": "Illustrative schematic only; not a copy of a museum collection item and not proof of a uniquely fixed historic repeat."
+      }
+    },
+    {
+      "id": "noshi-motif",
+      "uses": {
+        "ja": [
+          "振袖・小袖",
+          "帯",
+          "風呂敷",
+          "祝いの装飾"
+        ],
+        "en": [
+          "furisode and kosode",
+          "obi",
+          "wrapping cloths",
+          "auspicious decoration"
+        ]
+      },
+      "source": {
+        "pattern_id": "noshi-motif",
+        "verification_state": "verified",
+        "term_scope": "A Japanese auspicious design derived from long strips of noshi, commonly depicted as bundled, twisting bands, not one fixed repeat",
+        "verified_names": {
+          "ja": "束ね熨斗文様",
+          "en": "Bundled Noshi Motif"
+        },
+        "verified_aliases": {
+          "ja": [
+            "熨斗文様",
+            "束熨斗",
+            "束ね熨斗",
+            "熨斗文"
+          ],
+          "en": [
+            "tabane-noshi",
+            "noshi motif",
+            "bundled noshi pattern",
+            "noshi ribbons"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "国立歴史民俗博物館 / 江戸モード大図鑑",
+            "url": "https://archive.rekihaku.ac.jp/exhibitions/project/old/991005/t001.html",
+            "supports": [
+              "Historic Edo-period furisode exhibiting bundled-noshi design"
+            ]
+          },
+          {
+            "publisher": "国立国会図書館レファレンス協同データベース / 所沢市立所沢図書館",
+            "url": "https://crd.ndl.go.jp/reference/entry/reference/show?asc=desc&fi=3_%E6%96%87%E7%8C%AE%E7%B4%B9%E4%BB%8B+2_7+8_23+2_5&id=1000257840&lsmp=1&mcbt=200&mcmd=200&mcup=200&oldasc=desc&oldmc=100&oldst=update&page=ref_view&rnk=1&st=update",
+            "supports": [
+              "Describes bundled long strips, gifting symbolism and textile examples with bibliographic references"
+            ]
+          },
+          {
+            "publisher": "三越伊勢丹 / 振袖文様と吉祥意匠",
+            "url": "https://www.mistore.jp/shopping/feature/living_art_f2/gofuku_furisode_sanchi_l.html",
+            "supports": [
+              "Contemporary usage and recognition of bundled noshi bands on formal kimono"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "noshi-motif",
+        "review_state": "source-reviewed",
+        "verification_state": "verified",
+        "names": {
+          "ja": "束ね熨斗文様",
+          "en": "Bundled Noshi Motif"
+        },
+        "aliases": {
+          "ja": [
+            "熨斗文様",
+            "束熨斗",
+            "束ね熨斗",
+            "熨斗文"
+          ],
+          "en": [
+            "tabane-noshi",
+            "noshi motif",
+            "bundled noshi pattern",
+            "noshi ribbons"
+          ]
+        },
+        "term_scope": "A Japanese auspicious design derived from long strips of noshi, commonly depicted as bundled, twisting bands, not one fixed repeat",
+        "definition": {
+          "ja": "祝いの贈り物に添える熨斗（のし）を、長く細い帯として図案化した吉祥文様。複数の帯を中央付近で束ね、両端を流れるように広げる「束ね熨斗」が代表的です。帯の内部に花や幾何学文様を描く例もあり、結び目・帯数・配置は作品ごとに異なります。",
+          "en": "An auspicious Japanese ornament stylizing the long strips of noshi associated with celebratory gifts. A common tabane-noshi arrangement ties several ribbon-like bands together and lets their ends flow out. Designs within each band, their number and their arrangement vary across garments."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "細長い帯状の熨斗が複数集まる構成が代表的です",
+            "帯が一か所で束ねられ、両端が放射状または曲線状に伸びる例があります",
+            "単なるリボン縞と異なり、帯の内部に多様な小文様が描き込まれることがあります"
+          ],
+          "en": [
+            "Look for multiple long, narrow noshi bands grouped together",
+            "In bundled designs the bands meet at a tie then fan or curve outward",
+            "Small ornaments may fill individual bands; this differs from ordinary parallel stripes"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "振袖・小袖",
+            "帯",
+            "風呂敷",
+            "祝いの装飾"
+          ],
+          "en": [
+            "furisode and kosode",
+            "obi",
+            "wrapping cloths",
+            "auspicious decoration"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "red",
+            "gold"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial colors, not an identifying requirement."
+        }
+      },
+      "runtime": {
+        "id": "noshi-motif",
+        "names": {
+          "ja": "束ね熨斗文様",
+          "en": "Bundled Noshi Motif"
+        },
+        "aliases": {
+          "ja": [
+            "熨斗文様",
+            "束熨斗",
+            "束ね熨斗",
+            "熨斗文"
+          ],
+          "en": [
+            "tabane-noshi",
+            "noshi motif",
+            "bundled noshi pattern",
+            "noshi ribbons"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "複数の細長い帯を束ねた和柄",
+            "熨斗の柄 振袖",
+            "リボンみたいに広がる吉祥文様"
+          ],
+          "en": [
+            "bundled noshi kimono pattern",
+            "Japanese ribbon-like auspicious motif",
+            "tabane noshi textile"
+          ]
+        },
+        "families": [
+          "japanese",
+          "ornamental"
+        ],
+        "motifs": [
+          "熨斗",
+          "細長い帯",
+          "吉祥"
+        ],
+        "visual": {
+          "geometry": [
+            "ornamental",
+            "organic"
+          ],
+          "line": [
+            "straight"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "red",
+            "gold"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial palette."
+        },
+        "uses": [
+          "textile",
+          "fashion"
+        ],
+        "culture": [
+          "Japanese"
+        ],
+        "relationships": {
+          "similar": [
+            "regimental-stripe",
+            "arabesque",
+            "karakusa"
+          ],
+          "often_confused_with": [
+            "regimental-stripe"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "祝いの贈り物に添える熨斗（のし）を、長く細い帯として図案化した吉祥文様。複数の帯を中央付近で束ね、両端を流れるように広げる「束ね熨斗」が代表的です。帯の内部に花や幾何学文様を描く例もあり、結び目・帯数・配置は作品ごとに異なります。",
+          "en": "An auspicious Japanese ornament stylizing the long strips of noshi associated with celebratory gifts. A common tabane-noshi arrangement ties several ribbon-like bands together and lets their ends flow out. Designs within each band, their number and their arrangement vary across garments."
+        },
+        "reference_path": "assets/reference-v2/noshi-motif.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "ornamental",
+            "organic"
+          ],
+          "contexts": [
+            "japanese"
+          ]
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/noshi-motif.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Representative schematic illustration only, never museum-collection reproduction or a claim of universal appearance."
+      }
+    },
+    {
+      "id": "goshoguruma",
+      "uses": {
+        "ja": [
+          "小袖",
+          "能装束",
+          "振袖",
+          "染織装飾"
+        ],
+        "en": [
+          "kosode",
+          "Noh costumes",
+          "formal kimono",
+          "textile decoration"
+        ]
+      },
+      "source": {
+        "pattern_id": "goshoguruma",
+        "verification_state": "verified",
+        "term_scope": "Japanese pictorial textile motif showing a roofed court carriage; sometimes part of a wider literary scene or gosho-doki pictorial composition",
+        "verified_names": {
+          "ja": "御所車文様",
+          "en": "Gosho-guruma Carriage Motif"
+        },
+        "verified_aliases": {
+          "ja": [
+            "御所車",
+            "源氏車文様",
+            "御所車柄"
+          ],
+          "en": [
+            "gosho-guruma",
+            "imperial carriage motif",
+            "Japanese ox-drawn carriage motif"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "文化遺産オンライン / 小袖 縹縮緬地御所車檜垣流水花卉模様",
+            "url": "https://api.online.bunka.go.jp/heritages/detail/519469",
+            "supports": [
+              "Late Edo-period carriage, flowing water and flower designs in kosode; historical distinction from gosho-doki"
+            ]
+          },
+          {
+            "publisher": "京都国立博物館 / 小袖 鶸色縮緬地御所解文様",
+            "url": "https://knmdb.kyohaku.go.jp/5687.html",
+            "supports": [
+              "Court carriage appearing within gosho-doki pictorial narrative costume designs"
+            ]
+          },
+          {
+            "publisher": "文化遺産オンライン / 茶地百合御所車文縫箔",
+            "url": "https://online.bunka.go.jp/heritages/detail/132677",
+            "supports": [
+              "Carriage motif embroidered with lilies and other motifs on a Noh costume"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "goshoguruma",
+        "review_state": "source-reviewed",
+        "verification_state": "verified",
+        "names": {
+          "ja": "御所車文様",
+          "en": "Gosho-guruma Carriage Motif"
+        },
+        "aliases": {
+          "ja": [
+            "御所車",
+            "源氏車文様",
+            "御所車柄"
+          ],
+          "en": [
+            "gosho-guruma",
+            "imperial carriage motif",
+            "Japanese ox-drawn carriage motif"
+          ]
+        },
+        "term_scope": "Japanese pictorial textile motif showing a roofed court carriage; sometimes part of a wider literary scene or gosho-doki pictorial composition",
+        "definition": {
+          "ja": "平安貴族の牛車を題材とした車輪・車体・屋形のある日本の文様。小袖や能装束などでは草花や流水と一緒に描かれることがあります。御所車そのものの図像と、風景全体に物語の暗示を隠す「御所解文様」は同義ではありません。",
+          "en": "A Japanese pictorial motif showing a roofed court carriage associated with Heian aristocratic life. In historic garments it may appear alongside flowers, flowing water or literary scenery. A carriage motif alone should not automatically be equated with the larger narrative landscape category called gosho-doki."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "車輪と屋形を持つ宮廷風の乗り物の形を探します",
+            "花卉・橋・流水などと組み合わせた作品もあります",
+            "御所解文様全体は物語や風景を含むため、車のモチーフ一つとは区別します"
+          ],
+          "en": [
+            "Look for wheels beneath a roofed courtly carriage",
+            "Carriages can appear beside flowers, bridges or flowing water",
+            "Separate the single carriage image from a full gosho-doki literary landscape"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "小袖",
+            "能装束",
+            "振袖",
+            "染織装飾"
+          ],
+          "en": [
+            "kosode",
+            "Noh costumes",
+            "formal kimono",
+            "textile decoration"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "gold",
+            "navy"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial colors, not an identifying requirement."
+        }
+      },
+      "runtime": {
+        "id": "goshoguruma",
+        "names": {
+          "ja": "御所車文様",
+          "en": "Gosho-guruma Carriage Motif"
+        },
+        "aliases": {
+          "ja": [
+            "御所車",
+            "源氏車文様",
+            "御所車柄"
+          ],
+          "en": [
+            "gosho-guruma",
+            "imperial carriage motif",
+            "Japanese ox-drawn carriage motif"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "御所車の着物柄",
+            "貴族の車輪がある和柄",
+            "牛車 宮廷風景 文様"
+          ],
+          "en": [
+            "Japanese court carriage kimono motif",
+            "ox carriage gosho guruma pattern",
+            "Heian carriage textile design"
+          ]
+        },
+        "families": [
+          "japanese",
+          "pictorial"
+        ],
+        "motifs": [
+          "車輪",
+          "牛車",
+          "宮廷"
+        ],
+        "visual": {
+          "geometry": [
+            "pictorial",
+            "ornamental"
+          ],
+          "line": [
+            "straight"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "gold",
+            "navy"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial palette."
+        },
+        "uses": [
+          "textile",
+          "fashion"
+        ],
+        "culture": [
+          "Japanese"
+        ],
+        "relationships": {
+          "similar": [
+            "toile-de-jouy",
+            "chinoiserie",
+            "tree-of-life"
+          ],
+          "often_confused_with": [
+            "toile-de-jouy"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "平安貴族の牛車を題材とした車輪・車体・屋形のある日本の文様。小袖や能装束などでは草花や流水と一緒に描かれることがあります。御所車そのものの図像と、風景全体に物語の暗示を隠す「御所解文様」は同義ではありません。",
+          "en": "A Japanese pictorial motif showing a roofed court carriage associated with Heian aristocratic life. In historic garments it may appear alongside flowers, flowing water or literary scenery. A carriage motif alone should not automatically be equated with the larger narrative landscape category called gosho-doki."
+        },
+        "reference_path": "assets/reference-v2/goshoguruma.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "pictorial",
+            "ornamental"
+          ],
+          "contexts": [
+            "japanese"
+          ]
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/goshoguruma.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Representative schematic illustration only, never museum-collection reproduction or a claim of universal appearance."
+      }
+    },
+    {
+      "id": "temari-motif",
+      "uses": {
+        "ja": [
+          "着物",
+          "伊勢型紙",
+          "和雑貨",
+          "工芸"
+        ],
+        "en": [
+          "kimono",
+          "Ise textile stencils",
+          "Japanese craft decoration",
+          "ornaments"
+        ]
+      },
+      "source": {
+        "pattern_id": "temari-motif",
+        "verification_state": "verified",
+        "term_scope": "Japanese applied decorative depiction of a wrapped and stitched thread ball, not one specific geometric stitch scheme",
+        "verified_names": {
+          "ja": "手毬文様",
+          "en": "Temari Ball Motif"
+        },
+        "verified_aliases": {
+          "ja": [
+            "手鞠文様",
+            "手まり柄",
+            "手毬柄",
+            "てまり文"
+          ],
+          "en": [
+            "temari motif",
+            "thread ball pattern",
+            "embroidered Japanese ball motif"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "The Metropolitan Museum of Art / Boy's Kimono with Lucky Thread Balls",
+            "url": "https://www.metmuseum.org/art/collection/search/646442",
+            "supports": [
+              "Documented historical kimono with temari ball imagery"
+            ]
+          },
+          {
+            "publisher": "三重県立美術館 / 伊勢型紙の歴史と展開",
+            "url": "https://www.bunka.pref.mie.lg.jp/art-museum/73743039604.htm",
+            "supports": [
+              "Dated Edo-period Ise stencil with temari named motif"
+            ]
+          },
+          {
+            "publisher": "宇都宮市歴史文化資源活用推進協議会 / 野州てんまり",
+            "url": "https://utsunomiya-8story.jp/archive/contents_05/co_49/",
+            "supports": [
+              "Thread-wrapped decorated temari ball construction and its craft context"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "temari-motif",
+        "review_state": "source-reviewed",
+        "verification_state": "verified",
+        "names": {
+          "ja": "手毬文様",
+          "en": "Temari Ball Motif"
+        },
+        "aliases": {
+          "ja": [
+            "手鞠文様",
+            "手まり柄",
+            "手毬柄",
+            "てまり文"
+          ],
+          "en": [
+            "temari motif",
+            "thread ball pattern",
+            "embroidered Japanese ball motif"
+          ]
+        },
+        "term_scope": "Japanese applied decorative depiction of a wrapped and stitched thread ball, not one specific geometric stitch scheme",
+        "definition": {
+          "ja": "色糸を巻き付け、かがり糸で幾何学模様を施す手毬を描いた文様。着物や伊勢型紙などにも題材として見られます。球の内部は菊割り・放射線・交差する曲線など多様で、特定の一種類の糸かがり模様に限定されません。",
+          "en": "A Japanese ornament representing a round temari ball wrapped in thread and decorated with stitched geometric divisions. Temari balls appear as subjects in kimono prints and traditional stencil designs. The internal stitch geometry varies and is not a single canonical surface repeat."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "丸い毬の輪郭を持ち、内側に幾何学的な糸の区画があります",
+            "球面を横切る線・菊割り状の分割など、複数のかがり方があります",
+            "ただの水玉や花文ではなく、糸で包んだ毬そのものを描いた表現かを確認します"
+          ],
+          "en": [
+            "Look for the circular outline of a ball with divisions resembling thread work",
+            "The internal sectors may be radial, floral or crossing stitch bands",
+            "Unlike a generic dot or flower, the whole rounded thread ball is the object depicted"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "着物",
+            "伊勢型紙",
+            "和雑貨",
+            "工芸"
+          ],
+          "en": [
+            "kimono",
+            "Ise textile stencils",
+            "Japanese craft decoration",
+            "ornaments"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "red",
+            "indigo"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial colors, not an identifying requirement."
+        }
+      },
+      "runtime": {
+        "id": "temari-motif",
+        "names": {
+          "ja": "手毬文様",
+          "en": "Temari Ball Motif"
+        },
+        "aliases": {
+          "ja": [
+            "手鞠文様",
+            "手まり柄",
+            "手毬柄",
+            "てまり文"
+          ],
+          "en": [
+            "temari motif",
+            "thread ball pattern",
+            "embroidered Japanese ball motif"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "手まりの着物柄",
+            "丸い糸のボールの和柄",
+            "てまり 文様"
+          ],
+          "en": [
+            "temari ball pattern kimono",
+            "Japanese threaded ball ornamental motif",
+            "stitched thread ball textile"
+          ]
+        },
+        "families": [
+          "japanese",
+          "geometric"
+        ],
+        "motifs": [
+          "毬",
+          "糸かがり",
+          "幾何"
+        ],
+        "visual": {
+          "geometry": [
+            "geometric",
+            "ornamental"
+          ],
+          "line": [
+            "straight"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "red",
+            "indigo"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial palette."
+        },
+        "uses": [
+          "textile",
+          "fashion"
+        ],
+        "culture": [
+          "Japanese"
+        ],
+        "relationships": {
+          "similar": [
+            "quatrefoil",
+            "kiku-motif",
+            "polka-dot"
+          ],
+          "often_confused_with": [
+            "kiku-motif",
+            "polka-dot"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "色糸を巻き付け、かがり糸で幾何学模様を施す手毬を描いた文様。着物や伊勢型紙などにも題材として見られます。球の内部は菊割り・放射線・交差する曲線など多様で、特定の一種類の糸かがり模様に限定されません。",
+          "en": "A Japanese ornament representing a round temari ball wrapped in thread and decorated with stitched geometric divisions. Temari balls appear as subjects in kimono prints and traditional stencil designs. The internal stitch geometry varies and is not a single canonical surface repeat."
+        },
+        "reference_path": "assets/reference-v2/temari-motif.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "geometric",
+            "ornamental"
+          ],
+          "contexts": [
+            "japanese"
+          ]
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/temari-motif.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Representative schematic illustration only, never museum-collection reproduction or a claim of universal appearance."
+      }
+    },
+    {
+      "id": "sankuzushi",
+      "uses": {
+        "ja": [
+          "小紋",
+          "帯地",
+          "織物",
+          "木彫や装飾"
+        ],
+        "en": [
+          "komon kimono",
+          "obi fabrics",
+          "woven textiles",
+          "woodcarving and ornament"
+        ]
+      },
+      "source": {
+        "pattern_id": "sankuzushi",
+        "verification_state": "verified",
+        "term_scope": "Japanese geometric repeat of groups of three short parallel stripes alternating horizontal and vertical orientation in a checker arrangement",
+        "verified_names": {
+          "ja": "三崩し文様",
+          "en": "Sankuzushi Three-Bar Motif"
+        },
+        "verified_aliases": {
+          "ja": [
+            "三崩し",
+            "算崩し",
+            "算木崩し",
+            "さんくずし"
+          ],
+          "en": [
+            "sankuzushi",
+            "three-bar basket pattern",
+            "three-line alternating block pattern"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "きものと悉皆 みなぎ / 三崩し文",
+            "url": "https://www.37gi.com/%E7%9D%80%E7%89%A9%E3%81%AE%E6%96%87%E6%A7%98%E8%BE%9E%E5%85%B8/%E7%9D%80%E7%89%A9%E3%81%AE%E6%96%87%E6%A7%98/119-%E3%81%95%E8%A1%8C/622-%E4%B8%89%E5%B4%A9%E3%81%97%E6%96%87.html",
+            "supports": [
+              "Three alternating stroke arrangement, aliases, textile uses"
+            ]
+          },
+          {
+            "publisher": "木彫のホリビト / 市松と三崩し",
+            "url": "https://horibito.com/2022/02/16/monyo-ichimatsu-sankuzushi/",
+            "supports": [
+              "Three-line check layout and comparison to solid ichimatsu"
+            ]
+          },
+          {
+            "publisher": "夏貸文庫 / 算木崩し",
+            "url": "https://www.natubunko.net/wagara/kotoba09f.html",
+            "supports": [
+              "Three-bar groups alternating orientation, naming and obi/komon examples"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "sankuzushi",
+        "review_state": "source-reviewed",
+        "verification_state": "verified",
+        "names": {
+          "ja": "三崩し文様",
+          "en": "Sankuzushi Three-Bar Motif"
+        },
+        "aliases": {
+          "ja": [
+            "三崩し",
+            "算崩し",
+            "算木崩し",
+            "さんくずし"
+          ],
+          "en": [
+            "sankuzushi",
+            "three-bar basket pattern",
+            "three-line alternating block pattern"
+          ]
+        },
+        "term_scope": "Japanese geometric repeat of groups of three short parallel stripes alternating horizontal and vertical orientation in a checker arrangement",
+        "definition": {
+          "ja": "三本ずつの短い平行線をひとまとまりにし、縦向き・横向きの組を市松状に交互に配置した幾何学文様。算木を並べ崩したような形から算崩し・算木崩しとも呼ばれます。線の本数や縦横の交互配置が、通常の縞や市松との識別点です。",
+          "en": "A Japanese geometric repeat made of three short parallel bars per unit, alternating horizontal and vertical orientations in a checker-like arrangement. It is also called sangikuzushi, after counting rods. The three-line group and orientation change distinguish it from plain stripes or solid checkerboards."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "短い平行線が三本で一組です",
+            "三本の線の組を縦と横に交互配置します",
+            "線を塗りつぶした市松模様とは異なり、小さな線群で格子を構成します"
+          ],
+          "en": [
+            "Each module contains exactly three short parallel strokes",
+            "Adjacent modules switch between horizontal and vertical strokes",
+            "The design is not made of solid checker squares or uninterrupted stripes"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "小紋",
+            "帯地",
+            "織物",
+            "木彫や装飾"
+          ],
+          "en": [
+            "komon kimono",
+            "obi fabrics",
+            "woven textiles",
+            "woodcarving and ornament"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "indigo",
+            "white"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial colors, not an identifying requirement."
+        }
+      },
+      "runtime": {
+        "id": "sankuzushi",
+        "names": {
+          "ja": "三崩し文様",
+          "en": "Sankuzushi Three-Bar Motif"
+        },
+        "aliases": {
+          "ja": [
+            "三崩し",
+            "算崩し",
+            "算木崩し",
+            "さんくずし"
+          ],
+          "en": [
+            "sankuzushi",
+            "three-bar basket pattern",
+            "three-line alternating block pattern"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "3本線を縦横交互に並べる和柄",
+            "算木崩し模様",
+            "細い縞の市松柄"
+          ],
+          "en": [
+            "three lines alternating horizontal vertical Japanese pattern",
+            "sankuzushi motif",
+            "three bar woven check"
+          ]
+        },
+        "families": [
+          "japanese",
+          "geometric"
+        ],
+        "motifs": [
+          "三本線",
+          "市松配置"
+        ],
+        "visual": {
+          "geometry": [
+            "geometric",
+            "check"
+          ],
+          "line": [
+            "straight"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "indigo",
+            "white"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial palette."
+        },
+        "uses": [
+          "textile",
+          "fashion"
+        ],
+        "culture": [
+          "Japanese"
+        ],
+        "relationships": {
+          "similar": [
+            "ichimatsu",
+            "basketweave",
+            "checkerboard"
+          ],
+          "often_confused_with": [
+            "ichimatsu",
+            "basketweave"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "三本ずつの短い平行線をひとまとまりにし、縦向き・横向きの組を市松状に交互に配置した幾何学文様。算木を並べ崩したような形から算崩し・算木崩しとも呼ばれます。線の本数や縦横の交互配置が、通常の縞や市松との識別点です。",
+          "en": "A Japanese geometric repeat made of three short parallel bars per unit, alternating horizontal and vertical orientations in a checker-like arrangement. It is also called sangikuzushi, after counting rods. The three-line group and orientation change distinguish it from plain stripes or solid checkerboards."
+        },
+        "reference_path": "assets/reference-v2/sankuzushi.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "geometric",
+            "check"
+          ],
+          "contexts": [
+            "japanese"
+          ]
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/sankuzushi.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Representative schematic illustration only, never museum-collection reproduction or a claim of universal appearance."
+      }
+    },
+    {
+      "id": "kasuri",
+      "uses": {
+        "ja": [
+          "着物",
+          "絣布",
+          "日用品の織物",
+          "工芸品"
+        ],
+        "en": [
+          "kimono",
+          "woven cloth",
+          "household textiles",
+          "craft textiles"
+        ]
+      },
+      "source": {
+        "pattern_id": "kasuri",
+        "verification_state": "qualified",
+        "term_scope": "Japanese resist-dyed yarn and weaving technique with patterns formed by prepared dyed warp and/or weft; overlap with the broader global category ikat, no single fixed motif",
+        "verified_names": {
+          "ja": "絣",
+          "en": "Kasuri Resist-Dyed Weave"
+        },
+        "verified_aliases": {
+          "ja": [
+            "かすり",
+            "絣織",
+            "絣文様"
+          ],
+          "en": [
+            "kasuri",
+            "Japanese ikat",
+            "resist-dyed yarn pattern"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "奈良国立博物館 / 正倉院展用語解説「絣」",
+            "url": "https://shosointen-glossary.narahaku.go.jp/kasuri/",
+            "supports": [
+              "Definition of kasuri as pre-dyed pattern yarn used in woven cloth"
+            ]
+          },
+          {
+            "publisher": "Textile Museum of Canada / Kimono, early 20th century",
+            "url": "https://collections.textilemuseum.ca/collection/3766/",
+            "supports": [
+              "Crossing pre-dyed warp and weft and resulting pattern edge variation"
+            ]
+          },
+          {
+            "publisher": "日本工芸会 / Textiles",
+            "url": "https://www.nihonkogeikai.or.jp/en/textiles/",
+            "supports": [
+              "Technique permits geometric and pictorial designs from pre-dyed warp and weft yarns"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "kasuri",
+        "review_state": "source-reviewed",
+        "verification_state": "qualified",
+        "names": {
+          "ja": "絣",
+          "en": "Kasuri Resist-Dyed Weave"
+        },
+        "aliases": {
+          "ja": [
+            "かすり",
+            "絣織",
+            "絣文様"
+          ],
+          "en": [
+            "kasuri",
+            "Japanese ikat",
+            "resist-dyed yarn pattern"
+          ]
+        },
+        "term_scope": "Japanese resist-dyed yarn and weaving technique with patterns formed by prepared dyed warp and/or weft; overlap with the broader global category ikat, no single fixed motif",
+        "definition": {
+          "ja": "織る前に経糸・緯糸の一部を染め分けた絣糸を用い、織り合わせて柄を表す技法とその織物の総称です。糸の染色部分の位置が織りで少しずれるため、文様の輪郭にかすれたような境界が生じる場合があります。幾何模様から絵絣まで幅広く、特定の一図案を示す語ではありません。",
+          "en": "A Japanese yarn-resist patterning and weaving technique in which sections of warp and/or weft yarn are dyed before weaving. Slight misalignment can produce softly feathered motif edges. Kasuri covers geometric and pictorial designs and overlaps with the wider international term ikat; it is not one fixed ornamental pattern."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "糸を織る前に部分染めして模様を構成します",
+            "経糸・緯糸の染め分けによって、輪郭にかすれが見えることがあります",
+            "格子や絵柄など多くの構成があり、一つの固定柄ではありません"
+          ],
+          "en": [
+            "Patterns arise from selectively dyed yarn before it is woven",
+            "Edges may feather or shift where colored yarn segments meet",
+            "Many distinct geometric and figurative compositions count as kasuri"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "着物",
+            "絣布",
+            "日用品の織物",
+            "工芸品"
+          ],
+          "en": [
+            "kimono",
+            "woven cloth",
+            "household textiles",
+            "craft textiles"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "indigo",
+            "white"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial colors, not an identifying requirement."
+        },
+        "qualification": {
+          "ja": "絣は技法・染織物の総称であり、一つの模様形状を意味しません。画像は糸の色ずれによる輪郭のかすれを例示した模式図です。",
+          "en": "Kasuri is a textile technique and category, not one fixed visual motif. The schematic depicts one illustrative geometric resist-dyed yarn alignment effect only."
+        }
+      },
+      "runtime": {
+        "id": "kasuri",
+        "names": {
+          "ja": "絣",
+          "en": "Kasuri Resist-Dyed Weave"
+        },
+        "aliases": {
+          "ja": [
+            "かすり",
+            "絣織",
+            "絣文様"
+          ],
+          "en": [
+            "kasuri",
+            "Japanese ikat",
+            "resist-dyed yarn pattern"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "かすれた縁の織り模様",
+            "絣織りの糸の染め方",
+            "かすり柄"
+          ],
+          "en": [
+            "Japanese kasuri woven yarn resist pattern",
+            "feathered edge ikat Japan",
+            "warp and weft pre dyed cloth"
+          ]
+        },
+        "families": [
+          "japanese",
+          "global-textile"
+        ],
+        "motifs": [
+          "先染め",
+          "かすれた境界"
+        ],
+        "visual": {
+          "geometry": [],
+          "line": [
+            "straight"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "indigo",
+            "white"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial palette."
+        },
+        "uses": [
+          "textile",
+          "fashion"
+        ],
+        "culture": [
+          "Japanese"
+        ],
+        "relationships": {
+          "similar": [
+            "ikat",
+            "shibori",
+            "koushi"
+          ],
+          "often_confused_with": [
+            "ikat",
+            "shibori"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "織る前に経糸・緯糸の一部を染め分けた絣糸を用い、織り合わせて柄を表す技法とその織物の総称です。糸の染色部分の位置が織りで少しずれるため、文様の輪郭にかすれたような境界が生じる場合があります。幾何模様から絵絣まで幅広く、特定の一図案を示す語ではありません。",
+          "en": "A Japanese yarn-resist patterning and weaving technique in which sections of warp and/or weft yarn are dyed before weaving. Slight misalignment can produce softly feathered motif edges. Kasuri covers geometric and pictorial designs and overlaps with the wider international term ikat; it is not one fixed ornamental pattern."
+        },
+        "reference_path": "assets/reference-v2/kasuri.svg",
+        "taxonomy": {
+          "types": [
+            "technique"
+          ],
+          "appearance": [],
+          "contexts": [
+            "japanese",
+            "regional"
+          ]
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/kasuri.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Representative schematic illustration only, never museum-collection reproduction or a claim of universal appearance."
       }
     }
   ]
