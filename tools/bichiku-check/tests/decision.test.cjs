@@ -68,3 +68,13 @@ test("go-bag quantities are separate from home inventory",()=>{
  assert.equal(row(a,"water").effective,0);
  assert.equal(row(a,"water").required,0.5);
 });
+
+test("water-dependent cooked noodles are NOT credited during an outage without safe prep water",()=>{
+ const a=assess({waterOut:true,noHeat:false,variants:{"home:cupNoodles":{qty:9},"home:packRice":{qty:2}}});
+ assert.equal(row(a,"food").effective,2); // The heating-only pack rice is not modeled as water-dependent
+ assert.equal(row(a,"food").missing,7);
+ const b=assess({waterOut:true,noHeat:false,safeWaterConfirmed:true,prepWaterLiters:1,
+  stocks:{"home:water":{qty:3}},variants:{"home:cupNoodles":{qty:9}}});
+ assert.equal(row(b,"food").effective,9);
+ assert.equal(b.waterRemainingAfterPrep,2);
+});
