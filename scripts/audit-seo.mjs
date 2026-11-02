@@ -125,7 +125,10 @@ function check(file) {
     if (!html.includes('G-57QT78M3JB')) issues.push('missing GA4');
     if (!html.includes('ca-pub-9879006623791275')) warnings.push('missing AdSense');
     if (!has(html, /application\/ld\+json/i)) warnings.push('missing JSON-LD');
-    if (kind === 'tool' && !html.includes('WebApplication')) warnings.push('missing WebApplication JSON-LD');
+    if (kind === 'tool') {
+      const expectedSchema = slug === 'release-guardian' ? 'TechArticle' : 'WebApplication';
+      if (!html.includes(expectedSchema)) warnings.push(`missing ${expectedSchema} JSON-LD`);
+    }
     if (!sitemap.includes(url)) warnings.push('not in sitemap.xml');
     if (kind === 'tool' && !toolIndex.has(slug)) warnings.push('not in tools-index.json');
     if (kind === 'tool' && !stableMeta(slug)) warnings.push('missing tools-meta.json SEO metadata');
