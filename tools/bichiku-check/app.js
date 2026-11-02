@@ -5,10 +5,12 @@
   var L = (window.BICHIKU_I18N || {})[lang] || window.BICHIKU_I18N.ja;
   var core = window.BichikuCore;
   var catalog = window.BICHIKU_CATALOG || [];
+  var specificOptions = window.BICHIKU_OPTIONS || [];
+  var choiceLabels = (window.BICHIKU_OPTIONS_UI||{})[lang] || (window.BICHIKU_OPTIONS_UI||{}).ja || {};
   if (!L || !core || !catalog.length) return;
 
   var STORE = "bichiku-check-v1";
-  var settings = {mode:"home",adults:1,children:0,infants:0,pets:0,days:7,noHeat:false,diet:false,budget:0,stocks:{}};
+  var settings = {mode:"home",adults:1,children:0,infants:0,pets:0,days:7,noHeat:false,diet:false,budget:0,stocks:{},variants:{}};
   try {
     var saved = JSON.parse(localStorage.getItem(STORE) || "null");
     if (saved && typeof saved === "object" && !Array.isArray(saved)) {
@@ -67,6 +69,13 @@
     u.searchParams.set("tag","nicheworks09-22");
     searches[i.id]=u.toString();
   });
+  specificOptions.forEach(function(option) {
+    if (!option.query) return;
+    var u=new URL("https://www.amazon.co.jp/s");
+    u.searchParams.set("k",option.query);
+    u.searchParams.set("tag","nicheworks09-22");
+    searches["option_"+option.id]=u.toString();
+  });
   if (AMAZON) AMAZON.configure({enabled:true,tool:"bichiku-check",targets:searches});
   function displayWarnings(calc) {
     var notes=[settings.mode==="home"?L.homeNote:L.goNote,L.qtyRule];
@@ -77,7 +86,7 @@
     return notes.map(function(s) {return '<p>'+safe(s)+'</p>';}).join("");
   }
   function row(x) {
-    var i=x.item, stock=x.owned, need=x.missing;
+    var i=x.item, stock=x.ownedManual, need=x.missing;
     var urgency=i.priority===1?L.priority1:(i.priority===2?L.priority2:L.priority3);
     var a=x.missing>0 && !!i.search;
     var qtyId="qty-"+i.id, targetId="target-"+i.id, dateId="expiry-"+i.id;
@@ -86,7 +95,7 @@
       '<span class="priority priority-'+i.priority+'">'+safe(urgency)+'</span></div>'+
       '<div class="item-count"><span>'+safe(L.needed)+': <strong>'+format(x.required)+safe(unit(i.id))+'</strong></span>'+
       '<span class="'+(need?"shortage":"ok")+'">'+safe(need?L.missing:L.complete)+': <strong>'+format(need)+safe(unit(i.id))+'</strong></span></div>'+
-      '<div class="item-actions"><label for="'+qtyId+'">'+safe(L.owned)+'<input id="'+qtyId+'" class="qty" data-id="'+i.id+'" type="number" min="0" max="10000000" step="'+(i.id==="water"?"0.5":"1")+'" inputmode="decimal" value="'+format(stock)+'"></label>'+
+      '<div class="item-actions"><label for="'+qtyId+'">'+safe(specificOptions.some(function(o){return o.parent===i.id;})?choiceLabels.unchanged:L.owned)+'<input id="'+qtyId+'" class="qty" data-id="'+i.id+'" type="number" min="0" max="10000000" step="'+(i.id==="water"?"0.5":"1")+'" inputmode="decimal" value="'+format(stock)+'"></label>'+
       (a?'<span class="aff-slot" data-aff="'+i.id+'"></span>':"")+'</div>'+
       '<details class="item-detail" data-detail="'+i.id+'" '+(expandedItems[i.id]?'open':'')+'><summary>'+safe(L.adjust)+'</summary>'+
       '<div class="item-detail-controls"><label for="'+targetId+'">'+safe(L.targetEdit)+'<input id="'+targetId+'" class="target" data-id="'+i.id+'" type="number" min="0" max="10000000" step="'+(i.id==="water"?"0.5":"1")+'" inputmode="decimal" value="'+(x.hasCustomTarget?format(x.required):"")+'" placeholder="'+format(x.autoTarget)+'"></label>'+
@@ -101,7 +110,7 @@
   }
   function renderResults() {
     if(!displayed) return;
-    var calc=core.calculate(catalog,settings,todayLocal());
+    var calc=core.calculate(catalog,settings,todayLocal(),specificOptions);
     var critical=calc.items.filter(function(x){return x.missing>0 && x.priority===1;});
     var other=calc.items.filter(function(x){return x.missing>0 && x.priority!==1;});
     var covered=calc.items.filter(function(x){return x.missing===0;});
@@ -126,6 +135,7 @@
       '<div class="result-buttons"><button type="button" id="copyList">'+safe(L.copy)+'</button><button type="button" id="exportCsv">'+safe(L.download)+'</button><button type="button" id="printList">'+safe(L.print)+'</button><button type="button" id="reset">'+safe(L.reset)+'</button></div>'+
       '<div class="fine compliance"><p>'+safe(L.pricesNote)+'</p><p>'+safe(L.affiliateNote)+'</p><p>'+safe(L.privacy)+'</p></div>';
     results.hidden=false;
+    if(window.BichikuChoices) window.BichikuChoices.render(settings,function(next){settings.variants=next;save();renderResults();});
     results.querySelectorAll(".aff-slot").forEach(function(slot) {
       if(!AMAZON) return;
       var id=slot.getAttribute("data-aff");
@@ -183,10 +193,10 @@
     var b=ev.target.closest("button");
     if(!b) return;
     if(b.dataset.filter) {preserveOpen();filter=b.dataset.filter;if(filter==="covered")expanded.complete=true;renderResults();return;}
-    var calc=core.calculate(catalog,settings,todayLocal());
+    var calc=core.calculate(catalog,settings,todayLocal(),specificOptions);
     var rows=calc.items.filter(function(x){return x.missing>0;});
     if(b.id==="reset") {
-      if(confirm(L.confirmReset)) {try{localStorage.removeItem(STORE);}catch(_){}settings=core.normalize({adults:1});displayed=false;results.hidden=true;renderSetup();window.scrollTo({top:0,behavior:"smooth"});}
+      if(confirm(L.confirmReset)) {try{localStorage.removeItem(STORE);}catch(_){}settings=core.normalize({adults:1});displayed=false;results.hidden=true;var choiceRoot=$("specific-options");if(choiceRoot)choiceRoot.hidden=true;renderSetup();window.scrollTo({top:0,behavior:"smooth"});}
       return;
     }
     if(b.id==="printList") {
