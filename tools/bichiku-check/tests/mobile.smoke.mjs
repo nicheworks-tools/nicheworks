@@ -58,6 +58,7 @@ try {
     assert.equal(await affiliate.getAttribute("rel"),"sponsored noopener");
     assert.match(await page.locator("#affiliate-inline").innerText(),/Amazon/);
     assert.equal(await page.locator("#specific-options:not([hidden])").count(),1,"specific options panel should be shown");
+    await page.locator("#specific-toggle").click();
     assert.ok((await page.locator(".specific-option").count())>=25,"expected rich food/substitute options");
     await page.locator('[data-options-filter="warmth"]').click();
     assert.equal(await page.locator('.specific-option[data-option="foamMat"]').count(),1);
@@ -86,6 +87,7 @@ try {
       assert.equal(await page.locator("#qty-water").inputValue(),"12","stock not retained");
       await page.locator('.item[data-item="water"] .item-detail summary').click();
       assert.equal(await page.locator("#target-water").inputValue(),"25","target not retained");
+      await page.locator("#specific-toggle").click();
       await page.locator('.specific-option[data-option="alphaRice"] summary').click();
       assert.equal(await page.locator('.specific-option[data-option="alphaRice"] .specific-qty').inputValue(),"3","specific item stock not retained");
     }
