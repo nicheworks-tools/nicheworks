@@ -20,6 +20,7 @@
   var filter="missing";
   var advancedOpen=false;
   var expanded={critical:true,other:false,complete:false};
+  var expandedItems={};
   var observed=false;
   var $ = function(id){return document.getElementById(id);};
   var setup=$("setup"), results=$("results"), disclosure=$("affiliate-disclosure");
@@ -53,9 +54,7 @@
       '<details class="advanced" '+(advancedOpen?'open':'')+'><summary>'+safe(L.conditions)+'</summary>'+
         '<label class="checkline"><input id="noHeat" type="checkbox" '+(settings.noHeat?'checked':'')+'>'+safe(L.noHeat)+'</label>'+
         '<label class="checkline"><input id="diet" type="checkbox" '+(settings.diet?'checked':'')+'>'+safe(L.diet)+'</label>'+
-        '<label class="field-title" for="budget">'+safe(L.budget)+'</label>'+
-        '<input id="budget" type="number" inputmode="numeric" min="0" max="10000000" step="1000" value="'+settings.budget+'">'+
-        '<p class="fine">'+safe(L.budgetHelp)+'</p></details>'+
+      '</details>'+
       '<button type="button" class="primary wide calculate" id="calculate">'+safe(L.calculate)+' <span aria-hidden="true">↓</span></button>';
   }
   var AMAZON = window.NWAmazonAffiliate;
@@ -74,27 +73,27 @@
     if(settings.noHeat && settings.mode==="home") notes.push(L.noHeatNote);
     if(settings.infants) notes.push(L.infantNote);
     if(settings.diet) notes.push(L.dietNote);
-    if(settings.budget) notes.push(L.budgetNote);
     return notes.map(function(s) {return '<p>'+safe(s)+'</p>';}).join("");
   }
   function row(x) {
     var i=x.item, stock=x.owned, need=x.missing;
     var urgency=i.priority===1?L.priority1:(i.priority===2?L.priority2:L.priority3);
     var a=x.missing>0 && !!i.search;
-    var qtyId="qty-"+i.id;
-    var dateId="expiry-"+i.id;
+    var qtyId="qty-"+i.id, targetId="target-"+i.id, dateId="expiry-"+i.id;
     return '<li class="item '+(x.missing===0?"covered":"")+'" data-item="'+i.id+'">'+
       '<div class="item-main"><span class="item-name">'+safe(i.names[lang] || i.names.ja)+'</span>'+
       '<span class="priority priority-'+i.priority+'">'+safe(urgency)+'</span></div>'+
       '<div class="item-count"><span>'+safe(L.needed)+': <strong>'+format(x.required)+safe(unit(i.id))+'</strong></span>'+
       '<span class="'+(need?"shortage":"ok")+'">'+safe(need?L.missing:L.complete)+': <strong>'+format(need)+safe(unit(i.id))+'</strong></span></div>'+
       '<div class="item-actions"><label for="'+qtyId+'">'+safe(L.owned)+'<input id="'+qtyId+'" class="qty" data-id="'+i.id+'" type="number" min="0" max="10000000" step="'+(i.id==="water"?"0.5":"1")+'" inputmode="decimal" value="'+format(stock)+'"></label>'+
-      '<label for="'+dateId+'">'+safe(L.expiry)+'<input id="'+dateId+'" class="expiry" data-id="'+i.id+'" type="date" value="'+safe(x.expiry)+'"></label>'+
       (a?'<span class="aff-slot" data-aff="'+i.id+'"></span>':"")+'</div>'+
+      '<details class="item-detail" data-detail="'+i.id+'" '+(expandedItems[i.id]?'open':'')+'><summary>'+safe(L.adjust)+'</summary>'+
+      '<div class="item-detail-controls"><label for="'+targetId+'">'+safe(L.targetEdit)+'<input id="'+targetId+'" class="target" data-id="'+i.id+'" type="number" min="0" max="10000000" step="'+(i.id==="water"?"0.5":"1")+'" inputmode="decimal" value="'+(x.hasCustomTarget?format(x.required):"")+'" placeholder="'+format(x.autoTarget)+'"></label>'+
+      '<label for="'+dateId+'">'+safe(L.expiry)+'<input id="'+dateId+'" class="expiry" data-id="'+i.id+'" type="date" value="'+safe(x.expiry)+'"></label></div></details>'+
       (x.expired?'<p class="expired">'+safe(L.expired)+' · '+safe(L.expiredHelp)+'</p>':"")+
       '</li>';
   }
-  function section(group,heading,list,open) {
+    function section(group,heading,list,open) {
     if(!list.length) return "";
     return '<details class="list-section" data-group="'+group+'" '+(open?'open':'')+'><summary><span>'+safe(heading)+'</span><strong>'+list.length+'</strong></summary>'+
       '<ul class="item-list">'+list.map(row).join("")+'</ul></details>';
@@ -140,6 +139,7 @@
     var adv=setup.querySelector(".advanced");
     if(adv) advancedOpen=adv.open;
     results.querySelectorAll(".list-section").forEach(function(d){expanded[d.dataset.group]=d.open;});
+    results.querySelectorAll(".item-detail").forEach(function(d){expandedItems[d.dataset.detail]=d.open;});
   }
   function setField(field,value) {
     preserveOpen();
@@ -164,7 +164,6 @@
   });
   setup.addEventListener("change",function(ev) {
     if(ev.target.id==="noHeat" || ev.target.id==="diet") {settings[ev.target.id]=ev.target.checked;save();renderResults();}
-    if(ev.target.id==="budget") {settings.budget=Math.max(0,Math.min(10000000,Number(ev.target.value)||0));save();renderResults();}
   });
   results.addEventListener("change",function(ev){
     var id=ev.target.dataset.id;
@@ -175,6 +174,7 @@
     var next=Object.assign({},old);
     if(ev.target.classList.contains("qty")) next.qty=Math.max(0,Math.min(10000000,Number(ev.target.value)||0));
     if(ev.target.classList.contains("expiry")) next.expiry=ev.target.value;
+    if(ev.target.classList.contains("target")) {if(ev.target.value==="") delete next.target; else next.target=Math.max(0,Math.min(10000000,Number(ev.target.value)||0));}
     settings.stocks[key]=next;save();renderResults();
   });
   results.addEventListener("click",function(ev){
