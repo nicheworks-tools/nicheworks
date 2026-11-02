@@ -241,7 +241,7 @@ result.addEventListener("change",e=>{
 });
 const ref=document.getElementById("references");
 if(ref)ref.innerHTML='<h2>'+esc(L.references)+'</h2><p class="g-fine">'+esc(T.advice)+'</p><ul>'+
- '<li><a href="https://www.kantei.go.jp/jp/headline/bousai/sonae.html" target="_blank" rel="noopener">'+esc(L.source1)+'</a></li>'+
+ '<li><a href="https://www.bousai.go.jp/kyoiku/hokenkyousai/check.html" target="_blank" rel="noopener">'+esc(L.source1)+'</a></li>'+
  '<li><a href="https://www.gov-online.go.jp/tokusyu/bousai/preparation.html" target="_blank" rel="noopener">'+esc(L.source2)+'</a></li></ul>';
 const donate=document.getElementById("donate");
 if(donate)donate.innerHTML='<p>'+esc(L.donate)+'</p><div class="donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">Ko-fi</a></div>';
