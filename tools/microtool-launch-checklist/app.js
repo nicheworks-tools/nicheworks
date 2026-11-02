@@ -253,6 +253,7 @@
 
     let hasGenerated = false;
     let currentText = "";
+    let generatedType = null;
 
     const setGeneratedState = (generated) => {
       hasGenerated = generated;
@@ -262,14 +263,22 @@
       output.classList.toggle("empty", !generated);
     };
 
+    const invalidateGenerated = () => {
+      generatedType = null;
+      currentText = "";
+      output.textContent = "";
+      setGeneratedState(false);
+    };
+
     const requireGenerated = () => {
-      if (hasGenerated && currentText.trim()) return true;
+      if (hasGenerated && generatedType === toolType.value && currentText.trim()) return true;
       showToast(messages.needGenerate[getCurrentLang()]);
       return false;
     };
 
     const render = () => {
       currentText = buildChecklist(toolType.value);
+      generatedType = toolType.value;
       output.textContent = currentText;
       setGeneratedState(true);
     };
@@ -280,6 +289,8 @@
       return `microtool-launch-checklist-${type}-${date}.${extension}`;
     };
 
+    toolType.addEventListener("input", invalidateGenerated);
+    toolType.addEventListener("change", invalidateGenerated);
     generateButton.addEventListener("click", render);
 
     copyButton.addEventListener("click", async () => {
@@ -300,7 +311,7 @@
       showToast(messages.saved[getCurrentLang()]);
     });
 
-    setGeneratedState(false);
+    invalidateGenerated();
   };
 
   document.addEventListener("DOMContentLoaded", () => {
