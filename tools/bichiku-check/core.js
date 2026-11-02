@@ -26,6 +26,7 @@
     switch (rule) {
       case "water": return 3 * people * s.days;
       case "food": return 3 * people * s.days;
+      case "goFood": return 3 * people; // one-day go-bag staple portions (illustrative)
       case "toilet": return 5 * people * s.days;
       case "carryWater": return 0.5 * people; // packing example, NOT a full-day target
       case "goToilet": return 2 * people; // packing example
