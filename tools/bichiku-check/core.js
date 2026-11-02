@@ -77,7 +77,7 @@
         var variant = s.variants[s.mode+":"+option.id] || {};
         var qty = num(variant.qty,0,0,10000000);
         if(!qty) return;
-        var optionExpiry = /^\\d{4}-\\d{2}-\\d{2}$/.test(String(variant.expiry||"")) ? variant.expiry : "";
+        var optionExpiry = /^\d{4}-\d{2}-\d{2}$/.test(String(variant.expiry||"")) ? variant.expiry : "";
         var usable = (!optionExpiry || optionExpiry >= stamp) && optionAvailable(option,s);
         variantOwned += qty;
         if(usable) variantEffective += qty;
