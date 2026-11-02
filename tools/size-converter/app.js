@@ -157,7 +157,7 @@
     return text.replace(/\s+/g, "");
   }
   function parseSizeEntry(raw) {
-    const text = String(raw || "").normalize("NFKC").trim();
+    const text = String(raw || "").replace(/½/g, " 1/2").normalize("NFKC").trim();
     const match = /^(JP|US|EU)\s*[:\-]?\s*(.+)$/i.exec(text);
     return match ? { system: match[1].toLowerCase(), value: match[2] } : { system: els.base.value, value: text };
   }
