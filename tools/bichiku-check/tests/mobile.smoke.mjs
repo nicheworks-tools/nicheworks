@@ -114,10 +114,11 @@ try{
   await page.locator('input[data-shop]').nth(8).check();
   assert.equal(await page.locator("#g-shop-selected strong").innerText(),"9");
   await page.locator("button[data-more]").click();
-  await page.evaluate(()=>{window.print=()=>{window.__printText=document.querySelector("#g-print-list")?.innerText||""}});
+  await page.evaluate(()=>{window.print=()=>{window.__printedRows=[...document.querySelectorAll("#g-print-list li")].map(el=>el.textContent||"")}});
   await page.locator("#printList").click();
-  const printed=await page.evaluate(()=>window.__printText);
-  assert.equal(printed.split("\n").filter(x=>/—/.test(x)).length,9,"print must include all nine deliberately selected items");
+  const printed=await page.evaluate(()=>window.__printedRows);
+  assert.equal(printed.length,9,"print must include all nine deliberately selected items");
+  assert.ok(printed.every(x=>x.includes("—")),"printed rows must include missing-quantity separators");
   assert.deepEqual(exceptions,[]);
   console.log("PASS 390px blackout heating and explicit shopping + print selections");
   passed++;await ctx.close();
