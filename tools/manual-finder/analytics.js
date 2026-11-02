@@ -102,6 +102,13 @@
       if (!link || !results.contains(link)) return;
       const card = link.closest(".card");
       if (!card) return;
+      if (link.classList.contains("phone-quickcheck-link")) {
+        track("manualfinder_phone_quickcheck_click", {
+          maker: String(card.dataset.maker || "unknown"),
+          category: String(card.dataset.category || "unknown")
+        });
+        return;
+      }
       const links = Array.from(card.querySelectorAll(".card-links a"));
       const linkIndex = links.indexOf(link);
       track("manualfinder_result_click", {

@@ -65,6 +65,24 @@ check(runtime.includes('root.dataset.affiliateManufacturer'), 'affiliate bucket 
 check(!runtime.includes('selectedId'), 'click analytics must not include model history');
 check(read('tools/phone-quickcheck/app.js').includes('root.dataset.affiliateManufacturer = phone?.manufacturer'), 'canonical manufacturer attribute missing from detail render');
 
+// All ManualFinder direct links must be exact Phone QuickCheck canonical models.
+const matchModule = read('tools/manual-finder/phone-quickcheck-match.js');
+const linkVm = { window: {} };
+vm.runInNewContext(matchModule, linkVm);
+const quick = linkVm.window.MANUALFINDER_QC;
+const phoneModels = JSON.parse(read('tools/phone-quickcheck/data/phones.json')).phones;
+for (const [maker,models] of Object.entries(quick.models)) {
+  const canonical = new Set(phoneModels.filter(p => p.manufacturer === maker).map(p => p.model));
+  for (const model of models) check(canonical.has(model), `stale ManualFinder ${maker} model link ${model}`);
+}
+check(quick.linkFor('Apple','iPhone 11') === '/tools/phone-quickcheck/?model=iPhone%2011','Apple exact deep link broken');
+check(quick.linkFor('Google Pixel','Google Pixel 10') === '/tools/phone-quickcheck/?model=Pixel%2010','Google prefix normalization broken');
+check(quick.linkFor('Apple','MacBook Pro') === null,'PC false-positive must not link');
+check(quick.linkFor('Samsung Mobile','Galaxy S23 Ultra') === null,'unverified Samsung carrier equivalence must not link');
+const jaManual = read('tools/manual-finder/index.html');
+const enManual = read('tools/manual-finder/en/index.html');
+check(jaManual.includes('./phone-quickcheck-match.js') && enManual.includes('../phone-quickcheck-match.js'),'ManualFinder matching module not installed on both locales');
+check(read('tools/manual-finder/app.paged.js').includes('window.MANUALFINDER_QC?.linkFor'),'ManualFinder results must use exact model links');
 const html = read(htmlRel);
 const helperPos = html.indexOf('/assets/amazon-affiliate.js');
 const configPos = html.indexOf('./affiliate-config.js');

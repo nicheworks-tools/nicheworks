@@ -174,7 +174,12 @@
       const accessoriesPayload = await accessoriesResponse.json();
       state.phones = Array.isArray(phonesPayload.phones) ? phonesPayload.phones.map(normalizePhone).filter(Boolean) : [];
       state.accessories = Array.isArray(accessoriesPayload.accessories) ? accessoriesPayload.accessories : [];
-      state.selectedId = state.phones[0]?.id || null;
+      // Exact canonical deep link only; ignored if invalid/unknown, never sent to Amazon.
+      let deepModel = '';
+      try { deepModel = new URL(window.location.href).searchParams.get('model')?.trim().toLowerCase() || ''; } catch (_) {}
+      const deepPhone = deepModel && state.phones.find((item) => item.model.toLowerCase() === deepModel);
+      state.selectedId = deepPhone?.id || state.phones[0]?.id || null;
+      if (deepPhone) $('#searchInput').value = deepPhone.model;
       state.loadError = false;
     } catch (_) {
       state.phones = [];

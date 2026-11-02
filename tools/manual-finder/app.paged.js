@@ -194,6 +194,14 @@
         a.textContent = t("公式索引・サポート", "Official index/support");
         links.appendChild(a);
       }
+      const phoneCheckHref = window.MANUALFINDER_QC?.linkFor(x.maker, x.model);
+      if (phoneCheckHref) {
+        const quick = document.createElement("a");
+        quick.className = "phone-quickcheck-link";
+        quick.href = phoneCheckHref;
+        quick.textContent = t("この機種の充電器・サイズ", "Charging and dimensions for this phone");
+        links.appendChild(quick);
+      }
       links.appendChild(txt("span", "tag-official", t("公式サイト", "Official")));
       card.appendChild(links);
       frag.appendChild(card);

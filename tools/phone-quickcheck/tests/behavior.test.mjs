@@ -79,7 +79,7 @@ async function flush() {
   await new Promise((resolve) => setImmediate(resolve));
 }
 
-async function createHarness(ids, { mobile = false, savedLang = 'ja', failFetch = false } = {}) {
+async function createHarness(ids, { mobile = false, savedLang = 'ja', failFetch = false, href = 'https://nicheworks.app/tools/phone-quickcheck/' } = {}) {
   const phones = requirePhones(ids);
   const elements = Object.create(null);
   for (const id of [
@@ -138,7 +138,7 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja', failFetch 
   };
 
   const window = {
-    location: { href: 'https://nicheworks.app/tools/phone-quickcheck/' },
+    location: { href },
     matchMedia: () => ({ matches: mobile })
   };
   window.document = document;
@@ -170,6 +170,17 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja', failFetch 
   await flush();
 
   return { elements, langJa, langEn, phoneRows, document, storage };
+}
+
+// ManualFinder deep links require an exact maintained model; never forward unknown query input.
+{
+  const h = await createHarness(['google-pixel-7', 'apple-iphone-11'], { href: 'https://nicheworks.app/tools/phone-quickcheck/?model=iPhone%2011' });
+  assert.equal(h.elements.searchInput.value, 'iPhone 11');
+  assert.equal(h.phoneRows.length, 1);
+  assert.match(h.elements.desktopDetail.innerHTML, /iPhone 11/);
+  const unknown = await createHarness(['google-pixel-7', 'apple-iphone-11'], { href: 'https://nicheworks.app/tools/phone-quickcheck/?model=not-in-catalog' });
+  assert.equal(unknown.elements.searchInput.value, '');
+  assert.equal(unknown.phoneRows.length, 2);
 }
 
 // Alias/model search and JP/EN switching run through the real app runtime.
