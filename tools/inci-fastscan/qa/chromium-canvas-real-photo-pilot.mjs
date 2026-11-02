@@ -83,6 +83,7 @@ try {
       { langHint: 'en', spacedDashDelimiter: true });
     const baseline = {
       spacedDash: await scorer.assess(baselineDashText, annotation.INCI_list),
+      sourceExtraAudit: await scorer.auditAnnotationExtras(baselineDashText, annotation.INCI_list, annotation.raw_ingredients_list),
       durationMs: baselineDurationMs,
       annotatedMetrics: score(annotation.INCI_list.join('\n'), baselineText, parser.splitIngredients),
       rawTranscriptionMetrics: score(annotation.raw_ingredients_list, baselineText, parser.splitIngredients),
@@ -118,6 +119,7 @@ try {
       { langHint: 'en', spacedDashDelimiter: true });
     const enhanced = {
       spacedDash: await scorer.assess(enhancedDashText, annotation.INCI_list),
+      sourceExtraAudit: await scorer.auditAnnotationExtras(enhancedDashText, annotation.INCI_list, annotation.raw_ingredients_list),
       durationMs: enhancedDurationMs,
       annotatedMetrics: score(annotation.INCI_list.join('\n'), enhancedText, parser.splitIngredients),
       rawTranscriptionMetrics: score(annotation.raw_ingredients_list, enhancedText, parser.splitIngredients),
@@ -137,7 +139,8 @@ try {
         durationMs,
         annotatedMetrics: score(annotation.INCI_list.join('\n'), cleaned, parser.splitIngredients),
         rawTranscriptionMetrics: score(annotation.raw_ingredients_list, cleaned, parser.splitIngredients),
-        analysis: await scorer.assess(cleaned, annotation.INCI_list)
+        analysis: await scorer.assess(cleaned, annotation.INCI_list),
+        sourceExtraAudit: await scorer.auditAnnotationExtras(cleaned, annotation.INCI_list, annotation.raw_ingredients_list)
       };
       console.log('CHROMIUM_PSM_PHOTO=' + JSON.stringify({
         id, variant: variant.key, mode: variant.mode,
@@ -163,6 +166,18 @@ try {
   await browser.close();
 }
 assert.equal(results.length, 12);
+
+function summarizeSourceExtraAudits(rows) {
+  const summary = { photos: rows.length, extras: 0,
+    mentionedInSourceTranscription: 0, notMentionedInSourceTranscription: 0 };
+  for (const row of rows) {
+    assert.equal(row.extras, row.mentionedInSourceTranscription + row.notMentionedInSourceTranscription);
+    for (const k of ['extras', 'mentionedInSourceTranscription', 'notMentionedInSourceTranscription']) {
+      summary[k] += row[k];
+    }
+  }
+  return summary;
+}
 
 function aggregatePhotoMetrics(rows, slot, key) {
   const metrics = rows.map(row => row[slot][key]);
@@ -212,6 +227,7 @@ const report = {
       photoCount: 12,
       comparisonBaseline: 'chromiumCanvas with default PSM6, spaced-dash production cleanup',
       productionDictionary: numeric,
+      sourceExtraAudit: summarizeSourceExtraAudits(rows.map(row => row.sourceExtraAudit)),
       pooledStrictAnnotated: aggregatePhotoMetrics(results.map((row) => ({
         candidate: row.segmentation[variant.key]
       })), 'candidate', 'annotatedMetrics'),
@@ -222,6 +238,11 @@ const report = {
         annotatedMetrics: row.annotatedMetrics, rawTranscriptionMetrics: row.rawTranscriptionMetrics }))
     }];
   })),
+  sourceExtraAudit: {
+    original: summarizeSourceExtraAudits(results.map(row => row.baseline.sourceExtraAudit)),
+    chromiumCanvas: summarizeSourceExtraAudits(results.map(row => row.enhanced.sourceExtraAudit)),
+    interpretation: 'Counting source-transcribed mentions of annotation-absent recognized dictionary names is diagnostic only, not a verified true/false positive classification.'
+  },
   spacedDashExperiment: {
     original: aggregateProductionAssessments(results.map(row => ({ analysis: row.baseline.spacedDash }))),
     chromiumCanvas: aggregateProductionAssessments(results.map(row => ({ analysis: row.enhanced.spacedDash }))),
@@ -283,10 +304,21 @@ for (const [key, row] of Object.entries(report.photoSegmentationExperiment)) {
     exactHits: x.afterRepairHits,
     recallPercent: +(100 * x.afterRepairRecallOfDictionarySupported).toFixed(2),
     extras: x.afterRepairExtraNotInAnnotation,
+    extrasMentionedInRawSource: row.sourceExtraAudit.mentionedInSourceTranscription,
+    extrasAbsentFromRawSource: row.sourceExtraAudit.notMentionedInSourceTranscription,
     wrapRepairs: x.exactJoinRepairs,
     sequenceSplits: x.exactSequenceSplits,
     rawTranscriptionCerPercent: +(100 * row.pooledTranscription.pooledCharacterErrorRate).toFixed(2),
     productionPsm6Hits: report.spacedDashExperiment.chromiumCanvas.afterRepairHits,
     productionPsm6Extras: report.spacedDashExperiment.chromiumCanvas.afterRepairExtraNotInAnnotation
+  }));
+}
+
+for (const [name, row] of Object.entries(report.sourceExtraAudit)) {
+  if (!row || typeof row !== 'object' || !('extras' in row)) continue;
+  console.log('FASTSCAN_SOURCE_EXTRA_AUDIT=' + JSON.stringify({
+    name, photos: row.photos, extras: row.extras,
+    mentionedInSourceTranscription: row.mentionedInSourceTranscription,
+    notMentionedInSourceTranscription: row.notMentionedInSourceTranscription
   }));
 }
