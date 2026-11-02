@@ -10,7 +10,13 @@
       "dj": "材料や工具を置き、切断・組立・調整などの作業を行うための台。\n材料や工具を安定して置き、切断、組立、穴あけ、調整などを行うための作業台。天板寸法、耐荷重、高さ、固定・折りたたみ方式、クランプやバイスの取付可否を作業内容に合わせて選ぶ。",
       "de": "A bench that supports materials and tools during cutting, assembly, adjustment, and other work.\nBench that provides a stable surface for cutting, assembly, drilling, adjustment, and other workshop tasks. Top size, load capacity, working height, fixed or folding construction, and compatibility with clamps or vises should match the intended work.",
       "c": "site_setup",
-      "task": "support_work"
+      "task": "support_work",
+      "aj": [
+        "ワークベンチ"
+      ],
+      "ae": [
+        "Workbench table"
+      ]
     },
     {
       "id": "q017_toolbox",
@@ -421,7 +427,13 @@
       "dj": "レベル・トータルステーション・レーザー機器などを安定して設置する三脚。\nレベル、トータルステーション、回転レーザーなどを安定して支持する測量用三脚。取付ねじ、脚長、材質、重量、脚先形状を機器と現場条件に合わせる。",
       "de": "A stable tripod used to mount levels, total stations, lasers, and other surveying instruments.\nSurvey tripod used to support levels, total stations, rotary lasers, and similar instruments. Mounting thread, leg length, material, weight, and foot style should suit the instrument and site conditions.",
       "c": "measurement",
-      "task": "support_survey_instrument"
+      "task": "support_survey_instrument",
+      "aj": [
+        "測量用三脚"
+      ],
+      "ae": [
+        "Survey instrument tripod"
+      ]
     },
     {
       "id": "q017_inspection_mirror",
