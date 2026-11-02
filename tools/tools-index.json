@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-02T00:00:00.000Z",
-  "total": 90,
+  "generatedAt": "2026-11-01T00:00:00.000Z",
+  "total": 89,
   "items": [
     {
       "slug": "ai-interaction-atlas",
@@ -64,20 +64,6 @@
         "resume",
         "paste",
         "job"
-      ]
-    },
-    {
-      "slug": "bichiku-check",
-      "title_en": "BichikuCheck — Emergency Supplies in Japan",
-      "title_ja": "防災備蓄チェック",
-      "desc_en": "Calculate water, food and emergency-supply shortages; manage home stockpiles and go-bags in four languages.",
-      "desc_ja": "家族の人数や日数に合わせて水・非常食・携帯トイレなどの不足量を確認し、備蓄と持ち出し品を管理する無料ツールです。",
-      "tags": [
-        "disaster",
-        "preparedness",
-        "stockpile",
-        "emergency",
-        "affiliate"
       ]
     },
     {
