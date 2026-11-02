@@ -30,8 +30,8 @@ The bundled tables are representative orientation data, not an official universa
 
 - Use the bundled representative JP/US/EU tables only.
 - Accept plain input under the selected base system or explicit `JP` / `US` / `EU` prefixes.
-- Normalize supported half-size notation and full-width ASCII before core lookup; normalization never invents/interpolates a row.
-- Women's US/EU clothing numeric input may resolve only within already displayed bundled ranges.
+- Normalize supported half-size notation and full-width ASCII before core lookup: `8 1/2`, `8-1/2`, `8½`, `８．５` and comma decimals match existing `8.5` rows. Normalization never invents/interpolates a shoe row or any unsupported fraction.
+- Women's US/EU clothing numeric input may resolve only within already displayed bundled ranges (e.g. US 2–4 accepts integer 2/3/4 and EU 34–36 accepts 34/35/36). This rule applies only to women's clothing, never men's clothing or shoe sizes, and does not extrapolate outside the actual bundled ranges.
 - Preserve category/chart context around ambiguous values such as `US 4`.
 - US 4 men's-shoe and women's-shoe shortcuts remain explicit so the same numeric label is never implied to mean the same chart.
 - Unsupported sizes show no-match rather than guessed nearest direct conversion.
@@ -168,6 +168,9 @@ Direct conversion remains first; query/context and comparison follow; full table
 
 ## Acceptance criteria
 
+- [ ] Standard retail half-size strings and full-width versions resolve the existing shoe row, with no rounding of unsupported fractions or extrapolation.
+- [ ] Women's clothing whole US/EU numeric values within displayed rows/ranges resolve the correct row without matching unrelated shoe or men's clothing charts.
+
 - [ ] Supported plain/prefixed input resolves only bundled rows/ranges.
 - [ ] `8 1/2`, `8-1/2`, `8½`, and full-width ASCII normalize locally without new sizing data.
 - [ ] US 4 men's/women's shoe context stays distinct.
@@ -187,6 +190,7 @@ Direct conversion remains first; query/context and comparison follow; full table
 
 - `tools/size-converter/index.html`
 - `tools/size-converter/app.js`
+- `tools/size-converter/tests/retail-size-lookup.test.mjs`
 - `tools/size-converter/query-intent.js`
 - `tools/size-converter/fit-handoff.js`
 - `tools/size-converter/shoe-units.js`
