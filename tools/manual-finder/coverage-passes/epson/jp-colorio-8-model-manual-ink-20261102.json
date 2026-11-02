@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "maker": "Epson",
+  "scope": "Eight exact Epson Colorio EP-885A (3 colors), EP-886A (3 colors), EP-716A, EP-717A model-specific official Japanese manual and ink catalog pages",
+  "status": "reviewed",
+  "verifiedAt": "2026-11-02",
+  "reviewedCount": 8,
+  "sourceLevel": "A",
+  "sourceDisclaimer": "This is an eight-model bounded release, not all Epson printers. Model-specific manual lists explicitly offer Web and PDF manuals; ink search codes are copied only from the exact Epson model consumables page. This is not a generalized ink SKU family inference.",
+  "publicationFile": "tools/manual-finder/data/manuals.wave3.07.js",
+  "affiliateFile": "tools/manual-finder/affiliate-config.js",
+  "counts": {
+    "publishedManuals": 8,
+    "addedBasicTaggedAmazonPaths": 8,
+    "addedCompatibilityBackedInkTaggedAmazonPaths": 16
+  },
+  "records": [
+    {
+      "model": "EP-885AW",
+      "officialManualUrl": "https://www.epson.jp/support/portal/used/ep-885aw.htm",
+      "officialSupportUrl": "https://www.epson.jp/support/portal/support_menu/ep-885aw.htm",
+      "officialConsumableUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-885aw.htm",
+      "inkCodes": [
+        "KAM-6CL",
+        "KAM-6CL-L"
+      ],
+      "manualEvidence": "Exact model title and listed Web/PDF User Guide on Epson manufacturer support portal",
+      "inkEvidence": "Exact model title and manufacturer-listed cartridge code on Epson consumable portal",
+      "verifiedAt": "2026-11-02",
+      "status": "direct",
+      "manualKind": "manufacturer_model_manual_list"
+    },
+    {
+      "model": "EP-885AB",
+      "officialManualUrl": "https://www.epson.jp/support/portal/used/ep-885ab.htm",
+      "officialSupportUrl": "https://www.epson.jp/support/portal/support_menu/ep-885ab.htm",
+      "officialConsumableUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-885ab.htm",
+      "inkCodes": [
+        "KAM-6CL",
+        "KAM-6CL-L"
+      ],
+      "manualEvidence": "Exact model title and listed Web/PDF User Guide on Epson manufacturer support portal",
+      "inkEvidence": "Exact model title and manufacturer-listed cartridge code on Epson consumable portal",
+      "verifiedAt": "2026-11-02",
+      "status": "direct",
+      "manualKind": "manufacturer_model_manual_list"
+    },
+    {
+      "model": "EP-885AR",
+      "officialManualUrl": "https://www.epson.jp/support/portal/used/ep-885ar.htm",
+      "officialSupportUrl": "https://www.epson.jp/support/portal/support_menu/ep-885ar.htm",
+      "officialConsumableUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-885ar.htm",
+      "inkCodes": [
+        "KAM-6CL",
+        "KAM-6CL-L"
+      ],
+      "manualEvidence": "Exact model title and listed Web/PDF User Guide on Epson manufacturer support portal",
+      "inkEvidence": "Exact model title and manufacturer-listed cartridge code on Epson consumable portal",
+      "verifiedAt": "2026-11-02",
+      "status": "direct",
+      "manualKind": "manufacturer_model_manual_list"
+    },
+    {
+      "model": "EP-886AW",
+      "officialManualUrl": "https://www.epson.jp/support/portal/used/ep-886aw.htm",
+      "officialSupportUrl": "https://www.epson.jp/support/portal/support_menu/ep-886aw.htm",
+      "officialConsumableUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-886aw.htm",
+      "inkCodes": [
+        "KAM-6CL",
+        "KAM-6CL-L"
+      ],
+      "manualEvidence": "Exact model title and listed Web/PDF User Guide on Epson manufacturer support portal",
+      "inkEvidence": "Exact model title and manufacturer-listed cartridge code on Epson consumable portal",
+      "verifiedAt": "2026-11-02",
+      "status": "direct",
+      "manualKind": "manufacturer_model_manual_list"
+    },
+    {
+      "model": "EP-886AB",
+      "officialManualUrl": "https://www.epson.jp/support/portal/used/ep-886ab.htm",
+      "officialSupportUrl": "https://www.epson.jp/support/portal/support_menu/ep-886ab.htm",
+      "officialConsumableUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-886ab.htm",
+      "inkCodes": [
+        "KAM-6CL",
+        "KAM-6CL-L"
+      ],
+      "manualEvidence": "Exact model title and listed Web/PDF User Guide on Epson manufacturer support portal",
+      "inkEvidence": "Exact model title and manufacturer-listed cartridge code on Epson consumable portal",
+      "verifiedAt": "2026-11-02",
+      "status": "direct",
+      "manualKind": "manufacturer_model_manual_list"
+    },
+    {
+      "model": "EP-886AR",
+      "officialManualUrl": "https://www.epson.jp/support/portal/used/ep-886ar.htm",
+      "officialSupportUrl": "https://www.epson.jp/support/portal/support_menu/ep-886ar.htm",
+      "officialConsumableUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-886ar.htm",
+      "inkCodes": [
+        "KAM-6CL",
+        "KAM-6CL-L"
+      ],
+      "manualEvidence": "Exact model title and listed Web/PDF User Guide on Epson manufacturer support portal",
+      "inkEvidence": "Exact model title and manufacturer-listed cartridge code on Epson consumable portal",
+      "verifiedAt": "2026-11-02",
+      "status": "direct",
+      "manualKind": "manufacturer_model_manual_list"
+    },
+    {
+      "model": "EP-716A",
+      "officialManualUrl": "https://www.epson.jp/support/portal/used/ep-716a.htm",
+      "officialSupportUrl": "https://www.epson.jp/support/portal/support_menu/ep-716a.htm",
+      "officialConsumableUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-716a.htm",
+      "inkCodes": [
+        "SAT-6CL",
+        "SAT-BK"
+      ],
+      "manualEvidence": "Exact model title and listed Web/PDF User Guide on Epson manufacturer support portal",
+      "inkEvidence": "Exact model title and manufacturer-listed cartridge code on Epson consumable portal",
+      "verifiedAt": "2026-11-02",
+      "status": "direct",
+      "manualKind": "manufacturer_model_manual_list"
+    },
+    {
+      "model": "EP-717A",
+      "officialManualUrl": "https://www.epson.jp/support/portal/used/ep-717a.htm",
+      "officialSupportUrl": "https://www.epson.jp/support/portal/support_menu/ep-717a.htm",
+      "officialConsumableUrl": "https://www.epson.jp/support/portal/shoumouhin/ep-717a.htm",
+      "inkCodes": [
+        "KAK-6CL",
+        "KAK-BK"
+      ],
+      "manualEvidence": "Exact model title and listed Web/PDF User Guide on Epson manufacturer support portal",
+      "inkEvidence": "Exact model title and manufacturer-listed cartridge code on Epson consumable portal",
+      "verifiedAt": "2026-11-02",
+      "status": "direct",
+      "manualKind": "manufacturer_model_manual_list"
+    }
+  ]
+}
