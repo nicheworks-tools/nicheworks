@@ -54,10 +54,10 @@
     {
       "id": "q016_laminate_flooring",
       "t": "material",
-      "ja": "複合フローリング",
+      "ja": "ラミネートフローリング",
       "en": "Laminate Flooring",
-      "dj": "基材と化粧層を組み合わせた木質床材。\n基材に化粧層や表面保護層を組み合わせた木質系床材。製品ごとの耐摩耗性、耐水性、接合方式、下地条件、床暖房対応可否などを確認して使う。",
-      "de": "Flooring made from a core board and decorative surface layer.\nEngineered or laminate-type flooring built from a core with decorative and protective surface layers. Wear resistance, moisture resistance, joint system, substrate requirements, and underfloor-heating compatibility depend on the product.",
+      "dj": "ラミネートフローリングは、木質繊維板などの芯材に木目等を印刷した化粧層と耐摩耗性の表面保護層を積層した床仕上げ材。天然木の突板などを表面に使う複合フローリング（engineered wood flooring）と同一の分類ではない。施工前に製品指定の下地平滑度・含水状態、伸縮隙間、接合方式、耐水性能、床暖房への適合を確認する。",
+      "de": "Laminate flooring is a multilayer floor covering typically made with a fibreboard core, a printed decorative layer and a wear-resistant protective overlay. It should not be treated as interchangeable with engineered wood flooring, whose wearing surface may consist of real wood veneer. Check the product-specific subfloor flatness and moisture, expansion gaps, click-lock or other joint system, moisture rating and underfloor-heating compatibility before installation.",
       "c": "floor",
       "task": "install_flooring"
     },

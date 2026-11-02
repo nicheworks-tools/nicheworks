@@ -7,8 +7,9 @@ import { spawn } from "node:child_process";
 
 
 const ORIGIN="https://nicheworks.app";
-const EXPECTED_ASSET_VERSION="20261102-reviewed-aliases-wave3-2";
-const PREVIOUS_ASSET_VERSION="20261102-reviewed-aliases-wave3-1";
+const EXPECTED_ASSET_VERSION="20261102-reviewed-aliases-wave3-3";
+const PREVIOUS_ASSET_VERSION="20261102-reviewed-aliases-wave3-2";
+const SECOND_PREVIOUS_ASSET_VERSION="20261102-reviewed-aliases-wave3-1";
 const ALLOW_PREVIOUS_ASSET_VERSION=process.env.CTA_ALLOW_PREVIOUS_ASSET_VERSION==="1";
 
 const chrome = ["google-chrome", "google-chrome-stable", "chromium", "chromium-browser"].find(name =>
@@ -48,7 +49,7 @@ const until = async (predicate, retries = 80) => {
   throw Error("Timed out waiting for browser condition");
 };
 
-async function smoke(lang,allowPreviousAssetVersion,expectedAssetVersion,previousAssetVersion) {
+async function smoke(lang,allowPreviousAssetVersion,expectedAssetVersion,previousAssetVersion,secondPreviousAssetVersion) {
   const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
   const check=(ok,message)=>{if(!ok)throw Error(message);};
   const query=(selector)=>document.querySelector(selector);
@@ -64,7 +65,7 @@ async function smoke(lang,allowPreviousAssetVersion,expectedAssetVersion,previou
     count=query("#resultCount")?.textContent?.trim()||"";
     assetVersion=document.querySelector('script[src*="quality-loader.js"]')?.getAttribute("src")||"";
     const latest=assetVersion.includes(expectedAssetVersion);
-    const previous=assetVersion.includes(previousAssetVersion);
+    const previous=assetVersion.includes(previousAssetVersion)||assetVersion.includes(secondPreviousAssetVersion);
     check(latest||(allowPreviousAssetVersion&&previous),
       "Production does not serve current dictionary source: "+assetVersion+" (PR rollout grace="+allowPreviousAssetVersion+")");
     check(/870/.test(count),"Public canonical catalog did not load 870 entries: "+count+" / "+(query("#loadingState")?.textContent||""));
@@ -184,7 +185,7 @@ try {
     const url = ORIGIN + route;
     await call("Page.navigate", { url });
     await until(async () => (await evaluate("location.href")).startsWith(url));
-    const result = await evaluate("(" + smoke.toString() + ")(" + JSON.stringify(lang) + "," + JSON.stringify(ALLOW_PREVIOUS_ASSET_VERSION) + "," + JSON.stringify(EXPECTED_ASSET_VERSION) + "," + JSON.stringify(PREVIOUS_ASSET_VERSION) + ")");
+    const result = await evaluate("(" + smoke.toString() + ")(" + JSON.stringify(lang) + "," + JSON.stringify(ALLOW_PREVIOUS_ASSET_VERSION) + "," + JSON.stringify(EXPECTED_ASSET_VERSION) + "," + JSON.stringify(PREVIOUS_ASSET_VERSION) + "," + JSON.stringify(SECOND_PREVIOUS_ASSET_VERSION) + ")");
     const screenshot=await call("Page.captureScreenshot",{format:"png",fromSurface:true,captureBeyondViewport:false});
     const outDir=path.join(process.cwd(),"artifacts","construction-atlas-production-viewport");
     fs.mkdirSync(outDir,{recursive:true});

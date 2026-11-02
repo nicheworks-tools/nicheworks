@@ -1,6 +1,6 @@
 {
   "schema": "cta-reviewed-aliases-v3",
-  "version": "2026-11-02-runtime-bilingual-alias-wave3-refined-1",
+  "version": "2026-11-02-runtime-bilingual-alias-wave3-laminate-identity-1",
   "note": "Curated field-specific aliases only. Never coerce known duplicate canonicals or technical near-misses into synonyms. Source guard is exact canonical JA/EN identity.",
   "entries": [
     {
@@ -472,6 +472,23 @@
       ]
     },
     {
+      "id": "q016_laminate_flooring",
+      "expected_ja": "ラミネートフローリング",
+      "expected_en": "Laminate Flooring",
+      "add_ja": [
+        "積層フローリング"
+      ],
+      "add_en": [
+        "Laminate floor covering"
+      ],
+      "reason": "Separate laminate flooring (printed decorative layer over fibreboard) from engineered/composite flooring with real-wood veneer; former Japanese label was too broad.",
+      "evidence_urls": [
+        "https://www.jpic-ew.net/cyclopedia/flooring.shtml",
+        "https://lami-floor.com/about/5function",
+        "https://nwfa.org/use-real-wood/"
+      ]
+    },
+    {
       "id": "rafter",
       "expected_ja": "垂木（たるき）",
       "expected_en": "Rafter",
@@ -744,12 +761,6 @@
       "ja": "天井板",
       "en": "Ceiling Tile",
       "reason": "Ceiling Tile overlaps separate ceiling_panel; distinguish grid tile, panel and fixed ceiling board before adding equivalents."
-    },
-    {
-      "id": "q016_laminate_flooring",
-      "ja": "複合フローリング",
-      "en": "Laminate Flooring",
-      "reason": "複合フローリング can mean engineered wood whereas 'Laminate Flooring' is not necessarily the same product; bilingual canonical identity review first."
     },
     {
       "id": "as_built",
