@@ -33,6 +33,7 @@
     ["towels","health",2,"people","people","タオル 速乾 防災","タオル","Towels","毛巾","Khăn"],
     ["clothes","health",2,"people","people","防災 着替え 衣類","着替え・下着","Spare clothes / underwear","换洗衣物／内衣","Quần áo / đồ lót dự phòng"],
     ["blanket","health",2,"one","people","エマージェンシーシート 防災","保温・防寒用品","Warmth / emergency blankets","保暖用品／急救毯","Đồ giữ ấm / chăn khẩn cấp"],
+    ["sleepPad","health",2,"people","people","キャンプ 断熱 マット 防災","床からの冷えを防ぐマット","Floor-insulating sleeping mat","隔离地面寒气的睡垫","Đệm cách nhiệt khỏi sàn"],
     ["cooling","health",3,"one","", "冷却タオル 防災 暑さ対策","暑さ対策用品","Hot-weather supplies","防暑用品","Đồ chống nóng"],
     ["whistle","evac",2,"people","people","防災 ホイッスル","ホイッスル","Emergency whistle","求救哨","Còi cứu hộ"],
     ["helmet","evac",2,"people","people","防災 ヘルメット","頭部保護用品","Head protection","头部防护用品","Đồ bảo vệ đầu"],
