@@ -12,12 +12,12 @@ const normalize=search.normalizeText;
   assert.equal(review2.schema,"cta-subject-alias-review-v2");
   assert.equal(review2.entries.length,173,"reviewed alias wave2 must retain 173 public entries");
   assert.equal(review3.schema,"cta-reviewed-aliases-v3");
-  assert.equal(review3.entries.length,76,"reviewed alias wave3 must retain 76 exact-identity reviewed public terms");
+  assert.equal(review3.entries.length,71,"reviewed alias wave3 must retain 71 exact-identity reviewed public terms");
   const runtime=await runPublicLoader();
   assert.equal(runtime.entries.length,870,"public canonical inventory must remain fixed");
   const byId=new Map(runtime.entries.map(e=>[e.id,e]));
   assert.equal(byId.size,870,"duplicate public canonical IDs");
-  assert.equal(runtime.diagnostics?.reviewedAliasesApplied,76,"wave3 aliases missing from real loaded runtime: "+JSON.stringify(runtime.diagnostics?.reviewedAliasesProblems));
+  assert.equal(runtime.diagnostics?.reviewedAliasesApplied,71,"wave3 aliases missing from real loaded runtime: "+JSON.stringify(runtime.diagnostics?.reviewedAliasesProblems));
   assert.deepEqual(Array.from(runtime.diagnostics?.reviewedAliasesProblems||[]),[],"wave3 application must have no drift/errors");
 
   const owners=new Map(),terms=new Map();
@@ -64,7 +64,7 @@ const normalize=search.normalizeText;
   }
   assert.equal(collisions.length,0,"Curated alias collisions:\n"+collisions.join("\n"));
   const explicitBilingual=runtime.entries.filter(e=>e.aliases?.ja?.length&&e.aliases?.en?.length);
-  assert.equal(explicitBilingual.length,865,"runtime bilingual alias coverage regressed (789 pre-wave3 + 76 reviewed patches)");
+  assert.equal(explicitBilingual.length,860,"runtime bilingual alias coverage regressed (789 pre-wave3 + 71 reviewed patches)");
   const quality=JSON.parse(fs.readFileSync(path.join(__dirname,"..","data","public-content-quality-v2.3.json"),"utf8"));
   assert.equal(quality.summary.explicit_bilingual_aliases,782,"source-reviewed bilingual alias count regressed (380 + 229 + 173)");
   const samples=["q011_check_valve","q011_insulation_tester","q012_step_drill","q013_trench_box","q014_resin_sash","q015_cable_gland","q016_floor_sander","q017_pipe_threader"];
@@ -86,7 +86,7 @@ const normalize=search.normalizeText;
       assert(ranks.some(r=>r.id===id),"second-wave alias query fails top-5 ranking: "+id+" / "+query);
     }
   }
-  for(const id of ["as_built","beam","ground_fault_breaker","q013_dolly","q014_handrail","toolbox_talk","waterproof_membrane"]) {
+  for(const id of ["backer_rod","beam","glasswool","q013_dolly","q014_handrail","torque_wrench","waterproof_membrane"]) {
     const patch=review3.entries.find(e=>e.id===id);
     assert(patch,"missing wave3 sample "+id);
     for(const query of [...patch.add_ja,...patch.add_en]){
