@@ -229,7 +229,7 @@
     t.remove();
   }
   $("references").innerHTML = '<h2>'+safe(L.references)+'</h2><ul>'+
-    '<li><a href="https://www.kantei.go.jp/jp/headline/bousai/sonae.html" target="_blank" rel="noopener">'+safe(L.source1)+'</a></li>'+
+    '<li><a href="https://www.bousai.go.jp/kyoiku/hokenkyousai/check.html" target="_blank" rel="noopener">'+safe(L.source1)+'</a></li>'+
     '<li><a href="https://www.gov-online.go.jp/tokusyu/bousai/preparation.html" target="_blank" rel="noopener">'+safe(L.source2)+'</a></li></ul>'+
     '<p class="fine">'+safe(L.sourced)+'</p><p class="fine">'+safe(L.disclaimer)+'</p>';
   $("donate").innerHTML='<p>'+safe(L.donate)+'</p><div class="donate-links"><a href="https://ofuse.me/nicheworks" target="_blank" rel="noopener">OFUSE</a><a href="https://ko-fi.com/nicheworks" target="_blank" rel="noopener">Ko-fi</a></div>';
