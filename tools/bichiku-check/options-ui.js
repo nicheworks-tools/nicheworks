@@ -10,6 +10,7 @@ if(!ui||!root||!options.length)return;
 
 let settings,update;
 let group="food",query="",expanded=new Set();
+const publicExamples={cupNoodles:{ja:"警視庁の実験例：水で15分",en:"Police trial: 15 min in water",zh:"警视厅实测：冷水15分钟",vi:"Thử nghiệm cảnh sát: 15 phút với nước"},cupYakisoba:{ja:"警視庁の実験例：水で20分",en:"Police trial: 20 min in water",zh:"警视厅实测：冷水20分钟",vi:"Thử nghiệm cảnh sát: 20 phút với nước"},cupUdon:{ja:"警視庁の実験例：水で60分",en:"Police trial: 60 min in water",zh:"警视厅实测：冷水60分钟",vi:"Thử nghiệm cảnh sát: 60 phút với nước"},alphaRice:{ja:"農水省の例：水で約60分",en:"MAFF example: about 60 min in water",zh:"农林水产省示例：冷水约60分钟",vi:"Ví dụ của MAFF: khoảng 60 phút với nước"}};
 const panels=[
  {id:"food",parents:["food","snack"]},
  {id:"warmth",parents:["sleepPad","blanket"]},
@@ -57,6 +58,7 @@ function listHtml(){
    const count=Number.isFinite(Number(stock.qty))&&Number(stock.qty)>0?Math.min(10000000,Number(stock.qty)):0;
    const status=o.equivalence==="full"?ui.full:(o.equivalence==="conditional"?ui.conditional:ui.supplement);
    const warning=ui.notes[o.warning]||ui.package;
+   const sourceText=(publicExamples[o.id]&&publicExamples[o.id][lang])||ui.sourceLink;
    const label=o.names[lang]||o.names.ja;
    const roleHeader=prevRole!==o.role?'<h3 class="specific-role">'+esc(ui[o.role==="warmth"?"warmthRole":o.role==="power"?"powerRole":o.role]||o.role)+'</h3>':"";
    prevRole=o.role;
@@ -73,7 +75,7 @@ function listHtml(){
    return roleHeader+'<details class="specific-option" data-option="'+o.id+'" '+(expanded.has(o.id)?'open':'')+'>'+
       '<summary><span class="specific-option-name">'+esc(label)+'</span><span class="specific-mini">'+esc(kindLabel(o))+' · '+esc(prepLabel(o))+'</span></summary>'+
       '<div class="specific-body"><div class="specific-tags"><span>'+esc(status)+'</span><span>'+esc(prepLabel(o))+'</span></div>'+
-      '<p>'+esc(warning)+'</p>'+prepareWarn+entry+
+      '<p>'+esc(warning)+'</p>'+(o.sourceUrl?'<p><a class="specific-source" href="'+esc(o.sourceUrl)+'" target="_blank" rel="noopener">'+esc(sourceText)+'</a></p>':"")+prepareWarn+entry+
       (o.query?'<div class="specific-aff" data-option-aff="'+o.id+'"></div>':"")+'</div></details>';
  }).join("");
 }
@@ -92,7 +94,7 @@ function render(settingsArg,onUpdate){
  settings=settingsArg;
  update=onUpdate;
  if(!settings.variants||typeof settings.variants!=="object")settings.variants={};
- const collapsed=!!root.dataset.collapsed;
+ const collapsed=root.dataset.collapsed!=="false";
  const tabs=[{id:"all",label:ui.all},...panels.map(p=>({id:p.id,label:ui[p.id]}))];
  root.hidden=false;
  root.innerHTML='<div class="specific-top"><div><h2>'+esc(ui.title)+'</h2><p>'+esc(ui.intro)+'</p></div></div>'+
@@ -101,13 +103,13 @@ function render(settingsArg,onUpdate){
  '<input id="specific-search" type="search" autocomplete="off" value="'+esc(query)+'" placeholder="'+esc(ui.search)+'">'+
  '<div class="specific-tabs" role="group">'+tabs.map(t=>'<button type="button" data-options-filter="'+t.id+'" aria-pressed="'+(group===t.id)+'" class="'+(group===t.id?"selected":"")+'">'+esc(t.label)+'</button>').join("")+'</div>'+
  '<div class="specific-list" id="specific-list"></div><p class="specific-disclaimer">'+esc(ui.limited)+'</p></div>';
- renderList();
+ if(!collapsed)renderList();
 }
 root.addEventListener("click",e=>{
  const tab=e.target.closest("[data-options-filter]");
  if(tab){preserve();group=tab.dataset.optionsFilter;expanded.clear();render(settings,update);return;}
  if(e.target.closest("#specific-toggle")){
-   preserve();root.dataset.collapsed= root.dataset.collapsed==="true"?"false":"true";render(settings,update);
+   preserve();root.dataset.collapsed= root.dataset.collapsed==="false"?"true":"false";render(settings,update);
  }
 });
 root.addEventListener("input",e=>{
