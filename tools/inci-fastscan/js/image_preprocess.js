@@ -30,15 +30,70 @@
     return Number.isFinite(angle) ? Math.max(-12, Math.min(12, Math.round(angle))) : 0;
   }
 
+  // Opt-in browser enhancement. Offline sharp experiments informed this option,
+  // but canvas interpolation is NOT identical to sharp's Lanczos kernel.
+  // No per-image selection or hidden ingredient correction occurs here.
+  function enhanceFastScanCanvas(canvas) {
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    if (!ctx || typeof ctx.getImageData !== 'function' || typeof ctx.putImageData !== 'function') {
+      throw new Error('Local image enhancement is unsupported in this browser.');
+    }
+    const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const values = pixels.data;
+    const histogram = new Uint32Array(256);
+    let count = 0;
+    for (let i = 0; i < values.length; i += 4) {
+      if (values[i + 3] < 128) continue;
+      // Integer RGB luma estimate avoids unpredictable browser CSS filters.
+      const gray = (77 * values[i] + 150 * values[i + 1] + 29 * values[i + 2]) >> 8;
+      histogram[gray] += 1;
+      count += 1;
+    }
+    if (!count) throw new Error('Image contains no visible pixels.');
+
+    // A fixed 1%/99% histogram contrast stretch, independent of OCR output.
+    const cutoff = Math.max(1, Math.floor(count * 0.01));
+    let low = 0;
+    let accumulated = 0;
+    while (low < 255 && (accumulated += histogram[low]) < cutoff) low += 1;
+    let high = 255;
+    accumulated = 0;
+    while (high > 0 && (accumulated += histogram[high]) < cutoff) high -= 1;
+    const span = high - low;
+    for (let i = 0; i < values.length; i += 4) {
+      let gray = (77 * values[i] + 150 * values[i + 1] + 29 * values[i + 2]) >> 8;
+      if (values[i + 3] < 128) gray = 255;
+      else if (span >= 16) gray = Math.max(0, Math.min(255, Math.round((gray - low) * 255 / span)));
+      values[i] = gray;
+      values[i + 1] = gray;
+      values[i + 2] = gray;
+      values[i + 3] = 255;
+    }
+    ctx.putImageData(pixels, 0, 0);
+
+    const enlarge = Math.max(1, Math.min(2, 3072 / Math.max(canvas.width, canvas.height)));
+    if (enlarge <= 1.001) return canvas;
+    const enlarged = document.createElement('canvas');
+    enlarged.width = Math.max(1, Math.round(canvas.width * enlarge));
+    enlarged.height = Math.max(1, Math.round(canvas.height * enlarge));
+    const enlargedCtx = enlarged.getContext('2d');
+    if (!enlargedCtx) throw new Error('Local image enlargement is unavailable.');
+    enlargedCtx.imageSmoothingEnabled = true;
+    if ('imageSmoothingQuality' in enlargedCtx) enlargedCtx.imageSmoothingQuality = 'high';
+    enlargedCtx.drawImage(canvas, 0, 0, enlarged.width, enlarged.height);
+    return enlarged;
+  }
+
   async function prepareFastScanOcrImage(file, quarterTurns = 0, options = {}) {
     if (!file) throw new Error('An OCR image is required.');
+    const enhanceForOcr = options.enhanceForOcr === true;
     const turns = normalizeQuarterTurns(quarterTurns);
     const crop = normalizeCrop(options.crop);
     const contrast = normalizeContrast(options.contrastPercent);
     const deskewDegrees = normalizeDeskewDegrees(options.deskewDegrees);
     const deskewRadians = deskewDegrees * Math.PI / 180;
     const hasCrop = Object.values(crop).some(value => value > 0);
-    if (!turns && !hasCrop && contrast === 100 && deskewDegrees === 0) return file;
+    if (!turns && !hasCrop && contrast === 100 && deskewDegrees === 0 && !enhanceForOcr) return file;
 
     const imageUrl = URL.createObjectURL(file);
     try {
@@ -61,7 +116,10 @@
       const baseHeight = turns % 2 ? naturalWidth : naturalHeight;
       const naturalBoxWidth = baseWidth * cos + baseHeight * sin;
       const naturalBoxHeight = baseWidth * sin + baseHeight * cos;
-      const scale = Math.min(1, 4096 / Math.max(naturalBoxWidth, naturalBoxHeight));
+      // Enhanced phone photos are capped at 3072px before pixel inspection
+      // and enlargement to bound canvas/image-data memory.
+      const memoryCap = enhanceForOcr ? 3072 : 4096;
+      const scale = Math.min(1, memoryCap / Math.max(naturalBoxWidth, naturalBoxHeight));
       const width = Math.max(1, Math.floor(naturalWidth * scale));
       const height = Math.max(1, Math.floor(naturalHeight * scale));
       const rotatedWidth = turns % 2 ? height : width;
@@ -96,8 +154,9 @@
       ctx.rotate(turns * Math.PI / 2 + deskewRadians);
       ctx.drawImage(image, -width / 2, -height / 2, width, height);
 
+      const outputCanvas = enhanceForOcr ? enhanceFastScanCanvas(canvas) : canvas;
       return await new Promise((resolve, reject) => {
-        canvas.toBlob(blob => {
+        outputCanvas.toBlob(blob => {
           if (blob) resolve(blob);
           else reject(new Error('Could not prepare the cropped image.'));
         }, 'image/png');
