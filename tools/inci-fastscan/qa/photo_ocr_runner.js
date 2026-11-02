@@ -139,7 +139,8 @@
         return;
       }
       const processed = root.postProcessOcrText(raw, {
-        langHint: selectedLanguage === 'jpn+eng' ? 'jp' : 'en'
+        langHint: selectedLanguage === 'jpn+eng' ? 'jp' : 'en',
+        spacedDashDelimiter: selectedLanguage !== 'jpn+eng'
       });
       const split = root.NWCosmeticIngredientParser?.splitIngredients;
       const metrics = bench.score(sourceReference, processed, split);
