@@ -51,6 +51,13 @@ const context = await browser.newContext({
 const page = await context.newPage();
 const worker = await createWorker('eng');
 const results = [];
+// Compare fixed browser-pixel recipes on actual public photos. No per-photo
+// reference-guided selection, and NO change to production enhancement default.
+const pixelRecipes = Object.freeze([
+  { key: 'cssContrast140', description: 'Actual FastScan enhanceForOcr with browser contrast(140%)' },
+  { key: 'otsuBinary', description: 'Otsu global grayscale threshold on actual FastScan enhanced PNG' },
+  { key: 'invertGray', description: 'Fixed inversion of actual FastScan enhanced grayscale PNG' }
+]);
 // Fixed, annotation-independent segmentation trials on the SAME
 // Chromium-canvas-enhanced PNG as PSM6 production. No runtime oracle.
 const alternatePsm = Object.freeze([
@@ -149,7 +156,106 @@ try {
         extras: segmentation[variant.key].analysis.afterRepair.extraMatchesNotInAnnotation
       }));
     }
-    results.push({ id, referenceIngredientCount: annotation.INCI_list.length, baseline, enhanced, segmentation });
+    // Reset explicitly after optional PSM4/PSM11 probes. The image-only trial
+    // must run identical OCR segmentation mode PSM6 for every candidate.
+    await worker.setParameters({ tessedit_pageseg_mode: '6' });
+    const pixelExperiments = {};
+    for (const candidate of pixelRecipes) {
+      const transformedBase64 = await page.evaluate(async ({ sourceBase64, enhancedBase64, kind }) => {
+        if (kind === 'cssContrast140') {
+          const raw = atob(sourceBase64);
+          const bytes = new Uint8Array(raw.length);
+          for (let i = 0; i < raw.length; i += 1) bytes[i] = raw.charCodeAt(i);
+          const file = new File([bytes], 'public-sample.jpg', { type: 'image/jpeg' });
+          const processed = await window.prepareFastScanOcrImage(file, 0, {
+            enhanceForOcr: true, contrastPercent: 140, deskewDegrees: 0,
+            crop: { left: 0, right: 0, top: 0, bottom: 0 }
+          });
+          return await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onerror = () => reject(new Error('Local canvas encoding failed'));
+            reader.onload = () => resolve(String(reader.result || '').split(',')[1]);
+            reader.readAsDataURL(processed);
+          });
+        }
+        const image = new Image();
+        image.src = 'data:image/png;base64,' + enhancedBase64;
+        await image.decode();
+        const canvas = document.createElement('canvas');
+        canvas.width = image.naturalWidth;
+        canvas.height = image.naturalHeight;
+        const ctx = canvas.getContext('2d', { willReadFrequently: true });
+        if (!ctx) throw new Error('Missing 2d canvas for offline QA');
+        ctx.drawImage(image, 0, 0);
+        const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = pixels.data;
+        let threshold = 128;
+        if (kind === 'otsuBinary') {
+          const histogram = new Uint32Array(256);
+          let total = 0;
+          let weightedTotal = 0;
+          for (let i = 0; i < data.length; i += 4) {
+            const gray = data[i];
+            histogram[gray] += 1;
+            total += 1;
+            weightedTotal += gray;
+          }
+          let leftCount = 0;
+          let leftWeighted = 0;
+          let bestVariance = -1;
+          for (let gray = 0; gray < 256; gray += 1) {
+            leftCount += histogram[gray];
+            leftWeighted += gray * histogram[gray];
+            const rightCount = total - leftCount;
+            if (!leftCount || !rightCount) continue;
+            const leftMean = leftWeighted / leftCount;
+            const rightMean = (weightedTotal - leftWeighted) / rightCount;
+            const variance = leftCount * rightCount * (leftMean - rightMean) ** 2;
+            if (variance > bestVariance) {
+              bestVariance = variance;
+              threshold = gray;
+            }
+          }
+        }
+        if (kind !== 'otsuBinary' && kind !== 'invertGray') {
+          throw new Error('Unknown fixed browser pixel experiment');
+        }
+        for (let i = 0; i < data.length; i += 4) {
+          const next = kind === 'otsuBinary'
+            ? (data[i] <= threshold ? 0 : 255) : 255 - data[i];
+          data[i] = next;
+          data[i + 1] = next;
+          data[i + 2] = next;
+          data[i + 3] = 255;
+        }
+        ctx.putImageData(pixels, 0, 0);
+        return canvas.toDataURL('image/png').split(',')[1];
+      }, { sourceBase64: inputBase64, enhancedBase64: processedBase64, kind: candidate.key });
+
+      assert.ok(transformedBase64 && transformedBase64.length > 1000);
+      const started = performance.now();
+      const recognized = await worker.recognize(Buffer.from(transformedBase64, 'base64'));
+      const durationMs = Math.round(performance.now() - started);
+      const recognizedText = post.postProcessOcrText(
+        post.coreProcessOCRText(recognized?.data?.text || ''),
+        { langHint: 'en', spacedDashDelimiter: true });
+      const analysis = await scorer.assess(recognizedText, annotation.INCI_list);
+      const evidence = await scorer.auditAnnotationExtras(recognizedText,
+        annotation.INCI_list, annotation.raw_ingredients_list);
+      pixelExperiments[candidate.key] = {
+        durationMs, analysis, sourceExtraAudit: evidence,
+        annotatedMetrics: score(annotation.INCI_list.join('\n'), recognizedText, parser.splitIngredients),
+        rawTranscriptionMetrics: score(annotation.raw_ingredients_list, recognizedText, parser.splitIngredients)
+      };
+      console.log('FASTSCAN_BROWSER_PIXEL_PHOTO=' + JSON.stringify({
+        id, variant: candidate.key, durationMs,
+        hits: analysis.afterRepair.exactReferenceHits,
+        referenceNames: analysis.eligibleReferenceUniqueNames,
+        extras: analysis.afterRepair.extraMatchesNotInAnnotation
+      }));
+    }
+    results.push({ id, referenceIngredientCount: annotation.INCI_list.length,
+      baseline, enhanced, segmentation, pixelExperiments });
     console.log('CHROMIUM_CANVAS_PHOTO=' + JSON.stringify({
       id,
       baselineDictionaryHits: baseline.analysis.afterRepair.exactReferenceHits,
@@ -219,6 +325,23 @@ const report = {
   productionDictionaryRecords: scorer.dictionaryCount,
   productionDictionaryBaseline: baseline,
   productionDictionaryEnhancedCanvas: enhanced,
+  pixelProcessingExperiment: Object.fromEntries(pixelRecipes.map(candidate => {
+    const rows = results.map(row => row.pixelExperiments[candidate.key]);
+    const production = aggregateProductionAssessments(rows.map(row => ({ analysis: row.analysis })));
+    return [candidate.key, {
+      recipe: candidate.description,
+      engine: 'Actual Chromium canvas pixels and pinned Tesseract.js ENG PSM6',
+      productionDictionary: production,
+      sourceExtraAudit: summarizeSourceExtraAudits(rows.map(row => row.sourceExtraAudit)),
+      strictAnnotated: aggregatePhotoMetrics(results.map(row => ({
+        candidate: row.pixelExperiments[candidate.key]
+      })), 'candidate', 'annotatedMetrics'),
+      rawTranscription: aggregatePhotoMetrics(results.map(row => ({
+        candidate: row.pixelExperiments[candidate.key]
+      })), 'candidate', 'rawTranscriptionMetrics'),
+      perPhoto: rows.map((row, i) => ({ id: ids[i], ...row }))
+    }];
+  })),
   photoSegmentationExperiment: Object.fromEntries(alternatePsm.map(variant => {
     const rows = results.map(row => row.segmentation[variant.key]);
     const numeric = aggregateProductionAssessments(rows.map(analysis => ({ analysis: analysis.analysis })));
@@ -320,5 +443,22 @@ for (const [name, row] of Object.entries(report.sourceExtraAudit)) {
     name, photos: row.photos, extras: row.extras,
     mentionedInSourceTranscription: row.mentionedInSourceTranscription,
     notMentionedInSourceTranscription: row.notMentionedInSourceTranscription
+  }));
+}
+
+for (const [key, reportRow] of Object.entries(report.pixelProcessingExperiment)) {
+  const a = reportRow.productionDictionary;
+  console.log('FASTSCAN_BROWSER_PIXEL_RECIPE=' + JSON.stringify({
+    variant: key,
+    photos: a.photos,
+    supportedReferenceNames: a.eligibleReferenceUniqueNames,
+    hits: a.afterRepairHits,
+    recallPercent: +(100 * a.afterRepairRecallOfDictionarySupported).toFixed(2),
+    extras: a.afterRepairExtraNotInAnnotation,
+    sourceMentionedExtras: reportRow.sourceExtraAudit.mentionedInSourceTranscription,
+    sourceNotMentionedExtras: reportRow.sourceExtraAudit.notMentionedInSourceTranscription,
+    rawTranscriptionCerPercent: +(100 * reportRow.rawTranscription.pooledCharacterErrorRate).toFixed(2),
+    productionEnhancedHits: report.spacedDashExperiment.chromiumCanvas.afterRepairHits,
+    productionEnhancedExtras: report.spacedDashExperiment.chromiumCanvas.afterRepairExtraNotInAnnotation
   }));
 }
