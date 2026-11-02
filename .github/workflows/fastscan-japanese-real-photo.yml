@@ -1,0 +1,82 @@
+name: FastScan Japanese REAL label photo QA
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/fastscan-japanese-real-photo.yml'
+      - 'tools/inci-fastscan/qa/japanese-real-photo-corpus.mjs'
+      - 'tools/inci-fastscan/qa/chromium-japanese-real-photo-pilot.mjs'
+      - 'tools/inci-fastscan/qa/check-japanese-real-photo-corpus.mjs'
+      - 'tools/inci-fastscan/qa/production-label-scoring.mjs'
+      - 'tools/inci-fastscan/js/core_ocr_post.js'
+      - 'tools/inci-fastscan/js/image_preprocess.js'
+      - 'tools/inci-fastscan/js/core_analyze.js'
+      - 'tools/inci-fastscan/js/core_matcher.js'
+      - 'tools/inci-fastscan/js/core_parser.js'
+      - 'tools/_shared/cosmetic-ingredient-parser.js'
+
+permissions:
+  contents: read
+
+jobs:
+  japanese-real-package-ocr:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      FASTSCAN_JA_CORPUS_DIR: ${{ github.workspace }}/.qa-external-japanese-labels
+      FASTSCAN_JA_REPORT: ${{ github.workspace }}/fastscan-japanese-real-photo-results.json
+    steps:
+      - name: Checkout exact source
+        uses: actions/checkout@v4
+
+      - name: Set up Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install pinned image and jpn+eng OCR QA dependencies
+        run: |
+          npm init --yes >/dev/null
+          npm install --no-save --no-package-lock --ignore-scripts tesseract.js@5.0.3 playwright@1.57.0
+          npx playwright install --with-deps chromium
+
+      - name: Verify real source corpus and parser (no image uploads)
+        run: |
+          node --check tools/inci-fastscan/qa/japanese-real-photo-corpus.mjs
+          node --check tools/inci-fastscan/qa/chromium-japanese-real-photo-pilot.mjs
+          node tools/inci-fastscan/qa/check-production-label-scoring.mjs
+          node tools/inci-fastscan/qa/check-japanese-real-photo-corpus.mjs
+
+      - name: Retrieve actual publicly pictured Japanese ingredient labels (temporary)
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$FASTSCAN_JA_CORPUS_DIR"
+          curl --fail --silent --show-error --location --retry 3 \
+            --connect-timeout 20 --max-time 120 \
+            --user-agent 'Mozilla/5.0 (compatible; NicheWorks-Research-OCR/1.0)' \
+            'https://www.zigen-shop.com/Contents/ImagesPkg/column/2502b/04.jpg' \
+            --output "$FASTSCAN_JA_CORPUS_DIR/zigen-all-in-one-gel-2025.jpg"
+          curl --fail --silent --show-error --location --retry 3 \
+            --connect-timeout 20 --max-time 120 \
+            --user-agent 'Mozilla/5.0 (compatible; NicheWorks-Research-OCR/1.0)' \
+            'https://fitter.cosme.net/media/collection/145/3225/11814607.jpg' \
+            --output "$FASTSCAN_JA_CORPUS_DIR/kisocare-super-wrinkle-cream-va-no036-50g.jpg"
+          test "$(find "$FASTSCAN_JA_CORPUS_DIR" -name '*.jpg' | wc -l)" -eq 2
+          test "$(wc -c < "$FASTSCAN_JA_CORPUS_DIR/zigen-all-in-one-gel-2025.jpg")" -gt 8000
+          test "$(wc -c < "$FASTSCAN_JA_CORPUS_DIR/kisocare-super-wrinkle-cream-va-no036-50g.jpg")" -gt 8000
+
+      - name: Run REAL Japanese package image OCR and numeric evaluation
+        run: |
+          node tools/inci-fastscan/qa/chromium-japanese-real-photo-pilot.mjs
+          test -s "$FASTSCAN_JA_REPORT"
+
+      - name: Upload numeric-only research report (never image or OCR text)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fastscan-japanese-actual-label-numeric-metrics
+          path: ${{ github.workspace }}/fastscan-japanese-real-photo-results.json
+          if-no-files-found: warn
+          retention-days: 14
