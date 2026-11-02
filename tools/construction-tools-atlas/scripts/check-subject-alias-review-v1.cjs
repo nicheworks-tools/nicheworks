@@ -12,12 +12,12 @@ const normalize=search.normalizeText;
   assert.equal(review2.schema,"cta-subject-alias-review-v2");
   assert.equal(review2.entries.length,173,"reviewed alias wave2 must retain 173 public entries");
   assert.equal(review3.schema,"cta-reviewed-aliases-v3");
-  assert.equal(review3.entries.length,71,"reviewed alias wave3 must retain 71 exact-identity reviewed public terms");
+  assert.equal(review3.entries.length,74,"reviewed alias wave3 must retain 71 exact-identity reviewed public terms");
   const runtime=await runPublicLoader();
   assert.equal(runtime.entries.length,870,"public canonical inventory must remain fixed");
   const byId=new Map(runtime.entries.map(e=>[e.id,e]));
   assert.equal(byId.size,870,"duplicate public canonical IDs");
-  assert.equal(runtime.diagnostics?.reviewedAliasesApplied,71,"wave3 aliases missing from real loaded runtime: "+JSON.stringify(runtime.diagnostics?.reviewedAliasesProblems));
+  assert.equal(runtime.diagnostics?.reviewedAliasesApplied,74,"wave3 aliases missing from real loaded runtime: "+JSON.stringify(runtime.diagnostics?.reviewedAliasesProblems));
   assert.deepEqual(Array.from(runtime.diagnostics?.reviewedAliasesProblems||[]),[],"wave3 application must have no drift/errors");
 
   const owners=new Map(),terms=new Map();
@@ -64,7 +64,12 @@ const normalize=search.normalizeText;
   }
   assert.equal(collisions.length,0,"Curated alias collisions:\n"+collisions.join("\n"));
   const explicitBilingual=runtime.entries.filter(e=>e.aliases?.ja?.length&&e.aliases?.en?.length);
-  assert.equal(explicitBilingual.length,860,"runtime bilingual alias coverage regressed (789 pre-wave3 + 71 reviewed patches)");
+  assert.equal(explicitBilingual.length,863,"runtime bilingual alias coverage regressed (789 pre-wave3 + 71 reviewed patches)");
+  const held=review3.held_for_identity_review || [];
+  assert.equal(held.length,7,"exactly seven canonicals require evidence-backed identity decisions");
+  const gaps=runtime.entries.filter(e=>!e.aliases?.ja?.length||!e.aliases?.en?.length).map(e=>e.id).sort();
+  assert.deepEqual(gaps,held.map(e=>e.id).sort(),"unresolved alias gaps must match the documented identity review set");
+  for(const item of held)assert(String(item.reason||"").length>=25,item.id+": reason required");
   const quality=JSON.parse(fs.readFileSync(path.join(__dirname,"..","data","public-content-quality-v2.3.json"),"utf8"));
   assert.equal(quality.summary.explicit_bilingual_aliases,782,"source-reviewed bilingual alias count regressed (380 + 229 + 173)");
   const samples=["q011_check_valve","q011_insulation_tester","q012_step_drill","q013_trench_box","q014_resin_sash","q015_cable_gland","q016_floor_sander","q017_pipe_threader"];
