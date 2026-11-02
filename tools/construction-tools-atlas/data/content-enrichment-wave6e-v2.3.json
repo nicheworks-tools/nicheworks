@@ -1,6 +1,6 @@
 {
   "schema": "cta-content-enrichment-v2.3",
-  "version": "2026-09-18-wave6e-safety-layout-finishes-1",
+  "version": "2026-09-18-wave6e-safety-layout-finishes-1-canonical-merge-20261103",
   "entries": [
     {
       "id": "spotter",
@@ -315,7 +315,7 @@
       ]
     },
     {
-      "id": "sandpaper",
+      "id": "q011_sanding_paper",
       "wave": "content-wave-006e",
       "state": "expanded",
       "affiliate_review": "mapped",
