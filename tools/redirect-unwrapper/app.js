@@ -145,7 +145,8 @@ function normalizeUrl(input) {
 }
 
 function decodeRepeated(value, max = 4) {
-  let current = String(value || "").replace(/\+/g, "%20");
+  // Preserve literal plus signs in nested URL paths and fragments.
+  let current = String(value || "");
   for (let i = 0; i < max; i += 1) {
     try {
       const next = decodeURIComponent(current);
