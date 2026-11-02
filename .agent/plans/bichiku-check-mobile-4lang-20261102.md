@@ -7,8 +7,10 @@ Mainline integration: through a normal PR only (no automatic main modification i
 
 ## Scope
 - New static tool in `tools/bichiku-check/**`.
+- Public registry registration in `tools/tools-index.json` and `sitemap.xml`, required by the existing SEO-public-URL CI contract.
+- One dedicated browser-QA workflow `.github/workflows/bichiku-check-mobile-smoke.yml` (Playwright only in ephemeral CI, no shipped dependency).
 - Plan document itself, `.agent/plans/bichiku-check-mobile-4lang-20261102.md`.
-- No edits to other tools, repo-wide specifications, CI workflows, assets, or production deploy settings.
+- No edits to other tools, repo-wide specifications, shared assets, or production deploy settings. CI addition is limited to this tool's path-scoped browser-smoke workflow.
 - Reuse, not duplicate, the existing `/assets/amazon-affiliate.js` and shared NicheWorks assets.
 - The four locale entry points must remain indexable and consistent.
 
@@ -20,7 +22,7 @@ Mobile 320–414px is the primary experience; PC >=769px uses a distinct two-col
 2. Add no-API calculation engine with household home stockpile and separate go-bag modes, official core assumptions and editable quantities.
 3. Implement language-specific SEO entries and reusable UI code. Store only in localStorage, export CSV/print/copy, provide reset.
 4. Integrate existing Amazon shared helper, required above-links disclosure, fixed search URLs and coarse event metadata. Provide existing dual donations, analytics tags and non-intrusive ad-top reservation.
-5. Test reference cases and locales. Run viewport and accessibility checks before public merge.
+5. Run the new path-scoped Playwright viewport workflow in CI (320/360/375/390/414/768/1280 widths, four languages, overflow, stock and affiliate checks) before merge.
 6. Merge only after safety-critical copy and browser viewport QA are reviewed; after deployment check Search Console and affiliate outbound data.
 
 ## Acceptance criteria
@@ -37,7 +39,7 @@ Mobile 320–414px is the primary experience; PC >=769px uses a distinct two-col
 - Static JS syntax: checked via isolated V8 compilation.
 - Computation: sampled 2-person 7-day/one-person go-bag cases and inventory persistence tested with a minimal DOM stub for JA/EN/zh/vi.
 - Node unit test added in tool directory.
-- Browser screenshot / real-device touch audit: **not yet verified**; release gate.
+- Browser screenshots and automated Chromium viewport audit: **pending dedicated CI**; real physical-device touch audit remains a release gate.
 - Actual Amazon account state, real attribution, and AdSense unit activation: **not yet verified**.
 
 ## Rollback
