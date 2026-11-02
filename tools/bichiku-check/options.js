@@ -91,6 +91,8 @@ const options=rows.map(r=>({id:r[0],parent:r[1],role:r[2],kind:r[3],prep:r[4],eq
 const ids=new Set(options.map(o=>o.id));
 if(ids.size!==options.length) throw Error("duplicate option ids");
 if(options.some(o=>Object.values(o.names).some(v=>!v)))throw Error("translation missing");
+const waterDependentFood=new Set(["cupNoodles","cupYakisoba","cupUdon","bagNoodles","rolledOats","driedPasta","driedSomen","dryRice","driedVeg"]);
+options.forEach(o=>{o.requiresWater=o.prep==="water"||waterDependentFood.has(o.id)});
 const officialExamples={
  alphaRice:"https://www.maff.go.jp/j/zyukyu/foodstock/chapter06.html",
  cupNoodles:"https://www.keishicho.metro.tokyo.lg.jp/kurashi/saigai/yakudachi/food/instantnoodles/899806935150493697.html",

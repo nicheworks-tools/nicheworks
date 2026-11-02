@@ -22,7 +22,7 @@ jobs:
         with:
           node-version: 22
       - name: Test core calculations
-        run: node --test tools/bichiku-check/tests/core.test.cjs
+        run: node --test tools/bichiku-check/tests/*.test.cjs
       - name: Install test-only Playwright
         run: npm install --no-save --package-lock=false playwright@1.58.2
       - name: Install Chromium for screenshot and viewport checks

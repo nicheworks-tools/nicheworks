@@ -15,6 +15,12 @@
       pets: Math.round(num(s.pets, 0, 0, 10)),
       days: [3, 7, 14].includes(Number(s.days)) ? Number(s.days) : 7,
       noHeat: !!s.noHeat,
+      powerOut: !!s.powerOut,
+      waterOut: !!s.waterOut,
+      safeWaterConfirmed: !!s.safeWaterConfirmed,
+      prepWaterLiters: num(s.prepWaterLiters,0,0,10000000),
+      enforceConditions: !!s.enforceConditions,
+      toiletAssemblyConfirmed: !!s.toiletAssemblyConfirmed,
       diet: !!s.diet,
       budget: num(s.budget, 0, 0, 10000000),
       stocks: s.stocks && typeof s.stocks === "object" && !Array.isArray(s.stocks) ? s.stocks : {},
@@ -54,6 +60,7 @@
   function optionAvailable(option, settings) {
     if (option.equivalence !== "full") return false;
     if (option.parent === "food" && settings.noHeat && ["heat","verify"].includes(option.prep)) return false;
+    if (option.parent === "food" && option.requiresWater && settings.enforceConditions && (!settings.safeWaterConfirmed || settings.prepWaterLiters <= 0)) return false;
     return true;
   }
   function calculate(catalog, options, today, optionCatalog) {
