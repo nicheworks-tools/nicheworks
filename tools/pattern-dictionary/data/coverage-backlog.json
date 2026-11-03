@@ -63,36 +63,6 @@
       "status": "candidate-unverified"
     },
     {
-      "id": "guilloche",
-      "name": {
-        "ja": "ギヨシェ模様",
-        "en": "Guilloché ornament"
-      },
-      "domain": "geometry-and-ornament",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
-      "id": "rosette-ornament",
-      "name": {
-        "ja": "ロゼット装飾",
-        "en": "Rosette ornament"
-      },
-      "domain": "geometry-and-ornament",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
-      "id": "sunburst",
-      "name": {
-        "ja": "サンバースト模様",
-        "en": "Sunburst pattern"
-      },
-      "domain": "geometry-and-ornament",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
       "id": "starburst",
       "name": {
         "ja": "スターバースト模様",
@@ -113,60 +83,10 @@
       "status": "candidate-unverified"
     },
     {
-      "id": "triangle-tessellation",
-      "name": {
-        "ja": "三角形の敷き詰め模様",
-        "en": "Triangle tessellation"
-      },
-      "domain": "geometry-and-ornament",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
-      "id": "concentric-circles",
-      "name": {
-        "ja": "同心円模様",
-        "en": "Concentric circles"
-      },
-      "domain": "geometry-and-ornament",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
-      "id": "op-art-pattern",
-      "name": {
-        "ja": "オプアート模様",
-        "en": "Op art pattern"
-      },
-      "domain": "geometry-and-ornament",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
       "id": "fretwork",
       "name": {
         "ja": "透かし格子装飾",
         "en": "Fretwork"
-      },
-      "domain": "geometry-and-ornament",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
-      "id": "mosaic-pattern",
-      "name": {
-        "ja": "モザイク模様",
-        "en": "Mosaic pattern"
-      },
-      "domain": "geometry-and-ornament",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
-      "id": "art-deco-fan",
-      "name": {
-        "ja": "アールデコ扇形模様",
-        "en": "Art Deco fan motif"
       },
       "domain": "geometry-and-ornament",
       "proposed_type": "motif",
@@ -583,16 +503,6 @@
       "status": "candidate-unverified"
     },
     {
-      "id": "halftone-dots",
-      "name": {
-        "ja": "ハーフトーン網点",
-        "en": "Halftone dots"
-      },
-      "domain": "modern-visual-patterns",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
       "id": "pixel-pattern",
       "name": {
         "ja": "ピクセル模様",
@@ -607,16 +517,6 @@
       "name": {
         "ja": "デジタル迷彩",
         "en": "Digital camouflage"
-      },
-      "domain": "modern-visual-patterns",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
-      "id": "topographic-contours",
-      "name": {
-        "ja": "等高線模様",
-        "en": "Topographic contours"
       },
       "domain": "modern-visual-patterns",
       "proposed_type": "motif",
