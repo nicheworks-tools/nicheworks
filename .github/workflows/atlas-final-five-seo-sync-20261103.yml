@@ -28,10 +28,13 @@ jobs:
           git diff --stat
           git diff --name-only > /tmp/atlas-seo-changed.txt
           cat /tmp/atlas-seo-changed.txt
-          diff -u <(printf '%s\n' \
-            tools/construction-tools-atlas/data/seo-detail-pages-v2.3.json \
-            tools/construction-tools-atlas/entries/notched_trowel/index.html \
-            tools/construction-tools-atlas/entries/paint_tray/index.html) /tmp/atlas-seo-changed.txt
+          while IFS= read -r changed; do
+            case "$changed" in
+              tools/construction-tools-atlas/data/seo-detail-pages-v2.3.json|tools/construction-tools-atlas/entries/notched_trowel/index.html|tools/construction-tools-atlas/entries/paint_tray/index.html) ;;
+              *) echo "Unexpected generated path: $changed"; exit 1 ;;
+            esac
+          done < /tmp/atlas-seo-changed.txt
+          test -s /tmp/atlas-seo-changed.txt
       - name: Commit only reviewed generated SEO artifacts
         shell: bash
         run: |
@@ -40,6 +43,7 @@ jobs:
             tools/construction-tools-atlas/data/seo-detail-pages-v2.3.json \
             tools/construction-tools-atlas/entries/notched_trowel/index.html \
             tools/construction-tools-atlas/entries/paint_tray/index.html
+          git rm -- .github/workflows/atlas-final-five-seo-sync-20261103.yml
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git commit -m 'chore(atlas): regenerate final reviewed-alias SEO detail output'
