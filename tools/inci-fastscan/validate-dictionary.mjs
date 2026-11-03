@@ -19,7 +19,7 @@ const generatedDictionaryFile = "js/generated_dictionary.js";
 
 const minimumTotal = 1000;
 const requiredStringFields = ["id", "en", "safety"];
-const allowedSafety = new Set(["safe", "caution", "risk"]);
+const allowedSafety = new Set(["safe", "caution", "risk", "unrated"]);
 const allowedCategories = new Set([
   "active",
   "amino acid",
@@ -157,6 +157,15 @@ for (const item of allItems) {
 
   if (!allowedSafety.has(item.safety)) {
     errors.push(`${location(item)}: invalid safety '${item.safety}'`);
+  }
+  // Newly researched records may explicitly decline the obsolete safety rank.
+  // Require independent HTTPS evidence; never infer a safe/caution/risk label.
+  if (item.safety === "unrated") {
+    if (item.note_verified !== true || !String(item.note_short || "").trim() ||
+        !Array.isArray(item.note_sources) || item.note_sources.length === 0 ||
+        item.note_sources.some(url => typeof url !== "string" || !/^https:\/\//i.test(url))) {
+      errors.push(`${location(item)}: unrated records require source-verified neutral notes with HTTPS evidence`);
+    }
   }
 
   if (item.category && !allowedCategories.has(item.category)) {
