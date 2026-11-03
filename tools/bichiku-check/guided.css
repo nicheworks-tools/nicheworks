@@ -139,3 +139,22 @@ body[data-stage]:not([data-stage="setup"]) .workspace{align-items:start}
  body[data-stage="shopping"] .g-print-list h2{font-size:19px}
  body[data-stage="shopping"] .g-print-list li{margin:10px 0}
 }
+
+
+/* SEO explanatory content is fully server-rendered HTML below the interactive workflow.
+ * Keep explanatory text readable and indexable without competing with the phone-first entry screen. */
+.seo-guide{margin-top:20px;padding:18px 16px;background:var(--paper);border:1px solid var(--line);border-radius:10px}
+.seo-guide h2{font-size:clamp(18px,2.4vw,23px);line-height:1.4;margin:0 0 10px}
+.seo-guide h3{font-size:15px;line-height:1.5;margin:4px 0 8px}
+.seo-guide p,.seo-guide li{font-size:14px;line-height:1.75;color:var(--sub)}
+.seo-guide p{margin:0 0 13px}
+.seo-guide strong{color:var(--ink)}
+.seo-guide-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:11px;margin:14px 0}
+.seo-guide-grid article{padding:13px;background:#f7fafb;border:1px solid var(--line);border-radius:8px;min-width:0}
+.seo-guide-grid article p{margin:0}
+.seo-guide ol{padding-left:22px;margin:6px 0 15px}
+.seo-guide li+li{margin-top:6px}
+.seo-guide .seo-source{font-size:12px;border-top:1px solid var(--line);padding-top:11px;margin-top:15px}
+.seo-guide a{color:#075e6c;text-underline-offset:2px}
+@media(min-width:769px){.seo-guide{padding:22px}.seo-guide-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}}
+@media print{.seo-guide{display:none!important}}

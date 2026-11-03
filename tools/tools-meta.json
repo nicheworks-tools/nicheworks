@@ -70,16 +70,19 @@
       ]
     },
     "bichiku-check": {
-      "title_ja": "防災備蓄チェック",
-      "title_en": "BichikuCheck — Emergency Supplies for Japan",
-      "desc_ja": "防災備蓄の不足量を計算。非常食・普段の食品・防災用品・代用品を停電や断水の条件に合わせて確認できる無料ツール。",
-      "desc_en": "Check household emergency food, water, portable-toilet and sleeping-supply gaps; compare everyday items and substitutes in four languages.",
+      "title_ja": "防災備蓄リスト・不足品チェック",
+      "title_en": "Japan Emergency Stockpile Checklist",
+      "desc_ja": "家族の人数・備蓄日数・停電・断水を設定し、非常食・水・携帯トイレの不足を無料で確認。普段の用品や代用品も比較できます。",
+      "desc_en": "Free Japan emergency stockpile checklist for food, water, toilets and alternatives. Compare what you own and what works during an outage.",
       "tags": [
         "disaster",
         "preparedness",
         "emergency",
         "stockpile",
-        "affiliate"
+        "affiliate",
+        "food",
+        "household",
+        "japan"
       ]
     },
     "codex-product-shipping-playbooks": {
