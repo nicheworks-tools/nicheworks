@@ -310,8 +310,15 @@ const initColdEmailChecker = () => {
   };
 
   const buildCopyText = () => {
-    const items = Array.from(suggestions.querySelectorAll("li"))
-      .map((li) => li.textContent.replace(/\s+/g, " ").trim())
+    // Checklist text is Free. Detailed improvement candidates are Pro-only
+    // and must not leak into the Free clipboard payload from hidden DOM nodes.
+    const items = Array.from(checklist.querySelectorAll(".checklist-item"))
+      .map((item) => {
+        const label = item.querySelector(".checklist-label")?.textContent || "";
+        const status = item.querySelector(".chip")?.textContent || "";
+        const hint = item.querySelector(".checklist-hint")?.textContent || "";
+        return [label + ": " + status, hint].filter(Boolean).join(" — ");
+      })
       .filter(Boolean);
     const disclaimer = t(
       "※この結果は文章構成の簡易チェックです。法令適合性、同意要件、配信停止表示、送信者情報の正確性、到達率・返信率を保証しません。",
@@ -320,7 +327,6 @@ const initColdEmailChecker = () => {
     return [
       t("Cold Email Requirement Checker 確認結果", "Cold Email Requirement Checker review"),
       `${t("下書き確認ステータス", "Draft review status")}: ${overallStatus.textContent}`,
-      `${t("構成スコア", "Structure score")}: ${scoreValue.textContent}/100`,
       "",
       ...items.map((item) => `- ${item}`),
       "",
@@ -337,6 +343,9 @@ const initColdEmailChecker = () => {
     runCheck();
   });
   copyBtn.addEventListener("click", async () => {
+    // Recheck synchronously: the 200ms input debounce may not have fired yet.
+    // Free copy intentionally contains checklist/status only, not the Pro score.
+    runCheck();
     const text = buildCopyText();
     const ok = await window.NW.copyToClipboard(text);
     window.NW.showToast(ok ? t("確認結果をコピーしました。", "Review copied.") : t("コピーに失敗しました。", "Copy failed."));
