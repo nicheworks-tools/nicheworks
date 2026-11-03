@@ -43,6 +43,11 @@ export const japaneseSourceAliasWave = Object.freeze([
     authority: 'Ikeda Bussan / Gattefosse finished cosmetic ingredient / INCI listing'
   },
   {
+    en: 'Glycine Soja (Soybean) Sterols', jp: 'ダイズステロール',
+    source: 'https://www.ikedabussan.com/itemindex/itemdetail/416',
+    authority: 'Ikeda Bussan / Lucas Meyer Cosmetics AMISOLTRIO P Japanese and INCI product specification'
+  },
+  {
     en: 'Phytosterols', jp: 'フィトステロールズ',
     source: 'https://www.yamakawa-and.co.jp/products/',
     authority: 'Yamakawa Trade cosmetic raw ingredient / INCI listing'
