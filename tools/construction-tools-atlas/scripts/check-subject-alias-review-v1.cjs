@@ -12,12 +12,12 @@ const normalize=search.normalizeText;
   assert.equal(review2.schema,"cta-subject-alias-review-v2");
   assert.equal(review2.entries.length,173,"reviewed alias wave2 must retain 173 public entries");
   assert.equal(review3.schema,"cta-reviewed-aliases-v3");
-  assert.equal(review3.entries.length,75,"reviewed alias wave3 must retain 75 exact-identity reviewed public terms");
+  assert.equal(review3.entries.length,77,"reviewed alias wave3 must retain 75 exact-identity reviewed public terms");
   const runtime=await runPublicLoader();
   assert.equal(runtime.entries.length,865,"public canonical inventory must remain fixed");
   const byId=new Map(runtime.entries.map(e=>[e.id,e]));
   assert.equal(byId.size,865,"duplicate public canonical IDs");
-  assert.equal(runtime.diagnostics?.reviewedAliasesApplied,75,"wave3 aliases missing from real loaded runtime: "+JSON.stringify(runtime.diagnostics?.reviewedAliasesProblems));
+  assert.equal(runtime.diagnostics?.reviewedAliasesApplied,77,"wave3 aliases missing from real loaded runtime: "+JSON.stringify(runtime.diagnostics?.reviewedAliasesProblems));
   assert.deepEqual(Array.from(runtime.diagnostics?.reviewedAliasesProblems||[]),[],"wave3 application must have no drift/errors");
 
   const owners=new Map(),terms=new Map();
