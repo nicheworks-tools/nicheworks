@@ -2,7 +2,7 @@
   const V = "2026-09-13";
   const EPSON_V = "2026-09-14";
   const CANON_V = "2026-09-14";
-  window.MANUALFINDER_WAVE3_BATCHES = ["manuals.wave3.01.js", "manuals.wave3.02.js", "manuals.wave3.04.js", "manuals.wave3.05.js", "manuals.wave3.07.js", "manuals.wave3.08.js", "manuals.wave3.09.js", "manuals.wave3.10.js", "manuals.wave3.11.js", "manuals.wave3.06.js"];
+  window.MANUALFINDER_WAVE3_BATCHES = ["manuals.wave3.01.js", "manuals.wave3.02.js", "manuals.wave3.04.js", "manuals.wave3.05.js", "manuals.wave3.07.js", "manuals.wave3.08.js", "manuals.wave3.09.js", "manuals.wave3.10.js", "manuals.wave3.11.js", "manuals.wave3.12.js", "manuals.wave3.06.js"];
   window.MANUALFINDER_WAVE3_NIKON = window.MANUALFINDER_WAVE3_NIKON || [];
   window.MANUALFINDER_WAVE3_BROTHER = window.MANUALFINDER_WAVE3_BROTHER || [];
   window.MANUALFINDER_WAVE3_EPSON = window.MANUALFINDER_WAVE3_EPSON || [];
@@ -78,19 +78,20 @@
   const canon = () => lines(window.MANUALFINDER_WAVE3_CANON).map((line) => {
     const [model, manualUrl, targetMode, verifiedAtRaw] = line.split("|");
     const shared = targetMode === "shared";
+    const manualIndex = targetMode === "manual-index";
     return {
       id: `wave3-canon-${slug(model)}`,
       brand: "Canon", maker: "Canon", model, family: "PIXUS inkjet printer / MFP",
       nameJa: `キヤノン ${model}`, nameEn: `Canon ${model}`,
       category: "プリンター・複合機", country: "Japan", manualUrl, supportUrl: manualUrl,
-      noteJa: shared ? "キヤノンがこの機種を含むシリーズ向けに提供している公式オンラインマニュアルです。" : "キヤノン公式の機種別オンラインマニュアルです。",
-      noteEn: shared ? "Official Canon online manual for the vendor-defined series containing this model." : "Official Canon model-specific online manual.",
+      noteJa: shared ? "キヤノンがこの機種を含むシリーズ向けに提供している公式オンラインマニュアルです。" : manualIndex ? "キヤノン公式の機種別マニュアル一覧（PDF・オンラインマニュアル）です。" : "キヤノン公式の機種別オンラインマニュアルです。",
+      noteEn: shared ? "Official Canon online manual for the vendor-defined series containing this model." : manualIndex ? "Official Canon model-specific PDF and online manual index." : "Official Canon model-specific online manual.",
       hintJa: `キヤノン Canon PIXUS ${model} プリンター 複合機 取扱説明書`,
       hintEn: `Canon PIXUS ${model} printer MFP manual`,
       aliases: ["キヤノン", "Canon", "PIXUS", "プリンター", "複合機", "取扱説明書"],
       sourceType: "official", sourceLevel: "A", verifiedAt: verifiedAtRaw || CANON_V, evidenceUrl: manualUrl,
-      resolutionState: shared ? "shared_official_manual_page" : "direct_online_manual",
-      manualKind: "online-manual", sharedTarget: shared,
+      resolutionState: shared ? "shared_official_manual_page" : manualIndex ? "direct_manual_page" : "direct_online_manual",
+      manualKind: manualIndex ? "manual-index" : "online-manual", sharedTarget: shared,
       linkReview: `official Canon target verified ${verifiedAtRaw || CANON_V}`
     };
   });

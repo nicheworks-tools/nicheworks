@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "maker": "Canon",
+  "scopeId": "canon-pixus-wave3l-six-legacy-models-20261103",
+  "scope": "Canon PIXUS TS8230, TS8430, TS8530, TS8630, XK110, XK120 exact product manuals and model-specific consumables. Not entire Canon catalog.",
+  "asOf": "2026-11-03",
+  "region": "JP",
+  "language": "ja",
+  "status": "reviewed",
+  "sourceLevel": "A",
+  "allowedDomains": [
+    "canon.jp",
+    "personal.canon.jp"
+  ],
+  "counts": {
+    "distinctModels": 6,
+    "officialManualPages": 6,
+    "newAmazonModelSearches": 6,
+    "manufacturerVerifiedInkOfferSearches": 12
+  },
+  "publishedManualDataFile": "tools/manual-finder/data/manuals.wave3.12.js",
+  "affiliateConfigFile": "tools/manual-finder/affiliate-config.js",
+  "reviewMethod": "On Canon's exact named manual pages, confirmed PDF/online guides exist; Canon's exact model-specific consumables pages independently enumerate the selected two cartridges. No model URL or ink compatibility is inferred from neighboring models.",
+  "records": [
+    {
+      "model": "TS8230",
+      "inkCodes": [
+        "BCI-381C",
+        "BCI-380PGBK"
+      ],
+      "manualUrl": "https://canon.jp/support/manual/mp/ts8230",
+      "supportUrl": "https://canon.jp/support/manual/mp/ts8230",
+      "consumablesUrl": "https://personal.canon.jp/product/supply/models/ts8230",
+      "maker": "Canon",
+      "category": "プリンター・複合機",
+      "state": "direct",
+      "reviewedAt": "2026-11-03",
+      "verification": "Confirmed by exact Canon model-specific manual page offering official PDF/online instructions and exact Canon consumables page naming each SKU."
+    },
+    {
+      "model": "TS8430",
+      "inkCodes": [
+        "BCI-381C",
+        "BCI-380PGBK"
+      ],
+      "manualUrl": "https://canon.jp/support/manual/mp/ts8430",
+      "supportUrl": "https://canon.jp/support/manual/mp/ts8430",
+      "consumablesUrl": "https://personal.canon.jp/product/supply/models/ts8430",
+      "maker": "Canon",
+      "category": "プリンター・複合機",
+      "state": "direct",
+      "reviewedAt": "2026-11-03",
+      "verification": "Confirmed by exact Canon model-specific manual page offering official PDF/online instructions and exact Canon consumables page naming each SKU."
+    },
+    {
+      "model": "TS8530",
+      "inkCodes": [
+        "BCI-331C",
+        "BCI-330PGBK"
+      ],
+      "manualUrl": "https://canon.jp/support/manual/mp/ts8530",
+      "supportUrl": "https://canon.jp/support/manual/mp/ts8530",
+      "consumablesUrl": "https://personal.canon.jp/product/supply/models/ts8530",
+      "maker": "Canon",
+      "category": "プリンター・複合機",
+      "state": "direct",
+      "reviewedAt": "2026-11-03",
+      "verification": "Confirmed by exact Canon model-specific manual page offering official PDF/online instructions and exact Canon consumables page naming each SKU."
+    },
+    {
+      "model": "TS8630",
+      "inkCodes": [
+        "BCI-331C",
+        "BCI-330PGBK"
+      ],
+      "manualUrl": "https://canon.jp/support/manual/mp/ts8630",
+      "supportUrl": "https://canon.jp/support/manual/mp/ts8630",
+      "consumablesUrl": "https://personal.canon.jp/product/supply/models/ts8630",
+      "maker": "Canon",
+      "category": "プリンター・複合機",
+      "state": "direct",
+      "reviewedAt": "2026-11-03",
+      "verification": "Confirmed by exact Canon model-specific manual page offering official PDF/online instructions and exact Canon consumables page naming each SKU."
+    },
+    {
+      "model": "XK110",
+      "inkCodes": [
+        "XKI-N21C",
+        "XKI-N20PGBK"
+      ],
+      "manualUrl": "https://canon.jp/support/manual/mp/xk110",
+      "supportUrl": "https://canon.jp/support/manual/mp/xk110",
+      "consumablesUrl": "https://personal.canon.jp/product/supply/models/xk110",
+      "maker": "Canon",
+      "category": "プリンター・複合機",
+      "state": "direct",
+      "reviewedAt": "2026-11-03",
+      "verification": "Confirmed by exact Canon model-specific manual page offering official PDF/online instructions and exact Canon consumables page naming each SKU."
+    },
+    {
+      "model": "XK120",
+      "inkCodes": [
+        "XKI-N21C",
+        "XKI-N20PGBK"
+      ],
+      "manualUrl": "https://canon.jp/support/manual/mp/xk120",
+      "supportUrl": "https://canon.jp/support/manual/mp/xk120",
+      "consumablesUrl": "https://personal.canon.jp/product/supply/models/xk120",
+      "maker": "Canon",
+      "category": "プリンター・複合機",
+      "state": "direct",
+      "reviewedAt": "2026-11-03",
+      "verification": "Confirmed by exact Canon model-specific manual page offering official PDF/online instructions and exact Canon consumables page naming each SKU."
+    }
+  ]
+}

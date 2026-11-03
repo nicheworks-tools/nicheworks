@@ -10,14 +10,14 @@ The printer-detail audit remains complete for the current canonical printer cata
 
 | Metric | Final audited value |
 | --- | ---: |
-| Printer records with a basic Amazon path | **337** |
-| Printer records with a verified detail handoff | **330** |
+| Printer records with a basic Amazon path | **343** |
+| Printer records with a verified detail handoff | **336** |
 | Reviewed printer-detail exclusions | **7** |
 | Actionable printer records still missing detail | **0** |
 
 Required printer reconciliation:
 
-`printer basic 337 = detail 330 + reviewed exclusion 7 + missing 0`
+`printer basic 343 = detail 336 + reviewed exclusion 7 + missing 0`
 
 The camera accessory audit independently reconciles as:
 
@@ -483,3 +483,7 @@ Seven exact Epson manufacturer user-manual model pages, each individually matche
 Six new Canon printer records (TS8930, XK140, XK510, TS6630, TS5630 and TS5530) each get one exact-model Amazon Associates search and two manufacturer-spec-confirmed specific cartridge searches, all with the existing `nicheworks09-22` tag. Evidence is retained at `coverage-passes/canon/jp-pixus-wave3k-6-models-20261103.json`. Printer reconciliation: **337 basic = 330 detail + 7 reviewed exclusions + 0 missing**; machine-readable form `printer basic 337 = detail 330 + reviewed exclusion 7 + missing 0`. Search links do not establish seller stock, clicks, sales or commissions.
 
 Prior Epson Wave 3J / Brother Wave 3F audit snapshot (superseded, retained solely for historical regression provenance): `printer basic 331 = detail 324 + reviewed exclusion 7 + missing 0`. The current audit remains `printer basic 337 = detail 330 + reviewed exclusion 7 + missing 0`.
+
+### Canon six exact legacy PIXUS printer consumable mappings — Wave 3L (2026-11-03)
+
+TS8230 and TS8430: BCI-381C / BCI-380PGBK; TS8530 and TS8630: BCI-331C / BCI-330PGBK; XK110 and XK120: XKI-N21C / XKI-N20PGBK. Each is supported by the exact Canon manufacturer model-specific consumables page in `coverage-passes/canon/jp-pixus-wave3l-six-manual-ink-20261103.json`, not family extrapolation. Six Amazon model searches plus twelve optional exact cartridge searches use `nicheworks09-22`; no sales or inventory assumed. Current audit: `printer basic 343 = detail 336 + reviewed exclusion 7 + missing 0`. Historical 331/324 and 337/330 reconciliations remain historical only.

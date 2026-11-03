@@ -49,8 +49,8 @@ for(const row of rows){
 const coverage=fs.readFileSync(new URL('COVERAGE.md',root),'utf8');
 const affiliate=fs.readFileSync(new URL('AFFILIATE_COVERAGE.md',root),'utf8');
 const spec=fs.readFileSync(new URL('SPEC.md',root),'utf8');
-assert.ok(coverage.includes('**2,559 verified model/caliber rows**'));
-assert.ok(coverage.includes('| Canon | 149 | expanded |'));
+assert.ok(coverage.includes('**2,565 verified model/caliber rows**'));
+assert.ok(coverage.includes('| Canon | 155 | expanded |'));
 assert.ok(affiliate.includes('printer basic 337 = detail 330 + reviewed exclusion 7 + missing 0'));
 assert.ok(spec.includes('**337 basic = 330 detail + 7 reviewed exclusions + 0 missing detail**'));
 console.log('Canon PIXUS Wave 3K: six exact official manual entries and eighteen tagged model/ink purchase searches passed.');

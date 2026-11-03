@@ -299,6 +299,30 @@
     consumableRow("Canon", "TS5530", "https://personal.canon.jp/product/printer/pixus/lineup/ts5530/spec", "2026-11-03", [
       consumableOffer("bc-386", "Canon BC-386", "Amazonで BC-386 対応インクを探す", "Find Canon BC-386 ink on Amazon"),
       consumableOffer("bc-395", "Canon BC-395", "Amazonで BC-395 対応インクを探す", "Find Canon BC-395 ink on Amazon")
+    ]),
+    consumableRow("Canon", "TS8230", "https://personal.canon.jp/product/supply/models/ts8230", "2026-11-03", [
+      consumableOffer("bci-381c", "Canon BCI-381C", "Amazonで BCI-381C 対応インクを探す", "Find Canon BCI-381C ink on Amazon"),
+      consumableOffer("bci-380pgbk", "Canon BCI-380PGBK", "Amazonで BCI-380PGBK 対応インクを探す", "Find Canon BCI-380PGBK ink on Amazon")
+    ]),
+    consumableRow("Canon", "TS8430", "https://personal.canon.jp/product/supply/models/ts8430", "2026-11-03", [
+      consumableOffer("bci-381c", "Canon BCI-381C", "Amazonで BCI-381C 対応インクを探す", "Find Canon BCI-381C ink on Amazon"),
+      consumableOffer("bci-380pgbk", "Canon BCI-380PGBK", "Amazonで BCI-380PGBK 対応インクを探す", "Find Canon BCI-380PGBK ink on Amazon")
+    ]),
+    consumableRow("Canon", "TS8530", "https://personal.canon.jp/product/supply/models/ts8530", "2026-11-03", [
+      consumableOffer("bci-331c", "Canon BCI-331C", "Amazonで BCI-331C 対応インクを探す", "Find Canon BCI-331C ink on Amazon"),
+      consumableOffer("bci-330pgbk", "Canon BCI-330PGBK", "Amazonで BCI-330PGBK 対応インクを探す", "Find Canon BCI-330PGBK ink on Amazon")
+    ]),
+    consumableRow("Canon", "TS8630", "https://personal.canon.jp/product/supply/models/ts8630", "2026-11-03", [
+      consumableOffer("bci-331c", "Canon BCI-331C", "Amazonで BCI-331C 対応インクを探す", "Find Canon BCI-331C ink on Amazon"),
+      consumableOffer("bci-330pgbk", "Canon BCI-330PGBK", "Amazonで BCI-330PGBK 対応インクを探す", "Find Canon BCI-330PGBK ink on Amazon")
+    ]),
+    consumableRow("Canon", "XK110", "https://personal.canon.jp/product/supply/models/xk110", "2026-11-03", [
+      consumableOffer("xki-n21c", "Canon XKI-N21C", "Amazonで XKI-N21C 対応インクを探す", "Find Canon XKI-N21C ink on Amazon"),
+      consumableOffer("xki-n20pgbk", "Canon XKI-N20PGBK", "Amazonで XKI-N20PGBK 対応インクを探す", "Find Canon XKI-N20PGBK ink on Amazon")
+    ]),
+    consumableRow("Canon", "XK120", "https://personal.canon.jp/product/supply/models/xk120", "2026-11-03", [
+      consumableOffer("xki-n21c", "Canon XKI-N21C", "Amazonで XKI-N21C 対応インクを探す", "Find Canon XKI-N21C ink on Amazon"),
+      consumableOffer("xki-n20pgbk", "Canon XKI-N20PGBK", "Amazonで XKI-N20PGBK 対応インクを探す", "Find Canon XKI-N20PGBK ink on Amazon")
     ])
   ]);
 
