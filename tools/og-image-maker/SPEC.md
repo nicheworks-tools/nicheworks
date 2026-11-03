@@ -69,6 +69,7 @@ Controls are vertically usable on narrow screens while the fixed-ratio 1200×630
 - [ ] Batch input and multi-download UI remain hidden unless the current shared Pro status reports an explicit active state.
 - [ ] Setting only `nw_pro_key` does not unlock batch generation.
 - [ ] Image/logo processing does not upload user-selected image data to a tool backend.
+- [ ] Replacing/removing/resetting a logo ignores superseded image-load callbacks and releases the temporary object URLs; the previous logo is not exported while a new logo is loading.
 
 ## Implementation evidence
 
