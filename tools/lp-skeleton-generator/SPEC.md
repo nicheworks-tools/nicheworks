@@ -59,6 +59,7 @@ The tool is a long structured form followed by text-oriented output and naturall
 
 - [ ] Entered product/audience/problem/benefit/CTA information is represented in the generated LP skeleton.
 - [ ] Markdown and HTML output paths are generated from the current draft, with input values escaped in the implemented HTML path.
+- [ ] Editing any of the 12 source fields clears previously generated LP copy; copy, Markdown and HTML downloads refuse obsolete output even when an input event is missed.
 - [ ] Optional proof/price/guarantee content is treated as user-supplied draft material rather than verified fact.
 - [ ] JP/EN switching preserves the drafting workflow and advertising/legal disclaimer.
 
