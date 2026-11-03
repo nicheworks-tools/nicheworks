@@ -277,9 +277,16 @@ for (const [metric, floor] of Object.entries(BASELINE_RUNTIME_PROVENANCE_FLOORS)
 if (runtimeVerifiedCategory !== Object.keys(parser.verifiedCategoryEvidence || {}).length) {
   structuralFailures.push('verified category overlay entries must all survive into runtime provenance');
 }
-if (runtimeVerifiedNote !== Object.keys(parser.verifiedNoteEvidence || {}).length) {
+const overlayNoteIdentityKeys = Object.keys(parser.verifiedNoteEvidence || {}).map(canonicalKey);
+const mergedRuntimeVerifiedNotes = new Set(runtimeMerged.filter(item => item.note_verified === true &&
+  Array.isArray(item.note_sources) && item.note_sources.some(url => /^https:\/\//i.test(url)))
+  .map(item => canonicalKey(item.en)));
+const missingVerifiedOverlayNotes = overlayNoteIdentityKeys.filter(key => !mergedRuntimeVerifiedNotes.has(key));
+if (missingVerifiedOverlayNotes.length > 0 || runtimeVerifiedNote < overlayNoteIdentityKeys.length) {
   structuralFailures.push('verified note overlay entries must all survive into runtime provenance');
 }
+// Source-backed maintained records may add verified notes IN ADDITION to
+// existing verified overlays. Enforce overlay identity survival, not count equality.
 if (runtimeVerifiedNoteNotStrong.length !== 0) {
   structuralFailures.push(`all verified-note identities must satisfy strong runtime readiness; blockers: ${runtimeVerifiedNoteNotStrong.map((item) => item.canonical).join(', ')}`);
 }

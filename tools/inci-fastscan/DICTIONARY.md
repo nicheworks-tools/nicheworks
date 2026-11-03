@@ -54,12 +54,12 @@ The maintained schema currently includes fields such as:
   "en": "INCI Name",
   "jp": ["Japanese label candidate"],
   "alias": ["Optional alias"],
-  "safety": "safe | caution | risk",
+  "safety": "safe | caution | risk | unrated", 
   "category": "humectant"
 }
 ```
 
-`id`, `en`, and the legacy `safety` field are currently validated as required strings by `validate-dictionary.mjs`; `jp` is an array and `alias` is an optional array.
+`id`, `en`, and the legacy `safety` field are currently validated as required strings by `validate-dictionary.mjs`; `jp` is an array and `alias` is an optional array. New evidence-backed substances may use `safety: "unrated"` **only** with a verified neutral ingredient-specific note and at least one HTTPS source; this intentionally avoids assigning an unevidenced safety grade.
 
 ## Legacy `safety` metadata isolation
 

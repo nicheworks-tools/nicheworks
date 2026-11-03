@@ -94,6 +94,22 @@ Both English and Japanese OCR photo interfaces now have an **off-by-default** "E
 
 Automated regression: `node tools/_shared/check-fastscan-image-enhancement.mjs` checks untouched default-image handling, concrete grayscale pixel writes, upscale and memory cap, expected failure handling and blob-URL release, bilingual option wiring, optional QA comparison and photo privacy. The noindex QA page at `tools/inci-fastscan/qa/photo-ocr-benchmark.html` now exposes the same checkbox so manual testers can compare original and browser-enhanced scans of a **single independently transcribed real label**.
 
+## New Japanese photo-source canonical identities with no safety verdict (2026-11-03)
+
+A second source-backed round adds **four new actual INCI identities** that were absent from the nine maintained FastScan dictionaries (and the generated names). Each name has an independent Japanese-manufacturer/distributor **exact Japanese display-name ↔ English INCI** reference, and a source-backed neutral functional category/note; each is stored with legacy `safety: "unrated"`, which does **not** mean safe or unsafe and is not used in either cosmetics tool's user-facing verdict.
+
+| Full Japanese display name | Exact INCI identity | Function provenance |
+| --- | --- | --- |
+| ミリスチン酸オクチルドデシル | Octyldodecyl Myristate | [Kao Chemicals Japanese product specification](https://chemical.kao.com/ja/products/B0002083_ja/) and [COSMILE emollient role](https://cosmileeurope.eu/inci/detail/9644/octyldodecyl-myristate/) |
+| ピーナッツ油 | Arachis Hypogaea (Peanut) Oil | [Ota Oil Japan manufacturer's ingredient name and INCI](https://ota-oil.co.jp/business/cosmetic-materials/arachis/) and [Summit Oil manufacturer](https://www.summit-oilmill.com/product/peanut-oil_s/) |
+| 加水分解ヒアルロン酸Na | Hydrolyzed Sodium Hyaluronate | [Kewpie Japanese cosmetic raw material specification](https://www.kewpie.co.jp/finechemical/hyaluronic/habooster.html) and [COSMILE](https://cosmileeurope.eu/inci/detail/6988/hydrolyzed-sodium-hyaluronate/) |
+| 炭酸水素Na | Sodium Bicarbonate | [COSMILE buffering-function reference](https://cosmileeurope.eu/inci/detail/14564/sodium-bicarbonate/) and [PMDA original sodium bicarbonate nomenclature](https://www.pmda.go.jp/files/000240229.pdf) |
+
+The dictionary validator now accepts the **explicit legacy compatibility value `unrated` only for records with `note_verified: true`, a neutral note and HTTPS source evidence**. The semantic quality auditor accepts `unrated` as a *non-graded* legacy classification; all older safety statuses remain untouched, and user-facing FastScan matching continues to omit the legacy safety field entirely. This is deliberately more conservative than automatically grading unfamiliar ingredients `safe` or `caution`.
+
+Baseline after the prior nine name-only aliases was **79/127** supported published Japanese ingredient names. This wave expects **83/127** (44 remain unsupported), which is a **dictionary source-list coverage denominator**, not new evidence of correct OCR on the photos. Real photographed Japanese `jpn+eng` results must be separately checked in GitHub CI on the pinned two sample photos. The photo and current marketing ingredient list may still come from different formulation versions; nothing here is a physical smartphone accuracy certification. The neutral note/role is not medical or product safety advice.
+
+
 ## Source-backed Japanese name alias repair — first wave (2026-11-03)
 
 The first two photographed Japanese cosmetic packages ([baseline #41439004709](https://github.com/nicheworks-tools/nicheworks/actions/runs/41439004709)) had **127 independently published source-list ingredients**, of which only **70** were matched by the existing 1,169-record canonical ingredient dictionary. **Nine of the 57 unsupported Japanese label names** had an *already existing and distinct* canonical English INCI identity with an empty `jp` name list. This first wave attaches those **nine source-verified Japanese names** to existing entries. No new INCI substance, new cosmetic role, or inferred safety grade was added.

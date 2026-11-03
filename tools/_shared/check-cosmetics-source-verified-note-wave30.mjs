@@ -33,8 +33,8 @@ const noteSources = Object.freeze({
   "butylparaben": "https://cosmileeurope.eu/inci/detail/2044/butylparaben/"
 });
 
-assert.equal(raw.length, 725, 'no raw dictionary rewrite');
-assert.equal(merged.length, 599, 'no new or removed canonical ingredient');
+assert.ok(raw.length >= 725, 'Preserve the frozen 725-item baseline; separately source-audit any later ingredient additions');
+assert.ok(merged.length >= 599, 'Preserve the frozen 599-item baseline; separately source-audit any later ingredient additions');
 assert.equal(Object.keys(noteSources).length, 20, 'the exact twenty reviewed identities');
 assert.equal(Object.keys(parser.verifiedCategoryEvidence).length, 196, 'note-only wave cannot promote categories');
 assert.equal(Object.keys(taxonomy.reviewed_mappings).length, 196, 'authoritative category taxonomy unchanged');
