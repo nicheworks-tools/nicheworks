@@ -63,8 +63,8 @@
     }
   };
 
-  const downloadText = (filename, text) => {
-    const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+  const downloadText = (filename, text, type = "text/plain;charset=utf-8") => {
+    const blob = new Blob([text], { type });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
@@ -133,6 +133,14 @@
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(scores));
     } catch (_) {}
+  };
+
+  // RFC 4180 quoting and spreadsheet-formula neutralization. An entry name is
+  // user-controlled, so exporting it unescaped can corrupt cells or run formulas.
+  const csvCell = (value) => {
+    const text = String(value ?? "");
+    const safe = /^[\s\uFEFF]*[=+\-@]/.test(text) ? "'" + text : text;
+    return '"' + safe.replace(/"/g, '""') + '"';
   };
 
   const renderHistory = (scores, out) => {
@@ -207,8 +215,16 @@
     btnExport.addEventListener("click", () => {
       if (scores.length === 0) return;
       const header = "name,score,time";
-      const rows = scores.map((item) => `${item.name},${item.score},${item.time}`);
-      window.NW.downloadText("mini-game-scores.csv", [header, ...rows].join("\n"));
+      const rows = scores.map((item) => {
+        const numericScore = Number(item.score);
+        const safeScore = Number.isFinite(numericScore) ? numericScore : 0;
+        return [csvCell(item.name), String(safeScore), csvCell(item.time)].join(",");
+      });
+      window.NW.downloadText(
+        "mini-game-scores.csv",
+        "\uFEFF" + [header, ...rows].join("\r\n") + "\r\n",
+        "text/csv;charset=utf-8"
+      );
     });
 
     btnClear.addEventListener("click", () => {
