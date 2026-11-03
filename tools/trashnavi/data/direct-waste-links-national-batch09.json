@@ -50,5 +50,44 @@
     "status": "active",
     "language": "ja",
     "scope_note": "2025年2月17日更新。品目別の分別検索。"
+  },
+  {
+    "pref": "北海道",
+    "city": "利尻町",
+    "lgcode": "015181",
+    "last_checked": "2026-11-03",
+    "status": "active",
+    "language": "ja",
+    "name": "ごみ収集・ゴミ出しのルール",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://rishiri-town.jp/くらし・各種手続き/ごみ収集/",
+    "scope_note": "町公式ページ。収集日当日の朝に排出。2026年度カレンダーと分別ポスターを案内。"
+  },
+  {
+    "pref": "北海道",
+    "city": "利尻町",
+    "lgcode": "015181",
+    "last_checked": "2026-11-03",
+    "status": "active",
+    "language": "ja",
+    "name": "令和8年度 利尻町ごみ収集カレンダー",
+    "type": "ごみ収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://rishiri-town.jp/wp-content/uploads/2026/07/令和８年度利尻町ごみカレンダー.pdf",
+    "scope_note": "令和8年度（2026年4月〜2027年3月）の12ページPDF。祝祭日・年末年始の変更はカレンダーを参照。"
+  },
+  {
+    "pref": "北海道",
+    "city": "利尻町",
+    "lgcode": "015181",
+    "last_checked": "2026-11-03",
+    "status": "active",
+    "language": "ja",
+    "name": "ごみの出し方ポスター（令和6年度版）",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://rishiri-town.jp/wp-content/uploads/2024/07/ごみの出し方ポスターR6年度）-.pdf",
+    "scope_note": "公式掲載の令和6年度表記の過年度資料。現行年度の収集日程には使用しない。"
   }
 ]
