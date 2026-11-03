@@ -122,6 +122,13 @@
     var clear = document.getElementById("btn-clear");
     if(clear) clear.addEventListener("click", resetAll);
 
+    SOURCE_IDS.concat(["memo"]).forEach(function(id){
+      var input = document.getElementById(id);
+      if(!input) return;
+      input.addEventListener("input", invalidateAssessment);
+      input.addEventListener("change", invalidateAssessment);
+    });
+
     bindProButton("btn-copy-internal", function(){ copyProText("internal", "社内共有メモをコピーしました。"); });
     bindProButton("btn-copy-vendor", function(){ copyProText("vendor", "委託先確認メモをコピーしました。"); });
     bindProButton("btn-copy-improvement", function(){ copyProText("improvement", "改善計画をコピーしました。"); });
@@ -165,6 +172,26 @@
     memo: "",
     markdown: ""
   };
+  var lastSignature = "";
+  var SOURCE_IDS = [
+    "is_shipper", "has_outsourcing", "has_waiting",
+    "has_strict_window", "has_low_visibility", "has_congestion"
+  ];
+  function sourceSignature(){
+    return JSON.stringify(SOURCE_IDS.map(getVal).concat([getMemo()]));
+  }
+  function invalidateAssessment(){
+    last = {level: "", why: [], checklist: [], plan: "", memo: "", markdown: ""};
+    lastSignature = "";
+    var preview = document.getElementById("md-preview");
+    if(preview) preview.value = "";
+    renderIdleResult();
+    renderProOutputs();
+  }
+  function ensureCurrentAssessment(){
+    if(!currentProState()) runAssessment();
+    return currentProState();
+  }
 
   var criteriaLines = [
     "高：待機・時間指定・委託・混雑・可視化不足などのシグナルが3つ以上",
@@ -211,20 +238,7 @@
     var memo = document.getElementById("memo");
     if(memo) memo.value = "";
 
-    var md = document.getElementById("md-preview");
-    if(md) md.value = "";
-
-    last = {
-      level: "",
-      why: [],
-      checklist: [],
-      plan: "",
-      memo: "",
-      markdown: ""
-    };
-
-    renderIdleResult();
-    renderProOutputs();
+    invalidateAssessment();
   }
 
   function runAssessment(){
@@ -290,6 +304,7 @@
       memo: memo,
       markdown: md
     };
+    lastSignature = sourceSignature();
 
     renderResult(level, why, checklist, plan, memo);
 
@@ -401,7 +416,7 @@
   }
 
   function currentProState(){
-    return last.markdown ? last : sampleState;
+    return last.markdown && lastSignature === sourceSignature() ? last : null;
   }
 
   function proOutputs(state){
@@ -535,7 +550,13 @@
   function renderProOutputs(){
     var box = document.getElementById("pro-outputs");
     if(!box) return;
-    renderOutputCards(box, proOutputs(currentProState()), false);
+    var state = currentProState();
+    if(!state){
+      clearNode(box);
+      appendTextEl(box, "p", "判定・ドラフト作成後に、現在の入力に基づくPro資料を表示します。", "nw-note");
+      return;
+    }
+    renderOutputCards(box, proOutputs(state), false);
   }
 
   function renderOutputCards(box, outputs, preview){
@@ -561,10 +582,8 @@
   }
 
   function ensureMarkdown(){
-    if(!last.markdown){
-      runAssessment();
-    }
-    return last.markdown;
+    var state = ensureCurrentAssessment();
+    return state ? state.markdown : "";
   }
 
   function downloadMD(){
@@ -578,7 +597,9 @@
   }
 
   function copyProText(key, message){
-    var outputs = proOutputs(currentProState());
+    var state = ensureCurrentAssessment();
+    if(!state) return;
+    var outputs = proOutputs(state);
     var text = outputs[key] || "";
     if(!text) return;
     if(navigator.clipboard && typeof navigator.clipboard.writeText === "function"){
@@ -607,13 +628,16 @@
   }
 
   function exportHandoffMarkdown(){
-    var outputs = proOutputs(currentProState());
+    var state = ensureCurrentAssessment();
+    if(!state) return;
+    var outputs = proOutputs(state);
     downloadFile("logistics-handoff.md", outputs.handoff, "text/markdown;charset=utf-8");
     gtagSafe("event", "export_click", {tool_slug: TOOL_SLUG, type: "handoff_markdown"});
   }
 
   function exportJSON(){
-    var state = currentProState();
+    var state = ensureCurrentAssessment();
+    if(!state) return;
     var payload = {
       tool: TOOL_SLUG,
       generatedAt: new Date().toISOString(),
