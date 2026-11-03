@@ -57,6 +57,7 @@ The experience is a long stacked form followed by a text output, suitable for na
 
 - [ ] Entered audience/deliverables/frequency/pricing/terms are represented in the generated membership draft.
 - [ ] Copy uses the current generated offer and generation remains browser-local.
+- [ ] After editing any membership field, previous output is invalidated, and copy refuses stale content even when a change event is missed.
 - [ ] The output keeps pricing/retention ideas framed as draft planning rather than verified business outcomes.
 - [ ] JP/EN switching preserves the form and the recurring-billing/legal/platform review warnings.
 

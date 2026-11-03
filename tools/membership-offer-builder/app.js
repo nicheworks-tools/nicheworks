@@ -5,6 +5,17 @@
   const $$ = (selector) => Array.from(document.querySelectorAll(selector));
 
   let generated = false;
+  let generatedSnapshot = "";
+  const INPUT_IDS = [
+    "topicInput", "audienceInput", "deliverablesInput", "frequencyInput",
+    "timeInput", "priceInput", "planCountInput", "notIncludedInput",
+    "cancelRefundInput", "firstMonthInput", "retentionInput",
+    "communityInput", "workloadLimitInput"
+  ];
+
+  function inputSnapshot() {
+    return JSON.stringify(INPUT_IDS.map((id) => $(id)?.value || ""));
+  }
 
   function currentLang() {
     return document.documentElement.lang === "en" ? "en" : "ja";
@@ -200,18 +211,31 @@
     applyLang(lang);
 
     const output = $("offerOutput");
-    output.value = currentLang() === "ja"
-      ? "入力後に「提案を作成」を押してください。"
-      : "Fill in the fields, then click Build offer.";
+    const invalidate = () => {
+      generated = false;
+      generatedSnapshot = "";
+      output.value = currentLang() === "ja"
+        ? "入力後に「提案を作成」を押してください。"
+        : "Fill in the fields, then click Build offer.";
+    };
+    invalidate();
+
+    INPUT_IDS.forEach((id) => {
+      $(id)?.addEventListener("input", invalidate);
+      $(id)?.addEventListener("change", invalidate);
+    });
+
 
     $("buildOfferBtn")?.addEventListener("click", () => {
       output.value = buildOffer();
+      generatedSnapshot = inputSnapshot();
       generated = true;
     });
 
     $("copyOfferBtn")?.addEventListener("click", async () => {
-      if (!generated) {
-        toast(currentLang() === "ja" ? "先に提案を生成してください。" : "Build an offer first.");
+      if (!generated || generatedSnapshot !== inputSnapshot()) {
+        invalidate();
+        toast(currentLang() === "ja" ? "入力を確認して提案を再生成してください。" : "Inputs changed. Build the offer again.");
         return;
       }
       const ok = await copyText(output.value);
