@@ -56,4 +56,31 @@ assert.deepEqual(manufacturerLeica.counts,{direct:60,shared:0,support_only:0,hel
 assert.equal(manufacturerLeica.records.find(x=>x.model==='Leica Leitzphone powered by Xiaomi').reviewMethod,'secondary_manufacturer_Leica_exact_model_multilingual_quickstart_PDF');
 const failPdf=await reviewAll({pass,html,cmsJson:cmsLeica,pdfFetcher:async()=>{throw Error('PDF magic missing')},leicaFetcher:async()=>{throw Error('Leica still unverified')}});
 assert.deepEqual(failPdf.counts,{direct:0,shared:0,support_only:0,held:60});
-console.log('Xiaomi official 306-guide index / 74 mobile entries / 60 exact phone/tablet models and PDF fail-closed checks passed.');
+
+const cmsOneExtra=structuredClone(cms);
+const observed=JSON.parse(cmsOneExtra.data.layouts[0].children[0].extstr);
+const newNonMobile={text:'New manufacturer non-mobile accessory',href:'/jp/support/user-guide-pdf/new-nonmobile-accessory',link:'https://gl123.alsgp0.mi-fds.com/gl123/new-nonmobile-accessory.pdf'};
+observed.data.at(-1).content.push(newNonMobile);
+cmsOneExtra.data.layouts[0].children[0].extstr=JSON.stringify(observed);
+const htmlOneExtra=html+'<a href="'+newNonMobile.href+'">'+newNonMobile.text+'</a>';
+assert.equal(officialCms(cmsOneExtra).length,307);
+const extraPopulation=officialPopulation(pass,htmlOneExtra,cmsOneExtra);
+assert.equal(extraPopulation.htmlCount,307);
+assert.equal(extraPopulation.cmsCount,307);
+assert.equal(extraPopulation.nonMobileNewLinkCount,1);
+assert.equal(extraPopulation.sourceDigest,pass.universe.sourceObservation.officialIndexSha256);
+assert.deepEqual(extraPopulation.rows.map(x=>x.label),pass.universe.models);
+const extraReviewed=await reviewAll({pass,html:htmlOneExtra,cmsJson:cmsOneExtra,pdfFetcher});
+assert.equal(extraReviewed.officialTotalGuideRows,307);
+assert.equal(extraReviewed.nonMobileNewLinkCount,1);
+assert.deepEqual(extraReviewed.counts,{direct:60,shared:0,support_only:0,held:0});
+assert.throws(()=>officialPopulation(pass,html,cmsOneExtra),/population/,'HTML/CMS source mismatch must fail');
+assert.throws(()=>officialPopulation(pass,htmlOneExtra, cms),/population/,'CMS/HTML source mismatch must fail');
+assert.throws(()=>officialPopulation(pass,htmlOneExtra.replace('Xiaomi 17T Pro','Xiaomi 17T Pro Rev'),cmsOneExtra),/mismatch|drift/,'first 74 scoped models cannot drift');
+const cmsTwoExtra=structuredClone(cmsOneExtra);
+const two=JSON.parse(cmsTwoExtra.data.layouts[0].children[0].extstr);
+two.data.at(-1).content.push({...newNonMobile,text:'Second new external guide'});
+cmsTwoExtra.data.layouts[0].children[0].extstr=JSON.stringify(two);
+assert.throws(()=>officialCms(cmsTwoExtra),/population/,'second unreviewed external addition must fail closed');
+
+console.log('Xiaomi official 306 baseline / 307 with exactly one non-mobile addition, 74 locked mobile entries / 60 exact model-guide identities and PDF fail-closed checks passed.');

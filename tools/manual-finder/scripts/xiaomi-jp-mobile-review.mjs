@@ -40,13 +40,17 @@ export function officialCms(json){
  let ext;try{ext=JSON.parse(child.extstr)}catch{throw Error('Xiaomi manufacturer CMS list not valid JSON')}
  if(!Array.isArray(ext.data)||ext.data.length!==6)throw Error('Xiaomi CMS guide categories changed');
  const entries=ext.data.flatMap(g=>Array.isArray(g.content)?g.content:[]);
- if(entries.length!==306||entries.some(e=>!e.text||typeof e.link!=='string'))throw Error('manufacturer guide link population changed '+entries.length);
+ // The source snapshot has 306 links. Permit exactly one later non-mobile addition,
+ // but only when the independent HTML matches every CMS model label in order and
+ // the original 74-link mobile scope (including its model→guide digest) is intact.
+ if(![306,307].includes(entries.length)||entries.some(e=>!e.text||typeof e.link!=='string'))throw Error('manufacturer guide link population changed '+entries.length);
  return entries;
 }
 export function officialPopulation(pass,html,cmsJson){
  const anchors=officialIndex(html),pdf=officialCms(cmsJson);
- if(anchors.length!==306||anchors[74]?.label!=='REDMI Buds 5 Pro')throw Error('guide HTML population/bounded device category changed');
- for(let i=0;i<306;i++)if(clean(anchors[i].label)!==clean(pdf[i].text))
+ if(anchors.length!==pdf.length||![306,307].includes(anchors.length)||anchors[74]?.label!=='REDMI Buds 5 Pro')
+  throw Error('guide HTML/CMS population or bounded mobile category changed: '+anchors.length+'/'+pdf.length);
+ for(let i=0;i<anchors.length;i++)if(clean(anchors[i].label)!==clean(pdf[i].text))
   throw Error('Xiaomi HTML-vs-CMS model identity/order mismatch at index '+i);
  if(anchors[41].href!==anchors[44].href||anchors[41].label.toLowerCase()!==anchors[44].label.toLowerCase())
   throw Error('duplicate Redmi Pad 2 4G manufacturer entry changed');
@@ -66,7 +70,7 @@ export function officialPopulation(pass,html,cmsJson){
    throw Error('not manufacturer-owned model guide link '+observed.href);
  }
  const offsetPdf=pdf.slice(0,74).filter((x,i)=>!excluded.has(i));
- return{rows:unique.map((x,i)=>({...x,cmsLink:offsetPdf[i].link.trim()})),sourceDigest:hash,htmlCount:anchors.length,cmsCount:pdf.length,categories:6};
+ return{rows:unique.map((x,i)=>({...x,cmsLink:offsetPdf[i].link.trim()})),sourceDigest:hash,htmlCount:anchors.length,cmsCount:pdf.length,categories:6,nonMobileNewLinkCount:anchors.length-306};
 }
 export async function readPdfStart(url){
  const u=new URL(url);
@@ -147,7 +151,8 @@ export async function reviewAll({pass,html,cmsJson,pdfFetcher=readPdfStart,leica
  const counts={direct:0,shared:0,support_only:0,held:0};
  for(const x of records)counts[x.state]++;
  if(records.length!==60||Object.values(counts).reduce((a,b)=>a+b,0)!==60)throw Error('silent drop');
- return{schemaVersion:1,scopeId:pass.scopeId,sourceIndexUrl:INDEX,sourceCmsUrl:CMS,sourceDigest:source.sourceDigest,officialTotalGuideRows:306,
+ return{schemaVersion:1,scopeId:pass.scopeId,sourceIndexUrl:INDEX,sourceCmsUrl:CMS,sourceDigest:source.sourceDigest,officialTotalGuideRows:source.cmsCount,
+  nonMobileNewLinkCount:source.nonMobileNewLinkCount,
   sourceMobileRawRows:74,officialPopulation:60,observedAt:new Date().toISOString(),counts,records,
   heldModels:records.filter(x=>x.state==='held').map(x=>x.model)};
 }
