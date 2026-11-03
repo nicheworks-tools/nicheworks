@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1536" viewBox="0 0 1536 1536" role="img" aria-label="concentric-circles original representative diagram">
+<rect width="1536" height="1536" fill="#f8f5ec"/>
+<defs><g id="motif"><g fill="none" stroke-linecap="round"><circle r="165" stroke="#345e7f" stroke-width="11"/><circle r="135" stroke="#e3ac62" stroke-width="8"/><circle r="104" stroke="#345e7f" stroke-width="8"/><circle r="75" stroke="#e3ac62" stroke-width="8"/><circle r="46" stroke="#345e7f" stroke-width="8"/><circle r="19" fill="#345e7f"/></g></g></defs>
+<use href="#motif" transform="translate(256 256)"/>
+<use href="#motif" transform="translate(768 256)"/>
+<use href="#motif" transform="translate(1280 256)"/>
+<use href="#motif" transform="translate(256 768)"/>
+<use href="#motif" transform="translate(768 768)"/>
+<use href="#motif" transform="translate(1280 768)"/>
+<use href="#motif" transform="translate(256 1280)"/>
+<use href="#motif" transform="translate(768 1280)"/>
+<use href="#motif" transform="translate(1280 1280)"/>
+</svg>

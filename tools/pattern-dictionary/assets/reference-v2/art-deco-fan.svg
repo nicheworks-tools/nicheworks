@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1536" viewBox="0 0 1536 1536" role="img" aria-label="art-deco-fan original representative diagram">
+<rect width="1536" height="1536" fill="#f8f5ec"/>
+<defs><g id="motif"><g fill="none" stroke="#ad8b47" stroke-linecap="round"><path d="M-165 105 A165 165 0 0 1 165 105" stroke-width="12"/><path d="M-130 105 A130 130 0 0 1 130 105" stroke-width="8"/><path d="M-97 105 A97 97 0 0 1 97 105" stroke-width="12"/><path d="M-67 105 A67 67 0 0 1 67 105" stroke-width="8"/><path d="M-165 105H165 M0 105V-68 M-165 105L-120 -16 M165 105L120 -16 M-165 105L-76 -51 M165 105L76 -51" stroke-width="7"/><path d="M-160 117H160" stroke="#4e6677" stroke-width="13"/></g></g></defs>
+<use href="#motif" transform="translate(256 256)"/>
+<use href="#motif" transform="translate(768 256)"/>
+<use href="#motif" transform="translate(1280 256)"/>
+<use href="#motif" transform="translate(256 768)"/>
+<use href="#motif" transform="translate(768 768)"/>
+<use href="#motif" transform="translate(1280 768)"/>
+<use href="#motif" transform="translate(256 1280)"/>
+<use href="#motif" transform="translate(768 1280)"/>
+<use href="#motif" transform="translate(1280 1280)"/>
+</svg>

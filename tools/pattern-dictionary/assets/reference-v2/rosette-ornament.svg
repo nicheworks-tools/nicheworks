@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1536" viewBox="0 0 1536 1536" role="img" aria-label="rosette-ornament original representative diagram">
+<rect width="1536" height="1536" fill="#f8f5ec"/>
+<defs><g id="motif"><g stroke="#9e543b" stroke-width="6" stroke-linejoin="round"><ellipse cx="0" cy="-84" rx="36" ry="77" transform="rotate(0)" fill="#d47b74"/><ellipse cx="0" cy="-84" rx="36" ry="77" transform="rotate(36)" fill="#dfa96b"/><ellipse cx="0" cy="-84" rx="36" ry="77" transform="rotate(72)" fill="#d47b74"/><ellipse cx="0" cy="-84" rx="36" ry="77" transform="rotate(108)" fill="#dfa96b"/><ellipse cx="0" cy="-84" rx="36" ry="77" transform="rotate(144)" fill="#d47b74"/><ellipse cx="0" cy="-84" rx="36" ry="77" transform="rotate(180)" fill="#dfa96b"/><ellipse cx="0" cy="-84" rx="36" ry="77" transform="rotate(216)" fill="#d47b74"/><ellipse cx="0" cy="-84" rx="36" ry="77" transform="rotate(252)" fill="#dfa96b"/><ellipse cx="0" cy="-84" rx="36" ry="77" transform="rotate(288)" fill="#d47b74"/><ellipse cx="0" cy="-84" rx="36" ry="77" transform="rotate(324)" fill="#dfa96b"/><circle r="45" fill="#f4ca75"/><circle r="20" fill="#9c593d"/></g></g></defs>
+<use href="#motif" transform="translate(256 256)"/>
+<use href="#motif" transform="translate(768 256)"/>
+<use href="#motif" transform="translate(1280 256)"/>
+<use href="#motif" transform="translate(256 768)"/>
+<use href="#motif" transform="translate(768 768)"/>
+<use href="#motif" transform="translate(1280 768)"/>
+<use href="#motif" transform="translate(256 1280)"/>
+<use href="#motif" transform="translate(768 1280)"/>
+<use href="#motif" transform="translate(1280 1280)"/>
+</svg>
