@@ -3,6 +3,7 @@ import path from 'node:path';
 
 const root = process.cwd();
 const phonesPath = path.join(root, 'tools/phone-quickcheck/data/phones.json');
+const growthPath = path.join(root, 'tools/phone-quickcheck/data/phones-growth-20261103.json');
 const accessoriesPath = path.join(root, 'tools/phone-quickcheck/data/accessories.json');
 const failures = [];
 const fail = (message) => failures.push(message);
@@ -11,10 +12,13 @@ const finitePositive = (value) => Number.isFinite(Number(value)) && Number(value
 
 const phonePayload = JSON.parse(fs.readFileSync(phonesPath, 'utf8'));
 const accessoryPayload = JSON.parse(fs.readFileSync(accessoriesPath, 'utf8'));
-const phones = Array.isArray(phonePayload.phones) ? phonePayload.phones : [];
+const growthPayload = JSON.parse(fs.readFileSync(growthPath, 'utf8'));
+const growth = Array.isArray(growthPayload.phones) ? growthPayload.phones : [];
+const phones = [...(Array.isArray(phonePayload.phones) ? phonePayload.phones : []), ...growth];
 const accessories = Array.isArray(accessoryPayload.accessories) ? accessoryPayload.accessories : [];
 
-if (phones.length < 241) fail(`expected at least 241 phones, got ${phones.length}`);
+if (phones.length < 250) fail(`expected at least 250 official-source phones, got ${phones.length}`);
+if (growth.length !== 9 || growthPayload.updatedAt !== '2026-11-03') fail('curated Nov 3 growth pack must retain 9 verified devices');
 if (!/^2026-\d{2}-\d{2}$/.test(String(phonePayload.updatedAt || ''))) fail('phones updatedAt must be a 2026 ISO date');
 
 const ids = new Set();
