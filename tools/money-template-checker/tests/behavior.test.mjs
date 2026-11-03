@@ -70,6 +70,16 @@ assert.equal(optionalEmpty.value, 0);
 assert.equal(optionalEmpty.empty, true);
 
 assert.equal(api.parseMoneyInput({ value: '120000' }, '月収', true).value, 120000);
+for (const fractional of ['0.01', '1.5', '120000.25', '999999998.5', '-0.25']) {
+  assert.equal(api.parseMoneyInput({ value: fractional }, '月収', true).ok, false,
+    'JPY input cannot quietly round cents: ' + fractional);
+  assert.equal(api.parseMoneyInputEn({ value: fractional }, 'Income', true).ok, false,
+    'English JPY input rejects fractional yen: ' + fractional);
+}
+assert.match(api.parseMoneyInput({ value: '3.5' }, '固定費', false).error, /整数/);
+assert.match(api.parseMoneyInputEn({ value: '3.5' }, 'Fixed', false).error, /whole number/);
+assert.equal(api.parseMoneyInput({ value: '0' }, '貯蓄', false).value, 0);
+assert.equal(api.parseMoneyInputEn({ value: '999999999' }, 'Income', true).value, 999999999);
 assert.equal(api.parseMoneyInput({ value: '-1' }, '月収', true).ok, false);
 assert.equal(api.parseMoneyInput({ value: 'abc' }, '月収', true).ok, false);
 assert.equal(api.parseMoneyInput({ value: '1000000000' }, '月収', true).ok, false);
