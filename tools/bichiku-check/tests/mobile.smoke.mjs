@@ -133,11 +133,11 @@ try{
   await page.locator('details.g-option[data-option="water2L"] summary').click();
   await page.locator('input[data-option-bottles="water2L"]').fill("3");
   await page.locator('input[data-option-bottles="water2L"]').press("Tab");
-  assert.match(await page.locator(".g-detail-status").innerText(),/3L/,"3 two-litre bottles should cover 6L of a 9L need");
+  assert.match(await page.locator(".g-detail-status").innerText(),/15L/,"3 two-litre bottles should cover 6L of a default 21L need");
   await page.locator('details.g-option[data-option="water500"] summary').click();
   await page.locator('input[data-option-bottles="water500"]').fill("4");
   await page.locator('input[data-option-bottles="water500"]').press("Tab");
-  assert.match(await page.locator(".g-detail-status").innerText(),/1L/,"four half-litre bottles add 2L");
+  assert.match(await page.locator(".g-detail-status").innerText(),/13L/,"four half-litre bottles add 2L");
   await noOverflow(page,"bottle-count editing");
   await page.locator("button[data-back]").click();
   await page.locator('button[data-goal="food"]').click();
@@ -151,7 +151,7 @@ try{
   await page.locator('input[data-option-qty="cannedVeg"]').press("Tab");
   assert.match(await page.locator(".g-food-role").nth(0).innerText(),/1 種類/);
   assert.match(await page.locator(".g-food-role").nth(1).innerText(),/1 種類/);
-  assert.match(await page.locator(".g-detail-status").innerText(),/9/,"vegetables and fish should not cover the 9 staple portions");
+  assert.match(await page.locator(".g-detail-status").innerText(),/21/,"vegetables and fish should not cover the 21 default staple portions");
   await page.reload({waitUntil:"domcontentloaded"});
   await page.locator("#calculate").click();
   await page.locator('button[data-goal="water"]').click();
@@ -160,7 +160,7 @@ try{
   assert.equal(await page.locator('input[data-option-bottles="water2L"]').inputValue(),"3");
   await page.locator('details.g-option[data-option="water500"] summary').click();
   assert.equal(await page.locator('input[data-option-bottles="water500"]').inputValue(),"4");
-  assert.match(await page.locator(".g-detail-status").innerText(),/1L/);
+  assert.match(await page.locator(".g-detail-status").innerText(),/13L/);
   assert.deepEqual(exceptions,[]);
   console.log("PASS 390px water bottles, side-dish audit, no false staple credit and persistence");
   passed++;await ctx.close();
