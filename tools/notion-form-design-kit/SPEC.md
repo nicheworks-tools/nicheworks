@@ -63,6 +63,7 @@ The workflow is a compact use-case/preset form followed by three vertically stac
 - [ ] Every documented preset can generate property, pipeline, and message-template output without Notion credentials.
 - [ ] Field checkboxes materially change the generated design rather than being decorative controls.
 - [ ] Copy, Markdown save, and TXT save operate on locally generated content.
+- [ ] Switching JP/EN after generating refreshes all three draft panels in the selected language so clipboard and file exports are not mislabeled.
 - [ ] The UI and specification do not imply that a Notion database/workspace is modified automatically.
 
 ## Implementation evidence
