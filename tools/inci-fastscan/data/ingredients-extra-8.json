@@ -129,7 +129,7 @@
 {"id":"wave4_c3_darutoside","en":"Darutoside","jp":[],"alias":[],"safety":"safe","category":"skin conditioning"},
 {"id":"wave4_c3_glyceryl_behenate","en":"Glyceryl Behenate","jp":["ベヘン酸グリセリル"],"alias":[],"safety":"safe","category":"emollient"},
 {"id":"wave4_c3_glycine_soja_oil","en":"Glycine Soja (Soybean) Oil","jp":[],"alias":[],"safety":"safe","category":"oil"},
-{"id":"wave4_c3_glycine_soja_sterols","en":"Glycine Soja (Soybean) Sterols","jp":[],"alias":[],"safety":"safe","category":"emollient"},
+{"id":"wave4_c3_glycine_soja_sterols","en":"Glycine Soja (Soybean) Sterols","jp":["ダイズステロール"],"alias":[],"safety":"safe","category":"emollient"},
 {"id":"wave4_c3_glycolipids","en":"Glycolipids","jp":[],"alias":[],"safety":"safe","category":"skin conditioning"},
 {"id":"wave4_c3_helianthus_seed_wax","en":"Helianthus Annuus (Sunflower) Seed Wax","jp":[],"alias":[],"safety":"safe","category":"texture agent"},
 {"id":"wave4_c3_hippophae_rhamnoides_fruit_oil","en":"Hippophae Rhamnoides (Seaberry) Fruit Oil","jp":[],"alias":[],"safety":"safe","category":"oil"},
