@@ -74,6 +74,7 @@ test('BOM CSV preview skips invalid dates, amounts and extra columns but accepts
     entries: [], normalizeWorkplaceName: v => String(v).trim(),
     makeDedupeKey: e => [e.date,e.workplace,e.category,e.amount].join('|'),
     openImportPreview(state) { preview = state; },
+    emptyRowData() { return { date: '', workplace: '', category: '', amount: 0, memo: '' }; },
     showError(msg) { error = msg; }
   });
   importCSVFile({ text: '\uFEFFdate,workplace,category,amount,memo\n'
