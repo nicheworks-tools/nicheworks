@@ -69,12 +69,12 @@ test('variant panel follows role changes; copying CSV columns restores the heade
   assert.doesNotMatch(get('extraOutputEn').textContent, /Editor/);
   assert.match(get('extraOutputJa').textContent, /Proofreader/);
   await get('copyCsvBtn').emit('click');
-  assert.match(copied(), /Application Date/);
+  assert.match(copied(), /応募日/);
   assert.match(get('extraOutputEn').textContent, /Application Date/);
   assert.doesNotMatch(get('extraOutputEn').textContent, /Proofreader/);
   await get('saveCsvBtn').emit('click');
   assert.equal(downloads.length, 1);
   assert.ok(downloads[0].text.startsWith('\uFEFF'));
-  assert.match(downloads[0].text, /Application Date/);
+  assert.match(downloads[0].text, /応募日/);
   assert.doesNotMatch(downloads[0].text, /Proofreader/);
 });
