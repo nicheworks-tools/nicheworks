@@ -68,6 +68,19 @@ function preserveOpen(){
  result.querySelectorAll("details[data-option]").forEach(el=>{if(el.open)openOptions.add(el.dataset.option);else openOptions.delete(el.dataset.option)});
  result.querySelectorAll("details[data-parent]").forEach(el=>{if(el.open)openParents.add(el.dataset.parent);else openParents.delete(el.dataset.parent)});
 }
+function foodGroupsHtml(a){
+ const groups=a.foodGroups||[];
+ return '<div class="g-food-review" aria-label="'+esc(T.foodGroupTitle)+'">'+
+ '<h4>'+esc(T.foodGroupTitle)+'</h4>'+
+ groups.map(g=>{
+   const status=g.usableKinds>0?T.groupListed:g.recordedKinds>0?T.groupReview:T.groupEmpty;
+   return '<div class="g-food-role"><strong>'+esc(T["group"+g.role.charAt(0).toUpperCase()+g.role.slice(1)])+'</strong>'+
+    '<span>'+esc(status)+(g.usableKinds>0?' · '+g.usableKinds+' '+esc(T.groupKinds):"")+'</span></div>';
+ }).join("")+
+ '<p class="g-fine">'+esc(T.groupCaution)+'</p>'+
+ '<a href="https://www.maff.go.jp/j/zyukyu/foodstock/chapter03.html" target="_blank" rel="noopener">'+esc(T.groupSource)+'</a>'+
+ '</div>';
+}
 function conditions(a){
  if(goal==="food")return '<p>'+esc(a.waterConflict?T.waterShort:T.foodRequires)+'</p>'+
  '<label class="g-check"><input type="checkbox" data-setting="safeWaterConfirmed" '+(state.safeWaterConfirmed?"checked":"")+'>'+esc(T.waterConfirm)+'</label>'+
@@ -75,7 +88,7 @@ function conditions(a){
  '<p class="g-fine">'+esc(T.prepExplanation)+'</p>'+
  '<p class="g-water-summary">'+esc(T.prepAllocated)+': <strong>'+fmt(a.waterAllocation)+'L</strong></p>'+
  '<p class="g-water-summary">'+esc(T.waterRemaining)+': <strong>'+fmt(a.waterRemainingAfterPrep)+'L</strong></p>'+
- (a.uncheckedFoods.length?'<p class="g-fine">'+esc(T.prepUnchecked)+'</p>':"");
+ (a.uncheckedFoods.length?'<p class="g-fine">'+esc(T.prepUnchecked)+'</p>':"")+foodGroupsHtml(a);
  if(goal==="toilet")return '<p>'+esc(T.toiletExplanation)+'</p>'+
  '<label class="g-check"><input type="checkbox" data-setting="toiletAssemblyConfirmed" '+(state.toiletAssemblyConfirmed?"checked":"")+'>'+esc(T.toiletConfirm)+'</label>';
  if(goal==="warmth")return '<p>'+esc(T.floorExplanation)+'</p><div class="g-layers">'+["sleepPad","blanket"].map(id=>{
@@ -90,7 +103,7 @@ function parentRows(a){
  const id=row.item.id,x=getBasic(id);
  return '<div class="g-parent"><div class="g-parent-head"><strong>'+esc(row.item.names[lang]||row.item.names.ja)+'</strong>'+
  '<span class="'+(row.missing?"g-danger":"g-ok")+'">'+esc(T.missing)+': '+fmt(row.missing)+unit(id)+'</span></div>'+meter(row)+
- '<div class="g-parent-fields"><label>'+esc(T.manual)+'<input type="number" min="0" max="10000000" inputmode="decimal" step="'+(id==="water"?"0.5":"1")+'" data-basic="'+id+'" value="'+fmt(n(x.qty))+'"></label>'+
+ '<div class="g-parent-fields"><label>'+esc(T.manual)+' · '+esc(id==="water"?T.litersTotal:id==="food"?T.mealPortions:id==="toilet"?T.toiletUses:T.quantity)+'<input type="number" min="0" max="10000000" inputmode="decimal" step="'+(id==="water"?"0.5":"1")+'" data-basic="'+id+'" value="'+fmt(n(x.qty))+'"></label>'+
  '<span>'+esc(T.need)+': '+fmt(row.required)+unit(id)+'</span></div>'+
  '<details data-parent="'+id+'" '+(openParents.has(id)?"open":"")+'><summary>'+esc(T.target)+' / '+esc(T.expiry)+'</summary>'+
  '<div class="g-parent-fields"><label>'+esc(T.target)+'<input type="number" min="0" data-target="'+id+'" value="'+(x.target==null?"":fmt(n(x.target)))+'" placeholder="'+fmt(row.autoTarget)+'"></label>'+
@@ -107,7 +120,12 @@ function renderChoices(a){
  const arr=choices.filter(o=>g.members.includes(o.parent)&&allowedTab(o)&&(!search||Object.values(o.names).join(" ").toLowerCase().includes(search.toLowerCase())));
  if(!arr.length)return '<p class="g-fine">'+esc(T.noOptions)+'</p>';
  return arr.map(o=>{
- const v=getOption(o.id),countable=o.equivalence==="full"&&(!state.noHeat||!["heat","verify"].includes(o.prep))&&(!state.powerOut||state.offGridHeatConfirmed||o.prep!=="heat")&&(!o.requiresWater||(a.waterForPrep&&v.prepConfirmed===true&&n(v.prepWaterLiters)>0));
+ const v=getOption(o.id),bottleFactor=o.bottleLiters||0;
+ const qLabel=bottleFactor?T.bottleCount:o.parent==="water"?T.litersTotal:o.parent==="food"?T.mealPortions:o.parent==="toilet"?T.toiletUses:T.quantity;
+ const qValue=bottleFactor?fmt(n(v.qty)/bottleFactor):fmt(n(v.qty));
+ const qAttr=bottleFactor?"data-option-bottles":"data-option-qty";
+ const vWaterNote=bottleFactor?'<p class="g-fine">'+esc(T.bottleSubtotal)+': <strong>'+fmt(n(v.qty))+'L</strong>. '+esc(T.bottleNote)+'</p>':"";
+ const countable=o.equivalence==="full"&&(!state.noHeat||!["heat","verify"].includes(o.prep))&&(!state.powerOut||state.offGridHeatConfirmed||o.prep!=="heat")&&(!o.requiresWater||(a.waterForPrep&&v.prepConfirmed===true&&n(v.prepWaterLiters)>0));
  const unexpired=!v.expiry||v.expiry>=today();
  const ready=n(v.qty)>0&&unexpired&&(countable||(o.id==="toiletBags"&&state.toiletAssemblyConfirmed));
  const itemStatus=n(v.qty)===0?T.enterQuantity:!unexpired?T.expiredOption:o.equivalence!=="full"&&o.id!=="toiletBags"?T.notEquivalent:ready?T.counted:T.notReady;
@@ -117,8 +135,8 @@ function renderChoices(a){
  '<summary><strong>'+esc(name)+'</strong><small>'+esc(O[o.kind]||o.kind)+'</small></summary>'+
  '<div class="g-option-body"><p>'+esc(warning)+'</p><p class="'+(ready?"g-ok":"g-pending")+'">'+esc(itemStatus)+'</p>'+
  (o.sourceUrl?'<a href="'+esc(o.sourceUrl)+'" target="_blank" rel="noopener">'+esc(T.official)+'</a>':"")+
- '<div class="g-parent-fields"><label>'+esc(T.quantity)+'<input type="number" min="0" max="10000000" step="'+(o.parent==="water"?"0.5":"1")+'" inputmode="decimal" data-option-qty="'+o.id+'" value="'+fmt(n(v.qty))+'"></label>'+
- '<label>'+esc(T.expiry)+'<input type="date" data-option-expiry="'+o.id+'" value="'+esc(v.expiry||"")+'"></label></div>'+
+ '<div class="g-parent-fields"><label>'+esc(qLabel)+'<input type="number" min="0" max="10000000" step="'+(bottleFactor?"1":o.parent==="water"?"0.5":"1")+'" inputmode="decimal" '+qAttr+'="'+o.id+'" value="'+qValue+'"></label>'+
+ '<label>'+esc(T.expiry)+'<input type="date" data-option-expiry="'+o.id+'" value="'+esc(v.expiry||"")+'"></label></div>'+vWaterNote+
  (o.requiresWater?'<div class="g-water-item"><label class="g-input">'+esc(T.prepPerFood)+'<input type="number" min="0" max="10000000" step="0.1" inputmode="decimal" data-prep-liters="'+o.id+'" value="'+fmt(n(v.prepWaterLiters))+'"></label>'+
  '<label class="g-check"><input type="checkbox" data-prep-confirm="'+o.id+'" '+(v.prepConfirmed===true?"checked":"")+'>'+esc(T.prepItemConfirm)+'</label>'+
  '<p class="g-fine">'+esc(T.prepNumberWarning)+'</p></div>':"")+
@@ -240,10 +258,15 @@ result.addEventListener("change",e=>{
  if(id){const item=Object.assign({},getBasic(id));if(t.dataset.basic)item.qty=n(t.value);
   if(t.dataset.target){if(t.value==="")delete item.target;else item.target=n(t.value)}
   if(t.dataset.basicExpiry)item.expiry=t.value;state.stocks[key(id)]=item;save();preserveOpen();render();return}
- const optionId=t.dataset.optionQty||t.dataset.optionExpiry||t.dataset.prepLiters||t.dataset.prepConfirm;
+ const optionId=t.dataset.optionQty||t.dataset.optionBottles||t.dataset.optionExpiry||t.dataset.prepLiters||t.dataset.prepConfirm;
  if(optionId){
   const item=Object.assign({},getOption(optionId));
   if(t.dataset.optionQty){item.qty=n(t.value);item.prepConfirmed=false}
+  if(t.dataset.optionBottles){
+    const option=choices.find(o=>o.id===optionId),factor=option&&option.bottleLiters;
+    if(!factor)return;
+    item.qty=Math.round(n(t.value)*factor*100)/100;
+  }
   if(t.dataset.optionExpiry)item.expiry=t.value;
   if(t.dataset.prepLiters){item.prepWaterLiters=n(t.value);item.prepConfirmed=false}
   if(t.dataset.prepConfirm)item.prepConfirmed=t.checked;
