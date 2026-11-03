@@ -71,7 +71,7 @@ const matchModule = read('tools/manual-finder/phone-quickcheck-match.js');
 const linkVm = { window: {} };
 vm.runInNewContext(matchModule, linkVm);
 const quick = linkVm.window.MANUALFINDER_QC;
-const phoneModels = JSON.parse(read('tools/phone-quickcheck/data/phones.json')).phones;
+const phoneModels = [...JSON.parse(read('tools/phone-quickcheck/data/phones.json')).phones, ...JSON.parse(read('tools/phone-quickcheck/data/phones-growth-20261103.json')).phones];
 for (const [maker,models] of Object.entries(quick.models)) {
   const canonical = new Set(phoneModels.filter(p => p.manufacturer === maker).map(p => p.model));
   for (const model of models) check(canonical.has(model), `stale ManualFinder ${maker} model link ${model}`);
