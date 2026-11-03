@@ -64,6 +64,7 @@ The primary flow is a preset-driven input form followed by a generated text outp
 - [ ] Each supported preset renders its corresponding KPI inputs and can generate a structured log.
 - [ ] Enabling number anonymization replaces numeric substrings in KPI values, hypothesis, learnings, and notes with `XXX` without claiming complete de-identification or hiding ordinary non-numeric text.
 - [ ] Bilingual output, copy, Markdown, and TXT actions use the current generated draft.
+- [ ] Editing any KPI, hypothesis, learnings, or notes invalidates a previously generated draft. Copy and Markdown/TXT exports refuse stale outputs even when an input event is missed.
 - [ ] JP/EN modes preserve the publication/privacy warnings and the rule-based nature of next actions.
 
 ## Implementation evidence
