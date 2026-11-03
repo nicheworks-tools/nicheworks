@@ -71,7 +71,7 @@ const matchModule = read('tools/manual-finder/phone-quickcheck-match.js');
 const linkVm = { window: {} };
 vm.runInNewContext(matchModule, linkVm);
 const quick = linkVm.window.MANUALFINDER_QC;
-const phoneModels = JSON.parse(read('tools/phone-quickcheck/data/phones.json')).phones;
+const phoneModels = [...JSON.parse(read('tools/phone-quickcheck/data/phones.json')).phones, ...JSON.parse(read('tools/phone-quickcheck/data/phones-growth-20261103.json')).phones];
 for (const [maker,models] of Object.entries(quick.models)) {
   const canonical = new Set(phoneModels.filter(p => p.manufacturer === maker).map(p => p.model));
   for (const model of models) check(canonical.has(model), `stale ManualFinder ${maker} model link ${model}`);
@@ -103,3 +103,5 @@ console.log(`Phone QuickCheck affiliate contract passed: ${accessoryKeys.length}
 
 // The owned GA4→Sheets adapter is an additive, direct-Google integration.
 execFileSync(process.execPath, ['scripts/analytics/test-phone-quickcheck-ga4.mjs'], { stdio: 'inherit' });
+// Validate crawlable static index, official source provenance, and commercial SEO guide.
+execFileSync(process.execPath, ['scripts/check-phone-quickcheck-growth-seo.mjs'], { stdio: 'inherit' });

@@ -7,7 +7,8 @@ import path from 'node:path';
 const url = new URL(process.argv.find(x => x.startsWith('--url='))?.slice(6) || 'https://nicheworks.app/tools/phone-quickcheck/');
 assert.ok(['https:', 'http:'].includes(url.protocol), 'HTTP(S) URL only');
 const canonicalPayload = JSON.parse(readFileSync('tools/phone-quickcheck/data/phones.json','utf8'));
-const phones = canonicalPayload.phones;
+const growthPayload = JSON.parse(readFileSync('tools/phone-quickcheck/data/phones-growth-20261103.json','utf8'));
+const phones = [...canonicalPayload.phones, ...growthPayload.phones];
 const count = phones.length;
 const artifacts = 'artifacts/phone-quickcheck-production';
 mkdirSync(artifacts,{recursive:true});
@@ -17,7 +18,7 @@ const req = async endpoint => fetch(new URL(endpoint,url), {
   signal:AbortSignal.timeout(15000)
 });
 async function httpSmoke(){
-  const names = ['','app.js','style.css','data/phones.json','data/accessories.json'];
+  const names = ['','app.js','style.css','data/phones.json','data/phones-growth-20261103.json','data/accessories.json'];
   const entries = await Promise.all(names.map(async name => {
     const response = await req(name);
     assert.equal(response.status,200,(name||'index')+' status '+response.status);
@@ -29,11 +30,14 @@ async function httpSmoke(){
   assert.ok(data[''].includes('id="phoneList"'),'HTML list missing');
   assert.ok(data['app.js'].includes("wirelessStatus === 'not_supported'"),'Live JS is stale');
   assert.ok(data['app.js'].includes("const deepPhone ="),'Live JS lacks the exact-model deep-link deployment');
+  assert.ok(data['app.js'].includes('phones-growth-20261103.json'),'Live JS lacks curated phone growth loader');
   assert.ok(data['style.css'].includes('.bottom-sheet'),'Live CSS missing');
   assert.ok(data['style.css'].includes('.bottom-sheet .detail-title{padding-right:46px}'),'Live CSS missing mobile close-button collision fix');
   const livePayload = JSON.parse(data['data/phones.json']);
-  const live = livePayload.phones;
-  assert.equal(live.length,count,'Public JSON count is stale');
+  const liveGrowth = JSON.parse(data['data/phones-growth-20261103.json']);
+  assert.deepEqual(liveGrowth,growthPayload,'Public growth JSON differs from reviewed official-source pack');
+  const live = [...livePayload.phones,...liveGrowth.phones];
+  assert.equal(live.length,count,'Public combined phone count is stale');
   assert.deepEqual(livePayload,canonicalPayload,'Public JSON differs from the canonical GitHub data (including model facts/provenance)');
   assert.ok(live.some(p=>p.id==='fcnt-arrows-alpha2-m10'),'FCNT Alpha backfill missing from public JSON');
   assert.ok(live.some(p=>p.id==='fcnt-arrows-we2-plus-m06'),'FCNT We2 Plus backfill missing from public JSON');
@@ -132,6 +136,16 @@ async function httpSmoke(){
   for(const key of ['charger-pd-check-wattage','charger-pd-90w']){
     assert.ok(liveAccessories.accessories.some(x=>x.key===key),'Public accessory category missing: '+key);
   }
+  // Validate deployed crawlable commercial SEO pages, not only dynamic JS assets.
+  for (const [page,indicator] of [['models/','data-phone-id='],['charging-guide/','適格販売により収入を得ています']]) {
+    const response = await req(page);
+    assert.equal(response.status,200,'SEO landing '+page+' HTTP '+response.status);
+    const html = await response.text();
+    assert.ok(html.includes(indicator),'SEO landing '+page+' is stale or absent');
+    assert.ok(html.includes('<link rel="canonical"'),'SEO landing '+page+' must have canonical');
+    if (page === 'models/') assert.equal((html.match(/data-phone-id=/g)||[]).length,count,'SEO model index count differs from maintained phone data');
+  }
+  console.log('SEO HTTP PASS: 250 crawlable phone entries, commercial charging guide');
   console.log('HTTP PASS: '+count+' verified public phones, assets and latest records');
 }
 async function until(check,ms){

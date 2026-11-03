@@ -165,14 +165,23 @@
 
   async function loadData() {
     try {
-      const [phonesResponse, accessoriesResponse] = await Promise.all([
+      const [phonesResponse, growthResponse, accessoriesResponse] = await Promise.all([
         fetch('./data/phones.json', { cache: 'no-store' }),
+        fetch('./data/phones-growth-20261103.json', { cache: 'no-store' }),
         fetch('./data/accessories.json', { cache: 'no-store' })
       ]);
-      if (!phonesResponse.ok || !accessoriesResponse.ok) throw new Error('data fetch failed');
+      if (!phonesResponse.ok || !growthResponse.ok || !accessoriesResponse.ok) throw new Error('data fetch failed');
       const phonesPayload = await phonesResponse.json();
+      const growthPayload = await growthResponse.json();
       const accessoriesPayload = await accessoriesResponse.json();
-      state.phones = Array.isArray(phonesPayload.phones) ? phonesPayload.phones.map(normalizePhone).filter(Boolean) : [];
+      const maintained = [...(Array.isArray(phonesPayload.phones) ? phonesPayload.phones : []), ...(Array.isArray(growthPayload.phones) ? growthPayload.phones : [])];
+      const identities = new Set();
+      for (const item of maintained) {
+        const key = String(item?.manufacturer).toLowerCase() + ':' + String(item?.model).toLowerCase();
+        if (identities.has(key)) throw new Error('duplicate phone: ' + key);
+        identities.add(key);
+      }
+      state.phones = maintained.map(normalizePhone).filter(Boolean);
       state.accessories = Array.isArray(accessoriesPayload.accessories) ? accessoriesPayload.accessories : [];
       // Exact canonical deep link only; ignored if invalid/unknown, never sent to Amazon.
       let deepModel = '';
