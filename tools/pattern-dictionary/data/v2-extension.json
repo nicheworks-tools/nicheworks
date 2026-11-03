@@ -1,7 +1,7 @@
 {
-  "schema_version": "pattern-dictionary-v2-supplement-4",
-  "updated": "2026-11-02",
-  "publication_note": "Twenty source-attributed original-diagram bilingual supplement entries beyond frozen 100. Width/color/style conventions are described without fabricated exact standards.",
+  "schema_version": "pattern-dictionary-v2-supplement-5",
+  "updated": "2026-11-03",
+  "publication_note": "Ten additional source-documented geometric/ornamental/graphic concepts beyond the prior 120, with original representative schematics. Categories such as mosaic, Op Art and guilloche are qualified and not asserted to denote one fixed universal motif.",
   "entries": [
     {
       "id": "sakura-motif",
@@ -4533,6 +4533,2213 @@
         "size": "1536x1536",
         "status": "original-editorial-vector",
         "claim": "Original editorial schematic; no source image reproduced. Width/color/texture vary in real goods."
+      }
+    },
+    {
+      "id": "guilloche",
+      "uses": {
+        "ja": [
+          "建築彫刻",
+          "古代の象牙細工",
+          "装飾枠",
+          "金工"
+        ],
+        "en": [
+          "architectural carving",
+          "ivory inlay",
+          "ornamental borders",
+          "metalwork"
+        ]
+      },
+      "source": {
+        "pattern_id": "guilloche",
+        "verification_state": "qualified",
+        "term_scope": "Interlaced or repeating loop/strand ornament. Distinguish the historic interlaced band motif from guilloché engine-turning and enamelling, which name related but different surface techniques.",
+        "verified_names": {
+          "ja": "ギヨシェ模様",
+          "en": "Guilloche Ornament"
+        },
+        "verified_aliases": {
+          "ja": [
+            "ギロシェ",
+            "ギヨーシェ",
+            "連環文"
+          ],
+          "en": [
+            "guilloche pattern",
+            "interlaced guilloche",
+            "guilloché ornament"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "The Metropolitan Museum of Art — Three border strips",
+            "url": "https://www.metmuseum.org/art/collection/search/324594",
+            "supports": [
+              "Identifies connected circular bands on Assyrian ivory as guilloche"
+            ]
+          },
+          {
+            "publisher": "Victoria and Albert Museum — How was it made? Guilloché enamelling",
+            "url": "https://www.vam.ac.uk/articles/how-was-it-made-guilloch%C3%A9-enamelling",
+            "supports": [
+              "Explains the distinct engine-turned engraving and enamelling use of the term"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "guilloche",
+        "review_state": "source-reviewed",
+        "verification_state": "qualified",
+        "names": {
+          "ja": "ギヨシェ模様",
+          "en": "Guilloche Ornament"
+        },
+        "aliases": {
+          "ja": [
+            "ギロシェ",
+            "ギヨーシェ",
+            "連環文"
+          ],
+          "en": [
+            "guilloche pattern",
+            "interlaced guilloche",
+            "guilloché ornament"
+          ]
+        },
+        "term_scope": "Interlaced or repeating loop/strand ornament. Distinguish the historic interlaced band motif from guilloché engine-turning and enamelling, which name related but different surface techniques.",
+        "definition": {
+          "ja": "輪や帯が絡み合い、規則的に交差・連結して進む装飾文様。古代の彫刻・象牙細工にも連環状のギヨシェ文が見られます。一方、現代の「ギヨシェ」は旋盤で細密な曲線を彫る技法や、その上に施すエナメル装飾も指すため、用語を混同しないことが重要です。",
+          "en": "An interlacing decorative motif made of linked loops or bands, documented on ancient carved objects. The word also refers to mechanically engine-turned engraving and enamel work; these are related uses of the term, not proof that every guilloche design is the same interlaced repeat."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "連続する輪や帯が、編み込まれたように交差します",
+            "古代の連環模様と、精密な旋盤彫りによるギヨシェ装飾は区別します",
+            "単なる同心円と違い、隣り合う輪が互いに絡む構成が代表例です"
+          ],
+          "en": [
+            "Linked circles or ribbons seem to interweave along a border",
+            "Ancient guilloche bands differ from modern engine-turned engraving",
+            "Unlike isolated concentric rings, neighboring loops interlock in a repeated sequence"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "建築彫刻",
+            "古代の象牙細工",
+            "装飾枠",
+            "金工"
+          ],
+          "en": [
+            "architectural carving",
+            "ivory inlay",
+            "ornamental borders",
+            "metalwork"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "gold",
+            "blue"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Original editorial palette, not a required characteristic of the underlying ornament."
+        },
+        "qualification": {
+          "ja": "「ギヨシェ」は連環文様と金属への精密な機械彫刻・七宝技法の両方に使われます。この図解は連環文様の一例であり、技法全体の標準形ではありません。",
+          "en": "Guilloche can refer to interlaced ornament or engine-turned engraved/enamelled surfaces. This image shows one interlaced border motif, not a universal engine-turning pattern."
+        }
+      },
+      "runtime": {
+        "id": "guilloche",
+        "names": {
+          "ja": "ギヨシェ模様",
+          "en": "Guilloche Ornament"
+        },
+        "aliases": {
+          "ja": [
+            "ギロシェ",
+            "ギヨーシェ",
+            "連環文"
+          ],
+          "en": [
+            "guilloche pattern",
+            "interlaced guilloche",
+            "guilloché ornament"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "二重の輪が絡む帯状の模様",
+            "古代のギヨシェ文",
+            "交差する輪の装飾"
+          ],
+          "en": [
+            "interlaced circle guilloche border",
+            "guilloche ancient carved loops",
+            "engine turned guilloche vs interlace"
+          ]
+        },
+        "families": [
+          "ornamental",
+          "geometric"
+        ],
+        "motifs": [
+          "連環",
+          "交差する輪"
+        ],
+        "visual": {
+          "geometry": [
+            "ornamental",
+            "geometric"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "gold",
+            "blue"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial palette"
+        },
+        "uses": [
+          "textile",
+          "interior"
+        ],
+        "culture": [],
+        "relationships": {
+          "similar": [
+            "arabesque",
+            "greek-key",
+            "concentric-circles"
+          ],
+          "often_confused_with": [
+            "concentric-circles",
+            "arabesque"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "輪や帯が絡み合い、規則的に交差・連結して進む装飾文様。古代の彫刻・象牙細工にも連環状のギヨシェ文が見られます。一方、現代の「ギヨシェ」は旋盤で細密な曲線を彫る技法や、その上に施すエナメル装飾も指すため、用語を混同しないことが重要です。",
+          "en": "An interlacing decorative motif made of linked loops or bands, documented on ancient carved objects. The word also refers to mechanically engine-turned engraving and enamel work; these are related uses of the term, not proof that every guilloche design is the same interlaced repeat."
+        },
+        "reference_path": "assets/reference-v2/guilloche.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "ornamental",
+            "geometric"
+          ],
+          "contexts": []
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/guilloche.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Newly drawn schematic only; original works and copyrighted images are not reproduced; non-universal design families are qualified."
+      }
+    },
+    {
+      "id": "rosette-ornament",
+      "uses": {
+        "ja": [
+          "古代工芸",
+          "装飾金具",
+          "建築装飾",
+          "服飾"
+        ],
+        "en": [
+          "ancient decorative arts",
+          "metal fittings",
+          "architecture",
+          "dress ornament"
+        ]
+      },
+      "source": {
+        "pattern_id": "rosette-ornament",
+        "verification_state": "verified",
+        "term_scope": "Radially arranged flower-shaped decorative element; number, material and stylistic rendering of petals vary.",
+        "verified_names": {
+          "ja": "ロゼット装飾",
+          "en": "Rosette Ornament"
+        },
+        "verified_aliases": {
+          "ja": [
+            "ロゼット模様",
+            "花形円飾",
+            "円花文"
+          ],
+          "en": [
+            "rosette motif",
+            "radial flower ornament",
+            "rosette pattern"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "The Metropolitan Museum of Art — Rosette Ornament",
+            "url": "https://www.metmuseum.org/art/collection/search/568022",
+            "supports": [
+              "Documents a historical faience rosette with an overlaid white flower and raised center"
+            ]
+          },
+          {
+            "publisher": "The Metropolitan Museum of Art — Rosette",
+            "url": "https://www.metmuseum.org/art/collection/search/207261",
+            "supports": [
+              "Documents the use of a rosette as a sewn clothing ornament"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "rosette-ornament",
+        "review_state": "source-reviewed",
+        "verification_state": "verified",
+        "names": {
+          "ja": "ロゼット装飾",
+          "en": "Rosette Ornament"
+        },
+        "aliases": {
+          "ja": [
+            "ロゼット模様",
+            "花形円飾",
+            "円花文"
+          ],
+          "en": [
+            "rosette motif",
+            "radial flower ornament",
+            "rosette pattern"
+          ]
+        },
+        "term_scope": "Radially arranged flower-shaped decorative element; number, material and stylistic rendering of petals vary.",
+        "definition": {
+          "ja": "中心から花弁状の部分が放射状に広がる円形の花形装飾。古代から金工・陶器・装飾部材などに使われ、花弁の数、輪郭、中心部の作り方はさまざまです。植物の種類を厳密に示す菊やバラの文様と常に一致するわけではありません。",
+          "en": "A round flower-like ornament with repeated petal shapes arranged around a center. Rosettes occur in ancient ceramics and architectural or metal decoration and vary in petal number and form; the term does not necessarily identify a botanical species."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "円の中心から花弁状の部品が均等に伸びます",
+            "花弁の数や尖り方に決まった一つの規格はありません",
+            "特定の菊・バラの描写でなく、抽象的な花形円飾の場合があります"
+          ],
+          "en": [
+            "Petal-shaped elements radiate around a central hub",
+            "Petal count and contour vary by artwork",
+            "The form may be abstract rather than a botanically specific flower"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "古代工芸",
+            "装飾金具",
+            "建築装飾",
+            "服飾"
+          ],
+          "en": [
+            "ancient decorative arts",
+            "metal fittings",
+            "architecture",
+            "dress ornament"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "gold",
+            "blue"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Original editorial palette, not a required characteristic of the underlying ornament."
+        }
+      },
+      "runtime": {
+        "id": "rosette-ornament",
+        "names": {
+          "ja": "ロゼット装飾",
+          "en": "Rosette Ornament"
+        },
+        "aliases": {
+          "ja": [
+            "ロゼット模様",
+            "花形円飾",
+            "円花文"
+          ],
+          "en": [
+            "rosette motif",
+            "radial flower ornament",
+            "rosette pattern"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "丸く花びらが広がる幾何学装飾",
+            "ロゼット柄",
+            "中心から花びらが放射する模様"
+          ],
+          "en": [
+            "rosette radial petal ornament",
+            "round flower motif metalwork",
+            "rosette vs chrysanthemum"
+          ]
+        },
+        "families": [
+          "floral",
+          "ornamental"
+        ],
+        "motifs": [
+          "放射状の花弁",
+          "円花"
+        ],
+        "visual": {
+          "geometry": [
+            "floral",
+            "ornamental"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "gold",
+            "blue"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial palette"
+        },
+        "uses": [
+          "textile",
+          "interior"
+        ],
+        "culture": [],
+        "relationships": {
+          "similar": [
+            "medallion",
+            "kiku-motif",
+            "hanabishi"
+          ],
+          "often_confused_with": [
+            "kiku-motif",
+            "medallion"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "中心から花弁状の部分が放射状に広がる円形の花形装飾。古代から金工・陶器・装飾部材などに使われ、花弁の数、輪郭、中心部の作り方はさまざまです。植物の種類を厳密に示す菊やバラの文様と常に一致するわけではありません。",
+          "en": "A round flower-like ornament with repeated petal shapes arranged around a center. Rosettes occur in ancient ceramics and architectural or metal decoration and vary in petal number and form; the term does not necessarily identify a botanical species."
+        },
+        "reference_path": "assets/reference-v2/rosette-ornament.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "floral",
+            "ornamental"
+          ],
+          "contexts": []
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/rosette-ornament.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Newly drawn schematic only; original works and copyrighted images are not reproduced; non-universal design families are qualified."
+      }
+    },
+    {
+      "id": "sunburst",
+      "uses": {
+        "ja": [
+          "金工装飾",
+          "陶磁器",
+          "壁装飾",
+          "グラフィック"
+        ],
+        "en": [
+          "metalwork",
+          "ceramics",
+          "interior ornament",
+          "graphics"
+        ]
+      },
+      "source": {
+        "pattern_id": "sunburst",
+        "verification_state": "verified",
+        "term_scope": "Lines or wedges radiate from a central point or circular center, evoking the rays of the sun; not all radial ornaments depict a literal sun.",
+        "verified_names": {
+          "ja": "サンバースト模様",
+          "en": "Sunburst Pattern"
+        },
+        "verified_aliases": {
+          "ja": [
+            "日輪放射",
+            "太陽光線模様",
+            "サンレイ"
+          ],
+          "en": [
+            "sunburst motif",
+            "sunray pattern",
+            "radiating rays"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "The Metropolitan Museum of Art — Snuffbox, Jean Frémin",
+            "url": "https://www.metmuseum.org/art/collection/search/200408",
+            "supports": [
+              "Describes an engraved sunburst of radiating lines behind floral decoration"
+            ]
+          },
+          {
+            "publisher": "The Metropolitan Museum of Art — White Bowl",
+            "url": "https://www.metmuseum.org/art/collection/search/451713",
+            "supports": [
+              "Documents an incised sunburst design inside a 12th-century bowl"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "sunburst",
+        "review_state": "source-reviewed",
+        "verification_state": "verified",
+        "names": {
+          "ja": "サンバースト模様",
+          "en": "Sunburst Pattern"
+        },
+        "aliases": {
+          "ja": [
+            "日輪放射",
+            "太陽光線模様",
+            "サンレイ"
+          ],
+          "en": [
+            "sunburst motif",
+            "sunray pattern",
+            "radiating rays"
+          ]
+        },
+        "term_scope": "Lines or wedges radiate from a central point or circular center, evoking the rays of the sun; not all radial ornaments depict a literal sun.",
+        "definition": {
+          "ja": "一点または円形の中心から光線を思わせる線・細長い三角形を放射状に広げる装飾。金工、陶器、室内装飾などに用いられます。外側への直線的な広がりが基本で、花びらを並べるロゼットや輪を重ねる同心円とは構造が違います。",
+          "en": "A decorative composition of rays or tapered wedges radiating from a central point or disc. Examples appear in historic metalwork and ceramics. The outward line structure distinguishes it from petaled rosettes and nested concentric rings."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "中心の一点または円から細長い線が外へ向かいます",
+            "光線の角度と太さは作品によって異なります",
+            "花弁やリングではなく、外向きの放射線が主な識別点です"
+          ],
+          "en": [
+            "Lines or tapering wedges spread outward from a common center",
+            "The ray spacing and length can vary",
+            "Unlike rosettes or concentric circles, the main structure is outward rays"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "金工装飾",
+            "陶磁器",
+            "壁装飾",
+            "グラフィック"
+          ],
+          "en": [
+            "metalwork",
+            "ceramics",
+            "interior ornament",
+            "graphics"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "gold",
+            "white"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Original editorial palette, not a required characteristic of the underlying ornament."
+        }
+      },
+      "runtime": {
+        "id": "sunburst",
+        "names": {
+          "ja": "サンバースト模様",
+          "en": "Sunburst Pattern"
+        },
+        "aliases": {
+          "ja": [
+            "日輪放射",
+            "太陽光線模様",
+            "サンレイ"
+          ],
+          "en": [
+            "sunburst motif",
+            "sunray pattern",
+            "radiating rays"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "中心からまっすぐ線が放射する模様",
+            "日差しみたいな柄",
+            "サンバースト 装飾"
+          ],
+          "en": [
+            "sunburst radial rays design",
+            "radiating lines ornament",
+            "sunray pattern versus rosette"
+          ]
+        },
+        "families": [
+          "geometric",
+          "ornamental"
+        ],
+        "motifs": [
+          "放射線",
+          "光線"
+        ],
+        "visual": {
+          "geometry": [
+            "geometric",
+            "ornamental"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "gold",
+            "white"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial palette"
+        },
+        "uses": [
+          "textile",
+          "interior"
+        ],
+        "culture": [],
+        "relationships": {
+          "similar": [
+            "rosette-ornament",
+            "medallion",
+            "concentric-circles"
+          ],
+          "often_confused_with": [
+            "rosette-ornament"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "一点または円形の中心から光線を思わせる線・細長い三角形を放射状に広げる装飾。金工、陶器、室内装飾などに用いられます。外側への直線的な広がりが基本で、花びらを並べるロゼットや輪を重ねる同心円とは構造が違います。",
+          "en": "A decorative composition of rays or tapered wedges radiating from a central point or disc. Examples appear in historic metalwork and ceramics. The outward line structure distinguishes it from petaled rosettes and nested concentric rings."
+        },
+        "reference_path": "assets/reference-v2/sunburst.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "geometric",
+            "ornamental"
+          ],
+          "contexts": []
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/sunburst.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Newly drawn schematic only; original works and copyrighted images are not reproduced; non-universal design families are qualified."
+      }
+    },
+    {
+      "id": "concentric-circles",
+      "uses": {
+        "ja": [
+          "陶磁器",
+          "布地プリント",
+          "ポスター",
+          "装飾"
+        ],
+        "en": [
+          "ceramics",
+          "textile prints",
+          "posters",
+          "ornament"
+        ]
+      },
+      "source": {
+        "pattern_id": "concentric-circles",
+        "verification_state": "verified",
+        "term_scope": "Multiple circles sharing a common center. Ring counts, spacing and colors vary; a circle by itself is not a concentric-circle repeat.",
+        "verified_names": {
+          "ja": "同心円模様",
+          "en": "Concentric Circles Pattern"
+        },
+        "verified_aliases": {
+          "ja": [
+            "同心円柄",
+            "多重円",
+            "円環模様"
+          ],
+          "en": [
+            "concentric rings",
+            "bullseye pattern",
+            "nested circles"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "The Metropolitan Museum of Art — Lydian Dish",
+            "url": "https://www.metmuseum.org/art/collection/search/248842",
+            "supports": [
+              "Documents a historic terracotta dish decorated with concentric circles"
+            ]
+          },
+          {
+            "publisher": "The Metropolitan Museum of Art — Cypriot Juglet",
+            "url": "https://www.metmuseum.org/art/collection/search/240074",
+            "supports": [
+              "Documents concentric circles used in ancient pottery ornament"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "concentric-circles",
+        "review_state": "source-reviewed",
+        "verification_state": "verified",
+        "names": {
+          "ja": "同心円模様",
+          "en": "Concentric Circles Pattern"
+        },
+        "aliases": {
+          "ja": [
+            "同心円柄",
+            "多重円",
+            "円環模様"
+          ],
+          "en": [
+            "concentric rings",
+            "bullseye pattern",
+            "nested circles"
+          ]
+        },
+        "term_scope": "Multiple circles sharing a common center. Ring counts, spacing and colors vary; a circle by itself is not a concentric-circle repeat.",
+        "definition": {
+          "ja": "中心を同じくする大小複数の円を重ねて見せる幾何学模様。陶器・織物・印刷デザインに幅広く使われます。一つの円を反復する水玉とは異なり、一つの単位に二重以上の入れ子状の輪があることが識別点です。",
+          "en": "A geometric ornament made of two or more circles sharing the same center. Concentric-ring decoration appears on ceramics and in graphic textiles. Unlike repeated plain dots, each motif unit contains nested circles."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "一つの中心を共有する二重以上の輪です",
+            "円同士の間隔や色の並びは固定ではありません",
+            "一つの塗り円を並べた水玉とは区別します"
+          ],
+          "en": [
+            "Two or more rings share the same center",
+            "Spacing and coloring between rings can vary",
+            "Unlike plain polka dots, each unit is a set of nested circles"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "陶磁器",
+            "布地プリント",
+            "ポスター",
+            "装飾"
+          ],
+          "en": [
+            "ceramics",
+            "textile prints",
+            "posters",
+            "ornament"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "blue",
+            "white"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Original editorial palette, not a required characteristic of the underlying ornament."
+        }
+      },
+      "runtime": {
+        "id": "concentric-circles",
+        "names": {
+          "ja": "同心円模様",
+          "en": "Concentric Circles Pattern"
+        },
+        "aliases": {
+          "ja": [
+            "同心円柄",
+            "多重円",
+            "円環模様"
+          ],
+          "en": [
+            "concentric rings",
+            "bullseye pattern",
+            "nested circles"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "丸の中に丸がある柄",
+            "同じ中心の円が何重も重なる模様",
+            "同心円プリント"
+          ],
+          "en": [
+            "nested rings pattern",
+            "multiple circles same center motif",
+            "bullseye circular print"
+          ]
+        },
+        "families": [
+          "geometric",
+          "dot"
+        ],
+        "motifs": [
+          "入れ子の輪",
+          "円環"
+        ],
+        "visual": {
+          "geometry": [
+            "geometric"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "blue",
+            "white"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial palette"
+        },
+        "uses": [
+          "textile",
+          "interior"
+        ],
+        "culture": [],
+        "relationships": {
+          "similar": [
+            "polka-dot",
+            "medallion",
+            "guilloche"
+          ],
+          "often_confused_with": [
+            "polka-dot",
+            "guilloche"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "中心を同じくする大小複数の円を重ねて見せる幾何学模様。陶器・織物・印刷デザインに幅広く使われます。一つの円を反復する水玉とは異なり、一つの単位に二重以上の入れ子状の輪があることが識別点です。",
+          "en": "A geometric ornament made of two or more circles sharing the same center. Concentric-ring decoration appears on ceramics and in graphic textiles. Unlike repeated plain dots, each motif unit contains nested circles."
+        },
+        "reference_path": "assets/reference-v2/concentric-circles.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "geometric"
+          ],
+          "contexts": []
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/concentric-circles.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Newly drawn schematic only; original works and copyrighted images are not reproduced; non-universal design families are qualified."
+      }
+    },
+    {
+      "id": "mosaic-pattern",
+      "uses": {
+        "ja": [
+          "床装飾",
+          "壁画",
+          "タイル",
+          "グラフィック"
+        ],
+        "en": [
+          "floor decoration",
+          "wall panels",
+          "tiles",
+          "graphics"
+        ]
+      },
+      "source": {
+        "pattern_id": "mosaic-pattern",
+        "verification_state": "qualified",
+        "term_scope": "A visual surface assembled from distinct small pieces (tesserae). It is a medium/technique category containing many motifs, not one canonical geometric repeat.",
+        "verified_names": {
+          "ja": "モザイク模様",
+          "en": "Mosaic Pattern"
+        },
+        "verified_aliases": {
+          "ja": [
+            "モザイク柄",
+            "小片組み合わせ文様",
+            "テッセラ文様"
+          ],
+          "en": [
+            "tesserae mosaic",
+            "mosaic design",
+            "tile mosaic pattern"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "The Metropolitan Museum of Art — Roman Mosaic from Lod",
+            "url": "https://www.metmuseum.org/ja/perspectives/the-roman-mosaic-from-lod-israel",
+            "supports": [
+              "Explains tesserae and geometric/pictorial mosaic construction"
+            ]
+          },
+          {
+            "publisher": "The Metropolitan Museum of Art — Mosaic Tesserae",
+            "url": "https://www.metmuseum.org/art/collection/search/708074",
+            "supports": [
+              "Identifies glass, gold and silver tesserae as pieces of a Byzantine mosaic"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "mosaic-pattern",
+        "review_state": "source-reviewed",
+        "verification_state": "qualified",
+        "names": {
+          "ja": "モザイク模様",
+          "en": "Mosaic Pattern"
+        },
+        "aliases": {
+          "ja": [
+            "モザイク柄",
+            "小片組み合わせ文様",
+            "テッセラ文様"
+          ],
+          "en": [
+            "tesserae mosaic",
+            "mosaic design",
+            "tile mosaic pattern"
+          ]
+        },
+        "term_scope": "A visual surface assembled from distinct small pieces (tesserae). It is a medium/technique category containing many motifs, not one canonical geometric repeat.",
+        "definition": {
+          "ja": "石・ガラス・陶片などの小片（テッセラ）を敷き詰めて、幾何学模様や絵を作る表現技法とその見た目。単純な格子から細かい図像まで多様で、すべてのモザイクに固定の目地幅や同一の図形があるわけではありません。",
+          "en": "A decorative image or surface assembled from small individual pieces, called tesserae, often made of stone, glass or tile. Mosaics can be geometric or pictorial; the medium is not restricted to a single checkerboard or tile motif."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "小さな材料片の境界・目地が見えます",
+            "石やガラスなどを組み合わせて柄や絵を作ります",
+            "チェッカー柄・テラゾーとは技法や小片の配置が異なることがあります"
+          ],
+          "en": [
+            "Individual tessera boundaries are visible or suggested",
+            "Small pieces form larger geometric or pictorial designs",
+            "Mosaics are broader than a checkerboard repeat or aggregate terrazzo texture"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "床装飾",
+            "壁画",
+            "タイル",
+            "グラフィック"
+          ],
+          "en": [
+            "floor decoration",
+            "wall panels",
+            "tiles",
+            "graphics"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "blue",
+            "gold"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Original editorial palette, not a required characteristic of the underlying ornament."
+        },
+        "qualification": {
+          "ja": "モザイクは小片を組んで図像を作る技法・表現の総称です。図解は幾何学モザイクの一例であり、全てのモザイクを代表する固定柄ではありません。",
+          "en": "Mosaic describes a medium and assembly technique, not one fixed repeat. The illustration is a geometric sample only."
+        }
+      },
+      "runtime": {
+        "id": "mosaic-pattern",
+        "names": {
+          "ja": "モザイク模様",
+          "en": "Mosaic Pattern"
+        },
+        "aliases": {
+          "ja": [
+            "モザイク柄",
+            "小片組み合わせ文様",
+            "テッセラ文様"
+          ],
+          "en": [
+            "tesserae mosaic",
+            "mosaic design",
+            "tile mosaic pattern"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "小さな色タイルを組み合わせた柄",
+            "モザイクの床模様",
+            "小さな石の集まりの文様"
+          ],
+          "en": [
+            "small colored tiles mosaic pattern",
+            "tesserae geometric floor decoration",
+            "mosaic vs terrazzo"
+          ]
+        },
+        "families": [
+          "geometric",
+          "pictorial",
+          "ornamental"
+        ],
+        "motifs": [
+          "テッセラ",
+          "小片の組み合わせ"
+        ],
+        "visual": {
+          "geometry": [
+            "abstract"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "blue",
+            "gold"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial palette"
+        },
+        "uses": [
+          "textile",
+          "interior"
+        ],
+        "culture": [],
+        "relationships": {
+          "similar": [
+            "checkerboard",
+            "ichimatsu",
+            "terrazzo"
+          ],
+          "often_confused_with": [
+            "terrazzo",
+            "checkerboard"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "石・ガラス・陶片などの小片（テッセラ）を敷き詰めて、幾何学模様や絵を作る表現技法とその見た目。単純な格子から細かい図像まで多様で、すべてのモザイクに固定の目地幅や同一の図形があるわけではありません。",
+          "en": "A decorative image or surface assembled from small individual pieces, called tesserae, often made of stone, glass or tile. Mosaics can be geometric or pictorial; the medium is not restricted to a single checkerboard or tile motif."
+        },
+        "reference_path": "assets/reference-v2/mosaic-pattern.svg",
+        "taxonomy": {
+          "types": [
+            "technique"
+          ],
+          "appearance": [],
+          "contexts": []
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/mosaic-pattern.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Newly drawn schematic only; original works and copyrighted images are not reproduced; non-universal design families are qualified."
+      }
+    },
+    {
+      "id": "art-deco-fan",
+      "uses": {
+        "ja": [
+          "壁紙",
+          "装飾印刷",
+          "ポスター",
+          "家具装飾"
+        ],
+        "en": [
+          "wallpaper",
+          "decorative print",
+          "posters",
+          "furnishing ornament"
+        ]
+      },
+      "source": {
+        "pattern_id": "art-deco-fan",
+        "verification_state": "verified",
+        "term_scope": "Stylized fan-shaped, sometimes stepped or radiating geometry common in Art Deco decorative design, without claiming all fan motifs are Art Deco or that the style uses a single fixed form.",
+        "verified_names": {
+          "ja": "アールデコ扇形文様",
+          "en": "Art Deco Fan Motif"
+        },
+        "verified_aliases": {
+          "ja": [
+            "デコ扇型",
+            "扇形アールデコ柄",
+            "幾何学扇形"
+          ],
+          "en": [
+            "Art Deco fan pattern",
+            "deco fan motif",
+            "scalloped fan ornament"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "Victoria and Albert Museum — Formes et Couleurs, Plate 3",
+            "url": "https://www.vam.ac.uk/shop/prints/floral-and-still-life/formes-et-couleurs-plate-3-by-auguste-h.-thomas-a3-print-170749.html",
+            "supports": [
+              "Museum describes a fan as a popular Art Deco motif in a 1921 design portfolio"
+            ]
+          },
+          {
+            "publisher": "Victoria and Albert Museum — Art Deco in the home",
+            "url": "https://www.vam.ac.uk/articles/art-deco-in-the-home",
+            "supports": [
+              "Provides historical context for geometric and streamlined Art Deco interiors"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "art-deco-fan",
+        "review_state": "source-reviewed",
+        "verification_state": "verified",
+        "names": {
+          "ja": "アールデコ扇形文様",
+          "en": "Art Deco Fan Motif"
+        },
+        "aliases": {
+          "ja": [
+            "デコ扇型",
+            "扇形アールデコ柄",
+            "幾何学扇形"
+          ],
+          "en": [
+            "Art Deco fan pattern",
+            "deco fan motif",
+            "scalloped fan ornament"
+          ]
+        },
+        "term_scope": "Stylized fan-shaped, sometimes stepped or radiating geometry common in Art Deco decorative design, without claiming all fan motifs are Art Deco or that the style uses a single fixed form.",
+        "definition": {
+          "ja": "20世紀前半のアールデコ装飾で用いられた、扇を開いたような放射線・段状の曲線を組み合わせる文様。扇形は幾何学的に反復されることがありますが、扇という題材自体はアールデコだけのものではありません。",
+          "en": "A stylized fan-shaped ornamental form associated with Art Deco decoration, often using stepped arcs or radiating geometric segments. Fan motifs also exist outside Art Deco, so the name describes a stylistic rendering rather than a unique universal pattern."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "開いた扇のように線や曲線が広がります",
+            "幾何学的な段差・左右対称の反復を伴う場合があります",
+            "和柄の青海波や単純な半円繰り返しとは歴史的な文脈が異なります"
+          ],
+          "en": [
+            "Radiating fan ribs or nested stepped arcs define the silhouette",
+            "Symmetry and geometric stylization are common",
+            "A fan shape alone does not prove Art Deco provenance"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "壁紙",
+            "装飾印刷",
+            "ポスター",
+            "家具装飾"
+          ],
+          "en": [
+            "wallpaper",
+            "decorative print",
+            "posters",
+            "furnishing ornament"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "gold",
+            "black"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Original editorial palette, not a required characteristic of the underlying ornament."
+        }
+      },
+      "runtime": {
+        "id": "art-deco-fan",
+        "names": {
+          "ja": "アールデコ扇形文様",
+          "en": "Art Deco Fan Motif"
+        },
+        "aliases": {
+          "ja": [
+            "デコ扇型",
+            "扇形アールデコ柄",
+            "幾何学扇形"
+          ],
+          "en": [
+            "Art Deco fan pattern",
+            "deco fan motif",
+            "scalloped fan ornament"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "扇を広げたアールデコ柄",
+            "幾何学的な扇形の壁紙",
+            "デコ調の扇の模様"
+          ],
+          "en": [
+            "art deco stepped fan wallpaper",
+            "radiating fan pattern 1920s",
+            "art deco fan geometric motif"
+          ]
+        },
+        "families": [
+          "ornamental",
+          "geometric"
+        ],
+        "motifs": [
+          "扇形",
+          "段状曲線"
+        ],
+        "visual": {
+          "geometry": [
+            "ornamental",
+            "geometric"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "gold",
+            "black"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial palette"
+        },
+        "uses": [
+          "textile",
+          "interior"
+        ],
+        "culture": [],
+        "relationships": {
+          "similar": [
+            "scallop",
+            "seigaiha",
+            "sunburst"
+          ],
+          "often_confused_with": [
+            "seigaiha",
+            "scallop"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "20世紀前半のアールデコ装飾で用いられた、扇を開いたような放射線・段状の曲線を組み合わせる文様。扇形は幾何学的に反復されることがありますが、扇という題材自体はアールデコだけのものではありません。",
+          "en": "A stylized fan-shaped ornamental form associated with Art Deco decoration, often using stepped arcs or radiating geometric segments. Fan motifs also exist outside Art Deco, so the name describes a stylistic rendering rather than a unique universal pattern."
+        },
+        "reference_path": "assets/reference-v2/art-deco-fan.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "ornamental",
+            "geometric"
+          ],
+          "contexts": []
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/art-deco-fan.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Newly drawn schematic only; original works and copyrighted images are not reproduced; non-universal design families are qualified."
+      }
+    },
+    {
+      "id": "op-art-pattern",
+      "uses": {
+        "ja": [
+          "ポスター",
+          "絵画",
+          "衣服プリント",
+          "グラフィック"
+        ],
+        "en": [
+          "posters",
+          "painting",
+          "fashion prints",
+          "graphics"
+        ]
+      },
+      "source": {
+        "pattern_id": "op-art-pattern",
+        "verification_state": "qualified",
+        "term_scope": "An optical-art visual style employing repeated geometry and contrast to induce perceived movement, warping, depth or vibration; not one historically fixed repeat.",
+        "verified_names": {
+          "ja": "オプアート模様",
+          "en": "Op Art Pattern"
+        },
+        "verified_aliases": {
+          "ja": [
+            "オプティカルアート",
+            "錯視幾何学模様",
+            "視覚錯視柄"
+          ],
+          "en": [
+            "optical art pattern",
+            "op-art",
+            "optical illusion pattern"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "MoMA — Op art",
+            "url": "https://www.moma.org/collection/terms/op-art",
+            "supports": [
+              "Defines Op Art by 1960s geometry and apparent vibration/depth"
+            ]
+          },
+          {
+            "publisher": "National Galleries of Scotland — Op Art",
+            "url": "https://www.nationalgalleries.org/art-and-artists/glossary-terms/op-art",
+            "supports": [
+              "Discusses contrasting abstract patterns and optical sensations"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "op-art-pattern",
+        "review_state": "source-reviewed",
+        "verification_state": "qualified",
+        "names": {
+          "ja": "オプアート模様",
+          "en": "Op Art Pattern"
+        },
+        "aliases": {
+          "ja": [
+            "オプティカルアート",
+            "錯視幾何学模様",
+            "視覚錯視柄"
+          ],
+          "en": [
+            "optical art pattern",
+            "op-art",
+            "optical illusion pattern"
+          ]
+        },
+        "term_scope": "An optical-art visual style employing repeated geometry and contrast to induce perceived movement, warping, depth or vibration; not one historically fixed repeat.",
+        "definition": {
+          "ja": "反復する線・幾何学形・色の対比で、平面なのに波打ち・振動・奥行きが感じられる視覚表現。1960年代のオプアートで広く見られます。錯視の効果が本体であり、特定の一種類の線や配列を示す言葉ではありません。",
+          "en": "A geometric visual effect using repeated lines, shapes or contrasting colors to suggest motion, distortion or depth on a flat surface. Associated with the 1960s Op Art movement, it is a category of perception-based compositions rather than a single fixed tile pattern."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "等間隔でない線や格子が視覚的な揺らぎを生みます",
+            "平面なのに盛り上がり・波動・奥行きがあるように見えます",
+            "単なる規則的な縞や格子とは、錯視効果の意図が異なります"
+          ],
+          "en": [
+            "Repeated geometry or contrasts cause apparent shimmer, movement or depth",
+            "Line spacing or shape sizes can change gradually",
+            "Unlike a plain stripe or check, perception effects are central"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "ポスター",
+            "絵画",
+            "衣服プリント",
+            "グラフィック"
+          ],
+          "en": [
+            "posters",
+            "painting",
+            "fashion prints",
+            "graphics"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "black",
+            "white"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Original editorial palette, not a required characteristic of the underlying ornament."
+        },
+        "qualification": {
+          "ja": "オプアートは錯視表現の様式で、固有の固定模様ではありません。図解は一つの代表的な線群による例です。",
+          "en": "Op Art is a visual style and perceptual effect, not one canonical textile motif. The image is one illustrative construction."
+        }
+      },
+      "runtime": {
+        "id": "op-art-pattern",
+        "names": {
+          "ja": "オプアート模様",
+          "en": "Op Art Pattern"
+        },
+        "aliases": {
+          "ja": [
+            "オプティカルアート",
+            "錯視幾何学模様",
+            "視覚錯視柄"
+          ],
+          "en": [
+            "optical art pattern",
+            "op-art",
+            "optical illusion pattern"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "目がチカチカする白黒の幾何学模様",
+            "波打って見える錯視柄",
+            "オプアート パターン"
+          ],
+          "en": [
+            "op art optical illusion black white lines",
+            "vibrating repeated geometric design",
+            "op art graphic pattern"
+          ]
+        },
+        "families": [
+          "geometric",
+          "abstract"
+        ],
+        "motifs": [
+          "錯視",
+          "反復線"
+        ],
+        "visual": {
+          "geometry": [
+            "geometric",
+            "abstract"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "black",
+            "white"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial palette"
+        },
+        "uses": [
+          "textile",
+          "interior"
+        ],
+        "culture": [],
+        "relationships": {
+          "similar": [
+            "zigzag",
+            "moire",
+            "checkerboard"
+          ],
+          "often_confused_with": [
+            "moire",
+            "zigzag"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "反復する線・幾何学形・色の対比で、平面なのに波打ち・振動・奥行きが感じられる視覚表現。1960年代のオプアートで広く見られます。錯視の効果が本体であり、特定の一種類の線や配列を示す言葉ではありません。",
+          "en": "A geometric visual effect using repeated lines, shapes or contrasting colors to suggest motion, distortion or depth on a flat surface. Associated with the 1960s Op Art movement, it is a category of perception-based compositions rather than a single fixed tile pattern."
+        },
+        "reference_path": "assets/reference-v2/op-art-pattern.svg",
+        "taxonomy": {
+          "types": [
+            "effect"
+          ],
+          "appearance": [
+            "geometric",
+            "abstract"
+          ],
+          "contexts": []
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/op-art-pattern.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Newly drawn schematic only; original works and copyrighted images are not reproduced; non-universal design families are qualified."
+      }
+    },
+    {
+      "id": "halftone-dots",
+      "uses": {
+        "ja": [
+          "印刷物",
+          "ポスター",
+          "コミック調デザイン",
+          "画像加工"
+        ],
+        "en": [
+          "commercial print",
+          "posters",
+          "comic-style art",
+          "image effects"
+        ]
+      },
+      "source": {
+        "pattern_id": "halftone-dots",
+        "verification_state": "verified",
+        "term_scope": "Printing-related array of dots of variable size/density that approximates continuous-tone images; a visual effect distinct from equal-size decorative polka dots.",
+        "verified_names": {
+          "ja": "ハーフトーン網点",
+          "en": "Halftone Dots"
+        },
+        "verified_aliases": {
+          "ja": [
+            "網点模様",
+            "ハーフトーン柄",
+            "印刷網点"
+          ],
+          "en": [
+            "halftone screen",
+            "screen-tone dots",
+            "halftone dot pattern"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "Adobe — Halftone dots in Photoshop",
+            "url": "https://www.adobe.com/au/products/photoshop/halftone-effects.html",
+            "supports": [
+              "Explains halftone printing and dots used to create tones and colors"
+            ]
+          },
+          {
+            "publisher": "Adobe Help — Specify halftone frequency in InDesign",
+            "url": "https://helpx.adobe.com/indesign/desktop/print/ink-and-color-management/specify-halftone-frequency-and-resolution.html",
+            "supports": [
+              "Explains halftone screen spacing and printing dot control"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "halftone-dots",
+        "review_state": "source-reviewed",
+        "verification_state": "verified",
+        "names": {
+          "ja": "ハーフトーン網点",
+          "en": "Halftone Dots"
+        },
+        "aliases": {
+          "ja": [
+            "網点模様",
+            "ハーフトーン柄",
+            "印刷網点"
+          ],
+          "en": [
+            "halftone screen",
+            "screen-tone dots",
+            "halftone dot pattern"
+          ]
+        },
+        "term_scope": "Printing-related array of dots of variable size/density that approximates continuous-tone images; a visual effect distinct from equal-size decorative polka dots.",
+        "definition": {
+          "ja": "点の大きさや密度を変え、限られた印刷色でも画像の明暗や階調を表すための網点。規則的なスクリーン角度・間隔が使われる場合があります。均一な大きさで並ぶ水玉と違い、明るい箇所と暗い箇所で網点の占める面積が変化します。",
+          "en": "An array of printed dots whose sizes, spacing or coverage simulate tonal variations in an image. Commercial halftone screens use controlled dot patterns; unlike uniform polka dots, dot coverage changes to represent light and dark values."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "点の大きさや覆う面積が場所によって変わります",
+            "遠くから見ると濃淡や写真に見えることがあります",
+            "装飾水玉ではなく印刷の階調表現に由来します"
+          ],
+          "en": [
+            "Dot size or coverage changes across lighter and darker regions",
+            "Viewed from afar the dots blend into continuous tones",
+            "Unlike plain polka dots, the array conveys tonal value"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "印刷物",
+            "ポスター",
+            "コミック調デザイン",
+            "画像加工"
+          ],
+          "en": [
+            "commercial print",
+            "posters",
+            "comic-style art",
+            "image effects"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "black",
+            "white"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Original editorial palette, not a required characteristic of the underlying ornament."
+        }
+      },
+      "runtime": {
+        "id": "halftone-dots",
+        "names": {
+          "ja": "ハーフトーン網点",
+          "en": "Halftone Dots"
+        },
+        "aliases": {
+          "ja": [
+            "網点模様",
+            "ハーフトーン柄",
+            "印刷網点"
+          ],
+          "en": [
+            "halftone screen",
+            "screen-tone dots",
+            "halftone dot pattern"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "点の大きさで濃淡をつける柄",
+            "新聞印刷のドット模様",
+            "ハーフトーン網点 パターン"
+          ],
+          "en": [
+            "halftone dots gradient printing",
+            "retro printed halftone screen",
+            "halftone versus polka dots"
+          ]
+        },
+        "families": [
+          "dot",
+          "geometric"
+        ],
+        "motifs": [
+          "網点",
+          "濃淡"
+        ],
+        "visual": {
+          "geometry": [
+            "dot",
+            "geometric"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "black",
+            "white"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial palette"
+        },
+        "uses": [
+          "textile",
+          "interior"
+        ],
+        "culture": [],
+        "relationships": {
+          "similar": [
+            "polka-dot",
+            "swiss-dot",
+            "same-komon"
+          ],
+          "often_confused_with": [
+            "polka-dot",
+            "swiss-dot"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "点の大きさや密度を変え、限られた印刷色でも画像の明暗や階調を表すための網点。規則的なスクリーン角度・間隔が使われる場合があります。均一な大きさで並ぶ水玉と違い、明るい箇所と暗い箇所で網点の占める面積が変化します。",
+          "en": "An array of printed dots whose sizes, spacing or coverage simulate tonal variations in an image. Commercial halftone screens use controlled dot patterns; unlike uniform polka dots, dot coverage changes to represent light and dark values."
+        },
+        "reference_path": "assets/reference-v2/halftone-dots.svg",
+        "taxonomy": {
+          "types": [
+            "effect"
+          ],
+          "appearance": [
+            "dot",
+            "geometric"
+          ],
+          "contexts": []
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/halftone-dots.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Newly drawn schematic only; original works and copyrighted images are not reproduced; non-universal design families are qualified."
+      }
+    },
+    {
+      "id": "topographic-contours",
+      "uses": {
+        "ja": [
+          "アウトドア用品",
+          "衣服",
+          "地図風ポスター",
+          "包装紙"
+        ],
+        "en": [
+          "outdoor gear",
+          "apparel",
+          "map-inspired posters",
+          "paper goods"
+        ]
+      },
+      "source": {
+        "pattern_id": "topographic-contours",
+        "verification_state": "qualified",
+        "term_scope": "Decorative abstraction of map elevation contour lines; unlike genuine topo data, ornamental contours may not encode real terrain or consistent height intervals.",
+        "verified_names": {
+          "ja": "等高線模様",
+          "en": "Topographic Contour Pattern"
+        },
+        "verified_aliases": {
+          "ja": [
+            "地形図柄",
+            "等高線柄",
+            "地形の輪郭線模様"
+          ],
+          "en": [
+            "topographic lines pattern",
+            "contour map lines",
+            "topo contour design"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "U.S. Geological Survey — What is a topographic map?",
+            "url": "https://www.usgs.gov/faqs/what-a-topographic-map?items_per_page=6&page=1",
+            "supports": [
+              "Defines geographic contours as lines connecting equal-elevation points"
+            ]
+          },
+          {
+            "publisher": "U.S. Geological Survey — US Topo Map Symbol Guide",
+            "url": "https://www.usgs.gov/ngp-standards-and-specifications/us-topo-map-symbol-guide",
+            "supports": [
+              "Explains nested contour spacing and its relationship to terrain steepness"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "topographic-contours",
+        "review_state": "source-reviewed",
+        "verification_state": "qualified",
+        "names": {
+          "ja": "等高線模様",
+          "en": "Topographic Contour Pattern"
+        },
+        "aliases": {
+          "ja": [
+            "地形図柄",
+            "等高線柄",
+            "地形の輪郭線模様"
+          ],
+          "en": [
+            "topographic lines pattern",
+            "contour map lines",
+            "topo contour design"
+          ]
+        },
+        "term_scope": "Decorative abstraction of map elevation contour lines; unlike genuine topo data, ornamental contours may not encode real terrain or consistent height intervals.",
+        "definition": {
+          "ja": "地形図の等高線に着想を得て、起伏を表す閉じた曲線や蛇行する線を繰り返した装飾柄。実際の地形図では一本の線が同じ標高を結びますが、衣服やグラフィックに使う模様は地理データを持たない抽象表現も多くあります。",
+          "en": "A decorative pattern inspired by topographic map contour lines, using nested loops and meandering paths that evoke terrain. Actual map contours connect equal elevations, but ornamental versions need not encode real elevations or consistent contour intervals."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "地形の起伏を思わせる曲線が連なります",
+            "輪の間隔が密な場所・疎な場所を作る例があります",
+            "実測された等高線と、単なる地形風の装飾柄を区別します"
+          ],
+          "en": [
+            "Winding curves and nested loops evoke changing terrain",
+            "Line spacing can vary across a field",
+            "A decorative topo design is not necessarily a measured elevation map"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "アウトドア用品",
+            "衣服",
+            "地図風ポスター",
+            "包装紙"
+          ],
+          "en": [
+            "outdoor gear",
+            "apparel",
+            "map-inspired posters",
+            "paper goods"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "green",
+            "brown"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Original editorial palette, not a required characteristic of the underlying ornament."
+        },
+        "qualification": {
+          "ja": "これは地図記号を模した装飾表現です。図解は実測した地形の等高線ではありません。",
+          "en": "This is decorative contour-inspired linework, not survey data or a real topographic map."
+        }
+      },
+      "runtime": {
+        "id": "topographic-contours",
+        "names": {
+          "ja": "等高線模様",
+          "en": "Topographic Contour Pattern"
+        },
+        "aliases": {
+          "ja": [
+            "地形図柄",
+            "等高線柄",
+            "地形の輪郭線模様"
+          ],
+          "en": [
+            "topographic lines pattern",
+            "contour map lines",
+            "topo contour design"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "地形図みたいな曲がった線の柄",
+            "等高線プリント",
+            "山の高低差の線の模様"
+          ],
+          "en": [
+            "topographic contour map line pattern",
+            "terrain inspired winding contours",
+            "topo map textile print"
+          ]
+        },
+        "families": [
+          "geometric",
+          "organic"
+        ],
+        "motifs": [
+          "地形の輪郭",
+          "曲線"
+        ],
+        "visual": {
+          "geometry": [
+            "geometric",
+            "organic"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "green",
+            "brown"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial palette"
+        },
+        "uses": [
+          "textile",
+          "interior"
+        ],
+        "culture": [],
+        "relationships": {
+          "similar": [
+            "marbling",
+            "tatewaku",
+            "concentric-circles"
+          ],
+          "often_confused_with": [
+            "marbling",
+            "concentric-circles"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "地形図の等高線に着想を得て、起伏を表す閉じた曲線や蛇行する線を繰り返した装飾柄。実際の地形図では一本の線が同じ標高を結びますが、衣服やグラフィックに使う模様は地理データを持たない抽象表現も多くあります。",
+          "en": "A decorative pattern inspired by topographic map contour lines, using nested loops and meandering paths that evoke terrain. Actual map contours connect equal elevations, but ornamental versions need not encode real elevations or consistent contour intervals."
+        },
+        "reference_path": "assets/reference-v2/topographic-contours.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "geometric",
+            "organic"
+          ],
+          "contexts": []
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/topographic-contours.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Newly drawn schematic only; original works and copyrighted images are not reproduced; non-universal design families are qualified."
+      }
+    },
+    {
+      "id": "triangle-tessellation",
+      "uses": {
+        "ja": [
+          "タイル",
+          "テキスタイル",
+          "グラフィック",
+          "壁紙"
+        ],
+        "en": [
+          "tiles",
+          "textiles",
+          "graphics",
+          "wallpaper"
+        ]
+      },
+      "source": {
+        "pattern_id": "triangle-tessellation",
+        "verification_state": "verified",
+        "term_scope": "A plane tiling made from adjacent triangles without gaps or overlaps; the example is a regular equilateral-triangle tiling, not a loose scatter of triangles.",
+        "verified_names": {
+          "ja": "三角形の敷き詰め模様",
+          "en": "Triangle Tessellation"
+        },
+        "verified_aliases": {
+          "ja": [
+            "三角タイル柄",
+            "正三角形の連続模様",
+            "三角形テセレーション"
+          ],
+          "en": [
+            "triangular tiling",
+            "triangular grid",
+            "equilateral triangle tessellation"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "Mathigon — Tessellations",
+            "url": "https://mathigon.org/course/polyhedra/tessellations",
+            "supports": [
+              "Shows regular triangle tessellations and six 60-degree angles around each vertex"
+            ]
+          },
+          {
+            "publisher": "Math Is Fun — Tessellation",
+            "url": "https://www.mathsisfun.com/geometry/tessellation.html",
+            "supports": [
+              "Defines tessellation as a gapless, non-overlapping tiling and lists regular triangle tilings"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "triangle-tessellation",
+        "review_state": "source-reviewed",
+        "verification_state": "verified",
+        "names": {
+          "ja": "三角形の敷き詰め模様",
+          "en": "Triangle Tessellation"
+        },
+        "aliases": {
+          "ja": [
+            "三角タイル柄",
+            "正三角形の連続模様",
+            "三角形テセレーション"
+          ],
+          "en": [
+            "triangular tiling",
+            "triangular grid",
+            "equilateral triangle tessellation"
+          ]
+        },
+        "term_scope": "A plane tiling made from adjacent triangles without gaps or overlaps; the example is a regular equilateral-triangle tiling, not a loose scatter of triangles.",
+        "definition": {
+          "ja": "三角形同士を隙間・重なりなく接して面を埋める幾何学模様。正三角形を用いる規則的な例では各頂点に六つの三角形の60度角が集まります。三角形をただ散らした装飾とは、面を途切れずに覆うことが違います。",
+          "en": "A geometric tiling that covers the plane with adjacent triangles without gaps or overlaps. In a regular equilateral-triangle tessellation, six 60-degree angles meet at each vertex. This differs from scattered standalone triangle motifs."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "各三角形の辺が隣の三角形と接しています",
+            "隙間・重なりなく平面全体に続きます",
+            "正三角形の典型例では頂点に六つの三角形が集まります"
+          ],
+          "en": [
+            "Triangle edges meet neighboring triangle edges",
+            "The tiling fills the field without gaps or overlaps",
+            "Regular equilateral tilings have six triangles around each interior vertex"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "タイル",
+            "テキスタイル",
+            "グラフィック",
+            "壁紙"
+          ],
+          "en": [
+            "tiles",
+            "textiles",
+            "graphics",
+            "wallpaper"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "blue",
+            "orange"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Original editorial palette, not a required characteristic of the underlying ornament."
+        }
+      },
+      "runtime": {
+        "id": "triangle-tessellation",
+        "names": {
+          "ja": "三角形の敷き詰め模様",
+          "en": "Triangle Tessellation"
+        },
+        "aliases": {
+          "ja": [
+            "三角タイル柄",
+            "正三角形の連続模様",
+            "三角形テセレーション"
+          ],
+          "en": [
+            "triangular tiling",
+            "triangular grid",
+            "equilateral triangle tessellation"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "正三角形を隙間なく並べた柄",
+            "三角タイルの連続",
+            "三角形のテセレーション"
+          ],
+          "en": [
+            "equilateral triangles tiled with no gaps",
+            "triangle tessellation geometry pattern",
+            "triangular tiling wallpaper"
+          ]
+        },
+        "families": [
+          "geometric"
+        ],
+        "motifs": [
+          "正三角形",
+          "敷き詰め"
+        ],
+        "visual": {
+          "geometry": [
+            "geometric"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "blue",
+            "orange"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial palette"
+        },
+        "uses": [
+          "textile",
+          "interior"
+        ],
+        "culture": [],
+        "relationships": {
+          "similar": [
+            "chevron",
+            "hishi",
+            "diamond"
+          ],
+          "often_confused_with": [
+            "chevron",
+            "diamond"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "三角形同士を隙間・重なりなく接して面を埋める幾何学模様。正三角形を用いる規則的な例では各頂点に六つの三角形の60度角が集まります。三角形をただ散らした装飾とは、面を途切れずに覆うことが違います。",
+          "en": "A geometric tiling that covers the plane with adjacent triangles without gaps or overlaps. In a regular equilateral-triangle tessellation, six 60-degree angles meet at each vertex. This differs from scattered standalone triangle motifs."
+        },
+        "reference_path": "assets/reference-v2/triangle-tessellation.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "geometric"
+          ],
+          "contexts": []
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/triangle-tessellation.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Newly drawn schematic only; original works and copyrighted images are not reproduced; non-universal design families are qualified."
       }
     }
   ]
