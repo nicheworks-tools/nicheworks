@@ -43,6 +43,23 @@ function storedWater(s,options,now){
  }
  return round(sum);
 }
+// Presence of food groups is an inventory audit, NOT a nutrient or calorie score.
+// Only explicitly catalogued ready-to-use foods count; unclassified stocks remain unknown.
+function foodRoleOverview(options,s,now){
+ const roles=["protein","vegetable","fruit"];
+ return roles.map(role=>{
+   const saved=(options||[]).filter(o=>o.parent==="food"&&o.role===role)
+     .map(o=>({option:o,entry:(s.variants||{})[s.mode+":"+o.id]||{}}))
+     .filter(x=>numeric(x.entry.qty)>0);
+   const usable=saved.filter(({option:o,entry:e})=>
+     unexpired(e,now)&&o.prep!=="verify"&&
+     (!s.noHeat||o.prep!=="heat")&&
+     (!s.powerOut||s.offGridHeatConfirmed||o.prep!=="heat")&&
+     (!o.requiresWater||(s.safeWaterConfirmed&&s.prepWaterSufficient&&e.prepConfirmed===true&&numeric(e.prepWaterLiters)>0))
+   );
+   return {role,recordedKinds:saved.length,usableKinds:usable.length,needsReview:saved.length>0&&usable.length===0};
+ });
+}
 function normalize(s){
  s=s||{};
  return Object.assign({},s,{
@@ -72,6 +89,7 @@ function assessment(catalog,options,source,today){
  const core=root.BichikuCore;
  if(!core)throw Error("BichikuCore is required");
  const calc=core.calculate(catalog,readiness,now,options);
+ const foodGroups=foodRoleOverview(options,readiness,now);
  const toiletBags=(s.variants||{})[s.mode+":toiletBags"]||{};
  const assemblyUses=s.toiletAssemblyConfirmed&&unexpired(toiletBags,now)?numeric(toiletBags.qty):0;
  const toilet=calc.items.find(x=>x.item.id==="toilet");
@@ -106,12 +124,12 @@ function assessment(catalog,options,source,today){
  calc.missingCount=calc.items.filter(x=>x.missing>0).length;
  calc.coreMissingCount=calc.items.filter(x=>x.priority===1&&x.missing>0).length;
  calc.filledCount=calc.items.filter(x=>x.missing===0).length;
- return {settings:s,calc,groups:status,combinations,
+ return {settings:s,calc,groups:status,combinations,foodGroups,
    heatReady:!s.noHeat&&(!s.powerOut||s.offGridHeatConfirmed),waterForPrep,waterStored:stored,
    waterAllocation,uncheckedFoods,waterRemainingAfterPrep:round(Math.max(0,stored-waterAllocation)),
    food,water,pad,warmth,waterConflict};
 }
-const api=Object.freeze({assessment,groups,optionUsable,storedWater});
+const api=Object.freeze({assessment,groups,optionUsable,storedWater,foodRoleOverview});
 root.BichikuDecision=api;
 if(typeof module==="object"&&module.exports)module.exports=api;
 })(typeof globalThis==="object"?globalThis:this);
