@@ -75,6 +75,7 @@ location inputと2-provider forecast cards、difference cardを縦方向中心�
 - [ ] HTTPSかつpermission許可時はbrowser geolocationから比較を開始できる。
 - [ ] Open-MeteoとMET Norwayのtoday/tomorrow valuesを別cardで表示する。
 - [ ] temperature、precipitation、windのprovider間differenceを表示する。
+- [ ] 欠損した気温・降水量・風速を0として表示しない。MET Norwayの該当日データなし、null / 空値は「-」で表示し、差分も計算しない。実際に観測/予報したゼロ値は0として表示する。
 - [ ] location/geolocation dataのexternal transmissionをprivacy説明と一致させる。
 - [ ] language選択を`nw_lang`へ保存し、forecast history自体は永続保存しない。
 
