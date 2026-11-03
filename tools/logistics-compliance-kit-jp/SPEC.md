@@ -99,6 +99,7 @@ The experience is document/form oriented and usable on narrow screens, while det
 - [ ] Entered implemented logistics conditions produce the current review level/signals, next actions, and planning draft locally.
 - [ ] The current-state memo appears in output but does not alter the scoring/decision result.
 - [ ] Free result/Markdown preview remains available without Pro while operational handoff/export artifacts stay gated.
+- [ ] Pro copies and exports use a fresh actual assessment from the current form, never the demo sample before generation or stale pre-edit conditions; editing an assessment field clears old results immediately.
 - [ ] The page remains Japanese-only and clearly states that the result is not a legal or administrative determination.
 - [ ] The staged product-scoped controller represents all eight paid operations exactly once and fails closed without authoritative server verification.
 - [ ] The staged controller remains disconnected from the public runtime until commercial configuration and migration are explicitly authorized.
