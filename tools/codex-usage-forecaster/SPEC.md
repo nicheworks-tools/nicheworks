@@ -69,6 +69,8 @@ The dashboard contains KPI groups, configuration panels, filters, profiles, and 
 - [ ] Saving at least two usable observations can produce forecast information for the applicable usage window.
 - [ ] Filters and saved profiles affect the visible log set and, when enabled, the forecast source set.
 - [ ] Exported JSON can be downloaded and a compatible import can replace the current local logs/profiles/settings.
+- [ ] Imported observations with non-finite timestamps are discarded, usage rates outside 0–100% do not become forecast inputs, and invalid manual reset timestamps are not accepted as reset authority.
+- [ ] Very old manual/automatic reset anchors are advanced in constant time without an unbounded loop or frozen UI.
 - [ ] Manual reset values override automatic reset presentation when present, and clearing them returns to automatic behavior.
 
 ## Implementation evidence

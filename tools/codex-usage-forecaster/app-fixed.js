@@ -26,11 +26,21 @@
   const write = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} };
   const uid = () => Math.random().toString(16).slice(2) + '-' + Date.now().toString(16);
   const esc = (s) => String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
-  const normalizeLogs = (v) => Array.isArray(v) ? v.map(x => ({ id:String(x.id||uid()), ts:Number(x.ts)||Date.now(), uw:typeof x.uw==='number'?x.uw:null, u5h:typeof x.u5h==='number'?x.u5h:null, mode:String(x.mode||''), status:String(x.status||'unknown'), model:String(x.model||''), note:String(x.note||'') })).sort((a,b)=>b.ts-a.ts) : [];
+  const validPct = v => typeof v === 'number' && Number.isFinite(v) && v >= 0 && v <= 100 ? v : null;
+  const validReset = v => typeof v === 'number' && Number.isSafeInteger(v) && v > 0 && v <= 8640000000000000 ? v : null;
+  const normalizeLogs = v => Array.isArray(v) ? v
+    .filter(x => x && typeof x === 'object' && (x.ts == null || (Number.isFinite(Number(x.ts)) && Number(x.ts) > 0 && Number(x.ts) <= 8640000000000000)))
+    .map(x => ({
+      id: String(x.id || uid()),
+      ts: x.ts == null ? Date.now() : Number(x.ts),
+      uw: validPct(x.uw), u5h: validPct(x.u5h),
+      mode: String(x.mode || ''), status: String(x.status || 'unknown'),
+      model: String(x.model || ''), note: String(x.note || '')
+    })).sort((a,b)=>b.ts-a.ts) : [];
   const logs = () => normalizeLogs(read(L, []));
   const saveLogs = (v) => write(L, normalizeLogs(v));
-  const settings = () => { const s = read(S, {}); return { manualNextResetW:typeof s.manualNextResetW==='number'?s.manualNextResetW:null, manualNextReset5h:typeof s.manualNextReset5h==='number'?s.manualNextReset5h:null }; };
-  const saveSettings = (v) => write(S, { manualNextResetW:typeof v.manualNextResetW==='number'?v.manualNextResetW:null, manualNextReset5h:typeof v.manualNextReset5h==='number'?v.manualNextReset5h:null });
+  const settings = () => { const raw = read(S, {}), s = raw && typeof raw === 'object' ? raw : {}; return { manualNextResetW:validReset(s.manualNextResetW), manualNextReset5h:validReset(s.manualNextReset5h) }; };
+  const saveSettings = (v) => { const s = v && typeof v === 'object' ? v : {}; write(S, { manualNextResetW:validReset(s.manualNextResetW), manualNextReset5h:validReset(s.manualNextReset5h) }); };
   const profiles = () => { const arr = read(P, []); if(!Array.isArray(arr)) return []; const m = new Map(); arr.forEach(x => { const name = String(x.name||'').trim(); if(!name) return; const f=x.filters||{}; m.set(name.toLowerCase(), { id:String(x.id||uid()), name, filters:{ mode:String(f.mode||''), status:String(f.status||''), model:String(f.model||''), note:String(f.note||''), affectsForecast:f.affectsForecast!==false } }); }); return Array.from(m.values()).sort((a,b)=>a.name.localeCompare(b.name)); };
   const saveProfiles = (v) => write(P, v);
   function hint(s, bad=false){ const e=$('hint_box'); if(!e) return; e.textContent=s; e.classList.toggle('dangerHint', bad); e.style.display=''; clearTimeout(hint.t); hint.t=setTimeout(()=>{ e.style.display='none'; e.textContent=''; e.classList.remove('dangerHint'); }, 3000); }
@@ -41,8 +51,29 @@
   function rate(a,k){ a=a.slice().sort((x,y)=>x.ts-y.ts); const r=[]; for(let i=1;i<a.length;i++){ const p=a[i-1][k], c=a[i][k], ms=a[i].ts-a[i-1].ts; if(typeof p==='number'&&typeof c==='number'&&c>p&&ms>0) r.push((c-p)/(k==='u5h'?ms/3600000:ms/86400000)); } return median(r.slice(-5)); }
   function latest(a,k){ const x=a.find(v=>typeof v[k]==='number'); return x?x[k]:null; }
   function eta(cur,r,unit){ return typeof cur==='number'&&typeof r==='number'&&r>0 ? Math.max(0,(100-cur)/r*unit) : null; }
-  function resetAuto(a,k,period){ a=a.slice().sort((x,y)=>x.ts-y.ts); if(!a.length) return null; let anchor=a[0].ts; for(let i=1;i<a.length;i++){ if(typeof a[i-1][k]==='number'&&typeof a[i][k]==='number'&&a[i][k]<=a[i-1][k]-5) anchor=a[i].ts; } let n=anchor+period; while(n<=Date.now()) n+=period; return n; }
-  function next(manual, auto, period){ if(typeof manual==='number'){ let n=manual; while(n<=Date.now()) n+=period; return {ts:n,src:msg.manual}; } return auto?{ts:auto,src:msg.auto}:null; }
+  function advanceReset(ts, period){
+    if (!Number.isFinite(ts) || ts <= 0 || !Number.isFinite(period) || period <= 0) return null;
+    const now = Date.now();
+    if (ts > now) return ts;
+    const steps = Math.floor((now - ts) / period) + 1;
+    const nextTs = ts + steps * period;
+    return Number.isFinite(nextTs) && nextTs > now ? nextTs : null;
+  }
+  function resetAuto(a,k,period){
+    a=a.slice().sort((x,y)=>x.ts-y.ts);
+    if(!a.length) return null;
+    let anchor=a[0].ts;
+    for(let i=1;i<a.length;i++){
+      if(typeof a[i-1][k]==='number'&&typeof a[i][k]==='number'&&a[i][k]<=a[i-1][k]-5) anchor=a[i].ts;
+    }
+    return advanceReset(anchor + period, period);
+  }
+  function next(manual, auto, period){
+    const manualTs = advanceReset(manual,period);
+    if (manualTs !== null) return { ts: manualTs, src: msg.manual };
+    const autoTs = advanceReset(auto,period);
+    return autoTs !== null ? { ts: autoTs, src: msg.auto } : null;
+  }
   function filters(){ return { mode:$('f_mode')?.value||'', status:$('f_status')?.value||'', model:($('f_model')?.value||'').toLowerCase(), note:($('f_note')?.value||'').toLowerCase(), affectsForecast:!!$('chk_affects')?.checked }; }
   function setFilters(f){ if($('f_mode')) $('f_mode').value=f.mode||''; if($('f_status')) $('f_status').value=f.status||''; if($('f_model')) $('f_model').value=f.model||''; if($('f_note')) $('f_note').value=f.note||''; if($('chk_affects')) $('chk_affects').checked=f.affectsForecast!==false; }
   function applyFilters(a,f){ return a.filter(x=>(!f.mode||x.mode===f.mode)&&(!f.status||x.status===f.status)&&(!f.model||x.model.toLowerCase().includes(f.model))&&(!f.note||x.note.toLowerCase().includes(f.note))); }
