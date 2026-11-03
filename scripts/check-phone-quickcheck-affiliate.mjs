@@ -108,3 +108,4 @@ execFileSync(process.execPath, ['scripts/check-phone-quickcheck-growth-seo.mjs']
 
 // Test the nine static guide's tagged clicks and privacy bucket attributes.
 execFileSync(process.execPath, ['scripts/check-phone-quickcheck-guide-events.mjs'], { stdio: 'inherit' });
+execFileSync(process.execPath, ['scripts/check-phone-quickcheck-model-index.mjs'], { stdio: 'inherit' });
