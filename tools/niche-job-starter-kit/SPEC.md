@@ -68,6 +68,7 @@ The page is a vertically stacked drafting form followed by output/export control
 - [ ] Candidate-sheet copy/download contains the documented management columns and no applicant records.
 - [ ] Wording variants retain warnings about discriminatory criteria and contractor/employment distinctions.
 - [ ] JP/EN output follows the active UI language and only language preference is persisted.
+- [ ] Editing any role/compensation/working-condition field updates the on-page JP/EN job kit immediately; displayed wording variants also update for the current role without reverting to CSV headers.
 
 ## Implementation evidence
 
