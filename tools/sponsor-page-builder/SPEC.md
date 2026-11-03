@@ -64,6 +64,7 @@ The page is a vertically stacked drafting form followed by a single-language vis
 - [ ] Tier generation respects the selected tier count and does not fabricate exact prices for missing price inputs.
 - [ ] Both JP and EN drafts derive from user-entered project/support facts rather than an external generation service.
 - [ ] Copy and text-download actions use the current generated draft.
+- [ ] Any change to pricing, tier count, benefits, corporate/logo settings, refund terms, contact or source fields invalidates previous copy/downloads; eventless edits are also rejected.
 - [ ] Public copy retains warnings about rewards, refunds, logo/trademark use, invoices, and platform terms.
 
 ## Implementation evidence
