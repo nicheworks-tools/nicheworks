@@ -74,6 +74,8 @@ URL textarea、single action、progress、result table、copy actionsを縦方�
 - [ ] titleが取れた2xx responseを`success`、titleなしを`no-title`として表示する。
 - [ ] non-2xxとnetwork failureをそれぞれ`http-error` / `network-error`として区別する。
 - [ ] progressとtotal/success/fail countが処理件数に追随する。
+- [ ] Resetは処理中も使え、入力変更やResetで旧バッチを無効化して残りのWorker送信を止め、遅延レスポンスが古い結果を復活させない。
+- [ ] バッチ処理中は取得ボタンを無効化し、完了時だけCSV/TSVコピーを公開する。
 - [ ] result tableをquoted CSVおよびTSVとしてcopyできる。
 - [ ] privacy contractが「URLはNicheWorks Workerへ送信される」というruntime事実と一致する。
 
