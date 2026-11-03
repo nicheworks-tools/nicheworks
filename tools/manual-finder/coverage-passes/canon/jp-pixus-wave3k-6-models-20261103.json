@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "maker": "Canon",
+  "scopeId": "canon-pixus-6-manual-ink-20261103",
+  "scope": "Six exact PIXUS printer models TS8930, XK140, XK510, TS6630, TS5630 and TS5530. This is not a manufacturer-wide or printer catalog-complete claim.",
+  "asOf": "2026-11-03",
+  "region": "JP",
+  "language": "ja",
+  "status": "reviewed",
+  "sourceLevel": "A",
+  "allowedDomains": [
+    "ij.manual.canon",
+    "canon.jp",
+    "personal.canon.jp"
+  ],
+  "counts": {
+    "distinctModels": 6,
+    "officialManualPages": 6,
+    "newAmazonModelSearches": 6,
+    "manufacturerVerifiedInkOfferSearches": 12
+  },
+  "publishedManualDataFile": "tools/manual-finder/data/manuals.wave3.11.js",
+  "affiliateConfigFile": "tools/manual-finder/affiliate-config.js",
+  "reviewMethod": "Each exact model has a Canon-hosted official manual page or a Canon model-specific manual index; each ink SKU was read from that same exact model's Canon official specification page. Search offers do not claim stock or verified purchases.",
+  "records": [
+    {
+      "model": "TS8930",
+      "manualUrl": "https://ij.manual.canon/ij/webmanual/Manual/All/TS8930%20series/JP/CNT/Top.html",
+      "consumablesUrl": "https://personal.canon.jp/product/printer/pixus/lineup/ts8930/spec",
+      "inkCodes": [
+        "BCI-331C",
+        "BCI-330PGBK"
+      ],
+      "state": "direct",
+      "maker": "Canon",
+      "category": "プリンター・複合機",
+      "supportUrl": "https://ij.manual.canon/ij/webmanual/Manual/All/TS8930%20series/JP/CNT/Top.html",
+      "reviewedAt": "2026-11-03",
+      "verification": "Canon official manual page and exact-model product specifications list the selected ink cartridge SKUs."
+    },
+    {
+      "model": "XK140",
+      "manualUrl": "https://ij.manual.canon/ij/webmanual/Manual/All/XK140%20series/JP/CNT/Top.html",
+      "consumablesUrl": "https://personal.canon.jp/product/printer/pixus/lineup/xk140/spec",
+      "inkCodes": [
+        "XKI-N21C",
+        "XKI-N20PGBK"
+      ],
+      "state": "direct",
+      "maker": "Canon",
+      "category": "プリンター・複合機",
+      "supportUrl": "https://ij.manual.canon/ij/webmanual/Manual/All/XK140%20series/JP/CNT/Top.html",
+      "reviewedAt": "2026-11-03",
+      "verification": "Canon official manual page and exact-model product specifications list the selected ink cartridge SKUs."
+    },
+    {
+      "model": "XK510",
+      "manualUrl": "https://ij.manual.canon/ij/webmanual/Manual/All/XK510%20series/JP/CNT/Top.html",
+      "consumablesUrl": "https://personal.canon.jp/product/printer/pixus/lineup/xk510/spec",
+      "inkCodes": [
+        "XKI-N21PB",
+        "XKI-N20PGBK"
+      ],
+      "state": "direct",
+      "maker": "Canon",
+      "category": "プリンター・複合機",
+      "supportUrl": "https://ij.manual.canon/ij/webmanual/Manual/All/XK510%20series/JP/CNT/Top.html",
+      "reviewedAt": "2026-11-03",
+      "verification": "Canon official manual page and exact-model product specifications list the selected ink cartridge SKUs."
+    },
+    {
+      "model": "TS6630",
+      "manualUrl": "https://canon.jp/support/manual/mp/ts6630",
+      "consumablesUrl": "https://personal.canon.jp/product/printer/pixus/lineup/ts6630/spec",
+      "inkCodes": [
+        "BC-386",
+        "BC-385"
+      ],
+      "state": "direct",
+      "maker": "Canon",
+      "category": "プリンター・複合機",
+      "supportUrl": "https://canon.jp/support/manual/mp/ts6630",
+      "reviewedAt": "2026-11-03",
+      "verification": "Canon official manual page and exact-model product specifications list the selected ink cartridge SKUs."
+    },
+    {
+      "model": "TS5630",
+      "manualUrl": "https://canon.jp/support/manual/mp/ts5630?pr=6208",
+      "consumablesUrl": "https://personal.canon.jp/product/printer/pixus/lineup/ts5630/spec",
+      "inkCodes": [
+        "BC-386",
+        "BC-395"
+      ],
+      "state": "direct",
+      "maker": "Canon",
+      "category": "プリンター・複合機",
+      "supportUrl": "https://canon.jp/support/manual/mp/ts5630?pr=6208",
+      "reviewedAt": "2026-11-03",
+      "verification": "Canon official manual page and exact-model product specifications list the selected ink cartridge SKUs."
+    },
+    {
+      "model": "TS5530",
+      "manualUrl": "https://canon.jp/support/manual/mp/ts5530",
+      "consumablesUrl": "https://personal.canon.jp/product/printer/pixus/lineup/ts5530/spec",
+      "inkCodes": [
+        "BC-386",
+        "BC-395"
+      ],
+      "state": "direct",
+      "maker": "Canon",
+      "category": "プリンター・複合機",
+      "supportUrl": "https://canon.jp/support/manual/mp/ts5530",
+      "reviewedAt": "2026-11-03",
+      "verification": "Canon official manual page and exact-model product specifications list the selected ink cartridge SKUs."
+    }
+  ]
+}
