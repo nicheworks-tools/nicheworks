@@ -373,6 +373,21 @@
     const resetBtn = document.getElementById("resetBtn");
 
     let lastTheme = state.theme;
+    let logoRequestId = 0;
+    let pendingLogoUrl = null;
+    const discardPendingLogo = () => {
+      logoRequestId += 1;
+      if (pendingLogoUrl) {
+        URL.revokeObjectURL(pendingLogoUrl);
+        pendingLogoUrl = null;
+      }
+    };
+    const releaseLogoUrl = (url) => {
+      if (pendingLogoUrl === url) {
+        URL.revokeObjectURL(url);
+        pendingLogoUrl = null;
+      }
+    };
 
     const syncState = () => {
       state.title = titleInput.value.trim();
@@ -443,6 +458,7 @@
 
     resetBtn.addEventListener("click", () => {
       if (!confirm("Reset settings? / 設定をリセットしますか？")) return;
+      discardPendingLogo(); // Ignore late onload after reset.
       Object.assign(state, {
         title: "",
         subtitle: "",
@@ -462,18 +478,31 @@
     });
 
     logoInput.addEventListener("change", (event) => {
+      // Cancel a previous in-flight file read: slow load must never replace a
+      // later logo or restore an image cleared by Reset.
+      discardPendingLogo();
+      const requestId = logoRequestId;
       const file = event.target.files[0];
-      if (!file) {
-        state.logo = null;
-        syncState();
-        return;
-      }
+      state.logo = null;
+      syncState(); // Do not export the previous logo while the new one loads.
+      if (!file) return;
+
       const img = new Image();
+      const objectUrl = URL.createObjectURL(file);
+      pendingLogoUrl = objectUrl;
       img.onload = () => {
+        releaseLogoUrl(objectUrl);
+        if (requestId !== logoRequestId) return;
         state.logo = img;
         syncState();
       };
-      img.src = URL.createObjectURL(file);
+      img.onerror = () => {
+        releaseLogoUrl(objectUrl);
+        if (requestId !== logoRequestId) return;
+        state.logo = null;
+        syncState();
+      };
+      img.src = objectUrl;
     });
 
     document.getElementById("downloadBtn").addEventListener("click", () => {
