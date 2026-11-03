@@ -3,7 +3,7 @@ const assert=require("node:assert/strict");
 const {runPublicLoader}=require("./audit-public-image-inventory-v2.3.cjs");
 (async()=>{
   const {entries}=await runPublicLoader();
-  assert.equal(entries.length,870,"Public canonical catalog must have 870 entries");
+  assert.equal(entries.length,865,"Public canonical catalog must have 865 distinct entries after five reviewed redirects");
   const missing=entries.filter(e=>!(e.aliases?.ja?.length&&e.aliases?.en?.length));
   const flat=missing.map(e=>({
     id:e.id,ja:e.term?.ja,en:e.term?.en,
