@@ -55,7 +55,7 @@ The timer, two score inputs, actions, and history are a compact single-column ut
 
 - This is not a multiplayer synchronization system or authoritative tournament scoring service.
 - Timer precision is based on browser `setInterval` behavior and is not a high-precision stopwatch contract.
-- CSV values are emitted directly from recorded values rather than through a full spreadsheet-grade CSV quoting layer.
+- CSV export quotes text cells following RFC 4180, protects formula-leading text from spreadsheet execution, and adds a UTF-8 BOM for spreadsheet compatibility.
 - Timer state is lost on reload; only score history is durable.
 
 ## Acceptance criteria
@@ -64,6 +64,7 @@ The timer, two score inputs, actions, and history are a compact single-column ut
 - [ ] Reset returns the timer to `00:00` without deleting score history.
 - [ ] Adding more than 50 scores retains only the newest 50 in localStorage.
 - [ ] CSV export contains the current stored score history and does nothing when history is empty.
+- [ ] Names/timestamps with commas, quotes or newlines round-trip as CSV fields; formula-like player names are neutralized and invalid legacy numeric scores never become formulas.
 
 ## Implementation evidence
 
