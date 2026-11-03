@@ -204,10 +204,23 @@
   };
 
   let generated = null;
+  let generatedSignature = "";
+  const SOURCE_IDS = [
+    "productName", "target", "problem", "benefits", "differentiators",
+    "price", "proof", "steps", "faq", "guarantee", "notes", "cta"
+  ];
+  const inputSignature = () => JSON.stringify(SOURCE_IDS.map((id) => document.getElementById(id)?.value || ""));
+  const invalidate = () => {
+    generated = null;
+    generatedSignature = "";
+    const output = document.getElementById("output");
+    if (output) output.value = "";
+  };
 
   const ensureGenerated = () => {
-    if (!generated) {
-      toast("入力後に生成してください / Click Generate first");
+    if (!generated || generatedSignature !== inputSignature()) {
+      invalidate();
+      toast("入力が変わりました。再生成してください / Inputs changed. Generate again");
       return false;
     }
     return true;
@@ -216,9 +229,15 @@
   const initTool = () => {
     const output = document.getElementById("output");
     output.value = "";
+    SOURCE_IDS.forEach((id) => {
+      const input = document.getElementById(id);
+      input?.addEventListener("input", invalidate);
+      input?.addEventListener("change", invalidate);
+    });
 
     q("#generate")?.addEventListener("click", () => {
       generated = build();
+      generatedSignature = inputSignature();
       output.value = generated.text;
       toast("生成しました / Generated");
     });
