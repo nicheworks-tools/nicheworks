@@ -180,5 +180,44 @@
     "status": "active",
     "language": "ja",
     "scope_note": "北十勝２町環境衛生処理組合へのごみ自己搬入、資源物は中士幌リサイクルセンター。搬入先・時間が異なる。"
+  },
+  {
+    "pref": "北海道",
+    "city": "上士幌町",
+    "name": "ごみの出し方",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.kamishihoro.jp/page/00000055",
+    "lgcode": "016331",
+    "last_checked": "2026-11-04",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "町公式の分別・排出方法。市街A〜C、農村D〜F地区の収集エリアを明記。"
+  },
+  {
+    "pref": "北海道",
+    "city": "上士幌町",
+    "name": "ごみ収集カレンダー",
+    "type": "ごみ収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.kamishihoro.jp/dust",
+    "lgcode": "016331",
+    "last_checked": "2026-11-04",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "2026年11月の地区別収集予定を表示。表示初期値は市街A地区であり、他地区に一般化しない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "上士幌町",
+    "name": "大型ごみ収集",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.kamishihoro.jp/page/00000483",
+    "lgcode": "016331",
+    "last_checked": "2026-11-04",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "令和8年5月から予約制、年6回（5・7・9・11・1・3月）。実際の収集日は地区別カレンダー参照。"
   }
 ]
