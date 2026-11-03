@@ -89,6 +89,7 @@ The desktop form uses paired panels while the same workflow remains usable on na
 
 - [ ] Pasted text can be processed in each supported mode and produces output, counts, warnings, and preview.
 - [ ] Free copy/TXT works up to 30,000 characters independently of billing state.
+- [ ] Source or mode changes immediately invalidate old Free output, copy and TXT download; a pending generation cannot restore stale text after edit/reset, including programmatic edits with no input event.
 - [ ] Current paid state raises processing to 200,000 characters and gates output pack, Pro exports, templates, and history.
 - [ ] Missing/unrelated legacy entitlement cannot unlock paid behavior even when active-like state exists.
 - [ ] A manual DOM edit to `data-pro-active` is rechecked before normal Generate/Pro click handlers execute.
