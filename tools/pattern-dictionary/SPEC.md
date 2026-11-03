@@ -9,7 +9,7 @@
 - Publication contract: `canonical-100-v1`
 - Common specification: `common-spec/spec-ja.md`
 - Current dataset: `100 verified-publication patterns`
-- Additional published V2 supplement: `20 sourced JA/EN entries (120 total browsable; 240 static detail pages)`
+- Additional published V2 supplement: `30 source-referenced JA/EN entries (130 total browsable; 260 static detail pages)`
 - Product class: `static browser visual dictionary / discovery tool`
 - Monetization class: `AFFILIATE` (active Amazon.co.jp maintained-intent links)
 
@@ -207,3 +207,7 @@ Five new referenced entries: noshi-motif, goshoguruma, temari-motif, sankuzushi 
 ## V2 supplement 4: textile checks and stripes (2026-11-02)
 
 Five newly researched textile appearance terms are published in the versioned `data/v2-extension.json`: graph-check, shadow-check, pencil-stripe, hairline-stripe, candy-stripe. They have source links, representative original SVGs, bilingual definitions/identification cues and ten JA/EN static detail URLs. Combined runtime total: 120 entries; post-deployment details: 240 URLs; unpublished backlog: 67 candidates. Exact stripe widths and a single weave construction are not claimed universally. Separate strict live 240-URL verification is needed after deployment.
+
+## V2 supplement 5: geometry, historical ornament and graphic effects (2026-11-03)
+
+Ten bilingual entries published in `data/v2-extension.json`: guilloche, rosette-ornament, sunburst, concentric-circles, mosaic-pattern, art-deco-fan, op-art-pattern, halftone-dots, topographic-contours, triangle-tessellation. External museum/design/math/cartography references and original illustrative SVGs support all entries. No external artwork is copied. New 20 static JA/EN pages, total **130** browseable identities and **260** page URLs after rollout, with 57 unverified unpublished candidate concepts remaining. Guilloche, Mosaic, Op Art and contour-inspired illustration are qualified for term scope. V2 tests now derive ID/count expectations dynamically and enforce the 87-original-candidate inventory conservation.

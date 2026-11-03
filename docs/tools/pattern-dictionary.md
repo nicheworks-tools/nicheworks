@@ -181,3 +181,7 @@ Five new source-led bilingual entries are included in versioned `v2-extension.js
 ## Pattern Dictionary V2 wave 4 — checks and stripes (2026-11-02)
 
 Five new source-backed bilingual pattern names: graph check, shadow check, pencil stripe, hairline stripe and candy stripe. New sources and original 1536 SVG schematics, ten more static detail pages, and twenty new exact-language browser regression queries. Combined dictionary: 120 terms (100 frozen v1 and twenty V2 supplement entries), 240 potential detail URLs, with 67 unreviewed candidates outside public runtime and sitemap. Strict post-deployment 240-page audit is supported.
+
+## Pattern Dictionary wave 5 — source-referenced geometry and visual effects (2026-11-03)
+
+Ten additional source-backed bilingual terms, 10 original 1536 SVG schematics and 20 JA/EN static entries bring the versioned catalog to **130 records / 260 detail URLs**. The new concepts cover ancient guilloche and rosettes, radial sunburst, concentric rings, mosaic as a material technique, Art Deco fans, Op Art as visual effect, halftone dots, topographic contour-inspired art and triangular tessellation. Their term boundaries and uncertainty are explicit; the original 100-entry canonical image/review dataset remains frozen. Unpublished candidate backlog: **57**. PR production checks monitor the already-deployed baseline and a post-release strict 260-page check is required.

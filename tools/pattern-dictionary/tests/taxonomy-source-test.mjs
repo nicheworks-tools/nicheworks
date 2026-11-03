@@ -8,6 +8,7 @@ const base=readJSON('data/patterns.json');
 const taxonomy=readJSON('data/taxonomy-v2.json');
 const sources=readJSON('data/source-verification.json');
 const backlog=readJSON('data/coverage-backlog.json');
+const supplement=readJSON('data/v2-extension.json');
 const app=fs.readFileSync(path.join(root,'app.js'),'utf8');
 const assert=(ok,message)=>{if(!ok)throw new Error(message)};
 const ids=new Set(base.map(p=>p.id));
@@ -49,7 +50,7 @@ for(const record of sources.patterns){
 }
 const candidates=backlog.candidates;
 assert(backlog.status==='not-published-not-verified','coverage inventory must not suggest publication');
-assert(candidates.length>=60,'coverage breadth unexpectedly shrank; remaining candidate queue must be maintained');
+assert(candidates.length+supplement.entries.length===87,'candidate inventory and V2 supplement count no longer conserve the 87 planned additions');
 const candidateIds=new Set();
 for(const item of candidates){
   assert(!ids.has(item.id)&&!candidateIds.has(item.id),'duplicate or canonical-overlapping expansion candidate '+item.id);
