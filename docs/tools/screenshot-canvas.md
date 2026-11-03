@@ -7,7 +7,7 @@
 - **Registry state:** active
 - **Category:** screenshot, image, compare, canvas
 - **Common specification:** `common-spec/spec-ja.md`
-- **Audit state:** `FIX` (pending live behavior review)
+- **Audit state:** `PASS` (automated Chromium desktop and 390px content-layout regression; physical touch QA remains recommended)
 
 ## 1. Identity
 
@@ -35,7 +35,7 @@ Unsupported image formats are ignored. Image read errors revoke the temporary ob
 
 ## 7. Privacy/data handling
 
-Image pixels stay in browser memory. No uploaded-image endpoint or localStorage/sessionStorage persistence is used. Analytics and advertising, if later integrated, must remain separate from image content.
+Image pixels stay in browser memory. No uploaded-image endpoint or localStorage/sessionStorage persistence is used. GA4 and AdSense scripts load as separate site services, and image content is not intentionally transmitted to them.
 
 ## 8. Responsive contract
 
@@ -51,11 +51,11 @@ One canonical `https://nicheworks.app/tools/screenshot-canvas/`, matching og:url
 
 ## 11. Advertising contract
 
-Classification is ADS_DONATION. Suite advertisement placement, GA4, and AdSense shell integration remain to be completed and must not obstruct image editing.
+Classification is ADS_DONATION. GA4 tracking and AdSense script tags are present in the page shell. They must not access local screenshot pixels or obstruct editing.
 
 ## 12. Donation/support contract
 
-The common NicheWorks OFUSE/Ko-fi support links must be integrated before final quality acceptance; no payment function is required for core image editing.
+The common NicheWorks OFUSE and Ko-fi support links are present in the page shell. No payment function is required for core image editing.
 
 ## 13. Help/usage/FAQ contract
 
@@ -66,10 +66,10 @@ Usage documentation is provided in `tools/screenshot-canvas/usage.html` and `usa
 - [ ] Import multiple local images with picker, drop, and paste.
 - [ ] Move images, resize each corner, multi-select, reorder, delete, and duplicate.
 - [ ] Verify row/column/grid/overlay layouts and transparent PNG export.
-- [ ] Verify undo/redo restores geometry, opacity, background, and dimensions.
+- [x] Verify undo/redo restores geometry, opacity, background, and dimensions (Chromium smoke).
 - [ ] Verify mobile touch and keyboard/accessibility behavior and JA/EN labels.
 
-No browser-behavior test has been certified for this commit. Syntax/CI checks alone do not satisfy these tests.
+GitHub Actions runs `tools/screenshot-canvas/tests/browser-smoke.mjs` in Chromium against the repository files at desktop content width 1425px and constrained content width 390px. Passed coverage includes two-image import, row/grid/column/overlay arrangement, pointer drag, undo/redo, background, opacity, canvas dimensions, duplicate/delete, PNG export, and language switch. Tests do not certify hardware touch interaction, clipboard paste, drag/drop, all four resize corners, or keyboard accessibility. The 390px mode constrains body layout because headless Chrome's minimum viewport is 500px.
 
 ## 15. Explicit tool-specific exceptions
 
@@ -81,3 +81,4 @@ This is a freeform compositor, not Screenshot Stitcher (vertical joiner) or a re
 - `tools/screenshot-canvas/app.js`
 - `tools/screenshot-canvas/style.css`
 - `tools/screenshot-canvas/SPEC.md`
+- `tools/screenshot-canvas/tests/browser-smoke.mjs`
