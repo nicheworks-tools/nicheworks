@@ -136,6 +136,16 @@ async function httpSmoke(){
   for(const key of ['charger-pd-check-wattage','charger-pd-90w']){
     assert.ok(liveAccessories.accessories.some(x=>x.key===key),'Public accessory category missing: '+key);
   }
+  // Validate deployed crawlable commercial SEO pages, not only dynamic JS assets.
+  for (const [page,indicator] of [['models/','data-phone-id='],['charging-guide/','適格販売により収入を得ています']]) {
+    const response = await req(page);
+    assert.equal(response.status,200,'SEO landing '+page+' HTTP '+response.status);
+    const html = await response.text();
+    assert.ok(html.includes(indicator),'SEO landing '+page+' is stale or absent');
+    assert.ok(html.includes('<link rel="canonical"'),'SEO landing '+page+' must have canonical');
+    if (page === 'models/') assert.equal((html.match(/data-phone-id=/g)||[]).length,count,'SEO model index count differs from maintained phone data');
+  }
+  console.log('SEO HTTP PASS: 250 crawlable phone entries, commercial charging guide');
   console.log('HTTP PASS: '+count+' verified public phones, assets and latest records');
 }
 async function until(check,ms){
