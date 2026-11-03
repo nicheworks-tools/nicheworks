@@ -19,18 +19,18 @@
   },
   "sources": {
     "publication_inventory_version": "2026-09-16-q014-identity-closure-1",
-    "publication_id_sha256": "9c82f042e92a167cabcb46e80ad1e6b77566f594d36932ff42c352e875aa8177",
+    "publication_id_sha256": "d0264617677052f0f446a0f4ebbfafc2315766d5858480b7103267320d88752d",
     "image_registry_version": "2026-10-31-reviewed-image-wave9-four-1",
-    "image_exception_ledger_version": "2026-09-18-applicability-wave17-final"
+    "image_exception_ledger_version": "2026-11-03-five-canonical-retirements-1"
   },
   "summary": {
-    "public_entries": 870,
+    "public_entries": 865,
     "formal_image_entries": 53,
-    "missing_formal_image_entries": 770,
-    "not_required_entries": 47,
+    "missing_formal_image_entries": 767,
+    "not_required_entries": 45,
     "unobtainable_entries": 0,
-    "classified_entries": 870,
-    "formal_coverage_percent": 6.092,
+    "classified_entries": 865,
+    "formal_coverage_percent": 6.1272,
     "registry_items_total": 53,
     "formal_images_inherited_via_redirect": 6,
     "formal_images_outside_public": 0,
@@ -41,17 +41,17 @@
     "policy": "image-lifecycle-policy-v2.3.json",
     "ledger": "image-lifecycle-v2.3.json",
     "summary": {
-      "public_entries": 870,
-      "disposition_records": 870,
-      "applicability_reviewed": 870,
-      "required": 823,
+      "public_entries": 865,
+      "disposition_records": 865,
+      "applicability_reviewed": 865,
+      "required": 820,
       "on_hold": 0,
-      "final_dispositions": 100,
-      "unresolved": 770,
+      "final_dispositions": 98,
+      "unresolved": 767,
       "by_stage": {
         "unreviewed": 0,
-        "not_required": 47,
-        "awaiting_source": 770,
+        "not_required": 45,
+        "awaiting_source": 767,
         "candidate": 0,
         "provenance_verified": 0,
         "subject_verified": 0,
@@ -59,7 +59,7 @@
         "promoted": 53
       }
     },
-    "evidence_sha256": "6a1914390ba8ec5163deeb611a0e2cbf31caf6a3e4ea558d72326f614839499f",
+    "evidence_sha256": "c739405f88bd3eb7b014a85fb6d2f41fab6c7a9250cfddfec047294dd7ee2d54",
     "rows": [
       {
         "id": "access_door",
@@ -177,19 +177,6 @@
         "candidate_id": "existing:angle_grinder",
         "source_entry_id": "angle_grinder",
         "attachment": "direct"
-      },
-      {
-        "id": "as_built",
-        "applicability": "not_required",
-        "stage": "not_required",
-        "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
-        "hold": null,
-        "reason": "Record-drawing concept whose meaning is defined by documentation state, not by the appearance of a unique physical subject.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
       },
       {
         "id": "as_built_drawing",
@@ -985,19 +972,6 @@
         "attachment": "none"
       },
       {
-        "id": "corner_float",
-        "applicability": "required",
-        "stage": "awaiting_source",
-        "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
-        "hold": null,
-        "reason": "A corner trowel has a characteristic angled blade geometry for inside/outside corners; a subject-matched photograph is appropriate.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
-      },
-      {
         "id": "cover_meter",
         "applicability": "required",
         "stage": "awaiting_source",
@@ -1773,19 +1747,6 @@
         "subject_verified": false,
         "hold": null,
         "reason": "Fiberglass insulation is a physical fibrous insulation product with recognizable batt/roll form; a reviewed photograph is useful for this surviving canonical.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
-      },
-      {
-        "id": "ground_fault_breaker",
-        "applicability": "required",
-        "stage": "awaiting_source",
-        "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
-        "hold": null,
-        "reason": "A ground-fault breaker is a physical electrical safety device with recognizable breaker form; a reviewed photograph is appropriate.",
         "candidate_id": null,
         "source_entry_id": null,
         "attachment": "none"
@@ -10163,19 +10124,6 @@
         "attachment": "none"
       },
       {
-        "id": "sandpaper",
-        "applicability": "required",
-        "stage": "awaiting_source",
-        "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
-        "hold": null,
-        "reason": "Sandpaper is a physical abrasive sheet/disc material with recognizable grit-backed form; a reviewed photograph is useful.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
-      },
-      {
         "id": "scaffold",
         "applicability": "required",
         "stage": "awaiting_source",
@@ -10904,19 +10852,6 @@
         "attachment": "none"
       },
       {
-        "id": "toolbox_talk",
-        "applicability": "not_required",
-        "stage": "not_required",
-        "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
-        "hold": null,
-        "reason": "The canonical is a short pre-work safety briefing practice, not a unique physical subject; meeting location, participants, and format vary by site.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
-      },
-      {
         "id": "top_coat",
         "applicability": "required",
         "stage": "awaiting_source",
@@ -11459,9 +11394,9 @@
       "unobtainable": 0
     },
     "materials": {
-      "public_entries": 14,
+      "public_entries": 13,
       "formal_image": 0,
-      "missing_formal_image": 14,
+      "missing_formal_image": 13,
       "not_required": 0,
       "unobtainable": 0
     },
@@ -11494,10 +11429,10 @@
       "unobtainable": 0
     },
     "site": {
-      "public_entries": 2,
+      "public_entries": 1,
       "formal_image": 0,
       "missing_formal_image": 0,
-      "not_required": 2,
+      "not_required": 1,
       "unobtainable": 0
     },
     "structure": {
@@ -11522,18 +11457,18 @@
       "unobtainable": 0
     },
     "tool": {
-      "public_entries": 333,
+      "public_entries": 330,
       "formal_image": 43,
-      "missing_formal_image": 265,
-      "not_required": 25,
+      "missing_formal_image": 263,
+      "not_required": 24,
       "unobtainable": 0
     }
   },
   "hashes": {
-    "public_id_sha256": "9c82f042e92a167cabcb46e80ad1e6b77566f594d36932ff42c352e875aa8177",
+    "public_id_sha256": "d0264617677052f0f446a0f4ebbfafc2315766d5858480b7103267320d88752d",
     "public_formal_image_id_sha256": "32363771efe9e76c83f2e99b4ec7a2627e6b9f82934b8823682a3077038b58dd",
-    "public_missing_formal_image_id_sha256": "b3ef638048d60b91ec13d03e4f58ea0310733b92492fec29392b9396584d33f9",
-    "public_image_classification_sha256": "98edabc060ca8293ed049c1a590c8405ad3a62c9bf21f2edb4d6346d3f5eac77"
+    "public_missing_formal_image_id_sha256": "61277a08e41b44131b4117e5d659ab2de5ae3564b798d83bdf53afe2fde9a99e",
+    "public_image_classification_sha256": "4925b0b1022b65a6860ef35d86245543e6de2ae5a574598844feb6d1c60a6f9b"
   },
   "inherited_formal_images": [
     {
