@@ -60,10 +60,11 @@ function harness() {
     createObjectURL(file) { const url = 'blob:logo-' + (urls.length + 1); urls.push({ url, file }); return url; },
     revokeObjectURL(url) { revoked.push(url); }
   };
+  const logger = { error() {}, log() {} };
   vm.runInNewContext(fs.readFileSync(path.join(__dirname, 'app.js'), 'utf8'), {
     document, navigator, window, localStorage, Image: ImageStub, URL,
     confirm: () => true,
-    setTimeout() { return 1; }, clearTimeout() {}, console
+    setTimeout() { return 1; }, clearTimeout() {}, console: logger
   });
   for (const fn of events.get('document:DOMContentLoaded') || []) fn();
   return { get, images, urls, revoked, displayedLogo: () => displayedLogo, savedLogo: () => savedLogo };
