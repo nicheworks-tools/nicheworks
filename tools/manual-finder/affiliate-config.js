@@ -275,6 +275,30 @@
     ]),
     consumableRow("Canon", "XK130", "https://personal.canon.jp/product/supply/models/xk130", "2026-09-14", [
       consumableOffer("xki-n21-n20", "Canon XKI-N21 XKI-N20", "Amazonで XKI-N21 / XKI-N20 インクを探す", "Find Canon XKI-N21 / XKI-N20 ink on Amazon")
+    ]),
+    consumableRow("Canon", "TS8930", "https://personal.canon.jp/product/printer/pixus/lineup/ts8930/spec", "2026-11-03", [
+      consumableOffer("bci-331c", "Canon BCI-331C", "Amazonで BCI-331C 対応インクを探す", "Find Canon BCI-331C ink on Amazon"),
+      consumableOffer("bci-330pgbk", "Canon BCI-330PGBK", "Amazonで BCI-330PGBK 対応インクを探す", "Find Canon BCI-330PGBK ink on Amazon")
+    ]),
+    consumableRow("Canon", "XK140", "https://personal.canon.jp/product/printer/pixus/lineup/xk140/spec", "2026-11-03", [
+      consumableOffer("xki-n21c", "Canon XKI-N21C", "Amazonで XKI-N21C 対応インクを探す", "Find Canon XKI-N21C ink on Amazon"),
+      consumableOffer("xki-n20pgbk", "Canon XKI-N20PGBK", "Amazonで XKI-N20PGBK 対応インクを探す", "Find Canon XKI-N20PGBK ink on Amazon")
+    ]),
+    consumableRow("Canon", "XK510", "https://personal.canon.jp/product/printer/pixus/lineup/xk510/spec", "2026-11-03", [
+      consumableOffer("xki-n21pb", "Canon XKI-N21PB", "Amazonで XKI-N21PB 対応インクを探す", "Find Canon XKI-N21PB ink on Amazon"),
+      consumableOffer("xki-n20pgbk", "Canon XKI-N20PGBK", "Amazonで XKI-N20PGBK 対応インクを探す", "Find Canon XKI-N20PGBK ink on Amazon")
+    ]),
+    consumableRow("Canon", "TS6630", "https://personal.canon.jp/product/printer/pixus/lineup/ts6630/spec", "2026-11-03", [
+      consumableOffer("bc-386", "Canon BC-386", "Amazonで BC-386 対応インクを探す", "Find Canon BC-386 ink on Amazon"),
+      consumableOffer("bc-385", "Canon BC-385", "Amazonで BC-385 対応インクを探す", "Find Canon BC-385 ink on Amazon")
+    ]),
+    consumableRow("Canon", "TS5630", "https://personal.canon.jp/product/printer/pixus/lineup/ts5630/spec", "2026-11-03", [
+      consumableOffer("bc-386", "Canon BC-386", "Amazonで BC-386 対応インクを探す", "Find Canon BC-386 ink on Amazon"),
+      consumableOffer("bc-395", "Canon BC-395", "Amazonで BC-395 対応インクを探す", "Find Canon BC-395 ink on Amazon")
+    ]),
+    consumableRow("Canon", "TS5530", "https://personal.canon.jp/product/printer/pixus/lineup/ts5530/spec", "2026-11-03", [
+      consumableOffer("bc-386", "Canon BC-386", "Amazonで BC-386 対応インクを探す", "Find Canon BC-386 ink on Amazon"),
+      consumableOffer("bc-395", "Canon BC-395", "Amazonで BC-395 対応インクを探す", "Find Canon BC-395 ink on Amazon")
     ])
   ]);
 

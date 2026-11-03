@@ -10,14 +10,14 @@ The printer-detail audit remains complete for the current canonical printer cata
 
 | Metric | Final audited value |
 | --- | ---: |
-| Printer records with a basic Amazon path | **331** |
-| Printer records with a verified detail handoff | **324** |
+| Printer records with a basic Amazon path | **337** |
+| Printer records with a verified detail handoff | **330** |
 | Reviewed printer-detail exclusions | **7** |
 | Actionable printer records still missing detail | **0** |
 
 Required printer reconciliation:
 
-`printer basic 331 = detail 324 + reviewed exclusion 7 + missing 0`
+`printer basic 337 = detail 330 + reviewed exclusion 7 + missing 0`
 
 The camera accessory audit independently reconciles as:
 
@@ -477,3 +477,9 @@ Nine official Epson manual-list destinations and **27 new tagged Amazon search p
 ### Epson EP-881A/882A official manual and tagged ink handoffs (2026-11-02)
 
 Seven exact Epson manufacturer user-manual model pages, each individually matched to its model-specific Epson KAM ink catalog, enable seven new canonical exact-model Amazon handoffs plus fourteen manufacturer-compatible `KAM-6CL`/`KAM-6CL-L` ink pack search handoffs. Official manufacturer compatibility-table cross-check is in `coverage-passes/epson/jp-colorio-wave3j-7-kam-models-20261102.json`. Uses existing `nicheworks09-22` Amazon Associates query builder, link disclosure and click instrumentation. Printer audit **331 basic = 324 detail + 7 exclusions + 0 missing**. These are tagged search paths, not purchases or income.
+
+### Canon PIXUS model-specific manuals and verified cartridge searches (Wave 3K, 2026-11-03)
+
+Six new Canon printer records (TS8930, XK140, XK510, TS6630, TS5630 and TS5530) each get one exact-model Amazon Associates search and two manufacturer-spec-confirmed specific cartridge searches, all with the existing `nicheworks09-22` tag. Evidence is retained at `coverage-passes/canon/jp-pixus-wave3k-6-models-20261103.json`. Printer reconciliation: **337 basic = 330 detail + 7 reviewed exclusions + 0 missing**; machine-readable form `printer basic 337 = detail 330 + reviewed exclusion 7 + missing 0`. Search links do not establish seller stock, clicks, sales or commissions.
+
+Prior Epson Wave 3J / Brother Wave 3F audit snapshot (superseded, retained solely for historical regression provenance): `printer basic 331 = detail 324 + reviewed exclusion 7 + missing 0`. The current audit remains `printer basic 337 = detail 330 + reviewed exclusion 7 + missing 0`.

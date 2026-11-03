@@ -17,7 +17,7 @@ All future model-level expansion must follow `COVERAGE_PASS_WORKFLOW.md`. Script
 
 ## Current verified model-level inventory
 
-With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifilm GFX/X, VAIO JP start-guide PCs, Samsung JP Galaxy smartphones, dynabook JP 2024–2026 PCs, Fujitsu FMWORLD LIFEBOOK U business PCs, Google Pixel JP model-specific safety/support documentation, Motorola JP current smartphone lineup, ASUS JP Vivobook series, and Xiaomi JP smartphone/tablet user-guide index, the accepted dataset contains **2,553 verified model/caliber rows**. **2,110 are outside Seiko**. Coverage-Pass publication contributes **997 reviewed rows across thirteen bounded manufacturer scopes**. The Xiaomi JP 60-device source reconciles to 59 positively verified manufacturer PDF guides and one held co-branded Leica model; 59 guide rows are published. This is not Xiaomi company-wide coverage.
+With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifilm GFX/X, VAIO JP start-guide PCs, Samsung JP Galaxy smartphones, dynabook JP 2024–2026 PCs, Fujitsu FMWORLD LIFEBOOK U business PCs, Google Pixel JP model-specific safety/support documentation, Motorola JP current smartphone lineup, ASUS JP Vivobook series, and Xiaomi JP smartphone/tablet user-guide index, the accepted dataset contains **2,559 verified model/caliber rows**. **2,116 are outside Seiko**. Coverage-Pass publication contributes **997 reviewed rows across thirteen bounded manufacturer scopes**. The Xiaomi JP 60-device source reconciles to 59 positively verified manufacturer PDF guides and one held co-branded Leica model; 59 guide rows are published. This is not Xiaomi company-wide coverage.
 
 | Maker / dataset identity | Verified rows | Current state | Notes |
 | --- | ---: | --- | --- |
@@ -50,7 +50,7 @@ With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifil
 | Brother | 21 | expanded | Waves 3B+3F: 13 legacy MFC-J manual pages and 8 newly manufacturer-verified models (6 direct + 2 official shared manual identities), with 16 manufacturer-verified ink Amazon search offers. The separate legacy held model is unchanged. |
 | Insta360 | 7 | expanded | Product-specific official online manuals. |
 | Epson | 38 | expanded | Colorio Waves 3D+3G+3H+3I+3J: 6+8+8+9+7 exact official Epson model manuals, with individually verified printer ink queries. |
-| Canon | 143 | expanded | Six Wave 3E PIXUS printers plus 137 distinct official RF/EF-series lens instruction manual rows (123 direct + 14 shared) from Canon Japan nine-section lens-manual index. Lens scope does not claim Canon company-wide completeness; manufacturer direct PDFs verified. |
+| Canon | 149 | expanded | Twelve verified Wave 3E+3K PIXUS printers plus 137 distinct official RF/EF-series lens instruction manual rows (123 direct + 14 shared) from Canon Japan nine-section lens-manual index. Lens scope does not claim Canon company-wide completeness; manufacturer direct PDFs verified. |
 | Hisense | 2 | expanded | Exact TV function-manual targets; coverage is still very thin. |
 | **Total** | **2,553** |  |  |
 
@@ -65,7 +65,7 @@ Counts above are accepted repository rows, not estimates of manufacturer catalog
 | 1 | Apple | **expanded — 31** | iPhone User Guide bounded scope is published and coverage-pass-complete at 31 shared manual rows + exact model support pages; broader Apple remains incomplete |
 | 2 | Sony | **expanded — 107** | JP α E-mount scope is published and coverage-pass-complete at 104 direct + 3 support-only + 0 held; broader Sony categories remain incomplete |
 | 3 | Panasonic | **expanded — 27** | JP LUMIX S/G/compact camera-body sitemap scope is published and coverage-pass-complete at 27 direct + 0 support-only + 0 held; broader Panasonic categories remain incomplete |
-| 4 | Canon | **expanded — 143** | Six PIXUS models and 137 official RF/EF interchangeable-lens user manuals; printers, cameras, and remaining lens groups are not complete |
+| 4 | Canon | **expanded — 149** | Six PIXUS models and 137 official RF/EF interchangeable-lens user manuals; printers, cameras, and remaining lens groups are not complete |
 | 5 | Nikon | **expanded — 14** | Mirrorless Web-manual section covered in Wave 3A; rotate away |
 | 6 | Fujifilm | **expanded — 56** | JP GFX + X-series camera-manual-index scope is published and coverage-pass-complete at 52 direct + 4 shared + 0 held; FinePix and broader Fujifilm remain incomplete |
 | 7 | Brother | **expanded — 21** | Eight additional 2026 MFC-J printers from official model user-guide/ink pages; MFC-J6990CDW remains held |
@@ -253,3 +253,7 @@ Nine previously unindexed models have independent manufacturer manual pages (`ht
 ### Epson JP EP-881A/882A seven-model Wave 3J manual + ink pass (2026-11-02)
 
 Seven exactly named manufacturer manual pages: EP-881AB, EP-881AN, EP-881AR, EP-881AW, EP-882AB, EP-882AR and EP-882AW. The seven `www.epson.jp/support/portal/used/{model}.htm` pages visibly list a PDF user guide, and all seven exact `shoumouhin/{model}.htm` manufacturer consumables pages individually list KAM-6CL and KAM-6CL-L ink packs. The ink product's Epson manufacturer compatibility table separately names all seven identities. Published `data/manuals.wave3.10.js`, evidence `coverage-passes/epson/jp-colorio-wave3j-7-kam-models-20261102.json`. Adds seven official guide rows + seven tagged exact Amazon model searches + fourteen compatible ink searches. No purchases or sales are inferred.
+
+### Canon PIXUS six exact official manuals and verified ink (Wave 3K, 2026-11-03)
+
+Six new printer models — TS8930, XK140, XK510, TS6630, TS5630 and TS5530 — have individually confirmed Canon-hosted official manual indexes and manufacturer model-specific specifications listing the selected ink cartridges. Source manifest `coverage-passes/canon/jp-pixus-wave3k-6-models-20261103.json`; runtime `data/manuals.wave3.11.js`; tests `tests/canon-pixus-wave3k-publication.test.mjs`. This adds six manual rows, six Canon exact-model tagged Amazon searches and twelve specifically compatible ink cartridge searches. Inventory grows from historical **2,553 verified model/caliber rows** to **2,559 verified model/caliber rows**. Canon becomes 149, consisting of 12 PIXUS printers and 137 verified lens manuals; Canon company-wide coverage remains incomplete.

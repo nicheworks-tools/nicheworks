@@ -2,7 +2,7 @@
   const V = "2026-09-13";
   const EPSON_V = "2026-09-14";
   const CANON_V = "2026-09-14";
-  window.MANUALFINDER_WAVE3_BATCHES = ["manuals.wave3.01.js", "manuals.wave3.02.js", "manuals.wave3.04.js", "manuals.wave3.05.js", "manuals.wave3.07.js", "manuals.wave3.08.js", "manuals.wave3.09.js", "manuals.wave3.10.js", "manuals.wave3.06.js"];
+  window.MANUALFINDER_WAVE3_BATCHES = ["manuals.wave3.01.js", "manuals.wave3.02.js", "manuals.wave3.04.js", "manuals.wave3.05.js", "manuals.wave3.07.js", "manuals.wave3.08.js", "manuals.wave3.09.js", "manuals.wave3.10.js", "manuals.wave3.11.js", "manuals.wave3.06.js"];
   window.MANUALFINDER_WAVE3_NIKON = window.MANUALFINDER_WAVE3_NIKON || [];
   window.MANUALFINDER_WAVE3_BROTHER = window.MANUALFINDER_WAVE3_BROTHER || [];
   window.MANUALFINDER_WAVE3_EPSON = window.MANUALFINDER_WAVE3_EPSON || [];
@@ -76,7 +76,7 @@
   });
 
   const canon = () => lines(window.MANUALFINDER_WAVE3_CANON).map((line) => {
-    const [model, manualUrl, targetMode] = line.split("|");
+    const [model, manualUrl, targetMode, verifiedAtRaw] = line.split("|");
     const shared = targetMode === "shared";
     return {
       id: `wave3-canon-${slug(model)}`,
@@ -88,10 +88,10 @@
       hintJa: `キヤノン Canon PIXUS ${model} プリンター 複合機 取扱説明書`,
       hintEn: `Canon PIXUS ${model} printer MFP manual`,
       aliases: ["キヤノン", "Canon", "PIXUS", "プリンター", "複合機", "取扱説明書"],
-      sourceType: "official", sourceLevel: "A", verifiedAt: CANON_V, evidenceUrl: manualUrl,
+      sourceType: "official", sourceLevel: "A", verifiedAt: verifiedAtRaw || CANON_V, evidenceUrl: manualUrl,
       resolutionState: shared ? "shared_official_manual_page" : "direct_online_manual",
       manualKind: "online-manual", sharedTarget: shared,
-      linkReview: `official Wave 3E target verified ${CANON_V}`
+      linkReview: `official Canon target verified ${verifiedAtRaw || CANON_V}`
     };
   });
 

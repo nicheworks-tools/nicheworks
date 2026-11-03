@@ -420,3 +420,7 @@ The nine official Japan Epson exact model manual pages (EP-712A/713A/714A, EP-88
 ## Epson Colorio Wave 3J EP-881A/882A exact seven-model manual and ink publication (2026-11-02)
 
 Seven EP-881A/882A exact official model pages each list PDF user guides and the manufacturer-specific consumables page names the KAM-6CL and KAM-6CL-L packs. Source ledger `coverage-passes/epson/jp-colorio-wave3j-7-kam-models-20261102.json`; public runtime `data/manuals.wave3.10.js`. Add seven exact model Amazon queries and fourteen ink queries with `nicheworks09-22` tracking ID and existing affiliate disclosure. Printer audited handoffs: **331 basic = 324 detail + 7 reviewed exclusions + 0 missing detail**. No seller/stock claims.
+
+## Canon PIXUS Wave 3K official manual and ink publication (2026-11-03)
+
+Six new Canon official model manual pages (TS8930, XK140, XK510, TS6630, TS5630, TS5530) were individually checked against model-specific Canon specifications for two cartridge SKUs each. See `coverage-passes/canon/jp-pixus-wave3k-6-models-20261103.json`, `data/manuals.wave3.11.js` and the dedicated Wave 3K publication test. All six receive canonical model searches and twelve ink searches using the existing `nicheworks09-22` Amazon tag and disclosures. Printer audit **337 basic = 330 detail + 7 reviewed exclusions + 0 missing detail**. These are manufacturer-backed search paths, not verified purchases or inventory.
