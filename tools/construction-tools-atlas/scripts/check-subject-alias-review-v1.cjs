@@ -64,7 +64,7 @@ const normalize=search.normalizeText;
   }
   assert.equal(collisions.length,0,"Curated alias collisions:\n"+collisions.join("\n"));
   const explicitBilingual=runtime.entries.filter(e=>e.aliases?.ja?.length&&e.aliases?.en?.length);
-  assert.equal(explicitBilingual.length,865,"remaining actual alias gaps="+runtime.entries.filter(e=>!e.aliases?.ja?.length||!e.aliases?.en?.length).map(e=>e.id).join(","));
+  assert.equal(explicitBilingual.length,865,"remaining actual alias gaps="+JSON.stringify(runtime.entries.filter(e=>!e.aliases?.ja?.length||!e.aliases?.en?.length).map(e=>({id:e.id,ja:e.term?.ja,en:e.term?.en,aliases_ja:e.aliases?.ja||[],aliases_en:e.aliases?.en||[]}))));
   const laminate=byId.get("q016_laminate_flooring");
   const broaderWood=byId.get("wood_flooring");
   assert.equal(laminate?.term?.ja,"ラミネートフローリング","laminate must not be mislabeled as composite/engineered wood");
