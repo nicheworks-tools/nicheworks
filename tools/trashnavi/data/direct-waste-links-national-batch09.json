@@ -89,5 +89,44 @@
     "link_type": "waste_sorting",
     "url": "https://rishiri-town.jp/wp-content/uploads/2024/07/ごみの出し方ポスターR6年度）-.pdf",
     "scope_note": "公式掲載の令和6年度表記の過年度資料。現行年度の収集日程には使用しない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "音更町",
+    "name": "ごみ分別の手引きについて",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.otofuke.hokkaido.jp/kurashi/kankyo/gomi/bunbetu-tebiki.html",
+    "lgcode": "016314",
+    "last_checked": "2026-11-04",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "町公式の家庭ごみ分別手引き。大型ごみ・自己搬入を含む項目別PDFへの案内。"
+  },
+  {
+    "pref": "北海道",
+    "city": "音更町",
+    "name": "A地区ごみ収集カレンダー（令和8年10月〜令和9年9月）",
+    "type": "ごみ収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.town.otofuke.hokkaido.jp/kurashi/kankyo/gomi_calendar/a_chiku_calendar.html",
+    "lgcode": "016314",
+    "last_checked": "2026-11-04",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "A地区（北明台、大通北、大通1〜6丁目、新通北、新通1〜6丁目等）限定。2026年10月〜2027年9月の地区別日程。町全域には適用しない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "音更町",
+    "name": "家庭ごみの自己搬入",
+    "type": "持込施設",
+    "link_type": "drop_off_facility",
+    "url": "https://www.town.otofuke.hokkaido.jp/kurashi/kankyo/gomi/jikohannyu.html",
+    "lgcode": "016314",
+    "last_checked": "2026-11-04",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "町公式の自己搬入案内。くりりんセンターへの搬入前分別・混雑注意・14分類を説明。"
   }
 ]
