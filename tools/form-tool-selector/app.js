@@ -425,6 +425,8 @@
     let memoText = "";
     let markdownText = "";
     let hasGenerated = false;
+    let generatedSignature = "";
+    const selectionSignature = () => JSON.stringify(getSelections());
 
     const lang = () => document.documentElement.lang || "ja";
 
@@ -440,6 +442,7 @@
       memoText = "";
       markdownText = "";
       hasGenerated = false;
+      generatedSignature = "";
       setOutputActions(false);
       resultList.replaceChildren(buildStateCard(messages.initial[lang()]));
       memoOutput.textContent = "-";
@@ -453,6 +456,7 @@
         memoText = "";
         markdownText = "";
         hasGenerated = false;
+        generatedSignature = "";
         setOutputActions(false);
         resultList.replaceChildren(buildStateCard(messages.noSelection[current]));
         memoOutput.textContent = messages.copyBlocked[current];
@@ -465,6 +469,7 @@
       memoText = makeMemo(current, recommendations);
       markdownText = toMarkdown(current, recommendations, memoText);
       hasGenerated = true;
+      generatedSignature = selectionSignature();
       setOutputActions(true);
 
       const cards = buildRecommendationCards(recommendations, current);
@@ -474,10 +479,16 @@
     };
 
     const ensureGenerated = () => {
-      if (hasGenerated) return true;
+      if (hasGenerated && generatedSignature === selectionSignature()) return true;
+      showInitial();
       showToast(messages.copyBlocked[lang()]);
       return false;
     };
+
+    ["reqUpload", "reqPayments", "reqNotify", "reqMulti", "reqFree", "reqPrivacy"].forEach((id) => {
+      $(id)?.addEventListener("change", showInitial);
+      $(id)?.addEventListener("input", showInitial);
+    });
 
     $("btnSelect").addEventListener("click", render);
     $("btnQuickStart").addEventListener("click", () => {
