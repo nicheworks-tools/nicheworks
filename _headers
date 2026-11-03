@@ -28,7 +28,10 @@
 /tools/*/pro.html
   X-Robots-Tag: noindex, follow
 
-/tools/*/pro/*
+/tools/:tool/pro/*
+  X-Robots-Tag: noindex, follow
+
+/tools/:tool/:lang/pro/*
   X-Robots-Tag: noindex, follow
 
 /tools/earth-alerts/*
