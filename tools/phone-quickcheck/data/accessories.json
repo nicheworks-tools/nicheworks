@@ -1,6 +1,6 @@
 {
-  "version": 6,
-  "updatedAt": "2026-11-01",
+  "version": 7,
+  "updatedAt": "2026-11-03",
   "accessories": [
     {
       "key": "cable-usbc-usbc",
@@ -176,6 +176,22 @@
       "labelEn": "10,000mAh USB-C power bank",
       "noteJa": "充電回数表示は本ページの概算値を参照し、出力規格とケーブル条件も確認してください。",
       "noteEn": "Use the page's recharge estimate as a guide and also confirm output profile and cable requirements.",
+      "amazonUrl": null
+    },
+    {
+      "key": "charger-pps-65w",
+      "labelJa": "USB-PD PPS対応 65W以上の充電器",
+      "labelEn": "65W+ USB-PD PPS charger",
+      "noteJa": "55W PPS対応機向け。65W表示だけで互換性は確定しません。対応PPS電圧・電流プロファイルを確認してください。",
+      "noteEn": "For 55W PPS-capable phones. A 65W rating alone does not establish compatibility: verify PPS voltage and current profiles.",
+      "amazonUrl": null
+    },
+    {
+      "key": "charger-oppo-airvooc",
+      "labelJa": "OPPO AIRVOOC対応ワイヤレス充電器",
+      "labelEn": "OPPO AIRVOOC wireless charger",
+      "noteJa": "OPPO独自AIRVOOC対応機向け。一般的なQi製品とは出力を同一視せず、対象機種・電源アダプターの条件を確認してください。",
+      "noteEn": "For OPPO AIRVOOC phones. Do not equate generic Qi speeds with proprietary AIRVOOC; confirm device and adapter support.",
       "amazonUrl": null
     }
   ]
