@@ -77,11 +77,18 @@ assert.ok(coverage.includes('**44 of the 66 baseline brands are still generic-on
 assert.ok(coverage.includes('| Xiaomi | 59 | expanded, scope-reviewed |'));
 const fake={
  sourceDigest:pass.universe.sourceObservation.officialIndexSha256,
- officialPopulation:60,officialTotalGuideRows:306,sourceMobileRawRows:74,
+ officialPopulation:60,officialTotalGuideRows:306,nonMobileNewLinkCount:0,sourceMobileRawRows:74,
  counts:{direct:59,shared:0,support_only:0,held:1},
  records:pass.records.map(x=>({...x,pdfEvidence:x.state==='direct'?{url:x.manualUrl,pdfVersion:'%PDF-1.7'}:null}))
 };
 assert.equal(reconcile(pass,fake).valid,true);
+fake.officialTotalGuideRows=307;
+fake.nonMobileNewLinkCount=1;
+assert.equal(reconcile(pass,fake).valid,true,'one independently reconciled non-mobile source addition is not a 60-model mobile drift');
+fake.nonMobileNewLinkCount=0;
+assert.equal(reconcile(pass,fake).valid,false,'307 must not pass without explicit nonmobile scope classification');
+fake.officialTotalGuideRows=306;
+fake.nonMobileNewLinkCount=0;
 fake.records[0].manualUrl='https://bad.example/test.pdf';
 assert.equal(reconcile(pass,fake).valid,false,'never accept a changed manufacturer PDF destination');
 console.log('Xiaomi JP 59 exact verified manufacturer PDFs, held Leica, 60-model lock and 997-row public runtime passed.');

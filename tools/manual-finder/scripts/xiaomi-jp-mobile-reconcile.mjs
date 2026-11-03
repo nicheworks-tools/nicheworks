@@ -11,7 +11,13 @@ export function reconcile(pass,live){
  const v=validateCoveragePass(pass),errors=[];
  if(!v.valid||!v.completionReady||pass.status!=='coverage-pass-complete')errors.push(...v.errors,'manifest incomplete');
  if(live.sourceDigest!==pass.universe.sourceObservation.officialIndexSha256)errors.push('source exact-model-name-and-guide-link digest drift');
- if(live.officialPopulation!==60||live.officialTotalGuideRows!==306||live.sourceMobileRawRows!==74||live.records?.length!==60)errors.push('manufacturer index/pagination scope drift');
+ // Original full index 306; one new manufacturer link in a later category is
+ // acceptable only after reviewAll proved HTML/CMS alignment and the exact 60
+ // mobile model→guide SHA was unchanged. Never relax the mobile-scope gate.
+ if(live.officialPopulation!==60||![306,307].includes(live.officialTotalGuideRows)||
+  live.nonMobileNewLinkCount!==live.officialTotalGuideRows-306||
+  live.sourceMobileRawRows!==74||live.records?.length!==60)
+  errors.push('manufacturer index/pagination scope drift');
  if(live.counts?.direct!==59||live.counts?.shared!==0||live.counts?.support_only!==0||live.counts?.held!==1)errors.push('manufacturer live direct/held final count changed');
  if(JSON.stringify(live.records?.map(x=>x.model))!==JSON.stringify(pass.universe.models))errors.push('manufacturer model population/order changed');
  const byModel=new Map(live.records?.map(x=>[x.model,x])||[]);
@@ -30,7 +36,7 @@ export function reconcile(pass,live){
    if(!r.reason||r.reason.length<80||r.attemptedDiscovery.length<5)errors.push('Leica exception secondary evidence weak');
   }else errors.push('unexpected final status '+r.model);
  }
- return{valid:errors.length===0,errors,officialSourceRows:306,models:60,publishedDirect:59,held:1};
+ return{valid:errors.length===0,errors,officialSourceRows:live.officialTotalGuideRows,models:60,publishedDirect:59,held:1};
 }
 async function main(){
  const args=process.argv.slice(2),i=args.indexOf('--live');if(i<0||!args[i+1])throw Error('usage: --live live-review.json');
