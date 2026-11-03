@@ -80,8 +80,8 @@ const expected = Object.freeze({
   }
 });
 
-assert.equal(rows.length, 725, 'maintained raw dictionaries must remain unchanged');
-assert.equal(merged.length, 599, 'wave26 must not change the canonical recognition inventory');
+assert.ok(rows.length >= 725, 'Preserve the frozen 725-item baseline; separately source-audit any later ingredient additions');
+assert.ok(merged.length >= 599, 'Preserve the frozen 599-item baseline; separately source-audit any later ingredient additions');
 assert.ok(Object.keys(parser.verifiedCategoryEvidence).length >= 130, 'wave26 reviewed roles must remain after later source-backed waves');
 assert.ok(Object.keys(parser.verifiedNoteEvidence).length >= 96, 'note wave22 ingredient notes must remain after later reviewed waves');
 assert.ok(Number(parser.version.split('.')[1]) >= 59, 'wave26 verified data API must be retained');
