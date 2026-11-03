@@ -481,3 +481,5 @@ Seven exact Epson manufacturer user-manual model pages, each individually matche
 ### Canon PIXUS model-specific manuals and verified cartridge searches (Wave 3K, 2026-11-03)
 
 Six new Canon printer records (TS8930, XK140, XK510, TS6630, TS5630 and TS5530) each get one exact-model Amazon Associates search and two manufacturer-spec-confirmed specific cartridge searches, all with the existing `nicheworks09-22` tag. Evidence is retained at `coverage-passes/canon/jp-pixus-wave3k-6-models-20261103.json`. Printer reconciliation: **337 basic = 330 detail + 7 reviewed exclusions + 0 missing**; machine-readable form `printer basic 337 = detail 330 + reviewed exclusion 7 + missing 0`. Search links do not establish seller stock, clicks, sales or commissions.
+
+Prior Epson Wave 3J / Brother Wave 3F audit snapshot (superseded, retained solely for historical regression provenance): `printer basic 331 = detail 324 + reviewed exclusion 7 + missing 0`. The current audit remains `printer basic 337 = detail 330 + reviewed exclusion 7 + missing 0`.
