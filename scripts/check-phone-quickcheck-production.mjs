@@ -145,6 +145,14 @@ async function httpSmoke(){
     assert.ok(html.includes('<link rel="canonical"'),'SEO landing '+page+' must have canonical');
     if (page === 'models/') assert.equal((html.match(/data-phone-id=/g)||[]).length,count,'SEO model index count differs from maintained phone data');
   }
+  const indexResponse = await req('models/');
+  assert.equal(indexResponse.status,200,'Model index HTTP status');
+  const indexHtml = await indexResponse.text();
+  assert.ok(indexHtml.includes('id="modelSearch"'),'Live model index filter missing');
+  assert.ok(indexHtml.includes('./model-index.js'),'Live model index script not linked');
+  const indexScriptResponse = await req('models/model-index.js');
+  assert.equal(indexScriptResponse.status,200,'Model index filtering script HTTP status');
+  assert.ok((await indexScriptResponse.text()).includes('phone_index_model_click'),'Live model index maker click event missing');
   const guideTrackerResponse = await req('charging-guide/affiliate-guide-tracking.js');
   assert.equal(guideTrackerResponse.status,200,'Guide click tracker must be deployed');
   assert.ok((await guideTrackerResponse.text()).includes('affiliate_outbound'),'Live buying guide tracker is missing');
