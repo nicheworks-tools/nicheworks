@@ -101,8 +101,11 @@
     return {
       ...raw,
       slug: raw.slug || slug(raw.name_en),
-      search: [raw.name_en, raw.name_ja, raw.category, raw.purpose, raw.risk, raw.control, raw.visibility,
-        'AI UI agent copilot citation sources review before apply human approval prompt suggestions autocomplete semantic search failure fallback'].join(' ').toLowerCase()
+      // Index actual per-pattern labels only: shared generic keywords made every
+      // card match "citation", "review" and other unrelated searches.
+      search: [raw.name_en, raw.name_ja, raw.category, CATEGORY_JA[raw.category],
+        raw.purpose, PURPOSE_JA[raw.purpose], raw.risk, raw.control, raw.visibility]
+        .filter(Boolean).join(' ').toLowerCase()
     };
   }
 
@@ -165,12 +168,31 @@
   }
 
   async function copy(text) {
-    try {
-      await navigator.clipboard.writeText(text);
-      toast(TEXT.copied);
-    } catch (error) {
-      toast(TEXT.copyFail);
+    const value = String(text ?? '');
+    if (!value.trim()) { toast(TEXT.copyFail); return false; }
+    if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+      try {
+        await navigator.clipboard.writeText(value);
+        toast(TEXT.copied);
+        return true;
+      } catch (_) { /* Fall back to local selection/copy. */ }
     }
+    const input = document.createElement('textarea');
+    input.value = value;
+    input.setAttribute('readonly', '');
+    input.style.position = 'fixed';
+    input.style.left = '-9999px';
+    document.body.append(input);
+    try {
+      input.focus();
+      input.select();
+      const ok = Boolean(document.execCommand('copy'));
+      toast(ok ? TEXT.copied : TEXT.copyFail);
+      return ok;
+    } catch (_) {
+      toast(TEXT.copyFail);
+      return false;
+    } finally { input.remove(); }
   }
 
   function download(filename, content, type) {
@@ -285,7 +307,14 @@
       button(L('Copy prompt', '依頼文コピー'), () => copy(promptFor(pattern)), 'btn secondary')
     );
     node.append(actions);
-    node.addEventListener('keydown', (event) => { if (event.key === 'Enter') selectPattern(pattern.slug, true); });
+    node.addEventListener('keydown', (event) => {
+      // Keyboard activation on nested action buttons must not also open the card.
+      if (event.target !== node) return;
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        selectPattern(pattern.slug, true);
+      }
+    });
     return node;
   }
 
