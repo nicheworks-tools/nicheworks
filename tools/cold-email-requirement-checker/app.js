@@ -310,8 +310,15 @@ const initColdEmailChecker = () => {
   };
 
   const buildCopyText = () => {
-    const items = Array.from(suggestions.querySelectorAll("li"))
-      .map((li) => li.textContent.replace(/\s+/g, " ").trim())
+    // Checklist text is Free. Detailed improvement candidates are Pro-only
+    // and must not leak into the Free clipboard payload from hidden DOM nodes.
+    const items = Array.from(checklist.querySelectorAll(".checklist-item"))
+      .map((item) => {
+        const label = item.querySelector(".checklist-label")?.textContent || "";
+        const status = item.querySelector(".chip")?.textContent || "";
+        const hint = item.querySelector(".checklist-hint")?.textContent || "";
+        return [label + ": " + status, hint].filter(Boolean).join(" — ");
+      })
       .filter(Boolean);
     const disclaimer = t(
       "※この結果は文章構成の簡易チェックです。法令適合性、同意要件、配信停止表示、送信者情報の正確性、到達率・返信率を保証しません。",
