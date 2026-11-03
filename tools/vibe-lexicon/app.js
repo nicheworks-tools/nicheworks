@@ -84,7 +84,19 @@
     };
   }
 
-  function readArray(key) { try { return JSON.parse(localStorage.getItem(key) || '[]'); } catch { return []; } }
+  function readArray(key) {
+    try {
+      const saved = JSON.parse(localStorage.getItem(key) || '[]');
+      if (!Array.isArray(saved)) return [];
+      const seen = new Set();
+      const max = key === 'nw-vl-recent' ? 6 : 10;
+      return saved.filter((id) => {
+        if (typeof id !== 'string' || !terms.some((term) => term.id === id) || seen.has(id)) return false;
+        seen.add(id);
+        return true;
+      }).slice(0, max);
+    } catch { return []; }
+  }
   function writeArray(key, arr) { try { localStorage.setItem(key, JSON.stringify(arr)); } catch {} }
   function localized(value) { return value?.[lang] ?? value?.en ?? ''; }
   function localizedArray(value) { const v = localized(value); return Array.isArray(v) ? v : []; }
@@ -252,7 +264,10 @@
   function renderSuggestions(list) { const q = normalize(state.query); clearNode(els.suggestions); if (!q) { els.suggestions.classList.remove('open'); return; } list.slice(0, 6).forEach((term) => { const item = createEl('div', 'suggestion-item'); item.dataset.select = term.id; item.appendChild(createEl('span', null, localized(term.term))); item.appendChild(createEl('span', 'suggestion-sub', localized(term.category))); els.suggestions.appendChild(item); }); els.suggestions.classList.toggle('open', list.length > 0); }
 
   function render() {
-    const list = filteredTerms(); const selected = byId(state.selectedId) || list[0] || terms[0];
+    const list = filteredTerms();
+    // A new search/filter must focus a matching result instead of retaining
+    // an unrelated previously selected detail and its copied work-pack.
+    const selected = list.find((term) => term.id === state.selectedId) || list[0] || currentTerm();
     renderChips(els.categoryChips, [...new Set(terms.map((t) => localized(t.category)))], 'category'); renderChips(els.useChips, [...new Set(terms.map((t) => localized(t.useCase)))], 'useCase'); renderChips(els.typeChips, [...new Set(terms.map((t) => localized(t.termType)))], 'termType');
     renderFilterToggle('category', els.categoryChips, els.categoryToggleBtn, 6); renderFilterToggle('useCase', els.useChips, els.useToggleBtn, 4); renderFilterToggle('termType', els.typeChips, els.typeToggleBtn, 4);
     els.statTotal.textContent = String(terms.length); els.statCompare.textContent = String(state.compare.length); els.statFav.textContent = String(state.favorites.length); els.resultCount.textContent = `${list.length} ${txt.results}`;
