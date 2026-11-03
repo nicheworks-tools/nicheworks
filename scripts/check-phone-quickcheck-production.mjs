@@ -145,6 +145,11 @@ async function httpSmoke(){
     assert.ok(html.includes('<link rel="canonical"'),'SEO landing '+page+' must have canonical');
     if (page === 'models/') assert.equal((html.match(/data-phone-id=/g)||[]).length,count,'SEO model index count differs from maintained phone data');
   }
+  const guideTrackerResponse = await req('charging-guide/affiliate-guide-tracking.js');
+  assert.equal(guideTrackerResponse.status,200,'Guide click tracker must be deployed');
+  assert.ok((await guideTrackerResponse.text()).includes('affiliate_outbound'),'Live buying guide tracker is missing');
+  const guideHtmlResponse = await req('charging-guide/');
+  assert.equal((await guideHtmlResponse.text()).match(/data-offer-key=/g)?.length,9,'Nine categorized outbound links required');
   console.log('SEO HTTP PASS: 250 crawlable phone entries, commercial charging guide');
   console.log('HTTP PASS: '+count+' verified public phones, assets and latest records');
 }
