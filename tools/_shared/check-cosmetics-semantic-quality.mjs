@@ -18,7 +18,7 @@ const DATA_FILES = [
   'tools/inci-fastscan/data/ingredients-extra-8.json'
 ];
 
-const ALLOWED_SAFETY = new Set(['safe', 'caution', 'risk']);
+const ALLOWED_SAFETY = new Set(['safe', 'caution', 'risk', 'unrated']);
 const EVIDENCE_FIELDS = ['source', 'source_url', 'evidence', 'evidence_url', 'reference', 'references', 'note_sources'];
 const GENERATED_NOTE_RE = /generated dictionary entry|use official ingredient labels for final confirmation/i;
 const CLAIM_REVIEW_RE = /\b(?:safe|safety|risk|irritat|allerg|sensiti|pregnan|toxic|comedogen|acne|well tolerated|avoid)\b/i;
