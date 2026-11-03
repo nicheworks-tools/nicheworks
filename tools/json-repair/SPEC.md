@@ -89,6 +89,7 @@ The paired input/output editors, tabs, diff/log, schema, history, and report pan
 ## Acceptance criteria
 
 - [ ] Valid/invalid JSON can be checked and syntax failure is surfaced without executing input content.
+- [ ] Editing, replacing, or clearing input invalidates old repair/format/validation/schema displays; superseded local file reads cannot overwrite newer input, and copy falls back locally when Clipboard API is unavailable.
 - [ ] Safe/Standard repair, Pretty, Minify, copy, normal `.json` download, repair log, simple diff, and Free samples remain available without Pro.
 - [ ] Aggressive repair, interactive candidate actions, schema check, history, report/advanced export, and Pro samples remain the exact paid value boundaries.
 - [ ] Current legacy Pro requires both active state and exact `nicheworks_pro`; missing/unrelated entitlement cannot unlock.
