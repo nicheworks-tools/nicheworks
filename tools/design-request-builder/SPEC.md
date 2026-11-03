@@ -61,6 +61,7 @@ The tool is primarily a long structured form and output block that can be used a
 
 - [ ] Missing required fields are surfaced before a complete-ready state is shown.
 - [ ] Supplying required fields produces a brief whose level of detail follows the selected short/standard/detailed tier.
+- [ ] Editing any requirement or output tier invalidates old drafts immediately; copying or downloading cannot use outdated values even before the debounced regeneration finishes or if an event is missed.
 - [ ] Optional project constraints and delivery/revision information are preserved when included in the generated brief.
 - [ ] JP/EN switching retains the same form requirements and contract/permission disclaimers.
 
