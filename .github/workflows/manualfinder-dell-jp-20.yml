@@ -1,0 +1,27 @@
+name: ManualFinder Dell JP 20 exact official manual indexes
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/**'
+      - '.github/workflows/manualfinder-dell-jp-20.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  dell-jp-20:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate Dell manufacturer manual inventory and regression
+        run: |
+          node tools/manual-finder/tests/dell-jp-20-publication.test.mjs
+          node tools/manual-finder/tests/coverage-pass-pipeline.test.mjs
+          node tools/manual-finder/tests/canon-pixus-wave3l-publication.test.mjs
+          node tools/manual-finder/tests/canon-pixus-wave3k-publication.test.mjs
+          node tools/manual-finder/tests/affiliate-coverage.test.mjs
+          node tools/manual-finder/tests/affiliate-doc-sync.test.mjs
+          node tools/manual-finder/tests/affiliate-behavior-core.test.mjs

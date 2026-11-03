@@ -17,7 +17,7 @@ All future model-level expansion must follow `COVERAGE_PASS_WORKFLOW.md`. Script
 
 ## Current verified model-level inventory
 
-With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifilm GFX/X, VAIO JP start-guide PCs, Samsung JP Galaxy smartphones, dynabook JP 2024–2026 PCs, Fujitsu FMWORLD LIFEBOOK U business PCs, Google Pixel JP model-specific safety/support documentation, Motorola JP current smartphone lineup, ASUS JP Vivobook series, and Xiaomi JP smartphone/tablet user-guide index, the accepted dataset contains **2,565 verified model/caliber rows**. **2,122 are outside Seiko**. Coverage-Pass publication contributes **997 reviewed rows across thirteen bounded manufacturer scopes**. The Xiaomi JP 60-device source reconciles to 59 positively verified manufacturer PDF guides and one held co-branded Leica model; 59 guide rows are published. This is not Xiaomi company-wide coverage.
+With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifilm GFX/X, VAIO JP start-guide PCs, Samsung JP Galaxy smartphones, dynabook JP 2024–2026 PCs, Fujitsu FMWORLD LIFEBOOK U business PCs, Google Pixel JP model-specific safety/support documentation, Motorola JP current smartphone lineup, ASUS JP Vivobook series, and Xiaomi JP smartphone/tablet user-guide index, the accepted dataset contains **2,585 verified model/caliber rows**. **2,142 are outside Seiko**. Coverage-Pass publication contributes **1,017 reviewed rows across fourteen bounded manufacturer scopes**. The Xiaomi JP 60-device source reconciles to 59 positively verified manufacturer PDF guides and one held co-branded Leica model; 59 guide rows are published. This is not Xiaomi company-wide coverage.
 
 | Maker / dataset identity | Verified rows | Current state | Notes |
 | --- | ---: | --- | --- |
@@ -50,9 +50,10 @@ With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifil
 | Brother | 21 | expanded | Waves 3B+3F: 13 legacy MFC-J manual pages and 8 newly manufacturer-verified models (6 direct + 2 official shared manual identities), with 16 manufacturer-verified ink Amazon search offers. The separate legacy held model is unchanged. |
 | Insta360 | 7 | expanded | Product-specific official online manuals. |
 | Epson | 38 | expanded | Colorio Waves 3D+3G+3H+3I+3J: 6+8+8+9+7 exact official Epson model manuals, with individually verified printer ink queries. |
+| Dell | 20 | expanded, bounded | Twenty individually verified Dell Japan model-specific Manuals and Documents index pages with owner/service user manuals; Inspiron, XPS, Latitude, Precision and OptiPlex. Not Dell company-wide or any entire family. |
 | Canon | 155 | expanded | Eighteen verified Waves 3E+3K+3L PIXUS printers plus 137 distinct official RF/EF-series lens instruction manual rows (123 direct + 14 shared) from Canon Japan nine-section lens-manual index. Lens scope does not claim Canon company-wide completeness; manufacturer direct PDFs verified. |
 | Hisense | 2 | expanded | Exact TV function-manual targets; coverage is still very thin. |
-| **Total** | **2,565** |  |  |
+| **Total** | **2,585** |  |  |
 
 Counts above are accepted repository rows, not estimates of manufacturer catalog size.
 
@@ -71,7 +72,7 @@ Counts above are accepted repository rows, not estimates of manufacturer catalog
 | 7 | Brother | **expanded — 21** | Eight additional 2026 MFC-J printers from official model user-guide/ink pages; MFC-J6990CDW remains held |
 | 8 | Epson | **expanded — 38** | Five bounded manual-and-ink model waves: 6+8+8+9+7; Epson-wide scope incomplete |
 | 9 | HP | generic-only | PC/mobile queue |
-| 10 | Dell | generic-only | PC/mobile queue |
+| 10 | Dell | **expanded — 20** | First bounded Dell Japan manufacturer-owned exact-model manuals index pass: 20 direct owner/service document listing pages; no entire-catalog claim |
 | 11 | Lenovo | generic-only | PC/mobile queue |
 | 12 | ASUS | **expanded — 35** | Manufacturer JP Vivobook category 35 products (API 20+15); 35 verified model-specific manual indexes, 0 held. Selected variant disclosed on each row. Other ASUS families not complete. |
 | 13 | Acer | generic-only | PC/mobile queue |
@@ -261,3 +262,7 @@ Six new printer models — TS8930, XK140, XK510, TS6630, TS5630 and TS5530 — h
 ### Canon PIXUS six earlier-model manuals with exact cartridges (Wave 3L, 2026-11-03)
 
 Wave 3L adds TS8230, TS8430, TS8530, TS8630, XK110 and XK120 from six individually verified Canon product manual indexes that list PDF and online manuals. Each model's Canon consumables page independently names two chosen compatible ink SKUs. Published data `data/manuals.wave3.12.js`; reviewed evidence `coverage-passes/canon/jp-pixus-wave3l-six-manual-ink-20261103.json`. Adds six canonical guide records, six tagged model searches and twelve verified cartridge searches without inferred compatibility. Canon now has **155** records (18 printers + 137 lens models); ManualFinder now contains **2,565 verified model/caliber rows**. Catalog-wide completion is not claimed.
+
+### Dell JP 20 official exact-model owner/service manual indexes (2026-11-03)
+
+The first Dell manufacturer publication pass is a deliberately bounded 20-page official `www.dell.com/support/product-details/ja-jp/product/.../resources/manuals` set. Every page explicitly names the corresponding device and lists its Dell owner's, service, or setup documentation; the list includes ten Inspiron devices and Dell XPS, Latitude, Precision and OptiPlex. Exact 20-model population, actual Dell-owned URLs and review states are recorded in `coverage-passes/dell/jp-20-model-manual-index-20261103.json`. All 20 are `direct` model-specific official manual-index pages. For Inspiron 15 3530, Dell's index includes different manuals for USB-C and non-USB-C variants; the public row requires the user to choose the correct device variant. No inferred direct-PDF URLs, universal manual compatibility, battery SKU, power adaptor compatibility, or Dell-wide completion are claimed. Public data: `data/manuals.coverage-pass.dell-jp-20.js` registered by `data/manuals.coverage-passes.js`; test: `tests/dell-jp-20-publication.test.mjs`. Adds 20 verified PC records and 20 tagged canonical Dell model searches using the existing Amazon configuration. The previous Dell PR #1512 remained candidate-only and contributed no public models. Updated inventory **2,585 verified model/caliber rows**, Dell 20, outside-Seiko 2,142, reviewed Coverage-Pass contribution 1,017. No measured affiliate sales are asserted.

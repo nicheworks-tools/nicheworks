@@ -1,0 +1,364 @@
+{
+  "schemaVersion": 1,
+  "maker": "Dell",
+  "scopeId": "dell-jp-20-exact-official-manual-indexes-20261103",
+  "scopeLabel": "Twenty individually confirmed Dell Japan model-specific owner/service manual indexes; bounded first wave",
+  "status": "coverage-pass-complete",
+  "asOf": "2026-11-03",
+  "region": "JP",
+  "language": "ja",
+  "allowedDomains": [
+    "dell.com"
+  ],
+  "universe": {
+    "sourceUrls": [
+      "https://www.dell.com/support/product-details/ja-jp/product/inspiron-14-5430-laptop/resources/manuals",
+      "https://www.dell.com/support/product-details/ja-jp/product/inspiron-14-5440-laptop/resources/manuals",
+      "https://www.dell.com/support/product-details/ja-jp/product/inspiron-14-5445-amd-laptop/resources/manuals",
+      "https://www.dell.com/support/product-details/ja-jp/product/inspiron-14-7440-laptop/resources/manuals",
+      "https://www.dell.com/support/product-details/ja-jp/product/inspiron-14-7440-2-in-1-laptop/resources/manuals",
+      "https://www.dell.com/support/product-details/ja-jp/product/inspiron-15-3520-laptop/resources/manuals",
+      "https://www.dell.com/support/product-details/ja-jp/product/inspiron-15-3530-laptop/resources/manuals",
+      "https://www.dell.com/support/product-details/ja-jp/product/inspiron-15-3535-laptop/resources/manuals",
+      "https://www.dell.com/support/product-details/ja-jp/product/inspiron-13-5301-laptop/resources/manuals",
+      "https://www.dell.com/support/product-details/ja-jp/product/inspiron-3030-desktop/resources/manuals",
+      "https://www.dell.com/support/product-details/ja-jp/product/inspiron-24-5410-aio/resources/manuals",
+      "https://www.dell.com/support/product-details/ja-jp/product/xps-13-9340-laptop/resources/manuals",
+      "https://www.dell.com/support/product-details/ja-jp/product/xps-14-9440-laptop/resources/manuals",
+      "https://www.dell.com/support/product-details/ja-jp/product/latitude-14-5440-laptop/resources/manuals",
+      "https://www.dell.com/support/product-details/ja-jp/product/latitude-14-5450-laptop/resources/manuals",
+      "https://www.dell.com/support/product-details/ja-jp/product/latitude-15-5550-laptop/resources/manuals",
+      "https://www.dell.com/support/product-details/ja-jp/product/precision-15-5530-laptop/resources/manuals",
+      "https://www.dell.com/support/product-details/ja-jp/product/precision-15-3560-laptop/resources/manuals",
+      "https://www.dell.com/support/product-details/ja-jp/product/precision-3460-workstation/resources/manuals",
+      "https://www.dell.com/support/product-details/ja-jp/product/optiplex-7010-plus-desktop/resources/manuals"
+    ],
+    "models": [
+      "Inspiron 14 5430",
+      "Inspiron 14 5440",
+      "Inspiron 14 5445",
+      "Inspiron 14 Plus 7440",
+      "Inspiron 14 7440 2-in-1",
+      "Inspiron 15 3520",
+      "Inspiron 15 3530",
+      "Inspiron 15 3535",
+      "Inspiron 5301",
+      "Inspiron 3030 Desktop",
+      "Inspiron 24 5410 All-in-One",
+      "XPS 13 9340",
+      "XPS 14 9440",
+      "Latitude 5440",
+      "Latitude 5450",
+      "Latitude 5550",
+      "Precision 5530",
+      "Precision 3560",
+      "Precision 3460 Small Form Factor",
+      "OptiPlex Tower Plus 7010"
+    ],
+    "populationMethod": "Explicit narrow evidence-backed scope consisting solely of these twenty distinct Dell-owned Japan per-product Manuals and Documents index pages, with each page's model identity and at least one owner/service guide observed. Not an assertion that these are all Dell Japan models, all Inspiron models or all Dell products; no manufacturer-wide declaredCount applies.",
+    "declaredCount": 20,
+    "sourceObservation": {
+      "observedAt": "2026-11-03",
+      "officialManualIndexCount": 20,
+      "modelLevelManualEntriesVerified": 20,
+      "scopeBoundary": "Twenty explicitly enumerated Dell JP individual manuals-index URLs; no adjacent models or URL templates are inferred",
+      "previousCandidateOnlyGate": "PR #1512 (zero published rows)",
+      "manualTypes": "owner / service / setup manuals",
+      "manualIndexContentsVerified": true
+    }
+  },
+  "records": [
+    {
+      "model": "Inspiron 14 5430",
+      "state": "direct",
+      "manualUrl": "https://www.dell.com/support/product-details/ja-jp/product/inspiron-14-5430-laptop/resources/manuals",
+      "supportUrl": "https://www.dell.com/support/product-details/ja-jp/product/inspiron-14-5430-laptop/resources/manuals",
+      "evidenceUrls": [
+        "https://www.dell.com/support/product-details/ja-jp/product/inspiron-14-5430-laptop/resources/manuals"
+      ],
+      "verifiedDocumentTitle": "Inspiron 14 5430 サービス マニュアル",
+      "family": "Inspiron",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "notes": "Official Dell Japan exact-model Manuals and Documents index visibly lists a model-specific owner, service, or setup guide."
+    },
+    {
+      "model": "Inspiron 14 5440",
+      "state": "direct",
+      "manualUrl": "https://www.dell.com/support/product-details/ja-jp/product/inspiron-14-5440-laptop/resources/manuals",
+      "supportUrl": "https://www.dell.com/support/product-details/ja-jp/product/inspiron-14-5440-laptop/resources/manuals",
+      "evidenceUrls": [
+        "https://www.dell.com/support/product-details/ja-jp/product/inspiron-14-5440-laptop/resources/manuals"
+      ],
+      "verifiedDocumentTitle": "Inspiron 14 5440 オーナーズマニュアル",
+      "family": "Inspiron",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "notes": "Official Dell Japan exact-model Manuals and Documents index visibly lists a model-specific owner, service, or setup guide."
+    },
+    {
+      "model": "Inspiron 14 5445",
+      "state": "direct",
+      "manualUrl": "https://www.dell.com/support/product-details/ja-jp/product/inspiron-14-5445-amd-laptop/resources/manuals",
+      "supportUrl": "https://www.dell.com/support/product-details/ja-jp/product/inspiron-14-5445-amd-laptop/resources/manuals",
+      "evidenceUrls": [
+        "https://www.dell.com/support/product-details/ja-jp/product/inspiron-14-5445-amd-laptop/resources/manuals"
+      ],
+      "verifiedDocumentTitle": "Inspiron 14 5445 オーナーズマニュアル",
+      "family": "Inspiron",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "notes": "Official Dell Japan exact-model Manuals and Documents index visibly lists a model-specific owner, service, or setup guide."
+    },
+    {
+      "model": "Inspiron 14 Plus 7440",
+      "state": "direct",
+      "manualUrl": "https://www.dell.com/support/product-details/ja-jp/product/inspiron-14-7440-laptop/resources/manuals",
+      "supportUrl": "https://www.dell.com/support/product-details/ja-jp/product/inspiron-14-7440-laptop/resources/manuals",
+      "evidenceUrls": [
+        "https://www.dell.com/support/product-details/ja-jp/product/inspiron-14-7440-laptop/resources/manuals"
+      ],
+      "verifiedDocumentTitle": "Inspiron 14 Plus 7440 オーナーズマニュアル",
+      "family": "Inspiron",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "notes": "Official Dell Japan exact-model Manuals and Documents index visibly lists a model-specific owner, service, or setup guide."
+    },
+    {
+      "model": "Inspiron 14 7440 2-in-1",
+      "state": "direct",
+      "manualUrl": "https://www.dell.com/support/product-details/ja-jp/product/inspiron-14-7440-2-in-1-laptop/resources/manuals",
+      "supportUrl": "https://www.dell.com/support/product-details/ja-jp/product/inspiron-14-7440-2-in-1-laptop/resources/manuals",
+      "evidenceUrls": [
+        "https://www.dell.com/support/product-details/ja-jp/product/inspiron-14-7440-2-in-1-laptop/resources/manuals"
+      ],
+      "verifiedDocumentTitle": "Inspiron 14 7440 2-in-1 オーナーズ マニュアル",
+      "family": "Inspiron",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "notes": "Official Dell Japan exact-model Manuals and Documents index visibly lists a model-specific owner, service, or setup guide."
+    },
+    {
+      "model": "Inspiron 15 3520",
+      "state": "direct",
+      "manualUrl": "https://www.dell.com/support/product-details/ja-jp/product/inspiron-15-3520-laptop/resources/manuals",
+      "supportUrl": "https://www.dell.com/support/product-details/ja-jp/product/inspiron-15-3520-laptop/resources/manuals",
+      "evidenceUrls": [
+        "https://www.dell.com/support/product-details/ja-jp/product/inspiron-15-3520-laptop/resources/manuals"
+      ],
+      "verifiedDocumentTitle": "Inspiron 15 3520 サービス マニュアル",
+      "family": "Inspiron",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "notes": "Official Dell Japan exact-model Manuals and Documents index visibly lists a model-specific owner, service, or setup guide."
+    },
+    {
+      "model": "Inspiron 15 3530",
+      "state": "direct",
+      "manualUrl": "https://www.dell.com/support/product-details/ja-jp/product/inspiron-15-3530-laptop/resources/manuals",
+      "supportUrl": "https://www.dell.com/support/product-details/ja-jp/product/inspiron-15-3530-laptop/resources/manuals",
+      "evidenceUrls": [
+        "https://www.dell.com/support/product-details/ja-jp/product/inspiron-15-3530-laptop/resources/manuals"
+      ],
+      "verifiedDocumentTitle": "Inspiron 15 3530：USB Type-C搭載／非搭載 オーナーズマニュアル",
+      "family": "Inspiron",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "notes": "Dell lists separate manuals for versions with and without USB Type-C; user must select matching hardware configuration."
+    },
+    {
+      "model": "Inspiron 15 3535",
+      "state": "direct",
+      "manualUrl": "https://www.dell.com/support/product-details/ja-jp/product/inspiron-15-3535-laptop/resources/manuals",
+      "supportUrl": "https://www.dell.com/support/product-details/ja-jp/product/inspiron-15-3535-laptop/resources/manuals",
+      "evidenceUrls": [
+        "https://www.dell.com/support/product-details/ja-jp/product/inspiron-15-3535-laptop/resources/manuals"
+      ],
+      "verifiedDocumentTitle": "Inspiron 15 3535 オーナーズマニュアル",
+      "family": "Inspiron",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "notes": "Official Dell Japan exact-model Manuals and Documents index visibly lists a model-specific owner, service, or setup guide."
+    },
+    {
+      "model": "Inspiron 5301",
+      "state": "direct",
+      "manualUrl": "https://www.dell.com/support/product-details/ja-jp/product/inspiron-13-5301-laptop/resources/manuals",
+      "supportUrl": "https://www.dell.com/support/product-details/ja-jp/product/inspiron-13-5301-laptop/resources/manuals",
+      "evidenceUrls": [
+        "https://www.dell.com/support/product-details/ja-jp/product/inspiron-13-5301-laptop/resources/manuals"
+      ],
+      "verifiedDocumentTitle": "Inspiron 5301 サービス マニュアル",
+      "family": "Inspiron",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "notes": "Official Dell Japan exact-model Manuals and Documents index visibly lists a model-specific owner, service, or setup guide."
+    },
+    {
+      "model": "Inspiron 3030 Desktop",
+      "state": "direct",
+      "manualUrl": "https://www.dell.com/support/product-details/ja-jp/product/inspiron-3030-desktop/resources/manuals",
+      "supportUrl": "https://www.dell.com/support/product-details/ja-jp/product/inspiron-3030-desktop/resources/manuals",
+      "evidenceUrls": [
+        "https://www.dell.com/support/product-details/ja-jp/product/inspiron-3030-desktop/resources/manuals"
+      ],
+      "verifiedDocumentTitle": "Inspiron 3030デスクトップ オーナーズ マニュアル",
+      "family": "Inspiron",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "notes": "Official Dell Japan exact-model Manuals and Documents index visibly lists a model-specific owner, service, or setup guide."
+    },
+    {
+      "model": "Inspiron 24 5410 All-in-One",
+      "state": "direct",
+      "manualUrl": "https://www.dell.com/support/product-details/ja-jp/product/inspiron-24-5410-aio/resources/manuals",
+      "supportUrl": "https://www.dell.com/support/product-details/ja-jp/product/inspiron-24-5410-aio/resources/manuals",
+      "evidenceUrls": [
+        "https://www.dell.com/support/product-details/ja-jp/product/inspiron-24-5410-aio/resources/manuals"
+      ],
+      "verifiedDocumentTitle": "Inspiron 24 5410 オールインワン サービス マニュアル",
+      "family": "Inspiron",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "notes": "Official Dell Japan exact-model Manuals and Documents index visibly lists a model-specific owner, service, or setup guide."
+    },
+    {
+      "model": "XPS 13 9340",
+      "state": "direct",
+      "manualUrl": "https://www.dell.com/support/product-details/ja-jp/product/xps-13-9340-laptop/resources/manuals",
+      "supportUrl": "https://www.dell.com/support/product-details/ja-jp/product/xps-13-9340-laptop/resources/manuals",
+      "evidenceUrls": [
+        "https://www.dell.com/support/product-details/ja-jp/product/xps-13-9340-laptop/resources/manuals"
+      ],
+      "verifiedDocumentTitle": "XPS 13 9340 オーナーズマニュアル",
+      "family": "XPS",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "notes": "Official Dell Japan exact-model Manuals and Documents index visibly lists a model-specific owner, service, or setup guide."
+    },
+    {
+      "model": "XPS 14 9440",
+      "state": "direct",
+      "manualUrl": "https://www.dell.com/support/product-details/ja-jp/product/xps-14-9440-laptop/resources/manuals",
+      "supportUrl": "https://www.dell.com/support/product-details/ja-jp/product/xps-14-9440-laptop/resources/manuals",
+      "evidenceUrls": [
+        "https://www.dell.com/support/product-details/ja-jp/product/xps-14-9440-laptop/resources/manuals"
+      ],
+      "verifiedDocumentTitle": "XPS 14 9440 オーナーズマニュアル",
+      "family": "XPS",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "notes": "Official Dell Japan exact-model Manuals and Documents index visibly lists a model-specific owner, service, or setup guide."
+    },
+    {
+      "model": "Latitude 5440",
+      "state": "direct",
+      "manualUrl": "https://www.dell.com/support/product-details/ja-jp/product/latitude-14-5440-laptop/resources/manuals",
+      "supportUrl": "https://www.dell.com/support/product-details/ja-jp/product/latitude-14-5440-laptop/resources/manuals",
+      "evidenceUrls": [
+        "https://www.dell.com/support/product-details/ja-jp/product/latitude-14-5440-laptop/resources/manuals"
+      ],
+      "verifiedDocumentTitle": "Latitude 5440 オーナーズマニュアル",
+      "family": "Latitude",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "notes": "Official Dell Japan exact-model Manuals and Documents index visibly lists a model-specific owner, service, or setup guide."
+    },
+    {
+      "model": "Latitude 5450",
+      "state": "direct",
+      "manualUrl": "https://www.dell.com/support/product-details/ja-jp/product/latitude-14-5450-laptop/resources/manuals",
+      "supportUrl": "https://www.dell.com/support/product-details/ja-jp/product/latitude-14-5450-laptop/resources/manuals",
+      "evidenceUrls": [
+        "https://www.dell.com/support/product-details/ja-jp/product/latitude-14-5450-laptop/resources/manuals"
+      ],
+      "verifiedDocumentTitle": "Latitude 5450 オーナーズマニュアル",
+      "family": "Latitude",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "notes": "Official Dell Japan exact-model Manuals and Documents index visibly lists a model-specific owner, service, or setup guide."
+    },
+    {
+      "model": "Latitude 5550",
+      "state": "direct",
+      "manualUrl": "https://www.dell.com/support/product-details/ja-jp/product/latitude-15-5550-laptop/resources/manuals",
+      "supportUrl": "https://www.dell.com/support/product-details/ja-jp/product/latitude-15-5550-laptop/resources/manuals",
+      "evidenceUrls": [
+        "https://www.dell.com/support/product-details/ja-jp/product/latitude-15-5550-laptop/resources/manuals"
+      ],
+      "verifiedDocumentTitle": "Latitude 5550 オーナーズマニュアル",
+      "family": "Latitude",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "notes": "Official Dell Japan exact-model Manuals and Documents index visibly lists a model-specific owner, service, or setup guide."
+    },
+    {
+      "model": "Precision 5530",
+      "state": "direct",
+      "manualUrl": "https://www.dell.com/support/product-details/ja-jp/product/precision-15-5530-laptop/resources/manuals",
+      "supportUrl": "https://www.dell.com/support/product-details/ja-jp/product/precision-15-5530-laptop/resources/manuals",
+      "evidenceUrls": [
+        "https://www.dell.com/support/product-details/ja-jp/product/precision-15-5530-laptop/resources/manuals"
+      ],
+      "verifiedDocumentTitle": "Dell Precision 5530 サービス マニュアル",
+      "family": "Precision",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "notes": "Official Dell Japan exact-model Manuals and Documents index visibly lists a model-specific owner, service, or setup guide."
+    },
+    {
+      "model": "Precision 3560",
+      "state": "direct",
+      "manualUrl": "https://www.dell.com/support/product-details/ja-jp/product/precision-15-3560-laptop/resources/manuals",
+      "supportUrl": "https://www.dell.com/support/product-details/ja-jp/product/precision-15-3560-laptop/resources/manuals",
+      "evidenceUrls": [
+        "https://www.dell.com/support/product-details/ja-jp/product/precision-15-3560-laptop/resources/manuals"
+      ],
+      "verifiedDocumentTitle": "Dell Precision 3560 サービスマニュアル",
+      "family": "Precision",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "notes": "Official Dell Japan exact-model Manuals and Documents index visibly lists a model-specific owner, service, or setup guide."
+    },
+    {
+      "model": "Precision 3460 Small Form Factor",
+      "state": "direct",
+      "manualUrl": "https://www.dell.com/support/product-details/ja-jp/product/precision-3460-workstation/resources/manuals",
+      "supportUrl": "https://www.dell.com/support/product-details/ja-jp/product/precision-3460-workstation/resources/manuals",
+      "evidenceUrls": [
+        "https://www.dell.com/support/product-details/ja-jp/product/precision-3460-workstation/resources/manuals"
+      ],
+      "verifiedDocumentTitle": "Dell Precision 3460 スモール フォーム ファクター サービス マニュアル",
+      "family": "Precision",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "notes": "Official Dell Japan exact-model Manuals and Documents index visibly lists a model-specific owner, service, or setup guide."
+    },
+    {
+      "model": "OptiPlex Tower Plus 7010",
+      "state": "direct",
+      "manualUrl": "https://www.dell.com/support/product-details/ja-jp/product/optiplex-7010-plus-desktop/resources/manuals",
+      "supportUrl": "https://www.dell.com/support/product-details/ja-jp/product/optiplex-7010-plus-desktop/resources/manuals",
+      "evidenceUrls": [
+        "https://www.dell.com/support/product-details/ja-jp/product/optiplex-7010-plus-desktop/resources/manuals"
+      ],
+      "verifiedDocumentTitle": "OptiPlex Tower Plus 7010 オーナーズ マニュアル",
+      "family": "OptiPlex",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "notes": "Official Dell Japan exact-model Manuals and Documents index visibly lists a model-specific owner, service, or setup guide."
+    }
+  ],
+  "reconciliation": {
+    "captured": 20,
+    "direct": 20,
+    "shared": 0,
+    "support_only": 0,
+    "held": 0,
+    "public": 20
+  },
+  "refresh": {
+    "method": "Reopen each of the 20 exact Dell JP resources/manuals URLs; compare product name, listed owner/service document presence and URL destination; hold regressions rather than redirect silently.",
+    "nextScope": "Other Dell model manual index pages, not claimed in this batch"
+  }
+}
