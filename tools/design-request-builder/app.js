@@ -256,6 +256,17 @@
     };
 
     const data = () => Object.fromEntries(ids.map((id) => [id, field[id].value.trim()]));
+    const sourceSignature = () => JSON.stringify([tier.value, ...ids.map((id) => field[id].value)]);
+    let generatedSignature = "";
+    let previouslyGenerated = false;
+    const invalidate = () => {
+      generated = false;
+      generatedSignature = "";
+      output.jaFull.textContent = L.ja.msg.initial;
+      output.jaKey.textContent = L.ja.msg.initial;
+      output.enFull.textContent = L.en.msg.initial;
+      output.enKey.textContent = L.en.msg.initial;
+    };
     const missingReq = (d) => req.filter(([id]) => !d[id]);
     const missingOpt = (d) => opt.filter((id) => !d[id]);
 
@@ -297,12 +308,14 @@
     const render = () => {
       const checked = validate();
       updateTierLabels();
-      if (checked.missing.length) return false;
+      if (checked.missing.length) { invalidate(); return false; }
       output.jaFull.textContent = fullText("ja", checked.d, tier.value, checked.optMissing);
       output.jaKey.textContent = keyText("ja", checked.d);
       output.enFull.textContent = fullText("en", checked.d, tier.value, checked.optMissing);
       output.enKey.textContent = keyText("en", checked.d);
       generated = true;
+      previouslyGenerated = true;
+      generatedSignature = sourceSignature();
       return true;
     };
 
@@ -313,7 +326,8 @@
         showToast(L[current].msg.fillRequired);
         return false;
       }
-      if (!generated) {
+      if (!generated || generatedSignature !== sourceSignature()) {
+        invalidate();
         showToast(L[current].msg.generateFirst);
         return false;
       }
@@ -333,10 +347,14 @@
     };
 
     $("btnBuild").addEventListener("click", () => { if (!render()) showToast(L[lang()].msg.fillRequired); });
+    const update = debounce(() => {
+      validate();
+      if (previouslyGenerated) render();
+    });
     [tier, ...Object.values(field)].forEach((node) => {
-      const update = debounce(() => { validate(); if (generated) render(); });
-      node.addEventListener("input", update);
-      node.addEventListener("change", update);
+      const onEdit = () => { invalidate(); update(); };
+      node.addEventListener("input", onEdit);
+      node.addEventListener("change", onEdit);
     });
     $("btnCopyJaFull").addEventListener("click", () => copyOutput(output.jaFull));
     $("btnCopyJaKey").addEventListener("click", () => copyOutput(output.jaKey));
