@@ -1,0 +1,76 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+import {validateCoveragePass,hostAllowed} from '../scripts/coverage-pass-lib.mjs';
+const root=new URL('../',import.meta.url);
+const pass=JSON.parse(fs.readFileSync(new URL('coverage-passes/lenovo/jp-thinkpad-13-official-manual-index-20261103.json',root),'utf8'));
+const gate=validateCoveragePass(pass);
+assert.equal(gate.valid,true,gate.errors.join('; '));
+assert.equal(gate.completionReady,true);
+assert.equal(pass.status,'coverage-pass-complete');
+assert.equal(gate.summary.capturedPopulation,13);
+assert.equal(gate.summary.unreviewedCount,0);
+assert.deepEqual(gate.summary.states,{direct:13,shared:0,support_only:0,held:0});
+assert.deepEqual(pass.reconciliation,{captured:13,direct:13,shared:0,support_only:0,held:0,public:13});
+assert.equal(new Set(pass.universe.models).size,13);
+assert.equal(new Set(pass.universe.sourceUrls).size,13);
+const evidence=new Map(pass.records.map(x=>[x.model,x]));
+assert.equal(evidence.size,13);
+for(const x of pass.records){
+ assert.equal(x.state,'direct');
+ assert.equal(x.supportUrl,x.manualUrl);
+ assert.ok(x.evidenceUrls.includes(x.manualUrl));
+ assert.equal(x.manualKind,'manual-index');
+ assert.ok(x.documentEvidence.length>15);
+ assert.ok(hostAllowed(x.manualUrl,['lenovo.com']));
+ const url=new URL(x.manualUrl);
+ assert.equal(url.hostname,'pcsupport.lenovo.com');
+ assert.match(url.pathname,/^\/jp\/ja\/products\/laptops-and-netbooks\/[^/]+\/[^/]+\/(?:[^/]+\/){0,2}document-userguide(?:\/doc_userguide)?$/);
+}
+const ctx=vm.createContext({window:{},URL});
+for(const name of ['data/manuals.coverage-passes.js','data/manuals.coverage-pass.lenovo-jp-thinkpad-13.js','affiliate-config.js']){
+ vm.runInContext(fs.readFileSync(new URL(name,root),'utf8'),ctx,{filename:name});
+}
+const registered=Array.from(ctx.window.MANUALFINDER_COVERAGE_PASS_BATCHES);
+assert.ok(registered.includes('manuals.coverage-pass.lenovo-jp-thinkpad-13.js'));
+const rows=Array.from(ctx.window.MANUALFINDER_BUILD_COVERAGE_PASSES()).filter(x=>x.maker==='Lenovo');
+assert.equal(rows.length,13);
+assert.deepEqual(new Set(rows.map(x=>x.model)),new Set(pass.universe.models));
+assert.equal(new Set(rows.map(x=>x.id)).size,13);
+const affiliate=ctx.window.MANUALFINDER_AFFILIATE_CONFIG;
+for(const row of rows){
+ const e=evidence.get(row.model);
+ assert.ok(e);
+ assert.equal(row.brand,'Lenovo');
+ assert.equal(row.category,'PC・スマホ');
+ assert.equal(row.sourceType,'official');
+ assert.equal(row.sourceLevel,'A');
+ assert.equal(row.country,'Japan');
+ assert.equal(row.verifiedAt,'2026-11-03');
+ assert.equal(row.manualUrl,e.manualUrl);
+ assert.equal(row.supportUrl,e.supportUrl);
+ assert.equal(row.evidenceUrl,e.manualUrl);
+ assert.equal(row.manualKind,'manual-index');
+ assert.equal(row.resolutionState,'direct_manual_page');
+ assert.equal(row.sharedTarget,false);
+ assert.ok(row.model.includes(e.modelType.split('/')[0]),row.model);
+ const u=new URL(affiliate.buildModelSearchUrl(row));
+ assert.equal(u.hostname,'www.amazon.co.jp');
+ assert.equal(u.searchParams.get('tag'),'nicheworks09-22');
+ assert.equal(u.searchParams.get('k'),'Lenovo '+row.model);
+ assert.equal(affiliate.getConsumableOffers(row).length,0);
+ assert.ok(row.noteJa.includes('マシンタイプ'));
+ assert.ok(row.noteEn.includes('other variants'));
+}
+const cov=fs.readFileSync(new URL('COVERAGE.md',root),'utf8');
+assert.ok(cov.includes('**2,598 verified model/caliber rows**'));
+assert.ok(cov.includes('| **Total** | **2,598** |'));
+assert.ok(cov.includes('| Lenovo | 13 | expanded, bounded |'));
+assert.ok(cov.includes('| 11 | Lenovo | **expanded — 13**'));
+const ja=fs.readFileSync(new URL('index.html',root),'utf8');
+const en=fs.readFileSync(new URL('en/index.html',root),'utf8');
+assert.ok(ja.includes('app.paged.js?v=mf-lenovo13-20261103a'));
+assert.ok(en.includes('app.paged.js?v=mf-lenovo13-20261103a'));
+const runtime=fs.readFileSync(new URL('app.paged.js',root),'utf8');
+assert.ok(runtime.includes('mf-lenovo13-20261103a'));
+console.log('Lenovo JP bounded ThinkPad 13 verified exact manual-index source rows, 13 tagged model searches, zero inferred accessories, bilingual loader and counts passed.');
