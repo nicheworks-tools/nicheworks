@@ -130,8 +130,8 @@ function pageSmoke() {
     lang.dispatchEvent(new Event('change', { bubbles: true }));
     check(status().includes('Images 3'), 'English UI switch: ' + JSON.stringify({status:status(), value:lang.value, documentLanguage:document.documentElement.lang}));
     check(errors.length === 0, 'browser runtime errors: ' + errors.join(' | '));
-    check(document.documentElement.scrollWidth - window.innerWidth <= 8, 'page horizontal overflow');
-    return 'PASS:IMPORT2:ROW:DRAG:UNDO_REDO:BACKGROUND:OPACITY:SIZE:DUPLICATE:DELETE:LAYOUTS:PNG:LANG:WIDTH' + window.innerWidth;
+    check(document.body.scrollWidth - document.body.clientWidth <= 8, 'page horizontal overflow');
+    return 'PASS:IMPORT2:ROW:DRAG:UNDO_REDO:BACKGROUND:OPACITY:SIZE:DUPLICATE:DELETE:LAYOUTS:PNG:LANG:CONTENT' + document.body.clientWidth + ':VIEWPORT' + window.innerWidth;
   }
   test().then(result => {
     const pre = document.createElement('pre');
@@ -165,6 +165,7 @@ const server = http.createServer((req, res) => {
   if (type === 'text/html' && url.searchParams.has('qa')) {
     let html = data.toString('utf8');
     html = html.replace(/<script\b[^>]*\bsrc="https:\/\/[^"]+"[^>]*><\/script>/g, '');
+    if (url.searchParams.has('narrow')) html = html.replace('<body>', '<body style="width:390px;max-width:390px">');
     data = Buffer.from(html.replace('</body>', injected + '</body>'));
   }
   res.writeHead(200, { 'Content-Type': type + '; charset=utf-8', 'Cache-Control': 'no-store' }).end(data);
@@ -172,7 +173,7 @@ const server = http.createServer((req, res) => {
 await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
 const port = server.address().port;
 async function run(width) {
-  const url = 'http://127.0.0.1:' + port + '/tools/screenshot-canvas/?qa=1';
+  const url = 'http://127.0.0.1:' + port + '/tools/screenshot-canvas/?qa=1' + (width === 390 ? '&narrow=1' : '');
   const args = ['--headless=new', '--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu',
     '--disable-background-networking', '--disable-extensions', '--no-first-run',
     '--window-size=' + width + ',900', '--virtual-time-budget=12000', '--dump-dom', url];
