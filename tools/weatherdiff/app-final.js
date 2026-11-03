@@ -402,16 +402,16 @@
   }
 
   function calcMetDay(block) {
-    if (!Array.isArray(block) || block.length === 0) return { max: null, min: null, rain: 0, wind: 0, icon: "☁️" };
+    if (!Array.isArray(block) || block.length === 0) return { max: null, min: null, rain: null, wind: null, icon: "☁️" };
     const temps = block.map((item) => item.data?.instant?.details?.air_temperature).filter(isFiniteNumber);
-    const rains = block.map((item) => item.data?.next_1_hours?.details?.precipitation_amount ?? item.data?.next_6_hours?.details?.precipitation_amount ?? 0).filter(isFiniteNumber);
-    const winds = block.map((item) => item.data?.instant?.details?.wind_speed ?? 0).filter(isFiniteNumber);
+    const rains = block.map((item) => item.data?.next_1_hours?.details?.precipitation_amount ?? item.data?.next_6_hours?.details?.precipitation_amount ?? null).filter(isFiniteNumber);
+    const winds = block.map((item) => item.data?.instant?.details?.wind_speed ?? null).filter(isFiniteNumber);
     const symbol = block[0]?.data?.next_6_hours?.summary?.symbol_code || block[0]?.data?.next_1_hours?.summary?.symbol_code || "";
     return {
       max: temps.length ? round1(Math.max(...temps)) : null,
       min: temps.length ? round1(Math.min(...temps)) : null,
-      rain: round1(rains.reduce((a, b) => a + b, 0)),
-      wind: winds.length ? round1(Math.max(...winds)) : 0,
+      rain: rains.length ? round1(rains.reduce((a, b) => a + b, 0)) : null,
+      wind: winds.length ? round1(Math.max(...winds)) : null,
       icon: mapMetSymbolToIcon(symbol),
     };
   }
@@ -537,7 +537,7 @@
   function show(el) { el?.classList.remove("hidden"); }
   function hide(el) { el?.classList.add("hidden"); }
   function hardenExternalLinks() { document.querySelectorAll('a[target="_blank"]').forEach((a) => a.setAttribute("rel", "noopener noreferrer")); }
-  function isFiniteNumber(value) { return Number.isFinite(Number(value)); }
+  function isFiniteNumber(value) { return value !== null && value !== undefined && value !== "" && Number.isFinite(Number(value)); }
   function round1(value) { return isFiniteNumber(value) ? Number(Number(value).toFixed(1)) : null; }
   function kmhToMs(value) { return isFiniteNumber(value) ? Number(value) / 3.6 : null; }
   function formatValue(value) { return isFiniteNumber(value) ? Number(value).toFixed(1) : "-"; }
