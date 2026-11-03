@@ -270,7 +270,10 @@
     langButtons().forEach((button) => button.classList.toggle("active", button.dataset.lang === currentLang));
     document.documentElement.lang = currentLang;
     try { localStorage.setItem("nw_lang", currentLang); } catch (_) {}
+    // Keep the generated design and download language consistent with the UI.
+    // The design is a local draft; switching language must not export old-language text.
     if (!hasGenerated) setInitialOutput();
+    else generate();
   };
 
   const initLang = () => {
