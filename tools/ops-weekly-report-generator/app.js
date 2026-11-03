@@ -184,30 +184,52 @@
     let hasGenerated = false;
     let lastJa = "";
     let lastEn = "";
+    let generatedSignature = "";
 
     const setGenerated = (enabled) => {
       hasGenerated = enabled;
       gatedButtons.forEach((button) => { button.disabled = !enabled; });
     };
 
+    const inputSignature = () => JSON.stringify(collectData());
+    const invalidate = () => {
+      lastJa = "";
+      lastEn = "";
+      generatedSignature = "";
+      outputJa.textContent = "";
+      outputEn.textContent = "";
+      setGenerated(false);
+    };
+
     const requireGenerated = () => {
-      if (hasGenerated) return true;
+      if (hasGenerated && generatedSignature === inputSignature()) return true;
+      invalidate();
       showToast("先にレポートを生成してください。", "Generate a report first.");
       return false;
     };
 
+    ["period", "team", "kpi", "changes", "results", "goodThings", "risks",
+      "openItems", "nextActions", "focusNext", "decisions"].forEach((id) => {
+      const input = document.getElementById(id);
+      input?.addEventListener("input", invalidate);
+      input?.addEventListener("change", invalidate);
+    });
+
     btnBuild.addEventListener("click", () => {
       const data = collectData();
       if (!data.period) {
+        invalidate();
         showToast("対象期間を入力してください。", "Enter the report period.");
         return;
       }
       if (!hasBodyInput(data)) {
+        invalidate();
         showToast("KPI、結果、次アクション、リスクなどを1つ以上入力してください。", "Enter at least one KPI, result, next action, risk, or related field.");
         return;
       }
       lastJa = buildJa(data);
       lastEn = buildEn(data);
+      generatedSignature = inputSignature();
       outputJa.textContent = lastJa;
       outputEn.textContent = lastEn;
       setGenerated(true);

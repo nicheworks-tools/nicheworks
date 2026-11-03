@@ -67,6 +67,7 @@ The workflow is a vertically stacked report form followed by text outputs and ex
 - [ ] Generation is blocked or warned when the report period is missing or no substantive report field is supplied.
 - [ ] Blank optional sections are omitted instead of being populated with invented facts.
 - [ ] Both JP and EN report drafts can be copied or downloaded from the same entered source data.
+- [ ] Editing or removing any period, team or report field clears old drafts and disables export; copy/download refuse a stale generated draft even if an input event is skipped.
 - [ ] Entered operational data is not sent to an AI/report-generation backend.
 
 ## Implementation evidence
