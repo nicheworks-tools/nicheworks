@@ -73,3 +73,9 @@ No automatically verified recipes, brand-specific nutrition or allergens, comple
 Selecting a power outage is not cosmetic: full-equivalence food needing heat is excluded unless the user separately confirms an appropriate non-electric cooking method, adequate fuel and a safe location. The no-heat scenario supersedes that confirmation. Water-dependent heated food still requires per-item method/water confirmation and sufficient safe-water allocation; a prohibited heating scenario does not allocate its prep water. Consumer Affairs Agency cooking/generator safety reference: https://www.caa.go.jp/policies/policy/consumer_safety/caution/caution_063/ . An acknowledgement is a planning input, not proof of actual safety.
 
 Shopping initially selects the first eight visible missing categories only. More categories start unchecked until expanded. Copy, CSV and printing include the selected subset, with a print-specific selected-item rendering. The user can select additional categories explicitly. No hidden default items are exported.
+
+## 2026-11-03 safety/measurement increment
+
+In the food detail, an informational food-group audit lists **types of usable registered protein, vegetable and fruit options** separately from main-staple portion targets. Expired or unverified items are excluded. It is not a nutrient, calorie or meal adequacy assessment; manual generic food holdings cannot be analyzed by group. Water-dependent vegetable side dishes now allocate their independently confirmed water but do not count as staple portions.
+
+Named 2L/500mL bottled-water variants accept whole bottle counts in the UI and convert to persisted litres (2 or 0.5 respectively). Legacy stored variant quantity remains interpreted as litres; other water items require explicit litre totals because container size varies. Prevent double-entry under generic water category.
