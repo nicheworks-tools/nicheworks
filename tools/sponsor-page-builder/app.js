@@ -75,9 +75,16 @@
   };
 
   let hasGenerated = false;
+  let generatedSignature = "";
+  const INPUT_IDS = [
+    "projectName", "summary", "supporters", "whySupport", "fundUse",
+    "offeredBenefits", "cannotProvide", "tierCount", "priceInput",
+    "corpSupport", "contact", "logoPolicy", "refundPolicy"
+  ];
 
   const $ = (id) => document.getElementById(id);
   const getValue = (id) => ($(id)?.value || "").trim();
+  const inputSignature = () => JSON.stringify(INPUT_IDS.map((id) => $(id)?.value || ""));
 
   const toBullets = (value) => value
     .split(/\n|,|、/)
@@ -276,17 +283,29 @@
   const initTool = () => {
     const outputJa = $("outputJa");
     const outputEn = $("outputEn");
+    const invalidate = () => {
+      hasGenerated = false;
+      generatedSignature = "";
+      outputJa.textContent = "入力後に生成してください。";
+      outputEn.textContent = "Enter details, then generate copy.";
+    };
+    INPUT_IDS.forEach((id) => {
+      $(id)?.addEventListener("input", invalidate);
+      $(id)?.addEventListener("change", invalidate);
+    });
 
     $("generateBtn")?.addEventListener("click", () => {
       outputJa.textContent = buildCopy("ja");
       outputEn.textContent = buildCopy("en");
+      generatedSignature = inputSignature();
       hasGenerated = true;
       showToast("生成しました。価格・特典は公開前に確認してください。", "Generated. Confirm prices and rewards before publishing.");
     });
 
     $("copyBtn")?.addEventListener("click", async () => {
-      if (!hasGenerated) {
-        showToast("先に生成してください。", "Generate copy first.", true);
+      if (!hasGenerated || generatedSignature !== inputSignature()) {
+        invalidate();
+        showToast("入力変更後は再生成してください。", "Inputs changed. Generate fresh copy.", true);
         return;
       }
       const lang = document.documentElement.lang === "ja" ? "ja" : "en";
@@ -300,8 +319,9 @@
     });
 
     $("downloadBtn")?.addEventListener("click", () => {
-      if (!hasGenerated) {
-        showToast("先に生成してください。", "Generate copy first.", true);
+      if (!hasGenerated || generatedSignature !== inputSignature()) {
+        invalidate();
+        showToast("入力変更後は再生成してください。", "Inputs changed. Generate fresh copy.", true);
         return;
       }
       const lang = document.documentElement.lang === "ja" ? "ja" : "en";
