@@ -72,6 +72,7 @@ function harness() {
     document, navigator, localStorage, URL, Blob: BlobStub,
     clearTimeout() {}, setTimeout() { return 1; }, Date
   });
+  get('presetSelect').value = 'seo';
   events.get('DOMContentLoaded')();
   return { get, downloads, getCopied: () => copied };
 }
