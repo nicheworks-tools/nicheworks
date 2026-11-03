@@ -1,5 +1,8 @@
 name: Atlas final-five SEO generator sync (one-off)
 on:
+  pull_request:
+    paths:
+      - .github/workflows/atlas-final-five-seo-sync-20261103.yml
   push:
     branches:
       - fix/atlas-five-canonical-identities-20261103
@@ -8,7 +11,34 @@ on:
 permissions:
   contents: write
 jobs:
+  inspect:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Report actual generator output for exact three files
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/construction-tools-atlas/scripts/build-seo-detail-pages-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/build-seo-detail-pages-v2.3.cjs --check
+          git diff --name-only
+          node - <<'NODE'
+          const fs = require('node:fs');
+          for (const path of [
+            'tools/construction-tools-atlas/entries/notched_trowel/index.html',
+            'tools/construction-tools-atlas/entries/paint_tray/index.html',
+            'tools/construction-tools-atlas/data/seo-detail-pages-v2.3.json'
+          ]) console.log('CTA_SEO_GENERATED=' + JSON.stringify({path,content:fs.readFileSync(path,'utf8')}));
+          NODE
   regenerate:
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
