@@ -1,0 +1,26 @@
+name: ManualFinder Lenovo JP 13 exact model manual indexes
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/**'
+      - '.github/workflows/manualfinder-lenovo-jp-13.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  lenovo-jp-13:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate Lenovo exact model manual pages and existing regressions
+        run: |
+          node tools/manual-finder/tests/lenovo-jp-13-publication.test.mjs
+          node tools/manual-finder/tests/dell-jp-20-publication.test.mjs
+          node tools/manual-finder/tests/coverage-pass-pipeline.test.mjs
+          node tools/manual-finder/tests/canon-pixus-wave3l-publication.test.mjs
+          node tools/manual-finder/tests/affiliate-coverage.test.mjs
+          node tools/manual-finder/tests/affiliate-doc-sync.test.mjs

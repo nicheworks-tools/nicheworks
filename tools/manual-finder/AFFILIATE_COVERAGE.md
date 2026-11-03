@@ -491,3 +491,7 @@ TS8230 and TS8430: BCI-381C / BCI-380PGBK; TS8530 and TS8630: BCI-331C / BCI-330
 ### Dell Japan exact PC model searches (2026-11-03)
 
 The 20 exact Dell official manual-index records in `coverage-passes/dell/jp-20-model-manual-index-20261103.json` are each eligible for the existing canonical `PC・スマホ` Amazon Associates model-search template (`nicheworks09-22`). This adds 20 tagged model queries, not verified retail product matches, prices, sales or commissions. No model-specific batteries, chargers or accessories are offered without official compatibility evidence. Printer reconciliation remains unchanged: `printer basic 343 = detail 336 + reviewed exclusion 7 + missing 0`.
+
+### Lenovo JP bounded ThinkPad 13 exact-model search handoffs (2026-11-03)
+
+The 13 reviewed Lenovo Japan machine-type/SKU model-specific manual-index rows are eligible for the existing canonical model-search template under `PC・スマホ`, using `nicheworks09-22`. Source list `coverage-passes/lenovo/jp-thinkpad-13-official-manual-index-20261103.json`. Do not infer Lenovo-wide catalog, laptop battery SKU, charger compatibility, marketplace stock or commissions. Printer audit remains `printer basic 343 = detail 336 + reviewed exclusion 7 + missing 0`.

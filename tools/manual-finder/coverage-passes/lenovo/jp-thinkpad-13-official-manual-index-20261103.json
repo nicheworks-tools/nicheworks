@@ -1,0 +1,264 @@
+{
+  "schemaVersion": 1,
+  "maker": "Lenovo",
+  "scopeId": "lenovo-jp-thinkpad-13-exact-manual-index-20261103",
+  "scopeLabel": "Bounded first Lenovo Japan ThinkPad manual-index pilot, exact 13 manufacturer pages; not a ThinkPad/Lenovo full catalog",
+  "status": "coverage-pass-complete",
+  "asOf": "2026-11-03",
+  "region": "JP",
+  "language": "ja",
+  "allowedDomains": [
+    "lenovo.com"
+  ],
+  "universe": {
+    "sourceUrls": [
+      "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-t-series-laptops/thinkpad-t14-gen-6-type-21qj-21qk/21qj/document-userguide/doc_userguide",
+      "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-t-series-laptops/thinkpad-t14-gen-6-type-21qc-21qd/21qc/document-userguide",
+      "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-t-series-laptops/thinkpad-t16-gen-4-type-21qn-21qq/21qn/document-userguide",
+      "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-l-series-laptops/thinkpad-l14-gen-6-type-21s8-21s9/document-userguide",
+      "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-l-series-laptops/thinkpad-l14-gen-5-type-21l5-21l6/21l6/21l6s4xn00/document-userguide",
+      "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-p-series-laptops/thinkpad-p16s-gen-4-type-21qv-21qw/document-userguide/doc_userguide",
+      "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-p-series-laptops/thinkpad-p1-gen-9-type-21ue-21uf/document-userguide/doc_userguide",
+      "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-edge-laptops/thinkpad-e16-gen-3-type-21tf-21tg/document-userguide/doc_userguide",
+      "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-edge-laptops/thinkpad-e14-gen-7-type-21t9-21ta/document-userguide",
+      "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-x-series-laptops/thinkpad-x1-carbon-10th-gen-type-21cb-21cc/21cc/document-userguide/doc_userguide",
+      "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-x-series-laptops/thinkpad-x1-2-in-1-gen-10-type-21q0-21q1/document-userguide",
+      "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-t-series-laptops/thinkpad-t470/document-userguide/doc_userguide",
+      "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-x-series-laptops/thinkpad-x1-carbon-9th-gen-type-20xw-20xx/20xw/20xw003hus/document-userguide/doc_userguide"
+    ],
+    "models": [
+      "ThinkPad T14 Gen 6 AMD (21QJ/21QK)",
+      "ThinkPad T14 Gen 6 IAL (21QC/21QD)",
+      "ThinkPad T16 Gen 4 (21QN/21QQ)",
+      "ThinkPad L14 Gen 6 (21S8/21S9)",
+      "ThinkPad L14 Gen 5 (21L6S4XN00)",
+      "ThinkPad P16s Gen 4 (21QV/21QW)",
+      "ThinkPad P1 Gen 9 (21UE/21UF)",
+      "ThinkPad E16 Gen 3 (21TF/21TG)",
+      "ThinkPad E14 Gen 7 IRL (21T9/21TA)",
+      "ThinkPad X1 Carbon Gen 10 (21CB/21CC)",
+      "ThinkPad X1 2-in-1 Gen 10 (21Q0/21Q1)",
+      "ThinkPad T470",
+      "ThinkPad X1 Carbon Gen 9 (20XW003HUS)"
+    ],
+    "declaredCount": 13,
+    "populationMethod": "An expressly bounded reviewed 13-model selection of already published Lenovo Japan pc-support Guides & Manuals model / type / SKU pages. Manufacturer is not claiming its entire catalog is 13 products; the declared 13 is this audited source-scope size. Pages were sourced individually from official Lenovo website, never derived by numeric slug extrapolation.",
+    "sourceObservation": {
+      "observedAt": "2026-11-03",
+      "confirmedOfficialModelManualIndexes": 13,
+      "officialIndexPagePath": "/document-userguide",
+      "japanLocale": "/jp/ja/products/",
+      "relation": "Each source page names its exact model type and visibly links to User Guide, maintenance, or setup documentation; the selected page is an index, not asserted to be a PDF.",
+      "regionalNote": "Two selected model-specific example SKUs include type suffixes; manual compatibility with other variants is not inferred."
+    }
+  },
+  "records": [
+    {
+      "model": "ThinkPad T14 Gen 6 AMD (21QJ/21QK)",
+      "state": "direct",
+      "manualUrl": "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-t-series-laptops/thinkpad-t14-gen-6-type-21qj-21qk/21qj/document-userguide/doc_userguide",
+      "supportUrl": "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-t-series-laptops/thinkpad-t14-gen-6-type-21qj-21qk/21qj/document-userguide/doc_userguide",
+      "evidenceUrls": [
+        "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-t-series-laptops/thinkpad-t14-gen-6-type-21qj-21qk/21qj/document-userguide/doc_userguide"
+      ],
+      "family": "T14 Gen 6 AMD",
+      "modelType": "21QJ/21QK",
+      "manualKind": "manual-index",
+      "documentEvidence": "T14 Gen 6 and related T-series hardware maintenance/setup manuals",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Lenovo Japan official model-specific Guides & Manuals index visibly lists or tiles relevant user / setup / maintenance documentation. The model-specific landing page (not a claimed direct PDF) is promoted."
+    },
+    {
+      "model": "ThinkPad T14 Gen 6 IAL (21QC/21QD)",
+      "state": "direct",
+      "manualUrl": "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-t-series-laptops/thinkpad-t14-gen-6-type-21qc-21qd/21qc/document-userguide",
+      "supportUrl": "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-t-series-laptops/thinkpad-t14-gen-6-type-21qc-21qd/21qc/document-userguide",
+      "evidenceUrls": [
+        "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-t-series-laptops/thinkpad-t14-gen-6-type-21qc-21qd/21qc/document-userguide"
+      ],
+      "family": "T14 Gen 6 IAL",
+      "modelType": "21QC/21QD",
+      "manualKind": "manual-index",
+      "documentEvidence": "Exact product guide tiles: User Guide, Hardware Maintenance, Setup",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Lenovo Japan official model-specific Guides & Manuals index visibly lists or tiles relevant user / setup / maintenance documentation. The model-specific landing page (not a claimed direct PDF) is promoted."
+    },
+    {
+      "model": "ThinkPad T16 Gen 4 (21QN/21QQ)",
+      "state": "direct",
+      "manualUrl": "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-t-series-laptops/thinkpad-t16-gen-4-type-21qn-21qq/21qn/document-userguide",
+      "supportUrl": "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-t-series-laptops/thinkpad-t16-gen-4-type-21qn-21qq/21qn/document-userguide",
+      "evidenceUrls": [
+        "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-t-series-laptops/thinkpad-t16-gen-4-type-21qn-21qq/21qn/document-userguide"
+      ],
+      "family": "T16 Gen 4",
+      "modelType": "21QN/21QQ",
+      "manualKind": "manual-index",
+      "documentEvidence": "T14 Gen 6 / T16 Gen 4 / P14s / P16s setup and maintenance manuals",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Lenovo Japan official model-specific Guides & Manuals index visibly lists or tiles relevant user / setup / maintenance documentation. The model-specific landing page (not a claimed direct PDF) is promoted."
+    },
+    {
+      "model": "ThinkPad L14 Gen 6 (21S8/21S9)",
+      "state": "direct",
+      "manualUrl": "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-l-series-laptops/thinkpad-l14-gen-6-type-21s8-21s9/document-userguide",
+      "supportUrl": "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-l-series-laptops/thinkpad-l14-gen-6-type-21s8-21s9/document-userguide",
+      "evidenceUrls": [
+        "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-l-series-laptops/thinkpad-l14-gen-6-type-21s8-21s9/document-userguide"
+      ],
+      "family": "L14 Gen 6",
+      "modelType": "21S8/21S9",
+      "manualKind": "manual-index",
+      "documentEvidence": "L14 Gen 6 / L16 Gen 2 setup and maintenance manuals",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Lenovo Japan official model-specific Guides & Manuals index visibly lists or tiles relevant user / setup / maintenance documentation. The model-specific landing page (not a claimed direct PDF) is promoted."
+    },
+    {
+      "model": "ThinkPad L14 Gen 5 (21L6S4XN00)",
+      "state": "direct",
+      "manualUrl": "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-l-series-laptops/thinkpad-l14-gen-5-type-21l5-21l6/21l6/21l6s4xn00/document-userguide",
+      "supportUrl": "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-l-series-laptops/thinkpad-l14-gen-5-type-21l5-21l6/21l6/21l6s4xn00/document-userguide",
+      "evidenceUrls": [
+        "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-l-series-laptops/thinkpad-l14-gen-5-type-21l5-21l6/21l6/21l6s4xn00/document-userguide"
+      ],
+      "family": "L14 Gen 5",
+      "modelType": "21L6S4XN00",
+      "manualKind": "manual-index",
+      "documentEvidence": "Exact SKU user-guide HTML tile plus maintenance/setup PDF tiles",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Lenovo Japan official model-specific Guides & Manuals index visibly lists or tiles relevant user / setup / maintenance documentation. The model-specific landing page (not a claimed direct PDF) is promoted."
+    },
+    {
+      "model": "ThinkPad P16s Gen 4 (21QV/21QW)",
+      "state": "direct",
+      "manualUrl": "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-p-series-laptops/thinkpad-p16s-gen-4-type-21qv-21qw/document-userguide/doc_userguide",
+      "supportUrl": "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-p-series-laptops/thinkpad-p16s-gen-4-type-21qv-21qw/document-userguide/doc_userguide",
+      "evidenceUrls": [
+        "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-p-series-laptops/thinkpad-p16s-gen-4-type-21qv-21qw/document-userguide/doc_userguide"
+      ],
+      "family": "P16s Gen 4",
+      "modelType": "21QV/21QW",
+      "manualKind": "manual-index",
+      "documentEvidence": "P14s Gen 6 and P16s Gen 4 User Guide, Linux Guide and maintenance guide",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Lenovo Japan official model-specific Guides & Manuals index visibly lists or tiles relevant user / setup / maintenance documentation. The model-specific landing page (not a claimed direct PDF) is promoted."
+    },
+    {
+      "model": "ThinkPad P1 Gen 9 (21UE/21UF)",
+      "state": "direct",
+      "manualUrl": "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-p-series-laptops/thinkpad-p1-gen-9-type-21ue-21uf/document-userguide/doc_userguide",
+      "supportUrl": "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-p-series-laptops/thinkpad-p1-gen-9-type-21ue-21uf/document-userguide/doc_userguide",
+      "evidenceUrls": [
+        "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-p-series-laptops/thinkpad-p1-gen-9-type-21ue-21uf/document-userguide/doc_userguide"
+      ],
+      "family": "P1 Gen 9",
+      "modelType": "21UE/21UF",
+      "manualKind": "manual-index",
+      "documentEvidence": "P1 Gen 9 and T1g Gen 9 User Guide and Hardware Maintenance Manual",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Lenovo Japan official model-specific Guides & Manuals index visibly lists or tiles relevant user / setup / maintenance documentation. The model-specific landing page (not a claimed direct PDF) is promoted."
+    },
+    {
+      "model": "ThinkPad E16 Gen 3 (21TF/21TG)",
+      "state": "direct",
+      "manualUrl": "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-edge-laptops/thinkpad-e16-gen-3-type-21tf-21tg/document-userguide/doc_userguide",
+      "supportUrl": "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-edge-laptops/thinkpad-e16-gen-3-type-21tf-21tg/document-userguide/doc_userguide",
+      "evidenceUrls": [
+        "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-edge-laptops/thinkpad-e16-gen-3-type-21tf-21tg/document-userguide/doc_userguide"
+      ],
+      "family": "E16 Gen 3",
+      "modelType": "21TF/21TG",
+      "manualKind": "manual-index",
+      "documentEvidence": "E14 Gen 7 and E16 Gen 3 User Guide and Hardware Maintenance Manual",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Lenovo Japan official model-specific Guides & Manuals index visibly lists or tiles relevant user / setup / maintenance documentation. The model-specific landing page (not a claimed direct PDF) is promoted."
+    },
+    {
+      "model": "ThinkPad E14 Gen 7 IRL (21T9/21TA)",
+      "state": "direct",
+      "manualUrl": "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-edge-laptops/thinkpad-e14-gen-7-type-21t9-21ta/document-userguide",
+      "supportUrl": "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-edge-laptops/thinkpad-e14-gen-7-type-21t9-21ta/document-userguide",
+      "evidenceUrls": [
+        "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-edge-laptops/thinkpad-e14-gen-7-type-21t9-21ta/document-userguide"
+      ],
+      "family": "E14 Gen 7 IRL",
+      "modelType": "21T9/21TA",
+      "manualKind": "manual-index",
+      "documentEvidence": "User Guide HTML tile and Hardware Maintenance Manual PDF tile",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Lenovo Japan official model-specific Guides & Manuals index visibly lists or tiles relevant user / setup / maintenance documentation. The model-specific landing page (not a claimed direct PDF) is promoted."
+    },
+    {
+      "model": "ThinkPad X1 Carbon Gen 10 (21CB/21CC)",
+      "state": "direct",
+      "manualUrl": "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-x-series-laptops/thinkpad-x1-carbon-10th-gen-type-21cb-21cc/21cc/document-userguide/doc_userguide",
+      "supportUrl": "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-x-series-laptops/thinkpad-x1-carbon-10th-gen-type-21cb-21cc/21cc/document-userguide/doc_userguide",
+      "evidenceUrls": [
+        "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-x-series-laptops/thinkpad-x1-carbon-10th-gen-type-21cb-21cc/21cc/document-userguide/doc_userguide"
+      ],
+      "family": "X1 Carbon Gen 10",
+      "modelType": "21CB/21CC",
+      "manualKind": "manual-index",
+      "documentEvidence": "Japanese User Guide HTML/PDF and Hardware Maintenance Manual",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Lenovo Japan official model-specific Guides & Manuals index visibly lists or tiles relevant user / setup / maintenance documentation. The model-specific landing page (not a claimed direct PDF) is promoted."
+    },
+    {
+      "model": "ThinkPad X1 2-in-1 Gen 10 (21Q0/21Q1)",
+      "state": "direct",
+      "manualUrl": "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-x-series-laptops/thinkpad-x1-2-in-1-gen-10-type-21q0-21q1/document-userguide",
+      "supportUrl": "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-x-series-laptops/thinkpad-x1-2-in-1-gen-10-type-21q0-21q1/document-userguide",
+      "evidenceUrls": [
+        "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-x-series-laptops/thinkpad-x1-2-in-1-gen-10-type-21q0-21q1/document-userguide"
+      ],
+      "family": "X1 2-in-1 Gen 10",
+      "modelType": "21Q0/21Q1",
+      "manualKind": "manual-index",
+      "documentEvidence": "X1 2-in-1 Gen 10 User Guide HTML, maintenance and setup guides",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Lenovo Japan official model-specific Guides & Manuals index visibly lists or tiles relevant user / setup / maintenance documentation. The model-specific landing page (not a claimed direct PDF) is promoted."
+    },
+    {
+      "model": "ThinkPad T470",
+      "state": "direct",
+      "manualUrl": "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-t-series-laptops/thinkpad-t470/document-userguide/doc_userguide",
+      "supportUrl": "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-t-series-laptops/thinkpad-t470/document-userguide/doc_userguide",
+      "evidenceUrls": [
+        "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-t-series-laptops/thinkpad-t470/document-userguide/doc_userguide"
+      ],
+      "family": "T470",
+      "modelType": "T470",
+      "manualKind": "manual-index",
+      "documentEvidence": "Japanese ThinkPad T470 PDF/HTML User Guide and Hardware Maintenance Manual",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Lenovo Japan official model-specific Guides & Manuals index visibly lists or tiles relevant user / setup / maintenance documentation. The model-specific landing page (not a claimed direct PDF) is promoted."
+    },
+    {
+      "model": "ThinkPad X1 Carbon Gen 9 (20XW003HUS)",
+      "state": "direct",
+      "manualUrl": "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-x-series-laptops/thinkpad-x1-carbon-9th-gen-type-20xw-20xx/20xw/20xw003hus/document-userguide/doc_userguide",
+      "supportUrl": "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-x-series-laptops/thinkpad-x1-carbon-9th-gen-type-20xw-20xx/20xw/20xw003hus/document-userguide/doc_userguide",
+      "evidenceUrls": [
+        "https://pcsupport.lenovo.com/jp/ja/products/laptops-and-netbooks/thinkpad-x-series-laptops/thinkpad-x1-carbon-9th-gen-type-20xw-20xx/20xw/20xw003hus/document-userguide/doc_userguide"
+      ],
+      "family": "X1 Carbon Gen 9",
+      "modelType": "20XW003HUS",
+      "manualKind": "manual-index",
+      "documentEvidence": "Japanese X1 Carbon Gen 9 User Guide PDF/HTML and Hardware Maintenance Manual",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Lenovo Japan official model-specific Guides & Manuals index visibly lists or tiles relevant user / setup / maintenance documentation. The model-specific landing page (not a claimed direct PDF) is promoted."
+    }
+  ],
+  "reconciliation": {
+    "captured": 13,
+    "direct": 13,
+    "shared": 0,
+    "support_only": 0,
+    "held": 0,
+    "public": 13
+  },
+  "refresh": {
+    "method": "Independently revisit each exact model / machine type official Japanese Guides & Manuals URL, assert model identity and at least one manual listing and retain prior evidence if results change.",
+    "excluded": "HP, Acer, other Lenovo and all additional ThinkPad models not in this bounded verified scope."
+  }
+}
