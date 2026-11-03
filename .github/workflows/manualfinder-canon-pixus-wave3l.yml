@@ -1,0 +1,25 @@
+name: ManualFinder Canon PIXUS Wave 3L official manuals and ink
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/**'
+      - '.github/workflows/manualfinder-canon-pixus-wave3l.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  canon-pixus-wave3l:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify bounded Canon six-model sources and affiliate regression
+        run: |
+          node tools/manual-finder/tests/canon-pixus-wave3l-publication.test.mjs
+          node tools/manual-finder/tests/canon-pixus-wave3k-publication.test.mjs
+          node tools/manual-finder/tests/affiliate-behavior-core.test.mjs
+          node tools/manual-finder/tests/affiliate-coverage.test.mjs
+          node tools/manual-finder/tests/affiliate-doc-sync.test.mjs
