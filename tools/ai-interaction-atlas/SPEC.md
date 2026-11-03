@@ -93,6 +93,8 @@ The primary interaction is a multi-pane searchable reference workspace with filt
 ## Acceptance criteria
 
 - [ ] Searching or applying a supported filter changes the visible pattern set without external AI processing.
+- [ ] Text search uses each pattern's own Japanese/English name and classification, not generic keywords shared by all patterns; searches for citations do not return unrelated cards.
+- [ ] Copy uses a local fallback when the Clipboard API is unavailable; keyboard activation of a nested card button does not also open its detail panel.
 - [ ] Opening a pattern exposes detail information and basic prompt copy; recent state is retained locally.
 - [ ] Free favorites remain capped at five and Free comparison never exceeds two patterns.
 - [ ] Current paid behavior supports up to four compared patterns, additional comparison rows, the handoff copy pack, selected-pattern Markdown/JSON export, and comparison Markdown/JSON export.
