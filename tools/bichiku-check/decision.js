@@ -75,7 +75,7 @@ function assessment(catalog,options,source,today){
  const stored=storedWater(s,options,now);
  // Each water-dependent food must have its own complete, package-checked water allocation.
  // An old saved global water number cannot automatically verify any food item.
- const waterDetails=(options||[]).filter(o=>o.parent==="food"&&o.requiresWater&&o.equivalence==="full")
+ const waterDetails=(options||[]).filter(o=>o.parent==="food"&&o.requiresWater)
    .map(o=>({option:o,entry:(s.variants||{})[s.mode+":"+o.id]||{}}))
    .filter(x=>numeric(x.entry.qty)>0&&unexpired(x.entry,now)&&
      (!s.noHeat||!["heat","verify"].includes(x.option.prep))&&
