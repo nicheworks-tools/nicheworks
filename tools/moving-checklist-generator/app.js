@@ -25,6 +25,10 @@
   };
 
   const STORAGE_PREFIX = "moveChecklist:v2:";
+  let renderedSignature = "";
+  const conditionSignature = () => JSON.stringify([
+    els.moveDate.value, els.household.value, els.homeType.value
+  ]);
 
   const I18N = {
     ja: {
@@ -249,9 +253,13 @@
   }
 
   function parseDateInput(value) {
-    if (!value) return null;
+    const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value || "");
+    if (!match) return null;
     const d = new Date(value + "T00:00:00");
-    return isNaN(d.getTime()) ? null : d;
+    if (isNaN(d.getTime())) return null;
+    return d.getFullYear() === Number(match[1])
+      && d.getMonth() + 1 === Number(match[2])
+      && d.getDate() === Number(match[3]) ? d : null;
   }
 
   function addDays(base, delta) {
@@ -308,6 +316,29 @@
   function clearChecklistDom() {
     while (els.checklist.firstChild) els.checklist.removeChild(els.checklist.firstChild);
   }
+  function invalidateChecklist() {
+    renderedSignature = "";
+    clearChecklistDom();
+    els.resultMeta.textContent = "";
+    els.printMeta.textContent = "—";
+    els.progressSummary.hidden = true;
+    els.progressSummary.textContent = "";
+    els.emptyState.textContent = (I18N[readLang()] || I18N.ja).emptyState;
+    els.emptyState.hidden = false;
+  }
+  function updatePrintMemo() {
+    if (!renderedSignature || renderedSignature !== conditionSignature()) return;
+    const lang = readLang(), dict = I18N[lang] || I18N.ja;
+    const date = parseDateInput(els.moveDate.value);
+    if (!date) return;
+    const conditions = labels(lang, els.household.value, els.homeType.value);
+    const line = dict.metaLine({
+      dateStr: dict.dateFmt(date),
+      household: conditions.householdLabel,
+      homeType: conditions.homeTypeLabel
+    });
+    els.printMeta.textContent = line + ((els.printNote.value || "").trim() ? " / " + els.printNote.value.trim() : "");
+  }
 
   function updateProgress({lang, tasks, checks}) {
     const dict = I18N[lang] || I18N.ja;
@@ -342,6 +373,7 @@
     els.emptyState.hidden = true;
     updateProgress({ lang, tasks, checks });
 
+    renderedSignature = conditionSignature();
     blocks.forEach(({day, tasks: dayTasks}) => {
       const block = document.createElement("div");
       block.className = "day-block";
@@ -426,19 +458,11 @@
   }
 
   function resetFormNow() {
-    const lang = readLang();
-    const dict = I18N[lang] || I18N.ja;
     els.moveDate.value = "";
     els.household.value = "solo";
     els.homeType.value = "rental";
     els.printNote.value = "";
-    els.resultMeta.textContent = "";
-    els.printMeta.textContent = "—";
-    els.progressSummary.hidden = true;
-    els.progressSummary.textContent = "";
-    clearChecklistDom();
-    els.emptyState.textContent = dict.emptyState;
-    els.emptyState.hidden = false;
+    invalidateChecklist();
     els.confirmPanel.hidden = true;
   }
 
@@ -471,8 +495,20 @@
     showToast((I18N[readLang()] || I18N.ja).allSavedDeleted);
   }
 
+  ["moveDate", "household", "homeType"].forEach((id) => {
+    els[id].addEventListener("input", invalidateChecklist);
+    els[id].addEventListener("change", invalidateChecklist);
+  });
+  els.printNote.addEventListener("input", updatePrintMemo);
   els.btnGenerate.addEventListener("click", generate);
-  els.btnPrint.addEventListener("click", () => window.print());
+  els.btnPrint.addEventListener("click", () => {
+    if (!renderedSignature || renderedSignature !== conditionSignature()) {
+      invalidateChecklist();
+      showToast((I18N[readLang()] || I18N.ja).emptyState);
+      return;
+    }
+    window.print();
+  });
   els.btnClear.addEventListener("click", clearChecks);
   els.btnReset.addEventListener("click", () => {
     els.confirmPanel.hidden = false;

@@ -84,6 +84,8 @@ The core interaction is a compact form followed by a chronological checklist; a 
 
 - [ ] A valid move date plus household/home type produces a condition-specific checklist and progress state.
 - [ ] Checkbox state survives reload for the same condition set but does not leak to a different condition set.
+- [ ] 日付・家族構成・住居タイプ変更時は旧チェックリストと印刷表示を無効化し、再生成前の印刷を拒否する。印刷用メモの編集だけは同じ条件の印刷見出しへ即座に反映する。
+- [ ] 存在しないカレンダー日付は引越し日として受け付けない。
 - [ ] The optional print memo is not written to persistent storage.
 - [ ] Delete-current and delete-all actions remove the corresponding saved checklist state.
 - [ ] Print/PDF uses the browser print flow and does not claim server-generated PDF storage.
