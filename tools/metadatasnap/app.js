@@ -12,6 +12,14 @@
   const resCanonical = document.getElementById('res-canonical');
   const resetBtn = document.getElementById('reset-btn');
 
+  let requestSerial = 0;
+  let activeController = null;
+  const cancelActiveRequest = () => {
+    requestSerial += 1;
+    if (activeController) activeController.abort();
+    activeController = null;
+  };
+
   const state = {
     lang: 'ja',
     title: '',
@@ -110,13 +118,23 @@
     return true;
   };
 
-  const fetchHTML = async (userURL) => {
+  const fetchHTML = async (userURL, signal) => {
     const proxies = [workerProxy, allOriginsProxy];
     for (const build of proxies) {
+      if (signal?.aborted) throw new Error('request_cancelled');
       try {
-        const response = await fetch(build(userURL), { mode: 'cors' });
-        if (response.ok) return await response.text();
-      } catch (_) {}
+        const response = await fetch(build(userURL), { mode: 'cors', signal });
+        if (signal?.aborted) throw new Error('request_cancelled');
+        if (response.ok) {
+          const html = await response.text();
+          if (signal?.aborted) throw new Error('request_cancelled');
+          return html;
+        }
+      } catch (_) {
+        // Reset/superseded requests must never continue to the third-party
+        // AllOrigins fallback after the primary Worker request is canceled.
+        if (signal?.aborted) throw new Error('request_cancelled');
+      }
     }
     throw new Error('all_proxies_failed');
   };
@@ -150,7 +168,16 @@
 
   const analyze = async () => {
     const url = urlInput.value.trim();
-    if (!validateUrl(url)) return;
+    cancelActiveRequest();
+    if (!validateUrl(url)) {
+      clearMetadataState();
+      resultCard.hidden = true;
+      progress.hidden = true;
+      return;
+    }
+    const thisRequest = requestSerial;
+    const controller = typeof AbortController === 'function' ? new AbortController() : null;
+    activeController = controller;
 
     analyzeBtn.disabled = true;
     urlInput.disabled = true;
@@ -159,7 +186,8 @@
     progress.hidden = false;
 
     try {
-      const html = await fetchHTML(url);
+      const html = await fetchHTML(url, controller?.signal);
+      if (thisRequest !== requestSerial) return;
       const parsed = parseWithDom(html) || parseWithRegex(html);
       state.title = parsed?.title || '';
       state.description = parsed?.description || '';
@@ -170,17 +198,22 @@
       renderResults();
       resultCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } catch (_) {
+      if (thisRequest !== requestSerial) return;
       clearMetadataState();
       resultCard.hidden = true;
       setError('fetchFailed');
     } finally {
-      progress.hidden = true;
-      analyzeBtn.disabled = false;
-      urlInput.disabled = false;
+      if (thisRequest === requestSerial) {
+        activeController = null;
+        progress.hidden = true;
+        analyzeBtn.disabled = false;
+        urlInput.disabled = false;
+      }
     }
   };
 
   const reset = () => {
+    cancelActiveRequest();
     urlInput.value = '';
     urlInput.disabled = false;
     analyzeBtn.disabled = false;
