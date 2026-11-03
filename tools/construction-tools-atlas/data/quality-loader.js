@@ -8,13 +8,15 @@
   const ENRICHMENT_MANIFEST_PATH = "./data/content-enrichment-manifest-v2.3.json";
   const DEFINITION_PROMOTIONS_PATH = "./data/definition-promotions-v2.3.json";
   const REVIEWED_ALIASES_PATH = "./data/reviewed-aliases-v3.json";
-  const REVIEWED_ALIASES_VERSION = "20261102-runtime-reviewed-aliases-v3-4";
-  const DEFINITION_PROMOTIONS_VERSION = "20261101-source-backed-145-1";
+  const REVIEWED_ALIASES_VERSION = "20261103-final-five-reviewed-aliases-2";
+  const DEFINITION_PROMOTIONS_VERSION = "20261103-source-backed-144-1";
+  const CANONICAL_IDENTITY_VERSION = "20261103-five-identity-redirects-1";
   const REDIRECT_PATH = "./data/canonical-redirects-v2.3.json";
   const IDENTITY_PATH = "./data/canonical-identity-resolutions-v2.3.json";
   const GENERATED_FILLER_BATCHES = new Set(["direct-5000", "atlas-expand-5000"]);
   const FAVORITES_KEY = "cta_favs";
-  const REVIEWED_DEFINITION_SOURCE_VERSION = "20261102-ceiling-tile-identity-1";
+  const REVIEWED_DEFINITION_SOURCE_VERSION = "20261103-final-five-identities-1";
+  const REVIEWED_ENRICHMENT_PACKS = new Set(["content-enrichment-wave6e-v2.3.json","content-enrichment-wave6f-v2.3.json","content-enrichment-wave6k-v2.3.json","content-enrichment-wave6l-v2.3.json"]);
   const REVIEWED_DEFINITION_PACKS = new Set(["tools.quality-011.json","tools.quality-012.json","tools.quality-013.json","tools.quality-014.json","tools.quality-015.json","tools.quality-016.json","tools.quality-017.json"]);
 
   const text = (value) => typeof value === "string" ? value.trim() : "";
@@ -30,7 +32,9 @@
         ? path + "?v=" + REVIEWED_ALIASES_VERSION
         : baseName === "definition-promotions-v2.3.json"
           ? path + "?v=" + DEFINITION_PROMOTIONS_VERSION
-        : REVIEWED_DEFINITION_PACKS.has(baseName)
+        : (baseName === "canonical-redirects-v2.3.json" || baseName === "canonical-identity-resolutions-v2.3.json")
+          ? path + "?v=" + CANONICAL_IDENTITY_VERSION
+        : (REVIEWED_ENRICHMENT_PACKS.has(baseName) || REVIEWED_DEFINITION_PACKS.has(baseName))
           ? path + "?v=" + REVIEWED_DEFINITION_SOURCE_VERSION
           : path;
       const response = await originalFetch(url);
@@ -195,8 +199,8 @@
     target.aliases ||= { ja:[], en:[] };
     const sourceJa = text(source?.term?.ja); const sourceEn = text(source?.term?.en);
     const targetJa = text(target?.term?.ja); const targetEn = text(target?.term?.en);
-    target.aliases.ja = unique([...arr(target.aliases.ja), ...(sourceJa && sourceJa !== targetJa ? [sourceJa] : []), ...arr(source?.aliases?.ja)]);
-    target.aliases.en = unique([...arr(target.aliases.en), ...(sourceEn && sourceEn !== targetEn ? [sourceEn] : []), ...arr(source?.aliases?.en)]);
+    target.aliases.ja = unique([...arr(target.aliases.ja), ...(sourceJa && normalize(sourceJa) !== normalize(targetJa) ? [sourceJa] : []), ...arr(source?.aliases?.ja)]);
+    target.aliases.en = unique([...arr(target.aliases.en), ...(sourceEn && normalize(sourceEn) !== normalize(targetEn) ? [sourceEn] : []), ...arr(source?.aliases?.en)]);
     target.fuzzy = unique([...arr(target.fuzzy), fromId, sourceJa, sourceEn, ...arr(source?.aliases?.ja), ...arr(source?.aliases?.en), ...arr(source?.fuzzy)]);
     target.meta = { ...(target.meta || {}), canonical_redirect_sources:unique([...(target.meta?.canonical_redirect_sources || []), fromId]) };
   }

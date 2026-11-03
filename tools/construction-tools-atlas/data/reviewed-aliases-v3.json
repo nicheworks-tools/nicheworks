@@ -1,7 +1,7 @@
 {
   "schema": "cta-reviewed-aliases-v3",
-  "version": "2026-11-02-runtime-bilingual-alias-wave3-ceiling-tile-identity-1",
-  "note": "Curated field-specific aliases only. Never coerce known duplicate canonicals or technical near-misses into synonyms. Source guard is exact canonical JA/EN identity.",
+  "version": "2026-11-03-final-five-reviewed-aliases-2",
+  "note": "77 exact-source-guarded v3 alias patches (including two manufacturer-confirmed English alternates) close the 865-survivor catalog after five duplicate-canonical redirects. No fabricated synonym or duplicate identity is published.",
   "entries": [
     {
       "id": "backer_rod",
@@ -547,15 +547,6 @@
       "add_en": []
     },
     {
-      "id": "sandpaper",
-      "expected_ja": "紙やすり",
-      "expected_en": "Sandpaper",
-      "add_ja": [
-        "研磨紙"
-      ],
-      "add_en": []
-    },
-    {
       "id": "seal_tape",
       "expected_ja": "防水テープ",
       "expected_en": "Seal tape",
@@ -756,38 +747,33 @@
       "evidence_urls": [
         "https://www.armstrongceilings.com/commercial/en/technical-downloads/ceiling-terms.html"
       ]
+    },
+    {
+      "id": "diamond_blade",
+      "expected_ja": "ダイヤモンドブレード",
+      "expected_en": "Diamond blade",
+      "add_ja": [],
+      "add_en": [
+        "Diamond cutting blade"
+      ],
+      "reason": "Construction cutting-disc trade terminology; distinct from general saw blades and verified against the maintained target meaning.",
+      "evidence_urls": [
+        "https://products.ffgroup-toolindustries.com/product/2124/diamond-cutting-blade-universal-classic"
+      ]
+    },
+    {
+      "id": "notched_trowel",
+      "expected_ja": "くし目ゴテ",
+      "expected_en": "Notched trowel",
+      "add_ja": [],
+      "add_en": [
+        "Serrated trowel"
+      ],
+      "reason": "Tile-adhesive installation instructions use serrated trowel and notched trowel for the same grooved adhesive-spreading tool.",
+      "evidence_urls": [
+        "https://mys.sika.com/en/construction/tile-setting/tile-adhesives/sikaceram-188-my.html"
+      ]
     }
   ],
-  "held_for_identity_review": [
-    {
-      "id": "corner_float",
-      "ja": "コーナーゴテ",
-      "en": "Corner trowel",
-      "reason": "Corner finishing trowel overlaps q016_corner_trowel; distinguish float versus trowel from source evidence first."
-    },
-    {
-      "id": "q011_sanding_paper",
-      "ja": "サンドペーパー",
-      "en": "Sanding Paper",
-      "reason": "Sanding Paper and published sandpaper describe the same abrasion material; requires redirect/identity decision, not fabricated wording."
-    },
-    {
-      "id": "as_built",
-      "ja": "竣工図（アズビルト）",
-      "en": "As-built",
-      "reason": "'As-built' / '竣工図' overlaps separately maintained as_built_drawing; avoid alias ownership collision until canonical identity resolved."
-    },
-    {
-      "id": "ground_fault_breaker",
-      "ja": "漏電遮断器",
-      "en": "GFCI/RCD",
-      "reason": "Ground-fault breaker overlaps q015_earth_leakage_breaker and gfci_rcd; do not attach generic 漏電ブレーカー alias to multiple IDs."
-    },
-    {
-      "id": "toolbox_talk",
-      "ja": "朝礼（TBM）",
-      "en": "Toolbox talk",
-      "reason": "Toolbox talk overlaps separately maintained q016_toolbox_meeting; first establish whether they are distinct or should redirect."
-    }
-  ]
+  "held_for_identity_review": []
 }

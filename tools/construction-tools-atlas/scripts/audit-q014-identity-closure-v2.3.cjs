@@ -45,7 +45,7 @@ async function runtime(){
 function names(e){return{ja:text(e?.term?.ja),en:text(e?.term?.en),aja:arr(e?.aliases?.ja).map(text),aen:arr(e?.aliases?.en).map(text)}};
 (async()=>{
   const redirectDoc=read(path.join(DATA,'canonical-redirects-v2.3.json'));
-  if(text(redirectDoc.version)!=='2026-09-16-q014-identity-closure-1')throw new Error(`Unexpected redirect version: ${redirectDoc.version}`);
+  if(text(redirectDoc.version)!=='2026-11-03-final-five-canonical-identity-1')throw new Error(`Unexpected redirect version: ${redirectDoc.version}`);
   const redirects=arr(redirectDoc.redirects);
   const redirectMap=new Map(redirects.map(r=>[text(r.from),text(r.to)]));
   for(const [from,to] of EXPECTED_REDIRECTS){if(redirectMap.get(from)!==to)throw new Error(`${from}: expected redirect to ${to}, got ${redirectMap.get(from)||'missing'}`);}
@@ -57,13 +57,13 @@ function names(e){return{ja:text(e?.term?.ja),en:text(e?.term?.en),aja:arr(e?.al
   if(activeIds.length!==98)throw new Error(`Expected 98 active q014 canonicals, got ${activeIds.length}`);
 
   const rt=await runtime();
-  if(rt.entries.length!==870)throw new Error(`Expected 870 public runtime entries after q014 closure, got ${rt.entries.length}`);
+  if(rt.entries.length!==865)throw new Error(`Expected 865 public runtime entries after q014 closure, got ${rt.entries.length}`);
   const byId=new Map(rt.entries.map(e=>[text(e.id),e]));
   for(const id of EXPECTED_REDIRECTS.keys())if(byId.has(id))throw new Error(`${id}: redirected q014 duplicate is still public`);
   for(const id of activeIds)if(!byId.has(id))throw new Error(`${id}: active q014 canonical missing from runtime`);
 
   const identity=read(path.join(DATA,'canonical-identity-resolutions-v2.3.json'));
-  if(text(identity.version)!=='2026-09-16-q014-identity-closure-1')throw new Error(`Unexpected identity version: ${identity.version}`);
+  if(text(identity.version)!=='2026-11-03-final-five-canonical-identity-1')throw new Error(`Unexpected identity version: ${identity.version}`);
   const pairKey=(a,b)=>[a,b].sort().join('\t');
   const allowed=new Set(arr(identity.resolved_distinct_pairs).map(r=>pairKey(text(r.a),text(r.b))));
   const unresolved=[];

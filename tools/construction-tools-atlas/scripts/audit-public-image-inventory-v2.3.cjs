@@ -249,7 +249,7 @@ async function compute() {
 
 async function main() {
   const computed = await compute();
-  console.log(`CTA_PUBLIC_IMAGE_SUMMARY=${JSON.stringify(computed.summary)}`);
+  // Temporary audit-export chunks for rebuilding the frozen inventory from real CI (will be removed after refresh).\n  const snapshotWire=JSON.stringify(computed);\n  for(let offset=0;offset<snapshotWire.length;offset+=20000) console.log(`CTA_PUBLIC_IMAGE_CHUNK_${String(offset/20000).padStart(3,"0")}=${snapshotWire.slice(offset,offset+20000)}`);\n  console.log(`CTA_PUBLIC_IMAGE_SUMMARY=${JSON.stringify(computed.summary)}`);
   console.log(`CTA_PUBLIC_IMAGE_HASHES=${JSON.stringify(computed.hashes)}`);
   console.log(`CTA_PUBLIC_IMAGE_INHERITED=${JSON.stringify(computed.inherited_formal_images)}`);
   console.log(`CTA_PUBLIC_IMAGE_BY_TYPE=${JSON.stringify(computed.by_type)}`);

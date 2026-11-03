@@ -68,17 +68,20 @@ async function main() {
 
   for (const row of array(identity.name_overrides)) {
     const id = text(row.id);
-    const target = byId.get(id);
-    if (!target) throw new Error(`${id}: name-override target is not public`);
+    const canonicalId = resolve(id, redirects);
+    const target = byId.get(canonicalId);
+    if (!target) throw new Error(`${id}: effective canonical ${canonicalId} is not public`);
+    const isRedirected=canonicalId!==id;
     const wantJa = text(row?.to?.ja);
     const wantEn = text(row?.to?.en);
-    if (wantJa && text(target?.term?.ja) !== wantJa) throw new Error(`${id}: JA canonical name override not applied`);
-    if (wantEn && text(target?.term?.en) !== wantEn) throw new Error(`${id}: EN canonical name override not applied`);
+    const vocabulary=[target?.term?.ja,target?.term?.en,...array(target?.aliases?.ja),...array(target?.aliases?.en),...array(target?.fuzzy)].map(norm);
+    if (wantJa && (isRedirected?!vocabulary.includes(norm(wantJa)):text(target?.term?.ja)!==wantJa)) throw new Error(`${id}: corrected JA name not preserved`);
+    if (wantEn && (isRedirected?!vocabulary.includes(norm(wantEn)):text(target?.term?.en)!==wantEn)) throw new Error(`${id}: corrected EN name not preserved`);
     const oldJa = text(row?.from?.ja);
     const oldEn = text(row?.from?.en);
     const fuzzy = array(target?.fuzzy).map(norm);
-    if (oldJa && norm(oldJa) !== norm(wantJa) && fuzzy.includes(norm(oldJa))) throw new Error(`${id}: retired JA canonical name remains in fuzzy vocabulary`);
-    if (oldEn && norm(oldEn) !== norm(wantEn) && fuzzy.includes(norm(oldEn))) throw new Error(`${id}: retired EN canonical name remains in fuzzy vocabulary`);
+    if (oldJa && norm(oldJa) !== norm(wantJa) && vocabulary.includes(norm(oldJa))) throw new Error(`${id}: retired JA name inherited as an equivalent`);
+    if (oldEn && norm(oldEn) !== norm(wantEn) && vocabulary.includes(norm(oldEn))) throw new Error(`${id}: retired EN name inherited as an equivalent`);
   }
 
   for (const row of array(identity.type_overrides)) {

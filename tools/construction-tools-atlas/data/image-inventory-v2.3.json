@@ -18,7 +18,7 @@
   "sources": {
     "quality_manifest_version": "2026-09-14-manifest-8",
     "image_registry_version": "2026-10-31-reviewed-image-wave9-four-1",
-    "exception_ledger_version": "2026-09-18-applicability-wave17-final",
+    "exception_ledger_version": "2026-11-03-five-canonical-retirements-1",
     "source_ledgers": [
       {
         "file": "image-wave1-sources-v2.3.json",
@@ -70,8 +70,8 @@
   "summary": {
     "corpus_entries": 5536,
     "formal_image_entries": 53,
-    "missing_formal_image_entries": 5436,
-    "not_required_entries": 47,
+    "missing_formal_image_entries": 5438,
+    "not_required_entries": 45,
     "unobtainable_entries": 0,
     "classified_entries": 5536,
     "formal_coverage_percent": 0.9574,
@@ -81,25 +81,25 @@
   },
   "public_lifecycle": {
     "scope": "published canonical IDs only; stored non-public records are not review backlog",
-    "stored_non_public_entries": 4666,
-    "public_entries": 870,
-    "disposition_records": 870,
-    "applicability_reviewed": 870,
-    "required": 823,
+    "stored_non_public_entries": 4671,
+    "public_entries": 865,
+    "disposition_records": 865,
+    "applicability_reviewed": 865,
+    "required": 820,
     "on_hold": 0,
-    "final_dispositions": 100,
-    "unresolved": 770,
+    "final_dispositions": 98,
+    "unresolved": 767,
     "by_stage": {
       "unreviewed": 0,
-      "not_required": 47,
-      "awaiting_source": 770,
+      "not_required": 45,
+      "awaiting_source": 767,
       "candidate": 0,
       "provenance_verified": 0,
       "subject_verified": 0,
       "verified": 0,
       "promoted": 53
     },
-    "evidence_sha256": "6a1914390ba8ec5163deeb611a0e2cbf31caf6a3e4ea558d72326f614839499f"
+    "evidence_sha256": "c739405f88bd3eb7b014a85fb6d2f41fab6c7a9250cfddfec047294dd7ee2d54"
   },
   "by_type": {
     "access": {
@@ -231,8 +231,8 @@
     "site": {
       "corpus": 2,
       "formal_image": 0,
-      "missing_formal_image": 0,
-      "not_required": 2,
+      "missing_formal_image": 1,
+      "not_required": 1,
       "unobtainable": 0
     },
     "structure": {
@@ -266,16 +266,16 @@
     "tool": {
       "corpus": 379,
       "formal_image": 44,
-      "missing_formal_image": 310,
-      "not_required": 25,
+      "missing_formal_image": 311,
+      "not_required": 24,
       "unobtainable": 0
     }
   },
   "hashes": {
     "corpus_id_sha256": "bff8aae6f75c763415864d81b9b2686131a2964b60bc354e85f84d64e3433f31",
     "formal_image_id_sha256": "15ddfaf9877b6432bb1b79a2a0d5024c5aa6d348d7b956971033def296032178",
-    "missing_formal_image_id_sha256": "b2c866ba4e937b87c96d43c4ae27e38e87bf6318bd0190524d112dc22affb6a3",
-    "classification_sha256": "020f3f26abf34e6f262dfbb6bee8d9fdca50cdf4233bcb5bb77b5904698b6964"
+    "missing_formal_image_id_sha256": "a0bd5796b9e09415a8800dea20aa93b5c3b8e40b467c81224e39139843f8faec",
+    "classification_sha256": "1033741abd749f21fa7637a348f9c258cb57b72f58a15ba71de2fb05d3fdebd7"
   },
   "missing_sample": [
     "access_door",
@@ -286,6 +286,7 @@
     "anchor_bolt",
     "anchor_plastic_plug",
     "angle_finder",
+    "as_built",
     "asphalt_felt",
     "auto_level",
     "backer_rod",
@@ -301,7 +302,6 @@
     "butyl_tape_002",
     "cable_ramp",
     "cable_tie",
-    "cable_tray",
-    "carpet_tile"
+    "cable_tray"
   ]
 }

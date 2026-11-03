@@ -91,7 +91,7 @@ function candidateSource(candidate, context) {
 function candidateDigest(candidate, context) { return digest({ candidate, source: candidateSource(candidate, context) }); }
 
 function validate(ledger, policy, context, { checkAssets = true } = {}) {
-  keys(ledger, ['schema', 'version', 'candidates', 'items'], 'ledger');
+  keys(ledger, ['schema', 'version', 'candidates', 'items', 'retired_canonicals'], 'ledger');
   assert(ledger.schema === 'cta-image-lifecycle-v2.3' && nonempty(ledger.version), 'invalid lifecycle schema/version');
   assert(Array.isArray(ledger.items) && Array.isArray(ledger.candidates), 'lifecycle arrays required');
   assert(policy.schema === 'cta-image-lifecycle-policy-v2.3', 'invalid policy schema');
@@ -220,8 +220,27 @@ function validate(ledger, policy, context, { checkAssets = true } = {}) {
       source_entry_id: c?.candidate.source_entry_id || null,
       attachment: latest.state === 'promoted' ? (c.candidate.source_entry_id === id ? 'direct' : 'canonical_redirect') : 'none' });
   }
+  const retiredCanonicals = new Map();
+  for (const row of ledger.retired_canonicals || []) {
+    keys(row, ['entry_id', 'redirect_to', 'history', 'former_image_exception', 'reason'], 'retired canonical archive');
+    const id = row.entry_id;
+    assert(nonempty(id) && !retiredCanonicals.has(id) && !publicIds.has(id), `${id}: invalid/duplicate retired lifecycle`);
+    assert(corpus.has(id) && resolve(id) === row.redirect_to && publicIds.has(row.redirect_to), `${id}: archive must resolve to a surviving canonical`);
+    assert(nonempty(row.reason) && Array.isArray(row.history) && row.history.length, `${id}: retired review provenance required`);
+    for (const event of row.history) {
+      keys(event, ['state','at','actor','reason','candidate_id','candidate_sha256','hold'], `${id} archived event`);
+      assert(nonempty(event.actor) && nonempty(event.reason) && Number.isFinite(Date.parse(event.at)), `${id}: invalid retired review event`);
+      assert(event.candidate_id === null && event.candidate_sha256 === null, `${id}: referenced candidate cannot be retired without transfer`);
+    }
+    const pinned=imports.get(id);
+    if (pinned) assert(digest(row.history[0]) === pinned, `${id}: retired historical import changed`);
+    if (row.former_image_exception !== null) {
+      assert(nonempty(row.former_image_exception) && row.history.at(-1).state === 'not_required', `${id}: former exception provenance mismatch`);
+    }
+    retiredCanonicals.set(id,row);
+  }
   for (const id of publicIds) assert(seen.has(id), `${id}: published canonical has no review disposition`);
-  for (const id of imports.keys()) assert(seen.has(id), `${id}: pinned import lost; canonical retirement needs explicit policy migration`);
+  for (const id of imports.keys()) assert(seen.has(id) || retiredCanonicals.has(id), `${id}: pinned import lost; canonical retirement needs explicit policy migration`);
   for (const id of candidates.keys()) assert(usedCandidates.has(id), `${id}: orphan lifecycle candidate`);
   rows.sort((a,b) => a.id.localeCompare(b.id, 'en'));
   const stages = Object.fromEntries(Object.keys(policy.states).map((s) => [s, 0]));

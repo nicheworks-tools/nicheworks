@@ -7,9 +7,9 @@ import { spawn } from "node:child_process";
 
 
 const ORIGIN="https://nicheworks.app";
-const EXPECTED_ASSET_VERSION="20261102-reviewed-aliases-wave3-4";
-const PREVIOUS_ASSET_VERSION="20261102-reviewed-aliases-wave3-3";
-const SECOND_PREVIOUS_ASSET_VERSION="20261102-reviewed-aliases-wave3-2";
+const EXPECTED_ASSET_VERSION="20261103-final-five-identities-1";
+const PREVIOUS_ASSET_VERSION="20261102-reviewed-aliases-wave3-4";
+const SECOND_PREVIOUS_ASSET_VERSION="20261102-reviewed-aliases-wave3-3";
 const ALLOW_PREVIOUS_ASSET_VERSION=process.env.CTA_ALLOW_PREVIOUS_ASSET_VERSION==="1";
 
 const chrome = ["google-chrome", "google-chrome-stable", "chromium", "chromium-browser"].find(name =>
@@ -59,7 +59,7 @@ async function smoke(lang,allowPreviousAssetVersion,expectedAssetVersion,previou
     for(let i=0;i<150;i++){
       const loaded=query("#loadingState")?.hidden;
       count=query("#resultCount")?.textContent?.trim()||"";
-      if(loaded && /870/.test(count) && query("#resultList .resultRow"))break;
+      if(loaded && /(?:865|870)/.test(count) && query("#resultList .resultRow"))break;
       await sleep(120);
     }
     count=query("#resultCount")?.textContent?.trim()||"";
@@ -68,7 +68,7 @@ async function smoke(lang,allowPreviousAssetVersion,expectedAssetVersion,previou
     const previous=assetVersion.includes(previousAssetVersion)||assetVersion.includes(secondPreviousAssetVersion);
     check(latest||(allowPreviousAssetVersion&&previous),
       "Production does not serve current dictionary source: "+assetVersion+" (PR rollout grace="+allowPreviousAssetVersion+")");
-    check(/870/.test(count),"Public canonical catalog did not load 870 entries: "+count+" / "+(query("#loadingState")?.textContent||""));
+    check((latest&&/865/.test(count))||(allowPreviousAssetVersion&&previous&&/870/.test(count)),"Public canonical count must be 865 for current asset (870 only during PR rollout grace): "+count+" / "+(query("#loadingState")?.textContent||""));
     check(document.querySelectorAll("#resultList .resultRow").length>=40,"Initial list is missing real dictionary items");
     check(document.querySelectorAll("#dictionaryJumpButtons button").length>=3,"Quick entry navigation missing");
     const mobile=window.innerWidth<=899;
@@ -124,7 +124,7 @@ async function smoke(lang,allowPreviousAssetVersion,expectedAssetVersion,previou
     check(overflow<=3,"Page-wide horizontal overflow "+overflow+"px at "+viewport+"px");
     const panel=query("#detailPanel").getBoundingClientRect();
     check(panel.width<=viewport+3,"Detail panel exceeds viewport width: "+panel.width+" / "+viewport);
-    return {ok:true,lang,viewport,clientWidth,overflow,catalog:870,alias:candidate,canonical:selected,detailWidth:Math.round(panel.width),assetVersion};
+    return {ok:true,lang,viewport,clientWidth,overflow,catalog:count,alias:candidate,canonical:selected,detailWidth:Math.round(panel.width),assetVersion};
   }catch(error){return {ok:false,lang,error:error.message,viewport:window.innerWidth,clientWidth:document.documentElement.clientWidth,catalog:count,alias:candidate,canonical:selected,assetVersion,documentTitle:document.title};}
 }
 
@@ -195,7 +195,7 @@ try {
     assert.ok(result.clientWidth <= width && result.clientWidth >= width - (mobile ? 0 : 24), "Incorrect layout viewport width; allow native desktop scrollbar");
     console.log("PASS", lang, width + "px", JSON.stringify(result));
   }
-  console.log("Construction Tools Atlas PRODUCTION Chromium PASS: actual public nicheworks.app, 360px/390px mobile and 1280px desktop, JA/EN, 870 entries, aliases, detail sheet and zero horizontal overflow.");
+  console.log("Construction Tools Atlas PRODUCTION Chromium PASS: actual public nicheworks.app, 360px/390px mobile and 1280px desktop, JA/EN, 865 current entries, aliases, detail sheet and zero horizontal overflow.");
 } finally {
   if (websocket?.readyState === WebSocket.OPEN) websocket.close();
   child.kill("SIGTERM");

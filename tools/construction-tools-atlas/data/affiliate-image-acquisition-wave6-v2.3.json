@@ -16,9 +16,9 @@
     "revenue_policy": "2026-09-19-revenue-priority-2"
   },
   "expected": {
-    "active_affiliate_mappings": 432,
+    "active_affiliate_mappings": 430,
     "revenue_ready": 44,
-    "awaiting_source": 388,
+    "awaiting_source": 386,
     "first_wave": 1,
     "source_leads": 3
   },

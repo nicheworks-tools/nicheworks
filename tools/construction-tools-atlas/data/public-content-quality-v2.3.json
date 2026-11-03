@@ -16,24 +16,24 @@
   },
   "sources": {
     "publication_inventory_version": "2026-09-16-q014-identity-closure-1",
-    "publication_id_sha256": "9c82f042e92a167cabcb46e80ad1e6b77566f594d36932ff42c352e875aa8177",
+    "publication_id_sha256": "d0264617677052f0f446a0f4ebbfafc2315766d5858480b7103267320d88752d",
     "quality_manifest_version": "2026-09-14-manifest-8",
     "content_enrichment_version": "2026-09-18-wave6l"
   },
   "summary": {
-    "public_entries": 870,
-    "fallback_independent_core": 870,
+    "public_entries": 865,
+    "fallback_independent_core": 865,
     "runtime_fallback_dependent": 0,
     "missing_core_bilingual_content": 0,
-    "explicit_bilingual_identity": 870,
-    "explicit_bilingual_definition": 870,
-    "explicit_bilingual_detail": 870,
-    "explicit_bilingual_bullets": 870,
-    "explicit_bilingual_examples": 870,
+    "explicit_bilingual_identity": 865,
+    "explicit_bilingual_definition": 865,
+    "explicit_bilingual_detail": 865,
+    "explicit_bilingual_bullets": 865,
+    "explicit_bilingual_examples": 865,
     "explicit_bilingual_aliases": 782,
-    "content_enriched_entries": 730,
-    "has_category_context": 870,
-    "has_task_context": 870
+    "content_enriched_entries": 725,
+    "has_category_context": 865,
+    "has_task_context": 865
   },
   "fallback_field_counts": {
     "detail": 0,
@@ -114,8 +114,8 @@
       "missing_core_bilingual_content": 0
     },
     "materials": {
-      "public_entries": 14,
-      "fallback_independent_core": 14,
+      "public_entries": 13,
+      "fallback_independent_core": 13,
       "runtime_fallback_dependent": 0,
       "missing_core_bilingual_content": 0
     },
@@ -144,8 +144,8 @@
       "missing_core_bilingual_content": 0
     },
     "site": {
-      "public_entries": 2,
-      "fallback_independent_core": 2,
+      "public_entries": 1,
+      "fallback_independent_core": 1,
       "runtime_fallback_dependent": 0,
       "missing_core_bilingual_content": 0
     },
@@ -168,18 +168,18 @@
       "missing_core_bilingual_content": 0
     },
     "tool": {
-      "public_entries": 333,
-      "fallback_independent_core": 333,
+      "public_entries": 330,
+      "fallback_independent_core": 330,
       "runtime_fallback_dependent": 0,
       "missing_core_bilingual_content": 0
     }
   },
   "hashes": {
-    "content_status_sha256": "62d3c65ad99ddd3bdeec46551289160e2eca643b672e9ca4350893461fed33af",
-    "fallback_independent_id_sha256": "9c82f042e92a167cabcb46e80ad1e6b77566f594d36932ff42c352e875aa8177",
+    "content_status_sha256": "18f1c1bcc5ee21e027b130affe31fd3e29d8c1a6fe44ffa7f0216fb59e498df2",
+    "fallback_independent_id_sha256": "d0264617677052f0f446a0f4ebbfafc2315766d5858480b7103267320d88752d",
     "fallback_dependent_id_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
     "missing_core_id_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-    "content_enriched_id_sha256": "ad8ee47cc4c203d7a40e2101ef9530a38e66cde352e1bf1c47ae3757ab966924"
+    "content_enriched_id_sha256": "ff24b2db253f6f3dfb5581c9db45fbe1be64cf621b74aca501af7bfb1e6988a8"
   },
   "samples": {
     "fallback_independent_core": [

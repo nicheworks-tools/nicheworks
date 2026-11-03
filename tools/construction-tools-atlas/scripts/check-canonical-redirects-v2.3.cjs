@@ -112,11 +112,14 @@ async function main() {
     const target = runtimeById.get(to);
     if (!target) throw new Error(`${to}: redirect target is not public`);
     const source = sourceById.get(from);
-    const vocab = [
+    const vocab = [target?.term?.ja,target?.term?.en,
       ...array(target?.aliases?.ja), ...array(target?.aliases?.en), ...array(target?.fuzzy)
-    ].map(text);
+    ].map(text).filter(Boolean).map((v)=>v.toLowerCase().replace(/[\\s\\u3000]+/g, " ").replace(/／/g, "/").trim());
+    const renamed = new Set(array(identityDoc.name_overrides).filter((row)=>row.id===from).flatMap((row)=>[text(row.from?.ja)&&text(row.to?.ja)?text(row.from.ja):"",text(row.from?.en)&&text(row.to?.en)?text(row.from.en):""]).filter(Boolean).map((v)=>v.toLowerCase().replace(/[\\s\\u3000]+/g, " ").replace(/／/g, "/").trim()));
     for (const expected of [from, jaOf(source), enOf(source)].filter(Boolean)) {
-      if (!vocab.includes(expected)) throw new Error(`${from}: target ${to} did not inherit search vocabulary ${expected}`);
+      const key=expected.toLowerCase().replace(/[\\s\\u3000]+/g, " ").replace(/／/g, "/").trim();
+      if (renamed.has(key)) continue; // Wrong original name intentionally retired before redirect; never reintroduce it as an alias.
+      if (!vocab.includes(key)) throw new Error(`${from}: target ${to} did not inherit search vocabulary ${expected}`);
     }
     if (runtime.windowObject.CTA_DATA_LOADER.resolveCanonicalId(from) !== to) throw new Error(`${from}: resolver did not return ${to}`);
   }

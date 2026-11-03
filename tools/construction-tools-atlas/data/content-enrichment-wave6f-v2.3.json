@@ -1,6 +1,6 @@
 {
   "schema": "cta-content-enrichment-v2.3",
-  "version": "2026-09-18-wave6f-roofing-closeout-measurement-1",
+  "version": "2026-09-18-wave6f-roofing-closeout-measurement-1-retired-archived-20261103",
   "entries": [
     {
       "id": "touch_up",
@@ -208,32 +208,6 @@
       "examples_en": [
         "Deliver as-built drawings and equipment manuals to the owner at handover.",
         "Transfer keys and management information with an agreed list of outstanding work."
-      ]
-    },
-    {
-      "id": "as_built",
-      "wave": "content-wave-006f",
-      "state": "expanded",
-      "affiliate_review": "not_applicable",
-      "detail_ja": "施工完了時の実際の位置・寸法・系統・変更内容を反映した竣工図・記録図。設計図から変更された配管、機器、開口、ルートなどを将来の維持管理で追えるよう更新する。",
-      "detail_en": "As-built drawings or records showing the installed condition at completion, including actual locations, dimensions, routes, systems, and approved deviations from the design. They support future operation, maintenance, and alteration work.",
-      "bullets_ja": [
-        "施工中の変更を後から記憶で補わず、決定・施工時点で追記できる運用にする。",
-        "変更箇所の位置・寸法・系統・参照番号を明確にし、曖昧な手書き指示だけで残さない。",
-        "最終版の版数・日付・承認状態を管理し、古い図面と混同しない。"
-      ],
-      "bullets_en": [
-        "Capture field changes as they occur rather than reconstructing them from memory at the end of the project.",
-        "Record changed locations, dimensions, routes, and reference numbers clearly rather than relying on ambiguous notes.",
-        "Control final revision, date, and approval status so superseded drawings are not confused with the record set."
-      ],
-      "examples_ja": [
-        "現場変更した配管ルートを竣工図へ反映する。",
-        "機器の最終設置位置と型式を記録図へ追記する。"
-      ],
-      "examples_en": [
-        "Update the as-built drawing with a field-rerouted pipe run.",
-        "Record the final equipment location and identification in the completion drawings."
       ]
     },
     {

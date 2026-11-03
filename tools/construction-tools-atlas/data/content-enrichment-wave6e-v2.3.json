@@ -1,6 +1,6 @@
 {
   "schema": "cta-content-enrichment-v2.3",
-  "version": "2026-09-18-wave6e-safety-layout-finishes-1",
+  "version": "2026-09-18-wave6e-safety-layout-finishes-1-retired-archived-20261103",
   "entries": [
     {
       "id": "spotter",
@@ -312,32 +312,6 @@
       "examples_en": [
         "Hold wall forms to the specified spacing with separators and form ties.",
         "Repair form-tie locations after stripping as required by the finish specification."
-      ]
-    },
-    {
-      "id": "sandpaper",
-      "wave": "content-wave-006e",
-      "state": "expanded",
-      "affiliate_review": "mapped",
-      "detail_ja": "紙や布などの基材に研磨材を付着させた研磨シート。木材、塗膜、パテ、金属などの下地調整に使い、番手、研磨材、乾式・湿式適性を対象に合わせる。",
-      "detail_en": "Abrasive sheet or paper used for surface preparation on wood, coatings, fillers, metals, and other materials. Grit, abrasive type, backing, and wet/dry suitability should match the substrate and finish.",
-      "bullets_ja": [
-        "粗い番手から必要に応じて細かい番手へ進め、削り過ぎを避ける。",
-        "対象材に合う研磨材を選び、目詰まりや摩耗した紙やすりは交換する。",
-        "研磨粉じんを集じん・清掃し、必要な呼吸・目の保護具を使用する。"
-      ],
-      "bullets_en": [
-        "Progress from coarse to finer grits as needed and avoid removing more material than required.",
-        "Choose an abrasive suited to the substrate and replace sheets that are clogged or worn.",
-        "Control sanding dust with extraction or cleanup and use appropriate respiratory and eye protection."
-      ],
-      "examples_ja": [
-        "パテ乾燥後に紙やすりで面を平滑にする。",
-        "木部塗装前に番手を上げながら研磨する。"
-      ],
-      "examples_en": [
-        "Smooth cured filler with sandpaper before finishing.",
-        "Sand timber with progressively finer grits before coating."
       ]
     },
     {

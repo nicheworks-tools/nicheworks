@@ -401,7 +401,7 @@ function renderPage({ entry, image, offer, entryById, launchSet, resolveCanonica
 
       <section class="entrySection atlasCta">
         <h2>名前が分からない工具を探す</h2>
-        <p>Construction Tools Atlas本体では、日本語・英語・別名・用途・材料・作業内容から870件の公開canonicalを検索できます。</p>
+        <p>Construction Tools Atlas本体では、日本語・英語・別名・用途・材料・作業内容から865件の公開canonicalを検索できます。</p>
         <a class="primaryAction" href="/tools/construction-tools-atlas/">Atlasを検索する</a>
       </section>
     </article>

@@ -12,12 +12,12 @@ const normalize=search.normalizeText;
   assert.equal(review2.schema,"cta-subject-alias-review-v2");
   assert.equal(review2.entries.length,173,"reviewed alias wave2 must retain 173 public entries");
   assert.equal(review3.schema,"cta-reviewed-aliases-v3");
-  assert.equal(review3.entries.length,76,"reviewed alias wave3 must retain 75 exact-identity reviewed public terms");
+  assert.equal(review3.entries.length,77,"reviewed alias wave3 must retain 75 exact-identity reviewed public terms");
   const runtime=await runPublicLoader();
-  assert.equal(runtime.entries.length,870,"public canonical inventory must remain fixed");
+  assert.equal(runtime.entries.length,865,"public canonical inventory must remain fixed");
   const byId=new Map(runtime.entries.map(e=>[e.id,e]));
-  assert.equal(byId.size,870,"duplicate public canonical IDs");
-  assert.equal(runtime.diagnostics?.reviewedAliasesApplied,76,"wave3 aliases missing from real loaded runtime: "+JSON.stringify(runtime.diagnostics?.reviewedAliasesProblems));
+  assert.equal(byId.size,865,"duplicate public canonical IDs");
+  assert.equal(runtime.diagnostics?.reviewedAliasesApplied,77,"wave3 aliases missing from real loaded runtime: "+JSON.stringify(runtime.diagnostics?.reviewedAliasesProblems));
   assert.deepEqual(Array.from(runtime.diagnostics?.reviewedAliasesProblems||[]),[],"wave3 application must have no drift/errors");
 
   const owners=new Map(),terms=new Map();
@@ -64,7 +64,7 @@ const normalize=search.normalizeText;
   }
   assert.equal(collisions.length,0,"Curated alias collisions:\n"+collisions.join("\n"));
   const explicitBilingual=runtime.entries.filter(e=>e.aliases?.ja?.length&&e.aliases?.en?.length);
-  assert.equal(explicitBilingual.length,865,"runtime bilingual alias coverage regressed (789 pre-wave3 + 75 reviewed patches)");
+  assert.equal(explicitBilingual.length,865,"remaining actual alias gaps="+JSON.stringify(runtime.entries.filter(e=>!e.aliases?.ja?.length||!e.aliases?.en?.length).map(e=>({id:e.id,ja:e.term?.ja,en:e.term?.en,aliases_ja:e.aliases?.ja||[],aliases_en:e.aliases?.en||[]}))));
   const laminate=byId.get("q016_laminate_flooring");
   const broaderWood=byId.get("wood_flooring");
   assert.equal(laminate?.term?.ja,"ラミネートフローリング","laminate must not be mislabeled as composite/engineered wood");
@@ -78,7 +78,16 @@ const normalize=search.normalizeText;
   assert(tile?.aliases?.ja?.includes("吊り天井用化粧タイル")&&tile?.aliases?.en?.includes("Suspended ceiling tile"),"tile-specific bilingual aliases missing");
   assert(!acousticTile?.aliases?.en?.includes("Suspended ceiling tile"),"generic modular tile alias must not shadow acoustic subtype");
   const held=review3.held_for_identity_review || [];
-  assert.equal(held.length,5,"exactly five canonicals require evidence-backed identity decisions");
+  assert.equal(held.length,0,"all formerly held duplicate identities must be resolved through canonical redirects");
+  assert(byId.get("q011_sanding_paper")?.aliases?.ja?.includes("研磨紙"),"source-reviewed abrasive paper alias must survive duplicate retirement");
+  const retired={"corner_float":"q016_corner_trowel","sandpaper":"q011_sanding_paper","as_built":"as_built_drawing","ground_fault_breaker":"q015_earth_leakage_breaker","toolbox_talk":"q016_toolbox_meeting"};
+  for(const [from,to] of Object.entries(retired)){
+    assert(!byId.has(from),from+": duplicate record must no longer be public");
+    assert(byId.has(to),to+": redirected target missing");
+    assert.equal(runtime.resolveCanonicalId(from),to,from+": deep link/favorites resolver mismatch");
+  }
+  assert(!byId.get("q015_earth_leakage_breaker")?.aliases?.en?.includes("GFCI/RCD"),"generic GFCI/RCD is not equivalent to the specific leakage breaker");
+  assert(!byId.get("q016_toolbox_meeting")?.aliases?.ja?.includes("朝礼（TBM）"),"generic morning assembly must not be a TBM alias");
   const gaps=Array.from(runtime.entries).filter(e=>!e.aliases?.ja?.length||!e.aliases?.en?.length).map(e=>e.id).sort();
   assert.deepEqual(gaps,held.map(e=>e.id).sort(),"unresolved alias gaps must match the documented identity review set");
   for(const item of held)assert(String(item.reason||"").length>=25,item.id+": reason required");

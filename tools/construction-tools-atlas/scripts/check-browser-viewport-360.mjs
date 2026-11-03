@@ -70,11 +70,11 @@ async function smoke(lang) {
     for(let i=0;i<150;i++){
       const loaded=query("#loadingState")?.hidden;
       count=query("#resultCount")?.textContent?.trim()||"";
-      if(loaded && /870/.test(count) && query("#resultList .resultRow"))break;
+      if(loaded && /865/.test(count) && query("#resultList .resultRow"))break;
       await sleep(120);
     }
     count=query("#resultCount")?.textContent?.trim()||"";
-    check(/870/.test(count),"Public canonical catalog did not load 870 entries: "+count+" / "+(query("#loadingState")?.textContent||""));
+    check(/865/.test(count),"Public canonical catalog did not load 865 entries: "+count+" / "+(query("#loadingState")?.textContent||""));
     check(document.querySelectorAll("#resultList .resultRow").length>=40,"Initial list is missing real dictionary items");
     check(document.querySelectorAll("#dictionaryJumpButtons button").length>=3,"Quick entry navigation missing");
     const mobile=window.innerWidth<=899;
@@ -115,7 +115,7 @@ async function smoke(lang) {
     check(overflow<=3,"Page-wide horizontal overflow "+overflow+"px at "+viewport+"px");
     const panel=query("#detailPanel").getBoundingClientRect();
     check(panel.width<=viewport+3,"Detail panel exceeds viewport width: "+panel.width+" / "+viewport);
-    return {ok:true,lang,viewport,clientWidth,overflow,catalog:870,alias:candidate,canonical:selected,detailWidth:Math.round(panel.width)};
+    return {ok:true,lang,viewport,clientWidth,overflow,catalog:865,alias:candidate,canonical:selected,detailWidth:Math.round(panel.width)};
   }catch(error){return {ok:false,lang,error:error.message,viewport:window.innerWidth,clientWidth:document.documentElement.clientWidth,catalog:count,alias:candidate,canonical:selected};}
 }
 
@@ -186,7 +186,7 @@ try {
     assert.ok(result.clientWidth <= width && result.clientWidth >= width - (mobile ? 0 : 24), "Incorrect layout viewport width; allow native desktop scrollbar");
     console.log("PASS", lang, width + "px", JSON.stringify(result));
   }
-  console.log("Construction Tools Atlas local Chromium PASS: actual 360px/390px mobile and 1280px desktop, JA/EN, 870 entries, aliases, detail sheet and no horizontal overflow.");
+  console.log("Construction Tools Atlas local Chromium PASS: actual 360px/390px mobile and 1280px desktop, JA/EN, 865 entries, aliases, detail sheet and no horizontal overflow.");
 } finally {
   if (websocket?.readyState === WebSocket.OPEN) websocket.close();
   child.kill("SIGTERM");

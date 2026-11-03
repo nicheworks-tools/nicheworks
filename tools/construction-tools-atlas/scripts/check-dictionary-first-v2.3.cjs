@@ -3,11 +3,11 @@ const fs=require("node:fs"),path=require("node:path"),assert=require("node:asser
 const root=path.resolve(__dirname,".."),read=p=>fs.readFileSync(path.join(root,p),"utf8");
 const html=read("index.html"),runtime=read("app.runtime.js"),css=read("style.css");
 const loader=read("data/quality-loader.js");
-for(const versioned of ["style.css?v=20261101-dictionary-ux-2","app.runtime.js?v=20261101-curated-definitions-1","quality-loader.js?v=20261102-reviewed-aliases-wave3-4"])
+for(const versioned of ["style.css?v=20261101-dictionary-ux-2","app.runtime.js?v=20261101-curated-definitions-1","quality-loader.js?v=20261103-final-five-reviewed-aliases-2"])
   assert(html.includes(versioned),"production HTML still references a stale cached dictionary asset: "+versioned);
-assert(loader.includes('REVIEWED_ALIASES_VERSION = "20261102-runtime-reviewed-aliases-v3-4"'),"quality loader must load reviewed alias wave3");
-assert(loader.includes('DEFINITION_PROMOTIONS_VERSION = "20261101-source-backed-145-1"') && loader.includes('REVIEWED_DEFINITION_SOURCE_VERSION = "20261102-ceiling-tile-identity-1"'),"quality loader must refresh revised dictionary sources");
-assert(loader.includes("REVIEWED_DEFINITION_PACKS.has(baseName)"),"original compact definition source packs need versioned fetches");
+assert(loader.includes('REVIEWED_ALIASES_VERSION = "20261103-final-five-reviewed-aliases-2"'),"quality loader must load reviewed alias wave3");
+assert(loader.includes('DEFINITION_PROMOTIONS_VERSION = "20261103-source-backed-144-1"') && loader.includes('REVIEWED_DEFINITION_SOURCE_VERSION = "20261103-final-five-identities-1"'),"quality loader must refresh revised dictionary sources");
+assert(loader.includes("CANONICAL_IDENTITY_VERSION")&&loader.includes("REVIEWED_DEFINITION_PACKS.has(baseName)"),"original compact definition source packs need versioned fetches");
 
 const before=(token)=>html.indexOf(token);
 assert(before('id="dictionaryJumpButtons"')>0,"quick access to actual dictionary entries must be on main page");
