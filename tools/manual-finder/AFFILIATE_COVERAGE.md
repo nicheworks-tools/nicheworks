@@ -495,3 +495,7 @@ The 20 exact Dell official manual-index records in `coverage-passes/dell/jp-20-m
 ### Lenovo JP bounded ThinkPad 13 exact-model search handoffs (2026-11-03)
 
 The 13 reviewed Lenovo Japan machine-type/SKU model-specific manual-index rows are eligible for the existing canonical model-search template under `PC・スマホ`, using `nicheworks09-22`. Source list `coverage-passes/lenovo/jp-thinkpad-13-official-manual-index-20261103.json`. Do not infer Lenovo-wide catalog, laptop battery SKU, charger compatibility, marketplace stock or commissions. Printer audit remains `printer basic 343 = detail 336 + reviewed exclusion 7 + missing 0`.
+
+### HP Japan 17 official model/series indexed device searches (2026-11-03)
+
+The 17 manufacturer-hosted `setup-user-guides` exact HP product/series index records in `coverage-passes/hp/jp-pc-17-user-guide-index-20261103.json` are eligible for existing canonical `PC・スマホ` Amazon device searches using `nicheworks09-22`. They are search queries, not seller stock or sales. HP direct fetch 403 caveat is documented in evidence; do not offer unverified battery/power supply parts. Printer reconciliation unchanged `printer basic 343 = detail 336 + reviewed exclusion 7 + missing 0`.

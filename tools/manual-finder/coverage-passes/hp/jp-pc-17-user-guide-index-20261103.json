@@ -1,0 +1,331 @@
+{
+  "schemaVersion": 1,
+  "maker": "HP",
+  "scopeId": "hp-jp-pc-17-manual-index-20261103",
+  "scopeLabel": "First bounded 17 HP Japan device or product-series Setup and User Guides pages",
+  "status": "coverage-pass-complete",
+  "asOf": "2026-11-03",
+  "region": "JP",
+  "language": "ja",
+  "allowedDomains": [
+    "hp.com"
+  ],
+  "universe": {
+    "sourceUrls": [
+      "https://support.hp.com/jp-ja/product/setup-user-guides/hp-pavilion-13-an1000-laptop-pc-series/29126848",
+      "https://support.hp.com/jp-ja/product/setup-user-guides/hp-pavilion-15-laptop-pc-15-eh3000/2101549717",
+      "https://support.hp.com/jp-ja/product/setup-user-guides/hp-probook-440-g6-notebook-pc/23200928",
+      "https://support.hp.com/jp-ja/product/setup-user-guides/hp-probook-450-g5-notebook-pc/17047142",
+      "https://support.hp.com/jp-ja/product/setup-user-guides/hp-probook-440-g4-notebook-pc/10477248",
+      "https://support.hp.com/jp-ja/product/setup-user-guides/hp-probook-650-g1-notebook-pc/5405400",
+      "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-8-g1i-13-inch-notebook-ai-pc/model/2102766483",
+      "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-8-g1i-14-inch-notebook-next-gen-ai-pc/2102843274",
+      "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-8-g1a-14-inch-notebook-pc/2102811726",
+      "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-845-14inch-g10-notebook-pc/2101628462",
+      "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-840-14-inch-g11-notebook-pc/2102057916",
+      "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-8-g2i-14-inch-notebook-next-gen-ai-pc/model/2103452110",
+      "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-8-g2i-13-inch-notebook-next-gen-ai-pc/model/2103452058",
+      "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-845-g8-notebook-pc/38492638",
+      "https://support.hp.com/jp-ja/product/setup-user-guides/hp-probook-4-g1a-16-inch-notebook-ai-pc/2102843678",
+      "https://support.hp.com/jp-ja/product/setup-user-guides/hp-probook-4-g1a-14-inch-notebook-ai-pc/2102843907",
+      "https://support.hp.com/jp-ja/product/setup-user-guides/hp-probook-4-g2i-14-inch-notebook-next-gen-ai-pc/model/2103451797"
+    ],
+    "models": [
+      "Pavilion 13-an1000 series",
+      "Pavilion 15-eh3000",
+      "ProBook 440 G6",
+      "ProBook 450 G5",
+      "ProBook 440 G4",
+      "ProBook 650 G1",
+      "EliteBook 8 G1i 13 (AP3J9AV)",
+      "EliteBook 8 G1i 14 Next Gen AI PC",
+      "EliteBook 8 G1a 14 AI PC",
+      "EliteBook 845 G10",
+      "EliteBook 840 G11",
+      "EliteBook 8 G2i 14 (C5EB8AV)",
+      "EliteBook 8 G2i 13 (C57YDAV)",
+      "EliteBook 845 G8",
+      "ProBook 4 G1a 16 AI PC",
+      "ProBook 4 G1a 14 AI PC",
+      "ProBook 4 G2i 14 (C69F6AV)"
+    ],
+    "declaredCount": 17,
+    "populationMethod": "Explicit bounded 17-member set of individually located HP Japan Setup and User Guides products, not an HP-published complete catalog. HP official indexed page content identifies model or series and displays a Japanese language PDFs section with a User Guide entry. No inferred products/URL patterns.",
+    "sourceObservation": {
+      "officialSourceHost": "support.hp.com",
+      "evidenceType": "HP-hosted product Manuals and Guides pages as indexed with visible Japanese User Guide document titles",
+      "observationDate": "2026-11-03",
+      "machineAccess": "Direct live requests from web fetch returned HTTP 403 (Access Denied). The official pages' indexed content exposes exact titles and document tables. Final PDF endpoints were not independently downloaded. Do not claim any particular PDF URL, a successful direct HTTP recheck, or whole-company coverage.",
+      "publishedIndexCount": 17
+    }
+  },
+  "records": [
+    {
+      "model": "Pavilion 13-an1000 series",
+      "state": "direct",
+      "manualUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-pavilion-13-an1000-laptop-pc-series/29126848",
+      "supportUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-pavilion-13-an1000-laptop-pc-series/29126848",
+      "evidenceUrls": [
+        "https://support.hp.com/jp-ja/product/setup-user-guides/hp-pavilion-13-an1000-laptop-pc-series/29126848"
+      ],
+      "family": "Pavilion",
+      "documentTitle": "ユーザー ガイド",
+      "scopeKind": "series",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Official HP product Setup and User Guides landing page with model/series identity and Japanese PDF guide table, as exposed by manufacturer indexed content. PDF bytes unverified; direct web read 403."
+    },
+    {
+      "model": "Pavilion 15-eh3000",
+      "state": "direct",
+      "manualUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-pavilion-15-laptop-pc-15-eh3000/2101549717",
+      "supportUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-pavilion-15-laptop-pc-15-eh3000/2101549717",
+      "evidenceUrls": [
+        "https://support.hp.com/jp-ja/product/setup-user-guides/hp-pavilion-15-laptop-pc-15-eh3000/2101549717"
+      ],
+      "family": "Pavilion",
+      "documentTitle": "ユーザー ガイド",
+      "scopeKind": "series",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Official HP product Setup and User Guides landing page with model/series identity and Japanese PDF guide table, as exposed by manufacturer indexed content. PDF bytes unverified; direct web read 403."
+    },
+    {
+      "model": "ProBook 440 G6",
+      "state": "direct",
+      "manualUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-probook-440-g6-notebook-pc/23200928",
+      "supportUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-probook-440-g6-notebook-pc/23200928",
+      "evidenceUrls": [
+        "https://support.hp.com/jp-ja/product/setup-user-guides/hp-probook-440-g6-notebook-pc/23200928"
+      ],
+      "family": "ProBook",
+      "documentTitle": "ユーザー ガイド",
+      "scopeKind": "model",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Official HP product Setup and User Guides landing page with model/series identity and Japanese PDF guide table, as exposed by manufacturer indexed content. PDF bytes unverified; direct web read 403."
+    },
+    {
+      "model": "ProBook 450 G5",
+      "state": "direct",
+      "manualUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-probook-450-g5-notebook-pc/17047142",
+      "supportUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-probook-450-g5-notebook-pc/17047142",
+      "evidenceUrls": [
+        "https://support.hp.com/jp-ja/product/setup-user-guides/hp-probook-450-g5-notebook-pc/17047142"
+      ],
+      "family": "ProBook",
+      "documentTitle": "ユーザー ガイド",
+      "scopeKind": "model",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Official HP product Setup and User Guides landing page with model/series identity and Japanese PDF guide table, as exposed by manufacturer indexed content. PDF bytes unverified; direct web read 403."
+    },
+    {
+      "model": "ProBook 440 G4",
+      "state": "direct",
+      "manualUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-probook-440-g4-notebook-pc/10477248",
+      "supportUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-probook-440-g4-notebook-pc/10477248",
+      "evidenceUrls": [
+        "https://support.hp.com/jp-ja/product/setup-user-guides/hp-probook-440-g4-notebook-pc/10477248"
+      ],
+      "family": "ProBook",
+      "documentTitle": "ユーザー ガイド",
+      "scopeKind": "model",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Official HP product Setup and User Guides landing page with model/series identity and Japanese PDF guide table, as exposed by manufacturer indexed content. PDF bytes unverified; direct web read 403."
+    },
+    {
+      "model": "ProBook 650 G1",
+      "state": "direct",
+      "manualUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-probook-650-g1-notebook-pc/5405400",
+      "supportUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-probook-650-g1-notebook-pc/5405400",
+      "evidenceUrls": [
+        "https://support.hp.com/jp-ja/product/setup-user-guides/hp-probook-650-g1-notebook-pc/5405400"
+      ],
+      "family": "ProBook",
+      "documentTitle": "ユーザー ガイド - Windows 10",
+      "scopeKind": "model",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Official HP product Setup and User Guides landing page with model/series identity and Japanese PDF guide table, as exposed by manufacturer indexed content. PDF bytes unverified; direct web read 403."
+    },
+    {
+      "model": "EliteBook 8 G1i 13 (AP3J9AV)",
+      "state": "direct",
+      "manualUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-8-g1i-13-inch-notebook-ai-pc/model/2102766483",
+      "supportUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-8-g1i-13-inch-notebook-ai-pc/model/2102766483",
+      "evidenceUrls": [
+        "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-8-g1i-13-inch-notebook-ai-pc/model/2102766483"
+      ],
+      "family": "EliteBook",
+      "documentTitle": "ユーザー ガイド",
+      "scopeKind": "sku",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Official HP product Setup and User Guides landing page with model/series identity and Japanese PDF guide table, as exposed by manufacturer indexed content. PDF bytes unverified; direct web read 403."
+    },
+    {
+      "model": "EliteBook 8 G1i 14 Next Gen AI PC",
+      "state": "direct",
+      "manualUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-8-g1i-14-inch-notebook-next-gen-ai-pc/2102843274",
+      "supportUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-8-g1i-14-inch-notebook-next-gen-ai-pc/2102843274",
+      "evidenceUrls": [
+        "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-8-g1i-14-inch-notebook-next-gen-ai-pc/2102843274"
+      ],
+      "family": "EliteBook",
+      "documentTitle": "ユーザー ガイド",
+      "scopeKind": "model",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Official HP product Setup and User Guides landing page with model/series identity and Japanese PDF guide table, as exposed by manufacturer indexed content. PDF bytes unverified; direct web read 403."
+    },
+    {
+      "model": "EliteBook 8 G1a 14 AI PC",
+      "state": "direct",
+      "manualUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-8-g1a-14-inch-notebook-pc/2102811726",
+      "supportUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-8-g1a-14-inch-notebook-pc/2102811726",
+      "evidenceUrls": [
+        "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-8-g1a-14-inch-notebook-pc/2102811726"
+      ],
+      "family": "EliteBook",
+      "documentTitle": "ユーザー ガイド",
+      "scopeKind": "model",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Official HP product Setup and User Guides landing page with model/series identity and Japanese PDF guide table, as exposed by manufacturer indexed content. PDF bytes unverified; direct web read 403."
+    },
+    {
+      "model": "EliteBook 845 G10",
+      "state": "direct",
+      "manualUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-845-14inch-g10-notebook-pc/2101628462",
+      "supportUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-845-14inch-g10-notebook-pc/2101628462",
+      "evidenceUrls": [
+        "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-845-14inch-g10-notebook-pc/2101628462"
+      ],
+      "family": "EliteBook",
+      "documentTitle": "ユーザー ガイド",
+      "scopeKind": "model",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Official HP product Setup and User Guides landing page with model/series identity and Japanese PDF guide table, as exposed by manufacturer indexed content. PDF bytes unverified; direct web read 403."
+    },
+    {
+      "model": "EliteBook 840 G11",
+      "state": "direct",
+      "manualUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-840-14-inch-g11-notebook-pc/2102057916",
+      "supportUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-840-14-inch-g11-notebook-pc/2102057916",
+      "evidenceUrls": [
+        "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-840-14-inch-g11-notebook-pc/2102057916"
+      ],
+      "family": "EliteBook",
+      "documentTitle": "ユーザー ガイド",
+      "scopeKind": "model",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Official HP product Setup and User Guides landing page with model/series identity and Japanese PDF guide table, as exposed by manufacturer indexed content. PDF bytes unverified; direct web read 403."
+    },
+    {
+      "model": "EliteBook 8 G2i 14 (C5EB8AV)",
+      "state": "direct",
+      "manualUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-8-g2i-14-inch-notebook-next-gen-ai-pc/model/2103452110",
+      "supportUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-8-g2i-14-inch-notebook-next-gen-ai-pc/model/2103452110",
+      "evidenceUrls": [
+        "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-8-g2i-14-inch-notebook-next-gen-ai-pc/model/2103452110"
+      ],
+      "family": "EliteBook",
+      "documentTitle": "ユーザー ガイド",
+      "scopeKind": "sku",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Official HP product Setup and User Guides landing page with model/series identity and Japanese PDF guide table, as exposed by manufacturer indexed content. PDF bytes unverified; direct web read 403."
+    },
+    {
+      "model": "EliteBook 8 G2i 13 (C57YDAV)",
+      "state": "direct",
+      "manualUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-8-g2i-13-inch-notebook-next-gen-ai-pc/model/2103452058",
+      "supportUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-8-g2i-13-inch-notebook-next-gen-ai-pc/model/2103452058",
+      "evidenceUrls": [
+        "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-8-g2i-13-inch-notebook-next-gen-ai-pc/model/2103452058"
+      ],
+      "family": "EliteBook",
+      "documentTitle": "ユーザー ガイド",
+      "scopeKind": "sku",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Official HP product Setup and User Guides landing page with model/series identity and Japanese PDF guide table, as exposed by manufacturer indexed content. PDF bytes unverified; direct web read 403."
+    },
+    {
+      "model": "EliteBook 845 G8",
+      "state": "direct",
+      "manualUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-845-g8-notebook-pc/38492638",
+      "supportUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-845-g8-notebook-pc/38492638",
+      "evidenceUrls": [
+        "https://support.hp.com/jp-ja/product/setup-user-guides/hp-elitebook-845-g8-notebook-pc/38492638"
+      ],
+      "family": "EliteBook",
+      "documentTitle": "ユーザー ガイド",
+      "scopeKind": "model",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Official HP product Setup and User Guides landing page with model/series identity and Japanese PDF guide table, as exposed by manufacturer indexed content. PDF bytes unverified; direct web read 403."
+    },
+    {
+      "model": "ProBook 4 G1a 16 AI PC",
+      "state": "direct",
+      "manualUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-probook-4-g1a-16-inch-notebook-ai-pc/2102843678",
+      "supportUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-probook-4-g1a-16-inch-notebook-ai-pc/2102843678",
+      "evidenceUrls": [
+        "https://support.hp.com/jp-ja/product/setup-user-guides/hp-probook-4-g1a-16-inch-notebook-ai-pc/2102843678"
+      ],
+      "family": "ProBook",
+      "documentTitle": "ユーザー ガイド",
+      "scopeKind": "model",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Official HP product Setup and User Guides landing page with model/series identity and Japanese PDF guide table, as exposed by manufacturer indexed content. PDF bytes unverified; direct web read 403."
+    },
+    {
+      "model": "ProBook 4 G1a 14 AI PC",
+      "state": "direct",
+      "manualUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-probook-4-g1a-14-inch-notebook-ai-pc/2102843907",
+      "supportUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-probook-4-g1a-14-inch-notebook-ai-pc/2102843907",
+      "evidenceUrls": [
+        "https://support.hp.com/jp-ja/product/setup-user-guides/hp-probook-4-g1a-14-inch-notebook-ai-pc/2102843907"
+      ],
+      "family": "ProBook",
+      "documentTitle": "ユーザー ガイド",
+      "scopeKind": "model",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Official HP product Setup and User Guides landing page with model/series identity and Japanese PDF guide table, as exposed by manufacturer indexed content. PDF bytes unverified; direct web read 403."
+    },
+    {
+      "model": "ProBook 4 G2i 14 (C69F6AV)",
+      "state": "direct",
+      "manualUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-probook-4-g2i-14-inch-notebook-next-gen-ai-pc/model/2103451797",
+      "supportUrl": "https://support.hp.com/jp-ja/product/setup-user-guides/hp-probook-4-g2i-14-inch-notebook-next-gen-ai-pc/model/2103451797",
+      "evidenceUrls": [
+        "https://support.hp.com/jp-ja/product/setup-user-guides/hp-probook-4-g2i-14-inch-notebook-next-gen-ai-pc/model/2103451797"
+      ],
+      "family": "ProBook",
+      "documentTitle": "ユーザー ガイド",
+      "scopeKind": "sku",
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-03",
+      "reviewNote": "Official HP product Setup and User Guides landing page with model/series identity and Japanese PDF guide table, as exposed by manufacturer indexed content. PDF bytes unverified; direct web read 403."
+    }
+  ],
+  "reconciliation": {
+    "captured": 17,
+    "direct": 17,
+    "shared": 0,
+    "support_only": 0,
+    "held": 0,
+    "public": 17
+  },
+  "refresh": {
+    "method": "Recheck each HP Japan product manuals URL on a permitted live environment and verify the named product and an actual Japanese User Guide entry; fail closed when access is 403 or identity drifts.",
+    "lastAccessNote": "Official HP support fetch 403 from current web client; this is an acknowledged evidence limitation."
+  }
+}
