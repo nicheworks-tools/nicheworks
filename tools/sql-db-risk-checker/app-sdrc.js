@@ -256,7 +256,7 @@ function resetResultText() {
 
 function onCheck() {
   const sql = els.sqlInput.value.trim();
-  if (!sql) { resetResultText(); els.warningsList.innerHTML = `<li class="empty">${escapeHtml(t("sqlEmpty"))}</li>`; return; }
+  if (!sql) { lastResult = null; resetResultText(); renderProOutput(); els.warningsList.innerHTML = `<li class="empty">${escapeHtml(t("sqlEmpty"))}</li>`; return; }
   lastResult = analyze(sql);
   renderResult(lastResult);
 }
@@ -446,6 +446,8 @@ function isSharedProActive() { return document.documentElement.dataset.proActive
 function requirePro() { if (isSharedProActive()) return true; toast("Previewモードです。Pro機能はNicheWorks Proで利用できます。"); return false; }
 function copyProText(builder) { if (!requirePro()) return; const result = resultOrCurrent(); copyText(builder(result)); renderProOutput(); }
 
+// Recheck edits immediately so visible findings and all copy/export sources match the current SQL.
+els.sqlInput.addEventListener("input", onCheck);
 els.checkBtn.addEventListener("click", onCheck);
 els.clearBtn.addEventListener("click", () => { els.sqlInput.value = ""; lastResult = null; resetResultText(); });
 els.copyRiskSummaryBtn.addEventListener("click", () => copyText(buildSummary(lastResult || analyze(els.sqlInput.value || ""))));
