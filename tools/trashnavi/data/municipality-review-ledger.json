@@ -1669,12 +1669,12 @@
       "lgcode": "016322",
       "pref": "北海道",
       "municipality": "士幌町",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "standard",
+      "reviewed_at": "2026-11-04",
+      "qualifying_source_count": 4,
+      "distinct_link_type_count": 4,
       "service_provider": null,
-      "review_note": null
+      "review_note": "町公式の分別手引き、令和8年度A〜F地区別収集カレンダー、大型ごみ、自己搬入の独立4URLを確認。自己搬入先は北十勝２町環境衛生処理組合および中士幌リサイクルセンター。地区別日程を全町共通としない。"
     },
     {
       "lgcode": "016331",

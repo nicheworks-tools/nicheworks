@@ -128,5 +128,57 @@
     "status": "active",
     "language": "ja",
     "scope_note": "町公式の自己搬入案内。くりりんセンターへの搬入前分別・混雑注意・14分類を説明。"
+  },
+  {
+    "pref": "北海道",
+    "city": "士幌町",
+    "name": "ごみ分別の手引き",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.shihoro.jp/life/detail.php?content=534",
+    "lgcode": "016322",
+    "last_checked": "2026-11-04",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "町公式のごみ分別再確認資料と分別案内。"
+  },
+  {
+    "pref": "北海道",
+    "city": "士幌町",
+    "name": "令和８年度ごみ収集カレンダー",
+    "type": "ごみ収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.shihoro.jp/life/detail.php?content=1480",
+    "lgcode": "016322",
+    "last_checked": "2026-11-04",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "令和8年度。A〜Fの6地区別PDF案内。地区間の日程を混同しない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "士幌町",
+    "name": "ごみの分け方・出し方［大型ごみ］",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.shihoro.jp/life/detail.php?content=605",
+    "lgcode": "016322",
+    "last_checked": "2026-11-04",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "45L指定袋に入らない大型ごみ、2m・100kgまで、シール制。"
+  },
+  {
+    "pref": "北海道",
+    "city": "士幌町",
+    "name": "ごみ・資源物の自己搬入",
+    "type": "持込施設",
+    "link_type": "dropoff_facility",
+    "url": "https://www.shihoro.jp/life/detail.php?content=529",
+    "lgcode": "016322",
+    "last_checked": "2026-11-04",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "北十勝２町環境衛生処理組合へのごみ自己搬入、資源物は中士幌リサイクルセンター。搬入先・時間が異なる。"
   }
 ]
