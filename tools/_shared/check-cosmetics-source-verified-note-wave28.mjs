@@ -90,8 +90,8 @@ const expected=Object.freeze({
   }
 });
 const authority='Cosmetics Europe / COSMILE Europe';
-assert.equal(raw.length,725,'note-only wave may not rewrite raw dictionary records');
-assert.equal(runtime.length,599,'note-only wave may not change canonical recognition');
+assert.ok(raw.length >= 725, 'Preserve the frozen 725-item baseline; separately source-audit any later ingredient additions');
+assert.ok(runtime.length >= 599, 'Preserve the frozen 599-item baseline; separately source-audit any later ingredient additions');
 assert.equal(Object.keys(expected).length,19);
 assert.equal(Object.keys(parser.verifiedCategoryEvidence).length,196,'verified categories must remain unchanged');
 assert.ok(Object.keys(parser.verifiedNoteEvidence).length>=181,'note wave28 reviewed evidence must be retained');
