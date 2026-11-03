@@ -94,6 +94,24 @@ Both English and Japanese OCR photo interfaces now have an **off-by-default** "E
 
 Automated regression: `node tools/_shared/check-fastscan-image-enhancement.mjs` checks untouched default-image handling, concrete grayscale pixel writes, upscale and memory cap, expected failure handling and blob-URL release, bilingual option wiring, optional QA comparison and photo privacy. The noindex QA page at `tools/inci-fastscan/qa/photo-ocr-benchmark.html` now exposes the same checkbox so manual testers can compare original and browser-enhanced scans of a **single independently transcribed real label**.
 
+## Source-backed Japanese name alias repair — first wave (2026-11-03)
+
+The first two photographed Japanese cosmetic packages ([real-photo baseline #41439004709](https://github.com/nicheworks-tools/nicheworks/actions/runs/41439004709)) had **127 independently published source-list ingredients**, of which only **70** matched the maintained 1,169-record INCI dictionary. Eight of the 57 unsupported Japanese label names were found to have an *already existing* canonical INCI record with an empty `jp` list. This fixes those **eight exact Japanese display names** without creating new canonical substances, inferred roles or cosmetic safety claims.
+
+The eight newly supported name/INCI pairs are: **リシンHCl / Lysine HCl, ヒスチジンHCl / Histidine HCl, フェニルアラニン / Phenylalanine, バリン / Valine, イソロイシン / Isoleucine** (Kaneda / Seiwa Kasei raw ingredient [JP-to-INCI product specification](https://cosmetic-material-database.custhelp.com/app/answers/detail/a_id/568/~/p.p.a.a.-c)); **ジメチルイソソルバイド / Dimethyl Isosorbide** ([Japanese display-name entry 555113](https://www.cosmetic-info.jp/jcln/detail.php?id=4073)); **ベヘン酸グリセリル / Glyceryl Behenate** ([Ikeda Bussan / Gattefosse](https://www.ikedabussan.com/itemindex/itemdetail/358)); **フィトステロールズ / Phytosterols** ([Yamakawa supplier ingredient/INCI list](https://www.yamakawa-and.co.jp/products/)). All individual pairs and sources are tracked in `qa/japanese-source-alias-evidence.mjs`; strict non-collision/no-fuzzy source coverage regressions run in *both* the standard cosmetics QA and real Japanese photo CI. Do not automatically equate **ダイズステロール** with Phytosterols: soy-specific `Glycine Soja (Soybean) Sterols` is a separate INCI and remains unresolved. JP alias evidence does not certify a component's role, effects, safety or concentration.
+
+[Actual first Japanese alias-wave CI run #41562367474](https://github.com/nicheworks-tools/nicheworks/actions/runs/41562367474) measured **78/127** supported Japanese published names after the patch (+8 names, 49 still not covered). Image OCR on the exact same publicly sourced two package photos yielded:
+
+| Real Japanese photographed package | Source names | Dictionary-supported, before → after | Original photo matched, old → new | Opt-in enhanced matched, old → new |
+| --- | ---: | ---: | ---: | ---: |
+| ZIGEN gel | 68 | 35 → **40** | 0 → 0 | 19 → **20** |
+| KISOCARE cream | 59 | 35 → **38** | 18 → **19** | 15 → **16** |
+| **Total** | **127** | **70 → 78** | **18 → 19** | **34 → 36** |
+
+With the **larger denominator**, the enhanced comparison is **36/78 = 46.15%**, not an improvement over the previous 34/70 = 48.57% by percentage; additional names can increase both the numerator and the number of missed ingredients. The validation is *against publicly published formulas*, **not independently verified photo transcription or end-user handset accuracy**, and the formula/photo versions may differ. The enhancement is still **manual and OFF by default**; one source photo previously worsened under enhancement.
+
+The remaining **49/127** published source names require separate, verified Japanese-label/INCI identity research (some do not yet have canonical dictionary records). No guessed parent/child botanical mapping, generic sterol alias, or placeholder safety grading is permissible. The public product OCR text remains editable and unknowns stay visible.
+
 ## First photographed real Japanese cosmetics label OCR comparison (2026-11-02)
 
 [GitHub Actions Japanese REAL photo QA run #41438582269](https://github.com/nicheworks-tools/nicheworks/actions/runs/41438582269) **passed**, making the first measured test of **actual photographed Japanese cosmetics ingredient back-panels**, rather than synthetic Japanese string-only fixtures. The controlled test fetched two public packaging images into a transient GitHub runner: the **ZIGEN All-in-one Face Gel** ingredients side-panel featured in the manufacturer's February 2025 article (source list from the manufacturer's own live landing page), and the **KISOCARE Super Wrinkle Cream VA No.036** ingredient label photograph featured on its @cosme product-variation page (full ingredients list provided/approved as brand product details on the same page).
