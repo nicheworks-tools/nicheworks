@@ -110,8 +110,8 @@ const metDay = JSON.parse(JSON.stringify(api.calcMetDay(block)));
 assert.deepEqual(metDay, { max: 25.8, min: 20.2, rain: 1.7, wind: 7.4, icon: '🌤️' });
 assert.deepEqual(
   JSON.parse(JSON.stringify(api.calcMetDay([]))),
-  { max: null, min: null, rain: 0, wind: 0, icon: '☁️' },
-  'empty MET blocks should produce the explicit neutral fallback',
+  { max: null, min: null, rain: null, wind: null, icon: '☁️' },
+  'empty MET blocks must report unknown values rather than fabricate zero rain/wind',
 );
 
 const diffEl = makeElement();
