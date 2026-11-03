@@ -722,7 +722,7 @@
       const a = cleanAmount(r.data.amount || 0);
       const memo = String(r.data.memo || "");
 
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(d) || !w || !["報酬","交通費","手当","その他"].includes(c) || !Number.isFinite(a) || a <= 0) {
+      if (!isRealISODate(d) || !w || !["報酬","交通費","手当","その他"].includes(c) || !Number.isSafeInteger(a) || a <= 0) {
         invalidCount++;
         return;
       }
@@ -887,8 +887,25 @@
   // Entry form actions (add / edit)
   // ----------------------------
   function cleanAmount(val) {
-    const n = Number(String(val).replace(/[^\d]/g, ""));
-    return Number.isFinite(n) ? n : NaN;
+    // Never turn a negative, fractional or scientific-notation value into a
+    // different positive amount. NFKC supports Japanese full-width digits.
+    const normalized = String(val ?? "").normalize("NFKC").trim().replace(/[\s\u3000]/g, "");
+    const raw = normalized.replace(/^¥/, "").replace(/円$/, "");
+    if (!/^(?:\d+|\d{1,3}(?:,\d{3})+)$/.test(raw)) return NaN;
+    const n = Number(raw.replace(/,/g, ""));
+    return Number.isSafeInteger(n) ? n : NaN;
+  }
+
+  function isRealISODate(val) {
+    const text = String(val || "");
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(text)) return false;
+    const [year, month, day] = text.split("-").map(Number);
+    if (year < 1) return false;
+    const date = new Date(0);
+    date.setUTCFullYear(year, month - 1, day);
+    return date.getUTCFullYear() === year
+      && date.getUTCMonth() === month - 1
+      && date.getUTCDate() === day;
   }
 
   function showError(msg) {
@@ -971,6 +988,10 @@
 
       if (!date || !workplace || !amountRaw) {
         showError("日付・就業先・金額を入力してください。");
+        return;
+      }
+      if (!isRealISODate(date)) {
+        showError("実在する日付をYYYY-MM-DD形式で入力してください。");
         return;
       }
 
@@ -1349,8 +1370,10 @@
       const header = rows[0].map((h) => String(h || "").trim());
       const expected = ["date", "workplace", "category", "amount", "memo"];
       const headerLower = header.map((h) => h.toLowerCase());
+      // UTF-8 BOM is common in CSV files saved by spreadsheets.
+      if (headerLower.length) headerLower[0] = headerLower[0].replace(/^\uFEFF/, "");
 
-      const okHeader = expected.every((x, idx) => headerLower[idx] === x);
+      const okHeader = headerLower.length === expected.length && expected.every((x, idx) => headerLower[idx] === x);
       if (!okHeader) {
         showError("CSVヘッダが不正です。\n形式：date,workplace,category,amount,memo");
         return;
@@ -1370,7 +1393,7 @@
 
         if (!cols || cols.length === 0) continue;
 
-        if (cols.length < 5) {
+        if (cols.length !== 5) {
           parsedRows.push({
             rowNo,
             status: "skip",
@@ -1390,8 +1413,8 @@
         amountRaw = String(amountRaw || "").trim();
         memo = String(memo || "").trim();
 
-        if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
-          parsedRows.push({ rowNo, status: "skip", reason: "日付形式不正（YYYY-MM-DDのみ）", selected: false, data: { date, workplace, category, amount: 0, memo } });
+        if (!isRealISODate(date)) {
+          parsedRows.push({ rowNo, status: "skip", reason: "日付不正（YYYY-MM-DDの実在日付のみ）", selected: false, data: { date, workplace, category, amount: 0, memo } });
           skipCount++;
           continue;
         }
@@ -1662,7 +1685,7 @@
       const c = String(r.data.category || "").trim();
       const a = Number(r.data.amount || 0);
 
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(d) || !w || !["報酬","交通費","手当","その他"].includes(c) || !Number.isFinite(a) || a <= 0) {
+      if (!isRealISODate(d) || !w || !["報酬","交通費","手当","その他"].includes(c) || !Number.isSafeInteger(a) || a <= 0) {
         skippedInvalid++;
         return;
       }
