@@ -71,6 +71,8 @@ The tool is a compact URL input followed by one result card and is intended to w
 - [ ] Successful HTML is parsed for title, description, OGP image, and canonical metadata and missing values are represented without inventing metadata.
 - [ ] When both proxy paths fail, the result stays hidden/cleared and a localized fetch error is shown.
 - [ ] Reset clears the entered URL, current metadata state, visible result, and error state.
+- [ ] Reset or starting a newer analysis cancels the old request; late responses never restore obsolete results or trigger an AllOrigins retry after cancellation.
+- [ ] Invalid new URLs hide any previously displayed metadata instead of leaving the old result visible.
 - [ ] Documentation and UI must not claim local-only URL analysis while the implemented proxy requests remain in place.
 
 ## Implementation evidence
