@@ -195,6 +195,29 @@
     const extraOutputEn = document.getElementById("extraOutputEn");
     if (!outputJa || !outputEn || !extraOutputJa || !extraOutputEn) return;
 
+    // The main preview and role-dependent wording variants are browser-local.
+    // Keep both language outputs aligned with current form fields.
+    let additionalMode = "columns";
+    const refreshAdditional = () => {
+      if (additionalMode === "variants") {
+        extraOutputJa.textContent = buildVariants("ja");
+        extraOutputEn.textContent = buildVariants("en");
+      } else {
+        extraOutputJa.textContent = buildSheetColumns("ja");
+        extraOutputEn.textContent = buildSheetColumns("en");
+      }
+    };
+    const sourceFields = [
+      "role", "contractType", "compensation", "workload", "responsibilities",
+      "requirements", "preferred", "conditions", "process", "location", "applyMethod"
+    ];
+    sourceFields.forEach((id) => {
+      const input = document.getElementById(id);
+      const onEdit = () => { refresh(); refreshAdditional(); };
+      input?.addEventListener("input", onEdit);
+      input?.addEventListener("change", onEdit);
+    });
+
     document.getElementById("generateBtn").addEventListener("click", () => { refresh(); toast(currentLang() === "ja" ? "求人キットを生成しました。" : "Generated the job kit."); });
     document.getElementById("copyBtn").addEventListener("click", async () => {
       refresh();
@@ -204,16 +227,19 @@
     document.getElementById("saveTxtBtn").addEventListener("click", () => { refresh(); downloadText("niche-job-starter-kit.txt", getCurrentOutput()); toast(currentLang() === "ja" ? "TXTを保存しました。" : "Saved TXT."); });
     document.getElementById("copyCsvBtn").addEventListener("click", async () => {
       const ok = await copyToClipboard(buildSheetColumns(currentLang()));
-      extraOutputJa.textContent = buildSheetColumns("ja");
-      extraOutputEn.textContent = buildSheetColumns("en");
+      additionalMode = "columns";
+      refreshAdditional();
       toast(ok ? (currentLang() === "ja" ? "CSV列をコピーしました。" : "Copied CSV columns.") : (currentLang() === "ja" ? "CSV列のコピーに失敗しました。" : "Failed to copy CSV columns."));
     });
     document.getElementById("saveCsvBtn").addEventListener("click", () => { const lang = currentLang(); downloadText("candidate-sheet-columns.csv", buildCsvDownload(lang), "text/csv;charset=utf-8"); toast(lang === "ja" ? "CSVを保存しました。" : "Saved CSV."); });
-    document.getElementById("variantBtn").addEventListener("click", () => { extraOutputJa.textContent = buildVariants("ja"); extraOutputEn.textContent = buildVariants("en"); toast(currentLang() === "ja" ? "バリエーションを生成しました。" : "Generated variants."); });
+    document.getElementById("variantBtn").addEventListener("click", () => {
+      additionalMode = "variants";
+      refreshAdditional();
+      toast(currentLang() === "ja" ? "バリエーションを生成しました。" : "Generated variants.");
+    });
 
     refresh();
-    extraOutputJa.textContent = buildSheetColumns("ja");
-    extraOutputEn.textContent = buildSheetColumns("en");
+    refreshAdditional();
   };
 
   document.addEventListener("DOMContentLoaded", () => { initLang(); initTool(); });
