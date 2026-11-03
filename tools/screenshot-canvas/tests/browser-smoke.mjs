@@ -128,7 +128,7 @@ function pageSmoke() {
     const lang = document.querySelector('#lang');
     lang.value = 'en';
     lang.dispatchEvent(new Event('change', { bubbles: true }));
-    check(status().includes('Images 3'), 'English UI switch');
+    check(status().includes('Images 3'), 'English UI switch: ' + JSON.stringify({status:status(), value:lang.value, documentLanguage:document.documentElement.lang}));
     check(errors.length === 0, 'browser runtime errors: ' + errors.join(' | '));
     check(document.documentElement.scrollWidth - window.innerWidth <= 8, 'page horizontal overflow');
     return 'PASS:IMPORT2:ROW:DRAG:UNDO_REDO:BACKGROUND:OPACITY:SIZE:DUPLICATE:DELETE:LAYOUTS:PNG:LANG:WIDTH' + window.innerWidth;
