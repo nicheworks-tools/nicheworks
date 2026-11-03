@@ -32,6 +32,7 @@ const labels = {
     history_empty: "履歴がまだありません",
     history_clear: "履歴をクリア",
     prompt_value: "数値を入力してください。",
+    manual_pending: "条件を変更しました。「計算する」を押してください。",
     invalid_number: "有効な数値を入力してください。",
     extreme_number: "値が大きすぎます。桁数を減らして入力してください。",
     below_absolute_zero: "絶対零度未満の温度は変換できません。",
@@ -74,6 +75,7 @@ const labels = {
     history_empty: "No history yet",
     history_clear: "Clear history",
     prompt_value: "Enter a value.",
+    manual_pending: "Inputs changed. Click Calculate for the new result.",
     invalid_number: "Enter a valid number.",
     extreme_number: "The value is too large. Please reduce the number of digits.",
     below_absolute_zero: "Temperature below absolute zero cannot be converted.",
@@ -182,7 +184,6 @@ function applyLanguage(lang, persist = true) {
   langBtns.forEach((btn) => btn.classList.toggle("active", btn.dataset.lang === currentLang));
   if (persist) saveLang(currentLang);
   applyCategory(categorySelect.value || "length", true, false);
-  calculate(false);
   loadHistory();
 }
 function clearOptions(select) { select.replaceChildren(); }
@@ -201,7 +202,7 @@ function applyCategory(cat, preserveUnits = false, saveAutoHistory = true) {
     if (keys.includes(prevFrom)) fromSel.value = prevFrom;
     if (keys.includes(prevTo)) toSel.value = prevTo;
   } else if (keys.length > 1) { toSel.value = keys[1]; }
-  calculate(false);
+  if (autoCalc.checked) calculate(false); else clearManualResult();
   if (saveAutoHistory && autoCalc.checked && latestValidResult) scheduleHistorySave();
 }
 function convertTemperature(value, from, to) { let c = value; if (from === "f") c = (value - 32) * 5 / 9; if (from === "k") c = value - 273.15; if (to === "f") return c * 9 / 5 + 32; if (to === "k") return c + 273.15; return c; }
@@ -226,6 +227,13 @@ function formatNumber(value) {
   return Number(value.toFixed(6)).toString();
 }
 function setResult(message, state) { resultBox.textContent = message; resultBox.classList.toggle("is-warning", state === "warning"); resultBox.classList.toggle("is-error", state === "error"); }
+function clearManualResult() {
+  clearTimeout(historyTimer);
+  historyTimer = null;
+  latestValidResult = null;
+  setResult(inputValue.value.trim() ? text("manual_pending") : text("prompt_value"), "warning");
+  bulkBox.replaceChildren();
+}
 function buildResult(value) {
   const cat = categorySelect.value;
   if (cat === "temp") {
@@ -315,12 +323,16 @@ tabs.forEach((tab) => tab.addEventListener("click", () => applyCategory(tab.data
 categorySelect.addEventListener("change", () => applyCategory(categorySelect.value));
 [inputValue, fromSel, toSel].forEach((el) => {
   el.addEventListener(el === inputValue ? "input" : "change", () => {
+    clearTimeout(historyTimer);
+    historyTimer = null;
     if (autoCalc.checked) { calculate(false); if (latestValidResult) scheduleHistorySave(); }
+    else clearManualResult();
   });
 });
 autoCalc.addEventListener("change", () => {
   calcBtn.classList.toggle("hidden", autoCalc.checked);
-  if (autoCalc.checked) { calculate(false); if (latestValidResult) scheduleHistorySave(); } else { clearTimeout(historyTimer); }
+  if (autoCalc.checked) { calculate(false); if (latestValidResult) scheduleHistorySave(); }
+  else clearManualResult();
 });
 calcBtn.addEventListener("click", () => { clearTimeout(historyTimer); calculate(true); });
 accordionToggles.forEach((btn) => {

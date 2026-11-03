@@ -75,6 +75,7 @@ desktopではcategory tabsとside reference cardsを併用し、mobileではsele
 
 - [ ] 7 categoryのfrom/to unitを選び、数値を相互変換できる。
 - [ ] auto calculation ON時はinput/unit変更へ結果が追随し、OFF時はbutton実行になる。
+- [ ] 手動計算OFF時のカテゴリ・変換元/先・値の変更は以前の結果と一括換算を即時消去し、Calculate押下までは自動換算・遅延履歴保存を行わない。JSONランタイムとfallback runtime両方で同じ動作にする。
 - [ ] bulk conversionが同categoryの複数unit結果を表示する。
 - [ ] conversion historyは直近5件を超えず、localStorageから再読込できる。
 - [ ] language/theme settingがlocalStorageへ保存される。
