@@ -76,6 +76,7 @@ The checkbox groups, result list, and memo are a stacked decision-support flow s
 - [ ] Selecting different requirement combinations changes the generated candidate types/checks according to the implemented rules.
 - [ ] Results do not present a named form vendor as automatically recommended or certified.
 - [ ] Copy/TXT/Markdown outputs reflect the current candidate result and decision memo.
+- [ ] Changing any of the six requirement checkboxes invalidates outdated candidates and exports; copy/download refuse old selections even if an event did not fire.
 - [ ] JP/EN switching preserves the same requirements and provider-verification warnings.
 - [ ] The public page has one H1 element while retaining JP/EN switching inside that heading.
 - [ ] Title, description, lead copy, and structured description communicate requirement-based form-builder/tool selection.
