@@ -4,6 +4,8 @@ import vm from 'node:vm';
 
 const appSource = fs.readFileSync(new URL('../app.js', import.meta.url), 'utf8');
 const phonePayload = JSON.parse(fs.readFileSync(new URL('../data/phones.json', import.meta.url), 'utf8'));
+const growthPayload = JSON.parse(fs.readFileSync(new URL('../data/phones-growth-20261103.json', import.meta.url), 'utf8'));
+const growthIds = new Set(growthPayload.phones.map(p => p.id));
 const accessoryPayload = JSON.parse(fs.readFileSync(new URL('../data/accessories.json', import.meta.url), 'utf8'));
 
 class FakeClassList {
@@ -49,7 +51,7 @@ class FakeElement {
   focus() { this.focused = true; }
 }
 
-const allPhones = phonePayload.phones || [];
+const allPhones = [...(phonePayload.phones || []), ...growthPayload.phones];
 const syntheticFoldable = {
   id: 'synthetic-foldable', manufacturer: 'Samsung', model: 'Synthetic Foldable', aliases: ['Fold Fixture'], releaseYear: 2026, formFactor: 'foldable',
   dimensionsFolded: { heightMm: 155, widthMm: 68, depthMm: 13 }, dimensionsUnfolded: { heightMm: 155, widthMm: 132, depthMm: 6 },
@@ -81,6 +83,8 @@ async function flush() {
 
 async function createHarness(ids, { mobile = false, savedLang = 'ja', failFetch = false, href = 'https://nicheworks.app/tools/phone-quickcheck/' } = {}) {
   const phones = requirePhones(ids);
+  const basePhones = phones.filter(phone => !growthIds.has(phone.id));
+  const curatedPhones = phones.filter(phone => growthIds.has(phone.id));
   const elements = Object.create(null);
   for (const id of [
     'searchInput', 'manufacturerFilter', 'connectorFilter', 'yearFilter', 'sortSelect',
@@ -147,7 +151,8 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja', failFetch 
   const fetch = async (url) => {
     if (failFetch) return { ok: false, json: async () => ({}) };
     const href = String(url);
-    if (href.includes('phones.json')) return { ok: true, json: async () => ({ phones }) };
+    if (href.includes('phones-growth-20261103.json')) return { ok: true, json: async () => ({ phones: curatedPhones }) };
+    if (href.includes('phones.json')) return { ok: true, json: async () => ({ phones: basePhones }) };
     if (href.includes('accessories.json')) return { ok: true, json: async () => accessoryPayload };
     return { ok: false, json: async () => ({}) };
   };
@@ -181,6 +186,15 @@ async function createHarness(ids, { mobile = false, savedLang = 'ja', failFetch 
   const unknown = await createHarness(['google-pixel-7', 'apple-iphone-11'], { href: 'https://nicheworks.app/tools/phone-quickcheck/?model=not-in-catalog' });
   assert.equal(unknown.elements.searchInput.value, '');
   assert.equal(unknown.phoneRows.length, 2);
+}
+
+// Both canonical packs are loaded, and new official-source models are selectable.
+{
+  const h = await createHarness(['apple-iphone-17-pro', 'google-pixel-8-pro', 'oppo-find-x9']);
+  assert.equal(h.phoneRows.length, 3);
+  assert.equal(h.elements.dataState.textContent, '3機種');
+  assert.ok(h.phoneRows.some(row => row.dataset.phoneId === 'apple-iphone-17-pro'));
+  assert.ok(h.phoneRows.some(row => row.dataset.phoneId === 'oppo-find-x9'));
 }
 
 // Alias/model search and JP/EN switching run through the real app runtime.
