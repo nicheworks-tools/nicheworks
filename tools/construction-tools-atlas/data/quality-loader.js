@@ -8,7 +8,7 @@
   const ENRICHMENT_MANIFEST_PATH = "./data/content-enrichment-manifest-v2.3.json";
   const DEFINITION_PROMOTIONS_PATH = "./data/definition-promotions-v2.3.json";
   const REVIEWED_ALIASES_PATH = "./data/reviewed-aliases-v3.json";
-  const REVIEWED_ALIASES_VERSION = "20261103-final-five-identities-1";
+  const REVIEWED_ALIASES_VERSION = "20261103-final-five-reviewed-aliases-2";
   const DEFINITION_PROMOTIONS_VERSION = "20261103-source-backed-144-1";
   const CANONICAL_IDENTITY_VERSION = "20261103-five-identity-redirects-1";
   const REDIRECT_PATH = "./data/canonical-redirects-v2.3.json";
