@@ -105,3 +105,6 @@ console.log(`Phone QuickCheck affiliate contract passed: ${accessoryKeys.length}
 execFileSync(process.execPath, ['scripts/analytics/test-phone-quickcheck-ga4.mjs'], { stdio: 'inherit' });
 // Validate crawlable static index, official source provenance, and commercial SEO guide.
 execFileSync(process.execPath, ['scripts/check-phone-quickcheck-growth-seo.mjs'], { stdio: 'inherit' });
+
+// Test the nine static guide's tagged clicks and privacy bucket attributes.
+execFileSync(process.execPath, ['scripts/check-phone-quickcheck-guide-events.mjs'], { stdio: 'inherit' });
