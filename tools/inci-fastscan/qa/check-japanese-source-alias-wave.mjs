@@ -13,8 +13,8 @@ for (const suffix of ['', ...Array.from({ length: 8 }, (_, i) => '-extra-' + (i 
   data.push(...JSON.parse(fs.readFileSync('tools/inci-fastscan/data/ingredients' + suffix + '.json', 'utf8')));
 }
 const expected = new Set(japaneseSourceAliasWave.map(row => parser.normalizeKey(row.jp)));
-assert.equal(japaneseSourceAliasWave.length, 8, 'Only eight individually backed aliases belong to this wave');
-assert.equal(expected.size, 8, 'No duplicate Japanese aliases');
+assert.equal(japaneseSourceAliasWave.length, 9, 'Only nine individually backed aliases belong to this wave');
+assert.equal(expected.size, 9, 'No duplicate Japanese aliases');
 let successfulAliases = 0;
 for (const row of japaneseSourceAliasWave) {
   assert.equal(new URL(row.source).protocol, 'https:');
@@ -53,17 +53,18 @@ for (const product of japaneseRealPhotoSources) {
   supportedReferences += score.eligibleReferenceUniqueNames;
 }
 assert.equal(corpusNames, 127);
-assert.ok(supportedReferences >= 78, 'The two Japanese product lists must improve from 70 to at least 78 dictionary-supported names');
+assert.ok(supportedReferences >= 79, 'The two Japanese product lists must improve from 70 to at least 79 dictionary-supported names');
 assert.ok(japaneseSourceAliasWave.every(row =>
   japaneseRealPhotoSources.some(source => source.ingredientList.includes(row.jp))),
   'All eight additions must address actual previously unsupported source ingredient names');
 assert.equal(data.filter(item => item.safety === undefined).length, 0,
   'This wave must not add unreviewed canonical entries or change legacy schema');
-// A different official display name/INCI identity. Never globally alias
-// ダイズステロール to Phytosterols: soy sterols have their own INCI.
-const soySterols = japaneseRealPhotoSources[0].ingredientList.includes('ダイズステロール');
-assert.ok(soySterols, 'Keep the unresolved soy-specific sterols ingredient under review');
-assert.ok(!japaneseSourceAliasWave.some(row => row.jp === 'ダイズステロール'));
+// Never alias ダイズステロール to Phytosterols: it has its distinct INCI.
+const soySterols = japaneseSourceAliasWave.find(row => row.jp === 'ダイズステロール');
+assert.equal(soySterols?.en, 'Glycine Soja (Soybean) Sterols');
+assert.ok(japaneseSourceAliasWave.some(row => row.jp === 'フィトステロールズ' && row.en === 'Phytosterols'));
+assert.notEqual(parser.canonicalIdentityKey(soySterols.en),
+  parser.canonicalIdentityKey('Phytosterols'), 'These botanical-identity sterol names must never be merged');
 
 console.log('FASTSCAN_JAPANESE_SOURCE_ALIAS_WAVE=' + JSON.stringify({
   status: 'PASS', verifiedAliases: successfulAliases, corpusNames,
