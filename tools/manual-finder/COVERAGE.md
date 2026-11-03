@@ -17,7 +17,7 @@ All future model-level expansion must follow `COVERAGE_PASS_WORKFLOW.md`. Script
 
 ## Current verified model-level inventory
 
-With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifilm GFX/X, VAIO JP start-guide PCs, Samsung JP Galaxy smartphones, dynabook JP 2024–2026 PCs, Fujitsu FMWORLD LIFEBOOK U business PCs, Google Pixel JP model-specific safety/support documentation, Motorola JP current smartphone lineup, ASUS JP Vivobook series, and Xiaomi JP smartphone/tablet user-guide index, the accepted dataset contains **2,598 verified model/caliber rows**. **2,155 are outside Seiko**. Coverage-Pass publication contributes **1,030 reviewed rows across fifteen bounded manufacturer scopes**. The Xiaomi JP 60-device source reconciles to 59 positively verified manufacturer PDF guides and one held co-branded Leica model; 59 guide rows are published. This is not Xiaomi company-wide coverage.
+With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifilm GFX/X, VAIO JP start-guide PCs, Samsung JP Galaxy smartphones, dynabook JP 2024–2026 PCs, Fujitsu FMWORLD LIFEBOOK U business PCs, Google Pixel JP model-specific safety/support documentation, Motorola JP current smartphone lineup, ASUS JP Vivobook series, and Xiaomi JP smartphone/tablet user-guide index, the accepted dataset contains **2,615 verified model/caliber rows**. **2,172 are outside Seiko**. Coverage-Pass publication contributes **1,047 reviewed rows across sixteen bounded manufacturer scopes**. The Xiaomi JP 60-device source reconciles to 59 positively verified manufacturer PDF guides and one held co-branded Leica model; 59 guide rows are published. This is not Xiaomi company-wide coverage.
 
 | Maker / dataset identity | Verified rows | Current state | Notes |
 | --- | ---: | --- | --- |
@@ -50,11 +50,12 @@ With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifil
 | Brother | 21 | expanded | Waves 3B+3F: 13 legacy MFC-J manual pages and 8 newly manufacturer-verified models (6 direct + 2 official shared manual identities), with 16 manufacturer-verified ink Amazon search offers. The separate legacy held model is unchanged. |
 | Insta360 | 7 | expanded | Product-specific official online manuals. |
 | Epson | 38 | expanded | Colorio Waves 3D+3G+3H+3I+3J: 6+8+8+9+7 exact official Epson model manuals, with individually verified printer ink queries. |
+| HP | 17 | expanded, bounded | Seventeen Japanese HP Pavilion, ProBook and EliteBook model/series official Setup and User Guides index pages with published Japanese User Guide listings; direct HP page recheck blocked HTTP 403 in this environment. No company-wide completeness. |
 | Lenovo | 13 | expanded, bounded | Thirteen verified Lenovo Japan ThinkPad Guides & Manuals pages across T/L/P/E/X1 families, exact machine types preserved; not whole family or company. |
 | Dell | 20 | expanded, bounded | Twenty individually verified Dell Japan model-specific Manuals and Documents index pages with owner/service user manuals; Inspiron, XPS, Latitude, Precision and OptiPlex. Not Dell company-wide or any entire family. |
 | Canon | 155 | expanded | Eighteen verified Waves 3E+3K+3L PIXUS printers plus 137 distinct official RF/EF-series lens instruction manual rows (123 direct + 14 shared) from Canon Japan nine-section lens-manual index. Lens scope does not claim Canon company-wide completeness; manufacturer direct PDFs verified. |
 | Hisense | 2 | expanded | Exact TV function-manual targets; coverage is still very thin. |
-| **Total** | **2,598** |  |  |
+| **Total** | **2,615** |  |  |
 
 Counts above are accepted repository rows, not estimates of manufacturer catalog size.
 
@@ -72,7 +73,7 @@ Counts above are accepted repository rows, not estimates of manufacturer catalog
 | 6 | Fujifilm | **expanded — 56** | JP GFX + X-series camera-manual-index scope is published and coverage-pass-complete at 52 direct + 4 shared + 0 held; FinePix and broader Fujifilm remain incomplete |
 | 7 | Brother | **expanded — 21** | Eight additional 2026 MFC-J printers from official model user-guide/ink pages; MFC-J6990CDW remains held |
 | 8 | Epson | **expanded — 38** | Five bounded manual-and-ink model waves: 6+8+8+9+7; Epson-wide scope incomplete |
-| 9 | HP | generic-only | PC/mobile queue |
+| 9 | HP | **expanded — 17** | First bounded Japanese HP support model/series setup-and-user-guides index pages; indexed guide listings confirmed, web live recheck returned HTTP 403 |
 | 10 | Dell | **expanded — 20** | First bounded Dell Japan manufacturer-owned exact-model manuals index pass: 20 direct owner/service document listing pages; no entire-catalog claim |
 | 11 | Lenovo | **expanded — 13** | Thirteen explicit ThinkPad machine-type/SKU Japanese model-specific user/setup/maintenance manual indexes; Lenovo-wide coverage not claimed |
 | 12 | ASUS | **expanded — 35** | Manufacturer JP Vivobook category 35 products (API 20+15); 35 verified model-specific manual indexes, 0 held. Selected variant disclosed on each row. Other ASUS families not complete. |
@@ -271,3 +272,7 @@ The first Dell manufacturer publication pass is a deliberately bounded 20-page o
 ### Lenovo JP 13 ThinkPad model-specific user/setup/maintenance manual indexes (2026-11-03)
 
 After the Dell first pass, the first Lenovo model-specific publication is an explicitly bounded **13 official ThinkPad machine-type or SKU page set**, across T14/T16, L14, P16s/P1, E14/E16 and X1 Carbon/X1 2-in-1 families, plus the T470. Each `pcsupport.lenovo.com/jp/ja/products/.../document-userguide` link was individually observed as an official machine-type/product-specific index with user, hardware maintenance or setup manual information. Distinct CPU/machine types are not treated as interchangeable; the single L14 Gen 5 and X1 Carbon Gen 9 SKU examples are identified explicitly. Official scope: `coverage-passes/lenovo/jp-thinkpad-13-official-manual-index-20261103.json` with 13 exact identities = 13 direct manual-index pages, 0 shared, 0 support-only, 0 held. This is **not Lenovo or ThinkPad company-wide scope completion**, and no direct PDFs or charger/battery compatibility is inferred. Published in `data/manuals.coverage-pass.lenovo-jp-thinkpad-13.js` and the bilingual coverage-pass loader; dedicated regression is `tests/lenovo-jp-13-publication.test.mjs`. The existing optional Amazon tagged model search yields 13 device searches. Updated inventory **2,598 verified model/caliber rows** with Lenovo 13, outside Seiko 2,155, Coverage-Pass reviewed rows 1,030. No sales claims.
+
+### HP Japan 17 model/series user-guide listing indexes (2026-11-03)
+
+This is a bounded HP Japan source set of **17 exact official HP support setup-user-guides pages** spanning Pavilion, ProBook and EliteBook; all show model/series identities and Japanese PDF user-guide entries in manufacturer-hosted indexed content. Direct access from the current web fetch environment returned HTTP 403; therefore **these are guide-index landing URLs, not independently downloaded PDFs or proof that automated fetches currently succeed**. HP's product series indexes are labelled explicitly instead of masquerading as unique individual SKUs. Each of the 17 links and document-list evidence is recorded in `coverage-passes/hp/jp-pc-17-user-guide-index-20261103.json`; reviewed state 17 direct indexes, zero held within this *narrowly selected* source set. Public data `data/manuals.coverage-pass.hp-jp-pc-17.js`; dedicated test `tests/hp-jp-17-publication.test.mjs`. It adds 17 official model/series guide-index records and optional exact-named Amazon device searches; no charger/battery compatibility, general HP catalog completion or sales are asserted. Updated inventory **2,615 verified model/caliber rows**, non-Seiko 2,172, Coverage-Pass contribution 1,047. Future network revalidation must fail closed on 403 and retain this caveat.
