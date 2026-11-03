@@ -4,7 +4,7 @@
   const FULL = `${base}/data/manuals.full.js?v=mf-wave1-20260912a`;
   const WAVE2 = `${base}/data/manuals.wave2.js?v=mf-wave2c-20260912a`;
   const WAVE3 = `${base}/data/manuals.wave3.js?v=mf-wave3e-20260914a`;
-  const COVERAGE_PASSES = `${base}/data/manuals.coverage-passes.js?v=mf-coverage-pass-20260919a`;
+  const COVERAGE_PASSES = `${base}/data/manuals.coverage-passes.js?v=mf-dell20-20261103a`;
   const JSON_URL = `${base}/data/manuals.json?v=mf-wave2c-20260912a`;
   const S = { all: [], filtered: [], page: 1, per: 48, lang: isEn ? "en" : "ja" };
   const $ = (id) => document.getElementById(id);
@@ -244,7 +244,7 @@
     try {
       await loadScript(COVERAGE_PASSES);
       const batches = Array.isArray(window.MANUALFINDER_COVERAGE_PASS_BATCHES) ? window.MANUALFINDER_COVERAGE_PASS_BATCHES : [];
-      await Promise.all(batches.map((name) => loadScript(`${base}/data/${name}?v=mf-coverage-pass-20260919a`)));
+      await Promise.all(batches.map((name) => loadScript(`${base}/data/${name}?v=mf-dell20-20261103a`)));
       if (typeof window.MANUALFINDER_BUILD_COVERAGE_PASSES === "function") return window.MANUALFINDER_BUILD_COVERAGE_PASSES();
     } catch (_) {}
     return [];

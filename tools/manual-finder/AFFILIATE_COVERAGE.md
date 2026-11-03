@@ -487,3 +487,7 @@ Prior Epson Wave 3J / Brother Wave 3F audit snapshot (superseded, retained solel
 ### Canon six exact legacy PIXUS printer consumable mappings — Wave 3L (2026-11-03)
 
 TS8230 and TS8430: BCI-381C / BCI-380PGBK; TS8530 and TS8630: BCI-331C / BCI-330PGBK; XK110 and XK120: XKI-N21C / XKI-N20PGBK. Each is supported by the exact Canon manufacturer model-specific consumables page in `coverage-passes/canon/jp-pixus-wave3l-six-manual-ink-20261103.json`, not family extrapolation. Six Amazon model searches plus twelve optional exact cartridge searches use `nicheworks09-22`; no sales or inventory assumed. Current audit: `printer basic 343 = detail 336 + reviewed exclusion 7 + missing 0`. Historical 331/324 and 337/330 reconciliations remain historical only.
+
+### Dell Japan exact PC model searches (2026-11-03)
+
+The 20 exact Dell official manual-index records in `coverage-passes/dell/jp-20-model-manual-index-20261103.json` are each eligible for the existing canonical `PC・スマホ` Amazon Associates model-search template (`nicheworks09-22`). This adds 20 tagged model queries, not verified retail product matches, prices, sales or commissions. No model-specific batteries, chargers or accessories are offered without official compatibility evidence. Printer reconciliation remains unchanged: `printer basic 343 = detail 336 + reviewed exclusion 7 + missing 0`.
