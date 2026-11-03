@@ -84,8 +84,10 @@ desktopではfilters / catalog / detailのdashboardを主構成とし、mobile�
 ## Acceptance criteria
 
 - [ ] catalogをsearch/category/use-case/typeでfilterし、term detailを開ける。
+- [ ] 検索・フィルタ結果が存在する場合、詳細・copy-ready出力は検索結果内の語に追随し、以前選んだ無関係な語を残さない。
 - [ ] detailからshort AI-ready wordingをcopyできる。
 - [ ] favoritesとrecent termsがそれぞれlocalStorageに保存され、再訪時に復元される。
+- [ ] 壊れた／配列以外のlocalStorage、重複ID、不明な語IDは起動を停止させず無視し、最大10お気に入り・6履歴を保つ。
 - [ ] compareへ最大2 termsを追加し、difference/use guidanceを表示できる。
 - [ ] 3件目をcompareへ追加しようとすると上限案内になる。
 - [ ] full style prompt、brand tone memo、avoid list、compare handoff、Markdown / JSON exportをpaid entitlementなしで利用できる。
