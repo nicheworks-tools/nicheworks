@@ -44,7 +44,21 @@
   function t(key){ return (I18N[state.lang] && I18N[state.lang][key]) || key; }
   function toast(message){ const el = $("jrToast"); if (!el) return; el.textContent = message; el.hidden = false; clearTimeout(toast.timer); toast.timer = setTimeout(() => { el.hidden = true; }, 2400); }
   function setTab(name){ ["repaired","formatted","validate"].forEach((tab) => { const btn = document.querySelector(`.jr-tab[data-tab="${tab}"]`); const panel = $("panel" + tab.charAt(0).toUpperCase() + tab.slice(1)); const on = tab === name; if (btn) btn.setAttribute("aria-selected", on ? "true" : "false"); if (panel) panel.hidden = !on; }); }
-  function copyText(text){ return navigator.clipboard?.writeText(String(text || "")).then(() => true).catch(() => { const ta = document.createElement("textarea"); ta.value = String(text || ""); ta.style.position = "fixed"; ta.style.left = "-9999px"; document.body.appendChild(ta); ta.focus(); ta.select(); const ok = document.execCommand("copy"); ta.remove(); return ok; }); }
+  async function copyText(text){
+    const value = String(text || "");
+    if (!value) return false;
+    if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+      try { await navigator.clipboard.writeText(value); return true; } catch (_) { /* Use local fallback. */ }
+    }
+    const ta = document.createElement("textarea");
+    ta.value = value;
+    ta.style.position = "fixed";
+    ta.style.left = "-9999px";
+    document.body.appendChild(ta);
+    try { ta.focus(); ta.select(); return !!document.execCommand("copy"); }
+    catch (_) { return false; }
+    finally { ta.remove(); }
+  }
   function downloadText(filename, text, type = "application/json;charset=utf-8"){ const blob = new Blob([String(text || "")], { type }); const url = URL.createObjectURL(blob); const a = document.createElement("a"); a.href = url; a.download = filename; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 1200); }
 
   function detectLang(){ const saved = localStorage.getItem("nw_lang"); if (saved === "ja" || saved === "en") return saved; return (navigator.language || "").toLowerCase().startsWith("ja") ? "ja" : "en"; }
@@ -121,11 +135,31 @@
     return repaired;
   }
 
+  // Results belong to the input revision that produced them, not to a prior file or sample.
+  function clearDerivedOutput(){
+    state.repaired = "";
+    state.formatted = "";
+    state.schemaResult = null;
+    $("jrOutput").value = "";
+    $("jrFormattedOut").value = "";
+    $("jrDiff").textContent = "";
+    $("jrSchemaOut").textContent = "";
+  }
+  function invalidateResults(){
+    clearDerivedOutput();
+    state.validate = null;
+    state.log = [];
+    $("jrInput").classList.remove("jr-input-error");
+    renderValidate();
+    renderLog();
+    renderReport();
+  }
+
   function repair(){
     const raw = $("jrInput").value || ""; const level = $("selRepairLevel").value || "safe"; if (level === "aggressive" && !guardPro()) return;
     let text = level === "aggressive" ? aggressiveRepair(raw) : safeRepair(raw); let parsed = validateRaw(text);
     if (!parsed.ok && (level === "standard" || level === "aggressive")) { const candidates = findCandidates(raw); state.candidates = candidates; renderCandidates(); for (const candidate of candidates) { const attempt = level === "aggressive" ? aggressiveRepair(candidate.text) : safeRepair(candidate.text); if (validateRaw(attempt).ok) { text = attempt; parsed = validateRaw(text); state.log.push(`Extracted JSON candidate (${candidate.kind} ${candidate.start}..${candidate.end})`); break; } } }
-    state.validate = parsed; if (parsed.ok) { state.repaired = text; state.formatted = ""; $("jrOutput").value = text; $("jrFormattedOut").value = ""; $("jrInput").classList.remove("jr-input-error"); $("jrDiff").textContent = makeDiff(raw, text); renderLog(); renderValidate(); renderReport(); saveHistory(raw, text); toast(t("repaired")); setTab("repaired"); } else { $("jrInput").classList.add("jr-input-error"); renderValidate(); renderLog(); toast(t("failed")); setTab("validate"); }
+    state.validate = parsed; if (parsed.ok) { state.repaired = text; state.formatted = ""; $("jrOutput").value = text; $("jrFormattedOut").value = ""; $("jrInput").classList.remove("jr-input-error"); $("jrDiff").textContent = makeDiff(raw, text); renderLog(); renderValidate(); renderReport(); saveHistory(raw, text); toast(t("repaired")); setTab("repaired"); } else { clearDerivedOutput(); $("jrInput").classList.add("jr-input-error"); renderValidate(); renderLog(); renderReport(); toast(t("failed")); setTab("validate"); }
   }
 
   function makeDiff(before, after){ const b = before.split(/\r?\n/), a = after.split(/\r?\n/); const lines = []; const max = Math.max(b.length, a.length); for (let i = 0; i < Math.min(max, 80); i += 1) { if (b[i] !== a[i]) { if (b[i] !== undefined) lines.push(`- ${b[i]}`); if (a[i] !== undefined) lines.push(`+ ${a[i]}`); } } return lines.length ? lines.join("\n") : "No visible line diff."; }
@@ -146,22 +180,39 @@
   function format(pretty){ const src = state.repaired || $("jrInput").value || ""; try { const obj = JSON.parse(src); const out = pretty ? JSON.stringify(obj, null, state.indent) + "\n" : JSON.stringify(obj); state.formatted = out; $("jrFormattedOut").value = out; setTab("formatted"); } catch (_error) { state.validate = validateRaw($("jrInput").value || ""); renderValidate(); setTab("validate"); toast(t("invalid")); } }
 
   function initEvents(){
+    let fileRequest = 0; // Supersede slower reads when the user selects/types newer input.
     qsa(".nw-lang-btn").forEach((btn) => btn.addEventListener("click", () => setLang(btn.dataset.lang)));
     qsa(".jr-tab").forEach((btn) => btn.addEventListener("click", () => setTab(btn.dataset.tab)));
     $("selRepairLevel").addEventListener("change", (e) => { state.level = e.target.value; if (state.level === "aggressive" && !state.proActive) { e.target.value = "standard"; state.level = "standard"; toast(t("locked")); } renderLevelHelp(); });
     $("selIndent").addEventListener("change", (e) => { state.indent = Number(e.target.value) || 2; });
-    $("selSample").addEventListener("change", (e) => { const key = e.target.value; if (!key) return; if (e.target.selectedOptions[0]?.dataset.pro === "true" && !state.proActive) { toast(t("proSampleLocked")); return; } $("jrInput").value = SAMPLES[key] || ""; state.repaired = ""; state.formatted = ""; updateStats(); state.candidates = findCandidates($("jrInput").value); renderCandidates(); });
-    $("jrInput").addEventListener("input", () => { state.repaired = ""; state.formatted = ""; updateStats(); state.candidates = findCandidates($("jrInput").value); renderCandidates(); });
+    $("selSample").addEventListener("change", (e) => { const key = e.target.value; if (!key) return; if (e.target.selectedOptions[0]?.dataset.pro === "true" && !state.proActive) { toast(t("proSampleLocked")); return; } fileRequest += 1; $("jrInput").value = SAMPLES[key] || ""; invalidateResults(); updateStats(); state.candidates = findCandidates($("jrInput").value); renderCandidates(); });
+    $("jrInput").addEventListener("input", () => { fileRequest += 1; invalidateResults(); updateStats(); state.candidates = findCandidates($("jrInput").value); renderCandidates(); });
     $("btnLoad").addEventListener("click", () => $("fileInput").click());
-    $("fileInput").addEventListener("change", async (event) => { const file = event.target.files?.[0]; if (!file) return; $("jrInput").value = await file.text(); updateStats(); state.candidates = findCandidates($("jrInput").value); renderCandidates(); toast(t("loaded")); });
+    $("fileInput").addEventListener("change", async (event) => {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      const request = ++fileRequest;
+      try {
+        const text = await file.text();
+        if (request !== fileRequest) return;
+        $("jrInput").value = text;
+        invalidateResults();
+        updateStats();
+        state.candidates = findCandidates(text);
+        renderCandidates();
+        toast(t("loaded"));
+      } catch (_) {
+        if (request === fileRequest) toast(t("failed"));
+      }
+    });
     $("btnValidate").addEventListener("click", () => { state.validate = validateRaw($("jrInput").value || ""); $("jrInput").classList.toggle("jr-input-error", !state.validate.ok); renderValidate(); toast(state.validate.ok ? t("valid") : t("invalid")); setTab("validate"); });
     $("btnRepair").addEventListener("click", repair);
     $("btnFormatPretty").addEventListener("click", () => format(true));
     $("btnFormatMinify").addEventListener("click", () => format(false));
     $("btnCopy").addEventListener("click", async () => toast(await copyText(state.repaired || state.formatted || $("jrInput").value || "") ? t("copied") : t("noOutput")));
     $("btnDownload").addEventListener("click", () => { const text = state.repaired || state.formatted || ""; if (!text) { toast(t("noOutput")); return; } downloadText($("jrFilename").value || "repaired.json", text); toast(t("saved")); });
-    $("btnReset").addEventListener("click", () => { ["jrInput","jrOutput","jrFormattedOut"].forEach((id) => { $(id).value = ""; }); state.repaired = ""; state.formatted = ""; state.validate = null; state.log = []; state.candidates = []; $("jrDiff").textContent = ""; updateStats(); renderValidate(); renderLog(); renderCandidates(); renderReport(); setTab("repaired"); });
-    document.addEventListener("click", (event) => { const use = event.target.closest("[data-cand-use]"); const rep = event.target.closest("[data-cand-repair]"); if (!use && !rep) return; if (!guardPro()) return; const idx = Number((use || rep).dataset.candUse ?? (use || rep).dataset.candRepair); const candidate = (state.candidates.length ? state.candidates : findCandidates($("jrInput").value))[idx]; if (!candidate) return; $("jrInput").value = candidate.text; updateStats(); if (rep) repair(); });
+    $("btnReset").addEventListener("click", () => { fileRequest += 1; $("jrInput").value = ""; invalidateResults(); state.candidates = []; updateStats(); renderCandidates(); setTab("repaired"); });
+    document.addEventListener("click", (event) => { const use = event.target.closest("[data-cand-use]"); const rep = event.target.closest("[data-cand-repair]"); if (!use && !rep) return; if (!guardPro()) return; const idx = Number((use || rep).dataset.candUse ?? (use || rep).dataset.candRepair); const candidate = (state.candidates.length ? state.candidates : findCandidates($("jrInput").value))[idx]; if (!candidate) return; fileRequest += 1; $("jrInput").value = candidate.text; invalidateResults(); updateStats(); state.candidates = findCandidates(candidate.text); renderCandidates(); if (rep) repair(); });
     $("btnSchemaRun").addEventListener("click", runSchema);
     $("btnHistoryClear").addEventListener("click", () => { if (!guardPro()) return; localStorage.removeItem(HISTORY_KEY); renderHistory(); });
     $("btnReportCopy").addEventListener("click", async () => { if (!guardPro()) return; toast(await copyText(reportMarkdown()) ? t("copied") : t("noOutput")); });
