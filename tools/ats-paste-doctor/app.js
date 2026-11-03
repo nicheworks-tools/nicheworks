@@ -41,6 +41,16 @@
   let currentLang = (navigator.language || "").toLowerCase().startsWith("ja") ? "ja" : "en";
   let currentMode = "safe";
   let toastTimer = 0;
+  let processingSerial = 0;
+  let processedSignature = "";
+  const inputSignature = () => JSON.stringify([currentMode, el.input?.value || ""]);
+  function invalidateOutput() {
+    processingSerial += 1;
+    processedSignature = "";
+    if (el.output) el.output.value = "";
+    if (el.preview) el.preview.textContent = "";
+    showProgress(false);
+  }
 
   const messages = {
     en: {
@@ -353,6 +363,7 @@
 
   function setMode(mode) {
     currentMode = ["safe", "keep", "clean"].includes(mode) ? mode : "safe";
+    invalidateOutput();
     Object.entries(modeButtons).forEach(([key, button]) => {
       if (!button) return;
       const active = key === currentMode;
@@ -512,21 +523,31 @@
 
   function process() {
     clearError();
+    invalidateOutput();
     const raw = el.input?.value || "";
     if (!raw.trim()) return error(t("emptyInput"));
     const max = isProActive() ? PRO_LIMIT : FREE_LIMIT;
     if (raw.length > max) return error(t("tooLong"));
+    const requestedSerial = processingSerial;
+    const requestedSignature = inputSignature();
     showProgress(true);
     window.setTimeout(() => {
+      if (requestedSerial !== processingSerial) return;
+      if (requestedSignature !== inputSignature()) { invalidateOutput(); return; }
       try {
         const output = buildOutput(raw);
+        if (requestedSerial !== processingSerial || requestedSignature !== inputSignature()) {
+          invalidateOutput();
+          return;
+        }
         if (el.output) el.output.value = output;
         if (el.preview) el.preview.textContent = output;
+        processedSignature = requestedSignature;
         renderCountsAndWarnings();
       } catch (processingError) {
         error(currentLang === "ja" ? "処理に失敗しました。入力を短くして再試行してください。" : "Processing failed. Try smaller input.");
       } finally {
-        showProgress(false);
+        if (requestedSerial === processingSerial) showProgress(false);
       }
     }, 60);
   }
@@ -569,19 +590,26 @@
   function copyOutput() {
     clearError();
     const output = el.output?.value || "";
-    if (!output.trim()) return error(t("emptyOutput"));
+    if (!output.trim() || processedSignature !== inputSignature()) {
+      invalidateOutput();
+      return error(t("emptyOutput"));
+    }
     copyText(output);
   }
 
   function downloadTxt() {
     clearError();
     const output = el.output?.value || "";
-    if (!output.trim()) return error(t("emptyOutput"));
+    if (!output.trim() || processedSignature !== inputSignature()) {
+      invalidateOutput();
+      return error(t("emptyOutput"));
+    }
     downloadFile("ats-paste-doctor.txt", output, "text/plain;charset=utf-8");
     toast(t("downloaded"));
   }
 
   function resetAll() {
+    invalidateOutput();
     clearError();
     if (el.input) el.input.value = "";
     if (el.output) el.output.value = "";
@@ -627,11 +655,12 @@
   function ensureOutput() {
     const raw = el.input?.value || "";
     const current = el.output?.value || "";
-    if (current.trim()) return current;
-    if (!raw.trim()) return "";
+    if (current.trim() && processedSignature === inputSignature()) return current;
+    if (!raw.trim() || raw.length > (isProActive() ? PRO_LIMIT : FREE_LIMIT)) return "";
     const output = buildOutput(raw);
     if (el.output) el.output.value = output;
     if (el.preview) el.preview.textContent = output;
+    processedSignature = inputSignature();
     return output;
   }
 
@@ -725,6 +754,7 @@
     if (el.input) el.input.value = value;
     if (el.output) el.output.value = value;
     if (el.preview) el.preview.textContent = value;
+    processedSignature = inputSignature();
     renderCountsAndWarnings();
     toast(t("loaded"));
   }
@@ -776,6 +806,7 @@
         if (el.input) el.input.value = item.text || "";
         if (el.output) el.output.value = item.text || "";
         if (el.preview) el.preview.textContent = item.text || "";
+        processedSignature = inputSignature();
         renderCountsAndWarnings();
         toast(t("loaded"));
       });
@@ -856,7 +887,10 @@
     el.langJa?.addEventListener("click", () => setLang("ja"));
     el.langEn?.addEventListener("click", () => setLang("en"));
     Object.values(modeButtons).forEach((button) => button?.addEventListener("click", () => setMode(button.dataset.mode)));
-    el.input?.addEventListener("input", renderCountsAndWarnings);
+    el.input?.addEventListener("input", () => {
+      invalidateOutput();
+      renderCountsAndWarnings();
+    });
     el.limit?.addEventListener("input", updateLimitMeta);
     el.process?.addEventListener("click", process);
     el.copy?.addEventListener("click", copyOutput);
