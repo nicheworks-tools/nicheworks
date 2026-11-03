@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "updatedAt": "2026-11-03",
   "phones": [
     {
@@ -484,6 +484,273 @@
         "charger-pps-65w",
         "charger-oppo-airvooc"
       ]
+    },
+    {
+      "id": "samsung-galaxy-s24-fe",
+      "manufacturer": "Samsung",
+      "model": "Galaxy S24 FE",
+      "aliases": [
+        "Galaxy S24FE",
+        "GalaxyS24FE",
+        "SM-S721Q",
+        "ギャラクシーS24 FE"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2024,
+      "dimensions": {
+        "heightMm": 162,
+        "widthMm": 77.3,
+        "depthMm": 8
+      },
+      "weightG": 213,
+      "displayInch": 6.7,
+      "waterRating": null,
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4700,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.samsung.com/jp/smartphones/galaxy-s/galaxy-s24-fe-blue-128gb-sm-s721qlbasjp/"
+        },
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.samsung.com/jp/smartphones/galaxy-s/galaxy-s24-fe-blue-128gb-sm-s721qlbasjp/",
+        "manualUrl": "https://www.samsung.com/jp/smartphones/galaxy-s/galaxy-s24-fe-blue-128gb-sm-s721qlbasjp/",
+        "releaseUrl": "https://news.samsung.com/jp/galaxy_%EF%BD%9324fe1226",
+        "chargingUrl": "https://www.samsung.com/jp/smartphones/galaxy-s/galaxy-s24-fe-blue-128gb-sm-s721qlbasjp/",
+        "waterUrl": "https://www.samsung.com/jp/smartphones/galaxy-s/galaxy-s24-fe-blue-128gb-sm-s721qlbasjp/",
+        "verifiedAt": "2026-11-03"
+      },
+      "affiliateKeys": [],
+      "reviewNotes": "日本向けSIMフリー型番SM-S721Q。メーカー仕様から入力上限W数は断定しない。"
+    },
+    {
+      "id": "samsung-galaxy-a23-5g-sc56c",
+      "manufacturer": "Samsung",
+      "model": "Galaxy A23 5G (SC-56C)",
+      "aliases": [
+        "Galaxy A23 5G",
+        "SC-56C",
+        "GalaxyA235G",
+        "ギャラクシーA23"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2022,
+      "dimensions": {
+        "heightMm": 150,
+        "widthMm": 71,
+        "depthMm": 9
+      },
+      "weightG": 168,
+      "displayInch": 5.8,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.docomo.ne.jp/support/product/sc56c/spec.html"
+        },
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 2.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "wirelessStatus": "not_supported"
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.docomo.ne.jp/support/product/sc56c/spec.html",
+        "manualUrl": "https://www.docomo.ne.jp/support/product/sc56c/spec.html",
+        "releaseUrl": "https://www.docomo.ne.jp/support/product/sc56c/",
+        "chargingUrl": "https://www.docomo.ne.jp/support/product/sc56c/spec.html",
+        "waterUrl": "https://www.docomo.ne.jp/support/product/sc56c/spec.html",
+        "verifiedAt": "2026-11-03"
+      },
+      "affiliateKeys": [],
+      "reviewNotes": "国内ドコモSC-56C。公式表にPPS対応「－」、Qi「－」。充電器の上限W数は記載なし。"
+    },
+    {
+      "id": "samsung-galaxy-a22-5g-sc56b",
+      "manufacturer": "Samsung",
+      "model": "Galaxy A22 5G (SC-56B)",
+      "aliases": [
+        "Galaxy A22 5G",
+        "SC-56B",
+        "GalaxyA225G",
+        "ギャラクシーA22"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2021,
+      "dimensions": {
+        "heightMm": 150,
+        "widthMm": 71,
+        "depthMm": 8.9
+      },
+      "weightG": 168,
+      "displayInch": 5.8,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.docomo.ne.jp/support/product/sc56b/spec.html"
+        },
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 2.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "wirelessStatus": "not_supported"
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.docomo.ne.jp/support/product/sc56b/spec.html",
+        "manualUrl": "https://www.docomo.ne.jp/support/product/sc56b/spec.html",
+        "releaseUrl": "https://www.docomo.ne.jp/support/product/sc56b/",
+        "chargingUrl": "https://www.docomo.ne.jp/support/product/sc56b/spec.html",
+        "waterUrl": "https://www.docomo.ne.jp/support/product/sc56b/spec.html",
+        "verifiedAt": "2026-11-03"
+      },
+      "affiliateKeys": [],
+      "reviewNotes": "国内ドコモSC-56B。公式表にPPS対応「－」、Qi「－」。充電器の上限W数は記載なし。"
+    },
+    {
+      "id": "samsung-galaxy-a21-sc42a",
+      "manufacturer": "Samsung",
+      "model": "Galaxy A21 (SC-42A)",
+      "aliases": [
+        "Galaxy A21",
+        "SC-42A",
+        "GalaxyA21",
+        "ギャラクシーA21"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2020,
+      "dimensions": {
+        "heightMm": 150,
+        "widthMm": 71,
+        "depthMm": 8.4
+      },
+      "weightG": 159,
+      "displayInch": 5.8,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 3600,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.docomo.ne.jp/support/product/sc42a/spec.html"
+        },
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 2.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "wirelessStatus": "not_supported"
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.docomo.ne.jp/support/product/sc42a/spec.html",
+        "manualUrl": "https://www.docomo.ne.jp/support/product/sc42a/spec.html",
+        "releaseUrl": "https://www.docomo.ne.jp/support/product/sc42a/",
+        "chargingUrl": "https://www.docomo.ne.jp/support/product/sc42a/spec.html",
+        "waterUrl": "https://www.docomo.ne.jp/support/product/sc42a/spec.html",
+        "verifiedAt": "2026-11-03"
+      },
+      "affiliateKeys": [],
+      "reviewNotes": "国内ドコモSC-42A。公式表にUSB PD Rev.2.0、Qi「－」。PPSと端末最大W数は未確認。"
+    },
+    {
+      "id": "samsung-galaxy-a20-sc02m",
+      "manufacturer": "Samsung",
+      "model": "Galaxy A20 (SC-02M)",
+      "aliases": [
+        "Galaxy A20",
+        "SC-02M",
+        "GalaxyA20",
+        "ギャラクシーA20"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2019,
+      "dimensions": {
+        "heightMm": 150,
+        "widthMm": 71,
+        "depthMm": 8.1
+      },
+      "weightG": 151,
+      "displayInch": 5.8,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 3000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.docomo.ne.jp/support/product/sc02m/spec.html"
+        },
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 2.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "wirelessStatus": "not_supported"
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.docomo.ne.jp/support/product/sc02m/spec.html",
+        "manualUrl": "https://www.docomo.ne.jp/support/product/sc02m/spec.html",
+        "releaseUrl": "https://www.docomo.ne.jp/support/product/sc02m/",
+        "chargingUrl": "https://www.docomo.ne.jp/support/product/sc02m/spec.html",
+        "waterUrl": "https://www.docomo.ne.jp/support/product/sc02m/spec.html",
+        "verifiedAt": "2026-11-03"
+      },
+      "affiliateKeys": [],
+      "reviewNotes": "国内ドコモSC-02M。公式表にUSB PD Rev.2.0、Qi「－」。PPSと端末最大W数は未確認。"
     }
   ]
 }

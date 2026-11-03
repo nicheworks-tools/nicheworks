@@ -158,7 +158,24 @@ async function httpSmoke(){
   assert.ok((await guideTrackerResponse.text()).includes('affiliate_outbound'),'Live buying guide tracker is missing');
   const guideHtmlResponse = await req('charging-guide/');
   assert.equal((await guideHtmlResponse.text()).match(/data-offer-key=/g)?.length,9,'Nine categorized outbound links required');
-  console.log('SEO HTTP PASS: 250 crawlable phone entries, commercial charging guide');
+  // Curated Japan-only Galaxy model pages must be live and internally linked.
+  const profileScript = await req('models/model-profile-affiliate.js');
+  assert.equal(profileScript.status,200,'Galaxy model affiliate tracker status');
+  assert.ok((await profileScript.text()).includes('affiliate_outbound'),'Galaxy model tracker missing');
+  const recentGalaxy = growthPayload.phones.slice(-5);
+  for (const galaxy of recentGalaxy) {
+    assert.equal(galaxy.manufacturer,'Samsung','Last five growth records must be Japan Galaxy devices');
+    const target = 'models/' + galaxy.id + '/';
+    const response = await req(target);
+    assert.equal(response.status,200,'Model SEO landing '+target+' status');
+    const html = await response.text();
+    assert.ok(html.includes('<h1>'+galaxy.model+'の充電器・USB-Cケーブルは？</h1>'),'Model page title missing '+target);
+    assert.ok(html.includes('href="https://nicheworks.app/tools/phone-quickcheck/'+target+'"'),'Model canonical missing '+target);
+    assert.equal((html.match(/data-offer-key=/g)||[]).length,2,'Model affiliate handoffs must be verified '+target);
+    assert.ok(html.includes('適格販売により収入を得ています'),'Model ad disclosure missing '+target);
+  }
+  console.log('Galaxy SEO HTTP PASS: 5 source-backed model guides and shared sponsored click tracker');
+  console.log('SEO HTTP PASS: '+count+' crawlable phone entries, commercial charging guide');
   console.log('HTTP PASS: '+count+' verified public phones, assets and latest records');
 }
 async function until(check,ms){

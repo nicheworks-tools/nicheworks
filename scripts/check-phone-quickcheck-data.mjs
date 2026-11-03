@@ -17,8 +17,8 @@ const growth = Array.isArray(growthPayload.phones) ? growthPayload.phones : [];
 const phones = [...(Array.isArray(phonePayload.phones) ? phonePayload.phones : []), ...growth];
 const accessories = Array.isArray(accessoryPayload.accessories) ? accessoryPayload.accessories : [];
 
-if (phones.length < 250) fail(`expected at least 250 official-source phones, got ${phones.length}`);
-if (growth.length !== 9 || growthPayload.updatedAt !== '2026-11-03') fail('curated Nov 3 growth pack must retain 9 verified devices');
+if (phones.length < 255) fail(`expected at least 255 official-source phones, got ${phones.length}`);
+if (growth.length !== 14 || growthPayload.updatedAt !== '2026-11-03') fail('curated Nov 3 growth pack must retain 14 verified devices');
 if (!/^2026-\d{2}-\d{2}$/.test(String(phonePayload.updatedAt || ''))) fail('phones updatedAt must be a 2026 ISO date');
 
 const ids = new Set();

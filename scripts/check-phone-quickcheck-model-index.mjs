@@ -4,7 +4,7 @@ import vm from 'node:vm';
 
 const html=fs.readFileSync('tools/phone-quickcheck/models/index.html','utf8');
 const script=fs.readFileSync('tools/phone-quickcheck/models/model-index.js','utf8');
-assert.equal((html.match(/data-phone-id=/g)||[]).length,250,'All 250 rows must remain static and crawlable');
+assert.equal((html.match(/data-phone-id=/g)||[]).length,255,'All 255 rows must remain static and crawlable');
 assert.ok(html.includes('<input id="modelSearch" type="search"'));
 assert.ok(html.includes('id="modelSearchCount"'));
 assert.ok(html.includes('<script src="./model-index.js" defer></script>'));
@@ -53,4 +53,4 @@ assert.equal(payload.maker_bucket,'google');
 assert.equal(payload.placement,'static_model_index');
 assert.deepEqual(Object.keys(payload).sort(),['maker_bucket','placement','tool_slug']);
 assert.equal(JSON.stringify(payload).includes('Pixel'),false,'No model or search string must enter GA4');
-console.log('Phone QuickCheck model index PASS: 250 pre-rendered entries, local NFKC search, accessible count, maker-only click analytics.');
+console.log('Phone QuickCheck model index PASS: 255 pre-rendered entries, local NFKC search, accessible count, maker-only click analytics.');
