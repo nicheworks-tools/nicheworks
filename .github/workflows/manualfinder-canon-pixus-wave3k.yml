@@ -1,0 +1,26 @@
+name: ManualFinder Canon PIXUS Wave 3K official manual and ink
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/**'
+      - '.github/workflows/manualfinder-canon-pixus-wave3k.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  canon-pixus-wave3k:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact Canon manual and manufacturer ink compatibility assertions
+        run: |
+          node tools/manual-finder/tests/canon-pixus-wave3k-publication.test.mjs
+          node tools/manual-finder/tests/epson-colorio-wave3j-publication.test.mjs
+          node tools/manual-finder/tests/canon-jp-lens-publication.test.mjs
+          node tools/manual-finder/tests/affiliate-behavior-core.test.mjs
+          node tools/manual-finder/tests/affiliate-coverage.test.mjs
+          node tools/manual-finder/tests/affiliate-doc-sync.test.mjs
