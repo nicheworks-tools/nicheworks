@@ -3,6 +3,29 @@
   const $$ = (selector) => Array.from(document.querySelectorAll(selector));
   let generated = false;
   let lastProOutputs = {};
+  let freeOutputSignature = "";
+  let proOutputSignature = "";
+  const SOURCE_IDS = [
+    "workType", "purpose", "deliverables", "outOfScope", "deadline",
+    "budget", "deliveryFormat", "acceptanceMethod", "acceptancePeriod",
+    "communication", "revisionRounds", "paymentTerms", "rightsUsage",
+    "portfolioPermission", "confidentiality", "mustHave", "references", "packType"
+  ];
+  const sourceSignature = () => JSON.stringify(SOURCE_IDS.map((id) => document.getElementById(id)?.value || ""));
+  const invalidateOutputs = () => {
+    generated = false;
+    lastProOutputs = {};
+    freeOutputSignature = "";
+    proOutputSignature = "";
+    const freeJa = document.getElementById("outputJa");
+    const freeEn = document.getElementById("outputEn");
+    const proJa = document.getElementById("proOutputJa");
+    const proEn = document.getElementById("proOutputEn");
+    if (freeJa) freeJa.textContent = "必須項目を入力して「簡易仕様書を生成」を押してください。";
+    if (freeEn) freeEn.textContent = "Fill in the required fields, then click Generate free spec.";
+    if (proJa) proJa.textContent = "入力変更後はPro出力を再生成してください。";
+    if (proEn) proEn.textContent = "Inputs changed. Regenerate the Pro draft.";
+  };
 
   const lang = () => document.documentElement.lang === 'en' ? 'en' : 'ja';
   const isProActive = () => document.documentElement.dataset.proActive === 'true';
@@ -467,6 +490,7 @@
     $('outputJa').textContent = buildFreeSpec('ja');
     $('outputEn').textContent = buildFreeSpec('en');
     generated = true;
+    freeOutputSignature = sourceSignature();
   }
 
   function showProOutput(key, builder) {
@@ -476,6 +500,7 @@
       ja: builder('ja'),
       en: builder('en')
     };
+    proOutputSignature = sourceSignature();
     $('proOutputJa').textContent = lastProOutputs[key].ja;
     $('proOutputEn').textContent = lastProOutputs[key].en;
     toast(t('Pro出力を生成しました。', 'Generated Pro output.'));
@@ -503,6 +528,10 @@
   }
 
   function currentOutput(key, builder) {
+    if (proOutputSignature !== sourceSignature()) {
+      lastProOutputs = {};
+      proOutputSignature = sourceSignature();
+    }
     if (!lastProOutputs[key]) {
       lastProOutputs[key] = { ja: builder('ja'), en: builder('en') };
     }
@@ -569,14 +598,20 @@
     $('proOutputJa').textContent = 'PreviewモードではPro出力のサンプルを確認できます。Pro解放後、ここに詳細パックを生成できます。';
     $('proOutputEn').textContent = 'Preview mode shows Pro samples. After Pro is unlocked, detailed packs appear here.';
 
+    SOURCE_IDS.forEach((id) => {
+      const input = $(id);
+      input?.addEventListener('input', invalidateOutputs);
+      input?.addEventListener('change', invalidateOutputs);
+    });
+
     $('generateBtn').addEventListener('click', () => {
-      if (!validateRequired()) return;
+      if (!validateRequired()) { invalidateOutputs(); return; }
       updateFreeOutput();
       toast(t('簡易仕様書を生成しました。', 'Generated free spec.'));
     });
     $('copyBtn').addEventListener('click', () => {
-      if (!generated) {
-        if (!validateRequired()) return;
+      if (!generated || freeOutputSignature !== sourceSignature()) {
+        if (!validateRequired()) { invalidateOutputs(); return; }
         updateFreeOutput();
       }
       copyText(lang() === 'ja' ? $('outputJa').textContent : $('outputEn').textContent, t('簡易仕様書をコピーしました。', 'Copied free spec.'));

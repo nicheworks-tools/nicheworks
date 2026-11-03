@@ -107,6 +107,7 @@ The tool contains a long project-specification form, multiple outputs, and Pro h
 - [ ] Required work type, deliverables, deadline, budget, and acceptance method are enforced before generation.
 - [ ] Free mode remains able to generate the lightweight spec, acceptance criteria, and revision rules without Pro.
 - [ ] Free lightweight output remains copyable without Pro.
+- [ ] Changes to outsourcing details or deliverable pack type invalidate stale Free/Pro preview caches; Free copy and gated Pro copies use the current form even when an input event is skipped.
 - [ ] Current Pro-only handoff, deliverable/checklist/questions, Codex/GitHub, Markdown, and JSON outputs require active shared `nicheworks_pro` and stay locked for unrelated product entitlements.
 - [ ] Staged wrapper defines exactly eight paid operations and delegates entitlement-state logic to the shared core.
 - [ ] Staged wrapper contains no user-entered project/form content or legacy browser/payment authority.
