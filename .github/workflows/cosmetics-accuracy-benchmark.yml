@@ -62,6 +62,7 @@ on:
       - 'tools/_shared/check-fastscan-image-enhancement.mjs'
       - 'tools/_shared/check-fastscan-photo-ocr-metrics.mjs'
       - 'tools/inci-fastscan/qa/check-japanese-source-alias-wave.mjs'
+      - 'tools/inci-fastscan/qa/check-japanese-source-backed-new-records.mjs'
       - 'tools/inci-fastscan/qa/japanese-source-alias-evidence.mjs'
       - 'tools/_shared/check-fastscan-result-controls.mjs'
       - 'tools/_shared/check-fastscan-review-queue.mjs'
@@ -290,6 +291,8 @@ jobs:
         run: node tools/_shared/check-fastscan-photo-ocr-metrics.mjs
       - name: Japanese source-backed INCI identity aliases
         run: node tools/inci-fastscan/qa/check-japanese-source-alias-wave.mjs
+      - name: New Japanese source-backed canonical names (unrated legacy safety)
+        run: node tools/inci-fastscan/qa/check-japanese-source-backed-new-records.mjs
       - name: FastScan result controls regression
         run: node tools/_shared/check-fastscan-result-controls.mjs
       - name: FastScan review queue regression
