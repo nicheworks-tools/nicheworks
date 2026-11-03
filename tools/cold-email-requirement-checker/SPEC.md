@@ -100,6 +100,7 @@ The primary task is a focused text-input → review-results flow designed to rem
 - [ ] Empty/reset state does not fabricate a positive compliance result.
 - [ ] Legal/compliance warnings remain visible in both JP and EN modes.
 - [ ] Free checklist/review copy remains usable without Pro.
+- [ ] Free review copying evaluates the current subject/body immediately and never includes the Pro-only numeric structure score.
 - [ ] Current Pro score/suggestions/comparison/Markdown actions require active exact shared `nicheworks_pro`.
 - [ ] Missing or unrelated entitlement cannot unlock the current legacy Pro surface.
 - [ ] Staged wrapper defines exactly four paid operations and delegates entitlement-state logic to the shared core.
