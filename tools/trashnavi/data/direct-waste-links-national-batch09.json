@@ -121,7 +121,7 @@
     "city": "音更町",
     "name": "家庭ごみの自己搬入",
     "type": "持込施設",
-    "link_type": "drop_off_facility",
+    "link_type": "dropoff_facility",
     "url": "https://www.town.otofuke.hokkaido.jp/kurashi/kankyo/gomi/jikohannyu.html",
     "lgcode": "016314",
     "last_checked": "2026-11-04",
