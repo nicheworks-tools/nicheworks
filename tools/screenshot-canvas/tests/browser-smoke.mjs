@@ -62,9 +62,9 @@ function pageSmoke() {
     check(rgbAt(200, 40)[2] > 200, 'row layout second image color');
 
     c.setPointerCapture = () => {};
-    pointer('pointerdown', 75, 65);
-    pointer('pointermove', 115, 95);
-    pointer('pointerup', 115, 95);
+    pointer('pointerdown', 90, 60);
+    pointer('pointermove', 130, 90);
+    pointer('pointerup', 130, 90);
     check(rgbAt(45, 45)[0] > 245, 'move vacates original pixel');
     check(rgbAt(100, 90)[0] > 200, 'drag moves first image');
 
