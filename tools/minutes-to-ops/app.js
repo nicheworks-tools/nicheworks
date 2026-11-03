@@ -77,6 +77,7 @@
   let githubIssue = '';
   let codexPrompt = '';
   let handoffMarkdown = '';
+  let generatedSignature = '';
 
   function text(el, value) { if (el) el.textContent = value; }
   function placeholder(el, value) { if (el) el.placeholder = value; }
@@ -324,6 +325,10 @@
     try { toast(document.execCommand('copy') ? message : I18N[UI].copyFailed); } finally { textarea.remove(); }
   }
 
+  function inputSignature() {
+    return JSON.stringify([els.notes?.value || '', els.meetingTitle?.value || '', els.meetingDate?.value || '', els.participants?.value || '']);
+  }
+
   function generate(silent = false) {
     const raw = (els.notes?.value || '').trim();
     event('tool_run', { tool_slug: TOOL, lang: UI });
@@ -341,6 +346,7 @@
     githubIssue = makeGithubIssue(currentMeta);
     codexPrompt = makeCodexPrompt(currentMeta);
     handoffMarkdown = makeHandoff(currentMeta);
+    generatedSignature = inputSignature();
     renderTodos(todos);
     text(els.todoMeta, `${todos.length} todos / ${decisions.length} decisions`);
     text(els.decisions, decisions.length ? decisions.map((item) => `- ${item}`).join('\n') : '—');
@@ -353,9 +359,10 @@
     renderProOutputs();
     return true;
   }
-  function ensureGenerated() { return Boolean((els.notes?.value || '').trim() && (markdown || generate(true))); }
+  function ensureGenerated() { return Boolean((els.notes?.value || '').trim() && ((markdown && generatedSignature === inputSignature()) || generate(true))); }
 
   function clearOutputs() {
+    generatedSignature = '';
     todos = []; decisions = []; sop = ''; markdown = ''; githubIssue = ''; codexPrompt = ''; handoffMarkdown = '';
     renderTodos([]);
     text(els.todoMeta, '—'); text(els.decisions, '—'); text(els.sop, '—');
@@ -445,6 +452,11 @@
     toast(I18N[UI].saved);
   }
 
+  // Invalidate generated artifacts as soon as meeting content or metadata changes.
+  [els.notes, els.meetingTitle, els.meetingDate, els.participants].forEach((field) => {
+    field?.addEventListener('input', clearOutputs);
+    field?.addEventListener('change', clearOutputs);
+  });
   els.uiJA?.addEventListener('click', () => setUI('JA'));
   els.uiEN?.addEventListener('click', () => setUI('EN'));
   els.gen?.addEventListener('click', () => generate(false));
@@ -452,7 +464,7 @@
     [els.notes, els.meetingTitle, els.meetingDate, els.participants].forEach((el) => { if (el) el.value = ''; });
     clearOutputs();
   });
-  els.paste?.addEventListener('click', () => { if (els.notes) els.notes.value = EXAMPLES[UI]; toast(I18N[UI].examplePasted); });
+  els.paste?.addEventListener('click', () => { if (els.notes) els.notes.value = EXAMPLES[UI]; clearOutputs(); toast(I18N[UI].examplePasted); });
   els.dlCsv?.addEventListener('click', () => { if (!ensureGenerated()) return toast(I18N[UI].pasteFirst); download(`minutes-to-ops-todos-${stamp()}.csv`, makeCsv(todos, { bom: true, nl: '\r\n' }), 'text/csv;charset=utf-8'); toast(I18N[UI].csvSaved); });
   els.dlMd?.addEventListener('click', () => { if (!ensureGenerated()) return toast(I18N[UI].pasteFirst); download(`minutes-to-ops-${stamp()}.md`, markdown, 'text/markdown;charset=utf-8'); toast(I18N[UI].mdSaved); });
   els.copyMd?.addEventListener('click', () => { if (!ensureGenerated()) return toast(I18N[UI].pasteFirst); copy(markdown, I18N[UI].mdCopied); });

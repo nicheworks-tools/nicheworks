@@ -39,7 +39,7 @@ Turn pasted meeting minutes into operational artifacts using deterministic rule-
 
 ## State and persistence
 
-Normal pasted notes and generated outputs are page state. Pro history is stored locally under `nw_mto_history_v2`. Legacy shared `nicheworks_pro` browser state remains migration-only authority; it is not future server-verified purchase proof. User-triggered downloads are saved locally.
+Normal pasted notes and generated outputs are page state. Editing meeting text/title/date/participants or pasting a sample invalidates prior previews. Copy and download regenerate artifacts from the current inputs if missing or stale; existing Free/Pro boundaries are unchanged. Pro history is stored locally under `nw_mto_history_v2`. Legacy shared `nicheworks_pro` browser state remains migration-only authority; it is not future server-verified purchase proof. User-triggered downloads are saved locally.
 
 ## Privacy and network behavior
 
