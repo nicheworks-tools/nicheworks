@@ -1,7 +1,7 @@
 {
   "schema": "cta-reviewed-aliases-v3",
-  "version": "2026-11-03-five-canonical-redirects-closed",
-  "note": "75 maintained reviewed v3 patches remain. The retired sandpaper alias 研磨紙 was promoted into the surviving q011_sanding_paper source; five duplicate identities are redirected with no filler synonyms.",
+  "version": "2026-11-03-final-five-reviewed-aliases-2",
+  "note": "77 exact-source-guarded v3 alias patches (including two manufacturer-confirmed English alternates) close the 865-survivor catalog after five duplicate-canonical redirects. No fabricated synonym or duplicate identity is published.",
   "entries": [
     {
       "id": "backer_rod",
@@ -746,6 +746,32 @@
       "reason": "Narrow generic ceiling board to replaceable modular suspended-grid tile. Do not conflate direct-fixed board or separate acoustic subtype.",
       "evidence_urls": [
         "https://www.armstrongceilings.com/commercial/en/technical-downloads/ceiling-terms.html"
+      ]
+    },
+    {
+      "id": "diamond_blade",
+      "expected_ja": "ダイヤモンドブレード",
+      "expected_en": "Diamond blade",
+      "add_ja": [],
+      "add_en": [
+        "Diamond cutting blade"
+      ],
+      "reason": "Construction cutting-disc trade terminology; distinct from general saw blades and verified against the maintained target meaning.",
+      "evidence_urls": [
+        "https://products.ffgroup-toolindustries.com/product/2124/diamond-cutting-blade-universal-classic"
+      ]
+    },
+    {
+      "id": "notched_trowel",
+      "expected_ja": "くし目ゴテ",
+      "expected_en": "Notched trowel",
+      "add_ja": [],
+      "add_en": [
+        "Serrated trowel"
+      ],
+      "reason": "Tile-adhesive installation instructions use serrated trowel and notched trowel for the same grooved adhesive-spreading tool.",
+      "evidence_urls": [
+        "https://mys.sika.com/en/construction/tile-setting/tile-adhesives/sikaceram-188-my.html"
       ]
     }
   ],
