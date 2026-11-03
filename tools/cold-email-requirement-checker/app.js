@@ -320,7 +320,6 @@ const initColdEmailChecker = () => {
     return [
       t("Cold Email Requirement Checker 確認結果", "Cold Email Requirement Checker review"),
       `${t("下書き確認ステータス", "Draft review status")}: ${overallStatus.textContent}`,
-      `${t("構成スコア", "Structure score")}: ${scoreValue.textContent}/100`,
       "",
       ...items.map((item) => `- ${item}`),
       "",
@@ -337,6 +336,9 @@ const initColdEmailChecker = () => {
     runCheck();
   });
   copyBtn.addEventListener("click", async () => {
+    // Recheck synchronously: the 200ms input debounce may not have fired yet.
+    // Free copy intentionally contains checklist/status only, not the Pro score.
+    runCheck();
     const text = buildCopyText();
     const ok = await window.NW.copyToClipboard(text);
     window.NW.showToast(ok ? t("確認結果をコピーしました。", "Review copied.") : t("コピーに失敗しました。", "Copy failed."));
