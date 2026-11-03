@@ -74,9 +74,9 @@ for (const product of japaneseRealPhotoSources) {
   dictionarySupported += a.eligibleReferenceUniqueNames;
 }
 assert.equal(sourceNames, 127);
-assert.equal(dictionarySupported, 83, 'Nine aliases then four new identities must raise 70 → 79 → 83');
+assert.ok(dictionarySupported >= 83, 'Preserve all first-wave source names (70 → 79 → 83); subsequent verified waves may expand coverage');
 const incomplete = sourceNames - dictionarySupported;
-assert.equal(incomplete, 44);
+assert.ok(incomplete <= 44);
 console.log('FASTSCAN_JAPANESE_NEW_IDENTITIES=' + JSON.stringify({
   status: 'PASS', sourcePhotoPairs: 2, newIdentities: verified,
   sourceNames, dictionarySupported, incomplete,
