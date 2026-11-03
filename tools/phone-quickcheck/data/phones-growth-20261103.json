@@ -1,0 +1,489 @@
+{
+  "version": 1,
+  "updatedAt": "2026-11-03",
+  "phones": [
+    {
+      "id": "apple-iphone-17-pro",
+      "manufacturer": "Apple",
+      "model": "iPhone 17 Pro",
+      "aliases": [
+        "iPhone17Pro",
+        "アイフォン17プロ"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "dimensions": {
+        "heightMm": 150,
+        "widthMm": 71.9,
+        "depthMm": 8.75
+      },
+      "weightG": 206,
+      "displayInch": 6.3,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": null,
+          "valueClass": "unknown",
+          "sourceRef": null
+        },
+        "wiredRecommendedW": 40,
+        "wiredMaxW": null,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": "Qi2 / MagSafe",
+        "wirelessMaxW": 25
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.apple.com/jp/iphone-17-pro/specs/",
+        "manualUrl": "https://support.apple.com/ja-jp/guide/iphone/welcome/ios",
+        "releaseUrl": "https://support.apple.com/ja-jp/125090",
+        "chargingUrl": "https://www.apple.com/jp/iphone-17-pro/specs/",
+        "wirelessUrl": "https://www.apple.com/jp/iphone-17-pro/specs/",
+        "packageUrl": "https://www.apple.com/jp/iphone-17-pro/specs/",
+        "waterUrl": "https://www.apple.com/jp/iphone-17-pro/specs/",
+        "verifiedAt": "2026-11-03"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "apple-iphone-17-pro-max",
+      "manufacturer": "Apple",
+      "model": "iPhone 17 Pro Max",
+      "aliases": [
+        "iPhone17ProMax",
+        "アイフォン17プロマックス"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "dimensions": {
+        "heightMm": 163.4,
+        "widthMm": 78,
+        "depthMm": 8.75
+      },
+      "weightG": 233,
+      "displayInch": 6.9,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": null,
+          "valueClass": "unknown",
+          "sourceRef": null
+        },
+        "wiredRecommendedW": 40,
+        "wiredMaxW": null,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": "Qi2 / MagSafe",
+        "wirelessMaxW": 25
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.apple.com/jp/iphone-17-pro/specs/",
+        "manualUrl": "https://support.apple.com/ja-jp/guide/iphone/welcome/ios",
+        "releaseUrl": "https://support.apple.com/ja-jp/docs/iphone/301246",
+        "chargingUrl": "https://www.apple.com/jp/iphone-17-pro/specs/",
+        "wirelessUrl": "https://www.apple.com/jp/iphone-17-pro/specs/",
+        "packageUrl": "https://www.apple.com/jp/iphone-17-pro/specs/",
+        "waterUrl": "https://www.apple.com/jp/iphone-17-pro/specs/",
+        "verifiedAt": "2026-11-03"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "apple-iphone-air",
+      "manufacturer": "Apple",
+      "model": "iPhone Air",
+      "aliases": [
+        "iPhoneAir",
+        "アイフォンエア"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "dimensions": {
+        "heightMm": 156.2,
+        "widthMm": 74.7,
+        "depthMm": 5.64
+      },
+      "weightG": 165,
+      "displayInch": 6.5,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": null,
+          "valueClass": "unknown",
+          "sourceRef": null
+        },
+        "wiredRecommendedW": 20,
+        "wiredMaxW": null,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": "Qi2 / MagSafe",
+        "wirelessMaxW": 20
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.apple.com/jp/iphone-air/specs/",
+        "manualUrl": "https://support.apple.com/ja-jp/guide/iphone/welcome/ios",
+        "releaseUrl": "https://support.apple.com/ja-jp/125092",
+        "chargingUrl": "https://www.apple.com/jp/iphone-air/specs/",
+        "wirelessUrl": "https://www.apple.com/jp/iphone-air/specs/",
+        "packageUrl": "https://www.apple.com/jp/iphone-air/specs/",
+        "waterUrl": "https://www.apple.com/jp/iphone-air/specs/",
+        "verifiedAt": "2026-11-03"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "google-pixel-8-pro",
+      "manufacturer": "Google",
+      "model": "Pixel 8 Pro",
+      "aliases": [
+        "Google Pixel 8 Pro",
+        "Pixel8Pro",
+        "グーグルピクセル8プロ"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2023,
+      "dimensions": {
+        "heightMm": 162.6,
+        "widthMm": 76.5,
+        "depthMm": 8.8
+      },
+      "weightG": 213,
+      "displayInch": 6.7,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 5050,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://support.google.com/pixelphone/answer/7158570?hl=ja"
+        },
+        "wiredRecommendedW": 30,
+        "wiredMaxW": 30,
+        "protocols": [
+          "USB PD 3.0",
+          "PPS"
+        ],
+        "pps": "required",
+        "wirelessStandard": "Qi (Pixel Stand 2)",
+        "wirelessMaxW": 23
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://support.google.com/pixelphone/answer/7158570?hl=ja",
+        "manualUrl": "https://support.google.com/pixelphone/?hl=ja",
+        "releaseUrl": "https://support.google.com/pixelphone/answer/7158570?hl=ja",
+        "chargingUrl": "https://support.google.com/pixelphone/answer/7158570?hl=ja",
+        "wirelessUrl": "https://support.google.com/pixelphone/answer/7158570?hl=ja",
+        "packageUrl": "https://support.google.com/pixelphone/answer/7158537?hl=ja",
+        "waterUrl": "https://support.google.com/pixelphone/answer/7158570?hl=ja",
+        "verifiedAt": "2026-11-03"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "oppo-reno14-5g",
+      "manufacturer": "OPPO",
+      "model": "OPPO Reno14 5G",
+      "aliases": [
+        "Reno14 5G",
+        "CPH2737"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "dimensions": {
+        "heightMm": 158,
+        "widthMm": 75,
+        "depthMm": 7.4
+      },
+      "weightG": 187,
+      "displayInch": 6.6,
+      "waterRating": "IP68 / IP69",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 6000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.oppo.com/jp/smartphones/series-reno/reno14/specs/"
+        },
+        "wiredRecommendedW": 33,
+        "wiredMaxW": 80,
+        "protocols": [
+          "USB PD",
+          "PPS",
+          "SUPERVOOC"
+        ],
+        "pps": "supported",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.oppo.com/jp/smartphones/series-reno/reno14/specs/",
+        "manualUrl": "https://www.oppo.com/jp/smartphones/series-reno/reno14/specs/",
+        "releaseUrl": "https://www.oppo.com/jp/newsroom/press/reno14-release/",
+        "chargingUrl": "https://www.oppo.com/jp/smartphones/series-reno/reno14/specs/",
+        "packageUrl": "https://www.oppo.com/jp/smartphones/series-reno/reno14/specs/",
+        "waterUrl": "https://www.oppo.com/jp/smartphones/series-reno/reno14/specs/",
+        "verifiedAt": "2026-11-03"
+      },
+      "affiliateKeys": [
+        "charger-pps-45w"
+      ]
+    },
+    {
+      "id": "oppo-a5-5g",
+      "manufacturer": "OPPO",
+      "model": "OPPO A5 5G",
+      "aliases": [
+        "A5 5G",
+        "CPH2735"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "dimensions": {
+        "heightMm": 166,
+        "widthMm": 76,
+        "depthMm": 8
+      },
+      "weightG": 194,
+      "displayInch": 6.7,
+      "waterRating": "IPX5 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 6000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.oppo.com/jp/smartphones/series-a/a5-5g/specs/"
+        },
+        "wiredRecommendedW": 33,
+        "wiredMaxW": 45,
+        "protocols": [
+          "PPS",
+          "SUPERVOOC"
+        ],
+        "pps": "supported",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.oppo.com/jp/smartphones/series-a/a5-5g/specs/",
+        "manualUrl": "https://www.oppo.com/jp/smartphones/series-a/a5-5g/specs/",
+        "releaseUrl": "https://www.oppo.com/jp/newsroom/press/a55g-release/",
+        "chargingUrl": "https://www.oppo.com/jp/smartphones/series-a/a5-5g/specs/",
+        "packageUrl": "https://www.oppo.com/jp/smartphones/series-a/a5-5g/specs/",
+        "waterUrl": "https://www.oppo.com/jp/smartphones/series-a/a5-5g/specs/",
+        "verifiedAt": "2026-11-03"
+      },
+      "affiliateKeys": [
+        "charger-pps-45w"
+      ]
+    },
+    {
+      "id": "oppo-a5x",
+      "manufacturer": "OPPO",
+      "model": "OPPO A5x",
+      "aliases": [
+        "A5x",
+        "CPH2725"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "dimensions": {
+        "heightMm": 166,
+        "widthMm": 76,
+        "depthMm": 8
+      },
+      "weightG": 193,
+      "displayInch": 6.7,
+      "waterRating": "IPX5 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 6000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.oppo.com/jp/smartphones/series-a/a5x/specs/"
+        },
+        "wiredRecommendedW": 13.5,
+        "wiredMaxW": 45,
+        "protocols": [
+          "USB PD",
+          "PPS",
+          "SUPERVOOC",
+          "VOOC"
+        ],
+        "pps": "supported",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.oppo.com/jp/smartphones/series-a/a5x/specs/",
+        "manualUrl": "https://www.oppo.com/jp/smartphones/series-a/a5x/specs/",
+        "releaseUrl": "https://www.oppo.com/jp/newsroom/press/a5x-release/",
+        "chargingUrl": "https://www.oppo.com/jp/smartphones/series-a/a5x/specs/",
+        "packageUrl": "https://www.oppo.com/jp/smartphones/series-a/a5x/specs/",
+        "waterUrl": "https://www.oppo.com/jp/smartphones/series-a/a5x/specs/",
+        "verifiedAt": "2026-11-03"
+      },
+      "affiliateKeys": [
+        "charger-pps-45w"
+      ]
+    },
+    {
+      "id": "oppo-find-x8",
+      "manufacturer": "OPPO",
+      "model": "OPPO Find X8",
+      "aliases": [
+        "Find X8",
+        "CPH2651"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2024,
+      "dimensions": {
+        "heightMm": 157,
+        "widthMm": 74,
+        "depthMm": 7.9
+      },
+      "weightG": 193,
+      "displayInch": 6.6,
+      "waterRating": "IP68 / IP69",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 5630,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.oppo.com/jp/smartphones/series-find-x/find-x8/specs/"
+        },
+        "wiredRecommendedW": 55,
+        "wiredMaxW": 80,
+        "protocols": [
+          "PPS",
+          "SUPERVOOC",
+          "AIRVOOC"
+        ],
+        "pps": "supported",
+        "wirelessStandard": "AIRVOOC",
+        "wirelessMaxW": 50
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.oppo.com/jp/smartphones/series-find-x/find-x8/specs/",
+        "manualUrl": "https://www.oppo.com/jp/smartphones/series-find-x/find-x8/specs/",
+        "releaseUrl": "https://www.oppo.com/jp/newsroom/press/find-x8-release/",
+        "chargingUrl": "https://www.oppo.com/jp/smartphones/series-find-x/find-x8/specs/",
+        "wirelessUrl": "https://www.oppo.com/jp/smartphones/series-find-x/find-x8/specs/",
+        "packageUrl": "https://www.oppo.com/jp/smartphones/series-find-x/find-x8/specs/",
+        "waterUrl": "https://www.oppo.com/jp/smartphones/series-find-x/find-x8/specs/",
+        "verifiedAt": "2026-11-03"
+      },
+      "affiliateKeys": [
+        "charger-pps-65w",
+        "charger-oppo-airvooc"
+      ]
+    },
+    {
+      "id": "oppo-find-x9",
+      "manufacturer": "OPPO",
+      "model": "OPPO Find X9",
+      "aliases": [
+        "Find X9",
+        "CPH2797"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "dimensions": {
+        "heightMm": 157,
+        "widthMm": 74,
+        "depthMm": 8
+      },
+      "weightG": 203,
+      "displayInch": 6.6,
+      "waterRating": "IP66 / IP68 / IP69",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 7025,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.oppo.com/jp/smartphones/series-find-x/find-x9/specs/"
+        },
+        "wiredRecommendedW": 55,
+        "wiredMaxW": 80,
+        "protocols": [
+          "PPS",
+          "SUPERVOOC",
+          "AIRVOOC"
+        ],
+        "pps": "supported",
+        "wirelessStandard": "AIRVOOC",
+        "wirelessMaxW": 50
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.oppo.com/jp/smartphones/series-find-x/find-x9/specs/",
+        "manualUrl": "https://www.oppo.com/jp/smartphones/series-find-x/find-x9/specs/",
+        "releaseUrl": "https://www.oppo.com/jp/newsroom/press/findx9-release/",
+        "chargingUrl": "https://www.oppo.com/jp/smartphones/series-find-x/find-x9/specs/",
+        "wirelessUrl": "https://www.oppo.com/jp/smartphones/series-find-x/find-x9/specs/",
+        "packageUrl": "https://www.oppo.com/jp/smartphones/series-find-x/find-x9/specs/",
+        "waterUrl": "https://www.oppo.com/jp/smartphones/series-find-x/find-x9/specs/",
+        "verifiedAt": "2026-11-03"
+      },
+      "affiliateKeys": [
+        "charger-pps-65w",
+        "charger-oppo-airvooc"
+      ]
+    }
+  ]
+}
