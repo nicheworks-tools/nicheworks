@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1536" viewBox="0 0 1536 1536" role="img" aria-label="sunburst original representative diagram">
+<rect width="1536" height="1536" fill="#f8f5ec"/>
+<defs><g id="motif"><g stroke="#a06d32" stroke-linejoin="round"><polygon points="35.0,0.0 167.7,20.6 34.1,7.9" fill="#e6aa41" stroke-width="3"/><polygon points="33.3,10.8 153.2,71.4 30.0,18.0" fill="#f5c967" stroke-width="3"/><polygon points="28.3,20.6 123.6,115.3 23.0,26.4" fill="#e6aa41" stroke-width="3"/><polygon points="20.6,28.3 81.9,147.8 13.7,32.2" fill="#f5c967" stroke-width="3"/><polygon points="10.8,33.3 32.2,165.9 3.1,34.9" fill="#e6aa41" stroke-width="3"/><polygon points="0.0,35.0 -20.6,167.7 -7.9,34.1" fill="#f5c967" stroke-width="3"/><polygon points="-10.8,33.3 -71.4,153.2 -18.0,30.0" fill="#e6aa41" stroke-width="3"/><polygon points="-20.6,28.3 -115.3,123.6 -26.4,23.0" fill="#f5c967" stroke-width="3"/><polygon points="-28.3,20.6 -147.8,81.9 -32.2,13.7" fill="#e6aa41" stroke-width="3"/><polygon points="-33.3,10.8 -165.9,32.2 -34.9,3.1" fill="#f5c967" stroke-width="3"/><polygon points="-35.0,0.0 -167.7,-20.6 -34.1,-7.9" fill="#e6aa41" stroke-width="3"/><polygon points="-33.3,-10.8 -153.2,-71.4 -30.0,-18.0" fill="#f5c967" stroke-width="3"/><polygon points="-28.3,-20.6 -123.6,-115.3 -23.0,-26.4" fill="#e6aa41" stroke-width="3"/><polygon points="-20.6,-28.3 -81.9,-147.8 -13.7,-32.2" fill="#f5c967" stroke-width="3"/><polygon points="-10.8,-33.3 -32.2,-165.9 -3.1,-34.9" fill="#e6aa41" stroke-width="3"/><polygon points="-0.0,-35.0 20.6,-167.7 7.9,-34.1" fill="#f5c967" stroke-width="3"/><polygon points="10.8,-33.3 71.4,-153.2 18.0,-30.0" fill="#e6aa41" stroke-width="3"/><polygon points="20.6,-28.3 115.3,-123.6 26.4,-23.0" fill="#f5c967" stroke-width="3"/><polygon points="28.3,-20.6 147.8,-81.9 32.2,-13.7" fill="#e6aa41" stroke-width="3"/><polygon points="33.3,-10.8 165.9,-32.2 34.9,-3.1" fill="#f5c967" stroke-width="3"/><circle r="40" fill="#e58a38" stroke-width="7"/><circle r="17" fill="#f8edc6" stroke="none"/></g></g></defs>
+<use href="#motif" transform="translate(256 256)"/>
+<use href="#motif" transform="translate(768 256)"/>
+<use href="#motif" transform="translate(1280 256)"/>
+<use href="#motif" transform="translate(256 768)"/>
+<use href="#motif" transform="translate(768 768)"/>
+<use href="#motif" transform="translate(1280 768)"/>
+<use href="#motif" transform="translate(256 1280)"/>
+<use href="#motif" transform="translate(768 1280)"/>
+<use href="#motif" transform="translate(1280 1280)"/>
+</svg>

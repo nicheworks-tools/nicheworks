@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1536" viewBox="0 0 1536 1536" role="img" aria-label="triangle-tessellation original representative diagram">
+<rect width="1536" height="1536" fill="#f8f5ec"/>
+<defs><g id="motif"><rect x="-188" y="-188" width="376" height="376" fill="#f2e7cb"/><g stroke="#416a8b" stroke-width="5" fill="none"><path d="M-189 -184H189"/><path d="M-189 -141H189"/><path d="M-189 -98H189"/><path d="M-189 -55H189"/><path d="M-189 -12H189"/><path d="M-189 31H189"/><path d="M-189 74H189"/><path d="M-189 117H189"/><path d="M-189 160H189"/><path d="M-189 203H189"/><path d="M-420 -200L28 200 M-420 200L28 -200"/><path d="M-358.1 -200L89.89999999999998 200 M-358.1 200L89.89999999999998 -200"/><path d="M-296.2 -200L151.8 200 M-296.2 200L151.8 -200"/><path d="M-234.3 -200L213.7 200 M-234.3 200L213.7 -200"/><path d="M-172.4 -200L275.6 200 M-172.4 200L275.6 -200"/><path d="M-110.5 -200L337.5 200 M-110.5 200L337.5 -200"/><path d="M-48.60000000000002 -200L399.4 200 M-48.60000000000002 200L399.4 -200"/><path d="M13.300000000000011 -200L461.3 200 M13.300000000000011 200L461.3 -200"/><path d="M75.19999999999999 -200L523.2 200 M75.19999999999999 200L523.2 -200"/><path d="M137.10000000000002 -200L585.1 200 M137.10000000000002 200L585.1 -200"/><path d="M199 -200L647 200 M199 200L647 -200"/><path d="M260.9 -200L708.9 200 M260.9 200L708.9 -200"/><path d="M322.79999999999995 -200L770.8 200 M322.79999999999995 200L770.8 -200"/><path d="M384.69999999999993 -200L832.6999999999999 200 M384.69999999999993 200L832.6999999999999 -200"/></g></g></defs>
+<use href="#motif" transform="translate(256 256)"/>
+<use href="#motif" transform="translate(768 256)"/>
+<use href="#motif" transform="translate(1280 256)"/>
+<use href="#motif" transform="translate(256 768)"/>
+<use href="#motif" transform="translate(768 768)"/>
+<use href="#motif" transform="translate(1280 768)"/>
+<use href="#motif" transform="translate(256 1280)"/>
+<use href="#motif" transform="translate(768 1280)"/>
+<use href="#motif" transform="translate(1280 1280)"/>
+</svg>
