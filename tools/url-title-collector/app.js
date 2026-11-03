@@ -20,6 +20,13 @@ const copyTsvBtn = document.getElementById("copyTsvBtn");
 
 // Worker（CORS回避）URL
 const WORKER_URL = "https://floral-voice-bfc0.nicheworks-tools.workers.dev/?url=";
+let requestId = 0;
+let activeController = null;
+const cancelRequest = () => {
+  requestId += 1;
+  if (activeController) activeController.abort();
+  activeController = null;
+};
 
 
 // ===============================
@@ -35,6 +42,14 @@ fetchBtn.addEventListener("click", async () => {
     alert("URLを入力してください。");
     return;
   }
+
+  // Every new run invalidates any earlier batch; canceling never reaches the
+  // Worker for remaining URLs and stale responses cannot restore old results.
+  cancelRequest();
+  const thisRequest = requestId;
+  const controller = typeof AbortController === "function" ? new AbortController() : null;
+  activeController = controller;
+  fetchBtn.disabled = true;
 
   // 初期化
   resultsDiv.innerHTML = "";
@@ -52,7 +67,8 @@ fetchBtn.addEventListener("click", async () => {
 
   for (let i = 0; i < urls.length; i++) {
     const url = urls[i];
-    const res = await fetchTitle(url);
+    const res = await fetchTitle(url, controller?.signal);
+    if (thisRequest !== requestId) return;
     results.push(res);
 
     if (res.status === "success") successCount++;
@@ -68,10 +84,13 @@ fetchBtn.addEventListener("click", async () => {
   }
 
   // 結果テーブル表示
+  if (thisRequest !== requestId) return;
   renderResults(results);
 
   // エクスポートエリア表示
   exportArea.classList.remove("hidden");
+  activeController = null;
+  fetchBtn.disabled = false;
 });
 
 
@@ -79,10 +98,10 @@ fetchBtn.addEventListener("click", async () => {
 // タイトル取得ロジック
 // status: success / no-title / http-error / network-error
 // ===============================
-async function fetchTitle(url) {
+async function fetchTitle(url, signal) {
   try {
     const encoded = WORKER_URL + encodeURIComponent(url);
-    const response = await fetch(encoded);
+    const response = await fetch(encoded, { signal });
 
     // fetch OK 判定（HTTP 2xx）
     let httpOk = response.ok;
@@ -218,8 +237,9 @@ function copyTable(type) {
 // ===============================
 // リセットボタン
 // ===============================
-resetBtn.addEventListener("click", () => {
-  urlInput.value = "";
+const clearCurrentResults = () => {
+  cancelRequest();
+  fetchBtn.disabled = false;
   resultsDiv.innerHTML = "";
   progressWrap.classList.add("hidden");
   countArea.classList.add("hidden");
@@ -228,4 +248,9 @@ resetBtn.addEventListener("click", () => {
   countTotal.textContent = "合計: 0";
   countSuccess.textContent = "成功: 0";
   countFail.textContent = "失敗: 0";
+};
+urlInput.addEventListener("input", clearCurrentResults);
+resetBtn.addEventListener("click", () => {
+  urlInput.value = "";
+  clearCurrentResults();
 });
