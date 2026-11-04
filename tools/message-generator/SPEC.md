@@ -65,7 +65,9 @@ The selector form and single generated-result block are compact and suitable for
 - [ ] Regenerate keeps the same input context while allowing the implemented randomized phrasing to vary.
 - [ ] Copy uses the current message and JP/EN switching preserves the generator behavior.
 
-- [ ] Funeral drafts do not insert generic relationship gratitude, ordinary greetings, or business sign-offs in any culture/formality combination; other purposes retain their relationship wording.\n\n## Implementation evidence
+- [ ] Funeral drafts do not insert generic relationship gratitude, ordinary greetings, or business sign-offs in any culture/formality combination; other purposes retain their relationship wording.
+
+## Implementation evidence
 
 - `tools/message-generator/index.html`
 - `tools/message-generator/app.js`
