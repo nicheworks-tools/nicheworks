@@ -7,6 +7,7 @@ assert.ok(pass.manufacturerOfficialMappingUrl.startsWith('https://us-spareparts.
 const bytes=Buffer.concat([Buffer.from('%PDF-1.7'),Buffer.alloc(80000)]);
 for(const g of pass.groups){
  assert.equal(verifyManual(g,bytes,'取扱説明書 ノートブック',g.manualUrl).type,g.type);
+ assert.equal(verifyManual(g,bytes,'取扱説明書 ノートブック',g.manualUrl.replace('download.msi.com','download-2.msi.com')).type,g.type);
  assert.throws(()=>verifyManual(g,bytes,'Manual Notebook',g.manualUrl),/Japanese manual title/);
  assert.throws(()=>verifyManual(g,bytes,'取扱説明書 ノートブック','https://download.msi.com/archive/mnu_exe/nb/error_page'),/filename\/redirect mismatch/);
  assert.throws(()=>verifyManual(g,Buffer.from('<html>Error</html>'),'取扱説明書 ノートブック',g.manualUrl),/PDF magic/);

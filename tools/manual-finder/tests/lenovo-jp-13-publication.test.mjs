@@ -63,14 +63,14 @@ for(const row of rows){
  assert.ok(row.noteEn.includes('other variants'));
 }
 const cov=fs.readFileSync(new URL('COVERAGE.md',root),'utf8');
-assert.ok(cov.includes('**2,649 verified model/caliber rows**'));
-assert.ok(cov.includes('| **Total** | **2,649** |'));
+assert.ok(cov.includes('**2,655 verified model/caliber rows**'));
+assert.ok(cov.includes('| **Total** | **2,655** |'));
 assert.ok(cov.includes('| Lenovo | 13 | expanded, bounded |'));
 assert.ok(cov.includes('| 11 | Lenovo | **expanded — 13**'));
 const ja=fs.readFileSync(new URL('index.html',root),'utf8');
 const en=fs.readFileSync(new URL('en/index.html',root),'utf8');
-assert.ok(ja.includes('app.paged.js?v=mf-neclavie18-20261104a'));
-assert.ok(en.includes('app.paged.js?v=mf-neclavie18-20261104a'));
+assert.ok(ja.includes('app.paged.js?v=mf-msi6-20261104a'));
+assert.ok(en.includes('app.paged.js?v=mf-msi6-20261104a'));
 const runtime=fs.readFileSync(new URL('app.paged.js',root),'utf8');
-assert.ok(runtime.includes('mf-neclavie18-20261104a'));
+assert.ok(runtime.includes('mf-msi6-20261104a'));
 console.log('Lenovo JP bounded ThinkPad 13 verified exact manual-index source rows, 13 tagged model searches, zero inferred accessories, bilingual loader and counts passed.');
