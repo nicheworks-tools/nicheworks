@@ -1,0 +1,29 @@
+name: Contract Cleaner empty-input regression
+
+on:
+  pull_request:
+    paths:
+      - "tools/contract-cleaner/**"
+      - ".github/workflows/contract-cleaner-empty-input-regression.yml"
+  push:
+    branches: [main]
+    paths:
+      - "tools/contract-cleaner/**"
+      - ".github/workflows/contract-cleaner-empty-input-regression.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  contract-cleaner-empty:
+    name: Contract Cleaner empty-input regression
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Validate production script
+        run: node --check tools/contract-cleaner/app.js
+      - name: Test production clipboard and text-file export handlers
+        run: node --test tools/contract-cleaner/empty-input-export.test.cjs
