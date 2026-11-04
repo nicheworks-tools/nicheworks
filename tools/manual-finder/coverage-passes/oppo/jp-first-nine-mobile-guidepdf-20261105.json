@@ -1,0 +1,271 @@
+{
+  "schemaVersion": 1,
+  "maker": "OPPO",
+  "scopeId": "jp-first-nine-mobile-guidepdf-20261105",
+  "scopeLabel": "Nine independently located OPPO Japan mobile model-specific guide PDF candidates, seven old official Japan guidebooks plus two newer manufacturer's supported product guides",
+  "status": "reviewing",
+  "asOf": "2026-11-05",
+  "region": "JP",
+  "language": "ja",
+  "allowedDomains": [
+    "oppojapan.com",
+    "oppo.com"
+  ],
+  "universe": {
+    "sourceUrls": [
+      "https://www.oppojapan.com/guidebook/opporenoa.pdf",
+      "https://www.oppojapan.com/guidebook/oppoa52020.pdf",
+      "https://www.oppojapan.com/guidebook/opporeno3a.pdf",
+      "https://www.oppojapan.com/guidebook/opporeno35g.pdf",
+      "https://www.oppojapan.com/guidebook/opporeno5a.pdf",
+      "https://www.oppojapan.com/guidebook/oppoa545g.pdf",
+      "https://www.oppojapan.com/guidebook/oppoa73.pdf",
+      "https://support.oppo.com/content/dam/oppo/jp/support/news/OPPO%20Reno7%20A%E8%A3%BD%E5%93%81%E3%82%AC%E3%82%A4%E3%83%89%28KDDI%E7%89%88%29.pdf",
+      "https://support.oppo.com/content/dam/oppo/jp/support/news/OPPOReno13A_Quick_Guide_JP.pdf"
+    ],
+    "models": [
+      "Reno A",
+      "A5 2020",
+      "Reno3 A",
+      "Reno3 5G",
+      "Reno5 A",
+      "A54 5G",
+      "A73",
+      "Reno7 A",
+      "Reno13 A"
+    ],
+    "declaredCount": 9,
+    "populationMethod": "Manually bounded nine exact OPPO Mobile device identities with individually indexed manufacturer-authored Japanese model-specific guide PDFs. This nine-source candidate universe is neither the manufacturer's current-device listing nor a complete OPPO catalog.",
+    "sourceObservation": {
+      "searchedAt": "2026-11-05",
+      "sources": [
+        "www.oppojapan.com/guidebook (legacy manufacturer Japan site)",
+        "support.oppo.com/content/dam/oppo/jp/support/news (current manufacturer support)"
+      ],
+      "manufacturerIdentity": "OPPO/オウガ・ジャパン mobile brand. OPPO Digital Japan (oppodigital.jp) is a different AV business; its PDF catalog is explicitly excluded.",
+      "documentScope": "OPPO はじめてガイド, KDDI product guide or quick guide, NOT guaranteed full operating instruction manual",
+      "carrierNote": "Reno7 A is specifically KDDI edition; Reno3 5G guide identifies original SoftBank carrier edition. Model-level and edition notes required.",
+      "verificationRule": "Live download of each manufacturer PDF: official allowed final host, exact normalized path, PDF signature, first-five-page pdftotext exact OPPO model and Japanese operating sections. Fail-closed and hold failures."
+    }
+  },
+  "records": [
+    {
+      "model": "Reno A",
+      "family": "Reno",
+      "manualUrl": "https://www.oppojapan.com/guidebook/opporenoa.pdf",
+      "documentType": "hajimete-guide",
+      "edition": "OPPO Japan original edition",
+      "needle": "OPPO Reno A",
+      "state": "held",
+      "evidenceUrls": [
+        "https://www.oppojapan.com/guidebook/opporenoa.pdf"
+      ],
+      "reviewedAt": "2026-11-05",
+      "reason": "Candidate unverified live PDF, not published until independent GitHub Actions byte/content gate",
+      "sourceEvidence": "Manufacturer-hosted PDF indexed by web with exact named device"
+    },
+    {
+      "model": "A5 2020",
+      "family": "A",
+      "manualUrl": "https://www.oppojapan.com/guidebook/oppoa52020.pdf",
+      "documentType": "hajimete-guide",
+      "edition": "OPPO Japan original edition",
+      "needle": "OPPO A5 2020",
+      "state": "held",
+      "evidenceUrls": [
+        "https://www.oppojapan.com/guidebook/oppoa52020.pdf"
+      ],
+      "reviewedAt": "2026-11-05",
+      "reason": "Candidate unverified live PDF, not published until independent GitHub Actions byte/content gate",
+      "sourceEvidence": "Manufacturer-hosted PDF indexed by web with exact named device"
+    },
+    {
+      "model": "Reno3 A",
+      "family": "Reno",
+      "manualUrl": "https://www.oppojapan.com/guidebook/opporeno3a.pdf",
+      "documentType": "hajimete-guide",
+      "edition": "OPPO Japan original edition",
+      "needle": "OPPO Reno3 A",
+      "state": "held",
+      "evidenceUrls": [
+        "https://www.oppojapan.com/guidebook/opporeno3a.pdf"
+      ],
+      "reviewedAt": "2026-11-05",
+      "reason": "Candidate unverified live PDF, not published until independent GitHub Actions byte/content gate",
+      "sourceEvidence": "Manufacturer-hosted PDF indexed by web with exact named device"
+    },
+    {
+      "model": "Reno3 5G",
+      "family": "Reno",
+      "manualUrl": "https://www.oppojapan.com/guidebook/opporeno35g.pdf",
+      "documentType": "hajimete-guide",
+      "edition": "SoftBank-bound Japanese product guide",
+      "needle": "OPPO Reno3 5G",
+      "state": "held",
+      "evidenceUrls": [
+        "https://www.oppojapan.com/guidebook/opporeno35g.pdf"
+      ],
+      "reviewedAt": "2026-11-05",
+      "reason": "Candidate unverified live PDF, not published until independent GitHub Actions byte/content gate",
+      "sourceEvidence": "Manufacturer-hosted PDF indexed by web with exact named device"
+    },
+    {
+      "model": "Reno5 A",
+      "family": "Reno",
+      "manualUrl": "https://www.oppojapan.com/guidebook/opporeno5a.pdf",
+      "documentType": "hajimete-guide",
+      "edition": "OPPO Japan original edition",
+      "needle": "OPPO Reno5 A",
+      "state": "held",
+      "evidenceUrls": [
+        "https://www.oppojapan.com/guidebook/opporeno5a.pdf"
+      ],
+      "reviewedAt": "2026-11-05",
+      "reason": "Candidate unverified live PDF, not published until independent GitHub Actions byte/content gate",
+      "sourceEvidence": "Manufacturer-hosted PDF indexed by web with exact named device"
+    },
+    {
+      "model": "A54 5G",
+      "family": "A",
+      "manualUrl": "https://www.oppojapan.com/guidebook/oppoa545g.pdf",
+      "documentType": "hajimete-guide",
+      "edition": "OPPO Japan original edition",
+      "needle": "OPPO A54 5G",
+      "state": "held",
+      "evidenceUrls": [
+        "https://www.oppojapan.com/guidebook/oppoa545g.pdf"
+      ],
+      "reviewedAt": "2026-11-05",
+      "reason": "Candidate unverified live PDF, not published until independent GitHub Actions byte/content gate",
+      "sourceEvidence": "Manufacturer-hosted PDF indexed by web with exact named device"
+    },
+    {
+      "model": "A73",
+      "family": "A",
+      "manualUrl": "https://www.oppojapan.com/guidebook/oppoa73.pdf",
+      "documentType": "hajimete-guide",
+      "edition": "OPPO Japan original edition",
+      "needle": "OPPO A73",
+      "state": "held",
+      "evidenceUrls": [
+        "https://www.oppojapan.com/guidebook/oppoa73.pdf"
+      ],
+      "reviewedAt": "2026-11-05",
+      "reason": "Candidate unverified live PDF, not published until independent GitHub Actions byte/content gate",
+      "sourceEvidence": "Manufacturer-hosted PDF indexed by web with exact named device"
+    },
+    {
+      "model": "Reno7 A",
+      "family": "Reno",
+      "manualUrl": "https://support.oppo.com/content/dam/oppo/jp/support/news/OPPO%20Reno7%20A%E8%A3%BD%E5%93%81%E3%82%AC%E3%82%A4%E3%83%89%28KDDI%E7%89%88%29.pdf",
+      "documentType": "product-guide",
+      "edition": "KDDI carrier edition only — do not infer identical SIM-free configuration",
+      "needle": "OPPO Reno7 A",
+      "state": "held",
+      "evidenceUrls": [
+        "https://support.oppo.com/content/dam/oppo/jp/support/news/OPPO%20Reno7%20A%E8%A3%BD%E5%93%81%E3%82%AC%E3%82%A4%E3%83%89%28KDDI%E7%89%88%29.pdf"
+      ],
+      "reviewedAt": "2026-11-05",
+      "reason": "Candidate unverified live PDF, not published until independent GitHub Actions byte/content gate",
+      "sourceEvidence": "Manufacturer-hosted PDF indexed by web with exact named device"
+    },
+    {
+      "model": "Reno13 A",
+      "family": "Reno",
+      "manualUrl": "https://support.oppo.com/content/dam/oppo/jp/support/news/OPPOReno13A_Quick_Guide_JP.pdf",
+      "documentType": "quick-guide",
+      "edition": "OPPO Japan quick user guide",
+      "needle": "OPPO Reno13 A",
+      "state": "held",
+      "evidenceUrls": [
+        "https://support.oppo.com/content/dam/oppo/jp/support/news/OPPOReno13A_Quick_Guide_JP.pdf"
+      ],
+      "reviewedAt": "2026-11-05",
+      "reason": "Candidate unverified live PDF, not published until independent GitHub Actions byte/content gate",
+      "sourceEvidence": "Manufacturer-hosted PDF indexed by web with exact named device"
+    }
+  ],
+  "reconciliation": {
+    "captured": 9,
+    "direct": 0,
+    "shared": 0,
+    "support_only": 0,
+    "held": 9,
+    "public": 0
+  },
+  "groups": [
+    {
+      "model": "Reno A",
+      "family": "Reno",
+      "manualUrl": "https://www.oppojapan.com/guidebook/opporenoa.pdf",
+      "documentType": "hajimete-guide",
+      "edition": "OPPO Japan original edition",
+      "needle": "OPPO Reno A"
+    },
+    {
+      "model": "A5 2020",
+      "family": "A",
+      "manualUrl": "https://www.oppojapan.com/guidebook/oppoa52020.pdf",
+      "documentType": "hajimete-guide",
+      "edition": "OPPO Japan original edition",
+      "needle": "OPPO A5 2020"
+    },
+    {
+      "model": "Reno3 A",
+      "family": "Reno",
+      "manualUrl": "https://www.oppojapan.com/guidebook/opporeno3a.pdf",
+      "documentType": "hajimete-guide",
+      "edition": "OPPO Japan original edition",
+      "needle": "OPPO Reno3 A"
+    },
+    {
+      "model": "Reno3 5G",
+      "family": "Reno",
+      "manualUrl": "https://www.oppojapan.com/guidebook/opporeno35g.pdf",
+      "documentType": "hajimete-guide",
+      "edition": "SoftBank-bound Japanese product guide",
+      "needle": "OPPO Reno3 5G"
+    },
+    {
+      "model": "Reno5 A",
+      "family": "Reno",
+      "manualUrl": "https://www.oppojapan.com/guidebook/opporeno5a.pdf",
+      "documentType": "hajimete-guide",
+      "edition": "OPPO Japan original edition",
+      "needle": "OPPO Reno5 A"
+    },
+    {
+      "model": "A54 5G",
+      "family": "A",
+      "manualUrl": "https://www.oppojapan.com/guidebook/oppoa545g.pdf",
+      "documentType": "hajimete-guide",
+      "edition": "OPPO Japan original edition",
+      "needle": "OPPO A54 5G"
+    },
+    {
+      "model": "A73",
+      "family": "A",
+      "manualUrl": "https://www.oppojapan.com/guidebook/oppoa73.pdf",
+      "documentType": "hajimete-guide",
+      "edition": "OPPO Japan original edition",
+      "needle": "OPPO A73"
+    },
+    {
+      "model": "Reno7 A",
+      "family": "Reno",
+      "manualUrl": "https://support.oppo.com/content/dam/oppo/jp/support/news/OPPO%20Reno7%20A%E8%A3%BD%E5%93%81%E3%82%AC%E3%82%A4%E3%83%89%28KDDI%E7%89%88%29.pdf",
+      "documentType": "product-guide",
+      "edition": "KDDI carrier edition only — do not infer identical SIM-free configuration",
+      "needle": "OPPO Reno7 A"
+    },
+    {
+      "model": "Reno13 A",
+      "family": "Reno",
+      "manualUrl": "https://support.oppo.com/content/dam/oppo/jp/support/news/OPPOReno13A_Quick_Guide_JP.pdf",
+      "documentType": "quick-guide",
+      "edition": "OPPO Japan quick user guide",
+      "needle": "OPPO Reno13 A"
+    }
+  ],
+  "published": 0
+}
