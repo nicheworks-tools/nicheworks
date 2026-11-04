@@ -16,6 +16,58 @@ test("decision engine partitions active needs into purposeful result cards",()=>
  assert.equal(row(a,"toilet").required,70);
  assert.equal(row(a,"sleepPad").required,2);
 });
+test("battery-powered lights count only explicitly working units, not all owned units",()=>{
+ const legacy=assess({stocks:{"home:batteries":{qty:100}},
+   variants:{"home:headlamp":{qty:3},"home:ledLantern":{qty:2},"home:flashlight":{qty:4}}});
+ assert.equal(row(legacy,"light").owned,9);
+ assert.equal(row(legacy,"light").effective,0,"neither nine lights nor 100 battery sets proves a working lamp");
+ assert.equal(row(legacy,"light").excludedVariants,9);
+ assert.equal(row(legacy,"light").required,2);
+ const checked=assess({stocks:{"home:batteries":{qty:100}},
+   variants:{"home:headlamp":{qty:3,powerReadyQty:2,powerReadyConfirmed:true},
+     "home:ledLantern":{qty:2,powerReadyQty:0,powerReadyConfirmed:true},
+     "home:flashlight":{qty:4,powerReadyQty:1,powerReadyConfirmed:false}}});
+ assert.equal(row(checked,"light").effective,2,"only two verified headlamps are credited");
+ assert.equal(row(checked,"light").excludedVariants,7);
+ const all=assess({variants:{"home:headlamp":{qty:3,powerReadyQty:2,powerReadyConfirmed:true},
+   "home:flashlight":{qty:4,powerReadyQty:1,powerReadyConfirmed:true}}});
+ assert.equal(row(all,"light").effective,3);
+ assert.equal(row(all,"light").owned,7);
+});
+test("manual flashlight, lantern and radio stock require verified operating quantities",()=>{
+ const stock={stocks:{"home:light":{qty:4,powerReadyQty:1,powerReadyConfirmed:true},
+   "home:lantern":{qty:2,powerReadyQty:2,powerReadyConfirmed:true},
+   "home:radio":{qty:3,powerReadyQty:1,powerReadyConfirmed:false}}};
+ const a=assess(stock);
+ assert.equal(row(a,"light").effective,1);
+ assert.equal(row(a,"light").missing,1);
+ assert.equal(row(a,"lantern").effective,2);
+ assert.equal(row(a,"radio").effective,0);
+ const b=assess({stocks:{...stock.stocks,
+  "home:radio":{qty:3,powerReadyQty:1,powerReadyConfirmed:true},
+  "home:lantern":{qty:2,powerReadyQty:3,powerReadyConfirmed:true}}});
+ assert.equal(row(b,"radio").effective,1);
+ assert.equal(row(b,"lantern").effective,2,"clamp operational count to the number owned");
+ const expired=assess({stocks:{"home:radio":{qty:2,powerReadyQty:2,powerReadyConfirmed:true,expiry:"2026-10-31"}}});
+ assert.equal(row(expired,"radio").effective,0);
+});
+test("power bank usability requires checked charge and compatible output/cable, not just mAh or quantity",()=>{
+ const old=assess({variants:{"home:batteryBank":{qty:5}},stocks:{"home:cable":{qty:10}}});
+ assert.equal(row(old,"powerbank").owned,5);
+ assert.equal(row(old,"powerbank").effective,0,"loose USB cables cannot establish a charged, compatible bank");
+ const ready=assess({stocks:{"home:powerbank":{qty:2,powerReadyQty:1,powerReadyConfirmed:true}},
+  variants:{"home:batteryBank":{qty:5,powerReadyQty:3,powerReadyConfirmed:true}}});
+ assert.equal(row(ready,"powerbank").effective,4);
+ assert.equal(row(ready,"powerbank").owned,7);
+ const damaged=assess({variants:{"home:batteryBank":{qty:5,powerReadyQty:3,powerReadyConfirmed:true,expiry:"2026-10-31"}}});
+ assert.equal(row(damaged,"powerbank").effective,0);
+ const fractional=assess({variants:{"home:batteryBank":{qty:2,powerReadyQty:1.5,powerReadyConfirmed:true}}});
+ assert.equal(row(fractional,"powerbank").effective,0,"fractional or malformed count is not silently rounded upward");
+ const separated=assess({mode:"go",variants:{"home:batteryBank":{qty:5,powerReadyQty:5,powerReadyConfirmed:true}}});
+ assert.equal(row(separated,"powerbank").effective,0,"home bank is not in the go-bag");
+ const packed=assess({mode:"go",variants:{"go:batteryBank":{qty:1,powerReadyQty:1,powerReadyConfirmed:true}}});
+ assert.equal(row(packed,"powerbank").effective,1);
+});
 test("water-prepared alpha rice is never silently credited without a confirmed safe-water budget",()=>{
  const a=assess({noHeat:true,waterOut:true,variants:{"home:alphaRice":{qty:4}}});
  assert.equal(row(a,"food").effective,0);

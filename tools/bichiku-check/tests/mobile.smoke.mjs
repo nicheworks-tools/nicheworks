@@ -345,6 +345,114 @@ try{
   passed++;await ctx.close();
  }
 
+
+ // Register real powered lights rather than equating physical units with working stock.
+ {
+  const {ctx,page,exceptions}=await open(390);
+  await page.locator("#calculate").click();
+  await page.locator('button[data-goal="power"]').click();
+  await page.locator('details.g-option[data-option="headlamp"] summary').click();
+  await page.locator('input[data-option-qty="headlamp"]').fill("3");
+  await page.locator('input[data-option-qty="headlamp"]').press("Tab");
+  assert.match(await page.locator(".g-detail-status").innerText(),/2/,"three unverified headlamps must not count");
+  await page.locator('input[data-energy-option-ready="headlamp"]').fill("1");
+  await page.locator('input[data-energy-option-ready="headlamp"]').press("Tab");
+  await page.locator('input[data-energy-option-confirm="headlamp"]').check();
+  assert.match(await page.locator(".g-detail-status").innerText(),/1/,"one working headlamp covers just one unit");
+  await page.locator('input[data-energy-option-ready="headlamp"]').fill("1.5");
+  await page.locator('input[data-energy-option-ready="headlamp"]').press("Tab");
+  assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem("bichiku-check-v1")).variants["home:headlamp"].powerReadyQty),1,
+   "fractional working units must not overwrite the saved count");
+  await page.locator('input[data-energy-option-ready="headlamp"]').fill("2");
+  await page.locator('input[data-energy-option-ready="headlamp"]').press("Tab");
+  assert.match(await page.locator(".g-detail-status").innerText(),/2/,"changing working count revokes prior confirmation");
+  await page.locator('input[data-energy-option-confirm="headlamp"]').check();
+  assert.match(await page.locator(".g-detail-status").innerText(),/0/,"two checked headlamps meet two-unit target");
+  await page.locator('input[data-option-qty="headlamp"]').fill("4");
+  await page.locator('input[data-option-qty="headlamp"]').press("Tab");
+  assert.match(await page.locator(".g-detail-status").innerText(),/2/,"changing owned count revokes working-unit confirmation");
+  await page.locator('input[data-energy-option-confirm="headlamp"]').check();
+  assert.match(await page.locator(".g-detail-status").innerText(),/0/);
+  await page.reload({waitUntil:"domcontentloaded"});
+  await page.locator("#calculate").click();
+  await page.locator('button[data-goal="power"]').click();
+  await page.locator('details.g-option[data-option="headlamp"] summary').click();
+  assert.equal(await page.locator('input[data-energy-option-ready="headlamp"]').inputValue(),"2");
+  assert.equal(await page.locator('input[data-energy-option-confirm="headlamp"]').isChecked(),true);
+  await noOverflow(page,"powered lamps 390px");
+  assert.deepEqual(exceptions,[]);
+  console.log("PASS headlamp operational-count clamp, invalid fractional input, revocation, persistence");
+  passed++;await ctx.close();
+ }
+
+ // Bank charge/cable verification and manual radio stock are separate from simple ownership.
+ {
+  const {ctx,page,exceptions}=await open(390);
+  await page.locator("#calculate").click();
+  await page.locator('button[data-goal="power"]').click();
+  await page.locator('input[data-basic="radio"]').fill("2");
+  await page.locator('input[data-basic="radio"]').press("Tab");
+  await page.locator('input[data-energy-basic-ready="radio"]').fill("1");
+  await page.locator('input[data-energy-basic-ready="radio"]').press("Tab");
+  await page.locator('input[data-energy-basic-confirm="radio"]').check();
+  assert.equal(await page.evaluate(()=>{
+   const s=JSON.parse(localStorage.getItem("bichiku-check-v1"));
+   return window.BichikuDecision.assessment(window.BICHIKU_CATALOG,window.BICHIKU_OPTIONS,s,"2026-11-04").calc.items.find(x=>x.item.id==="radio").effective;
+  }),1,"two radios owned, only one actually powered");
+  await page.locator('button[data-tab="everyday"]').click();
+  await page.locator('details.g-option[data-option="batteryBank"] summary').click();
+  await page.locator('input[data-option-qty="batteryBank"]').fill("2");
+  await page.locator('input[data-option-qty="batteryBank"]').press("Tab");
+  assert.equal(await page.evaluate(()=>{
+   const s=JSON.parse(localStorage.getItem("bichiku-check-v1"));
+   return window.BichikuDecision.assessment(window.BICHIKU_CATALOG,window.BICHIKU_OPTIONS,s,"2026-11-04").calc.items.find(x=>x.item.id==="powerbank").effective;
+  }),0,"owning a bank does not establish charge or compatibility");
+  await page.locator('input[data-energy-option-ready="batteryBank"]').fill("1");
+  await page.locator('input[data-energy-option-ready="batteryBank"]').press("Tab");
+  await page.locator('input[data-energy-option-confirm="batteryBank"]').check();
+  assert.equal(await page.evaluate(()=>{
+   const s=JSON.parse(localStorage.getItem("bichiku-check-v1"));
+   return window.BichikuDecision.assessment(window.BICHIKU_CATALOG,window.BICHIKU_OPTIONS,s,"2026-11-04").calc.items.find(x=>x.item.id==="powerbank").effective;
+  }),1,"a charged compatible bank is one usable bank, not an inferred number of phone charges");
+  await page.locator('input[data-option-qty="batteryBank"]').fill("3");
+  await page.locator('input[data-option-qty="batteryBank"]').press("Tab");
+  assert.equal(await page.locator('input[data-energy-option-confirm="batteryBank"]').isChecked(),false);
+  assert.equal(await page.evaluate(()=>{
+   const s=JSON.parse(localStorage.getItem("bichiku-check-v1"));
+   return window.BichikuDecision.assessment(window.BICHIKU_CATALOG,window.BICHIKU_OPTIONS,s,"2026-11-04").calc.items.find(x=>x.item.id==="powerbank").effective;
+  }),0);
+  await page.locator('input[data-basic="radio"]').fill("3");
+  await page.locator('input[data-basic="radio"]').press("Tab");
+  assert.equal(await page.locator('input[data-energy-basic-confirm="radio"]').isChecked(),false,
+   "manual radio quantity change revokes its operational approval");
+  await noOverflow(page,"radio and power bank 390px");
+  assert.deepEqual(exceptions,[]);
+  console.log("PASS bank charge/cable confirmation and radio readiness revocation");
+  passed++;await ctx.close();
+ }
+
+ // Old inventories remain locally saved, but are not silently credited as powered.
+ {
+  const {ctx,page,exceptions}=await open(390);
+  await page.evaluate(()=>localStorage.setItem("bichiku-check-v1",JSON.stringify({
+   mode:"home",adults:1,days:7,stocks:{"home:light":{qty:2},"home:powerbank":{qty:3}},
+   variants:{"home:flashlight":{qty:2},"home:batteryBank":{qty:3}}
+  })));
+  await page.reload({waitUntil:"domcontentloaded"});
+  await page.locator("#calculate").click();
+  await page.locator('button[data-goal="power"]').click();
+  assert.match(await page.locator(".g-detail-status").innerText(),/2/);
+  assert.equal(await page.locator('input[data-basic="light"]').inputValue(),"2");
+  assert.equal(await page.locator('input[data-energy-basic-ready="light"]').inputValue(),"0");
+  await page.locator('input[data-energy-basic-ready="light"]').fill("1");
+  await page.locator('input[data-energy-basic-ready="light"]').press("Tab");
+  await page.locator('input[data-energy-basic-confirm="light"]').check();
+  assert.match(await page.locator(".g-detail-status").innerText(),/1/);
+  assert.deepEqual(exceptions,[]);
+  console.log("PASS legacy lamp and bank quantities retained without inferred power");
+  passed++;await ctx.close();
+ }
+
  for(const [locale,dir] of locales){
   const {ctx,page,exceptions}=await open(390,dir);
   assert.equal(await page.locator("html").getAttribute("lang"),locale);
@@ -365,6 +473,15 @@ try{
   await page.locator('button[data-goal="food"]').click();
   assert.equal(await page.locator('input[data-heat-stock]').count(),3,"three localized heater/fuel fields "+locale);
   assert.ok((await page.locator('label.g-check').filter({has:page.locator('input[data-heat-check="gas"]')}).innerText()).trim().length>10,"localized fuel review "+locale);
+  await page.locator('button[data-back]').click();
+  await page.locator('button[data-goal="power"]').click();
+  assert.equal(await page.locator('input[data-energy-basic-ready]').count(),4,
+   "four energy-dependent manual categories "+locale);
+  await page.locator('details.g-option[data-option="headlamp"] summary').click();
+  assert.equal(await page.locator('input[data-energy-option-ready="headlamp"]').count(),1,
+   "energy-dependent options display whole-unit input "+locale);
+  assert.ok((await page.locator('label.g-check').filter({has:page.locator('input[data-energy-option-confirm="headlamp"]')}).innerText()).trim().length>10,
+   "localized energy confirmation "+locale);
   await noOverflow(page,locale);
   assert.deepEqual(exceptions,[],"JS exceptions "+locale);
   await page.screenshot({path:path.join(folder,"locale-"+locale+".png"),fullPage:true});

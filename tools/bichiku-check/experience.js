@@ -113,7 +113,10 @@ function conditions(a){
  '<p class="g-water-summary">'+esc(T.prepAllocated)+': <strong>'+fmt(a.waterAllocation)+'L</strong></p>'+
  '<p class="g-water-summary">'+esc(T.waterRemaining)+': <strong>'+fmt(a.waterRemainingAfterPrep)+'L</strong></p>'+
  (a.uncheckedFoods.length?'<p class="g-fine">'+esc(T.prepUnchecked)+'</p>':"")+foodGroupsHtml(a);
- if(goal==="power"&&state.powerOut&&!state.noHeat)return heatControls(a);
+ if(goal==="power")return '<p>'+esc(T.energyExplanation)+'</p>'+
+  '<p class="g-fine">'+esc(T.energyNoConversion)+'</p>'+
+  '<p class="g-fine">'+esc(T.energySafety)+' <a href="https://www.hkd.meti.go.jp/hokih/20220826/index.htm" rel="noopener" target="_blank">'+esc(T.energySafetySource)+'</a></p>'+
+  (state.powerOut&&!state.noHeat?heatControls(a):"");
  if(goal==="toilet"){
   const review=a.toiletReview;
   const checks=[
@@ -135,14 +138,26 @@ function conditions(a){
  if(goal==="water")return '<p>'+esc(T.waterHint)+'</p><p>'+esc(T.waterRemaining)+': '+fmt(a.waterRemainingAfterPrep)+'L</p>';
  return '<p>'+esc(T[goal+"Hint"]||T.otherConditions)+'</p>';
 }
+const energyParents=new Set(["light","lantern","radio","powerbank"]);
+function isEnergyOption(o){return o.parent==="light"||o.id==="batteryBank"}
+function energyFields(item,id,isBasic,isBank){
+ const input=isBasic?"data-energy-basic-ready":"data-energy-option-ready";
+ const check=isBasic?"data-energy-basic-confirm":"data-energy-option-confirm";
+ return '<div class="g-water-item"><label class="g-input">'+esc(T.energyUsableCount)+
+  '<input type="number" min="0" max="10000000" step="1" inputmode="numeric" '+input+'="'+id+'" value="'+fmt(n(item.powerReadyQty))+'"></label>'+
+  '<label class="g-check"><input type="checkbox" '+check+'="'+id+'" '+(item.powerReadyConfirmed===true?"checked":"")+'>'+
+    esc(isBank?T.energyBankConfirm:T.energyDeviceConfirm)+'</label>'+
+  '<p class="g-fine">'+esc(T.energyItemCaution)+'</p></div>';
+}
 function parentRows(a){
  const g=a.groups.find(x=>x.id===goal);
  return g.rows.map(row=>{
  const id=row.item.id,x=getBasic(id);
+ const powerFields=energyParents.has(id)?energyFields(x,id,true,id==="powerbank"):"";
  return '<div class="g-parent"><div class="g-parent-head"><strong>'+esc(row.item.names[lang]||row.item.names.ja)+'</strong>'+
  '<span class="'+(row.missing?"g-danger":"g-ok")+'">'+esc(T.missing)+': '+fmt(row.missing)+unit(id)+'</span></div>'+meter(row)+
  '<div class="g-parent-fields"><label>'+esc(T.manual)+' · '+esc(id==="water"?T.litersTotal:id==="food"?T.mealPortions:id==="toilet"?T.toiletUses:T.quantity)+'<input type="number" min="0" max="10000000" inputmode="decimal" step="'+(id==="water"?"0.5":"1")+'" data-basic="'+id+'" value="'+fmt(n(x.qty))+'"></label>'+
- '<span>'+esc(T.need)+': '+fmt(row.required)+unit(id)+'</span></div>'+
+ '<span>'+esc(T.need)+': '+fmt(row.required)+unit(id)+'</span></div>'+powerFields+
  '<details data-parent="'+id+'" '+(openParents.has(id)?"open":"")+'><summary>'+esc(T.target)+' / '+esc(T.expiry)+'</summary>'+
  '<div class="g-parent-fields"><label>'+esc(T.target)+'<input type="number" min="0" data-target="'+id+'" value="'+(x.target==null?"":fmt(n(x.target)))+'" placeholder="'+fmt(row.autoTarget)+'"></label>'+
  '<label>'+esc(T.expiry)+'<input type="date" data-basic-expiry="'+id+'" value="'+esc(x.expiry||"")+'"></label></div></details></div>';
@@ -166,11 +181,14 @@ function renderChoices(a){
  const qValue=bottleFactor?(hasLegacyFraction?"":fmt(calculatedBottles)):fmt(n(v.qty));
  const qAttr=bottleFactor?"data-option-bottles":"data-option-qty";
  const vWaterNote=bottleFactor?'<p class="g-fine">'+esc(T.bottleSubtotal)+': <strong>'+fmt(n(v.qty))+'L</strong>. '+esc(T.bottleNote)+' '+esc(T.bottleWhole)+(hasLegacyFraction?' '+esc(T.bottleLegacy):'')+'</p>':"";
- const isToiletParts=o.id==="toiletBags";
+ const isToiletParts=o.id==="toiletBags",energyOption=isEnergyOption(o);
+ const energyReady=energyOption&&v.powerReadyConfirmed===true&&
+   Number.isInteger(Number(v.powerReadyQty))&&Math.min(n(v.qty),n(v.powerReadyQty))>0;
  const kitReady=o.id!=="toiletKit"||(state.toiletSeatConfirmed&&state.toiletStorageConfirmed&&state.toiletDisposalConfirmed);
  const countable=o.equivalence==="full"&&kitReady&&(!state.noHeat||!["heat","verify"].includes(o.prep))&&(!state.powerOut||a.heatReady||o.prep!=="heat")&&(!o.requiresWater||(a.waterForPrep&&v.prepConfirmed===true&&n(v.prepWaterLiters)>0));
  const unexpired=!v.expiry||v.expiry>=today();
- const ready=isToiletParts?a.toiletReview.usableUses>0:(n(v.qty)>0&&unexpired&&countable);
+ const ready=isToiletParts?a.toiletReview.usableUses>0:
+   (n(v.qty)>0&&unexpired&&countable&&(!energyOption||energyReady));
  const registered=isToiletParts?n(v.bagQty)+n(v.solidifierQty)+n(v.qty):n(v.qty);
  const itemStatus=registered===0?T.enterQuantity:!unexpired?T.expiredOption:o.equivalence!=="full"&&!isToiletParts?T.notEquivalent:ready?T.counted:T.notReady;
  const quantityFields=isToiletParts?
@@ -188,6 +206,7 @@ function renderChoices(a){
  '<div class="g-option-body"><p>'+esc(warning)+'</p><p class="'+(ready?"g-ok":"g-pending")+'">'+esc(itemStatus)+'</p>'+
  (o.sourceUrl?'<a href="'+esc(o.sourceUrl)+'" target="_blank" rel="noopener">'+esc(T.official)+'</a>':"")+
  quantityFields+
+ (energyOption?energyFields(v,o.id,false,o.id==="batteryBank"):"")+
  (o.parent==="food"&&o.prep==="heat"&&state.powerOut&&!state.noHeat?
    '<div class="g-water-item"><label class="g-input">'+esc(T.heatPerFood)+
    '<input type="number" min="0" max="10000000" step="1" inputmode="numeric" data-heat-sessions="'+o.id+'" value="'+fmt(n(v.heatSessions))+'"></label>'+
@@ -310,6 +329,15 @@ result.addEventListener("input",e=>{
 result.addEventListener("change",e=>{
  const t=e.target;if(t.dataset.shop){if(!selected)selected=new Set();if(t.checked)selected.add(t.dataset.shop);else selected.delete(t.dataset.shop);render();return}
  if(t.dataset.setting){state[t.dataset.setting]=t.type==="checkbox"?t.checked:n(t.value);save();preserveOpen();render();return}
+ const energyBasic=t.dataset.energyBasicReady||t.dataset.energyBasicConfirm;
+ if(energyBasic&&energyParents.has(energyBasic)){
+  const item=Object.assign({},getBasic(energyBasic));
+  if(t.dataset.energyBasicReady){
+   if(!t.checkValidity()||!Number.isInteger(Number(t.value))){t.reportValidity();return}
+   item.powerReadyQty=n(t.value);item.powerReadyConfirmed=false;
+  }else item.powerReadyConfirmed=t.checked;
+  state.stocks[key(energyBasic)]=item;save();preserveOpen();render();return;
+ }
  if(t.dataset.heatStock){
   const field=t.dataset.heatStock;
   if(!["stoveCount","gasCount","gasCapacity"].includes(field)||!t.checkValidity()||
@@ -339,21 +367,27 @@ result.addEventListener("change",e=>{
  const id=t.dataset.basic||t.dataset.target||t.dataset.basicExpiry;
  if(id){const item=Object.assign({},getBasic(id));
   if(t.dataset.basic){
-    if(["gas","stove"].includes(id)&&(!t.checkValidity()||!Number.isInteger(Number(t.value)))){t.reportValidity();return}
+    if((["gas","stove"].includes(id)||energyParents.has(id))&&
+       (!t.checkValidity()||!Number.isInteger(Number(t.value)))){t.reportValidity();return}
     const oldQty=n(item.qty),newQty=n(t.value);
     item.qty=newQty;
     if(newQty!==oldQty&&id==="gas"){item.heatCapacityUses=0;item.heatFuelCompatibleConfirmed=false}
     if(newQty!==oldQty&&id==="stove")item.heatEquipmentConfirmed=false;
+    if(newQty!==oldQty&&energyParents.has(id))item.powerReadyConfirmed=false;
   }
   if(t.dataset.target){if(t.value==="")delete item.target;else item.target=n(t.value)}
-  if(t.dataset.basicExpiry)item.expiry=t.value;state.stocks[key(id)]=item;save();preserveOpen();render();return}
+  if(t.dataset.basicExpiry){item.expiry=t.value;if(energyParents.has(id))item.powerReadyConfirmed=false}
+  state.stocks[key(id)]=item;save();preserveOpen();render();return}
  const optionId=t.dataset.optionQty||t.dataset.optionBottles||t.dataset.optionExpiry||t.dataset.prepLiters||t.dataset.prepConfirm||
-   t.dataset.heatSessions||t.dataset.heatConfirm;
+   t.dataset.heatSessions||t.dataset.heatConfirm||t.dataset.energyOptionReady||t.dataset.energyOptionConfirm;
  if(optionId){
   const item=Object.assign({},getOption(optionId));
+  const energyOption=choices.some(o=>o.id===optionId&&isEnergyOption(o));
+  if(t.dataset.optionQty&&energyOption&&(!t.checkValidity()||!Number.isInteger(Number(t.value)))){t.reportValidity();return}
   if(t.dataset.optionQty){
     item.qty=n(t.value);item.prepConfirmed=false;
     if(choices.some(o=>o.id===optionId&&o.parent==="food"&&o.prep==="heat"))item.heatConfirmed=false;
+    if(energyOption)item.powerReadyConfirmed=false;
   }
   if(t.dataset.optionBottles){
     // step=1 is not enforced on change events; reject fractional bottle counts.
@@ -362,7 +396,10 @@ result.addEventListener("change",e=>{
     if(!factor)return;
     item.qty=Math.round(n(t.value)*factor*100)/100;
   }
-  if(t.dataset.optionExpiry)item.expiry=t.value;
+  if(t.dataset.optionExpiry){
+    item.expiry=t.value;
+    if(energyOption)item.powerReadyConfirmed=false;
+  }
   if(t.dataset.prepLiters){item.prepWaterLiters=n(t.value);item.prepConfirmed=false}
   if(t.dataset.prepConfirm)item.prepConfirmed=t.checked;
   if(t.dataset.heatSessions){
@@ -370,6 +407,11 @@ result.addEventListener("change",e=>{
     item.heatSessions=n(t.value);item.heatConfirmed=false;
   }
   if(t.dataset.heatConfirm)item.heatConfirmed=t.checked;
+  if(t.dataset.energyOptionReady){
+    if(!energyOption||!t.checkValidity()||!Number.isInteger(Number(t.value))){t.reportValidity();return}
+    item.powerReadyQty=n(t.value);item.powerReadyConfirmed=false;
+  }
+  if(t.dataset.energyOptionConfirm&&energyOption)item.powerReadyConfirmed=t.checked;
   state.variants[key(optionId)]=item;save();preserveOpen();render()
  }
 });

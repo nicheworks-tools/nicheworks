@@ -81,6 +81,19 @@
     }
     return true;
   }
+  // Energy-dependent stock must have individually checked working units.
+  // A pack of spare batteries or a charging cable does not establish compatibility.
+  function energyDependentParent(id) {
+    return ["light","lantern","radio","powerbank"].includes(id);
+  }
+  function energyDependentOption(option) {
+    return option.parent === "light" || option.id === "batteryBank";
+  }
+  function readyEnergyUnits(entry,quantity) {
+    if (!entry || entry.powerReadyConfirmed !== true ||
+        !Number.isInteger(Number(entry.powerReadyQty))) return 0;
+    return Math.min(quantity, Math.floor(num(entry.powerReadyQty,0,0,10000000)));
+  }
   function calculate(catalog, options, today, optionCatalog) {
     var s = normalize(options);
     var stamp = /^\d{4}-\d{2}-\d{2}$/.test(String(today||"")) ? String(today) : new Date().toISOString().slice(0,10);
@@ -106,13 +119,17 @@
         var optionExpiry = /^\d{4}-\d{2}-\d{2}$/.test(String(variant.expiry||"")) ? variant.expiry : "";
         var usable = (!optionExpiry || optionExpiry >= stamp) && optionAvailable(option,s,variant);
         variantOwned += qty;
-        if(usable) variantEffective += qty;
-        else excludedVariants += qty;
+        var effectiveQty = usable ?
+          (s.enforceConditions && energyDependentOption(option) ? readyEnergyUnits(variant,qty) : qty) : 0;
+        variantEffective += effectiveQty;
+        excludedVariants += qty-effectiveQty;
       });
       var owned = ownedManual + variantOwned;
       var expiry = /^\d{4}-\d{2}-\d{2}$/.test(String(entry.expiry||"")) ? entry.expiry : "";
       var expired = expiry !== "" && expiry < stamp;
-      var effective = (expired ? 0 : ownedManual) + variantEffective;
+      var manualEffective = expired ? 0 :
+        (s.enforceConditions && energyDependentParent(i.id) ? readyEnergyUnits(entry,ownedManual) : ownedManual);
+      var effective = manualEffective + variantEffective;
       var missing = Math.max(0,Math.round((required-effective)*100)/100);
       return {item:i,key:key,required:required,autoTarget:autoTarget,hasCustomTarget:custom,ownedManual:ownedManual,variantOwned:variantOwned,excludedVariants:excludedVariants,owned:owned,effective:effective,expiry:expiry,expired:expired,missing:missing,priority:i.priority};
     });
