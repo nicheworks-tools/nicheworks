@@ -1,0 +1,15 @@
+[
+  {
+    "pref": "北海道",
+    "city": "浦河町",
+    "name": "ごみの分け方出し方　品目別一覧",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.urakawa.hokkaido.jp/gyosei/life/?content=257",
+    "lgcode": "016071",
+    "last_checked": "2026-11-05",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "町公式2026年9月10日更新。品目別分別一覧。"
+  }
+]
