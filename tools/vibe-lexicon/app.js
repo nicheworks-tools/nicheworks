@@ -17,6 +17,7 @@
   const terms = Array.isArray(window.VIBE_LEXICON_TERMS) ? window.VIBE_LEXICON_TERMS : [];
   const maxCompare = 2;
   const confirmTimers = new Map();
+  let outputRevision = 0;
 
   const state = {
     query: '',
@@ -84,12 +85,19 @@
     };
   }
 
-  function readArray(key) { try { return JSON.parse(localStorage.getItem(key) || '[]'); } catch { return []; } }
+  function readArray(key) {
+    try {
+      const saved = JSON.parse(localStorage.getItem(key) || '[]');
+      if (!Array.isArray(saved)) return [];
+      const limit = key === 'nw-vl-recent' ? 6 : 10;
+      return [...new Set(saved.slice(0, 200).filter((id) => typeof id === 'string' && terms.some((term) => term.id === id)))].slice(0, limit);
+    } catch { return []; }
+  }
   function writeArray(key, arr) { try { localStorage.setItem(key, JSON.stringify(arr)); } catch {} }
   function localized(value) { return value?.[lang] ?? value?.en ?? ''; }
   function localizedArray(value) { const v = localized(value); return Array.isArray(v) ? v : []; }
   function byId(id) { return terms.find((t) => t.id === id); }
-  function currentTerm() { return byId(state.selectedId) || terms[0] || null; }
+  function currentTerm() { return byId(state.selectedId) || null; }
   function clearNode(node) { if (!node) return; while (node.firstChild) node.removeChild(node.firstChild); }
   function createEl(tag, className, text) { const node = document.createElement(tag); if (className) node.className = className; if (text !== undefined && text !== null) node.textContent = String(text); return node; }
   function createButton(className, text, dataset) { const btn = createEl('button', className, text); btn.type = 'button'; Object.entries(dataset || {}).forEach(([k, v]) => { btn.dataset[k] = v; }); return btn; }
@@ -147,9 +155,14 @@
     root.dataset.proActive = 'true';
     const badge = $('vlProBadge');
     if (badge) { badge.textContent = txt.available; badge.classList.add('active'); }
-    document.querySelectorAll('[data-pro-action]').forEach((btn) => { btn.setAttribute('aria-disabled', 'false'); if ('disabled' in btn) btn.disabled = false; });
+    const hasSelection = Boolean(currentTerm());
+    document.querySelectorAll('[data-pro-action]').forEach((btn) => {
+      const allowed = hasSelection || (btn.dataset.proAction === 'handoff' && state.compare.length === 2);
+      btn.setAttribute('aria-disabled', String(!allowed));
+      if ('disabled' in btn) btn.disabled = !allowed;
+    });
     const output = $('vlProUnlockedOutput');
-    if (output) output.textContent = buildMarkdownExport();
+    if (output) output.textContent = hasSelection ? buildMarkdownExport() : txt.noResults;
   }
 
   function termSearchCorpus(term) {
@@ -216,8 +229,22 @@
   }
 
   function renderDetail(term) {
-    if (!term) return;
+    if (!term) {
+      state.selectedId = null;
+      els.detailTitle.textContent = txt.noResults;
+      for (const el of [els.detailTypeTag, els.detailCategoryTag, els.detailUseTag, els.detailSub, els.detailPlain, els.detailBad, els.detailGood, els.detailWhyBetter, els.promptBox]) {
+        el.textContent = '';
+      }
+      for (const el of [els.detailFacts, els.detailBreakdown, els.promptModes, els.detailRelated]) clearNode(el);
+      els.favoriteBtn.disabled = true;
+      els.addCompareBtn.disabled = true;
+      els.copyPromptBtn.disabled = true;
+      return;
+    }
     state.selectedId = term.id;
+    els.favoriteBtn.disabled = false;
+    els.addCompareBtn.disabled = false;
+    els.copyPromptBtn.disabled = false;
     state.recent = [term.id, ...state.recent.filter((x) => x !== term.id)].slice(0, 6);
     writeArray('nw-vl-recent', state.recent);
     els.detailTypeTag.textContent = localized(term.termType); els.detailCategoryTag.textContent = localized(term.category); els.detailUseTag.textContent = localized(term.useCase);
@@ -252,7 +279,9 @@
   function renderSuggestions(list) { const q = normalize(state.query); clearNode(els.suggestions); if (!q) { els.suggestions.classList.remove('open'); return; } list.slice(0, 6).forEach((term) => { const item = createEl('div', 'suggestion-item'); item.dataset.select = term.id; item.appendChild(createEl('span', null, localized(term.term))); item.appendChild(createEl('span', 'suggestion-sub', localized(term.category))); els.suggestions.appendChild(item); }); els.suggestions.classList.toggle('open', list.length > 0); }
 
   function render() {
-    const list = filteredTerms(); const selected = byId(state.selectedId) || list[0] || terms[0];
+    outputRevision += 1;
+    const list = filteredTerms();
+    const selected = list.find((term) => term.id === state.selectedId) || list[0] || null;
     renderChips(els.categoryChips, [...new Set(terms.map((t) => localized(t.category)))], 'category'); renderChips(els.useChips, [...new Set(terms.map((t) => localized(t.useCase)))], 'useCase'); renderChips(els.typeChips, [...new Set(terms.map((t) => localized(t.termType)))], 'termType');
     renderFilterToggle('category', els.categoryChips, els.categoryToggleBtn, 6); renderFilterToggle('useCase', els.useChips, els.useToggleBtn, 4); renderFilterToggle('termType', els.typeChips, els.typeToggleBtn, 4);
     els.statTotal.textContent = String(terms.length); els.statCompare.textContent = String(state.compare.length); els.statFav.textContent = String(state.favorites.length); els.resultCount.textContent = `${list.length} ${txt.results}`;
@@ -285,16 +314,20 @@
   function buildStylePromptPack() { const term = currentTerm(); if (!term) return ''; const prompts = useCasePromptPack(term); return [`# ${txt.promptPack}`, `Term: ${localized(term.term)}`, `Intent: ${localized(term.practicalIntent)}`, ''].concat(Object.entries(prompts).map(([mode, prompt]) => `## ${mode}\n${prompt}`)).join('\n\n'); }
   function buildAvoidList() { const term = currentTerm(); if (!term) return ''; return [`# ${txt.avoidTitle}`, `Term: ${localized(term.term)}`, '', `- ${localized(term.commonMisuse)}`, `- ${localized(term.badRequest)}`, `- Vague adjectives without a target surface, audience, constraint, or acceptance check.`, `- Decoration-only changes that do not improve readability, hierarchy, trust, or task success.`].join('\n'); }
   function buildCompareHandoff(sampleIfMissing) { const pair = state.compare.length >= 2 ? state.compare : (sampleIfMissing ? terms.slice(0, 2).map((term) => term.id) : []); if (pair.length < 2) return txt.selectTwo; const a = byId(pair[0]); const b = byId(pair[1]); if (!a || !b) return txt.selectTwo; const insight = pairInsight(a, b); return [`# ${txt.handoffTitle}`, `${localized(a.term)} vs ${localized(b.term)}`, '', `${txt.difference}: ${insight.difference}`, `${txt.whenToUseWhich}: ${insight.whenToUse}`, `${txt.practicalVsVague}: ${insight.practicality}`, '', `Option A better request: ${localized(a.betterRequest)}`, `Option B better request: ${localized(b.betterRequest)}`, '', `Handoff note: choose one vibe before production, then review against audience, context, and conversion or usability goal.`].join('\n'); }
-  function buildMarkdownExport() { return [buildBrandToneMemo(), buildStylePromptPack(), buildAvoidList(), buildCompareHandoff()].join('\n\n---\n\n'); }
+  function buildMarkdownExport() { return currentTerm() ? [buildBrandToneMemo(), buildStylePromptPack(), buildAvoidList(), buildCompareHandoff()].join('\n\n---\n\n') : ''; }
   function buildJsonExport() { const term = currentTerm(); const prompts = term ? useCasePromptPack(term) : {}; return JSON.stringify({ tool: 'vibe-lexicon', monetization: 'ADS_DONATION', paidEntitlementRequired: false, language: lang, term: term ? { id: term.id, label: localized(term.term), useCase: localized(term.useCase), practicalIntent: localized(term.practicalIntent), avoid: localized(term.commonMisuse), betterRequest: localized(term.betterRequest) } : null, promptPack: prompts, brandToneMemo: buildBrandToneMemo(), avoidList: buildAvoidList().split('\n').filter((line) => line.startsWith('- ')).map((line) => line.slice(2)), compareHandoff: buildCompareHandoff() }, null, 2); }
   function downloadText(filename, mime, text) { const blob = new Blob([text], { type: mime }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = filename; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url); }
 
   async function copyText(text) { if (!text) return false; try { if (navigator.clipboard?.writeText) { await navigator.clipboard.writeText(text); return true; } } catch {} const textarea = document.createElement('textarea'); textarea.value = text; textarea.setAttribute('readonly', ''); textarea.style.position = 'fixed'; textarea.style.left = '-9999px'; document.body.appendChild(textarea); textarea.focus(); textarea.select(); let ok = false; try { ok = document.execCommand('copy'); } catch { ok = false; } document.body.removeChild(textarea); return ok; }
   async function handleOutputAction(action) {
+    if (!currentTerm() && !(action === 'handoff' && state.compare.length === 2)) return;
+    const revision = outputRevision;
     if (action === 'markdown') { downloadText('vibe-lexicon.md', 'text/markdown;charset=utf-8', buildMarkdownExport()); showToast(txt.copied); return; }
     if (action === 'json') { downloadText('vibe-lexicon.json', 'application/json;charset=utf-8', buildJsonExport()); showToast(txt.copied); return; }
     const payload = action === 'memo' ? buildBrandToneMemo() : action === 'avoid' ? buildAvoidList() : action === 'handoff' ? buildCompareHandoff() : buildStylePromptPack();
-    const ok = await copyText(payload); showToast(ok ? txt.copied : txt.copyFailed);
+    const ok = await copyText(payload);
+    if (revision !== outputRevision) return;
+    showToast(ok ? txt.copied : txt.copyFailed);
     const output = $('vlProUnlockedOutput'); if (output) output.textContent = payload;
   }
   function requestClear(type) { const key = `clear:${type}`; const btn = document.querySelector(`[data-clear="${type}"]`); if (!confirmTimers.has(key)) { if (btn) btn.textContent = txt.confirmClear; showToast(txt.confirmClear); confirmTimers.set(key, setTimeout(() => { confirmTimers.delete(key); renderSaved(); }, 3500)); return; } clearTimeout(confirmTimers.get(key)); confirmTimers.delete(key); if (type === 'fav') { state.favorites = []; writeArray('nw-vl-favorites', []); } if (type === 'recent') { state.recent = []; writeArray('nw-vl-recent', []); } showToast(txt.cleared); render(); }
