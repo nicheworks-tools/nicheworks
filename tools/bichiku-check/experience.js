@@ -76,7 +76,7 @@ function foodGroupsHtml(a){
    const status=g.usableKinds>0?T.groupListed:g.recordedKinds>0?T.groupReview:T.groupEmpty;
    const portions=g.role==="protein"?
      '<p class="g-fine">'+esc(T.mainDishRegistered)+': <strong>'+fmt(g.usablePortions)+' '+esc(T.mealCount)+'</strong>'+
-     (a.mainDishReferencePortions===null?' · '+esc(T.mainDishIndividual):
+     (a.settings.mode==="go"?' · '+esc(T.mainDishGoOnly):a.mainDishReferencePortions===null?' · '+esc(T.mainDishIndividual):
        ' / <a href="https://www.maff.go.jp/tokai/shohi/seikatsu/heya/rental/attach/pdf/saigairesipi-7.pdf" target="_blank" rel="noopener">'+esc(T.mainDishAdultExample)+'</a>: '+fmt(a.mainDishReferencePortions)+' '+esc(T.mealCount))+'</p>':"";
    return '<div class="g-food-role"><strong>'+esc(T["group"+g.role.charAt(0).toUpperCase()+g.role.slice(1)])+'</strong>'+
     '<span>'+esc(status)+(g.usableKinds>0?' · '+g.usableKinds+' '+esc(T.groupKinds):"")+'</span></div>'+portions;
