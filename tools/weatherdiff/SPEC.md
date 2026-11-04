@@ -78,9 +78,15 @@ location inputと2-provider forecast cards、difference cardを縦方向中心�
 - [ ] 欠損した気温・降水量・風速を0として表示しない。MET Norwayの該当日データなし、null / 空値は「-」で表示し、差分も計算しない。実際に観測/予報したゼロ値は0として表示する。
 - [ ] location/geolocation dataのexternal transmissionをprivacy説明と一致させる。
 - [ ] language選択を`nw_lang`へ保存し、forecast history自体は永続保存しない。
+- [ ] ResetはJA/ENとも結果欄の外側にあり、検索、位置情報取得、天気API通信の途中でも利用できる。
+- [ ] Resetまたは地点入力の変更により、進行中のgeocoding / reverse-geocoding / Open-Meteo / MET Norway通信を中断し、古い応答が結果・エラー・進行表示を復活させない。
+- [ ] Geolocationの許可待ちはAbortControllerで中断できない場合もあるが、後から到着した座標は破棄し、Reset後にnetwork requestを開始しない。
+- [ ] 地点入力の変更後は旧結果の再表示を防ぎ、新しい取得で使う地点と予報が必ず一致する。二重実行は禁止する。
+- [ ] ENページはES module entrypointの`../app.js`を正しく読み込み、日本語と同じ操作を提供する。
 
 ## Implementation evidence
 
 - `tools/weatherdiff/index.html` — location/geolocation UI、two-provider cards、privacy/safety disclaimers、alternate language page。
 - `tools/weatherdiff/app.js` — finalized coreのentry point。
-- `tools/weatherdiff/app-final.js` — language persistence、geolocation/geocoding、Open-Meteo/MET Norway fetch、comparison rendering、external links。
+- `tools/weatherdiff/app-final.js` — language persistence、geolocation/geocoding、Open-Meteo/MET Norway fetch、comparison rendering、external links、request generation / AbortController cancellation。
+- `tools/weatherdiff/async-cancel.test.cjs` — production runtimeに対するReset、入力変更、Geolocation待機、late response、JA/EN HTMLの5件の回帰テスト。

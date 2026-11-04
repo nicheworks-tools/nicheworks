@@ -1,0 +1,29 @@
+name: WeatherDiff async cancellation regression
+
+on:
+  pull_request:
+    paths:
+      - "tools/weatherdiff/**"
+      - ".github/workflows/weatherdiff-async-regression.yml"
+  push:
+    branches: [main]
+    paths:
+      - "tools/weatherdiff/**"
+      - ".github/workflows/weatherdiff-async-regression.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  weatherdiff-async:
+    name: WeatherDiff async regression
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Validate production JavaScript syntax
+        run: node --check tools/weatherdiff/app-final.js
+      - name: Test stale-request cancellation and JA/EN pages
+        run: node --test tools/weatherdiff/async-cancel.test.cjs
