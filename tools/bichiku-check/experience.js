@@ -12,7 +12,7 @@ const fmt=x=>Number.isInteger(x)?String(x):String(Math.round(x*100)/100);
 const unit=id=>id==="water"?"L":id==="food"?T.unitMeals:id==="toilet"?T.unitUses:"";
 const today=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
 let state=Object.assign({},defaults),stage="setup",goal="food",tab="emergency",search="",showAll=false;
-let openOptions=new Set(),openParents=new Set(),selected=null,impression=false,advancedOpen=false;
+let openOptions=new Set(),openParents=new Set(),selected=null,impression=false,advancedOpen=false,batteryPanelOpen=false;
 try{const saved=JSON.parse(localStorage.getItem("bichiku-check-v1")||"null");if(saved&&typeof saved==="object"&&!Array.isArray(saved))state=Object.assign({},defaults,saved)}catch(_){}
 if(!state.stocks||Array.isArray(state.stocks))state.stocks={};
 if(!state.variants||Array.isArray(state.variants))state.variants={};
@@ -67,6 +67,8 @@ function resultsPage(a){
 function preserveOpen(){
  result.querySelectorAll("details[data-option]").forEach(el=>{if(el.open)openOptions.add(el.dataset.option);else openOptions.delete(el.dataset.option)});
  result.querySelectorAll("details[data-parent]").forEach(el=>{if(el.open)openParents.add(el.dataset.parent);else openParents.delete(el.dataset.parent)});
+ const batteryPanel=result.querySelector("details[data-battery-stock-panel]");
+ if(batteryPanel)batteryPanelOpen=batteryPanel.open;
 }
 function foodGroupsHtml(a){
  const groups=a.foodGroups||[];
@@ -109,7 +111,7 @@ function batterySummary(a){
  const b=a.batteryReview,spare=getBasic("batteries");
  return '<div class="g-battery-review"><h4>'+esc(T.batteryTitle)+'</h4>'+
   '<p class="g-fine">'+esc(T.batteryExplanation)+'</p>'+
-  '<details class="g-option" data-battery-stock-panel><summary>'+esc(T.batteryInventory)+'</summary>'+
+  '<details class="g-option" data-battery-stock-panel '+(batteryPanelOpen?"open":"")+'><summary>'+esc(T.batteryInventory)+'</summary>'+
   '<div class="g-option-body"><p class="g-fine">'+esc(T.batteryLegacy)+' '+fmt(n(spare.qty))+'</p>'+
   '<div class="g-parent-fields">'+decision.batteryTypes.map(type=>
    '<label>'+esc(type)+' · '+esc(T.batteryUnits)+
