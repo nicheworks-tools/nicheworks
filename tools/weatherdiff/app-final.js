@@ -116,6 +116,8 @@
   let currentLang = "ja";
   let lastOpenMeteo = null;
   let lastMetNorway = null;
+  let requestGeneration = 0;
+  let activeController = null;
 
   document.addEventListener("DOMContentLoaded", () => {
     cacheElements();
@@ -223,36 +225,63 @@
     els.langJP?.addEventListener("click", () => applyLanguage("ja"));
     els.langEN?.addEventListener("click", () => applyLanguage("en"));
     els.locationInput?.addEventListener("input", () => {
-      if (els.btnCompare) els.btnCompare.disabled = els.locationInput.value.trim() === "";
+      cancelActiveProcess();
     });
+  }
+
+  function cancelActiveProcess() {
+    requestGeneration += 1;
+    activeController?.abort();
+    activeController = null;
+    lastOpenMeteo = null;
+    lastMetNorway = null;
+    clearError();
+    hide(els.progressArea);
+    hide(els.resultSection);
+    unlockUI();
+  }
+
+  function beginProcess() {
+    cancelActiveProcess();
+    const run = { generation: requestGeneration, controller: new AbortController() };
+    activeController = run.controller;
+    lockUI();
+    setProgress(t("progressSearch"));
+    return run;
+  }
+
+  function isCurrentProcess(run) {
+    return !!run && run.generation === requestGeneration && !run.controller.signal.aborted;
+  }
+
+  function finishProcess(run) {
+    if (!isCurrentProcess(run)) return;
+    activeController = null;
+    hide(els.progressArea);
+    unlockUI();
   }
 
   async function searchByInput() {
     const query = els.locationInput?.value.trim() || "";
     if (!query) return;
-    await runFullProcess({ query });
+    const run = beginProcess();
+    await runFullProcess({ query }, run);
   }
 
   async function searchByGeolocation() {
-    clearError();
-    hide(els.resultSection);
-
-    if (location.protocol !== "https:") {
-      showError(t("errorHttpsRequired"));
-      return;
-    }
-    if (!navigator.geolocation) {
-      showError(t("errorNoGeo"));
-      return;
-    }
-
-    setProgress(t("progressSearch"));
+    const run = beginProcess();
     try {
+      if (location.protocol !== "https:") throw new Error(t("errorHttpsRequired"));
+      if (!navigator.geolocation) throw new Error(t("errorNoGeo"));
       const pos = await getCurrentPosition();
-      await runFullProcess({ lat: pos.coords.latitude, lon: pos.coords.longitude });
+      if (!isCurrentProcess(run)) return;
+      await runFullProcess({ lat: pos.coords.latitude, lon: pos.coords.longitude }, run);
     } catch (error) {
-      hide(els.progressArea);
-      showError(error?.code === 1 ? t("errorDenied") : t("errorNoGeo"));
+      if (isCurrentProcess(run)) {
+        showError(error?.code === 1 ? t("errorDenied") : error?.message || t("errorNoGeo"));
+      }
+    } finally {
+      finishProcess(run);
     }
   }
 
@@ -266,21 +295,19 @@
     });
   }
 
-  async function runFullProcess(params) {
-    clearError();
-    lockUI();
-    hide(els.resultSection);
-    setProgress(t("progressSearch"));
+  async function runFullProcess(params, run) {
     const start = performance.now();
-
+    const signal = run.controller.signal;
     try {
-      const resolved = await resolveLocation(params);
+      const resolved = await resolveLocation(params, signal);
+      if (!isCurrentProcess(run)) return;
       const { lat, lon } = resolved;
       let displayName = resolved.displayName || "";
       let addressObj = resolved.address || {};
 
       if (!params.query) {
-        const reverseAddress = await reverseGeocode(lat, lon).catch(() => null);
+        const reverseAddress = await reverseGeocode(lat, lon, signal).catch(() => null);
+        if (!isCurrentProcess(run)) return;
         if (reverseAddress?.displayName) {
           displayName = currentLang === "ja" ? `${reverseAddress.displayName}${t("nearby")}` : `${reverseAddress.displayName} ${t("nearby")}`;
           addressObj = reverseAddress.address || {};
@@ -291,9 +318,11 @@
       renderLocationMeta(lat, lon, resolved.countryName || addressObj.country || "", params.query ? null : displayName);
 
       setProgress(t("progressOpenMeteo"));
-      const om = await fetchOpenMeteo(lat, lon);
+      const om = await fetchOpenMeteo(lat, lon, signal);
+      if (!isCurrentProcess(run)) return;
       setProgress(t("progressMet"));
-      const mn = await fetchMetNorway(lat, lon, om.utcOffset);
+      const mn = await fetchMetNorway(lat, lon, om.utcOffset, signal);
+      if (!isCurrentProcess(run)) return;
 
       lastOpenMeteo = om;
       lastMetNorway = mn;
@@ -303,14 +332,13 @@
       setText(els.processTime, t("processTime").replace("{sec}", ((performance.now() - start) / 1000).toFixed(2)));
       show(els.resultSection);
     } catch (error) {
-      showError(error?.message || t("errorGeneric"));
+      if (isCurrentProcess(run)) showError(error?.message || t("errorGeneric"));
     } finally {
-      hide(els.progressArea);
-      unlockUI();
+      finishProcess(run);
     }
   }
 
-  async function resolveLocation(params) {
+  async function resolveLocation(params, signal) {
     if (!params.query) {
       return { lat: Number(params.lat), lon: Number(params.lon), displayName: "", countryName: "", address: {} };
     }
@@ -318,7 +346,7 @@
     const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(params.query)}&addressdetails=1&accept-language=ja,en&limit=3&countrycodes=jp`;
     let res;
     try {
-      res = await fetch(url);
+      res = await fetch(url, { signal });
     } catch (error) {
       throw new Error(t("errorNotFound"));
     }
@@ -335,18 +363,18 @@
     };
   }
 
-  async function reverseGeocode(lat, lon) {
+  async function reverseGeocode(lat, lon, signal) {
     const url = `https://nominatim.openstreetmap.org/reverse?lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}&format=json&accept-language=ja&zoom=14&addressdetails=1`;
-    const res = await fetch(url);
+    const res = await fetch(url, { signal });
     if (!res.ok) return null;
     const data = await res.json();
     if (!data) return null;
     return { displayName: data.display_name || "", address: data.address || {} };
   }
 
-  async function fetchOpenMeteo(lat, lon) {
+  async function fetchOpenMeteo(lat, lon, signal) {
     const url = `https://api.open-meteo.com/v1/forecast?latitude=${encodeURIComponent(lat)}&longitude=${encodeURIComponent(lon)}&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max,weathercode&timezone=auto`;
-    const res = await fetch(url);
+    const res = await fetch(url, { signal });
     if (!res.ok) throw new Error(t("errorOpenMeteo"));
     const d = await res.json();
     const daily = d.daily;
@@ -368,9 +396,9 @@
     };
   }
 
-  async function fetchMetNorway(lat, lon, offsetSec) {
+  async function fetchMetNorway(lat, lon, offsetSec, signal) {
     const url = `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}`;
-    const res = await fetch(url, { headers: { "User-Agent": "WeatherDiff NicheWorks" } });
+    const res = await fetch(url, { signal, headers: { "User-Agent": "WeatherDiff NicheWorks" } });
     if (!res.ok) throw new Error(t("errorMetNorway"));
     const data = await res.json();
     const series = data?.properties?.timeseries;
@@ -465,13 +493,12 @@
   }
 
   function resetAll() {
+    cancelActiveProcess();
     if (els.locationInput) els.locationInput.value = "";
     if (els.btnCompare) els.btnCompare.disabled = true;
-    lastOpenMeteo = null;
-    lastMetNorway = null;
-    clearError();
-    hide(els.progressArea);
-    hide(els.resultSection);
+    setText(els.locName, "");
+    setText(els.locMeta, "");
+    setText(els.processTime, "");
     setText(els.progressText, t("resetDone"));
   }
 
@@ -522,7 +549,7 @@
   function lockUI() {
     if (els.btnCompare) els.btnCompare.disabled = true;
     if (els.btnGeo) els.btnGeo.disabled = true;
-    if (els.locationInput) els.locationInput.readOnly = true;
+    // Keep input editable so a new location can cancel the previous request.
   }
 
   function unlockUI() {
