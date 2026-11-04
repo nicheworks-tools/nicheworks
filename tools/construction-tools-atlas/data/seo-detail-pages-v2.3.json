@@ -12,15 +12,15 @@
     "revenue_priority_policy_version": "2026-09-19-revenue-priority-2",
     "public_content_quality_version": "2026-09-16-q014-identity-closure-1",
     "public_image_inventory_version": "2026-09-16-q014-identity-closure-1",
-    "image_registry_version": "2026-10-31-reviewed-image-wave9-four-1",
+    "image_registry_version": "2026-11-04-reviewed-image-wave10-saw-1",
     "affiliate_offers_version": "2026-09-18-wave6l-affiliate-1"
   },
   "summary": {
     "public_runtime_entries": 865,
-    "published_static_detail_pages": 44,
-    "with_promoted_image": 43,
+    "published_static_detail_pages": 45,
+    "with_promoted_image": 44,
     "image_not_required": 1,
-    "with_active_affiliate_mapping": 44
+    "with_active_affiliate_mapping": 45
   },
   "entries": [
     {
@@ -224,6 +224,12 @@
     {
       "id": "q017_workbench",
       "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/q017_workbench/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "reciprocating_saw",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/reciprocating_saw/",
       "image": "promoted",
       "affiliate": "active"
     },

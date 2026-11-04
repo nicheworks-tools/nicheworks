@@ -1,6 +1,6 @@
 {
   "schema": "cta-affiliate-image-acquisition-wave6-v2.3",
-  "version": "2026-10-31-reviewed-image-wave9-four-1",
+  "version": "2026-11-04-reviewed-image-wave10-saw-1",
   "policy": {
     "queue_order": "curated source-feasibility work order, NOT empirical market ranking",
     "no_guessed_search_volume": true,
@@ -17,9 +17,9 @@
   },
   "expected": {
     "active_affiliate_mappings": 430,
-    "revenue_ready": 44,
-    "awaiting_source": 386,
-    "first_wave": 1,
+    "revenue_ready": 45,
+    "awaiting_source": 385,
+    "first_wave": 0,
     "source_leads": 3
   },
   "first_wave_ids": [
@@ -121,8 +121,8 @@
     },
     {
       "entry_id": "reciprocating_saw",
-      "disposition": "rejected_subject_focus",
-      "review": "Wave8 candidate only shows reciprocating saw front and blade actively cutting lumber, with most tool body cropped off; rejected for canonical identification and not promoted. Seek a full-tool original. Wave9 second proposed saw image inspected: saw body and rear grip visible but cutting blade and tool nose absent; still inadequate for canonical illustration; remain awaiting_source."
+      "disposition": "promoted",
+      "review": "Wave8 candidate only shows reciprocating saw front and blade actively cutting lumber, with most tool body cropped off; rejected for canonical identification and not promoted. Seek a full-tool original. Wave9 second proposed saw image inspected: saw body and rear grip visible but cutting blade and tool nose absent; still inadequate for canonical illustration; remain awaiting_source. Wave10 full-tool replacement accepted after visual review; source original hash verified through Commons API."
     },
     {
       "entry_id": "laser_distance_meter",

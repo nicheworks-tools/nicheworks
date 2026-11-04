@@ -20,18 +20,18 @@
   "sources": {
     "publication_inventory_version": "2026-09-16-q014-identity-closure-1",
     "publication_id_sha256": "d0264617677052f0f446a0f4ebbfafc2315766d5858480b7103267320d88752d",
-    "image_registry_version": "2026-10-31-reviewed-image-wave9-four-1",
+    "image_registry_version": "2026-11-04-reviewed-image-wave10-saw-1",
     "image_exception_ledger_version": "2026-11-03-five-canonical-retirements-1"
   },
   "summary": {
     "public_entries": 865,
-    "formal_image_entries": 53,
-    "missing_formal_image_entries": 767,
+    "formal_image_entries": 54,
+    "missing_formal_image_entries": 766,
     "not_required_entries": 45,
     "unobtainable_entries": 0,
     "classified_entries": 865,
-    "formal_coverage_percent": 6.1272,
-    "registry_items_total": 53,
+    "formal_coverage_percent": 6.2428,
+    "registry_items_total": 54,
     "formal_images_inherited_via_redirect": 6,
     "formal_images_outside_public": 0,
     "image_exceptions_outside_public": 0,
@@ -46,20 +46,20 @@
       "applicability_reviewed": 865,
       "required": 820,
       "on_hold": 0,
-      "final_dispositions": 98,
-      "unresolved": 767,
+      "final_dispositions": 99,
+      "unresolved": 766,
       "by_stage": {
         "unreviewed": 0,
         "not_required": 45,
-        "awaiting_source": 767,
+        "awaiting_source": 766,
         "candidate": 0,
         "provenance_verified": 0,
         "subject_verified": 0,
         "verified": 0,
-        "promoted": 53
+        "promoted": 54
       }
     },
-    "evidence_sha256": "c739405f88bd3eb7b014a85fb6d2f41fab6c7a9250cfddfec047294dd7ee2d54",
+    "evidence_sha256": "3fac9d8903c33f06d6090d6abf9a1d157cbbd3454b5ca4a8260f68b3907c19b6",
     "rows": [
       {
         "id": "access_door",
@@ -9853,15 +9853,15 @@
       {
         "id": "reciprocating_saw",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "A reciprocating saw is a distinctive power tool with a protruding reciprocating blade; a subject-matched photograph strongly aids identification.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Retained exact JPEG; separately generated uncropped local WebP primary and thumb; provenance registry updated.",
+        "candidate_id": "wave10:reciprocating_saw",
+        "source_entry_id": "reciprocating_saw",
+        "attachment": "direct"
       },
       {
         "id": "reflective_vest",
@@ -11458,17 +11458,17 @@
     },
     "tool": {
       "public_entries": 330,
-      "formal_image": 43,
-      "missing_formal_image": 263,
+      "formal_image": 44,
+      "missing_formal_image": 262,
       "not_required": 24,
       "unobtainable": 0
     }
   },
   "hashes": {
     "public_id_sha256": "d0264617677052f0f446a0f4ebbfafc2315766d5858480b7103267320d88752d",
-    "public_formal_image_id_sha256": "32363771efe9e76c83f2e99b4ec7a2627e6b9f82934b8823682a3077038b58dd",
-    "public_missing_formal_image_id_sha256": "61277a08e41b44131b4117e5d659ab2de5ae3564b798d83bdf53afe2fde9a99e",
-    "public_image_classification_sha256": "4925b0b1022b65a6860ef35d86245543e6de2ae5a574598844feb6d1c60a6f9b"
+    "public_formal_image_id_sha256": "8b2210d4a221f0d82d9516b8347fdb97ed75b4313e4a6763077bde0d5150a282",
+    "public_missing_formal_image_id_sha256": "a63842d62b5e7dcc6dcc16844927a62721c06174e5fbabf293f293e5b827c7d9",
+    "public_image_classification_sha256": "51c09a4f946ec931444e002fb5bdeec33e2afa0f96d7284fa5f95a273e843beb"
   },
   "inherited_formal_images": [
     {
