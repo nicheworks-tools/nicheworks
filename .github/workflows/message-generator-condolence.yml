@@ -1,0 +1,31 @@
+name: Message Generator condolence regression
+
+on:
+  pull_request:
+    paths:
+      - "tools/message-generator/**"
+      - ".github/workflows/message-generator-condolence.yml"
+  push:
+    branches: [main]
+    paths:
+      - "tools/message-generator/**"
+      - ".github/workflows/message-generator-condolence.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  condolence-context:
+    name: Condolence wording and other message context
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Validate runtime and regression syntax
+        run: |
+          node --check tools/message-generator/app.js
+          node --check tools/message-generator/tests/condolence-context.test.cjs
+      - name: Verify generated message context in production runtime
+        run: node --test tools/message-generator/tests/condolence-context.test.cjs
