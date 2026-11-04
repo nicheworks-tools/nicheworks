@@ -57,7 +57,9 @@ function foodRoleOverview(options,s,now){
      (!s.powerOut||s.offGridHeatConfirmed||o.prep!=="heat")&&
      (!o.requiresWater||(s.safeWaterConfirmed&&s.prepWaterSufficient&&e.prepConfirmed===true&&numeric(e.prepWaterLiters)>0))
    );
-   return {role,recordedKinds:saved.length,usableKinds:usable.length,needsReview:saved.length>0&&usable.length===0};
+   return {role,recordedKinds:saved.length,usableKinds:usable.length,
+     usablePortions:role==="protein"?round(usable.reduce((sum,{entry})=>sum+numeric(entry.qty),0)):null,
+     needsReview:saved.length>0&&usable.length===0};
  });
 }
 function normalize(s){
@@ -90,6 +92,10 @@ function assessment(catalog,options,source,today){
  if(!core)throw Error("BichikuCore is required");
  const calc=core.calculate(catalog,readiness,now,options);
  const foodGroups=foodRoleOverview(options,readiness,now);
+ // MAFF adult staple/main-dish stock example: 3 portions per adult per day.
+ // Suppress this simplified comparison when children or infants need individualized planning.
+ const mainDishReferencePortions=calc.settings.mode==="home"&&calc.settings.adults>0&&calc.settings.children===0&&calc.settings.infants===0
+   ?3*calc.settings.adults*calc.settings.days:null;
  const toiletBags=(s.variants||{})[s.mode+":toiletBags"]||{};
  const assemblyUses=s.toiletAssemblyConfirmed&&unexpired(toiletBags,now)?numeric(toiletBags.qty):0;
  const toilet=calc.items.find(x=>x.item.id==="toilet");
@@ -124,7 +130,7 @@ function assessment(catalog,options,source,today){
  calc.missingCount=calc.items.filter(x=>x.missing>0).length;
  calc.coreMissingCount=calc.items.filter(x=>x.priority===1&&x.missing>0).length;
  calc.filledCount=calc.items.filter(x=>x.missing===0).length;
- return {settings:s,calc,groups:status,combinations,foodGroups,
+ return {settings:s,calc,groups:status,combinations,foodGroups,mainDishReferencePortions,
    heatReady:!s.noHeat&&(!s.powerOut||s.offGridHeatConfirmed),waterForPrep,waterStored:stored,
    waterAllocation,uncheckedFoods,waterRemainingAfterPrep:round(Math.max(0,stored-waterAllocation)),
    food,water,pad,warmth,waterConflict};

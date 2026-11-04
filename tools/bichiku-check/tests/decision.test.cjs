@@ -183,3 +183,17 @@ test("named bottle capacities are explicit metadata, but core still stores litre
  assert.equal(row(a,"water").effective,9,"3 two-litre and 4 half-litre bottles, plus 1L manual");
  assert.equal(a.waterStored,9);
 });
+
+test("main-dish portions track user-entered usable servings separately and never reduce staples",()=>{
+ const a=assess({variants:{"home:tunaCan":{qty:5},"home:beansCan":{qty:3},
+   "home:tofu":{qty:4},"home:mackerelCan":{qty:9,expiry:"2026-11-01"}}});
+ const protein=a.foodGroups.find(g=>g.role==="protein");
+ assert.equal(protein.usableKinds,2);
+ assert.equal(protein.usablePortions,8);
+ assert.equal(a.mainDishReferencePortions,9,"MAFF adult example extrapolated for 1 adult and 3 days");
+ assert.equal(row(a,"food").effective,0,"main dishes never become staple portions");
+ const family=assess({children:1,variants:{"home:tunaCan":{qty:5}}});
+ assert.equal(family.mainDishReferencePortions,null,"age-specific needs are not estimated from an adult example");
+ assert.equal(family.foodGroups.find(g=>g.role==="protein").usablePortions,5);
+ assert.equal(assess({mode:"go"}).mainDishReferencePortions,null,"at-home reference must not be applied to a go-bag");
+});
