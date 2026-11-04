@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'tools/construction-tools-atlas/scripts/check-production-viewport-360.mjs'
+      - 'tools/construction-tools-atlas/scripts/check-production-saw-publication.mjs'
       - '.github/workflows/construction-atlas-production-360.yml'
   push:
     branches: [main]
@@ -45,6 +46,16 @@ jobs:
             if node tools/construction-tools-atlas/scripts/check-production-viewport-360.mjs; then
               exit 0
             fi
+            if ((i==attempts)); then exit 1; fi
+            sleep 45
+          done
+      - name: Verify real production 45th detail page, Commons source hash and optimized images
+        shell: bash
+        run: |
+          attempts=1
+          if [[ "${{ github.event_name }}" == "push" ]]; then attempts=8; fi
+          for ((i=1; i<=attempts; i++)); do
+            if node tools/construction-tools-atlas/scripts/check-production-saw-publication.mjs; then exit 0; fi
             if ((i==attempts)); then exit 1; fi
             sleep 45
           done
