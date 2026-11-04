@@ -94,6 +94,14 @@
         !Number.isInteger(Number(entry.powerReadyQty))) return 0;
     return Math.min(quantity, Math.floor(num(entry.powerReadyQty,0,0,10000000)));
   }
+  // Parent totals can already include separately itemized stock. Unknown
+  // overlap never authorizes additive double credit for legacy saved entries.
+  function remainingManualQuantity(manualQty,listedQty,basis) {
+    var m=num(manualQty,0,0,10000000), listed=num(listedQty,0,0,10000000);
+    if(!m || !listed || basis==="additional") return m;
+    if(basis==="includes_options") return Math.max(0,m-listed);
+    return 0;
+  }
   function calculate(catalog, options, today, optionCatalog) {
     var s = normalize(options);
     var stamp = /^\d{4}-\d{2}-\d{2}$/.test(String(today||"")) ? String(today) : new Date().toISOString().slice(0,10);
@@ -124,14 +132,28 @@
         variantEffective += effectiveQty;
         excludedVariants += qty-effectiveQty;
       });
-      var owned = ownedManual + variantOwned;
+      var overlap = ownedManual>0 && variantOwned>0;
+      var manualCountBasis = ["additional","includes_options"].includes(entry.manualCountBasis)?
+        entry.manualCountBasis:"";
+      var requiresManualReview = s.enforceConditions && overlap && !manualCountBasis;
+      var manualExtraOwned = s.enforceConditions?
+        remainingManualQuantity(ownedManual,variantOwned,manualCountBasis):ownedManual;
+      var owned = s.enforceConditions&&overlap&&manualCountBasis!=="additional"?
+        Math.max(ownedManual,variantOwned):ownedManual+variantOwned;
       var expiry = /^\d{4}-\d{2}-\d{2}$/.test(String(entry.expiry||"")) ? entry.expiry : "";
       var expired = expiry !== "" && expiry < stamp;
-      var manualEffective = expired ? 0 :
+      var rawManualEffective = expired ? 0 :
         (s.enforceConditions && energyDependentParent(i.id) ? readyEnergyUnits(entry,ownedManual) : ownedManual);
+      var manualEffective = s.enforceConditions?
+        remainingManualQuantity(rawManualEffective,variantOwned,manualCountBasis):rawManualEffective;
       var effective = manualEffective + variantEffective;
       var missing = Math.max(0,Math.round((required-effective)*100)/100);
-      return {item:i,key:key,required:required,autoTarget:autoTarget,hasCustomTarget:custom,ownedManual:ownedManual,variantOwned:variantOwned,excludedVariants:excludedVariants,owned:owned,effective:effective,expiry:expiry,expired:expired,missing:missing,priority:i.priority};
+      return {item:i,key:key,required:required,autoTarget:autoTarget,hasCustomTarget:custom,
+        ownedManual:ownedManual,variantOwned:variantOwned,excludedVariants:excludedVariants,
+        owned:owned,effective:effective,manualEffective:manualEffective,
+        rawManualEffective:rawManualEffective,manualExtraOwned:manualExtraOwned,
+        manualCountBasis:manualCountBasis,requiresManualReview:requiresManualReview,
+        expiry:expiry,expired:expired,missing:missing,priority:i.priority};
     });
     items.sort(function(a,b) {return a.priority-b.priority || b.missing-a.missing || a.item.id.localeCompare(b.item.id);});
     return {
@@ -141,7 +163,8 @@
       filledCount:items.filter(function(x){return x.missing===0;}).length
     };
   }
-  var api = Object.freeze({normalize:normalize,needs:needs,optionAvailable:optionAvailable,calculate:calculate});
+  var api = Object.freeze({normalize:normalize,needs:needs,optionAvailable:optionAvailable,
+    remainingManualQuantity:remainingManualQuantity,calculate:calculate});
   root.BichikuCore = api;
   if(typeof module==="object" && module.exports) module.exports=api;
 })(typeof globalThis === "object" ? globalThis : this);
