@@ -127,9 +127,12 @@ function renderChoices(a){
  return arr.map(o=>{
  const v=getOption(o.id),bottleFactor=o.bottleLiters||0;
  const qLabel=bottleFactor?T.bottleCount:o.parent==="water"?T.litersTotal:o.parent==="food"?(o.role==="staple"?T.mealPortions:o.role==="protein"?T.proteinPortions:T.produceQuantity):o.parent==="toilet"?T.toiletUses:T.quantity;
- const qValue=bottleFactor?fmt(n(v.qty)/bottleFactor):fmt(n(v.qty));
+ const calculatedBottles=bottleFactor?n(v.qty)/bottleFactor:0;
+ const hasLegacyFraction=bottleFactor&&n(v.qty)>0&&!Number.isInteger(calculatedBottles);
+ // Older saved litres may not represent whole sealed bottles; preserve the original litres.
+ const qValue=bottleFactor?(hasLegacyFraction?"":fmt(calculatedBottles)):fmt(n(v.qty));
  const qAttr=bottleFactor?"data-option-bottles":"data-option-qty";
- const vWaterNote=bottleFactor?'<p class="g-fine">'+esc(T.bottleSubtotal)+': <strong>'+fmt(n(v.qty))+'L</strong>. '+esc(T.bottleNote)+'</p>':"";
+ const vWaterNote=bottleFactor?'<p class="g-fine">'+esc(T.bottleSubtotal)+': <strong>'+fmt(n(v.qty))+'L</strong>. '+esc(T.bottleNote)+' '+esc(T.bottleWhole)+(hasLegacyFraction?' '+esc(T.bottleLegacy):'')+'</p>':"";
  const countable=o.equivalence==="full"&&(!state.noHeat||!["heat","verify"].includes(o.prep))&&(!state.powerOut||state.offGridHeatConfirmed||o.prep!=="heat")&&(!o.requiresWater||(a.waterForPrep&&v.prepConfirmed===true&&n(v.prepWaterLiters)>0));
  const unexpired=!v.expiry||v.expiry>=today();
  const ready=n(v.qty)>0&&unexpired&&(countable||(o.id==="toiletBags"&&state.toiletAssemblyConfirmed));
@@ -268,6 +271,8 @@ result.addEventListener("change",e=>{
   const item=Object.assign({},getOption(optionId));
   if(t.dataset.optionQty){item.qty=n(t.value);item.prepConfirmed=false}
   if(t.dataset.optionBottles){
+    // step=1 is not enforced on change events; reject fractional bottle counts.
+    if(!t.checkValidity()||!Number.isInteger(Number(t.value))){t.reportValidity();return}
     const option=choices.find(o=>o.id===optionId),factor=option&&option.bottleLiters;
     if(!factor)return;
     item.qty=Math.round(n(t.value)*factor*100)/100;

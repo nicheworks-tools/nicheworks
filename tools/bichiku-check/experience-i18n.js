@@ -30,5 +30,9 @@ Object.assign(extra.ja,{mainDishGoOnly:"持ち出し袋には在宅備蓄用の�
 Object.assign(extra.en,{mainDishGoOnly:"The at-home main-dish reference does not apply to an evacuation go-bag."});
 Object.assign(extra.zh,{mainDishGoOnly:"居家备粮的主菜参考量不适用于应急携带包。"});
 Object.assign(extra.vi,{mainDishGoOnly:"Mức tham khảo món chính để dự trữ tại nhà không áp dụng cho túi sơ tán."});
+Object.assign(extra.ja,{bottleWhole:"ボトル本数は整数で入力してください。",bottleLegacy:"従来のリットル登録値は保持しています。整数本を入力すると、その本数の水量に置き換わります。"});
+Object.assign(extra.en,{bottleWhole:"Enter a whole number of bottles.",bottleLegacy:"The previously saved litre value remains unchanged. Enter a whole bottle count to replace that quantity."});
+Object.assign(extra.zh,{bottleWhole:"瓶数只能输入整数。",bottleLegacy:"此前保存的升数保持不变。输入整数瓶数后才会替换该水量。"});
+Object.assign(extra.vi,{bottleWhole:"Hãy nhập số chai nguyên.",bottleLegacy:"Giá trị lít đã lưu vẫn được giữ nguyên. Nhập số chai nguyên để thay thế lượng nước đó."});
 for(const [lang,text] of Object.entries(extra))Object.assign(window.BICHIKU_GUIDED_TEXT[lang],text);
 })();
