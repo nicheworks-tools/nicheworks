@@ -66,6 +66,7 @@ The primary flow is one select control followed by actions and a single output b
 - [ ] Generated content can be copied and downloaded as both Markdown and TXT.
 - [ ] The UI does not imply that checklist completion guarantees legal, privacy, ad, or deployment correctness.
 - [ ] JP/EN switching preserves the tool flow on the same page.
+- [ ] Generated checklist Date and Markdown/TXT download filename use the viewer's local calendar date, including when local date differs from UTC.
 
 ## Implementation evidence
 
