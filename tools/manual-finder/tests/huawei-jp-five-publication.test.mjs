@@ -45,7 +45,8 @@ for(const row of rows){
  assert.match(new URL(row.manualUrl).pathname,/^\/jp\/support\/wearables\/[a-z0-9-]+\/$/);
  assert.ok(row.noteJa.includes('ユーザーガイド'));
  assert.ok(row.noteJa.includes('直接リンクではありません'));
- assert.ok(row.linkReview.includes('ja-jp00753143'));
+ assert.ok(row.evidenceUrl.includes('ja-jp00753143'));
+ assert.ok(row.linkReview.includes(row.manualUrl));
  assert.equal(affiliate.buildModelSearchUrl(row),'','unapproved その他 wearable category must not leak Amazon tagged links');
  assert.equal(affiliate.getConsumableOffers(row).length,0);
 }
