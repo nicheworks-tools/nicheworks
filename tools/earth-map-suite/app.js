@@ -726,6 +726,9 @@
     let stormMetadataRequestId = 0;
     let compareMetadataRequestId = 0;
     let cardMetadataRequestId = 0;
+    let stormMetadataAbort = null;
+    let compareMetadataAbort = null;
+    let cardMetadataAbort = null;
     let compareState = null;
     let cardState = null;
 
@@ -1572,9 +1575,12 @@
 
     const loadStormMetadataStatus = async ({ bbox, start, end, preset }, lang, requestId) => {
       if (!stormState || requestId !== stormMetadataRequestId) return;
+      stormMetadataAbort?.abort();
+      const controller = new AbortController();
+      stormMetadataAbort = controller;
       showStormMetadataLoading(lang);
       try {
-        const response = await fetch(buildMetadataUrl({ bbox, start, end, preset }), { headers: { accept: "application/json" } });
+        const response = await fetch(buildMetadataUrl({ bbox, start, end, preset }), { signal: controller.signal, headers: { accept: "application/json" } });
         const payload = await response.json();
         const metadata = normalizeMetadataPayload(payload, response.ok, response.status);
         if (!stormState || requestId !== stormMetadataRequestId) return;
@@ -1595,6 +1601,8 @@
         stormState.realMetadata = metadata;
         renderStormMetadata(metadata, lang);
         trackMetadataStatus({ metadata, start, end, bbox });
+      } finally {
+        if (stormMetadataAbort === controller) stormMetadataAbort = null;
       }
     };
 
@@ -1712,9 +1720,9 @@
       });
     };
 
-    const fetchComparePeriodMetadata = async ({ bbox, start, end, preset }, lang) => {
+    const fetchComparePeriodMetadata = async ({ bbox, start, end, preset }, lang, signal) => {
       try {
-        const response = await fetch(buildMetadataUrl({ bbox, start, end, preset }), { headers: { accept: "application/json" } });
+        const response = await fetch(buildMetadataUrl({ bbox, start, end, preset }), { signal, headers: { accept: "application/json" } });
         const payload = await response.json();
         return normalizeMetadataPayload(payload, response.ok, response.status);
       } catch (error) {
@@ -1732,20 +1740,27 @@
 
     const loadCompareMetadataStatus = async ({ bbox, startA, endA, startB, endB, preset }, lang, requestId) => {
       if (!compareState || requestId !== compareMetadataRequestId) return;
+      compareMetadataAbort?.abort();
+      const controller = new AbortController();
+      compareMetadataAbort = controller;
       const loadingMetadata = { status: "loading", reachable: false, sampling_status: "metadata_only" };
       compareState.realMetadataA = loadingMetadata;
       compareState.realMetadataB = loadingMetadata;
       renderCompareMetadata({ metadataA: loadingMetadata, metadataB: loadingMetadata, lang });
 
-      const [metadataA, metadataB] = await Promise.all([
-        fetchComparePeriodMetadata({ bbox, start: startA, end: endA, preset }, lang),
-        fetchComparePeriodMetadata({ bbox, start: startB, end: endB, preset }, lang)
-      ]);
-      if (!compareState || requestId !== compareMetadataRequestId) return;
-      compareState.realMetadataA = metadataA;
-      compareState.realMetadataB = metadataB;
-      renderCompareMetadata({ metadataA, metadataB, lang });
-      trackCompareMetadataStatus({ metadataA, metadataB, startA, endA, startB, endB, bbox });
+      try {
+        const [metadataA, metadataB] = await Promise.all([
+          fetchComparePeriodMetadata({ bbox, start: startA, end: endA, preset }, lang, controller.signal),
+          fetchComparePeriodMetadata({ bbox, start: startB, end: endB, preset }, lang, controller.signal)
+        ]);
+        if (!compareState || requestId !== compareMetadataRequestId) return;
+        compareState.realMetadataA = metadataA;
+        compareState.realMetadataB = metadataB;
+        renderCompareMetadata({ metadataA, metadataB, lang });
+        trackCompareMetadataStatus({ metadataA, metadataB, startA, endA, startB, endB, bbox });
+      } finally {
+        if (compareMetadataAbort === controller) compareMetadataAbort = null;
+      }
     };
 
 
@@ -1853,11 +1868,14 @@
 
     const loadCardMetadataStatus = async ({ bbox, bboxArea, start, end, preset }, lang, requestId) => {
       if (!cardState || requestId !== cardMetadataRequestId) return;
+      cardMetadataAbort?.abort();
+      const controller = new AbortController();
+      cardMetadataAbort = controller;
       const loadingMetadata = { status: "loading", reachable: false, sampling_status: "metadata_only", metadata_bbox: bbox };
       cardState.realMetadata = loadingMetadata;
       renderCardMetadata({ metadata: loadingMetadata, lang });
       try {
-        const response = await fetch(buildMetadataUrl({ bbox, start, end, preset }), { headers: { accept: "application/json" } });
+        const response = await fetch(buildMetadataUrl({ bbox, start, end, preset }), { signal: controller.signal, headers: { accept: "application/json" } });
         const payload = await response.json();
         const metadata = { ...normalizeMetadataPayload(payload, response.ok, response.status), metadata_bbox: bbox };
         if (!cardState || requestId !== cardMetadataRequestId) return;
@@ -1879,6 +1897,8 @@
         cardState.realMetadata = metadata;
         renderCardMetadata({ metadata, lang });
         trackCardMetadataStatus({ metadata, start, end, bboxArea });
+      } finally {
+        if (cardMetadataAbort === controller) cardMetadataAbort = null;
       }
     };
 
@@ -2010,6 +2030,8 @@
       }
       const cumulativeFrames = buildCumulativeFrames(data.frames);
       stormMetadataRequestId += 1;
+      stormMetadataAbort?.abort();
+      stormMetadataAbort = null;
       const requestId = stormMetadataRequestId;
       stormState = {
         ...data,
@@ -2034,6 +2056,8 @@
 
     const resetStormReplay = () => {
       stormMetadataRequestId += 1;
+      stormMetadataAbort?.abort();
+      stormMetadataAbort = null;
       if (stormMetadataPanel) {
         stormMetadataPanel.hidden = true;
       }
@@ -2051,6 +2075,8 @@
 
     const resetCompareOutput = () => {
       compareMetadataRequestId += 1;
+      compareMetadataAbort?.abort();
+      compareMetadataAbort = null;
       if (compareOutput) {
         compareOutput.hidden = true;
       }
@@ -2078,6 +2104,8 @@
 
     const resetCardOutput = () => {
       cardMetadataRequestId += 1;
+      cardMetadataAbort?.abort();
+      cardMetadataAbort = null;
       if (cardOutput) {
         cardOutput.hidden = true;
       }
@@ -2235,6 +2263,8 @@
       const data = buildPointTimeseries({ lat, lon, start, end, preset });
       const bboxInfo = buildCardMetadataBbox({ lat, lon, preset });
       cardMetadataRequestId += 1;
+      cardMetadataAbort?.abort();
+      cardMetadataAbort = null;
       const requestId = cardMetadataRequestId;
       cardState = {
         ...data,
@@ -2268,6 +2298,8 @@
       if (!compareOutput || !compareCanvasA || !compareCanvasB || !compareCanvasDiff) return;
       const data = buildCompareData({ bbox, startA, endA, startB, endB, preset });
       compareMetadataRequestId += 1;
+      compareMetadataAbort?.abort();
+      compareMetadataAbort = null;
       const requestId = compareMetadataRequestId;
       compareState = {
         ...data,
@@ -2306,6 +2338,8 @@
         setErrorStatus(validation.error, activeLang);
         if (values.mode === "storm") {
           stormMetadataRequestId += 1;
+          stormMetadataAbort?.abort();
+          stormMetadataAbort = null;
           stormState = null;
           if (stormReplay) stormReplay.hidden = true;
           if (stormStatus) stormStatus.textContent = "";
@@ -2313,6 +2347,8 @@
         }
         if (values.mode === "compare") {
           compareMetadataRequestId += 1;
+          compareMetadataAbort?.abort();
+          compareMetadataAbort = null;
           if (compareOutput) compareOutput.hidden = false;
           renderCompareMetadata({ lang: activeLang, validationError: validation.error });
           resetStormReplay();
@@ -2320,6 +2356,8 @@
         }
         if (values.mode === "card") {
           cardMetadataRequestId += 1;
+          cardMetadataAbort?.abort();
+          cardMetadataAbort = null;
           if (cardOutput) cardOutput.hidden = false;
           renderCardMetadata({ lang: activeLang, validationError: validation.error });
           resetStormReplay();

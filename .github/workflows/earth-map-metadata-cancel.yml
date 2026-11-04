@@ -1,0 +1,29 @@
+name: Earth Map metadata cancellation regression
+
+on:
+  pull_request:
+    paths:
+      - "tools/earth-map-suite/**"
+      - ".github/workflows/earth-map-metadata-cancel.yml"
+  push:
+    branches: [main]
+    paths:
+      - "tools/earth-map-suite/**"
+      - ".github/workflows/earth-map-metadata-cancel.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  earth-map-metadata:
+    name: Earth Map metadata abort and stale-response regression
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Validate production runtime syntax
+        run: node --check tools/earth-map-suite/app.js
+      - name: Execute production metadata handlers against delayed responses
+        run: node --test tools/earth-map-suite/metadata-cancel.test.cjs
