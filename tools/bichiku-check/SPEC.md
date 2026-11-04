@@ -87,3 +87,12 @@ Named 2L/500mL bottled-water variants accept whole bottle counts in the UI and c
 - Complete `toiletKit` units require verified safe installation, sealed storage and disposal. They are not dependent on the loose-pair compatibility flag.
 - Separate `home:` and `go:` entries; never silently migrate old `qty` into two component counts. Duplicate physical items must not be included both as a complete kit and as loose supplies.
 - Informational help explains that waste classification/collection is locally determined. Maintain JP/EN/zh-CN/VI strings and regression tests.
+
+## Verified off-grid heating session budget (2026-11-04)
+
+- During blackout (`powerOut===true`) and where heating is possible (`noHeat===false`), do not authorize `prep:"heat"` products from legacy `offGridHeatConfirmed` alone.
+- Gate on user-confirmed non-expired stove inventory and non-expired compatible fuel inventory, separate safe-use and fuel-compatibility checks, positive measured total fuel-supported sessions, **each registered unexpired heating-food** having an explicit positive whole number of cooking sessions and item confirmation, and `sum(food.heatSessions) <= gas.heatCapacityUses`.
+- Fuel capacity is an explicitly entered estimate from the user's equipment/fuel instructions and heating plan; **do not derive from a default number of sessions per canister**. Do not promise effective safety or calorific coverage.
+- Reject fractional stove, canister, fuel-session or food-session entries. User edits to stove/gas quantities or food heating demand must invalidate the related confirmations; do not delete legacy `offGridHeatConfirmed`.
+- Distinguish from everyday heating without power outage and from `noHeat`. Apply to supplemental heated food as well as heat-dependent staple food; enforce the same budget across them. Block the entire uncertain heating group if totals exceed capacity rather than allocating a shared fuel unit multiple times.
+- Keep home/go-bag per-mode quantities separate. Provide JP/EN/ZH/VI labels and mobile/browser decision regressions.

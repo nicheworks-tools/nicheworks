@@ -143,37 +143,97 @@ test("expired confirmed water-dependent food cannot consume water or cover a sho
  assert.equal(row(a,"food").effective,0);
 });
 
-test("power outage is not cosmetic: hot food is excluded without verified independent heat",()=>{
- const stock={variants:{"home:packRice":{qty:3},"home:kanpan":{qty:2}}};
- const normal=assess(stock);
- assert.equal(row(normal,"food").effective,5);
- const blackout=assess({...stock,powerOut:true});
- assert.equal(row(blackout,"food").effective,2,"Only ready-to-eat food should count during unmitigated outage");
+test("blackout heat requires actual stove, fuel, capacity and food-by-food plans",()=>{
+ const food={"home:packRice":{qty:3,heatSessions:2,heatConfirmed:true},
+   "home:kanpan":{qty:2}};
+ const stock={variants:food};
+ assert.equal(row(assess(stock),"food").effective,5,"ordinary power allows regular cooking");
+ const blackout=assess({...stock,powerOut:true,offGridHeatConfirmed:true});
+ assert.equal(row(blackout,"food").effective,2,"legacy single checkbox cannot assert fuel sufficiency");
  assert.equal(blackout.heatReady,false);
- const prepared=assess({...stock,powerOut:true,offGridHeatConfirmed:true});
- assert.equal(row(prepared,"food").effective,5);
+ const equipment={"home:stove":{qty:1,heatEquipmentConfirmed:true},
+   "home:gas":{qty:2,heatCapacityUses:2,heatFuelCompatibleConfirmed:true}};
+ const prepared=assess({...stock,powerOut:true,stocks:equipment});
  assert.equal(prepared.heatReady,true);
+ assert.equal(prepared.heatReview.requiredUses,2);
+ assert.equal(prepared.heatReview.capacityUses,2);
+ assert.equal(row(prepared,"food").effective,5);
+ const withoutStove=assess({...stock,powerOut:true,stocks:{...equipment,"home:stove":{qty:0,heatEquipmentConfirmed:true}}});
+ assert.equal(row(withoutStove,"food").effective,2);
+ const withoutFuel=assess({...stock,powerOut:true,stocks:{...equipment,"home:gas":{qty:0,heatCapacityUses:2,heatFuelCompatibleConfirmed:true}}});
+ assert.equal(row(withoutFuel,"food").effective,2);
+ assert.equal(withoutFuel.heatReview.verifiedCapacityUses,0,"fuel sessions cannot appear usable without physical canisters");
+ const withoutSafety=assess({...stock,powerOut:true,stocks:{...equipment,"home:stove":{qty:1}}});
+ assert.equal(row(withoutSafety,"food").effective,2);
+ const withoutCompatibility=assess({...stock,powerOut:true,stocks:{...equipment,"home:gas":{qty:2,heatCapacityUses:2}}});
+ assert.equal(row(withoutCompatibility,"food").effective,2);
 });
-test("declared no-heat scenario overrides any power-out alternative heating confirmation",()=>{
+test("fuel session budget is shared across EVERY heated food, not reused per product",()=>{
+ const data={powerOut:true,waterOut:true,safeWaterConfirmed:true,
+   stocks:{"home:water":{qty:4},"home:stove":{qty:1,heatEquipmentConfirmed:true},
+     "home:gas":{qty:1,heatCapacityUses:2,heatFuelCompatibleConfirmed:true}},
+   variants:{"home:packRice":{qty:3,heatSessions:2,heatConfirmed:true},
+     "home:cupNoodles":{qty:4,heatSessions:1,heatConfirmed:true,prepConfirmed:true,prepWaterLiters:1}}};
+ const blocked=assess(data);
+ assert.equal(blocked.heatReview.requiredUses,3);
+ assert.equal(blocked.heatReview.capacityUses,2);
+ assert.equal(row(blocked,"food").effective,0,"shared fuel budget cannot be counted twice");
+ assert.equal(blocked.waterAllocation,0,"blocked cooking does not allocate imaginary hot water");
+ const enough=assess({...data,stocks:{...data.stocks,"home:gas":{qty:1,heatCapacityUses:3,heatFuelCompatibleConfirmed:true}}});
+ assert.equal(enough.heatReady,true);
+ assert.equal(row(enough,"food").effective,7);
+ assert.equal(enough.waterAllocation,1);
+ assert.equal(enough.waterRemainingAfterPrep,3);
+ const withoutPlan=assess({...data,stocks:{...data.stocks,"home:gas":{qty:1,heatCapacityUses:10,heatFuelCompatibleConfirmed:true}},
+   variants:{...data.variants,"home:cupNoodles":{qty:4,prepConfirmed:true,prepWaterLiters:1}}});
+ assert.deepEqual(withoutPlan.heatReview.uncheckedFoods,["cupNoodles"]);
+ assert.equal(row(withoutPlan,"food").effective,0,"unknown sessions for one food block blanket approval");
+});
+test("heating requires whole session counts and valid, mode-specific fuel stock",()=>{
+ const base={powerOut:true,variants:{"home:packRice":{qty:3,heatSessions:1,heatConfirmed:true}},
+   stocks:{"home:stove":{qty:1,heatEquipmentConfirmed:true},"home:gas":{qty:1,heatCapacityUses:1,heatFuelCompatibleConfirmed:true}}};
+ assert.equal(row(assess(base),"food").effective,3);
+ const expiredFuel=assess({...base,stocks:{...base.stocks,
+   "home:gas":{qty:1,heatCapacityUses:1,heatFuelCompatibleConfirmed:true,expiry:"2026-10-31"}}});
+ assert.equal(expiredFuel.heatReady,false);
+ assert.equal(row(expiredFuel,"food").effective,0);
+ const expiredStove=assess({...base,stocks:{...base.stocks,
+   "home:stove":{qty:1,heatEquipmentConfirmed:true,expiry:"2026-10-31"}}});
+ assert.equal(expiredStove.heatReady,false);
+ const fractional=assess({...base,variants:{"home:packRice":{qty:3,heatSessions:1.5,heatConfirmed:true}}});
+ assert.equal(fractional.heatReady,false);
+ assert.deepEqual(fractional.heatReview.uncheckedFoods,["packRice"]);
+ const carry=assess({...base,mode:"go",variants:{"go:packRice":{qty:3,heatSessions:1,heatConfirmed:true}}});
+ assert.equal(carry.heatReady,false,"home stove/gas cannot be reused as packed go-bag items");
+ const goReady=assess({...base,mode:"go",variants:{"go:packRice":{qty:3,heatSessions:1,heatConfirmed:true}},
+   stocks:{"go:stove":{qty:1,heatEquipmentConfirmed:true},"go:gas":{qty:1,heatCapacityUses:1,heatFuelCompatibleConfirmed:true}}});
+ assert.equal(goReady.heatReady,true);
+ assert.equal(row(goReady,"food").effective,3);
+});
+test("declared no-heat scenario overrides even fully measured fuel and cooking plan",()=>{
  const a=assess({powerOut:true,noHeat:true,offGridHeatConfirmed:true,
-  variants:{"home:packRice":{qty:3},"home:kanpan":{qty:2}}});
+  stocks:{"home:stove":{qty:1,heatEquipmentConfirmed:true},
+    "home:gas":{qty:5,heatCapacityUses:25,heatFuelCompatibleConfirmed:true}},
+  variants:{"home:packRice":{qty:3,heatSessions:1,heatConfirmed:true},"home:kanpan":{qty:2}}});
  assert.equal(row(a,"food").effective,2);
  assert.equal(a.heatReady,false);
+ assert.equal(a.heatReview.ready,false);
 });
-test("water-dependent noodles in blackout require BOTH safe measured water and off-grid heat",()=>{
- const stock={powerOut:true,waterOut:true,safeWaterConfirmed:true,stocks:{"home:water":{qty:5}},
-  variants:{"home:cupNoodles":{qty:3,prepConfirmed:true,prepWaterLiters:1.5}}};
- const noHeat=assess(stock);
- assert.equal(row(noHeat,"food").effective,0);
- assert.equal(noHeat.waterAllocation,0,"Heating-inaccessible products must not reserve cooking water");
- const ready=assess({...stock,offGridHeatConfirmed:true});
+test("water-dependent noodles in blackout require BOTH safe measured water and measured cooking fuel",()=>{
+ const stock={powerOut:true,waterOut:true,safeWaterConfirmed:true,
+   stocks:{"home:water":{qty:5},"home:stove":{qty:1,heatEquipmentConfirmed:true},
+     "home:gas":{qty:2,heatCapacityUses:2,heatFuelCompatibleConfirmed:true}},
+   variants:{"home:cupNoodles":{qty:3,heatSessions:1,heatConfirmed:true,prepConfirmed:true,prepWaterLiters:1.5}}};
+ const ready=assess(stock);
  assert.equal(row(ready,"food").effective,3);
  assert.equal(ready.waterAllocation,1.5);
  assert.equal(ready.waterRemainingAfterPrep,3.5);
- const noSafeWater=assess({...stock,offGridHeatConfirmed:true,safeWaterConfirmed:false});
+ const noSafeWater=assess({...stock,safeWaterConfirmed:false});
  assert.equal(row(noSafeWater,"food").effective,0);
+ const noFuel=assess({...stock,stocks:{...stock.stocks,"home:gas":{qty:0,heatCapacityUses:2,heatFuelCompatibleConfirmed:true}}});
+ assert.equal(row(noFuel,"food").effective,0);
+ assert.equal(noFuel.waterAllocation,0);
 });
-
 test("food-group audit records named staple complements separately, without changing staple shortages",()=>{
  const a=assess({variants:{"home:tunaCan":{qty:4},"home:cannedVeg":{qty:6},"home:driedFruit":{qty:2}}});
  const byRole=Object.fromEntries(a.foodGroups.map(g=>[g.role,g]));

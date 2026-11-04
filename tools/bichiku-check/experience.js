@@ -86,14 +86,34 @@ function foodGroupsHtml(a){
  '<a href="https://www.maff.go.jp/j/zyukyu/foodstock/chapter03.html" target="_blank" rel="noopener">'+esc(T.groupSource)+'</a>'+
  '</div>';
 }
+function heatControls(a){
+ const stove=getBasic("stove"),gas=getBasic("gas"),h=a.heatReview;
+ return '<div class="g-heat-review">'+
+  '<p>'+esc(T.heatPlanExplanation)+'</p>'+
+  '<div class="g-parent-fields"><label>'+esc(T.heatStoveCount)+
+  '<input type="number" inputmode="numeric" min="0" max="10000000" step="1" data-heat-stock="stoveCount" value="'+fmt(n(stove.qty))+'"></label>'+
+  '<label>'+esc(T.heatCanisterCount)+
+  '<input type="number" inputmode="numeric" min="0" max="10000000" step="1" data-heat-stock="gasCount" value="'+fmt(n(gas.qty))+'"></label>'+
+  '<label>'+esc(T.heatCapacityUses)+
+  '<input type="number" inputmode="numeric" min="0" max="10000000" step="1" data-heat-stock="gasCapacity" value="'+fmt(n(gas.heatCapacityUses))+'"></label></div>'+
+  '<label class="g-check"><input type="checkbox" data-heat-check="stove" '+(stove.heatEquipmentConfirmed===true?"checked":"")+'>'+esc(T.heatEquipmentConfirm)+'</label>'+
+  '<label class="g-check"><input type="checkbox" data-heat-check="gas" '+(gas.heatFuelCompatibleConfirmed===true?"checked":"")+'>'+esc(T.heatFuelConfirm)+'</label>'+
+  '<p class="g-water-summary">'+esc(T.heatNeeded)+': <strong>'+fmt(h.requiredUses)+' '+esc(T.unitUses)+'</strong></p>'+
+  '<p class="g-water-summary">'+esc(T.heatAvailable)+': <strong>'+fmt(h.verifiedCapacityUses)+' '+esc(T.unitUses)+'</strong></p>'+
+  (h.uncheckedFoods.length?'<p class="g-pending">'+esc(T.heatUnchecked)+': '+fmt(h.uncheckedFoods.length)+'</p>':"")+
+  (state.offGridHeatConfirmed?'<p class="g-fine">'+esc(T.heatLegacy)+'</p>':"")+
+  '<p class="g-fine">'+esc(T.heatSafety)+' <a href="https://www.nite.go.jp/jiko/chuikanki/press/2024fy/prs241226.html" rel="noopener" target="_blank">'+esc(T.heatSafetySource)+'</a></p>'+
+  '<p class="g-fine">'+esc(T.heatReference)+' <a href="https://www.maff.go.jp/j/zyukyu/foodstock/chapter07.html" rel="noopener" target="_blank">'+esc(T.heatReferenceSource)+'</a></p></div>';
+}
 function conditions(a){
  if(goal==="food")return '<p>'+esc(a.waterConflict?T.waterShort:T.foodRequires)+'</p>'+
  '<label class="g-check"><input type="checkbox" data-setting="safeWaterConfirmed" '+(state.safeWaterConfirmed?"checked":"")+'>'+esc(T.waterConfirm)+'</label>'+
- (state.powerOut&&!state.noHeat?'<p class="g-pending">'+esc(T.heatUnconfirmed)+'</p><label class="g-check"><input type="checkbox" data-setting="offGridHeatConfirmed" '+(state.offGridHeatConfirmed?"checked":"")+'>'+esc(T.heatConfirm)+'</label><p class="g-fine">'+esc(T.heatSafety)+' <a href="https://www.caa.go.jp/policies/policy/consumer_safety/caution/caution_063/" rel="noopener" target="_blank">'+esc(T.heatHelp)+'</a></p>':"")+
+ (state.powerOut&&!state.noHeat?'<p class="g-pending">'+esc(T.heatUnconfirmed)+'</p>'+heatControls(a):"")+
  '<p class="g-fine">'+esc(T.prepExplanation)+'</p>'+
  '<p class="g-water-summary">'+esc(T.prepAllocated)+': <strong>'+fmt(a.waterAllocation)+'L</strong></p>'+
  '<p class="g-water-summary">'+esc(T.waterRemaining)+': <strong>'+fmt(a.waterRemainingAfterPrep)+'L</strong></p>'+
  (a.uncheckedFoods.length?'<p class="g-fine">'+esc(T.prepUnchecked)+'</p>':"")+foodGroupsHtml(a);
+ if(goal==="power"&&state.powerOut&&!state.noHeat)return heatControls(a);
  if(goal==="toilet"){
   const review=a.toiletReview;
   const checks=[
@@ -148,7 +168,7 @@ function renderChoices(a){
  const vWaterNote=bottleFactor?'<p class="g-fine">'+esc(T.bottleSubtotal)+': <strong>'+fmt(n(v.qty))+'L</strong>. '+esc(T.bottleNote)+' '+esc(T.bottleWhole)+(hasLegacyFraction?' '+esc(T.bottleLegacy):'')+'</p>':"";
  const isToiletParts=o.id==="toiletBags";
  const kitReady=o.id!=="toiletKit"||(state.toiletSeatConfirmed&&state.toiletStorageConfirmed&&state.toiletDisposalConfirmed);
- const countable=o.equivalence==="full"&&kitReady&&(!state.noHeat||!["heat","verify"].includes(o.prep))&&(!state.powerOut||state.offGridHeatConfirmed||o.prep!=="heat")&&(!o.requiresWater||(a.waterForPrep&&v.prepConfirmed===true&&n(v.prepWaterLiters)>0));
+ const countable=o.equivalence==="full"&&kitReady&&(!state.noHeat||!["heat","verify"].includes(o.prep))&&(!state.powerOut||a.heatReady||o.prep!=="heat")&&(!o.requiresWater||(a.waterForPrep&&v.prepConfirmed===true&&n(v.prepWaterLiters)>0));
  const unexpired=!v.expiry||v.expiry>=today();
  const ready=isToiletParts?a.toiletReview.usableUses>0:(n(v.qty)>0&&unexpired&&countable);
  const registered=isToiletParts?n(v.bagQty)+n(v.solidifierQty)+n(v.qty):n(v.qty);
@@ -168,6 +188,11 @@ function renderChoices(a){
  '<div class="g-option-body"><p>'+esc(warning)+'</p><p class="'+(ready?"g-ok":"g-pending")+'">'+esc(itemStatus)+'</p>'+
  (o.sourceUrl?'<a href="'+esc(o.sourceUrl)+'" target="_blank" rel="noopener">'+esc(T.official)+'</a>':"")+
  quantityFields+
+ (o.parent==="food"&&o.prep==="heat"&&state.powerOut&&!state.noHeat?
+   '<div class="g-water-item"><label class="g-input">'+esc(T.heatPerFood)+
+   '<input type="number" min="0" max="10000000" step="1" inputmode="numeric" data-heat-sessions="'+o.id+'" value="'+fmt(n(v.heatSessions))+'"></label>'+
+   '<label class="g-check"><input type="checkbox" data-heat-confirm="'+o.id+'" '+(v.heatConfirmed===true?"checked":"")+'>'+esc(T.heatPerFoodConfirm)+'</label>'+
+   '<p class="g-fine">'+esc(T.heatPerFoodNote)+'</p></div>':"")+
  (o.requiresWater?'<div class="g-water-item"><label class="g-input">'+esc(T.prepPerFood)+'<input type="number" min="0" max="10000000" step="0.1" inputmode="decimal" data-prep-liters="'+o.id+'" value="'+fmt(n(v.prepWaterLiters))+'"></label>'+
  '<label class="g-check"><input type="checkbox" data-prep-confirm="'+o.id+'" '+(v.prepConfirmed===true?"checked":"")+'>'+esc(T.prepItemConfirm)+'</label>'+
  '<p class="g-fine">'+esc(T.prepNumberWarning)+'</p></div>':"")+
@@ -285,6 +310,25 @@ result.addEventListener("input",e=>{
 result.addEventListener("change",e=>{
  const t=e.target;if(t.dataset.shop){if(!selected)selected=new Set();if(t.checked)selected.add(t.dataset.shop);else selected.delete(t.dataset.shop);render();return}
  if(t.dataset.setting){state[t.dataset.setting]=t.type==="checkbox"?t.checked:n(t.value);save();preserveOpen();render();return}
+ if(t.dataset.heatStock){
+  const field=t.dataset.heatStock;
+  if(!["stoveCount","gasCount","gasCapacity"].includes(field)||!t.checkValidity()||
+    !Number.isInteger(Number(t.value))){t.reportValidity();return}
+  const id=field==="stoveCount"?"stove":"gas";
+  const item=Object.assign({},getBasic(id));
+  if(field==="gasCapacity"){item.heatCapacityUses=n(t.value);item.heatFuelCompatibleConfirmed=false}
+  else if(field==="stoveCount"){item.qty=n(t.value);item.heatEquipmentConfirmed=false}
+  else {item.qty=n(t.value);item.heatCapacityUses=0;item.heatFuelCompatibleConfirmed=false}
+  state.stocks[key(id)]=item;save();preserveOpen();render();return;
+ }
+ if(t.dataset.heatCheck){
+  const id=t.dataset.heatCheck==="stove"?"stove":t.dataset.heatCheck==="gas"?"gas":null;
+  if(!id)return;
+  const item=Object.assign({},getBasic(id));
+  if(id==="stove")item.heatEquipmentConfirmed=t.checked;
+  else item.heatFuelCompatibleConfirmed=t.checked;
+  state.stocks[key(id)]=item;save();preserveOpen();render();return;
+ }
  if(t.dataset.toiletComponent){
   const field=t.dataset.toiletComponent;
   if(!["bagQty","solidifierQty"].includes(field)||!t.checkValidity()||!Number.isInteger(Number(t.value))){t.reportValidity();return}
@@ -293,13 +337,24 @@ result.addEventListener("change",e=>{
   state.variants[key("toiletBags")]=item;save();preserveOpen();render();return;
  }
  const id=t.dataset.basic||t.dataset.target||t.dataset.basicExpiry;
- if(id){const item=Object.assign({},getBasic(id));if(t.dataset.basic)item.qty=n(t.value);
+ if(id){const item=Object.assign({},getBasic(id));
+  if(t.dataset.basic){
+    if(["gas","stove"].includes(id)&&(!t.checkValidity()||!Number.isInteger(Number(t.value)))){t.reportValidity();return}
+    const oldQty=n(item.qty),newQty=n(t.value);
+    item.qty=newQty;
+    if(newQty!==oldQty&&id==="gas"){item.heatCapacityUses=0;item.heatFuelCompatibleConfirmed=false}
+    if(newQty!==oldQty&&id==="stove")item.heatEquipmentConfirmed=false;
+  }
   if(t.dataset.target){if(t.value==="")delete item.target;else item.target=n(t.value)}
   if(t.dataset.basicExpiry)item.expiry=t.value;state.stocks[key(id)]=item;save();preserveOpen();render();return}
- const optionId=t.dataset.optionQty||t.dataset.optionBottles||t.dataset.optionExpiry||t.dataset.prepLiters||t.dataset.prepConfirm;
+ const optionId=t.dataset.optionQty||t.dataset.optionBottles||t.dataset.optionExpiry||t.dataset.prepLiters||t.dataset.prepConfirm||
+   t.dataset.heatSessions||t.dataset.heatConfirm;
  if(optionId){
   const item=Object.assign({},getOption(optionId));
-  if(t.dataset.optionQty){item.qty=n(t.value);item.prepConfirmed=false}
+  if(t.dataset.optionQty){
+    item.qty=n(t.value);item.prepConfirmed=false;
+    if(choices.some(o=>o.id===optionId&&o.parent==="food"&&o.prep==="heat"))item.heatConfirmed=false;
+  }
   if(t.dataset.optionBottles){
     // step=1 is not enforced on change events; reject fractional bottle counts.
     if(!t.checkValidity()||!Number.isInteger(Number(t.value))){t.reportValidity();return}
@@ -310,6 +365,11 @@ result.addEventListener("change",e=>{
   if(t.dataset.optionExpiry)item.expiry=t.value;
   if(t.dataset.prepLiters){item.prepWaterLiters=n(t.value);item.prepConfirmed=false}
   if(t.dataset.prepConfirm)item.prepConfirmed=t.checked;
+  if(t.dataset.heatSessions){
+    if(!t.checkValidity()||!Number.isInteger(Number(t.value))){t.reportValidity();return}
+    item.heatSessions=n(t.value);item.heatConfirmed=false;
+  }
+  if(t.dataset.heatConfirm)item.heatConfirmed=t.checked;
   state.variants[key(optionId)]=item;save();preserveOpen();render()
  }
 });

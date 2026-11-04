@@ -98,14 +98,42 @@ try{
   await page.locator('input[data-condition="powerOut"]').check();
   await page.locator("#calculate").click();
   await page.locator('button[data-goal="food"]').click();
-  assert.equal(await page.locator('input[data-setting="offGridHeatConfirmed"]').count(),1);
+  assert.equal(await page.locator('input[data-setting="offGridHeatConfirmed"]').count(),0,
+   "single legacy approval must not unlock all hot food");
+  assert.equal(await page.locator('input[data-heat-stock]').count(),3);
   await page.locator('button[data-tab="everyday"]').click();
   await page.locator('details.g-option[data-option="packRice"] summary').click();
   await page.locator('input[data-option-qty="packRice"]').fill("3");
   await page.locator('input[data-option-qty="packRice"]').press("Tab");
-  assert.match(await page.locator(".g-detail-status").innerText(),/21/,"unmitigated blackout excludes heated rice");
-  await page.locator('input[data-setting="offGridHeatConfirmed"]').check();
-  assert.match(await page.locator(".g-detail-status").innerText(),/18/,"confirmed off-grid heat qualifies three portions");
+  assert.match(await page.locator(".g-detail-status").innerText(),/21/,"blackout excludes heated rice without fuel");
+  await page.locator('input[data-heat-sessions="packRice"]').fill("2");
+  await page.locator('input[data-heat-sessions="packRice"]').press("Tab");
+  await page.locator('input[data-heat-confirm="packRice"]').check();
+  await page.locator('input[data-heat-stock="stoveCount"]').fill("1");
+  await page.locator('input[data-heat-stock="stoveCount"]').press("Tab");
+  await page.locator('input[data-heat-stock="gasCount"]').fill("2");
+  await page.locator('input[data-heat-stock="gasCount"]').press("Tab");
+  await page.locator('input[data-heat-stock="gasCapacity"]').fill("1");
+  await page.locator('input[data-heat-stock="gasCapacity"]').press("Tab");
+  await page.locator('input[data-heat-check="stove"]').check();
+  await page.locator('input[data-heat-check="gas"]').check();
+  assert.match(await page.locator(".g-detail-status").innerText(),/21/,"one planned heating session cannot cover two required sessions");
+  await page.locator('input[data-heat-stock="gasCount"]').fill("2.5");
+  await page.locator('input[data-heat-stock="gasCount"]').press("Tab");
+  assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem("bichiku-check-v1")).stocks["home:gas"].qty),2,
+   "fractional canister count is rejected");
+  await page.locator('input[data-heat-stock="gasCount"]').fill("2");
+  await page.locator('input[data-heat-stock="gasCount"]').press("Tab");
+  await page.locator('input[data-heat-stock="gasCapacity"]').fill("2");
+  await page.locator('input[data-heat-stock="gasCapacity"]').press("Tab");
+  assert.match(await page.locator(".g-detail-status").innerText(),/21/,"changing capacity invalidates previous fuel review");
+  await page.locator('input[data-heat-check="gas"]').check();
+  assert.match(await page.locator(".g-detail-status").innerText(),/18/,"verified two fuel sessions qualify three rice portions");
+  await page.reload({waitUntil:"domcontentloaded"});
+  await page.locator("#calculate").click();
+  await page.locator('button[data-goal="food"]').click();
+  assert.equal(await page.locator('input[data-heat-stock="gasCapacity"]').inputValue(),"2");
+  assert.match(await page.locator(".g-detail-status").innerText(),/18/,"fuel-budget state persists locally");
   await page.locator("button[data-shopping]").first().click();
   assert.equal(await page.locator("#g-shop-selected strong").innerText(),"8","only visible eight rows initially selected");
   await page.locator("button[data-more]").click();
@@ -262,6 +290,61 @@ try{
   passed++;await ctx.close();
  }
 
+
+ // Existing single-checkbox heating approval must not silently qualify old inventory.
+ {
+  const {ctx,page,exceptions}=await open(390);
+  await page.evaluate(()=>localStorage.setItem("bichiku-check-v1",JSON.stringify({
+   mode:"home",adults:1,days:7,powerOut:true,offGridHeatConfirmed:true,
+   stocks:{"home:stove":{qty:1},"home:gas":{qty:5}},
+   variants:{"home:packRice":{qty:10}}
+  })));
+  await page.reload({waitUntil:"domcontentloaded"});
+  await page.locator("#calculate").click();
+  await page.locator('button[data-goal="food"]').click();
+  assert.match(await page.locator(".g-detail-status").innerText(),/21/);
+  assert.match(await page.locator(".g-heat-review").innerText(),/旧方式の加熱確認/);
+  assert.deepEqual(exceptions,[]);
+  console.log("PASS existing heating approval preserved without unmeasured fuel credit");
+  passed++;await ctx.close();
+ }
+
+ // Power-tab stove/gas inventory updates must invalidate the previous heat budget.
+ {
+  const {ctx,page,exceptions}=await open(390);
+  await page.locator('input[data-condition="powerOut"]').check();
+  await page.locator("#calculate").click();
+  await page.locator('button[data-goal="food"]').click();
+  await page.locator('button[data-tab="everyday"]').click();
+  await page.locator('details.g-option[data-option="packRice"] summary').click();
+  await page.locator('input[data-option-qty="packRice"]').fill("4");
+  await page.locator('input[data-option-qty="packRice"]').press("Tab");
+  await page.locator('input[data-heat-sessions="packRice"]').fill("1");
+  await page.locator('input[data-heat-sessions="packRice"]').press("Tab");
+  await page.locator('input[data-heat-confirm="packRice"]').check();
+  await page.locator('input[data-heat-stock="stoveCount"]').fill("1");
+  await page.locator('input[data-heat-stock="stoveCount"]').press("Tab");
+  await page.locator('input[data-heat-stock="gasCount"]').fill("2");
+  await page.locator('input[data-heat-stock="gasCount"]').press("Tab");
+  await page.locator('input[data-heat-stock="gasCapacity"]').fill("1");
+  await page.locator('input[data-heat-stock="gasCapacity"]').press("Tab");
+  await page.locator('input[data-heat-check="stove"]').check();
+  await page.locator('input[data-heat-check="gas"]').check();
+  assert.match(await page.locator(".g-detail-status").innerText(),/17/);
+  await page.locator('button[data-back]').click();
+  await page.locator('button[data-goal="power"]').click();
+  await page.locator('input[data-basic="gas"]').fill("3");
+  await page.locator('input[data-basic="gas"]').press("Tab");
+  await page.locator('button[data-back]').click();
+  await page.locator('button[data-goal="food"]').click();
+  assert.match(await page.locator(".g-detail-status").innerText(),/21/,"changing gas inventory invalidates confirmed fuel budget");
+  assert.equal(await page.locator('input[data-heat-stock="gasCapacity"]').inputValue(),"0");
+  assert.equal(await page.locator('input[data-heat-check="gas"]').isChecked(),false);
+  assert.deepEqual(exceptions,[]);
+  console.log("PASS changing power inventory invalidates old fuel budget");
+  passed++;await ctx.close();
+ }
+
  for(const [locale,dir] of locales){
   const {ctx,page,exceptions}=await open(390,dir);
   assert.equal(await page.locator("html").getAttribute("lang"),locale);
@@ -275,6 +358,13 @@ try{
   await page.locator('button[data-goal="toilet"]').click();
   assert.equal(await page.locator('input[data-setting^="toilet"]').count(),4,"four independent toilet confirmations "+locale);
   assert.ok((await page.locator('label.g-check').filter({has:page.locator('input[data-setting="toiletDisposalConfirmed"]')}).innerText()).trim().length>10,"localized disposal language "+locale);
+  await page.locator('button[data-back]').click();
+  await page.locator('button[data-edit]').click();
+  await page.locator('input[data-condition="powerOut"]').check();
+  await page.locator("#calculate").click();
+  await page.locator('button[data-goal="food"]').click();
+  assert.equal(await page.locator('input[data-heat-stock]').count(),3,"three localized heater/fuel fields "+locale);
+  assert.ok((await page.locator('label.g-check').filter({has:page.locator('input[data-heat-check="gas"]')}).innerText()).trim().length>10,"localized fuel review "+locale);
   await noOverflow(page,locale);
   assert.deepEqual(exceptions,[],"JS exceptions "+locale);
   await page.screenshot({path:path.join(folder,"locale-"+locale+".png"),fullPage:true});
