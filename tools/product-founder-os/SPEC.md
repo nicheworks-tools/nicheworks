@@ -63,9 +63,13 @@ The site is long-form repository documentation designed to remain readable acros
 - [ ] Bootstrap/helper-script descriptions do not claim that they create a finished product automatically.
 - [ ] English and Japanese public pages link to the same external repository asset.
 - [ ] The page does not imply that NicheWorks stores or manages a user's product/project state.
+- [ ] EN/JA guide pages are described by schema.org `TechArticle` with the correct language and canonical URL, not `WebApplication`, because the site does not perform repository operations.
+- [ ] Existing WebPage / FAQPage markup, outbound repository links, analytics, advertising, and support links remain unchanged.
 
 ## Implementation evidence
 
 - `tools/product-founder-os/index.html`
 - `tools/product-founder-os/ja/index.html`
 - `tools/product-founder-os/style.css`
+
+- `tools/product-founder-os/documentation-schema.test.cjs` — verify two language-specific TechArticle entities, no false WebApplication claim, valid FAQ and canonical links, and preserved repository links.
