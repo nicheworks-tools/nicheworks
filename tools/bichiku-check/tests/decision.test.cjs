@@ -195,4 +195,5 @@ test("main-dish portions track user-entered usable servings separately and never
  const family=assess({children:1,variants:{"home:tunaCan":{qty:5}}});
  assert.equal(family.mainDishReferencePortions,null,"age-specific needs are not estimated from an adult example");
  assert.equal(family.foodGroups.find(g=>g.role==="protein").usablePortions,5);
+ assert.equal(assess({mode:"go"}).mainDishReferencePortions,null,"at-home reference must not be applied to a go-bag");
 });
