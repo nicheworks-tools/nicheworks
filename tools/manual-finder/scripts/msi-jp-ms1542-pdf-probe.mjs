@@ -27,6 +27,7 @@ export async function probe(groups=pass.groups,{fetcher=fetch,pdfText}={}){
    let extracted='';
    if(pdfText)extracted=await pdfText(bytes,g);
    else extracted=execFileSync('pdftotext',['-f','1','-l','5','-layout',f,'-'],{encoding:'utf8',timeout:25000,maxBuffer:3500000});
+   console.log(JSON.stringify({probe:g.type,status:res.status,original:g.manualUrl,finalUrl:res.url,contentType:res.headers.get('content-type'),bytes:bytes.length,firstBytes:bytes.subarray(0,8).toString('latin1'),japaneseTitle:/取扱説明書|ユーザーズマニュアル|ユーザーマニュアル/.test(extracted)}));
    const record=verifyManual(g,bytes,extracted,res.url);
    console.log(JSON.stringify(record));results.push(record);
   }
