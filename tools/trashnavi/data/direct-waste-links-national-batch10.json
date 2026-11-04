@@ -1,0 +1,41 @@
+[
+  {
+    "pref": "北海道",
+    "city": "清水町",
+    "name": "令和8年度家庭ごみ収集カレンダー",
+    "type": "ごみ収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.town.shimizu.hokkaido.jp/living/04/files/R8_gomi.pdf",
+    "lgcode": "016365",
+    "last_checked": "2026-11-04",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "2026年4月〜2027年3月。町公式の家庭ごみ収集カレンダー。地区別収集日を全町共通とみなさない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "清水町",
+    "name": "ごみ分別辞典（50音順）",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.shimizu.hokkaido.jp/living/04/ごみ分別表.pdf",
+    "lgcode": "016365",
+    "last_checked": "2026-11-04",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "町公式18ページPDF。品目別分別方法。冊子の発行年度は未確認のため令和8年度版と断定しない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "清水町",
+    "name": "大型ごみの出し方",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.town.shimizu.hokkaido.jp/living/04/files/bdaad5b858f375ba38ee7bbefaae13de_1.pdf",
+    "lgcode": "016365",
+    "last_checked": "2026-11-04",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "町公式の大型ごみ案内。申し込み・処理券等の説明。"
+  }
+]
