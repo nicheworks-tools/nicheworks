@@ -1,0 +1,41 @@
+[
+  {
+    "pref": "北海道",
+    "city": "新得町",
+    "name": "ごみ分別辞典（令和8年4月1日以降用）",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://shintoku-town.jp/kurashi-tetuduki/gomi_recycle/gomi-bunbetsu-jiten2/",
+    "lgcode": "016357",
+    "last_checked": "2026-11-05",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "町公式。令和8年4月1日以降用と明示されたごみ分別辞典PDFの案内ページ。"
+  },
+  {
+    "pref": "北海道",
+    "city": "新得町",
+    "name": "燃やせるごみの収集日（地区別）",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.shintoku-town.jp/kurashi-tetuduki/gomi_recycle/moyaseru/",
+    "lgcode": "016357",
+    "last_checked": "2026-11-05",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "町公式。A〜F地区別の曜日・対象町内会を明示。地区別情報を町内全域へ一律適用しない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "新得町",
+    "name": "ごみ処理料金（大型ごみ・直接搬入）",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.shintoku-town.jp/kurashi-tetuduki/gomi_recycle/ryoukin/",
+    "lgcode": "016357",
+    "last_checked": "2026-11-05",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "町公式。大型ごみシール料金と直接搬入10kg単位の料金を案内。"
+  }
+]
