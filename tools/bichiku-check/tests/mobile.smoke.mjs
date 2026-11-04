@@ -176,6 +176,26 @@ try{
   passed++;await ctx.close();
  }
 
+ // Previously saved litre quantities must not become invalid fractional bottle counts.
+ {
+  const {ctx,page,exceptions}=await open(390);
+  await page.evaluate(()=>localStorage.setItem("bichiku-check-v1",JSON.stringify({mode:"home",adults:1,days:7,stocks:{},variants:{"home:water2L":{qty:1}}})));
+  await page.reload({waitUntil:"domcontentloaded"});
+  await page.locator("#calculate").click();
+  await page.locator('button[data-goal="water"]').click();
+  await page.locator('button[data-tab="everyday"]').click();
+  await page.locator('details.g-option[data-option="water2L"] summary').click();
+  assert.equal(await page.locator('input[data-option-bottles="water2L"]').inputValue(),"","unmatched saved litres are not shown as fractional bottles");
+  assert.match(await page.locator('details.g-option[data-option="water2L"]').innerText(),/1L/);
+  assert.match(await page.locator(".g-detail-status").innerText(),/20L/,"original 1L remains credited");
+  await page.locator('input[data-option-bottles="water2L"]').fill("2");
+  await page.locator('input[data-option-bottles="water2L"]').press("Tab");
+  assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem("bichiku-check-v1")).variants["home:water2L"].qty),4);
+  assert.match(await page.locator(".g-detail-status").innerText(),/17L/);
+  assert.deepEqual(exceptions,[]);
+  console.log("PASS unmatched legacy water litres and integer bottle replacement");
+  passed++;await ctx.close();
+ }
  for(const [locale,dir] of locales){
   const {ctx,page,exceptions}=await open(390,dir);
   assert.equal(await page.locator("html").getAttribute("lang"),locale);
