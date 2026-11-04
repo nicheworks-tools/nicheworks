@@ -302,9 +302,20 @@
     }
   }
 
+  function invalidateResult() {
+    window.__cscLastResult = null;
+    if (resultSection) resultSection.hidden = true;
+    if (resultSummaryEl) resultSummaryEl.innerHTML = "";
+    if (findingsEl) findingsEl.innerHTML = "";
+    if (saferStepsEl) saferStepsEl.innerHTML = "";
+    if (normalizedCmdEl) normalizedCmdEl.textContent = "";
+    if (normalizedWrap) normalizedWrap.hidden = true;
+  }
+
   function handleAnalyze() {
     const normalized = normalize(cmdInput?.value || "");
     if (!normalized) {
+      invalidateResult();
       toast(t("コマンドを入力してください", "Please paste a command"));
       return;
     }
@@ -313,13 +324,7 @@
 
   function handleClear() {
     if (cmdInput) cmdInput.value = "";
-    if (resultSection) resultSection.hidden = true;
-    if (resultSummaryEl) resultSummaryEl.innerHTML = "";
-    if (findingsEl) findingsEl.innerHTML = "";
-    if (saferStepsEl) saferStepsEl.innerHTML = "";
-    if (normalizedCmdEl) normalizedCmdEl.textContent = "";
-    if (normalizedWrap) normalizedWrap.hidden = true;
-    window.__cscLastResult = null;
+    invalidateResult();
     toast(t("クリアしました", "Cleared"));
   }
 
@@ -364,8 +369,11 @@
       document.body.appendChild(ta);
       ta.select();
       try {
-        document.execCommand("copy");
-        toast(t("コピーしました", "Copied"));
+        if (document.execCommand("copy") === false) {
+          toast(t("コピーに失敗しました", "Copy failed"));
+        } else {
+          toast(t("コピーしました", "Copied"));
+        }
       } catch {
         toast(t("コピーに失敗しました", "Copy failed"));
       } finally {
@@ -375,6 +383,8 @@
   }
 
   langButtons.forEach((btn) => btn.addEventListener("click", () => setLang(btn.dataset.lang)));
+  cmdInput?.addEventListener("input", invalidateResult);
+  osSelect?.addEventListener("change", invalidateResult);
   analyzeBtn?.addEventListener("click", handleAnalyze);
   clearBtn?.addEventListener("click", handleClear);
   copyBtn?.addEventListener("click", copyResults);
@@ -385,6 +395,7 @@
     const btn = event.target.closest("[data-preset]");
     if (!btn) return;
     if (btn.dataset.os && osSelect) osSelect.value = btn.dataset.os;
+    invalidateResult();
     if (cmdInput) {
       cmdInput.value = btn.dataset.preset || "";
       cmdInput.focus();
