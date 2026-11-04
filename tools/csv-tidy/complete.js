@@ -2,6 +2,10 @@
   "use strict";
 
   const samples = {
+    generic: {
+      filename: "sample-generic.csv",
+      text: "id,name,category,notes\n1,Sample item A,office,Ready to import\n2,Sample item B,home,Review before upload"
+    },
     accounting: {
       filename: "sample-accounting.csv",
       text: "日付,勘定科目,金額,税額,摘要\n2026-05-01,消耗品費,1200,120,コピー用紙\n2026-05-02,通信費,3300,300,インターネット\n2026-05-03,旅費交通費,560,56,電車代"
@@ -44,6 +48,21 @@
     if (hint) hint.textContent = message || '';
   }
 
+  function downloadSample(kind){
+    const sample = samples[kind];
+    if (!sample) return false;
+    const blob = new Blob([sample.text], { type: 'text/csv;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = sample.filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+    return true;
+  }
+
   function loadSample(kind){
     const sample = samples[kind];
     const input = qs('#fileInput');
@@ -70,15 +89,7 @@
     }
 
     // Fallback for strict browsers: download the sample instead of silently failing.
-    const blob = new Blob([sample.text], { type:'text/csv;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = sample.filename;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+    downloadSample(kind);
     setLoadHint(t('このブラウザでは画面内投入に制限があるため、サンプルCSVをダウンロードしました。', 'This browser blocked in-page sample loading, so the sample CSV was downloaded.'));
   }
 
@@ -187,6 +198,15 @@
     qsa('[data-csv-sample]').forEach(function(button){
       button.addEventListener('click', function(){ loadSample(button.dataset.csvSample); });
     });
+
+    const genericSampleButton = qs('#sampleBtn');
+    if (genericSampleButton) {
+      genericSampleButton.addEventListener('click', function(){
+        if (downloadSample('generic')) {
+          setLoadHint(t('汎用サンプルCSVをダウンロードしました。', 'Generic sample CSV downloaded.'));
+        }
+      });
+    }
 
     const download = qs('#downloadBtn');
     if (download) download.addEventListener('click', confirmExcluded, true);
