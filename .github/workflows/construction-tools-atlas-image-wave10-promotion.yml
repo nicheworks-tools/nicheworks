@@ -1,0 +1,49 @@
+name: Construction Atlas Wave10 Saw Image Promotion
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/construction-tools-atlas-image-wave10-promotion.yml'
+      - 'tools/construction-tools-atlas/scripts/promote-image-wave10-saw-v2.3.cjs'
+permissions:
+  contents: write
+jobs:
+  promote-reviewed-original:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'feat/atlas-reciprocating-saw-wave10-20261104'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install JPEG-to-WebP optimizer
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qq -y imagemagick
+      - name: Download reviewed Commons original, check API SHA-1, rebuild formal image and SEO
+        run: node tools/construction-tools-atlas/scripts/promote-image-wave10-saw-v2.3.cjs
+      - name: Commit verified binaries, provenance ledgers and new SEO page to PR branch
+        run: |
+          set -euo pipefail
+          git add -- tools/construction-tools-atlas/images/reciprocating_saw/ tools/construction-tools-atlas/images/ATTRIBUTION.md \
+            tools/construction-tools-atlas/data/image-wave10-sources-v2.3.json \
+            tools/construction-tools-atlas/data/image-registry-v2.3.json \
+            tools/construction-tools-atlas/data/image-lifecycle-v2.3.json \
+            tools/construction-tools-atlas/data/image-inventory-v2.3.json \
+            tools/construction-tools-atlas/data/public-image-inventory-v2.3.json \
+            tools/construction-tools-atlas/data/affiliate-image-acquisition-wave6-v2.3.json \
+            tools/construction-tools-atlas/data/affiliate-image-acquisition-queue-v2.3.json \
+            tools/construction-tools-atlas/data/seo-detail-pages-v2.3.json \
+            tools/construction-tools-atlas/detail-image-hotfix.js \
+            tools/construction-tools-atlas/entries/ tools/construction-tools-atlas/sitemap.xml sitemap.xml
+          git diff --cached --stat
+          if git diff --cached --quiet; then
+            echo 'No image assets were created'; exit 1
+          fi
+          git -c user.name='github-actions[bot]' \
+            -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+            commit -m 'feat(atlas): publish reviewed saw photo and 45th SEO detail'
+          git push origin HEAD:feat/atlas-reciprocating-saw-wave10-20261104
