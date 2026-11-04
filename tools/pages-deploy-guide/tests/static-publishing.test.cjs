@@ -9,7 +9,7 @@ const production = fs.readFileSync(path.join(__dirname, "../app.js"), "utf8");
 function generate(lang, sourceType, outputFolder) {
   const elements = new Map();
   const el = id => {
-    if (!elements.has(id)) elements.set(id, { value: "", dataset: {}, style: {}, classList: { add() {}, remove() {}, toggle() {} }, addEventListener(event, callback) { this[event] = callback; } });
+    if (!elements.has(id)) elements.set(id, { value: "", dataset: {}, style: {}, classList: { add() {}, remove() {}, toggle() {} }, addEventListener(event, callback) { this[event === "click" ? "clickHandler" : event] = callback; }, click() { if (this.clickHandler) this.clickHandler(); } });
     return elements.get(id);
   };
   el("platform").value = "github";
