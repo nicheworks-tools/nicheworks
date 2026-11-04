@@ -48,6 +48,7 @@ body[data-stage]:not([data-stage="setup"]) .workspace{align-items:start}
 .g-conditions .g-check{margin:10px 0}
 .g-input,.g-search{display:block;font-size:13px;color:var(--ink);font-weight:700}
 .g-input input,.g-search input{display:block;width:100%;min-width:0;min-height:46px;border:1px solid #a8bcc5;background:#fff;border-radius:7px;padding:8px 10px;font-size:16px;margin:6px 0 10px}
+.g-input select{display:block;width:100%;max-width:100%;min-width:0;box-sizing:border-box;min-height:46px;border:1px solid #a8bcc5;background:#fff;color:var(--ink);border-radius:7px;padding:8px 10px;font-size:14px;margin:6px 0 10px}
 .g-layers{display:grid;grid-template-columns:1fr;gap:8px}
 .g-layers>div{display:flex;justify-content:space-between;gap:8px;border:1px solid var(--line);border-radius:7px;padding:10px;font-size:13px;background:#fff}
 .g-layers span{color:var(--warn);font-weight:700}

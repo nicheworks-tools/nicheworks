@@ -58,10 +58,15 @@ function groupCards(a){
  '<button type="button" data-goal="'+g.id+'" class="g-open">'+esc(T.open)+' →</button></article>';
  }).join("");
 }
+function overlapWarning(a){
+ const items=a.calc.items.filter(x=>x.requiresManualReview);
+ return items.length?'<p class="g-pending">'+esc(T.overlapAlert)+': <strong>'+
+  fmt(items.length)+'</strong> · '+esc(T.overlapShoppingCaution)+'</p>':"";
+}
 function resultsPage(a){
  const total=a.groups.reduce((sum,g)=>sum+g.missingCategories,0);
  return '<div class="g-head"><h2>'+esc(T.step2)+'</h2><button type="button" data-edit class="g-link">'+esc(T.edit)+'</button></div>'+
- '<p class="g-lead">'+esc(T.guide)+'</p><div class="g-total"><strong>'+total+'</strong><span>'+esc(T.missingItems)+'</span></div>'+
+ '<p class="g-lead">'+esc(T.guide)+'</p>'+overlapWarning(a)+'<div class="g-total"><strong>'+total+'</strong><span>'+esc(T.missingItems)+'</span></div>'+
  '<div class="g-goals">'+groupCards(a)+'</div><button type="button" class="primary wide" data-shopping>'+esc(T.toShopping)+' →</button>';
 }
 function preserveOpen(){
@@ -189,6 +194,21 @@ function energyFields(item,id,isBasic,isBank){
   '<p class="g-fine">'+esc(T.energyItemCaution)+'</p>'+
   (isBank?"":batteryPlanFields(item,id,isBasic))+'</div>';
 }
+function manualOverlapFields(row,item){
+ const listed=row.listedOwned==null?row.variantOwned:row.listedOwned;
+ if(n(item.qty)<=0||listed<=0)return "";
+ const basis=["additional","includes_options"].includes(item.manualCountBasis)?item.manualCountBasis:"";
+ return '<div class="g-water-item">'+
+  '<p class="'+(basis?"g-fine":"g-pending")+'">'+esc(T.overlapDetected)+
+   ': '+esc(T.overlapManual)+' '+fmt(n(item.qty))+
+   ' / '+esc(T.overlapListed)+' '+fmt(listed)+'</p>'+
+  '<label class="g-input">'+esc(T.overlapMeaning)+
+   '<select data-manual-basis="'+row.item.id+'">'+
+   '<option value="" '+(!basis?"selected":"")+'>'+esc(T.overlapUnreviewed)+'</option>'+
+   '<option value="includes_options" '+(basis==="includes_options"?"selected":"")+'>'+esc(T.overlapIncludes)+'</option>'+
+   '<option value="additional" '+(basis==="additional"?"selected":"")+'>'+esc(T.overlapAdditional)+'</option>'+
+   '</select></label><p class="g-fine">'+esc(T.overlapExplanation)+'</p></div>';
+}
 function parentRows(a){
  const g=a.groups.find(x=>x.id===goal);
  return g.rows.map(row=>{
@@ -200,7 +220,7 @@ function parentRows(a){
  return '<div class="g-parent"><div class="g-parent-head"><strong>'+esc(row.item.names[lang]||row.item.names.ja)+'</strong>'+
  '<span class="'+(row.missing?"g-danger":"g-ok")+'">'+esc(T.missing)+': '+fmt(row.missing)+unit(id)+'</span></div>'+meter(row)+
  '<div class="g-parent-fields"><label>'+esc(T.manual)+' · '+esc(id==="water"?T.litersTotal:id==="food"?T.mealPortions:id==="toilet"?T.toiletUses:T.quantity)+'<input type="number" min="0" max="10000000" inputmode="decimal" step="'+(id==="water"?"0.5":"1")+'" data-basic="'+id+'" value="'+fmt(n(x.qty))+'"></label>'+
- '<span>'+esc(T.need)+': '+fmt(row.required)+unit(id)+'</span></div>'+batteryDuration+powerFields+
+ '<span>'+esc(T.need)+': '+fmt(row.required)+unit(id)+'</span></div>'+manualOverlapFields(row,x)+batteryDuration+powerFields+
  '<details data-parent="'+id+'" '+(openParents.has(id)?"open":"")+'><summary>'+esc(T.target)+' / '+esc(T.expiry)+'</summary>'+
  '<div class="g-parent-fields"><label>'+esc(T.target)+'<input type="number" min="0" data-target="'+id+'" value="'+(x.target==null?"":fmt(n(x.target)))+'" placeholder="'+fmt(row.autoTarget)+'"></label>'+
  '<label>'+esc(T.expiry)+'<input type="date" data-basic-expiry="'+id+'" value="'+esc(x.expiry||"")+'"></label></div></details></div>';
@@ -268,7 +288,7 @@ function detailPage(a){
  return '<div class="g-head"><button type="button" data-back class="g-link">← '+esc(T.back)+'</button>'+
  '<button type="button" data-shopping class="g-link">'+esc(T.shopping)+'</button></div>'+
  '<h2>'+esc(T.step3)+'</h2><h3>'+esc(T[goal])+'</h3>'+
- '<div class="g-detail-status"><strong>'+esc(T.missing)+': '+fmt(r.missing)+unit(r.item.id)+'</strong>'+meter(r)+'<p>'+count(r)+'</p></div>'+
+ '<div class="g-detail-status"><strong>'+esc(T.missing)+': '+fmt(r.missing)+unit(r.item.id)+'</strong>'+meter(r)+'<p>'+count(r)+'</p></div>'+overlapWarning(a)+
  '<section class="g-conditions"><h3>'+esc(T.conditionsTitle)+'</h3>'+conditions(a)+'</section>'+
  '<section><h3>'+esc(T.stock)+'</h3>'+parentRows(a)+'</section>'+
  '<section><h3>'+esc(T.step3)+'</h3><p class="g-fine">'+esc(T.disclosure)+'</p><div id="affiliate-inline" class="affiliate-inline"></div><div class="g-tabs">'+["emergency","everyday","fallback"].map(id=>
@@ -292,7 +312,7 @@ function shoppingPage(a){
  const missing=a.calc.items.filter(x=>x.missing>0);
  return '<div class="g-head"><button type="button" data-back class="g-link">← '+esc(T.back)+'</button>'+
  '<button data-edit type="button" class="g-link">'+esc(T.edit)+'</button></div><h2>'+esc(T.step4)+'</h2>'+
- '<p class="g-lead">'+esc(T.shopHelp)+'</p>'+
+ '<p class="g-lead">'+esc(T.shopHelp)+'</p>'+overlapWarning(a)+
  '<p class="g-fine">'+esc(T.shopShowing)+'</p>'+
  '<p id="g-shop-selected" class="g-shop-counter">'+esc(T.shopSelected)+': <strong>'+(selected===null?Math.min(missing.length,8):missing.filter(x=>selected.has(x.item.id)).length)+'</strong></p>'+
  '<p class="g-fine">'+esc(T.disclosure)+'</p>'+
@@ -374,6 +394,12 @@ result.addEventListener("input",e=>{
 result.addEventListener("change",e=>{
  const t=e.target;if(t.dataset.shop){if(!selected)selected=new Set();if(t.checked)selected.add(t.dataset.shop);else selected.delete(t.dataset.shop);render();return}
  if(t.dataset.setting){state[t.dataset.setting]=t.type==="checkbox"?t.checked:n(t.value);save();preserveOpen();render();return}
+ if(t.dataset.manualBasis){
+  const id=t.dataset.manualBasis;
+  if(!catalog.some(i=>i.id===id)||!["","additional","includes_options"].includes(t.value))return;
+  const item=Object.assign({},getBasic(id),{manualCountBasis:t.value});
+  state.stocks[key(id)]=item;save();preserveOpen();render();return;
+ }
  if(t.dataset.batteryStock){
   const type=t.dataset.batteryStock;
   if(!decision.batteryTypes.includes(type)||!t.checkValidity()||!Number.isInteger(Number(t.value))){t.reportValidity();return}
@@ -439,7 +465,10 @@ result.addEventListener("change",e=>{
   if(!["bagQty","solidifierQty"].includes(field)||!t.checkValidity()||!Number.isInteger(Number(t.value))){t.reportValidity();return}
   const item=Object.assign({},getOption("toiletBags"));
   item[field]=n(t.value);
-  state.variants[key("toiletBags")]=item;save();preserveOpen();render();return;
+  state.variants[key("toiletBags")]=item;
+  const parent=Object.assign({},getBasic("toilet"));
+  if(n(parent.qty)>0){parent.manualCountBasis="";state.stocks[key("toilet")]=parent}
+  save();preserveOpen();render();return;
  }
  const id=t.dataset.basic||t.dataset.target||t.dataset.basicExpiry;
  if(id){const item=Object.assign({},getBasic(id));
@@ -448,12 +477,14 @@ result.addEventListener("change",e=>{
        (!t.checkValidity()||!Number.isInteger(Number(t.value)))){t.reportValidity();return}
     const oldQty=n(item.qty),newQty=n(t.value);
     item.qty=newQty;
+    if(newQty!==oldQty)item.manualCountBasis="";
     if(newQty!==oldQty&&id==="gas"){item.heatCapacityUses=0;item.heatFuelCompatibleConfirmed=false}
     if(newQty!==oldQty&&id==="stove")item.heatEquipmentConfirmed=false;
     if(newQty!==oldQty&&energyParents.has(id)){item.powerReadyConfirmed=false;item.batteryPlanConfirmed=false}
   }
   if(t.dataset.target){if(t.value==="")delete item.target;else item.target=n(t.value)}
-  if(t.dataset.basicExpiry){item.expiry=t.value;if(energyParents.has(id)){item.powerReadyConfirmed=false;item.batteryPlanConfirmed=false}}
+  if(t.dataset.basicExpiry){item.expiry=t.value;item.manualCountBasis="";
+    if(energyParents.has(id)){item.powerReadyConfirmed=false;item.batteryPlanConfirmed=false}}
   state.stocks[key(id)]=item;save();preserveOpen();render();return}
  const optionId=t.dataset.optionQty||t.dataset.optionBottles||t.dataset.optionExpiry||t.dataset.prepLiters||t.dataset.prepConfirm||
    t.dataset.heatSessions||t.dataset.heatConfirm||t.dataset.energyOptionReady||t.dataset.energyOptionConfirm;
@@ -491,7 +522,15 @@ result.addEventListener("change",e=>{
   if(t.dataset.energyOptionConfirm&&energyOption){
    item.powerReadyConfirmed=t.checked;item.batteryPlanConfirmed=false;
   }
-  state.variants[key(optionId)]=item;save();preserveOpen();render()
+  state.variants[key(optionId)]=item;
+  if(t.dataset.optionQty||t.dataset.optionBottles||t.dataset.optionExpiry){
+   const o=choices.find(x=>x.id===optionId);
+   if(o&&n(getBasic(o.parent).qty)>0){
+    const parent=Object.assign({},getBasic(o.parent),{manualCountBasis:""});
+    state.stocks[key(o.parent)]=parent;
+   }
+  }
+  save();preserveOpen();render()
  }
 });
 const ref=document.getElementById("references");

@@ -33,15 +33,21 @@ function unexpired(item,now){
  return !expiry||expiry>=now;
 }
 function storedWater(s,options,now){
- let sum=0;
+ let namedOwned=0,namedUsable=0;
  const general=(s.stocks||{})[s.mode+":water"]||{};
- if(unexpired(general,now))sum+=numeric(general.qty);
  for(const o of (options||[])){
-   if(o.parent!=="water"||o.equivalence!=="full")continue;
-   const entry=(s.variants||{})[s.mode+":"+o.id]||{};
-   if(unexpired(entry,now))sum+=numeric(entry.qty);
+  if(o.parent!=="water"||o.equivalence!=="full")continue;
+  const entry=(s.variants||{})[s.mode+":"+o.id]||{};
+  namedOwned+=numeric(entry.qty);
+  if(unexpired(entry,now))namedUsable+=numeric(entry.qty);
  }
- return round(sum);
+ const manual=unexpired(general,now)?numeric(general.qty):0;
+ // Use the same overlap rule as the displayed water row; do not let
+ // food preparation spend water counted twice in legacy inventory.
+ const core=root.BichikuCore;
+ const manualExtra=core&&core.remainingManualQuantity?
+   core.remainingManualQuantity(manual,namedOwned,general.manualCountBasis):manual;
+ return round(namedUsable+manualExtra);
 }
 // Presence of food groups is an inventory audit, NOT a nutrient or calorie score.
 // Only explicitly catalogued ready-to-use foods count; unclassified stocks remain unknown.
@@ -75,12 +81,17 @@ function batterySupplyReview(s,options,now){
    validSpare&&Number.isInteger(Number((spare.batteryCells||{})[type]))?
      Math.floor(numeric((spare.batteryCells||{})[type])):0]));
  const devices=[];
+ const namedLightOwned=(options||[]).filter(o=>o.parent==="light"&&o.equivalence==="full")
+   .reduce((sum,o)=>sum+numeric(((s.variants||{})[mode+":"+o.id]||{}).qty),0);
  function include(source,id,parent,entry){
   const owned=Math.floor(numeric(entry.qty));
   if(!owned)return;
-  const working=unexpired(entry,now)&&entry.powerReadyConfirmed===true&&
+  const rawWorking=unexpired(entry,now)&&entry.powerReadyConfirmed===true&&
     Number.isInteger(Number(entry.powerReadyQty))?
     Math.min(owned,Math.floor(numeric(entry.powerReadyQty))):0;
+  const core=root.BichikuCore;
+  const working=source==="basic"&&parent==="light"&&core?
+    core.remainingManualQuantity(rawWorking,namedLightOwned,entry.manualCountBasis):rawWorking;
   if(!working)return;
   const type=String(entry.batteryType||"");
   const cells=Math.floor(numeric(entry.cellsPerChange));
@@ -215,10 +226,19 @@ function assessment(catalog,options,source,today){
  const toilet=calc.items.find(x=>x.item.id==="toilet");
  if(toilet){
    toilet.assembledUses=assemblyUses;
-   // Count a matched pair as owned even if it needs installation/disposal review;
-   // only verified uses cover the shortage. Old unverified qty is NOT auto-credited.
-   toilet.owned=round(toilet.owned+toiletReview.pairedUses);
-   toilet.effective=round(toilet.effective+assemblyUses);
+   // Loose bag/solidifier pairs may already be included in a manual total.
+   const listed=toilet.variantOwned+toiletReview.pairedUses;
+   const manual=(s.stocks||{})[s.mode+":toilet"]||{};
+   const basis=manual.manualCountBasis;
+   toilet.listedOwned=listed;
+   toilet.requiresManualReview=toilet.ownedManual>0&&listed>0&&
+     !["additional","includes_options"].includes(basis);
+   const creditedManual=core.remainingManualQuantity(toilet.rawManualEffective,listed,basis);
+   const recordedManual=core.remainingManualQuantity(toilet.ownedManual,listed,basis);
+   toilet.manualEffective=creditedManual;
+   toilet.owned=toilet.ownedManual>0&&listed>0&&basis!=="additional"?
+     Math.max(toilet.ownedManual,listed):round(listed+recordedManual);
+   toilet.effective=round(toilet.variantEffective+creditedManual+assemblyUses);
    toilet.missing=round(Math.max(0,toilet.required-toilet.effective));
  }
  const byId=new Map(calc.items.map(x=>[x.item.id,x]));
@@ -237,10 +257,12 @@ function assessment(catalog,options,source,today){
     amount:waterAllocation,available:stored,condition:waterForPrep,requires:["safeWaterConfirmed","perItemPrepConfirmed","perItemWaterLiters"],
     note:waterConflict?"prepWaterInsufficient":s.safeWaterConfirmed?"waterAllocation":"prepWaterUnconfirmed"},
    {id:"batteryBudget",type:batteryReview.uncheckedDevices===0&&
-      batteryReview.shortages.length===0&&batteryReview.workingUnits>0?"ready":"review",
+      batteryReview.shortages.length===0&&batteryReview.workingUnits>0&&
+      !calc.items.some(r=>r.requiresManualReview&&["light","lantern","radio"].includes(r.item.id))?"ready":"review",
     amount:batteryReview.rows.reduce((n,r)=>n+r.required,0),
     available:batteryReview.rows.reduce((n,r)=>n+r.available,0),
-    condition:batteryReview.uncheckedDevices===0&&batteryReview.shortages.length===0,
+    condition:batteryReview.uncheckedDevices===0&&batteryReview.shortages.length===0&&
+      !calc.items.some(r=>r.requiresManualReview&&["light","lantern","radio"].includes(r.item.id)),
     requires:["batteries.batteryCells","devices.batteryType","devices.cellsPerChange",
       "devices.plannedChanges","devices.batteryPlanConfirmed"],
     note:"batterySharedBudget"},

@@ -447,9 +447,14 @@ try{
   await page.locator('input[data-energy-basic-ready="light"]').fill("1");
   await page.locator('input[data-energy-basic-ready="light"]').press("Tab");
   await page.locator('input[data-energy-basic-confirm="light"]').check();
-  assert.match(await page.locator(".g-detail-status").innerText(),/1/);
+  assert.match(await page.locator(".g-detail-status").innerText(),/2/,
+   "one working manual lamp is still uncredited while ownership overlaps two itemized flashlights");
+  assert.equal(await page.locator('select[data-manual-basis="light"]').inputValue(),"");
+  await page.locator('select[data-manual-basis="light"]').selectOption("additional");
+  assert.match(await page.locator(".g-detail-status").innerText(),/1/,
+   "explicitly confirming an independently owned manual lamp credits exactly one");
   assert.deepEqual(exceptions,[]);
-  console.log("PASS legacy lamp and bank quantities retained without inferred power");
+  console.log("PASS legacy lamp/bank quantities retained, ambiguous lights held and distinct manual lamp confirmed");
   passed++;await ctx.close();
  }
 
@@ -552,6 +557,72 @@ try{
   passed++;await ctx.close();
  }
 
+ // A manual category quantity and itemized bottled water can be the SAME stock.
+ // Require reconciliation, preserve saved data and invalidate after any changes.
+ {
+  const {ctx,page,exceptions}=await open(390);
+  await page.locator("#calculate").click();
+  await page.locator('button[data-goal="water"]').click();
+  await page.locator('input[data-basic="water"]').fill("10");
+  await page.locator('input[data-basic="water"]').press("Tab");
+  await page.locator('button[data-tab="everyday"]').click();
+  await page.locator('details.g-option[data-option="water2L"] summary').click();
+  await page.locator('input[data-option-bottles="water2L"]').fill("4");
+  await page.locator('input[data-option-bottles="water2L"]').press("Tab");
+  assert.match(await page.locator(".g-detail-status").innerText(),/13L/,"unreviewed manual 10L must not add to 8L itemized water");
+  assert.equal(await page.locator('select[data-manual-basis="water"]').inputValue(),"");
+  assert.match(await page.locator(".g-pending").allInnerTexts().then(x=>x.join(" ")),/二重登録/);
+  await page.locator('select[data-manual-basis="water"]').selectOption("includes_options");
+  assert.match(await page.locator(".g-detail-status").innerText(),/11L/,"inclusive total credits ten, not eighteen litres");
+  await page.locator('select[data-manual-basis="water"]').selectOption("additional");
+  assert.match(await page.locator(".g-detail-status").innerText(),/3L/,"explicit independent stock credits 10+8 litres");
+  await page.locator('input[data-option-bottles="water2L"]').fill("3");
+  await page.locator('input[data-option-bottles="water2L"]').press("Tab");
+  assert.match(await page.locator(".g-detail-status").innerText(),/15L/,"bottle edit revokes previously declared independence");
+  assert.equal(await page.locator('select[data-manual-basis="water"]').inputValue(),"");
+  await page.locator('select[data-manual-basis="water"]').selectOption("includes_options");
+  assert.match(await page.locator(".g-detail-status").innerText(),/11L/);
+  await page.reload({waitUntil:"domcontentloaded"});
+  await page.locator("#calculate").click();
+  await page.locator('button[data-goal="water"]').click();
+  assert.equal(await page.locator('input[data-basic="water"]').inputValue(),"10");
+  assert.equal(await page.locator('select[data-manual-basis="water"]').inputValue(),"includes_options");
+  assert.equal(await page.locator('input[data-option-bottles="water2L"]').count(),0,
+    "named option is in everyday tab; no cross-tab duplicate entry");
+  await page.locator('button[data-tab="everyday"]').click();
+  await page.locator('details.g-option[data-option="water2L"] summary').click();
+  assert.equal(await page.locator('input[data-option-bottles="water2L"]').inputValue(),"3");
+  assert.deepEqual(exceptions,[]);
+  await noOverflow(page,"390px manual+named water overlap");
+  console.log("PASS duplicate water reconciliation: unknown/inclusive/additional, invalidation and persistence");
+  passed++;await ctx.close();
+ }
+
+ // A complete toilet kit and separately assembled loose pieces can overlap
+ // manual toilet-use totals; no automatic double credit is allowed.
+ {
+  const {ctx,page,exceptions}=await open(320);
+  await page.evaluate(()=>localStorage.setItem("bichiku-check-v1",JSON.stringify({
+   mode:"home",adults:1,days:3,
+   stocks:{"home:toilet":{qty:10}},
+   variants:{"home:toiletKit":{qty:5},"home:toiletBags":{bagQty:8,solidifierQty:6}},
+   toiletAssemblyConfirmed:true,toiletSeatConfirmed:true,toiletStorageConfirmed:true,toiletDisposalConfirmed:true
+  })));
+  await page.reload({waitUntil:"domcontentloaded"});
+  await page.locator("#calculate").click();
+  assert.match(await page.locator(".g-pending").allInnerTexts().then(x=>x.join(" ")),/重複確認/);
+  await page.locator('button[data-goal="toilet"]').click();
+  assert.match(await page.locator(".g-detail-status").innerText(),/4/,"only five complete plus six assembled pairs for fifteen uses");
+  await page.locator('select[data-manual-basis="toilet"]').selectOption("includes_options");
+  assert.match(await page.locator(".g-detail-status").innerText(),/4/,"manual 10 includes eleven named usable, so count eleven");
+  await page.locator('select[data-manual-basis="toilet"]').selectOption("additional");
+  assert.match(await page.locator(".g-detail-status").innerText(),/0/,"ten distinct manual uses plus eleven options cover the target");
+  assert.deepEqual(exceptions,[]);
+  await noOverflow(page,"320px toilet overlap reconciliation");
+  console.log("PASS portable toilet kit/loose pairs versus manual count without duplicate credit");
+  passed++;await ctx.close();
+ }
+
  for(const [locale,dir] of locales){
   const {ctx,page,exceptions}=await open(390,dir);
   assert.equal(await page.locator("html").getAttribute("lang"),locale);
@@ -584,6 +655,17 @@ try{
   assert.equal(await page.locator('input[data-battery-stock]').count(),7,"seven battery types shown "+locale);
   assert.equal(await page.locator('select[data-battery-type="option:headlamp"]').count(),1,"localized device battery type "+locale);
   assert.ok((await page.locator('label.g-check').filter({has:page.locator('input[data-battery-confirm="option:headlamp"]')}).innerText()).trim().length>10,"localized battery plan confirmation "+locale);
+  await page.locator('button[data-back]').click();
+  await page.locator('button[data-goal="water"]').click();
+  await page.locator('input[data-basic="water"]').fill("10");
+  await page.locator('input[data-basic="water"]').press("Tab");
+  await page.locator('button[data-tab="everyday"]').click();
+  await page.locator('details.g-option[data-option="water2L"] summary').click();
+  await page.locator('input[data-option-bottles="water2L"]').fill("2");
+  await page.locator('input[data-option-bottles="water2L"]').press("Tab");
+  assert.equal(await page.locator('select[data-manual-basis="water"]').count(),1,"localized review select "+locale);
+  assert.ok((await page.locator('select[data-manual-basis="water"] option').nth(1).innerText()).trim().length>15,
+   "translated total-includes-options explanation "+locale);
   await noOverflow(page,locale);
   assert.deepEqual(exceptions,[],"JS exceptions "+locale);
   await page.screenshot({path:path.join(folder,"locale-"+locale+".png"),fullPage:true});
