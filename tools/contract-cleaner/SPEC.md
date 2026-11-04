@@ -64,6 +64,9 @@ The input/result panels benefit from desktop width, while the text-first workflo
 - [ ] Pasting text containing supported attention terms and running analysis produces category findings and highlighted matches.
 - [ ] Match/severity summaries correspond to the current analyzed text and the matched-only toggle changes category visibility without altering source text.
 - [ ] Summary/question copy and TXT save operate on generated review material rather than claiming legal conclusions.
+- [ ] Empty or whitespace-only contract input cannot generate or export a misleading zero-hit summary; user receives the existing empty-content notice.
+- [ ] Nonempty source with no detected keywords remains a valid no-match analysis, with disclaimer, copy, and TXT export available.
+- [ ] Clearing a previously analyzed document prevents stale previous content from being copied or downloaded; valid keyword cases remain unchanged.
 - [ ] JP/EN switching preserves analysis behavior and the legal/non-authoritative disclaimer.
 
 ## Implementation evidence
@@ -71,3 +74,5 @@ The input/result panels benefit from desktop width, while the text-first workflo
 - `tools/contract-cleaner/index.html`
 - `tools/contract-cleaner/app.js`
 - `tools/contract-cleaner/style.css`
+
+- `tools/contract-cleaner/empty-input-export.test.cjs` — production `app.js` behavior under simulated DOM: blank input, real no-match, keyword detection, clearing after prior export.
