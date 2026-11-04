@@ -136,3 +136,12 @@ User journey:
 - Other stock quantity labels now explicitly identify staple meal portions, water litres or usable toilet occasions when applicable.
 - Core calculation and underlying 44/81 categories remain unchanged. Test coverage includes classification safety, expiry, preparation water, bottle arithmetic, 390px Chromium interactions and storage persistence.
 - Official background: MAFF stocking guide https://www.maff.go.jp/j/zyukyu/foodstock/chapter03.html and preparedness food overview https://www.maff.go.jp/j/syokuiku/plan/4_plan/togo/html/part8.html.
+
+## Toilet bag/solidifier matching and safe use review — 2026-11-04
+
+- The toilet detail view separates **waste-collection bags** from **compatible solidifier/absorbent uses**. Only the lesser usable count can form a pair.
+- To credit paired uses toward the toilet shortage, the user must separately confirm compatibility/instructions, safe toilet/commode installation, hygienic sealed temporary storage, and the local authority's disposal guidance. Unverified/expired/unmatched components do not cover a shortage.
+- Complete toilet kits also require installation, sealed storage and disposal confirmation before counting, but not the separate bag/solidifier compatibility checkbox (because they are an identified kit). Do not register their included parts as additional loose components.
+- The earlier `bichiku-check-v1` `variants[mode+":toiletBags"].qty` stays in localStorage for review but **cannot automatically create paired uses**. New fields `bagQty` and `solidifierQty` are integer usage counts. Old data is not deleted.
+- This is a conservative planning/stock judgment, not a guarantee that a product is safe. The waste category and collection method are municipality-dependent; never assume all treated waste is burnable.
+- Government sources: [Tokyo Metropolitan Government](https://www.koho.metro.tokyo.lg.jp/2025/09/01-1.html) and [Hekinan City](https://www.city.hekinan.lg.jp/soshiki/shiminseikatsu/kikikanri/disaster/22829.html).
