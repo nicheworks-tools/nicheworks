@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "maker": "Acer",
   "scopeId": "acer-jp-six-japanese-user-manual-pdf-groups-20261104",
-  "scope": "6 independently indexed Acer manufacturer Japanese language PDF User Manuals with explicit covered-model lists; bounded 17 exact model identities, not complete Acer Japan product catalog",
+  "scope": "Five Acer manufacturer Japanese PDF User Manuals covering 16 exact model identities; 1 previously indexed Swift 7 manual held due Acer /error_page redirect; not a complete Acer Japan catalog",
   "asOf": "2026-11-04",
   "region": "JP",
   "language": "ja",
@@ -61,15 +61,6 @@
       "indexedReference": "Acer 日本語ユーザーマニュアル、対象モデル AN515-45/AN515-56/AN515-57/AN517-41/AN517-53/AN517-54、2021年8月"
     },
     {
-      "group": "Swift 7 2017",
-      "family": "Swift",
-      "models": [
-        "SF713-51"
-      ],
-      "url": "https://global-download.acer.com/GDFiles/Document/User%20Manual%20W10/User%20Manual%20W10_Acer_1.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=ULTRA-THIN&Step2=SWIFT&Step3=SF713-51&acerid=636397680437727859",
-      "indexedReference": "Acer 日本語ユーザーマニュアル、対象モデル SF713-51、2017年1月"
-    },
-    {
       "group": "Swift 16 AI 2026",
       "family": "Swift",
       "models": [
@@ -79,7 +70,22 @@
       "indexedReference": "Acer 日本語ユーザーマニュアル、対象モデル SF16-71T、2026年3月"
     }
   ],
-  "modelCount": 17,
-  "pdfCount": 6,
-  "requireBeforePublication": "CI verifies final fetch domain, %PDF magic, extractable manual text, exact model tokens in PDF first pages, no model/URL guesses; no public rows before positive check"
+  "modelCount": 16,
+  "pdfCount": 5,
+  "requireBeforePublication": "CI verifies final fetch domain, %PDF magic, extractable manual text, exact model tokens in PDF first pages, no model/URL guesses; no public rows before positive check",
+  "heldModels": [
+    {
+      "model": "SF713-51",
+      "family": "Swift",
+      "manufacturerUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual%20W10/User%20Manual%20W10_Acer_1.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=ULTRA-THIN&Step2=SWIFT&Step3=SF713-51&acerid=636397680437727859",
+      "state": "held",
+      "reason": "Verified 2026-11-04 GitHub Actions: Acer official indexed PDF source returned HTTP 200 with final destination https://global-download.acer.com/error_page, not a PDF. Model/guide source cannot be published.",
+      "attemptedDiscovery": [
+        "official manufacturer indexed Japanese manual PDF search",
+        "live original PDF URL download and final URL validation"
+      ],
+      "reviewedAt": "2026-11-04"
+    }
+  ],
+  "candidateUniverseModelCount": 17
 }

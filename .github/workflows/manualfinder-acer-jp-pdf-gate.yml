@@ -1,4 +1,4 @@
-name: ManualFinder Acer JP six official PDF source gate
+name: ManualFinder Acer JP five official PDF source gate
 on:
   pull_request:
     paths:
@@ -18,7 +18,7 @@ jobs:
           node-version: '22'
       - name: Verify pinned manufacturer PDF evidence and fail-closed parser
         run: node tools/manual-finder/tests/acer-jp-manual-pdf-probe.test.mjs
-      - name: Verify Acer six official JP PDFs and exact 17 model identities from PDF contents
+      - name: Verify Acer five official JP PDFs and exact 16 model identities from PDF contents
         shell: bash
         run: |
           set -euo pipefail

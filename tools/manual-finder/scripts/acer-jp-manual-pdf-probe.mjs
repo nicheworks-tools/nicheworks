@@ -58,6 +58,6 @@ export async function probe(groups=source.groups,{fetcher=fetch,pdfText}={}){
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
  const summary=await probe();
- if(summary.verifiedPdfCount!==6||summary.verifiedModelCount!==17)throw Error('incomplete verified 6-PDF / 17-model scope');
+ if(summary.verifiedPdfCount!==5||summary.verifiedModelCount!==16)throw Error('incomplete verified 5-PDF / 16-model scope');
  console.log(JSON.stringify({status:'ACER_PDF_SOURCE_VERIFIED',pdfs:summary.verifiedPdfCount,models:summary.verifiedModelCount}));
 }
