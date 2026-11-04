@@ -447,9 +447,14 @@ try{
   await page.locator('input[data-energy-basic-ready="light"]').fill("1");
   await page.locator('input[data-energy-basic-ready="light"]').press("Tab");
   await page.locator('input[data-energy-basic-confirm="light"]').check();
-  assert.match(await page.locator(".g-detail-status").innerText(),/1/);
+  assert.match(await page.locator(".g-detail-status").innerText(),/2/,
+   "one working manual lamp is still uncredited while ownership overlaps two itemized flashlights");
+  assert.equal(await page.locator('select[data-manual-basis="light"]').inputValue(),"");
+  await page.locator('select[data-manual-basis="light"]').selectOption("additional");
+  assert.match(await page.locator(".g-detail-status").innerText(),/1/,
+   "explicitly confirming an independently owned manual lamp credits exactly one");
   assert.deepEqual(exceptions,[]);
-  console.log("PASS legacy lamp and bank quantities retained without inferred power");
+  console.log("PASS legacy lamp/bank quantities retained, ambiguous lights held and distinct manual lamp confirmed");
   passed++;await ctx.close();
  }
 
