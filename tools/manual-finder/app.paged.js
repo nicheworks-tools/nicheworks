@@ -194,7 +194,7 @@
         a.textContent = t("公式索引・サポート", "Official index/support");
         links.appendChild(a);
       }
-      const phoneCheckHref = window.MANUALFINDER_QC?.linkFor(x.maker, x.model);
+      const phoneCheckHref = window.MANUALFINDER_QC?.linkFor(x.maker, x.model, x.manualUrl);
       if (phoneCheckHref) {
         const quick = document.createElement("a");
         quick.className = "phone-quickcheck-link";
