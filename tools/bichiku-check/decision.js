@@ -62,6 +62,29 @@ function foodRoleOverview(options,s,now){
      needsReview:saved.length>0&&usable.length===0};
  });
 }
+// A blackout heating budget is a USER-VERIFIED number of cooking sessions.
+// Never infer sessions per gas canister from its count or a national reference number.
+function heatSupplyReview(s,options,now){
+ const stove=(s.stocks||{})[s.mode+":stove"]||{};
+ const gas=(s.stocks||{})[s.mode+":gas"]||{};
+ const stoveCount=unexpired(stove,now)?Math.floor(numeric(stove.qty)):0;
+ const canisterCount=unexpired(gas,now)?Math.floor(numeric(gas.qty)):0;
+ const capacityUses=unexpired(gas,now)?Math.floor(numeric(gas.heatCapacityUses)):0;
+ const heating=(options||[]).filter(o=>o.parent==="food"&&o.prep==="heat")
+   .map(o=>({option:o,entry:(s.variants||{})[s.mode+":"+o.id]||{}}))
+   .filter(({entry})=>numeric(entry.qty)>0&&unexpired(entry,now));
+ const uncheckedFoods=heating.filter(({entry})=>entry.heatConfirmed!==true||
+   !Number.isInteger(Number(entry.heatSessions))||numeric(entry.heatSessions)<=0).map(({option})=>option.id);
+ const requiredUses=heating.reduce((sum,{entry})=>sum+
+   (entry.heatConfirmed===true&&Number.isInteger(Number(entry.heatSessions))?
+     Math.floor(numeric(entry.heatSessions)):0),0);
+ const equipmentConfirmed=!!stove.heatEquipmentConfirmed;
+ const fuelConfirmed=!!gas.heatFuelCompatibleConfirmed;
+ const available=stoveCount>0&&canisterCount>0&&capacityUses>0&&equipmentConfirmed&&fuelConfirmed;
+ const enough=uncheckedFoods.length===0&&requiredUses>0&&capacityUses>=requiredUses;
+ return {stoveCount,canisterCount,capacityUses,requiredUses,uncheckedFoods,
+   equipmentConfirmed,fuelConfirmed,available,enough,ready:!s.noHeat&&available&&enough};
+}
 // Do not treat an unverified legacy "bag + solidifier" quantity as assembled uses.
 // Existing qty remains in localStorage until the person rechecks each component.
 function toiletSupplyReview(s,now){
@@ -96,19 +119,24 @@ function normalize(s){
 function assessment(catalog,options,source,today){
  const s=normalize(source),now=validDate(today)||new Date().toISOString().slice(0,10);
  const stored=storedWater(s,options,now);
+ const heatReview=heatSupplyReview(s,options,now);
+ const heatReady=!s.noHeat&&(!s.powerOut||heatReview.ready);
  // Each water-dependent food must have its own complete, package-checked water allocation.
  // An old saved global water number cannot automatically verify any food item.
  const waterDetails=(options||[]).filter(o=>o.parent==="food"&&o.requiresWater)
    .map(o=>({option:o,entry:(s.variants||{})[s.mode+":"+o.id]||{}}))
    .filter(x=>numeric(x.entry.qty)>0&&unexpired(x.entry,now)&&
      (!s.noHeat||!["heat","verify"].includes(x.option.prep))&&
-     (!s.powerOut||s.offGridHeatConfirmed||x.option.prep!=="heat"));
+     (!s.powerOut||heatReady||x.option.prep!=="heat"));
  const checked=waterDetails.filter(x=>x.entry.prepConfirmed===true&&numeric(x.entry.prepWaterLiters)>0);
  const waterAllocation=round(checked.reduce((sum,x)=>sum+numeric(x.entry.prepWaterLiters),0));
  const uncheckedFoods=waterDetails.filter(x=>!checked.includes(x)).map(x=>x.option.id);
  const waterConflict=s.waterOut&&waterAllocation>stored;
  const waterForPrep=s.safeWaterConfirmed&&waterAllocation>0&&!waterConflict;
- const readiness=Object.assign({},s,{prepWaterSufficient:waterForPrep,enforceConditions:true});
+ // Overwrite the legacy one-checkbox approval for actual calculation; it remains
+ // saved for the person's reference but never authorizes unmeasured heating.
+ const readiness=Object.assign({},s,{prepWaterSufficient:waterForPrep,
+   offGridHeatConfirmed:heatReady,enforceConditions:true});
  const core=root.BichikuCore;
  if(!core)throw Error("BichikuCore is required");
  const calc=core.calculate(catalog,readiness,now,options);
@@ -143,6 +171,11 @@ function assessment(catalog,options,source,today){
    {id:"foodPrep",type:waterForPrep?"ready":"review",
     amount:waterAllocation,available:stored,condition:waterForPrep,requires:["safeWaterConfirmed","perItemPrepConfirmed","perItemWaterLiters"],
     note:waterConflict?"prepWaterInsufficient":s.safeWaterConfirmed?"waterAllocation":"prepWaterUnconfirmed"},
+   {id:"heatFuel",type:heatReview.ready?"ready":"review",amount:heatReview.requiredUses,
+    available:heatReview.capacityUses,condition:heatReview.ready,
+    requires:["stove.qty","stove.heatEquipmentConfirmed","gas.qty","gas.heatCapacityUses",
+      "gas.heatFuelCompatibleConfirmed","food.heatSessions","food.heatConfirmed"],
+    note:heatReview.ready?"heatReady":"heatReview"},
    {id:"toiletAssembly",type:assemblyUses>0?"ready":"review",amount:assemblyUses,condition:toiletReview.verified,
     requires:["toiletBags.bagQty","toiletBags.solidifierQty","toiletAssemblyConfirmed",
       "toiletSeatConfirmed","toiletStorageConfirmed","toiletDisposalConfirmed"],
@@ -155,12 +188,12 @@ function assessment(catalog,options,source,today){
  calc.missingCount=calc.items.filter(x=>x.missing>0).length;
  calc.coreMissingCount=calc.items.filter(x=>x.priority===1&&x.missing>0).length;
  calc.filledCount=calc.items.filter(x=>x.missing===0).length;
- return {settings:s,calc,groups:status,combinations,foodGroups,mainDishReferencePortions,toiletReview,
-   heatReady:!s.noHeat&&(!s.powerOut||s.offGridHeatConfirmed),waterForPrep,waterStored:stored,
+ return {settings:s,calc,groups:status,combinations,foodGroups,mainDishReferencePortions,toiletReview,heatReview,
+   heatReady,waterForPrep,waterStored:stored,
    waterAllocation,uncheckedFoods,waterRemainingAfterPrep:round(Math.max(0,stored-waterAllocation)),
    food,water,pad,warmth,waterConflict};
 }
-const api=Object.freeze({assessment,groups,optionUsable,storedWater,foodRoleOverview,toiletSupplyReview});
+const api=Object.freeze({assessment,groups,optionUsable,storedWater,foodRoleOverview,toiletSupplyReview,heatSupplyReview});
 root.BichikuDecision=api;
 if(typeof module==="object"&&module.exports)module.exports=api;
 })(typeof globalThis==="object"?globalThis:this);
