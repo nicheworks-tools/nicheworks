@@ -24,7 +24,7 @@ async function getSource(){
   const body=await resp.json(),meta=Object.values(body.query?.pages||{})[0]?.imageinfo?.[0];
   ensure(meta&&meta.sha1===hash&&meta.size===bytes.length,"original hash/size disagrees with Commons");
   const a=new URL(meta.url),b=new URL(SOURCE_URL);
-  ensure(a.origin===b.origin&&a.pathname===b.pathname&&!a.search&&!a.hash,"Commons URL differs from reviewed original");
+  ensure(a.origin===b.origin&&a.pathname===b.pathname&&!a.search&&!a.hash,"Commons URL differs from reviewed original "+JSON.stringify({api_url:meta.url,expected_url:SOURCE_URL,sha1:hash}));
   console.log("CTA_WAVE10_SOURCE_VERIFIED="+JSON.stringify({entry_id:ID,sha1:hash,bytes:bytes.length,url:SOURCE_URL}));
   return{bytes,hash};
 }
