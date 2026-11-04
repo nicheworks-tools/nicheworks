@@ -8,7 +8,7 @@ const src=new URL('../coverage-passes/msi/jp-ms1542-gp-ge-manual-20261104.json',
 export const pass=JSON.parse(await fs.readFile(src,'utf8'));
 export function verifyManual(group,bytes,text,finalUrl){
  const srcUrl=new URL(group.manualUrl),final=new URL(finalUrl);
- if(srcUrl.protocol!=='https:'||srcUrl.hostname!=='download.msi.com'||final.origin!==srcUrl.origin||final.pathname!==srcUrl.pathname)throw Error(group.type+': manufacturer original PDF filename/redirect mismatch');
+ if(srcUrl.protocol!=='https:'||srcUrl.hostname!=='download.msi.com'||!['download.msi.com','download-2.msi.com'].includes(final.hostname)||final.pathname!==srcUrl.pathname)throw Error(group.type+': manufacturer original PDF filename/redirect mismatch');
  if(bytes.length<60000||bytes.length>30000000||bytes.subarray(0,5).toString()!=='%PDF-')throw Error(group.type+': manufacturer file missing PDF magic/expected size');
  if(!/取扱説明書|ユーザーズマニュアル|ユーザーマニュアル/.test(text))throw Error(group.type+': Japanese manual title not present in PDF text');
  if(!/ノートブック|ノートパソコン|ノートPC/.test(text))throw Error(group.type+': Japanese notebook context missing');
