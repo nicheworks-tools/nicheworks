@@ -149,7 +149,7 @@
       var effective = manualEffective + variantEffective;
       var missing = Math.max(0,Math.round((required-effective)*100)/100);
       return {item:i,key:key,required:required,autoTarget:autoTarget,hasCustomTarget:custom,
-        ownedManual:ownedManual,variantOwned:variantOwned,excludedVariants:excludedVariants,
+        ownedManual:ownedManual,variantOwned:variantOwned,variantEffective:variantEffective,excludedVariants:excludedVariants,
         owned:owned,effective:effective,manualEffective:manualEffective,
         rawManualEffective:rawManualEffective,manualExtraOwned:manualExtraOwned,
         manualCountBasis:manualCountBasis,requiresManualReview:requiresManualReview,
