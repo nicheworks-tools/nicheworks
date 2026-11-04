@@ -130,6 +130,11 @@ Japanese and English UI copy share the same public URL and are switched client-s
 - [x] Physical source row references survive skipped blank rows and alternate header rows.
 - [x] Re-running identical data, mappings, and settings produces the same classification/order.
 - [x] Result filtering/search does not mutate reconciliation results.
+- [ ] Any changed source file, worksheet, CSV encoding/delimiter/header, column mapping, matching option, saved profile, or sample data immediately invalidates old on-screen reconciliation results and audit exports until re-run.
+- [ ] An invalid new file or failed regeneration cannot retain the previous source dataset for an apparently successful new reconciliation or export.
+- [ ] When overlapping file reads finish out of order, only the latest selected file may install itself. Superseded parser responses and errors must not overwrite newer state.
+- [ ] In-flight Pro XLSX export must not download a workbook if the input settings or generated reconciliation change during vendor initialization. Existing entitlement and purchase-unavailable boundaries remain unchanged.
+- [ ] Result filtering, pagination, and language switching remain usable for current valid results without prematurely invalidating the reconciliation.
 - [x] Dense candidate graphs stop before partial automatic resolution when the edge budget is exceeded.
 - [x] Bounded grouped matching degrades to manual review when its search budget is exhausted.
 - [x] CSV audit export includes the defined reconciliation context and selected original A/B identifying values.
@@ -172,5 +177,6 @@ Japanese and English UI copy share the same public URL and are switched client-s
 - `tools/reconcile/tests/parser.test.mjs`
 - `tools/reconcile/tests/reconcile-engine.test.mjs`
 - `tools/reconcile/tests/rules-store.test.mjs`
+- `tools/reconcile/tests/app-state-invalidation.test.cjs` — production UI state-machine regressions for source/mapping changes, invalid generation, out-of-order CSV reads, and stale Pro XLSX export.
 - `tools/reconcile/tests/xlsx-adapter.test.mjs`
 - `tools/reconcile/tests/xlsx-real-vendor.test.mjs`
