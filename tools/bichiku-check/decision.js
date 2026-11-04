@@ -62,6 +62,24 @@ function foodRoleOverview(options,s,now){
      needsReview:saved.length>0&&usable.length===0};
  });
 }
+// Do not treat an unverified legacy "bag + solidifier" quantity as assembled uses.
+// Existing qty remains in localStorage until the person rechecks each component.
+function toiletSupplyReview(s,now){
+ const entry=(s.variants||{})[s.mode+":toiletBags"]||{};
+ const bagUses=Math.floor(numeric(entry.bagQty));
+ const solidifierUses=Math.floor(numeric(entry.solidifierQty));
+ const expired=!unexpired(entry,now);
+ const pairedUses=expired?0:Math.min(bagUses,solidifierUses);
+ const checks={
+   compatibility:!!s.toiletAssemblyConfirmed,
+   installation:!!s.toiletSeatConfirmed,
+   storage:!!s.toiletStorageConfirmed,
+   disposal:!!s.toiletDisposalConfirmed
+ };
+ const verified=Object.values(checks).every(Boolean);
+ return {bagUses,solidifierUses,pairedUses,usableUses:verified?pairedUses:0,
+   legacyQty:numeric(entry.qty),expired,verified,checks};
+}
 function normalize(s){
  s=s||{};
  return Object.assign({},s,{
@@ -69,7 +87,10 @@ function normalize(s){
    offGridHeatConfirmed:!!s.offGridHeatConfirmed,
    safeWaterConfirmed:!!s.safeWaterConfirmed,
    prepWaterLiters:numeric(s.prepWaterLiters),
-   toiletAssemblyConfirmed:!!s.toiletAssemblyConfirmed
+   toiletAssemblyConfirmed:!!s.toiletAssemblyConfirmed,
+   toiletSeatConfirmed:!!s.toiletSeatConfirmed,
+   toiletStorageConfirmed:!!s.toiletStorageConfirmed,
+   toiletDisposalConfirmed:!!s.toiletDisposalConfirmed
  });
 }
 function assessment(catalog,options,source,today){
@@ -96,13 +117,15 @@ function assessment(catalog,options,source,today){
  // Suppress this simplified comparison when children or infants need individualized planning.
  const mainDishReferencePortions=calc.settings.mode==="home"&&calc.settings.adults>0&&calc.settings.children===0&&calc.settings.infants===0
    ?3*calc.settings.adults*calc.settings.days:null;
- const toiletBags=(s.variants||{})[s.mode+":toiletBags"]||{};
- const assemblyUses=s.toiletAssemblyConfirmed&&unexpired(toiletBags,now)?numeric(toiletBags.qty):0;
+ const toiletReview=toiletSupplyReview(s,now);
+ const assemblyUses=toiletReview.usableUses;
  const toilet=calc.items.find(x=>x.item.id==="toilet");
- if(toilet&&assemblyUses>0){
+ if(toilet){
    toilet.assembledUses=assemblyUses;
+   // Count a matched pair as owned even if it needs installation/disposal review;
+   // only verified uses cover the shortage. Old unverified qty is NOT auto-credited.
+   toilet.owned=round(toilet.owned+toiletReview.pairedUses);
    toilet.effective=round(toilet.effective+assemblyUses);
-   toilet.owned=round(toilet.owned+assemblyUses);
    toilet.missing=round(Math.max(0,toilet.required-toilet.effective));
  }
  const byId=new Map(calc.items.map(x=>[x.item.id,x]));
@@ -120,8 +143,10 @@ function assessment(catalog,options,source,today){
    {id:"foodPrep",type:waterForPrep?"ready":"review",
     amount:waterAllocation,available:stored,condition:waterForPrep,requires:["safeWaterConfirmed","perItemPrepConfirmed","perItemWaterLiters"],
     note:waterConflict?"prepWaterInsufficient":s.safeWaterConfirmed?"waterAllocation":"prepWaterUnconfirmed"},
-   {id:"toiletAssembly",type:assemblyUses>0?"ready":"review",amount:assemblyUses,condition:s.toiletAssemblyConfirmed,
-    requires:["toiletAssemblyConfirmed","toiletBags"],note:assemblyUses?"toiletReady":"toiletReview"},
+   {id:"toiletAssembly",type:assemblyUses>0?"ready":"review",amount:assemblyUses,condition:toiletReview.verified,
+    requires:["toiletBags.bagQty","toiletBags.solidifierQty","toiletAssemblyConfirmed",
+      "toiletSeatConfirmed","toiletStorageConfirmed","toiletDisposalConfirmed"],
+    note:assemblyUses?"toiletReady":"toiletReview"},
    {id:"floorWarmth",type:pad&&warmth&&pad.missing===0&&warmth.missing===0?"ready":"review",
     condition:!!pad&&!!warmth&&pad.missing===0&&warmth.missing===0,
     note:"sleepLayers",requires:["sleepPad","blanket"]}
@@ -130,12 +155,12 @@ function assessment(catalog,options,source,today){
  calc.missingCount=calc.items.filter(x=>x.missing>0).length;
  calc.coreMissingCount=calc.items.filter(x=>x.priority===1&&x.missing>0).length;
  calc.filledCount=calc.items.filter(x=>x.missing===0).length;
- return {settings:s,calc,groups:status,combinations,foodGroups,mainDishReferencePortions,
+ return {settings:s,calc,groups:status,combinations,foodGroups,mainDishReferencePortions,toiletReview,
    heatReady:!s.noHeat&&(!s.powerOut||s.offGridHeatConfirmed),waterForPrep,waterStored:stored,
    waterAllocation,uncheckedFoods,waterRemainingAfterPrep:round(Math.max(0,stored-waterAllocation)),
    food,water,pad,warmth,waterConflict};
 }
-const api=Object.freeze({assessment,groups,optionUsable,storedWater,foodRoleOverview});
+const api=Object.freeze({assessment,groups,optionUsable,storedWater,foodRoleOverview,toiletSupplyReview});
 root.BichikuDecision=api;
 if(typeof module==="object"&&module.exports)module.exports=api;
 })(typeof globalThis==="object"?globalThis:this);
