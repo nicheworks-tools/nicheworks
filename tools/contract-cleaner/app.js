@@ -711,7 +711,12 @@ function analyzeCurrentText() {
   return { matches, groups: groupByCategory(matches) };
 }
 
+function hasContractInput() {
+  return Boolean(normalize(document.getElementById("contractText")?.value || "").trim());
+}
+
 async function handleCopySummary() {
+  if (!hasContractInput()) return showToast(t("toast_empty"));
   const { matches, groups } = analyzeCurrentText();
   const summary = buildSummaryText(matches, groups);
   if (!summary.trim()) return showToast(t("toast_empty"));
@@ -728,6 +733,7 @@ async function handleCopyQuestions() {
 }
 
 function handleDownload() {
+  if (!hasContractInput()) return showToast(t("toast_empty"));
   const { matches, groups } = analyzeCurrentText();
   const output = `${buildSummaryText(matches, groups)}\n\n${buildQuestionsText(groups)}`.trim();
   if (!output) return showToast(t("toast_empty"));
