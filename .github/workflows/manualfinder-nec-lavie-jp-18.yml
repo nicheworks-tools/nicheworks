@@ -1,0 +1,33 @@
+name: ManualFinder NEC LAVIE JP 18 exact manuals
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/**'
+      - '.github/workflows/manualfinder-nec-lavie-jp-18.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  nec-jp-18:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact manufacturer manual source and model verification
+        run: |
+          node tools/manual-finder/tests/nec-lavie-jp-exact18-publication.test.mjs
+          node tools/manual-finder/tests/nec-lavie-jp-exact18-live.test.mjs
+          node tools/manual-finder/scripts/nec-lavie-jp-exact18-live.mjs
+      - name: Prior manufacturer and affiliate regression tests
+        run: |
+          node tools/manual-finder/tests/coverage-pass-pipeline.test.mjs
+          node tools/manual-finder/tests/acer-jp-pdf16-publication.test.mjs
+          node tools/manual-finder/tests/hp-jp-17-publication.test.mjs
+          node tools/manual-finder/tests/lenovo-jp-13-publication.test.mjs
+          node tools/manual-finder/tests/dell-jp-20-publication.test.mjs
+          node tools/manual-finder/tests/canon-pixus-wave3l-publication.test.mjs
+          node tools/manual-finder/tests/affiliate-coverage.test.mjs
+          node tools/manual-finder/tests/affiliate-doc-sync.test.mjs

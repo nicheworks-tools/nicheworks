@@ -503,3 +503,7 @@ The 17 manufacturer-hosted `setup-user-guides` exact HP product/series index rec
 ### Acer Japan 16 exact model searches (2026-11-04)
 
 Sixteen new Acer laptop model records linked to 5 manufacturer-verified Japanese PDFs use the existing canonical `PC・スマホ` Amazon tagged exact-model searches with `nicheworks09-22`, without making any claims about stock, sales, or battery/power-adapter compatibility. Model and shared-guide source evidence in `coverage-passes/acer/jp-six-japanese-user-manual-pdf-groups-20261104.json`. Acer Swift 7 SF713-51 is held from publication due the official PDF redirecting to `/error_page`. Printer counts are unchanged: `printer basic 343 = detail 336 + reviewed exclusion 7 + missing 0`.
+
+### NEC LAVIE 18 exact archived PC SKU Amazon model searches (2026-11-04)
+
+18 exact `PC-` NEC LAVIE manufacturer-linked model indexes have the existing canonical `PC・スマホ` tagged Amazon model searches (`nicheworks09-22`). The official manual landing pages include variant-specific amendments and corresponding standard model guides. No product stock, actual purchases, charger/battery compatibility or commissions implied. Evidence: `coverage-passes/nec-lavie/jp-archived-exact18-manual-index-20261104.json`. Printer audit remains 343 basic / 336 detail / 7 exclusions / 0 missing.

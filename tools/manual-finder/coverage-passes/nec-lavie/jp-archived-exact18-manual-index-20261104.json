@@ -1,0 +1,345 @@
+{
+  "schemaVersion": 1,
+  "maker": "NEC LAVIE",
+  "scopeId": "jp-archived-18-exact-sku-manual-index-20261104",
+  "scopeLabel": "NEC manufacturer-owned exact 18 PC- SKU archived manual landing pages: 12 Note Standard NS350/700 and 6 legacy LaVie S LS550",
+  "status": "coverage-pass-complete",
+  "asOf": "2026-11-04",
+  "region": "JP",
+  "language": "ja",
+  "allowedDomains": [
+    "nec-lavie.jp"
+  ],
+  "universe": {
+    "sourceUrls": [
+      "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns350nas-e3.html",
+      "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns350nab-e3.html",
+      "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns350gaw-e3.html",
+      "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns350eaw-y.html",
+      "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns350faw-e3.html",
+      "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns350caw-e3.html",
+      "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns700nab-n.html",
+      "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns700naw-yc.html",
+      "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns700naw-e3.html",
+      "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns700rab-n.html",
+      "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns700gaw-n.html",
+      "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns700nar-2.html",
+      "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ls550ls1yb.html",
+      "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ls550ls1yr.html",
+      "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ls550nsb-j.html",
+      "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ls550js1ksb.html",
+      "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ls550ssw-y.html",
+      "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ls550ssb-j.html"
+    ],
+    "models": [
+      "PC-NS350NAS-E3",
+      "PC-NS350NAB-E3",
+      "PC-NS350GAW-E3",
+      "PC-NS350EAW-Y",
+      "PC-NS350FAW-E3",
+      "PC-NS350CAW-E3",
+      "PC-NS700NAB-N",
+      "PC-NS700NAW-YC",
+      "PC-NS700NAW-E3",
+      "PC-NS700RAB-N",
+      "PC-NS700GAW-N",
+      "PC-NS700NAR-2",
+      "PC-LS550LS1YB",
+      "PC-LS550LS1YR",
+      "PC-LS550NSB-J",
+      "PC-LS550JS1KSB",
+      "PC-LS550SSW-Y",
+      "PC-LS550SSB-J"
+    ],
+    "declaredCount": 18,
+    "populationMethod": "Explicit narrow 18 independently observed manufacturer model-page scope, not a full brand/family catalog",
+    "sourceObservation": {
+      "observedAt": "2026-11-04",
+      "noteStandard": 12,
+      "laVieS": 6,
+      "modelIdentity": "Official page labels exact PC- product SKU and its associated standard-model manual link, alongside separate variant amendment"
+    }
+  },
+  "records": [
+    {
+      "model": "PC-NS350NAS-E3",
+      "family": "Note Standard",
+      "shortModel": "NS350/NAS-E3",
+      "standardModel": "NS350/NAS",
+      "manualUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns350nas-e3.html",
+      "state": "direct",
+      "supportUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns350nas-e3.html",
+      "evidenceUrls": [
+        "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns350nas-e3.html"
+      ],
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-04",
+      "reviewNote": "Exact purchased SKU manual landing page offers product-specific manual amendment and separately linked standard-model manuals. Both need reading; not a direct PDF and base-manual differences may matter."
+    },
+    {
+      "model": "PC-NS350NAB-E3",
+      "family": "Note Standard",
+      "shortModel": "NS350/NAB-E3",
+      "standardModel": "NS350/NAB",
+      "manualUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns350nab-e3.html",
+      "state": "direct",
+      "supportUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns350nab-e3.html",
+      "evidenceUrls": [
+        "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns350nab-e3.html"
+      ],
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-04",
+      "reviewNote": "Exact purchased SKU manual landing page offers product-specific manual amendment and separately linked standard-model manuals. Both need reading; not a direct PDF and base-manual differences may matter."
+    },
+    {
+      "model": "PC-NS350GAW-E3",
+      "family": "Note Standard",
+      "shortModel": "NS350/GAW-E3",
+      "standardModel": "NS350/GAW",
+      "manualUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns350gaw-e3.html",
+      "state": "direct",
+      "supportUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns350gaw-e3.html",
+      "evidenceUrls": [
+        "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns350gaw-e3.html"
+      ],
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-04",
+      "reviewNote": "Exact purchased SKU manual landing page offers product-specific manual amendment and separately linked standard-model manuals. Both need reading; not a direct PDF and base-manual differences may matter."
+    },
+    {
+      "model": "PC-NS350EAW-Y",
+      "family": "Note Standard",
+      "shortModel": "NS350/EAW-Y",
+      "standardModel": "NS350/EAW",
+      "manualUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns350eaw-y.html",
+      "state": "direct",
+      "supportUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns350eaw-y.html",
+      "evidenceUrls": [
+        "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns350eaw-y.html"
+      ],
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-04",
+      "reviewNote": "Exact purchased SKU manual landing page offers product-specific manual amendment and separately linked standard-model manuals. Both need reading; not a direct PDF and base-manual differences may matter."
+    },
+    {
+      "model": "PC-NS350FAW-E3",
+      "family": "Note Standard",
+      "shortModel": "NS350/FAW-E3",
+      "standardModel": "NS350/FAW",
+      "manualUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns350faw-e3.html",
+      "state": "direct",
+      "supportUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns350faw-e3.html",
+      "evidenceUrls": [
+        "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns350faw-e3.html"
+      ],
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-04",
+      "reviewNote": "Exact purchased SKU manual landing page offers product-specific manual amendment and separately linked standard-model manuals. Both need reading; not a direct PDF and base-manual differences may matter."
+    },
+    {
+      "model": "PC-NS350CAW-E3",
+      "family": "Note Standard",
+      "shortModel": "NS350/CAW-E3",
+      "standardModel": "NS350/CAW",
+      "manualUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns350caw-e3.html",
+      "state": "direct",
+      "supportUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns350caw-e3.html",
+      "evidenceUrls": [
+        "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns350caw-e3.html"
+      ],
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-04",
+      "reviewNote": "Exact purchased SKU manual landing page offers product-specific manual amendment and separately linked standard-model manuals. Both need reading; not a direct PDF and base-manual differences may matter."
+    },
+    {
+      "model": "PC-NS700NAB-N",
+      "family": "Note Standard",
+      "shortModel": "NS700/NAB-N",
+      "standardModel": "NS700/NAB",
+      "manualUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns700nab-n.html",
+      "state": "direct",
+      "supportUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns700nab-n.html",
+      "evidenceUrls": [
+        "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns700nab-n.html"
+      ],
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-04",
+      "reviewNote": "Exact purchased SKU manual landing page offers product-specific manual amendment and separately linked standard-model manuals. Both need reading; not a direct PDF and base-manual differences may matter."
+    },
+    {
+      "model": "PC-NS700NAW-YC",
+      "family": "Note Standard",
+      "shortModel": "NS700/NAW-YC",
+      "standardModel": "NS700/NAW",
+      "manualUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns700naw-yc.html",
+      "state": "direct",
+      "supportUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns700naw-yc.html",
+      "evidenceUrls": [
+        "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns700naw-yc.html"
+      ],
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-04",
+      "reviewNote": "Exact purchased SKU manual landing page offers product-specific manual amendment and separately linked standard-model manuals. Both need reading; not a direct PDF and base-manual differences may matter."
+    },
+    {
+      "model": "PC-NS700NAW-E3",
+      "family": "Note Standard",
+      "shortModel": "NS700/NAW-E3",
+      "standardModel": "NS700/NAW",
+      "manualUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns700naw-e3.html",
+      "state": "direct",
+      "supportUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns700naw-e3.html",
+      "evidenceUrls": [
+        "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns700naw-e3.html"
+      ],
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-04",
+      "reviewNote": "Exact purchased SKU manual landing page offers product-specific manual amendment and separately linked standard-model manuals. Both need reading; not a direct PDF and base-manual differences may matter."
+    },
+    {
+      "model": "PC-NS700RAB-N",
+      "family": "Note Standard",
+      "shortModel": "NS700/RAB-N",
+      "standardModel": "NS700/RAB",
+      "manualUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns700rab-n.html",
+      "state": "direct",
+      "supportUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns700rab-n.html",
+      "evidenceUrls": [
+        "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns700rab-n.html"
+      ],
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-04",
+      "reviewNote": "Exact purchased SKU manual landing page offers product-specific manual amendment and separately linked standard-model manuals. Both need reading; not a direct PDF and base-manual differences may matter."
+    },
+    {
+      "model": "PC-NS700GAW-N",
+      "family": "Note Standard",
+      "shortModel": "NS700/GAW-N",
+      "standardModel": "NS700/GAW",
+      "manualUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns700gaw-n.html",
+      "state": "direct",
+      "supportUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns700gaw-n.html",
+      "evidenceUrls": [
+        "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns700gaw-n.html"
+      ],
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-04",
+      "reviewNote": "Exact purchased SKU manual landing page offers product-specific manual amendment and separately linked standard-model manuals. Both need reading; not a direct PDF and base-manual differences may matter."
+    },
+    {
+      "model": "PC-NS700NAR-2",
+      "family": "Note Standard",
+      "shortModel": "NS700/NAR-2",
+      "standardModel": "NS700/NAR",
+      "manualUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns700nar-2.html",
+      "state": "direct",
+      "supportUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns700nar-2.html",
+      "evidenceUrls": [
+        "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ns700nar-2.html"
+      ],
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-04",
+      "reviewNote": "Exact purchased SKU manual landing page offers product-specific manual amendment and separately linked standard-model manuals. Both need reading; not a direct PDF and base-manual differences may matter."
+    },
+    {
+      "model": "PC-LS550LS1YB",
+      "family": "LaVie S",
+      "shortModel": "LS550/LS1YB",
+      "standardModel": "LS550/LS6B",
+      "manualUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ls550ls1yb.html",
+      "state": "direct",
+      "supportUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ls550ls1yb.html",
+      "evidenceUrls": [
+        "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ls550ls1yb.html"
+      ],
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-04",
+      "reviewNote": "Exact purchased SKU manual landing page offers product-specific manual amendment and separately linked standard-model manuals. Both need reading; not a direct PDF and base-manual differences may matter."
+    },
+    {
+      "model": "PC-LS550LS1YR",
+      "family": "LaVie S",
+      "shortModel": "LS550/LS1YR",
+      "standardModel": "LS550/LS6R",
+      "manualUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ls550ls1yr.html",
+      "state": "direct",
+      "supportUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ls550ls1yr.html",
+      "evidenceUrls": [
+        "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ls550ls1yr.html"
+      ],
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-04",
+      "reviewNote": "Exact purchased SKU manual landing page offers product-specific manual amendment and separately linked standard-model manuals. Both need reading; not a direct PDF and base-manual differences may matter."
+    },
+    {
+      "model": "PC-LS550NSB-J",
+      "family": "LaVie S",
+      "shortModel": "LS550/NSB-J",
+      "standardModel": "LS550/NSB",
+      "manualUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ls550nsb-j.html",
+      "state": "direct",
+      "supportUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ls550nsb-j.html",
+      "evidenceUrls": [
+        "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ls550nsb-j.html"
+      ],
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-04",
+      "reviewNote": "Exact purchased SKU manual landing page offers product-specific manual amendment and separately linked standard-model manuals. Both need reading; not a direct PDF and base-manual differences may matter."
+    },
+    {
+      "model": "PC-LS550JS1KSB",
+      "family": "LaVie S",
+      "shortModel": "LS550/JS1KSB",
+      "standardModel": "LS550/JS6B",
+      "manualUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ls550js1ksb.html",
+      "state": "direct",
+      "supportUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ls550js1ksb.html",
+      "evidenceUrls": [
+        "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ls550js1ksb.html"
+      ],
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-04",
+      "reviewNote": "Exact purchased SKU manual landing page offers product-specific manual amendment and separately linked standard-model manuals. Both need reading; not a direct PDF and base-manual differences may matter."
+    },
+    {
+      "model": "PC-LS550SSW-Y",
+      "family": "LaVie S",
+      "shortModel": "LS550/SSW-Y",
+      "standardModel": "LS550/SSW",
+      "manualUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ls550ssw-y.html",
+      "state": "direct",
+      "supportUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ls550ssw-y.html",
+      "evidenceUrls": [
+        "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ls550ssw-y.html"
+      ],
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-04",
+      "reviewNote": "Exact purchased SKU manual landing page offers product-specific manual amendment and separately linked standard-model manuals. Both need reading; not a direct PDF and base-manual differences may matter."
+    },
+    {
+      "model": "PC-LS550SSB-J",
+      "family": "LaVie S",
+      "shortModel": "LS550/SSB-J",
+      "standardModel": "LS550/SSB",
+      "manualUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ls550ssb-j.html",
+      "state": "direct",
+      "supportUrl": "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ls550ssb-j.html",
+      "evidenceUrls": [
+        "https://support.nec-lavie.jp/e-manual/m/nx/lv/original/html/ls550ssb-j.html"
+      ],
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-04",
+      "reviewNote": "Exact purchased SKU manual landing page offers product-specific manual amendment and separately linked standard-model manuals. Both need reading; not a direct PDF and base-manual differences may matter."
+    }
+  ],
+  "reconciliation": {
+    "published": 18,
+    "direct": 18,
+    "shared": 0,
+    "support_only": 0,
+    "held": 0
+  },
+  "refresh": {
+    "method": "Independently re-fetch each exact SKU HTML page, inspect product code, base-model mapping, amendment and manual links. Hold broken mappings."
+  }
+}
