@@ -207,6 +207,17 @@ function generateMessage(context) {
   const purposeOptions = PURPOSE[context.purpose]?.[contentLang] || [];
   if (!culture || !purposeOptions.length) return "";
 
+  // Condolences must not inherit generic thanks, greetings, or sign-offs.
+  // The funeral body is a complete message in Japanese; English may use a
+  // neutral sympathy sign-off, independent of formality or relationship.
+  if (context.purpose === "funeral") {
+    const parts = [pick(purposeOptions)];
+    const keywordLine = keywordSentence(context.keywords, contentLang);
+    if (keywordLine) parts.push(keywordLine);
+    if (contentLang === "en") parts.push("With sympathy,");
+    return parts.join("\n\n");
+  }
+
   const parts = [pick(culture.opening[context.formality])];
   const relation = RELATIONSHIP[contentLang]?.[context.relationship];
   if (relation) parts.push(relation);
