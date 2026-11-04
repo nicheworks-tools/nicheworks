@@ -209,11 +209,19 @@
     }
   };
 
+  // Use the viewer's calendar day, not UTC: near midnight UTC dates can differ.
+  const localDate = (date = new Date()) => {
+    const year = String(date.getFullYear()).padStart(4, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
   const createList = (items) => items.map((item) => `- [ ] ${item}`).join("\n");
 
   const buildChecklist = (type) => {
     const label = typeLabels[type] || typeLabels.converter;
-    const today = new Date().toISOString().slice(0, 10);
+    const today = localDate();
 
     return [
       `# Microtool Launch Checklist / マイクロツール公開前チェックリスト`,
@@ -284,7 +292,7 @@
     };
 
     const buildFilename = (extension) => {
-      const date = new Date().toISOString().slice(0, 10).replace(/-/g, "");
+      const date = localDate().replace(/-/g, "");
       const type = safeFilenamePart(toolType.value);
       return `microtool-launch-checklist-${type}-${date}.${extension}`;
     };
