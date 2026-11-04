@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "maker": "Huawei",
+  "scopeId": "jp-wearables-five-official-user-guide-index-20261104",
+  "scopeLabel": "HUAWEI Japan manufacturer's explicitly named five wearable product manual download indexes in official how-to-get-user-guide table, not all Huawei wearables",
+  "status": "coverage-pass-complete",
+  "asOf": "2026-11-04",
+  "region": "JP",
+  "language": "ja",
+  "allowedDomains": [
+    "huawei.com"
+  ],
+  "universe": {
+    "sourceUrls": [
+      "https://consumer.huawei.com/jp/support/wearables/band9/",
+      "https://consumer.huawei.com/jp/support/wearables/watch-gt4/",
+      "https://consumer.huawei.com/jp/support/wearables/watch-fit3/",
+      "https://consumer.huawei.com/jp/support/wearables/band8/",
+      "https://consumer.huawei.com/jp/support/wearables/watch-4/"
+    ],
+    "models": [
+      "Band 9",
+      "WATCH GT 4",
+      "WATCH FIT 3",
+      "Band 8",
+      "WATCH 4"
+    ],
+    "declaredCount": 5,
+    "populationMethod": "Exact five explicitly enumerated products in HUAWEI Japan manufacturer support article 取扱説明書の入手方法, method ①; its table explicitly marks both quick-start and full user's manuals for all five and gives each exact download index URL. Five is a deliberately locked FAQ subset, not Huawei brand or wearable product catalog completion.",
+    "sourceObservation": {
+      "manufacturerHowTo": "https://consumer.huawei.com/jp/support/content/ja-jp00753143/",
+      "howToTable": "方法① explicitly lists 5 named wearable product links and circles for both クイックスタートガイド and 取扱説明書",
+      "productPageType": "Named manufacturer exact product '取扱説明書とサービス' page with ダウンロード section",
+      "observedAt": "2026-11-04",
+      "webValidation": "Five official pages individually read plus HUAWEI official manual FAQ linking the five. PDF asset URL not downloaded or independently asserted.",
+      "notes": "WATCH GT4 appears without a space in the FAQ but exact linked official product page spells WATCH GT 4; treat as one product family, do not infer 41mm/46mm exact variant compatibility or distinct PDF."
+    }
+  },
+  "records": [
+    {
+      "model": "Band 9",
+      "state": "direct",
+      "manualUrl": "https://consumer.huawei.com/jp/support/wearables/band9/",
+      "supportUrl": "https://consumer.huawei.com/jp/support/wearables/band9/",
+      "evidenceUrls": [
+        "https://consumer.huawei.com/jp/support/content/ja-jp00753143/",
+        "https://consumer.huawei.com/jp/support/wearables/band9/"
+      ],
+      "manualKind": "manual-index",
+      "officialTableLabel": "HUAWEI Band 9",
+      "officialProductLabel": "HUAWEI Band 9",
+      "reviewedAt": "2026-11-04",
+      "reviewNote": "The manufacturer explicitly lists this model in its guide download table with quick-start and user manual available; destination is exact model 'manuals and services' index. No claim of an independently retrieved PDF or variation-specific manual."
+    },
+    {
+      "model": "WATCH GT 4",
+      "state": "direct",
+      "manualUrl": "https://consumer.huawei.com/jp/support/wearables/watch-gt4/",
+      "supportUrl": "https://consumer.huawei.com/jp/support/wearables/watch-gt4/",
+      "evidenceUrls": [
+        "https://consumer.huawei.com/jp/support/content/ja-jp00753143/",
+        "https://consumer.huawei.com/jp/support/wearables/watch-gt4/"
+      ],
+      "manualKind": "manual-index",
+      "officialTableLabel": "HUAWEI WATCH GT4",
+      "officialProductLabel": "HUAWEI WATCH GT 4",
+      "reviewedAt": "2026-11-04",
+      "reviewNote": "The manufacturer explicitly lists this model in its guide download table with quick-start and user manual available; destination is exact model 'manuals and services' index. No claim of an independently retrieved PDF or variation-specific manual."
+    },
+    {
+      "model": "WATCH FIT 3",
+      "state": "direct",
+      "manualUrl": "https://consumer.huawei.com/jp/support/wearables/watch-fit3/",
+      "supportUrl": "https://consumer.huawei.com/jp/support/wearables/watch-fit3/",
+      "evidenceUrls": [
+        "https://consumer.huawei.com/jp/support/content/ja-jp00753143/",
+        "https://consumer.huawei.com/jp/support/wearables/watch-fit3/"
+      ],
+      "manualKind": "manual-index",
+      "officialTableLabel": "HUAWEI WATCH FIT 3",
+      "officialProductLabel": "HUAWEI WATCH FIT 3",
+      "reviewedAt": "2026-11-04",
+      "reviewNote": "The manufacturer explicitly lists this model in its guide download table with quick-start and user manual available; destination is exact model 'manuals and services' index. No claim of an independently retrieved PDF or variation-specific manual."
+    },
+    {
+      "model": "Band 8",
+      "state": "direct",
+      "manualUrl": "https://consumer.huawei.com/jp/support/wearables/band8/",
+      "supportUrl": "https://consumer.huawei.com/jp/support/wearables/band8/",
+      "evidenceUrls": [
+        "https://consumer.huawei.com/jp/support/content/ja-jp00753143/",
+        "https://consumer.huawei.com/jp/support/wearables/band8/"
+      ],
+      "manualKind": "manual-index",
+      "officialTableLabel": "HUAWEI Band 8",
+      "officialProductLabel": "HUAWEI Band 8",
+      "reviewedAt": "2026-11-04",
+      "reviewNote": "The manufacturer explicitly lists this model in its guide download table with quick-start and user manual available; destination is exact model 'manuals and services' index. No claim of an independently retrieved PDF or variation-specific manual."
+    },
+    {
+      "model": "WATCH 4",
+      "state": "direct",
+      "manualUrl": "https://consumer.huawei.com/jp/support/wearables/watch-4/",
+      "supportUrl": "https://consumer.huawei.com/jp/support/wearables/watch-4/",
+      "evidenceUrls": [
+        "https://consumer.huawei.com/jp/support/content/ja-jp00753143/",
+        "https://consumer.huawei.com/jp/support/wearables/watch-4/"
+      ],
+      "manualKind": "manual-index",
+      "officialTableLabel": "HUAWEI WATCH 4",
+      "officialProductLabel": "HUAWEI WATCH 4",
+      "reviewedAt": "2026-11-04",
+      "reviewNote": "The manufacturer explicitly lists this model in its guide download table with quick-start and user manual available; destination is exact model 'manuals and services' index. No claim of an independently retrieved PDF or variation-specific manual."
+    }
+  ],
+  "reconciliation": {
+    "captured": 5,
+    "direct": 5,
+    "shared": 0,
+    "support_only": 0,
+    "held": 0,
+    "public": 5
+  },
+  "refresh": {
+    "method": "Re-check Huawei manufacturer FAQ exact 5 row URLs+two manual availability columns and each exact official support product page identity and downloads marker; fail closed on changed model identity or broken destination. No inferred direct PDF."
+  }
+}

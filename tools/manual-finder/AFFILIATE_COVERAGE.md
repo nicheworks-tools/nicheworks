@@ -511,3 +511,7 @@ Sixteen new Acer laptop model records linked to 5 manufacturer-verified Japanese
 ### MSI JP six MS-1542 model variant searches (2026-11-04)
 
 Six exact GP66 Leopard 10UE/UG/UH and GE66 Raider 10UE/UG/UH model searches through the existing `PC・スマホ` canonical Amazon search template (`nicheworks09-22`). The MSI-operated spareparts site is referenced **only as a manufacturer-verified model/chassis identity crosswalk**: this publication asserts no specific battery, charger, spare part compatibility, stock, commission or sale. Both different GP/GE Japanese manuals were live verified from MSI servers (run 41801269196). Printer audit unchanged.
+
+### HUAWEI wearable five official manual-download indexes (2026-11-04)
+
+The five exact manufacturer-confirmed Japanese WATCH/Band model-level manual indexes are correctly classified as `その他` (wearables), **not** mislabelled `PC・スマホ` to manufacture Amazon revenue links. Current canonical tagged model-search configuration explicitly excludes unaudited `その他` makers; therefore this batch adds **zero** Amazon tagged searches, batteries, watchbands or accessory fit assertions. Manufacturer evidence: `coverage-passes/huawei/jp-wearables-five-user-guides-20261104.json`. Existing printer ink inventory unchanged.
