@@ -65,11 +65,15 @@ The multi-mode workspace, input/edit panels, metadata status, and visual preview
 - [ ] Each of Storm, Compare, and Card modes can be selected and produces its implemented synthetic preview from valid inputs.
 - [ ] Synthetic preview content is visibly distinguished from real metadata reachability/status.
 - [ ] A metadata check uses the same-origin precipitation endpoint and failure/unavailable states are surfaced without relabeling synthetic data as observed data.
+- [ ] Storm / Compare / Card のmetadata fetchは、入力変更、モード切替、再実行、invalid submit時にAbortControllerで中断し、古い応答がmetadata状態や出力へ書き戻されない。
+- [ ] CompareのPeriod A / Period B は共通AbortSignalで両方中断され、通信の遅延や中断時も合成previewが観測値として扱われない。
+- [ ] 入力変更直後、無効になったmetadata通信を継続せず、古い結果に紐づく不要な通信が残らない。
 - [ ] Invalid/out-of-bound BBox, date, preset, or frame inputs are rejected by the implemented validation path.
 
 ## Implementation evidence
 
 - `tools/earth-map-suite/index.html`
+- `tools/earth-map-suite/metadata-cancel.test.cjs` — production metadata handlersを使った3モードAbort/late-responseの5件の回帰テスト。
 - `tools/earth-map-suite/app.js`
 - `tools/earth-map-suite/style.css`
 - `tools/earth-map-suite/usage.html`
