@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
     inputs:
       liveSupplementCount:
-        description: 'Number of V2 terms confirmed on production (30 before new rollout; 40 after)'
+        description: 'Number of V2 terms confirmed on production (40 currently published)'
         type: choice
         required: true
-        default: '30'
+        default: '40'
         options:
           - '5'
           - '10'
@@ -51,7 +51,7 @@ jobs:
 
       - name: Audit deployed Pattern Dictionary detail URLs (260 existing / 280 after rollout)
         env:
-          PATTERN_DICTIONARY_LIVE_SUPPLEMENT_COUNT: ${{ inputs.liveSupplementCount || '30' }}
+          PATTERN_DICTIONARY_LIVE_SUPPLEMENT_COUNT: ${{ inputs.liveSupplementCount || '40' }}
           PATTERN_DICTIONARY_PRODUCTION_SEO_REPORT: pattern-dictionary-production-seo-report.json
           PATTERN_DICTIONARY_PRODUCTION_SEO_CONCURRENCY: '8'
           PATTERN_DICTIONARY_PRODUCTION_SEO_TIMEOUT_MS: '20000'
