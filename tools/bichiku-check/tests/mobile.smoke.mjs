@@ -533,8 +533,8 @@ try{
   await page.locator("#calculate").click();
   await page.locator('button[data-goal="power"]').click();
   assert.match(await page.locator(".g-detail-status").innerText(),/2/,"99 untyped sets cannot cover AA requirements");
-  assert.match(await page.locator(".g-battery-review").innerText(),/99/);
   await page.locator('details[data-battery-stock-panel] summary').click();
+  assert.match(await page.locator(".g-battery-review").innerText(),/99/);
   await page.locator('input[data-battery-stock="AA"]').fill("4");
   await page.locator('input[data-battery-stock="AA"]').press("Tab");
   assert.match(await page.locator(".g-detail-status").innerText(),/0/);
