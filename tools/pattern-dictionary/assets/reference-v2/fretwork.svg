@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1536" viewBox="0 0 1536 1536" role="img" aria-label="fretwork original illustrative repeat">
+<rect width="1536" height="1536" fill="#f8f5ed"/>
+<defs><g id="motif"><rect x="-176" y="-176" width="352" height="352" fill="#f5ebd5"/><g fill="none" stroke="#876348" stroke-width="20" stroke-linejoin="miter"><rect x="-144" y="-144" width="288" height="288"/><rect x="-106" y="-106" width="212" height="212"/><path d="M0 -164 V164 M-164 0H164 M-124 -124L124 124 M124 -124L-124 124" stroke-width="14"/></g><g fill="#f5ebd5" stroke="#876348" stroke-width="9"><circle cx="0" cy="0" r="55"/><rect x="-27" y="-27" width="54" height="54" transform="rotate(45)" fill="#d4b58b"/></g></g></defs>
+<use href="#motif" transform="translate(256 256)"/>
+<use href="#motif" transform="translate(768 256)"/>
+<use href="#motif" transform="translate(1280 256)"/>
+<use href="#motif" transform="translate(256 768)"/>
+<use href="#motif" transform="translate(768 768)"/>
+<use href="#motif" transform="translate(1280 768)"/>
+<use href="#motif" transform="translate(256 1280)"/>
+<use href="#motif" transform="translate(768 1280)"/>
+<use href="#motif" transform="translate(1280 1280)"/>
+</svg>

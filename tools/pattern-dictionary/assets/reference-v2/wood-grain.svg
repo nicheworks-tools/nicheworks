@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1536" viewBox="0 0 1536 1536" role="img" aria-label="wood-grain original illustrative repeat">
+<rect width="1536" height="1536" fill="#f8f5ed"/>
+<defs><g id="motif"><rect x="-183" y="-183" width="366" height="366" fill="#c69865"/><g fill="none" stroke="#865c3c" stroke-linecap="round"><path d="M-166 -183 C-126 -107 -200 -54 -143 5 C-89 66 -195 110 -150 183" stroke-width="8" opacity=".8"/><path d="M-135 -183 C-95 -107 -169 -54 -112 5 C-58 66 -164 110 -119 183" stroke-width="4" opacity=".8"/><path d="M-104 -183 C-64 -107 -138 -54 -81 5 C-27 66 -133 110 -88 183" stroke-width="4" opacity=".8"/><path d="M-73 -183 C-33 -107 -107 -54 -50 5 C4 66 -102 110 -57 183" stroke-width="8" opacity=".8"/><path d="M-42 -183 C-2 -107 -76 -54 -19 5 C35 66 -71 110 -26 183" stroke-width="4" opacity=".8"/><path d="M-11 -183 C29 -107 -45 -54 12 5 C66 66 -40 110 5 183" stroke-width="4" opacity=".8"/><path d="M20 -183 C60 -107 -14 -54 43 5 C97 66 -9 110 36 183" stroke-width="8" opacity=".8"/><path d="M51 -183 C91 -107 17 -54 74 5 C128 66 22 110 67 183" stroke-width="4" opacity=".8"/><path d="M82 -183 C122 -107 48 -54 105 5 C159 66 53 110 98 183" stroke-width="4" opacity=".8"/><path d="M113 -183 C153 -107 79 -54 136 5 C190 66 84 110 129 183" stroke-width="8" opacity=".8"/><path d="M144 -183 C184 -107 110 -54 167 5 C221 66 115 110 160 183" stroke-width="4" opacity=".8"/><ellipse cx="35" cy="12" rx="65" ry="83" stroke-width="7"/><ellipse cx="35" cy="12" rx="43" ry="59" stroke-width="6"/><ellipse cx="35" cy="12" rx="23" ry="39" stroke-width="5"/><ellipse cx="35" cy="12" rx="9" ry="19" stroke-width="4"/></g></g></defs>
+<use href="#motif" transform="translate(256 256)"/>
+<use href="#motif" transform="translate(768 256)"/>
+<use href="#motif" transform="translate(1280 256)"/>
+<use href="#motif" transform="translate(256 768)"/>
+<use href="#motif" transform="translate(768 768)"/>
+<use href="#motif" transform="translate(1280 768)"/>
+<use href="#motif" transform="translate(256 1280)"/>
+<use href="#motif" transform="translate(768 1280)"/>
+<use href="#motif" transform="translate(1280 1280)"/>
+</svg>
