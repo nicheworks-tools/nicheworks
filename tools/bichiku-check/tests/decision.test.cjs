@@ -194,6 +194,8 @@ test("assembled toilet pairs and complete kits cannot duplicate manual category 
  const variants={"home:toiletKit":{qty:5},"home:toiletBags":{bagQty:8,solidifierQty:6}};
  const legacy=assess({...checks,stocks:{"home:toilet":{qty:10}},variants});
  assert.equal(legacy.toiletReview.usableUses,6);
+ assert.equal(row(legacy,"toilet").variantEffective,5,"named usable kit capacity must remain available to later assembly reconciliation");
+ assert.equal(row(legacy,"toilet").manualEffective,0,"overlapping manual uses stay uncredited until review");
  assert.equal(row(legacy,"toilet").effective,11,"count named kits and pairs, but not an ambiguous manual ten");
  assert.equal(row(legacy,"toilet").listedOwned,11);
  assert.equal(row(legacy,"toilet").requiresManualReview,true);
