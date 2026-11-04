@@ -44,16 +44,49 @@ test("normal no-heat rice alternative can count but cup noodles cannot automatic
  assert.equal(row(a,"food").effective,5);
  assert.equal(row(a,"food").missing,4);
 });
-test("portable toilet bag + solidifier pair requires explicit compatibility, disposal and installation confirmation",()=>{
- const base={variants:{"home:toiletKit":{qty:5},"home:toiletBags":{qty:8}}};
+test("portable toilet shortages count only matched compatible pieces with all four confirmations",()=>{
+ const base={variants:{"home:toiletKit":{qty:5},"home:toiletBags":{qty:8,bagQty:8,solidifierQty:6}}};
  const a=assess(base);
- assert.equal(row(a,"toilet").effective,5);
- const b=assess(Object.assign({},base,{toiletAssemblyConfirmed:true}));
- assert.equal(row(b,"toilet").effective,13);
- assert.equal(row(b,"toilet").assembledUses,8);
- const c=assess({toiletAssemblyConfirmed:true,variants:{"home:toiletBags":{qty:8,expiry:"2026-10-31"}}});
- assert.equal(row(c,"toilet").effective,0);
+ assert.equal(row(a,"toilet").effective,0,"kits and loose parts require installation and hygiene review");
+ assert.equal(a.toiletReview.legacyQty,8,"old combined stock remains available for review");
+ assert.equal(a.toiletReview.pairedUses,6,"component bottleneck is the usable number of pairs");
+ const settings={toiletAssemblyConfirmed:true,toiletSeatConfirmed:true,toiletStorageConfirmed:true,toiletDisposalConfirmed:true};
+ const b=assess({...base,...settings});
+ assert.equal(row(b,"toilet").effective,11,"five complete kits plus six verified separate pairs");
+ assert.equal(row(b,"toilet").assembledUses,6);
+ assert.equal(b.toiletReview.usableUses,6);
+ assert.equal(b.combinations.find(x=>x.id==="toiletAssembly").condition,true);
+ const c=assess({...base,...settings,toiletStorageConfirmed:false});
+ assert.equal(row(c,"toilet").effective,0,"missing sealed-storage plan blocks both complete kit and loose pairs");
+ const d=assess({...base,...settings,toiletAssemblyConfirmed:false});
+ assert.equal(row(d,"toilet").effective,5,"complete kits do not require separate compatibility check");
+ assert.equal(d.toiletReview.usableUses,0,"loose bags still require compatibility review");
 });
+test("unmatched, missing, expired, and legacy toilet components never silently cover shortages",()=>{
+ const checks={toiletAssemblyConfirmed:true,toiletSeatConfirmed:true,toiletStorageConfirmed:true,toiletDisposalConfirmed:true};
+ const alone=assess({...checks,variants:{"home:toiletBags":{bagQty:10}}});
+ assert.equal(alone.toiletReview.pairedUses,0);
+ assert.equal(row(alone,"toilet").effective,0);
+ const expired=assess({...checks,variants:{"home:toiletBags":{bagQty:10,solidifierQty:10,expiry:"2026-10-31"}}});
+ assert.equal(expired.toiletReview.expired,true);
+ assert.equal(row(expired,"toilet").effective,0);
+ const legacy=assess({...checks,variants:{"home:toiletBags":{qty:12}}});
+ assert.equal(legacy.toiletReview.legacyQty,12);
+ assert.equal(legacy.toiletReview.pairedUses,0);
+ assert.equal(row(legacy,"toilet").effective,0,"legacy combined quantities require fresh item-by-item review");
+ const partial=assess({...checks,variants:{"home:toiletBags":{bagQty:3.8,solidifierQty:2.4}}});
+ assert.equal(partial.toiletReview.pairedUses,2,"fractional raw values cannot increase the count of uses");
+ assert.equal(row(partial,"toilet").effective,2);
+});
+test("toilet component stock is separate for home and evacuation go-bag",()=>{
+ const checks={toiletAssemblyConfirmed:true,toiletSeatConfirmed:true,toiletStorageConfirmed:true,toiletDisposalConfirmed:true};
+ const a=assess({...checks,mode:"go",variants:{"home:toiletBags":{bagQty:99,solidifierQty:99}}});
+ assert.equal(row(a,"toilet").effective,0);
+ const b=assess({...checks,mode:"go",variants:{"go:toiletBags":{bagQty:2,solidifierQty:3}}});
+ assert.equal(row(b,"toilet").effective,2);
+ assert.equal(row(b,"toilet").missing,0);
+});
+
 test("temporary cardboard and foil never silently satisfy floor insulation or body warmth",()=>{
  const a=assess({adults:2,variants:{"home:cardboard":{qty:5},"home:aluminumSheet":{qty:5}}});
  assert.equal(row(a,"sleepPad").missing,2);
