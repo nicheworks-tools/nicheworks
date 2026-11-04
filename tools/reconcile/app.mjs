@@ -347,7 +347,8 @@ async function reparseLoadedCsvs({ announce = true } = {}) {
   return version === inputEpoch;
 }
 
-async function loadCsv(side, file, version) {
+async function loadCsv(side, file) {
+  const version = loadEpoch[side];
   const selectedDelimiter = selectedCsvDelimiter();
   const parsed = await readCsvFile(file, { encoding: $('encoding').value, delimiter: selectedDelimiter });
   if (version !== loadEpoch[side]) return;
@@ -407,7 +408,7 @@ async function loadFile(side, file) {
     return;
   }
   try {
-    if (type === 'csv') await loadCsv(side, file, version);
+    if (type === 'csv') await loadCsv(side, file);
     else await loadXlsx(side, file, version);
   } catch (error) {
     if (version !== loadEpoch[side]) return;
