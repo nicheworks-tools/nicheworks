@@ -85,7 +85,7 @@ async function main(){
     ["verified",ASSESSMENT],
     ["promoted","Retained exact JPEG; separately generated uncropped local WebP primary and thumb; provenance registry updated."]
   ];
-  for(let i=0;i<steps.length;i++){const [state,reason]=steps[i];row.history.push({state,at:new Date(t+i*1000).toISOString(),actor:"image-wave10-reviewed-20261104",reason,candidate_id:candidate.id,candidate_sha256:digest,hold:null})}
+  for(let i=0;i<steps.length;i++){const [state,reason]=steps[i];row.history.push({state,at:new Date(t+i*1000).toISOString().replace(/\.\d{3}Z$/,"Z"),actor:"image-wave10-reviewed-20261104",reason,candidate_id:candidate.id,candidate_sha256:digest,hold:null})}
   ledger.version=VERSION;write("image-lifecycle-v2.3.json",ledger);updateAttribution(hash);
   decision.disposition="promoted";decision.review+=" Wave10 full-tool replacement accepted after visual review; source original hash verified through Commons API.";
   intake.version=VERSION;intake.expected.revenue_ready=45;intake.expected.awaiting_source=385;intake.expected.first_wave=0;
