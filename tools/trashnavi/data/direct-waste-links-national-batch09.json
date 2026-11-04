@@ -219,5 +219,83 @@
     "status": "active",
     "language": "ja",
     "scope_note": "令和8年5月から予約制、年6回（5・7・9・11・1・3月）。実際の収集日は地区別カレンダー参照。"
+  },
+  {
+    "pref": "北海道",
+    "city": "新冠町",
+    "name": "令和8年度下半期・地区別ごみ収集カレンダー",
+    "type": "ごみ収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.niikappu.jp/kurashi/sekatsu/gomi/2025-0905-1644-36.html",
+    "lgcode": "016047",
+    "last_checked": "2026-11-04",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "2026年9月15日更新。令和8年度下半期10月〜3月。町内の地区ごとに異なるPDFを選択する。"
+  },
+  {
+    "pref": "北海道",
+    "city": "新冠町",
+    "name": "指定ごみ袋・分別ガイドブック",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.niikappu.jp/kurashi/sekatsu/gomi/gomifukuro.html",
+    "lgcode": "016047",
+    "last_checked": "2026-11-04",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "2026年4月1日更新。指定袋と分別方法。掲載ガイドブックは2020年4月1日改訂版であり令和8年版ではない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "新冠町",
+    "name": "粗大ごみの出し方",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.niikappu.jp/kurashi/sekatsu/gomi/sodai.html",
+    "lgcode": "016047",
+    "last_checked": "2026-11-04",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "2019年5月15日更新の町公式説明。前日17時までに申込み、処理券貼付。古い更新日を明示。"
+  },
+  {
+    "pref": "北海道",
+    "city": "芽室町",
+    "name": "ごみ分別手引き",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.memuro.net/administration/soshiki/kankyoudoboku/dust-recycle/gomibunbetsutebiki.html",
+    "lgcode": "016373",
+    "last_checked": "2026-11-04",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "2025年4月4日更新。町公式のごみ分別手引きダウンロード案内。"
+  },
+  {
+    "pref": "北海道",
+    "city": "芽室町",
+    "name": "令和8年度ごみ収集日カレンダー",
+    "type": "ごみ収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.memuro.net/administration/soshiki/kankyoudoboku/dust-recycle/gomi-cal.html",
+    "lgcode": "016373",
+    "last_checked": "2026-11-04",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "2026年5月28日更新。令和8年度カレンダー、町内会地図あり。地区ごとの収集日を全町共通として扱わない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "芽室町",
+    "name": "大型（粗大）ごみの種類と出し方",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.memuro.net/administration/soshiki/kankyoudoboku/dust-recycle/sodai.html",
+    "lgcode": "016373",
+    "last_checked": "2026-11-04",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "2026年6月30日更新。品目別収集運搬手数料を記載。"
   }
 ]
