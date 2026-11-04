@@ -1,0 +1,29 @@
+name: Vibe Lexicon state regression
+
+on:
+  pull_request:
+    paths:
+      - "tools/vibe-lexicon/**"
+      - ".github/workflows/vibe-lexicon-state-regression.yml"
+  push:
+    branches: [main]
+    paths:
+      - "tools/vibe-lexicon/**"
+      - ".github/workflows/vibe-lexicon-state-regression.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  vibe-lexicon-state:
+    name: Vibe Lexicon state regression
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Validate production JavaScript syntax
+        run: node --check tools/vibe-lexicon/app.js
+      - name: Test saved state and current exports
+        run: node --test tools/vibe-lexicon/state-regression.test.cjs
