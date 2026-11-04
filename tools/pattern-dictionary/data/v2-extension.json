@@ -1,7 +1,7 @@
 {
-  "schema_version": "pattern-dictionary-v2-supplement-5",
-  "updated": "2026-11-03",
-  "publication_note": "Ten additional source-documented geometric/ornamental/graphic concepts beyond the prior 120, with original representative schematics. Categories such as mosaic, Op Art and guilloche are qualified and not asserted to denote one fixed universal motif.",
+  "schema_version": "pattern-dictionary-v2-supplement-6",
+  "updated": "2026-11-04",
+  "publication_note": "Forty versioned supplementary entries across cultural motifs, textile traditions and technical visual effects. Terminology boundaries are explicitly stated for non-universal regional/technical categories and illustrations are original editorial schematics.",
   "entries": [
     {
       "id": "sakura-motif",
@@ -6740,6 +6740,2258 @@
         "size": "1536x1536",
         "status": "original-editorial-vector",
         "claim": "Newly drawn schematic only; original works and copyrighted images are not reproduced; non-universal design families are qualified."
+      }
+    },
+    {
+      "id": "nishijin-ori",
+      "uses": {
+        "ja": [
+          "帯",
+          "着物",
+          "能装束",
+          "室内装飾"
+        ],
+        "en": [
+          "obi sashes",
+          "kimono",
+          "Noh costumes",
+          "furnishing textiles"
+        ]
+      },
+      "source": {
+        "pattern_id": "nishijin-ori",
+        "verification_state": "qualified",
+        "term_scope": "Regional Kyoto textile production tradition including multiple weaving structures, not one design or weave",
+        "verified_names": {
+          "ja": "西陣織",
+          "en": "Nishijin Textile Tradition"
+        },
+        "verified_aliases": {
+          "ja": [
+            "にしじんおり",
+            "西陣織物"
+          ],
+          "en": [
+            "Nishijin-ori",
+            "Nishijin weaving",
+            "Kyoto Nishijin textiles"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "Nishijin Textile Industry Association — About Nishijin Textile",
+            "url": "https://nishijin.or.jp/eng/whats-nishijin1/",
+            "supports": [
+              "Describes the yarn-dyed regional tradition and distinction among multiple products"
+            ]
+          },
+          {
+            "publisher": "Kyoto City Official Tourism — Art & Culture",
+            "url": "https://kyoto.travel/en/art-and-culture/",
+            "supports": [
+              "Describes Kyoto origin, figured cloth, yarn dyeing and representative uses"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "nishijin-ori",
+        "review_state": "source-reviewed",
+        "verification_state": "qualified",
+        "names": {
+          "ja": "西陣織",
+          "en": "Nishijin Textile Tradition"
+        },
+        "aliases": {
+          "ja": [
+            "にしじんおり",
+            "西陣織物"
+          ],
+          "en": [
+            "Nishijin-ori",
+            "Nishijin weaving",
+            "Kyoto Nishijin textiles"
+          ]
+        },
+        "term_scope": "Regional Kyoto textile production tradition including multiple weaving structures, not one design or weave",
+        "definition": {
+          "ja": "京都の西陣を中心に発展した、糸を先に染めてから文様を織り出す多様な紋織物の総称。錦、緞子、綴、絣など複数の組織・技法があり、帯や能装束、室内装飾品に用いられます。特定の格子や花柄一種類を示す名前ではありません。",
+          "en": "A Kyoto-region textile tradition centered on yarn-dyed figured weaving. Nishijin production includes varied structures such as brocades, damasks, tapestry-like weaving and kasuri, and supplies obi, Noh costumes and interiors. Nishijin-ori is a provenance and textile category, not one fixed visual repeat."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "帯地などで金糸・色糸の精緻な紋織が代表例ですが全製品共通ではありません",
+            "綴・緞子・錦・絣など別々の織組織を含みます",
+            "見た目だけで西陣産と断定せず産地・織物表示を確認します"
+          ],
+          "en": [
+            "Complex figured, yarn-dyed cloth is common but not a mandatory universal appearance",
+            "Multiple distinct weaving structures belong to the tradition",
+            "Visual resemblance alone cannot establish Nishijin provenance; maker or origin evidence matters"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "帯",
+            "着物",
+            "能装束",
+            "室内装飾"
+          ],
+          "en": [
+            "obi sashes",
+            "kimono",
+            "Noh costumes",
+            "furnishing textiles"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "gold",
+            "indigo"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Editorial schematic palette, not a fixed recognition requirement"
+        },
+        "qualification": {
+          "ja": "西陣織は産地と製造技法による区分であり、ひと目で判別できる固定の柄ではありません。画像は紋織の一例です。",
+          "en": "Nishijin is a regional woven-textile tradition, not a single repeat pattern. The graphic is only an illustrative figured weave."
+        }
+      },
+      "runtime": {
+        "id": "nishijin-ori",
+        "names": {
+          "ja": "西陣織",
+          "en": "Nishijin Textile Tradition"
+        },
+        "aliases": {
+          "ja": [
+            "にしじんおり",
+            "西陣織物"
+          ],
+          "en": [
+            "Nishijin-ori",
+            "Nishijin weaving",
+            "Kyoto Nishijin textiles"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "西陣織の種類",
+            "京都の先染めの紋織物",
+            "西陣の錦織"
+          ],
+          "en": [
+            "nishijin Kyoto figured textiles",
+            "Nishijin weaving structures",
+            "Nishijin obi brocade"
+          ]
+        },
+        "families": [
+          "japanese",
+          "textile"
+        ],
+        "motifs": [
+          "先染め",
+          "紋織物"
+        ],
+        "visual": {
+          "geometry": [
+            "abstract"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "gold",
+            "indigo"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial colors"
+        },
+        "uses": [
+          "fashion",
+          "textile",
+          "design"
+        ],
+        "culture": [
+          "Japanese"
+        ],
+        "relationships": {
+          "similar": [
+            "damask",
+            "kente",
+            "kasuri"
+          ],
+          "often_confused_with": [
+            "damask",
+            "kasuri"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "京都の西陣を中心に発展した、糸を先に染めてから文様を織り出す多様な紋織物の総称。錦、緞子、綴、絣など複数の組織・技法があり、帯や能装束、室内装飾品に用いられます。特定の格子や花柄一種類を示す名前ではありません。",
+          "en": "A Kyoto-region textile tradition centered on yarn-dyed figured weaving. Nishijin production includes varied structures such as brocades, damasks, tapestry-like weaving and kasuri, and supplies obi, Noh costumes and interiors. Nishijin-ori is a provenance and textile category, not one fixed visual repeat."
+        },
+        "reference_path": "assets/reference-v2/nishijin-ori.svg",
+        "taxonomy": {
+          "types": [
+            "tradition"
+          ],
+          "appearance": [],
+          "contexts": [
+            "japanese",
+            "regional"
+          ]
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/nishijin-ori.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Newly drawn representative visual only. It is not a reproduction of a source image or a guarantee of unique appearance."
+      }
+    },
+    {
+      "id": "lotus-motif",
+      "uses": {
+        "ja": [
+          "織物",
+          "仏教美術",
+          "寺院装飾",
+          "衣服"
+        ],
+        "en": [
+          "textiles",
+          "Buddhist arts",
+          "temple ornament",
+          "clothing"
+        ]
+      },
+      "source": {
+        "pattern_id": "lotus-motif",
+        "verification_state": "verified",
+        "term_scope": "Lotus flowers or buds in textile and decorative ornament across multiple Asian and wider traditions; no single canonical petal count",
+        "verified_names": {
+          "ja": "蓮華文様",
+          "en": "Lotus Motif"
+        },
+        "verified_aliases": {
+          "ja": [
+            "蓮文",
+            "蓮の花柄",
+            "ロータス模様"
+          ],
+          "en": [
+            "lotus flower motif",
+            "lotus pattern",
+            "lotus blossom design"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "The Metropolitan Museum of Art — Textile with Lotus and Arabesque Design",
+            "url": "https://www.metmuseum.org/art/collection/search/448528",
+            "supports": [
+              "15th century block-printed cotton with frontal lotus flowers"
+            ]
+          },
+          {
+            "publisher": "The Metropolitan Museum of Art — Buddhist Altar Cloth",
+            "url": "https://www.metmuseum.org/art/collection/search/65731",
+            "supports": [
+              "Historic Japanese textile ornament with lotus flowers"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "lotus-motif",
+        "review_state": "source-reviewed",
+        "verification_state": "verified",
+        "names": {
+          "ja": "蓮華文様",
+          "en": "Lotus Motif"
+        },
+        "aliases": {
+          "ja": [
+            "蓮文",
+            "蓮の花柄",
+            "ロータス模様"
+          ],
+          "en": [
+            "lotus flower motif",
+            "lotus pattern",
+            "lotus blossom design"
+          ]
+        },
+        "term_scope": "Lotus flowers or buds in textile and decorative ornament across multiple Asian and wider traditions; no single canonical petal count",
+        "definition": {
+          "ja": "蓮の花・つぼみ・葉などを図案化した植物文様。アジア各地の染織品や宗教的な装飾に見られ、正面の花や横から見た花を用いる例があります。花弁の数・構図は時代と地域で異なり、抽象的な花形飾りとの区別には文脈も重要です。",
+          "en": "A decorative rendering of lotus blossoms, buds or leaves. Lotus motifs occur on historic Asian textiles and religious objects, portrayed frontally or from the side. Petal arrangement and accompanying foliage vary by place and period; not every floral rosette can be securely identified as lotus."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "蓮の花弁やつぼみが単独または葉と組み合わされます",
+            "正面花・側面花・流水との組合せなど構成が変わります",
+            "抽象的なロゼットとの差異は葉・つぼみ・収録資料も手掛かりです"
+          ],
+          "en": [
+            "Look for lotus-like petal layers, buds or accompanying leaves",
+            "Frontal blossoms and side-view stalked flowers both occur",
+            "Abstract rosettes may be ambiguous without contextual documentation"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "織物",
+            "仏教美術",
+            "寺院装飾",
+            "衣服"
+          ],
+          "en": [
+            "textiles",
+            "Buddhist arts",
+            "temple ornament",
+            "clothing"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "pink",
+            "green"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Editorial schematic palette, not a fixed recognition requirement"
+        }
+      },
+      "runtime": {
+        "id": "lotus-motif",
+        "names": {
+          "ja": "蓮華文様",
+          "en": "Lotus Motif"
+        },
+        "aliases": {
+          "ja": [
+            "蓮文",
+            "蓮の花柄",
+            "ロータス模様"
+          ],
+          "en": [
+            "lotus flower motif",
+            "lotus pattern",
+            "lotus blossom design"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "蓮の花の模様",
+            "蓮華柄 布",
+            "仏教装飾 ロータス"
+          ],
+          "en": [
+            "lotus bloom textile motif",
+            "lotus textile arabesque",
+            "Japanese lotus altar cloth"
+          ]
+        },
+        "families": [
+          "floral",
+          "ornamental"
+        ],
+        "motifs": [
+          "蓮の花",
+          "花托",
+          "花弁"
+        ],
+        "visual": {
+          "geometry": [
+            "floral",
+            "ornamental"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "pink",
+            "green"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial colors"
+        },
+        "uses": [
+          "fashion",
+          "textile",
+          "design"
+        ],
+        "culture": [],
+        "relationships": {
+          "similar": [
+            "kiku-motif",
+            "rosette-ornament",
+            "hanabishi"
+          ],
+          "often_confused_with": [
+            "rosette-ornament",
+            "kiku-motif"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "蓮の花・つぼみ・葉などを図案化した植物文様。アジア各地の染織品や宗教的な装飾に見られ、正面の花や横から見た花を用いる例があります。花弁の数・構図は時代と地域で異なり、抽象的な花形飾りとの区別には文脈も重要です。",
+          "en": "A decorative rendering of lotus blossoms, buds or leaves. Lotus motifs occur on historic Asian textiles and religious objects, portrayed frontally or from the side. Petal arrangement and accompanying foliage vary by place and period; not every floral rosette can be securely identified as lotus."
+        },
+        "reference_path": "assets/reference-v2/lotus-motif.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "floral",
+            "ornamental"
+          ],
+          "contexts": [
+            "regional"
+          ]
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/lotus-motif.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Newly drawn representative visual only. It is not a reproduction of a source image or a guarantee of unique appearance."
+      }
+    },
+    {
+      "id": "butterfly-print",
+      "uses": {
+        "ja": [
+          "着物",
+          "帯",
+          "服地",
+          "包装紙"
+        ],
+        "en": [
+          "kimono",
+          "obi",
+          "printed fabrics",
+          "gift wrap"
+        ]
+      },
+      "source": {
+        "pattern_id": "butterfly-print",
+        "verification_state": "verified",
+        "term_scope": "Depicted butterfly bodies and wing silhouettes repeated or arranged on fabric, including stylized butterflies, not a universal wing color or species",
+        "verified_names": {
+          "ja": "蝶柄",
+          "en": "Butterfly Print"
+        },
+        "verified_aliases": {
+          "ja": [
+            "蝶文様",
+            "蝶々柄",
+            "蝶の模様"
+          ],
+          "en": [
+            "butterfly motif",
+            "butterfly textile pattern",
+            "butterfly print pattern"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "The Metropolitan Museum of Art — Obi Sash with Butterflies and Plum Blossoms",
+            "url": "https://www.metmuseum.org/art/collection/search/88273",
+            "supports": [
+              "Japanese textile displaying butterflies alongside plum blossoms"
+            ]
+          },
+          {
+            "publisher": "Los Angeles County Museum of Art — Hitoe with Butterflies",
+            "url": "https://collections.lacma.org/object/152586",
+            "supports": [
+              "c. 1940 Japanese kimono with repeat butterfly imagery"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "butterfly-print",
+        "review_state": "source-reviewed",
+        "verification_state": "verified",
+        "names": {
+          "ja": "蝶柄",
+          "en": "Butterfly Print"
+        },
+        "aliases": {
+          "ja": [
+            "蝶文様",
+            "蝶々柄",
+            "蝶の模様"
+          ],
+          "en": [
+            "butterfly motif",
+            "butterfly textile pattern",
+            "butterfly print pattern"
+          ]
+        },
+        "term_scope": "Depicted butterfly bodies and wing silhouettes repeated or arranged on fabric, including stylized butterflies, not a universal wing color or species",
+        "definition": {
+          "ja": "蝶の胴体と左右の翅を絵柄にした布地・工芸品の文様。写実的な蝶、左右対称に単純化した蝶、花と組み合わせた蝶など構成に幅があります。日本の着物や帯にも例があり、特定の蝶の種や色を必ず表すわけではありません。",
+          "en": "A textile motif depicting butterflies with a body and paired wings, whether realistic, simplified or combined with flowers. Documented examples include Japanese kimono and obi. The named print does not imply a single butterfly species or colorway."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "左右に広がる翅と中心の胴体が手掛かりです",
+            "斑紋・翅形は写実から抽象まで幅があります",
+            "蝶の姿を省略した花形などは資料の裏付けなしに断定しません"
+          ],
+          "en": [
+            "A central body and paired wing silhouettes are common cues",
+            "Wing contours and internal spots vary from naturalistic to stylized",
+            "An abstract bow or flower shape alone may not establish a butterfly motif"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "着物",
+            "帯",
+            "服地",
+            "包装紙"
+          ],
+          "en": [
+            "kimono",
+            "obi",
+            "printed fabrics",
+            "gift wrap"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "pink",
+            "indigo"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Editorial schematic palette, not a fixed recognition requirement"
+        }
+      },
+      "runtime": {
+        "id": "butterfly-print",
+        "names": {
+          "ja": "蝶柄",
+          "en": "Butterfly Print"
+        },
+        "aliases": {
+          "ja": [
+            "蝶文様",
+            "蝶々柄",
+            "蝶の模様"
+          ],
+          "en": [
+            "butterfly motif",
+            "butterfly textile pattern",
+            "butterfly print pattern"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "蝶々が散った布の柄",
+            "蝶文 着物",
+            "蝶の柄の帯"
+          ],
+          "en": [
+            "butterfly pattern kimono fabric",
+            "repeating butterfly textile motifs",
+            "butterflies and plum blossoms obi"
+          ]
+        },
+        "families": [
+          "animal",
+          "natural"
+        ],
+        "motifs": [
+          "蝶",
+          "対称の羽"
+        ],
+        "visual": {
+          "geometry": [
+            "animal",
+            "organic"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "pink",
+            "indigo"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial colors"
+        },
+        "uses": [
+          "fashion",
+          "textile",
+          "design"
+        ],
+        "culture": [],
+        "relationships": {
+          "similar": [
+            "peacock-feather",
+            "botanical-print",
+            "ditsy-floral"
+          ],
+          "often_confused_with": [
+            "ditsy-floral",
+            "peacock-feather"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "蝶の胴体と左右の翅を絵柄にした布地・工芸品の文様。写実的な蝶、左右対称に単純化した蝶、花と組み合わせた蝶など構成に幅があります。日本の着物や帯にも例があり、特定の蝶の種や色を必ず表すわけではありません。",
+          "en": "A textile motif depicting butterflies with a body and paired wings, whether realistic, simplified or combined with flowers. Documented examples include Japanese kimono and obi. The named print does not imply a single butterfly species or colorway."
+        },
+        "reference_path": "assets/reference-v2/butterfly-print.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "animal",
+            "organic"
+          ],
+          "contexts": []
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/butterfly-print.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Newly drawn representative visual only. It is not a reproduction of a source image or a guarantee of unique appearance."
+      }
+    },
+    {
+      "id": "peacock-feather",
+      "uses": {
+        "ja": [
+          "舞台衣装",
+          "刺繍",
+          "帯",
+          "装飾布"
+        ],
+        "en": [
+          "theatrical costumes",
+          "embroidery",
+          "obi",
+          "decorative textiles"
+        ]
+      },
+      "source": {
+        "pattern_id": "peacock-feather",
+        "verification_state": "verified",
+        "term_scope": "Stylized ornament based on the eye-like ocellus of peacock tail feathers; some historical textiles use actual feathers while others depict them in thread",
+        "verified_names": {
+          "ja": "孔雀の羽根模様",
+          "en": "Peacock Feather Motif"
+        },
+        "verified_aliases": {
+          "ja": [
+            "孔雀羽根柄",
+            "孔雀の羽紋",
+            "ピーコックフェザーパターン"
+          ],
+          "en": [
+            "peacock feather pattern",
+            "peacock eye feather",
+            "peacock plume motif"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "The Metropolitan Museum of Art — Theatrical skirt with peacock feather design",
+            "url": "https://www.metmuseum.org/art/collection/search/65361",
+            "supports": [
+              "Colorful embroidery reproduces the visual markings of peacock feathers"
+            ]
+          },
+          {
+            "publisher": "The Metropolitan Museum of Art — Part of a Valance",
+            "url": "https://www.metmuseum.org/art/collection/search/53718",
+            "supports": [
+              "Historical peacock feather pattern uses actual feathers wound around silk"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "peacock-feather",
+        "review_state": "source-reviewed",
+        "verification_state": "verified",
+        "names": {
+          "ja": "孔雀の羽根模様",
+          "en": "Peacock Feather Motif"
+        },
+        "aliases": {
+          "ja": [
+            "孔雀羽根柄",
+            "孔雀の羽紋",
+            "ピーコックフェザーパターン"
+          ],
+          "en": [
+            "peacock feather pattern",
+            "peacock eye feather",
+            "peacock plume motif"
+          ]
+        },
+        "term_scope": "Stylized ornament based on the eye-like ocellus of peacock tail feathers; some historical textiles use actual feathers while others depict them in thread",
+        "definition": {
+          "ja": "孔雀の飾り羽に見られる楕円状の目玉模様と、そこへ伸びる細い羽枝を図案化した文様。刺繍や織物に使われ、実際の孔雀羽を材料にした例と、糸だけで色や光沢を再現した例があります。",
+          "en": "A decorative representation of the eye-shaped marking on a peacock's display feather, commonly surrounded by fine feather filaments. Historic textiles depict it with embroidery or even incorporate real feathers; illustration and material should not be conflated."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "羽の先に楕円・涙滴形の多層の目玉があります",
+            "中心から細い羽枝が外へ放射する描写があります",
+            "ペイズリーの勾玉状の花柄と混同せず羽の軸・羽枝を確認します"
+          ],
+          "en": [
+            "An oval eye-shaped ocellus lies toward the feather tip",
+            "Fine barbs fan out around a central feather shaft",
+            "Unlike paisley, a clear feather shaft and surrounding filaments may be shown"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "舞台衣装",
+            "刺繍",
+            "帯",
+            "装飾布"
+          ],
+          "en": [
+            "theatrical costumes",
+            "embroidery",
+            "obi",
+            "decorative textiles"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "teal",
+            "blue"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Editorial schematic palette, not a fixed recognition requirement"
+        }
+      },
+      "runtime": {
+        "id": "peacock-feather",
+        "names": {
+          "ja": "孔雀の羽根模様",
+          "en": "Peacock Feather Motif"
+        },
+        "aliases": {
+          "ja": [
+            "孔雀羽根柄",
+            "孔雀の羽紋",
+            "ピーコックフェザーパターン"
+          ],
+          "en": [
+            "peacock feather pattern",
+            "peacock eye feather",
+            "peacock plume motif"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "孔雀の羽の目玉模様",
+            "ピーコックフェザー 布",
+            "目のついた羽の柄"
+          ],
+          "en": [
+            "peacock feather eye pattern textile",
+            "peacock plume embroidered motif",
+            "peacock ocellus repeat"
+          ]
+        },
+        "families": [
+          "animal",
+          "ornamental"
+        ],
+        "motifs": [
+          "孔雀の飾り羽",
+          "目玉模様"
+        ],
+        "visual": {
+          "geometry": [
+            "animal",
+            "organic",
+            "ornamental"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "teal",
+            "blue"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial colors"
+        },
+        "uses": [
+          "fashion",
+          "textile",
+          "design"
+        ],
+        "culture": [],
+        "relationships": {
+          "similar": [
+            "feather-print",
+            "paisley",
+            "medallion"
+          ],
+          "often_confused_with": [
+            "paisley",
+            "feather-print"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "孔雀の飾り羽に見られる楕円状の目玉模様と、そこへ伸びる細い羽枝を図案化した文様。刺繍や織物に使われ、実際の孔雀羽を材料にした例と、糸だけで色や光沢を再現した例があります。",
+          "en": "A decorative representation of the eye-shaped marking on a peacock's display feather, commonly surrounded by fine feather filaments. Historic textiles depict it with embroidery or even incorporate real feathers; illustration and material should not be conflated."
+        },
+        "reference_path": "assets/reference-v2/peacock-feather.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "animal",
+            "organic",
+            "ornamental"
+          ],
+          "contexts": [
+            "regional"
+          ]
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/peacock-feather.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Newly drawn representative visual only. It is not a reproduction of a source image or a guarantee of unique appearance."
+      }
+    },
+    {
+      "id": "wood-grain",
+      "uses": {
+        "ja": [
+          "壁紙",
+          "家具表面",
+          "布地プリント",
+          "包装"
+        ],
+        "en": [
+          "wallpaper",
+          "furniture finishes",
+          "textile printing",
+          "packaging"
+        ]
+      },
+      "source": {
+        "pattern_id": "wood-grain",
+        "verification_state": "qualified",
+        "term_scope": "Graphic imitation or presentation of natural wood grain in paper, textile and other surfaces. A decorative woodgrain pattern need not be genuine wood",
+        "verified_names": {
+          "ja": "木目模様",
+          "en": "Wood-Grain Pattern"
+        },
+        "verified_aliases": {
+          "ja": [
+            "木目柄",
+            "木材風パターン",
+            "フォーボワ"
+          ],
+          "en": [
+            "wood grain print",
+            "faux bois",
+            "woodgrain texture"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "Cooper Hewitt Smithsonian Design Museum — Beautiful Imperfections",
+            "url": "https://www.cooperhewitt.org/2018/06/14/beautiful-imperfections/",
+            "supports": [
+              "Documents wallpaper designs that reproduce wood grain and texture"
+            ]
+          },
+          {
+            "publisher": "The Metropolitan Museum of Art — The Visual Games of Juan Gris",
+            "url": "https://www.metmuseum.org/ko/perspectives/cubism-visual-games-juan-gris",
+            "supports": [
+              "Discusses faux bois papers and printing that imitates wood grain"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "wood-grain",
+        "review_state": "source-reviewed",
+        "verification_state": "qualified",
+        "names": {
+          "ja": "木目模様",
+          "en": "Wood-Grain Pattern"
+        },
+        "aliases": {
+          "ja": [
+            "木目柄",
+            "木材風パターン",
+            "フォーボワ"
+          ],
+          "en": [
+            "wood grain print",
+            "faux bois",
+            "woodgrain texture"
+          ]
+        },
+        "term_scope": "Graphic imitation or presentation of natural wood grain in paper, textile and other surfaces. A decorative woodgrain pattern need not be genuine wood",
+        "definition": {
+          "ja": "木材の繊維や年輪に由来する流れる線、節、色の濃淡を模した柄。実際の木目だけでなく、壁紙や布に印刷した木目風のデザインも含みます。大きな曲線の繰り返しだけでは木目と確定できず、節・繊維の方向が識別点です。",
+          "en": "A surface pattern showing or imitating the lines, knots and tonal variation of wood. Wood-grain ornament appears on wallpaper, printed fabrics and other materials; an imitation (faux bois) must not be mistaken for evidence that the substrate is timber."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "流線状の繊維や年輪風の線が並びます",
+            "節や楕円状の輪が生じる表現があります",
+            "印刷・壁紙の木目は天然木の証拠ではありません"
+          ],
+          "en": [
+            "Long organic grain lines follow an apparent fiber direction",
+            "Knots or oval growth-ring features may interrupt the lines",
+            "Printed faux bois should not be identified as real wood from pattern alone"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "壁紙",
+            "家具表面",
+            "布地プリント",
+            "包装"
+          ],
+          "en": [
+            "wallpaper",
+            "furniture finishes",
+            "textile printing",
+            "packaging"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "brown",
+            "tan"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Editorial schematic palette, not a fixed recognition requirement"
+        },
+        "qualification": {
+          "ja": "木目柄は天然木とその模倣意匠の両方を指すことがあります。図解は木目風印刷の模式図です。",
+          "en": "Wood-grain designs may be genuine material surfaces or imitations. This diagram illustrates a faux-bois graphic, not authentic timber."
+        }
+      },
+      "runtime": {
+        "id": "wood-grain",
+        "names": {
+          "ja": "木目模様",
+          "en": "Wood-Grain Pattern"
+        },
+        "aliases": {
+          "ja": [
+            "木目柄",
+            "木材風パターン",
+            "フォーボワ"
+          ],
+          "en": [
+            "wood grain print",
+            "faux bois",
+            "woodgrain texture"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "木目のような流れる線の柄",
+            "フォーボワの壁紙",
+            "年輪の模様"
+          ],
+          "en": [
+            "faux bois wallpaper grain pattern",
+            "woodgrain textile imitation",
+            "wood knots graphic surface"
+          ]
+        },
+        "families": [
+          "organic",
+          "texture"
+        ],
+        "motifs": [
+          "年輪",
+          "木目線"
+        ],
+        "visual": {
+          "geometry": [
+            "organic",
+            "abstract"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "brown",
+            "tan"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial colors"
+        },
+        "uses": [
+          "fashion",
+          "textile",
+          "design"
+        ],
+        "culture": [],
+        "relationships": {
+          "similar": [
+            "marbling",
+            "tatewaku",
+            "topographic-contours"
+          ],
+          "often_confused_with": [
+            "marbling",
+            "topographic-contours"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "木材の繊維や年輪に由来する流れる線、節、色の濃淡を模した柄。実際の木目だけでなく、壁紙や布に印刷した木目風のデザインも含みます。大きな曲線の繰り返しだけでは木目と確定できず、節・繊維の方向が識別点です。",
+          "en": "A surface pattern showing or imitating the lines, knots and tonal variation of wood. Wood-grain ornament appears on wallpaper, printed fabrics and other materials; an imitation (faux bois) must not be mistaken for evidence that the substrate is timber."
+        },
+        "reference_path": "assets/reference-v2/wood-grain.svg",
+        "taxonomy": {
+          "types": [
+            "effect"
+          ],
+          "appearance": [
+            "organic",
+            "abstract"
+          ],
+          "contexts": []
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/wood-grain.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Newly drawn representative visual only. It is not a reproduction of a source image or a guarantee of unique appearance."
+      }
+    },
+    {
+      "id": "fretwork",
+      "uses": {
+        "ja": [
+          "建具",
+          "木工装飾",
+          "欄間",
+          "装飾パネル"
+        ],
+        "en": [
+          "wood panels",
+          "interior trim",
+          "screens",
+          "decorative furniture"
+        ]
+      },
+      "source": {
+        "pattern_id": "fretwork",
+        "verification_state": "qualified",
+        "term_scope": "Openwork or carved intersecting geometric ornament, including pierced and relief examples. Getty AAT differentiates fretwork from continuous-band fret patterns.",
+        "verified_names": {
+          "ja": "透かし格子装飾",
+          "en": "Fretwork"
+        },
+        "verified_aliases": {
+          "ja": [
+            "フレットワーク",
+            "透かし彫り格子",
+            "組格子装飾"
+          ],
+          "en": [
+            "fretwork ornament",
+            "pierced geometric woodwork",
+            "openwork pattern"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "Getty Research — Art & Architecture Thesaurus, Fretwork",
+            "url": "https://www.getty.edu/vow/AATFullDisplay?find=dye&logic=AND&note=&subjectid=300165040",
+            "supports": [
+              "Defines fretwork as carved intersecting geometric patterns, pierced or in relief"
+            ]
+          },
+          {
+            "publisher": "Japan Search / Tokyo National Museum — Butterfly and Fretwork Uchikake",
+            "url": "https://jpsearch.go.jp/en/gallery/ndl-R6NPW1NbbXG",
+            "supports": [
+              "Documents historical application of fretwork design to Japanese formal costume"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "fretwork",
+        "review_state": "source-reviewed",
+        "verification_state": "qualified",
+        "names": {
+          "ja": "透かし格子装飾",
+          "en": "Fretwork"
+        },
+        "aliases": {
+          "ja": [
+            "フレットワーク",
+            "透かし彫り格子",
+            "組格子装飾"
+          ],
+          "en": [
+            "fretwork ornament",
+            "pierced geometric woodwork",
+            "openwork pattern"
+          ]
+        },
+        "term_scope": "Openwork or carved intersecting geometric ornament, including pierced and relief examples. Getty AAT differentiates fretwork from continuous-band fret patterns.",
+        "definition": {
+          "ja": "木などの薄い板を幾何学的に切り抜いたり、線が交差する形に彫ったりして作る装飾。透かし部分がある作例だけでなく、浮彫による作例も含まれます。一列に連続する雷文（フレット模様）とは別の用語として扱われます。",
+          "en": "Geometric carved or pierced work formed from intersecting lines, historically including both openwork and relief. Fretwork describes a decorative construction or class of objects; the closely related term fret (pattern) often denotes a continuous band."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "線が交差する幾何学状の格子を彫刻で構成します",
+            "背景が抜けた透かしと浮彫の両形式があります",
+            "雷文のような帯状のフレット文様と対象範囲が異なります"
+          ],
+          "en": [
+            "Carved intersecting geometrical lines form a repeating structure",
+            "Some examples have pierced openings; others are relief carving",
+            "A fretwork panel should not automatically be called a continuous fret border"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "建具",
+            "木工装飾",
+            "欄間",
+            "装飾パネル"
+          ],
+          "en": [
+            "wood panels",
+            "interior trim",
+            "screens",
+            "decorative furniture"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "brown",
+            "cream"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Editorial schematic palette, not a fixed recognition requirement"
+        },
+        "qualification": {
+          "ja": "フレットワークは透かし・浮彫などの装飾制作を含む広い区分で、すべて同じ格子を持つわけではありません。",
+          "en": "Fretwork encompasses pierced and carved ornamental structures, not one fixed repeating grid."
+        }
+      },
+      "runtime": {
+        "id": "fretwork",
+        "names": {
+          "ja": "透かし格子装飾",
+          "en": "Fretwork"
+        },
+        "aliases": {
+          "ja": [
+            "フレットワーク",
+            "透かし彫り格子",
+            "組格子装飾"
+          ],
+          "en": [
+            "fretwork ornament",
+            "pierced geometric woodwork",
+            "openwork pattern"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "木の格子を透かし彫りにした模様",
+            "透かし格子飾り",
+            "フレットワーク 装飾"
+          ],
+          "en": [
+            "fretwork decorative pierced screen",
+            "carved intersecting geometric ornament",
+            "fretwork versus fret border"
+          ]
+        },
+        "families": [
+          "geometric",
+          "ornamental"
+        ],
+        "motifs": [
+          "透かし",
+          "交差する線"
+        ],
+        "visual": {
+          "geometry": [
+            "geometric",
+            "ornamental"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "brown",
+            "cream"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial colors"
+        },
+        "uses": [
+          "fashion",
+          "textile",
+          "design"
+        ],
+        "culture": [],
+        "relationships": {
+          "similar": [
+            "lattice",
+            "greek-key",
+            "kagome"
+          ],
+          "often_confused_with": [
+            "greek-key",
+            "lattice"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "木などの薄い板を幾何学的に切り抜いたり、線が交差する形に彫ったりして作る装飾。透かし部分がある作例だけでなく、浮彫による作例も含まれます。一列に連続する雷文（フレット模様）とは別の用語として扱われます。",
+          "en": "Geometric carved or pierced work formed from intersecting lines, historically including both openwork and relief. Fretwork describes a decorative construction or class of objects; the closely related term fret (pattern) often denotes a continuous band."
+        },
+        "reference_path": "assets/reference-v2/fretwork.svg",
+        "taxonomy": {
+          "types": [
+            "technique"
+          ],
+          "appearance": [
+            "geometric",
+            "ornamental"
+          ],
+          "contexts": []
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/fretwork.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Newly drawn representative visual only. It is not a reproduction of a source image or a guarantee of unique appearance."
+      }
+    },
+    {
+      "id": "digital-camouflage",
+      "uses": {
+        "ja": [
+          "ユニフォーム柄",
+          "アウトドア服",
+          "グラフィック",
+          "バッグ"
+        ],
+        "en": [
+          "uniform prints",
+          "outdoor wear",
+          "graphics",
+          "bags"
+        ]
+      },
+      "source": {
+        "pattern_id": "digital-camouflage",
+        "verification_state": "qualified",
+        "term_scope": "A camouflage-design family using digital or square-edged micro/macro shapes, not a guarantee of higher concealment and not identical to every official uniform pattern",
+        "verified_names": {
+          "ja": "デジタル迷彩",
+          "en": "Digital Camouflage"
+        },
+        "verified_aliases": {
+          "ja": [
+            "デジカモ",
+            "ピクセル迷彩",
+            "角張った迷彩"
+          ],
+          "en": [
+            "pixelated camouflage",
+            "digital camo",
+            "digital camouflage pattern"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "U.S. Army — West Point explores science of camouflage",
+            "url": "https://www.army.mil/article/40245/west_point_explores_science_of_camouflage",
+            "supports": [
+              "Documents early digital texture-match design with square color blocks"
+            ]
+          },
+          {
+            "publisher": "U.S. Army — ACU pattern officially retired",
+            "url": "https://www.army.mil/article/228411/acu_pattern_officially_retired_new_uniform_improvements_on_the_way",
+            "supports": [
+              "Distinguishes digital Universal Camouflage Pattern from later organic OCP"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "digital-camouflage",
+        "review_state": "source-reviewed",
+        "verification_state": "qualified",
+        "names": {
+          "ja": "デジタル迷彩",
+          "en": "Digital Camouflage"
+        },
+        "aliases": {
+          "ja": [
+            "デジカモ",
+            "ピクセル迷彩",
+            "角張った迷彩"
+          ],
+          "en": [
+            "pixelated camouflage",
+            "digital camo",
+            "digital camouflage pattern"
+          ]
+        },
+        "term_scope": "A camouflage-design family using digital or square-edged micro/macro shapes, not a guarantee of higher concealment and not identical to every official uniform pattern",
+        "definition": {
+          "ja": "小さな四角形や角張った色面を組み合わせた迷彩柄の一群。自然物の輪郭を分解・多尺度化した色の塊を含み、従来の曲線的な迷彩と見分けられることがあります。ただし『デジタル』の名称は隠蔽性能の保証ではありません。",
+          "en": "A family of camouflage designs featuring pixel-like squares and sharp-edged colored blocks, sometimes with elements at multiple scales. These differ visually from flowing organic camouflage patches, but the label alone does not establish operational concealment performance."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "ピクセルのような角張った色の塊が組み合わさります",
+            "大きな面と細かい区画が混在する作例があります",
+            "単なるピクセルアートと違い背景に紛れるための配色・配置を意図します"
+          ],
+          "en": [
+            "Small block-like edges define patches rather than only smooth curves",
+            "Some designs combine fine squares with larger fragmented masses",
+            "Unlike generic pixel art, color placement is organized around camouflage"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "ユニフォーム柄",
+            "アウトドア服",
+            "グラフィック",
+            "バッグ"
+          ],
+          "en": [
+            "uniform prints",
+            "outdoor wear",
+            "graphics",
+            "bags"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "olive",
+            "tan"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Editorial schematic palette, not a fixed recognition requirement"
+        },
+        "qualification": {
+          "ja": "迷彩の実性能は環境・配色・尺度に左右され、デジタル形状だけで有効性は判断できません。図は軍規格の再現ではありません。",
+          "en": "Camouflage performance depends on terrain and context; the schematic does not replicate an official uniform pattern."
+        }
+      },
+      "runtime": {
+        "id": "digital-camouflage",
+        "names": {
+          "ja": "デジタル迷彩",
+          "en": "Digital Camouflage"
+        },
+        "aliases": {
+          "ja": [
+            "デジカモ",
+            "ピクセル迷彩",
+            "角張った迷彩"
+          ],
+          "en": [
+            "pixelated camouflage",
+            "digital camo",
+            "digital camouflage pattern"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "四角い迷彩柄",
+            "デジカモ ピクセル模様",
+            "角張った軍服の迷彩"
+          ],
+          "en": [
+            "pixel block digital camo fabric",
+            "square pixel camouflage print",
+            "digital versus organic camouflage"
+          ]
+        },
+        "families": [
+          "camouflage",
+          "geometric"
+        ],
+        "motifs": [
+          "角形の色面",
+          "不規則な区画"
+        ],
+        "visual": {
+          "geometry": [
+            "abstract",
+            "geometric"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "olive",
+            "tan"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial colors"
+        },
+        "uses": [
+          "fashion",
+          "textile",
+          "design"
+        ],
+        "culture": [],
+        "relationships": {
+          "similar": [
+            "camouflage",
+            "pixel-pattern",
+            "tortoiseshell"
+          ],
+          "often_confused_with": [
+            "camouflage",
+            "pixel-pattern"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "小さな四角形や角張った色面を組み合わせた迷彩柄の一群。自然物の輪郭を分解・多尺度化した色の塊を含み、従来の曲線的な迷彩と見分けられることがあります。ただし『デジタル』の名称は隠蔽性能の保証ではありません。",
+          "en": "A family of camouflage designs featuring pixel-like squares and sharp-edged colored blocks, sometimes with elements at multiple scales. These differ visually from flowing organic camouflage patches, but the label alone does not establish operational concealment performance."
+        },
+        "reference_path": "assets/reference-v2/digital-camouflage.svg",
+        "taxonomy": {
+          "types": [
+            "motif"
+          ],
+          "appearance": [
+            "abstract",
+            "geometric"
+          ],
+          "contexts": []
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/digital-camouflage.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Newly drawn representative visual only. It is not a reproduction of a source image or a guarantee of unique appearance."
+      }
+    },
+    {
+      "id": "pixel-pattern",
+      "uses": {
+        "ja": [
+          "ゲーム画面",
+          "衣服プリント",
+          "ステッカー",
+          "装飾"
+        ],
+        "en": [
+          "game art",
+          "printed clothing",
+          "stickers",
+          "graphics"
+        ]
+      },
+      "source": {
+        "pattern_id": "pixel-pattern",
+        "verification_state": "qualified",
+        "term_scope": "Deliberate square-grid visual style based on visible pixels, not necessarily screen hardware or a specific image resolution",
+        "verified_names": {
+          "ja": "ピクセル模様",
+          "en": "Pixel Pattern"
+        },
+        "verified_aliases": {
+          "ja": [
+            "ドット絵風模様",
+            "ピクセルアート柄",
+            "スクエアピクセル柄"
+          ],
+          "en": [
+            "pixel art pattern",
+            "pixel grid motif",
+            "blocky pixel design"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "Adobe Firefly — Pixel Art Explained",
+            "url": "https://www.adobe.com/uk/products/firefly/discover/pixel-art.html",
+            "supports": [
+              "Describes deliberate square grid pixels, stair-stepped edges and palette choices"
+            ]
+          },
+          {
+            "publisher": "Adobe Illustrator — Draw Pixel-Perfect Art",
+            "url": "https://helpx.adobe.com/illustrator/desktop/measure-and-align/grids-and-guides/draw-pixel-perfect-art.html",
+            "supports": [
+              "Describes pixel-grid construction and alignment of digital shapes"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "pixel-pattern",
+        "review_state": "source-reviewed",
+        "verification_state": "qualified",
+        "names": {
+          "ja": "ピクセル模様",
+          "en": "Pixel Pattern"
+        },
+        "aliases": {
+          "ja": [
+            "ドット絵風模様",
+            "ピクセルアート柄",
+            "スクエアピクセル柄"
+          ],
+          "en": [
+            "pixel art pattern",
+            "pixel grid motif",
+            "blocky pixel design"
+          ]
+        },
+        "term_scope": "Deliberate square-grid visual style based on visible pixels, not necessarily screen hardware or a specific image resolution",
+        "definition": {
+          "ja": "正方形の画素を意図的に見せ、階段状の輪郭や色のブロックで絵を構成する図柄。ドット絵・ゲーム風のデザインに使われます。単に画像の解像度が低い状態とは異なり、画素の見え方自体を表現手段にします。",
+          "en": "A deliberately visible square-pixel visual style using stepped contours and color blocks to form images or repeats. Common in pixel art and retro-style graphics, it treats the grid as a design element rather than merely an unintended low-resolution artifact."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "正方形のマス目を単位に輪郭が段差状になります",
+            "形と陰影を限られた色ブロックで表します",
+            "モザイクの素材片ではなくデジタルの画素表現が基になっています"
+          ],
+          "en": [
+            "Square grid cells produce stair-stepped edges",
+            "Blocks of discrete colors imply shapes or shading",
+            "The reference is a visible pixel grid, rather than individual physical mosaic tesserae"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "ゲーム画面",
+            "衣服プリント",
+            "ステッカー",
+            "装飾"
+          ],
+          "en": [
+            "game art",
+            "printed clothing",
+            "stickers",
+            "graphics"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "purple",
+            "blue"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Editorial schematic palette, not a fixed recognition requirement"
+        },
+        "qualification": {
+          "ja": "ピクセル模様は画素が見える表現様式であり、特定の一枚の絵柄を示す語ではありません。",
+          "en": "Pixel pattern denotes a visible-grid graphic style, not a specific universal repeat."
+        }
+      },
+      "runtime": {
+        "id": "pixel-pattern",
+        "names": {
+          "ja": "ピクセル模様",
+          "en": "Pixel Pattern"
+        },
+        "aliases": {
+          "ja": [
+            "ドット絵風模様",
+            "ピクセルアート柄",
+            "スクエアピクセル柄"
+          ],
+          "en": [
+            "pixel art pattern",
+            "pixel grid motif",
+            "blocky pixel design"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "ドット絵みたいな四角い模様",
+            "ピクセル化した柄",
+            "レトロゲーム風のパターン"
+          ],
+          "en": [
+            "pixelated block grid pattern",
+            "pixel art textile design",
+            "square digital pixel repeat"
+          ]
+        },
+        "families": [
+          "digital",
+          "geometric"
+        ],
+        "motifs": [
+          "正方形の画素",
+          "段差"
+        ],
+        "visual": {
+          "geometry": [
+            "geometric",
+            "abstract"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "purple",
+            "blue"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial colors"
+        },
+        "uses": [
+          "fashion",
+          "textile",
+          "design"
+        ],
+        "culture": [],
+        "relationships": {
+          "similar": [
+            "digital-camouflage",
+            "mosaic-pattern",
+            "halftone-dots"
+          ],
+          "often_confused_with": [
+            "mosaic-pattern",
+            "digital-camouflage"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "正方形の画素を意図的に見せ、階段状の輪郭や色のブロックで絵を構成する図柄。ドット絵・ゲーム風のデザインに使われます。単に画像の解像度が低い状態とは異なり、画素の見え方自体を表現手段にします。",
+          "en": "A deliberately visible square-pixel visual style using stepped contours and color blocks to form images or repeats. Common in pixel art and retro-style graphics, it treats the grid as a design element rather than merely an unintended low-resolution artifact."
+        },
+        "reference_path": "assets/reference-v2/pixel-pattern.svg",
+        "taxonomy": {
+          "types": [
+            "effect"
+          ],
+          "appearance": [
+            "geometric",
+            "abstract"
+          ],
+          "contexts": []
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/pixel-pattern.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Newly drawn representative visual only. It is not a reproduction of a source image or a guarantee of unique appearance."
+      }
+    },
+    {
+      "id": "dither-pattern",
+      "uses": {
+        "ja": [
+          "デジタル画像",
+          "ピクセルアート",
+          "ゲーム画像",
+          "グラフィック"
+        ],
+        "en": [
+          "digital imagery",
+          "pixel art",
+          "game graphics",
+          "visual design"
+        ]
+      },
+      "source": {
+        "pattern_id": "dither-pattern",
+        "verification_state": "qualified",
+        "term_scope": "Pixel-distribution method simulating intermediate colors or tones using limited available palette; not synonymous with print halftone screens",
+        "verified_names": {
+          "ja": "ディザ模様",
+          "en": "Dither Pattern"
+        },
+        "verified_aliases": {
+          "ja": [
+            "ディザリング",
+            "擬似階調の網目",
+            "ディザ処理柄"
+          ],
+          "en": [
+            "dither pattern",
+            "dithering texture",
+            "pixel dithering"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "Adobe Photoshop Elements — Dithering in Web Images",
+            "url": "https://helpx.adobe.com/ph_fil/photoshop-elements/desktop/saving-printing-and-sharing-photos/dithering-web-images.html",
+            "supports": [
+              "Explains adjacent pixels imitating intermediate colors"
+            ]
+          },
+          {
+            "publisher": "Adobe Animate — Export Image and GIF Options",
+            "url": "https://helpx.adobe.com/animate/desktop/workspace-and-workflow/optimization-options-for-images-and-animated-gifs.html",
+            "supports": [
+              "Distinguishes ordered/pattern, noise and diffusion dithering"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "dither-pattern",
+        "review_state": "source-reviewed",
+        "verification_state": "qualified",
+        "names": {
+          "ja": "ディザ模様",
+          "en": "Dither Pattern"
+        },
+        "aliases": {
+          "ja": [
+            "ディザリング",
+            "擬似階調の網目",
+            "ディザ処理柄"
+          ],
+          "en": [
+            "dither pattern",
+            "dithering texture",
+            "pixel dithering"
+          ]
+        },
+        "term_scope": "Pixel-distribution method simulating intermediate colors or tones using limited available palette; not synonymous with print halftone screens",
+        "definition": {
+          "ja": "限られた色の画素を隣り合わせたり交互に並べたりして、別の色・滑らかな階調があるように見せる処理とその見た目。規則的な模様のほか拡散法による不規則な点配置もあり、網点印刷そのものとは用途・仕組みが異なります。",
+          "en": "A color and tone-simulation technique that places pixels of available colors next to each other so they visually blend into an intermediate tone. Some dithering is ordered; error-diffusion produces less regular distributions. It is related to, but not interchangeable with, print halftone screening."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "異なる色の小画素が密集して中間色を作ります",
+            "明暗の遷移につれて点の密度や配置が変わります",
+            "規則的な配列も不規則な拡散型もあるため一種類の網目には限定できません"
+          ],
+          "en": [
+            "Adjacent contrasting pixels suggest an otherwise unavailable intermediate color",
+            "Density or arrangement changes through a tonal transition",
+            "Ordered and diffusion dither differ; not every case forms a uniform checkerboard"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "デジタル画像",
+            "ピクセルアート",
+            "ゲーム画像",
+            "グラフィック"
+          ],
+          "en": [
+            "digital imagery",
+            "pixel art",
+            "game graphics",
+            "visual design"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "black",
+            "white"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Editorial schematic palette, not a fixed recognition requirement"
+        },
+        "qualification": {
+          "ja": "ディザは色・階調を近似する方法の総称です。図解は規則的に並べたディザの一例です。",
+          "en": "Dithering is a technique family, not one universal checker or point arrangement; this is an ordered example."
+        }
+      },
+      "runtime": {
+        "id": "dither-pattern",
+        "names": {
+          "ja": "ディザ模様",
+          "en": "Dither Pattern"
+        },
+        "aliases": {
+          "ja": [
+            "ディザリング",
+            "擬似階調の網目",
+            "ディザ処理柄"
+          ],
+          "en": [
+            "dither pattern",
+            "dithering texture",
+            "pixel dithering"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "二色でグラデーションに見せる点の模様",
+            "ディザリング画像",
+            "ディザ模様 ピクセル"
+          ],
+          "en": [
+            "dithered gradient checker pixels",
+            "dithering pixel texture",
+            "pattern dither versus halftone"
+          ]
+        },
+        "families": [
+          "digital",
+          "abstract"
+        ],
+        "motifs": [
+          "交互の画素",
+          "擬似階調"
+        ],
+        "visual": {
+          "geometry": [
+            "dot",
+            "geometric",
+            "abstract"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "black",
+            "white"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial colors"
+        },
+        "uses": [
+          "fashion",
+          "textile",
+          "design"
+        ],
+        "culture": [],
+        "relationships": {
+          "similar": [
+            "halftone-dots",
+            "pixel-pattern",
+            "noise-texture"
+          ],
+          "often_confused_with": [
+            "halftone-dots",
+            "polka-dot"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "限られた色の画素を隣り合わせたり交互に並べたりして、別の色・滑らかな階調があるように見せる処理とその見た目。規則的な模様のほか拡散法による不規則な点配置もあり、網点印刷そのものとは用途・仕組みが異なります。",
+          "en": "A color and tone-simulation technique that places pixels of available colors next to each other so they visually blend into an intermediate tone. Some dithering is ordered; error-diffusion produces less regular distributions. It is related to, but not interchangeable with, print halftone screening."
+        },
+        "reference_path": "assets/reference-v2/dither-pattern.svg",
+        "taxonomy": {
+          "types": [
+            "effect"
+          ],
+          "appearance": [
+            "dot",
+            "geometric",
+            "abstract"
+          ],
+          "contexts": []
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/dither-pattern.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Newly drawn representative visual only. It is not a reproduction of a source image or a guarantee of unique appearance."
+      }
+    },
+    {
+      "id": "tortoiseshell",
+      "uses": {
+        "ja": [
+          "眼鏡フレーム",
+          "ヘアアクセサリー",
+          "服飾雑貨",
+          "印刷"
+        ],
+        "en": [
+          "eyewear frames",
+          "hair accessories",
+          "fashion goods",
+          "prints"
+        ]
+      },
+      "source": {
+        "pattern_id": "tortoiseshell",
+        "verification_state": "qualified",
+        "term_scope": "Mottled brown/amber translucent coloration inspired by genuine tortoiseshell, now usually imitated in plastics or print; distinct from a hexagonal kikko grid",
+        "verified_names": {
+          "ja": "べっ甲柄",
+          "en": "Tortoiseshell Pattern"
+        },
+        "verified_aliases": {
+          "ja": [
+            "鼈甲模様",
+            "べっこう柄",
+            "ハバナ柄"
+          ],
+          "en": [
+            "faux tortoiseshell",
+            "tortoise shell pattern",
+            "havana acetate pattern"
+          ]
+        },
+        "sources": [
+          {
+            "publisher": "Getty Research — Art & Architecture Thesaurus, Imitation Tortoise Shell",
+            "url": "https://www.getty.edu/vow/AATFullDisplay?find=&logic=&note=&page=1&subjectid=300380033",
+            "supports": [
+              "Defines imitation tortoiseshell as materials resembling original animal shell"
+            ]
+          },
+          {
+            "publisher": "OCCHIO! — Tortoiseshell and Havana Glasses",
+            "url": "https://www.otticaocchiocrema.it/en/blogs/journal/tortoiseshell-glasses-havana-guide",
+            "supports": [
+              "Explains mottled brown-amber effect in modern cellulose-acetate eyewear"
+            ]
+          },
+          {
+            "publisher": "The Metropolitan Museum of Art — Tortoiseshell Comb",
+            "url": "https://www.metmuseum.org/art/collection/search/102341",
+            "supports": [
+              "Documents historical genuine tortoiseshell use as a material, distinct from modern imitations"
+            ]
+          }
+        ]
+      },
+      "production": {
+        "pattern_id": "tortoiseshell",
+        "review_state": "source-reviewed",
+        "verification_state": "qualified",
+        "names": {
+          "ja": "べっ甲柄",
+          "en": "Tortoiseshell Pattern"
+        },
+        "aliases": {
+          "ja": [
+            "鼈甲模様",
+            "べっこう柄",
+            "ハバナ柄"
+          ],
+          "en": [
+            "faux tortoiseshell",
+            "tortoise shell pattern",
+            "havana acetate pattern"
+          ]
+        },
+        "term_scope": "Mottled brown/amber translucent coloration inspired by genuine tortoiseshell, now usually imitated in plastics or print; distinct from a hexagonal kikko grid",
+        "definition": {
+          "ja": "琥珀色から濃褐色・黒にかけて不規則な斑が混じる、べっ甲の見た目を模した柄。眼鏡フレームやアクセサリー、プリント素材に使われます。六角形が連続する亀甲文様とは別の概念で、現代の『べっ甲柄』は本物の動物由来素材を意味しません。",
+          "en": "A mottled amber, honey-brown and dark-brown surface imitation inspired by natural tortoiseshell. It is common on modern acetate eyewear and accessories. The name describes a coloration effect and is not the hexagonal Japanese kikko motif or proof that an object contains animal shell."
+        },
+        "distinguishing_features": {
+          "ja": [
+            "透明感のある琥珀色と暗い褐色の斑を伴います",
+            "斑の位置・輪郭は不規則で一個ずつ異なります",
+            "六角形が整列する亀甲文様と混同しません"
+          ],
+          "en": [
+            "Translucent amber areas blend with irregular dark brown patches",
+            "Spots have organic, nonuniform edges and spacing",
+            "Distinguish the mottled material effect from a regular hexagonal tortoiseshell lattice"
+          ]
+        },
+        "common_uses": {
+          "ja": [
+            "眼鏡フレーム",
+            "ヘアアクセサリー",
+            "服飾雑貨",
+            "印刷"
+          ],
+          "en": [
+            "eyewear frames",
+            "hair accessories",
+            "fashion goods",
+            "prints"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "amber",
+            "brown"
+          ],
+          "color_role": "non-essential",
+          "primary_reason": "Editorial schematic palette, not a fixed recognition requirement"
+        },
+        "qualification": {
+          "ja": "現代のべっ甲柄は色・斑の模倣であり、動物由来素材ではありません。古典的な六角形の亀甲文様とも別物です。",
+          "en": "Modern faux tortoiseshell denotes imitation color and pattern, not wildlife material. It is also unrelated to the geometry of kikko."
+        }
+      },
+      "runtime": {
+        "id": "tortoiseshell",
+        "names": {
+          "ja": "べっ甲柄",
+          "en": "Tortoiseshell Pattern"
+        },
+        "aliases": {
+          "ja": [
+            "鼈甲模様",
+            "べっこう柄",
+            "ハバナ柄"
+          ],
+          "en": [
+            "faux tortoiseshell",
+            "tortoise shell pattern",
+            "havana acetate pattern"
+          ]
+        },
+        "search_terms": {
+          "ja": [
+            "茶色と琥珀のまだらの柄",
+            "べっ甲風の眼鏡柄",
+            "鼈甲柄と亀甲模様の違い"
+          ],
+          "en": [
+            "amber brown mottled tortoiseshell glasses",
+            "faux tortoise acetate print",
+            "tortoiseshell versus hexagonal kikko pattern"
+          ]
+        },
+        "families": [
+          "organic",
+          "material-look"
+        ],
+        "motifs": [
+          "琥珀色の斑",
+          "褐色の濃淡"
+        ],
+        "visual": {
+          "geometry": [
+            "organic",
+            "animal"
+          ],
+          "line": [
+            "curved"
+          ],
+          "density": [
+            "medium"
+          ],
+          "repetition": [
+            "regular"
+          ],
+          "contrast": [
+            "medium"
+          ]
+        },
+        "colors": {
+          "primary": [
+            "amber",
+            "brown"
+          ],
+          "variants": [],
+          "color_role": "non-essential",
+          "primary_reason": "Illustrative editorial colors"
+        },
+        "uses": [
+          "fashion",
+          "textile",
+          "design"
+        ],
+        "culture": [],
+        "relationships": {
+          "similar": [
+            "leopard-print",
+            "marbling",
+            "kikko"
+          ],
+          "often_confused_with": [
+            "kikko",
+            "leopard-print"
+          ]
+        },
+        "shopping_intent": "medium",
+        "review_state": "source-reviewed",
+        "description": {
+          "ja": "琥珀色から濃褐色・黒にかけて不規則な斑が混じる、べっ甲の見た目を模した柄。眼鏡フレームやアクセサリー、プリント素材に使われます。六角形が連続する亀甲文様とは別の概念で、現代の『べっ甲柄』は本物の動物由来素材を意味しません。",
+          "en": "A mottled amber, honey-brown and dark-brown surface imitation inspired by natural tortoiseshell. It is common on modern acetate eyewear and accessories. The name describes a coloration effect and is not the hexagonal Japanese kikko motif or proof that an object contains animal shell."
+        },
+        "reference_path": "assets/reference-v2/tortoiseshell.svg",
+        "taxonomy": {
+          "types": [
+            "effect"
+          ],
+          "appearance": [
+            "organic",
+            "animal"
+          ],
+          "contexts": []
+        }
+      },
+      "reference": {
+        "path": "assets/reference-v2/tortoiseshell.svg",
+        "format": "svg",
+        "size": "1536x1536",
+        "status": "original-editorial-vector",
+        "claim": "Newly drawn representative visual only. It is not a reproduction of a source image or a guarantee of unique appearance."
       }
     }
   ]
