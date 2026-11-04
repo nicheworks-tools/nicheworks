@@ -91,6 +91,10 @@ desktopではfilters / catalog / detailのdashboardを主構成とし、mobile�
 - [ ] full style prompt、brand tone memo、avoid list、compare handoff、Markdown / JSON exportをpaid entitlementなしで利用できる。
 - [ ] JSON exportは`monetization: "ADS_DONATION"`と`paidEntitlementRequired: false`を記録し、旧`nicheworks_pro` entitlementを正として出力しない。
 - [ ] EN/JA main pagesとhistorical `/pro/` pagesにStripe購入URL、固定価格、購入後unlock claimが存在しない。
+- [ ] localStorageのfavorites / recentが壊れたJSON、null、object、未知ID、重複IDでもcatalogを停止させず、既知IDの重複なし上限内リストに正規化する。
+- [ ] 検索またはfilterで選択済みtermが結果に含まれなくなった場合、表示termとMarkdown / JSON / copy用work-packを一致させる。
+- [ ] 検索結果0件では古いterm detail / work-packを表示・出力せず、選択を復元すると無料出力を再利用できる。compareで2件選んだ場合のhandoffは独立して利用できる。
+- [ ] コピーの非同期完了後、検索条件が変わっていても古いwork-pack previewを再表示しない。
 
 ## Implementation evidence
 
@@ -99,3 +103,5 @@ desktopではfilters / catalog / detailのdashboardを主構成とし、mobile�
 - `tools/vibe-lexicon/app.js` — 2-term compare、localStorage keys、filters/detail、free work packs。
 - `tools/vibe-lexicon/pro/index.html` / `ja/pro/index.html` — historical route compatibility notices。
 - `tools/vibe-lexicon/data/terms.js` and `tools/vibe-lexicon/data/extra-terms.js` — catalog data。
+
+- `tools/vibe-lexicon/state-regression.test.cjs` — actual app.jsを模擬DOMで実行し、破損永続状態、フィルタ後の出力更新、0件時の旧出力防止、遅延コピーの4件を検証。
