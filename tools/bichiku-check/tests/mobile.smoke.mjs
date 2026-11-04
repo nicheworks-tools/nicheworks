@@ -134,6 +134,12 @@ try{
   await page.locator('input[data-option-bottles="water2L"]').fill("3");
   await page.locator('input[data-option-bottles="water2L"]').press("Tab");
   assert.match(await page.locator(".g-detail-status").innerText(),/15L/,"3 two-litre bottles should cover 6L of a default 21L need");
+  await page.locator('input[data-option-bottles="water2L"]').fill("2.5");
+  await page.locator('input[data-option-bottles="water2L"]').press("Tab");
+  const invalidSaved=await page.evaluate(()=>JSON.parse(localStorage.getItem("bichiku-check-v1")).variants["home:water2L"].qty);
+  assert.equal(invalidSaved,6,"fractional bottle count must not overwrite persisted litres");
+  await page.locator('input[data-option-bottles="water2L"]').fill("3");
+  await page.locator('input[data-option-bottles="water2L"]').press("Tab");
   await page.locator('details.g-option[data-option="water500"] summary').click();
   await page.locator('input[data-option-bottles="water500"]').fill("4");
   await page.locator('input[data-option-bottles="water500"]').press("Tab");
