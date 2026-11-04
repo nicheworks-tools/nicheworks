@@ -11,7 +11,7 @@ const sitemap=fs.readFileSync(path.resolve(root,'..','..','sitemap.xml'),'utf8')
 const app=fs.readFileSync(path.join(root,'app.js'),'utf8');
 const assert=(ok,msg)=>{if(!ok)throw new Error(msg)};
 const existing=new Set(base.map(x=>x.id));
-const requiredNew=['guilloche','rosette-ornament','sunburst','concentric-circles','mosaic-pattern','art-deco-fan','op-art-pattern','halftone-dots','topographic-contours','triangle-tessellation'];
+const requiredNew=["nishijin-ori","lotus-motif","butterfly-print","peacock-feather","wood-grain","fretwork","digital-camouflage","pixel-pattern","dither-pattern","tortoiseshell"];
 assert(base.length===100&&existing.size===100,'canonical v1 freeze violated');
 assert(v2.entries.length>=30,'v2 supplement regressed below 30 published entries');
 assert(v2.schema_version.startsWith('pattern-dictionary-v2-supplement-'),'unsupported v2 publication schema');
@@ -76,5 +76,12 @@ for(const id of ['guilloche','mosaic-pattern','op-art-pattern','topographic-cont
 }
 assert(v2.entries.find(x=>x.id==='mosaic-pattern').runtime.taxonomy.types.includes('technique'),'mosaic should not be classified as one fixed printed motif');
 assert(v2.entries.find(x=>x.id==='op-art-pattern').runtime.taxonomy.types.includes('effect'),'Op Art visual-effect category missing');
+for(const id of ['nishijin-ori','fretwork','wood-grain','digital-camouflage','pixel-pattern','dither-pattern','tortoiseshell']){
+ const e=v2.entries.find(x=>x.id===id);assert(e?.production?.verification_state==='qualified'&&e.production.qualification?.ja&&e.production.qualification?.en,'non-universal term lacks scope note: '+id);
+}
+assert(v2.entries.find(x=>x.id==='nishijin-ori').runtime.taxonomy.types.includes('tradition')&&v2.entries.find(x=>x.id==='nishijin-ori').runtime.taxonomy.appearance.length===0,'Nishijin is a tradition without a universal pattern');
+assert(v2.entries.find(x=>x.id==='fretwork').runtime.taxonomy.types.includes('technique'),'fretwork is a geometric carved/pierced technique');
+assert(v2.entries.find(x=>x.id==='dither-pattern').runtime.taxonomy.types.includes('effect'),'dither is a pixel visual-effect category');
+assert(v2.entries.find(x=>x.id==='tortoiseshell').runtime.relationships.often_confused_with.includes('kikko'),'mottled faux tortoiseshell must explicitly contrast hexagonal kikko');
 assert(app.includes('fetch(V2)')&&app.includes('reference_path')&&app.includes('sourceMap[p.id]'),'browser must load new source and illustration paths');
 console.log('OK: '+(100+v2.entries.length)+' dictionary entries, '+(2*(100+v2.entries.length))+' bilingual detail URLs, '+illustrationCount+' supplemental SVGs, '+citationCount+' source references; '+backlog.candidates.length+' unpublished candidates, and qualified visual-effect/technique boundaries.');
