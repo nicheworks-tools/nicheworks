@@ -62,6 +62,8 @@ Column editing and table preview benefit substantially from desktop width; narro
 ## Acceptance criteria
 
 - [ ] A supported CSV or built-in sample can be loaded and parsed with the selected delimiter/header settings.
+- [ ] The generic sample download button saves a well-formed UTF-8 four-column CSV with a consistent filename, without altering the currently loaded editor file.
+- [ ] Accounting/EC/contacts sample loading and their download fallback remain functional in browsers where programmatic file assignment is blocked.
 - [ ] Reordering, renaming, excluding, and enabled cleanup rules are reflected in the preview and downloaded output.
 - [ ] Saving creates a new UTF-8 CSV and does not mutate the original local file.
 - [ ] JP/EN switching preserves the same CSV editing workflow and local-processing notice.
@@ -333,3 +335,9 @@ Independent Python `csv.reader(strict=True)` validation passed for 19 substantia
 
 Measured successfully in this environment through 250,000 data rows with 10 input columns, 1,000 rows with 200 input columns, and approximately 25 MB long-field input. These maxima were tested independently and are not combined-limit guarantees or advertised product ceilings. Browser file workflow, layout, accessibility and browser responsiveness remain outside this programmatic evidence.
 
+
+### Generic sample download regression (2026-11-05)
+
+- `tools/csv-tidy/complete.js`: the visible generic sample download action now has an explicit handler and a single reusable download helper shared with browser-restricted sample loading.
+- `tools/csv-tidy/sample-download.test.cjs`: execute the production browser script in a deterministic Node VM and assert downloaded filename, CSV row shape, localized confirmation, and no editor input mutation.
+- `.github/workflows/csv-tidy-sample-download.yml`: run the regression on PRs and main whenever CSV Tidy changes.

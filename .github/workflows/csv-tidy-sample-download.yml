@@ -1,0 +1,29 @@
+name: CSV Tidy generic sample regression
+
+on:
+  pull_request:
+    paths:
+      - "tools/csv-tidy/**"
+      - ".github/workflows/csv-tidy-sample-download.yml"
+  push:
+    branches: [main]
+    paths:
+      - "tools/csv-tidy/**"
+      - ".github/workflows/csv-tidy-sample-download.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  sample-download:
+    name: CSV Tidy sample download behavior
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Validate production JavaScript
+        run: node --check tools/csv-tidy/complete.js
+      - name: Test generic sample download through the real DOM event handler
+        run: node --test tools/csv-tidy/sample-download.test.cjs
