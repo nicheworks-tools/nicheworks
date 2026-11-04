@@ -1,0 +1,29 @@
+name: Reconcile audit state regression
+
+on:
+  pull_request:
+    paths:
+      - "tools/reconcile/**"
+      - ".github/workflows/reconcile-audit-state-regression.yml"
+  push:
+    branches: [main]
+    paths:
+      - "tools/reconcile/**"
+      - ".github/workflows/reconcile-audit-state-regression.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  reconcile-state:
+    name: Reconcile stale audit export regression
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Validate production application syntax
+        run: node --check tools/reconcile/app.mjs
+      - name: Run UI state regression with isolated DOM and stubbed IO
+        run: node --test tools/reconcile/tests/app-state-invalidation.test.cjs
