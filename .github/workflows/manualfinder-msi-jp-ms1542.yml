@@ -1,0 +1,26 @@
+name: ManualFinder MSI MS-1542 two Japanese PDF gate
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/coverage-passes/msi/**'
+      - 'tools/manual-finder/scripts/msi-jp-ms1542-pdf-probe.mjs'
+      - 'tools/manual-finder/tests/msi-jp-ms1542-pdf-probe.test.mjs'
+      - '.github/workflows/manualfinder-msi-jp-ms1542.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  msi-jp-ms1542:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify exact PDF and Japanese text fail-closed fixture
+        run: node tools/manual-finder/tests/msi-jp-ms1542-pdf-probe.test.mjs
+      - name: Verify MSI actual manufacturer PDF bytes and Japanese manual title
+        run: |
+          if ! command -v pdftotext; then sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils; fi
+          node tools/manual-finder/scripts/msi-jp-ms1542-pdf-probe.mjs

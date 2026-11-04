@@ -1,0 +1,242 @@
+{
+  "schemaVersion": 1,
+  "maker": "MSI",
+  "scopeId": "jp-ms1542-gp-ge-20261104",
+  "status": "coverage-pass-complete",
+  "asOf": "2026-11-04",
+  "language": "ja",
+  "region": "JP",
+  "allowedDomains": [
+    "msi.com"
+  ],
+  "scopeLabel": "First reviewed MSI Japanese PDF manuals, 2 exact manufacturer GP/GE PDFs covering six manufacturer crosswalked notebook variants (not company-wide)",
+  "manufacturerOfficialMappingUrl": "https://us-spareparts.msi.com/products/msi-adaptor-s93-0409380-d04",
+  "manufacturerJapanesePlatformMap": "https://storage-asset.msi.com/jp/picture/image/2024_MSI_NB_JP/FAQ/%E3%82%A8%E3%83%8D%E3%83%AB%E3%82%AE%E3%83%BC%E6%B6%88%E8%B2%BB%E5%8A%B9%E7%8E%87%E4%B8%80%E8%A6%A7.pdf",
+  "groups": [
+    {
+      "group": "GP66 Leopard 10U Japanese manual (MS-1542 GP)",
+      "series": "GP66 Leopard 10U",
+      "manualUrl": "https://download.msi.com/archive/mnu_exe/nb/MS-1542_v1.0_Japanese_GP.pdf",
+      "models": [
+        "GP66 Leopard 10UE",
+        "GP66 Leopard 10UG",
+        "GP66 Leopard 10UH"
+      ],
+      "partCode": "MS-1542",
+      "type": "GP",
+      "sourceState": "official_pdf_indexed_live_probe_pending"
+    },
+    {
+      "group": "GE66 Raider 10U Japanese manual (MS-1542 GE)",
+      "series": "GE66 Raider 10U",
+      "manualUrl": "https://download.msi.com/archive/mnu_exe/nb/MS-1542_v1.0_Japanese_GE.pdf",
+      "models": [
+        "GE66 Raider 10UE",
+        "GE66 Raider 10UG",
+        "GE66 Raider 10UH"
+      ],
+      "partCode": "MS-1542",
+      "type": "GE",
+      "sourceState": "official_pdf_filename_reported_live_probe_pending"
+    }
+  ],
+  "manufacturerCrosswalk": "MSI-operated spareparts storefront S93-0409380-D04 lists GP66 Leopard 10UE/UG/UH and GE66 Raider 10UE/UG/UH with chassis MS-1542, independently supported for GE66 Raider 10U by MSI Japan published Energy Efficiency List. The spare-part product is provenance only, NOT a recommended accessory; no battery/charger compatibility assertion.",
+  "heldSource": {
+    "model": "GE65 Raider 9SF",
+    "sourceUrl": "https://download.msi.com/archive/mnu_exe/nb/16U1_v1.0_Japanese.pdf",
+    "reason": "Original 16U1 manual URL redirects to a different C_17F3 Japanese PDF when inspected. Cannot publish GE65 9SF under this link without a positive matched PDF."
+  },
+  "candidateCount": 6,
+  "pdfCount": 2,
+  "publishedCount": 6,
+  "publicationRule": "Download both exact files from manufacturer final host; require HTTP 200/206, exact filename unchanged, %PDF magic, Japanese manual heading in extracted pages, independently verify internal chassis mapping. If GE file fails hold its 3 models and publish only correctly verified GP group.",
+  "universe": {
+    "sourceUrls": [
+      "https://download.msi.com/archive/mnu_exe/nb/MS-1542_v1.0_Japanese_GP.pdf",
+      "https://download.msi.com/archive/mnu_exe/nb/MS-1542_v1.0_Japanese_GE.pdf"
+    ],
+    "declaredCount": 6,
+    "models": [
+      "GP66 Leopard 10UE",
+      "GP66 Leopard 10UG",
+      "GP66 Leopard 10UH",
+      "GE66 Raider 10UE",
+      "GE66 Raider 10UG",
+      "GE66 Raider 10UH"
+    ],
+    "populationMethod": "A deliberately bounded six-variant manufacturer-platform mapping from the official MSI operated spare-parts model-to-MS-1542 crosswalk, together with separate GP and GE Japanese MSI-hosted notebook manual PDF files; not a full MSI catalog.",
+    "sourceObservation": {
+      "observedAt": "2026-11-04",
+      "liveRunId": 41801269196,
+      "officialPdfCount": 2,
+      "exactVariants": 6,
+      "platform": "MS-1542",
+      "groupDocuments": "GP and GE distinct manuals",
+      "bytesValidated": true,
+      "japaneseUserManualTitleValidated": true,
+      "sourceOriginalHost": "download.msi.com",
+      "officialRedirectMirror": "download-2.msi.com",
+      "finalRedirectPreservesExactPath": true,
+      "refusedOldGE65Link": "16U1 URL redirects to unrelated C_17F3 document; do not publish GE65 manual from that link"
+    }
+  },
+  "records": [
+    {
+      "model": "GP66 Leopard 10UE",
+      "state": "shared",
+      "manualUrl": "https://download.msi.com/archive/mnu_exe/nb/MS-1542_v1.0_Japanese_GP.pdf",
+      "supportUrl": "https://download.msi.com/archive/mnu_exe/nb/MS-1542_v1.0_Japanese_GP.pdf",
+      "evidenceUrls": [
+        "https://download.msi.com/archive/mnu_exe/nb/MS-1542_v1.0_Japanese_GP.pdf",
+        "https://us-spareparts.msi.com/products/msi-adaptor-s93-0409380-d04",
+        "https://storage-asset.msi.com/jp/picture/image/2024_MSI_NB_JP/FAQ/%E3%82%A8%E3%83%8D%E3%83%AB%E3%82%AE%E3%83%BC%E6%B6%88%E8%B2%BB%E5%8A%B9%E7%8E%87%E4%B8%80%E8%A6%A7.pdf"
+      ],
+      "manualKind": "shared-user-guide-pdf",
+      "group": "GP66 Leopard 10U Japanese manual (MS-1542 GP)",
+      "platform": "MS-1542",
+      "documentType": "GP",
+      "coveredModelVariants": [
+        "GP66 Leopard 10UE",
+        "GP66 Leopard 10UG",
+        "GP66 Leopard 10UH"
+      ],
+      "reviewedAt": "2026-11-04",
+      "verifiedLiveWorkflowRun": 41801269196,
+      "verifiedUserManualJapanese": true,
+      "reviewNote": "Manufacturer Japanese PDF bytes passed official download/dowload-2 mirror host + exact path + PDF magic + Japanese manual title check in CI. MSI-operated part crosswalk lists the precise GP66/GE66 model variants as platform MS-1542. This is a chassis/manual-family link, not separate PDF per model, no charger inference."
+    },
+    {
+      "model": "GP66 Leopard 10UG",
+      "state": "shared",
+      "manualUrl": "https://download.msi.com/archive/mnu_exe/nb/MS-1542_v1.0_Japanese_GP.pdf",
+      "supportUrl": "https://download.msi.com/archive/mnu_exe/nb/MS-1542_v1.0_Japanese_GP.pdf",
+      "evidenceUrls": [
+        "https://download.msi.com/archive/mnu_exe/nb/MS-1542_v1.0_Japanese_GP.pdf",
+        "https://us-spareparts.msi.com/products/msi-adaptor-s93-0409380-d04",
+        "https://storage-asset.msi.com/jp/picture/image/2024_MSI_NB_JP/FAQ/%E3%82%A8%E3%83%8D%E3%83%AB%E3%82%AE%E3%83%BC%E6%B6%88%E8%B2%BB%E5%8A%B9%E7%8E%87%E4%B8%80%E8%A6%A7.pdf"
+      ],
+      "manualKind": "shared-user-guide-pdf",
+      "group": "GP66 Leopard 10U Japanese manual (MS-1542 GP)",
+      "platform": "MS-1542",
+      "documentType": "GP",
+      "coveredModelVariants": [
+        "GP66 Leopard 10UE",
+        "GP66 Leopard 10UG",
+        "GP66 Leopard 10UH"
+      ],
+      "reviewedAt": "2026-11-04",
+      "verifiedLiveWorkflowRun": 41801269196,
+      "verifiedUserManualJapanese": true,
+      "reviewNote": "Manufacturer Japanese PDF bytes passed official download/dowload-2 mirror host + exact path + PDF magic + Japanese manual title check in CI. MSI-operated part crosswalk lists the precise GP66/GE66 model variants as platform MS-1542. This is a chassis/manual-family link, not separate PDF per model, no charger inference."
+    },
+    {
+      "model": "GP66 Leopard 10UH",
+      "state": "shared",
+      "manualUrl": "https://download.msi.com/archive/mnu_exe/nb/MS-1542_v1.0_Japanese_GP.pdf",
+      "supportUrl": "https://download.msi.com/archive/mnu_exe/nb/MS-1542_v1.0_Japanese_GP.pdf",
+      "evidenceUrls": [
+        "https://download.msi.com/archive/mnu_exe/nb/MS-1542_v1.0_Japanese_GP.pdf",
+        "https://us-spareparts.msi.com/products/msi-adaptor-s93-0409380-d04",
+        "https://storage-asset.msi.com/jp/picture/image/2024_MSI_NB_JP/FAQ/%E3%82%A8%E3%83%8D%E3%83%AB%E3%82%AE%E3%83%BC%E6%B6%88%E8%B2%BB%E5%8A%B9%E7%8E%87%E4%B8%80%E8%A6%A7.pdf"
+      ],
+      "manualKind": "shared-user-guide-pdf",
+      "group": "GP66 Leopard 10U Japanese manual (MS-1542 GP)",
+      "platform": "MS-1542",
+      "documentType": "GP",
+      "coveredModelVariants": [
+        "GP66 Leopard 10UE",
+        "GP66 Leopard 10UG",
+        "GP66 Leopard 10UH"
+      ],
+      "reviewedAt": "2026-11-04",
+      "verifiedLiveWorkflowRun": 41801269196,
+      "verifiedUserManualJapanese": true,
+      "reviewNote": "Manufacturer Japanese PDF bytes passed official download/dowload-2 mirror host + exact path + PDF magic + Japanese manual title check in CI. MSI-operated part crosswalk lists the precise GP66/GE66 model variants as platform MS-1542. This is a chassis/manual-family link, not separate PDF per model, no charger inference."
+    },
+    {
+      "model": "GE66 Raider 10UE",
+      "state": "shared",
+      "manualUrl": "https://download.msi.com/archive/mnu_exe/nb/MS-1542_v1.0_Japanese_GE.pdf",
+      "supportUrl": "https://download.msi.com/archive/mnu_exe/nb/MS-1542_v1.0_Japanese_GE.pdf",
+      "evidenceUrls": [
+        "https://download.msi.com/archive/mnu_exe/nb/MS-1542_v1.0_Japanese_GE.pdf",
+        "https://us-spareparts.msi.com/products/msi-adaptor-s93-0409380-d04",
+        "https://storage-asset.msi.com/jp/picture/image/2024_MSI_NB_JP/FAQ/%E3%82%A8%E3%83%8D%E3%83%AB%E3%82%AE%E3%83%BC%E6%B6%88%E8%B2%BB%E5%8A%B9%E7%8E%87%E4%B8%80%E8%A6%A7.pdf"
+      ],
+      "manualKind": "shared-user-guide-pdf",
+      "group": "GE66 Raider 10U Japanese manual (MS-1542 GE)",
+      "platform": "MS-1542",
+      "documentType": "GE",
+      "coveredModelVariants": [
+        "GE66 Raider 10UE",
+        "GE66 Raider 10UG",
+        "GE66 Raider 10UH"
+      ],
+      "reviewedAt": "2026-11-04",
+      "verifiedLiveWorkflowRun": 41801269196,
+      "verifiedUserManualJapanese": true,
+      "reviewNote": "Manufacturer Japanese PDF bytes passed official download/dowload-2 mirror host + exact path + PDF magic + Japanese manual title check in CI. MSI-operated part crosswalk lists the precise GP66/GE66 model variants as platform MS-1542. This is a chassis/manual-family link, not separate PDF per model, no charger inference."
+    },
+    {
+      "model": "GE66 Raider 10UG",
+      "state": "shared",
+      "manualUrl": "https://download.msi.com/archive/mnu_exe/nb/MS-1542_v1.0_Japanese_GE.pdf",
+      "supportUrl": "https://download.msi.com/archive/mnu_exe/nb/MS-1542_v1.0_Japanese_GE.pdf",
+      "evidenceUrls": [
+        "https://download.msi.com/archive/mnu_exe/nb/MS-1542_v1.0_Japanese_GE.pdf",
+        "https://us-spareparts.msi.com/products/msi-adaptor-s93-0409380-d04",
+        "https://storage-asset.msi.com/jp/picture/image/2024_MSI_NB_JP/FAQ/%E3%82%A8%E3%83%8D%E3%83%AB%E3%82%AE%E3%83%BC%E6%B6%88%E8%B2%BB%E5%8A%B9%E7%8E%87%E4%B8%80%E8%A6%A7.pdf"
+      ],
+      "manualKind": "shared-user-guide-pdf",
+      "group": "GE66 Raider 10U Japanese manual (MS-1542 GE)",
+      "platform": "MS-1542",
+      "documentType": "GE",
+      "coveredModelVariants": [
+        "GE66 Raider 10UE",
+        "GE66 Raider 10UG",
+        "GE66 Raider 10UH"
+      ],
+      "reviewedAt": "2026-11-04",
+      "verifiedLiveWorkflowRun": 41801269196,
+      "verifiedUserManualJapanese": true,
+      "reviewNote": "Manufacturer Japanese PDF bytes passed official download/dowload-2 mirror host + exact path + PDF magic + Japanese manual title check in CI. MSI-operated part crosswalk lists the precise GP66/GE66 model variants as platform MS-1542. This is a chassis/manual-family link, not separate PDF per model, no charger inference."
+    },
+    {
+      "model": "GE66 Raider 10UH",
+      "state": "shared",
+      "manualUrl": "https://download.msi.com/archive/mnu_exe/nb/MS-1542_v1.0_Japanese_GE.pdf",
+      "supportUrl": "https://download.msi.com/archive/mnu_exe/nb/MS-1542_v1.0_Japanese_GE.pdf",
+      "evidenceUrls": [
+        "https://download.msi.com/archive/mnu_exe/nb/MS-1542_v1.0_Japanese_GE.pdf",
+        "https://us-spareparts.msi.com/products/msi-adaptor-s93-0409380-d04",
+        "https://storage-asset.msi.com/jp/picture/image/2024_MSI_NB_JP/FAQ/%E3%82%A8%E3%83%8D%E3%83%AB%E3%82%AE%E3%83%BC%E6%B6%88%E8%B2%BB%E5%8A%B9%E7%8E%87%E4%B8%80%E8%A6%A7.pdf"
+      ],
+      "manualKind": "shared-user-guide-pdf",
+      "group": "GE66 Raider 10U Japanese manual (MS-1542 GE)",
+      "platform": "MS-1542",
+      "documentType": "GE",
+      "coveredModelVariants": [
+        "GE66 Raider 10UE",
+        "GE66 Raider 10UG",
+        "GE66 Raider 10UH"
+      ],
+      "reviewedAt": "2026-11-04",
+      "verifiedLiveWorkflowRun": 41801269196,
+      "verifiedUserManualJapanese": true,
+      "reviewNote": "Manufacturer Japanese PDF bytes passed official download/dowload-2 mirror host + exact path + PDF magic + Japanese manual title check in CI. MSI-operated part crosswalk lists the precise GP66/GE66 model variants as platform MS-1542. This is a chassis/manual-family link, not separate PDF per model, no charger inference."
+    }
+  ],
+  "reconciliation": {
+    "captured": 6,
+    "direct": 0,
+    "shared": 6,
+    "support_only": 0,
+    "held": 0,
+    "public": 6
+  },
+  "pdfVerifiedInLiveRun": 41801269196,
+  "refresh": {
+    "method": "Live-fetch BOTH official GP/GE Japanese PDFs, require MSI download or MSI download-2 mirror, unmodified exact file pathname, %PDF magic and Japanese manual title; retain MSI official SKU-to-MS-1542 mapping; hold any drift.",
+    "excluded": "GE65 9SF and all other MSI laptops not in the first six variant scope."
+  }
+}

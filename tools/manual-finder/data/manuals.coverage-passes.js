@@ -19,7 +19,8 @@
     "manuals.coverage-pass.lenovo-jp-thinkpad-13.js",
     "manuals.coverage-pass.hp-jp-pc-17.js",
     "manuals.coverage-pass.acer-jp-pdf16.js",
-    "manuals.coverage-pass.nec-lavie-jp-exact18.js"
+    "manuals.coverage-pass.nec-lavie-jp-exact18.js",
+    "manuals.coverage-pass.msi-jp-ms1542-six.js"
   ]);
 
   window.MANUALFINDER_BUILD_COVERAGE_PASSES = () => [
@@ -40,6 +41,7 @@
     ...(window.MANUALFINDER_COVERAGE_PASS_LENOVO_JP || []),
     ...(window.MANUALFINDER_COVERAGE_PASS_HP_JP || []),
     ...(window.MANUALFINDER_COVERAGE_PASS_ACER_JP || []),
-    ...(window.MANUALFINDER_COVERAGE_PASS_NEC_LAVIE_JP || [])
+    ...(window.MANUALFINDER_COVERAGE_PASS_NEC_LAVIE_JP || []),
+    ...(window.MANUALFINDER_COVERAGE_PASS_MSI_JP || [])
   ];
 })();

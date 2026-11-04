@@ -507,3 +507,7 @@ Sixteen new Acer laptop model records linked to 5 manufacturer-verified Japanese
 ### NEC LAVIE 18 exact archived PC SKU Amazon model searches (2026-11-04)
 
 18 exact `PC-` NEC LAVIE manufacturer-linked model indexes have the existing canonical `PC・スマホ` tagged Amazon model searches (`nicheworks09-22`). The official manual landing pages include variant-specific amendments and corresponding standard model guides. No product stock, actual purchases, charger/battery compatibility or commissions implied. Evidence: `coverage-passes/nec-lavie/jp-archived-exact18-manual-index-20261104.json`. Printer audit remains 343 basic / 336 detail / 7 exclusions / 0 missing.
+
+### MSI JP six MS-1542 model variant searches (2026-11-04)
+
+Six exact GP66 Leopard 10UE/UG/UH and GE66 Raider 10UE/UG/UH model searches through the existing `PC・スマホ` canonical Amazon search template (`nicheworks09-22`). The MSI-operated spareparts site is referenced **only as a manufacturer-verified model/chassis identity crosswalk**: this publication asserts no specific battery, charger, spare part compatibility, stock, commission or sale. Both different GP/GE Japanese manuals were live verified from MSI servers (run 41801269196). Printer audit unchanged.

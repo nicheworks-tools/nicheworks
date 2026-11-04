@@ -50,9 +50,9 @@ for (const row of rows) {
 const coverage = fs.readFileSync(new URL('COVERAGE.md', root), 'utf8');
 const affiliate = fs.readFileSync(new URL('AFFILIATE_COVERAGE.md', root), 'utf8');
 const spec = fs.readFileSync(new URL('SPEC.md', root), 'utf8');
-assert.ok(coverage.includes('**2,649 verified model/caliber rows**'));
+assert.ok(coverage.includes('**2,655 verified model/caliber rows**'));
 assert.ok(coverage.includes('| Canon | 155 | expanded |'));
-assert.ok(coverage.includes('| **Total** | **2,649** |'));
+assert.ok(coverage.includes('| **Total** | **2,655** |'));
 assert.ok(affiliate.includes('| Printer records with a basic Amazon path | **343** |'));
 assert.ok(affiliate.includes('printer basic 343 = detail 336 + reviewed exclusion 7 + missing 0'));
 assert.ok(spec.includes('**343 basic = 336 detail + 7 reviewed exclusions + 0 missing detail**'));
