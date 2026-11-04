@@ -26,5 +26,9 @@ Object.assign(extra.ja,{proteinPortions:"主菜に使える食数（商品内容
 Object.assign(extra.en,{proteinPortions:"Main-dish meal portions (check package size)",produceQuantity:"Recorded quantity (items/packs)",mainDishRegistered:"Usable main-dish portions entered",mainDishAdultExample:"Adult planning example (3 meals/person/day)",mainDishIndividual:"Children or infants are included, so no adult-only comparison is shown. Review individual needs.",mealCount:"portions",groupPortionNote:"These are user-entered main-dish portions, not a nutrition assessment. Recheck package sizes for previously saved entries."});
 Object.assign(extra.zh,{proteinPortions:"可作主菜的餐份数（核对包装份量）",produceQuantity:"登记数量（件／袋等）",mainDishRegistered:"登记的可用主菜份数",mainDishAdultExample:"成人参考备餐量（每人每天3餐）",mainDishIndividual:"含儿童或婴儿，不显示仅限成人的参考量比较，请另行确认实际需求。",mealCount:"份",groupPortionNote:"主菜份数来自用户输入，不代表营养充足。请核对既有记录的包装份量。"});
 Object.assign(extra.vi,{proteinPortions:"Số suất món chính (kiểm tra khẩu phần trên nhãn)",produceQuantity:"Số lượng đã ghi (món/gói)",mainDishRegistered:"Suất món chính có thể dùng đã nhập",mainDishAdultExample:"Ví dụ dự trữ cho người lớn (3 bữa/người/ngày)",mainDishIndividual:"Có trẻ em hoặc trẻ sơ sinh nên không so sánh với mức tham khảo chỉ dành cho người lớn. Hãy xem nhu cầu riêng.",mealCount:"suất",groupPortionNote:"Số suất món chính do người dùng nhập, không phải đánh giá đủ dinh dưỡng. Kiểm tra lại kích cỡ khẩu phần của mục đã lưu."});
+Object.assign(extra.ja,{mainDishGoOnly:"持ち出し袋には在宅備蓄用の主菜参考量を適用しません。"});
+Object.assign(extra.en,{mainDishGoOnly:"The at-home main-dish reference does not apply to an evacuation go-bag."});
+Object.assign(extra.zh,{mainDishGoOnly:"居家备粮的主菜参考量不适用于应急携带包。"});
+Object.assign(extra.vi,{mainDishGoOnly:"Mức tham khảo món chính để dự trữ tại nhà không áp dụng cho túi sơ tán."});
 for(const [lang,text] of Object.entries(extra))Object.assign(window.BICHIKU_GUIDED_TEXT[lang],text);
 })();
