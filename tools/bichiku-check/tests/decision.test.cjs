@@ -55,7 +55,7 @@ test("power bank usability requires checked charge and compatible output/cable, 
  const old=assess({variants:{"home:batteryBank":{qty:5}},stocks:{"home:cable":{qty:10}}});
  assert.equal(row(old,"powerbank").owned,5);
  assert.equal(row(old,"powerbank").effective,0,"loose USB cables cannot establish a charged, compatible bank");
- const ready=assess({stocks:{"home:powerbank":{qty:2,powerReadyQty:1,powerReadyConfirmed:true}},
+ const ready=assess({stocks:{"home:powerbank":{qty:2,powerReadyQty:1,powerReadyConfirmed:true,manualCountBasis:"additional"}},
   variants:{"home:batteryBank":{qty:5,powerReadyQty:3,powerReadyConfirmed:true}}});
  assert.equal(row(ready,"powerbank").effective,4);
  assert.equal(row(ready,"powerbank").owned,7);
@@ -143,6 +143,88 @@ test("battery inventory and device replacement plans are isolated by home and go
  assert.equal(row(wrongDays,"light").effective,0,"home-day approvals cannot certify an evacuation bag");
 });
 
+test("manual category totals and named food stock never add twice without explicit reconciliation",()=>{
+ const named={"home:cannedBread":{qty:4}};
+ const stocks={"home:food":{qty:9}};
+ const legacy=assess({stocks,variants:named});
+ assert.equal(row(legacy,"food").owned,9);
+ assert.equal(row(legacy,"food").effective,4,"unclear manual total is held back");
+ assert.equal(row(legacy,"food").requiresManualReview,true);
+ assert.equal(row(legacy,"food").manualEffective,0);
+ const inclusive=assess({stocks:{"home:food":{qty:9,manualCountBasis:"includes_options"}},variants:named});
+ assert.equal(row(inclusive,"food").effective,9,"four itemized plus five other portions");
+ assert.equal(row(inclusive,"food").requiresManualReview,false);
+ const distinct=assess({stocks:{"home:food":{qty:9,manualCountBasis:"additional"}},variants:named});
+ assert.equal(row(distinct,"food").effective,13,"explicitly independent registered stock may be added");
+ assert.equal(row(distinct,"food").owned,13);
+ const expired=assess({stocks:{"home:food":{qty:9,manualCountBasis:"includes_options"}},
+   variants:{"home:cannedBread":{qty:4,expiry:"2026-10-31"}}});
+ assert.equal(row(expired,"food").effective,5,"expired itemized stock is subtracted from the manual total, not laundered");
+ const old=assess({stocks:{"home:food":{qty:9}}});
+ assert.equal(row(old,"food").effective,9,"standalone manual totals remain usable");
+ const perMode=assess({mode:"go",stocks:{"home:food":{qty:9}},variants:{"go:cannedBread":{qty:2}}});
+ assert.equal(row(perMode,"food").effective,2,"home stock is independent from go-bag");
+});
+test("water-for-preparation matches deduplicated water stock rather than phantom total",()=>{
+ const base={waterOut:true,safeWaterConfirmed:true,
+  stocks:{"home:water":{qty:10}},
+  variants:{"home:water2L":{qty:8},"home:alphaRice":{qty:4,prepConfirmed:true,prepWaterLiters:9}}};
+ const legacy=assess(base);
+ assert.equal(legacy.waterStored,8,"unknown overlap counts only itemized water");
+ assert.equal(row(legacy,"water").effective,8);
+ assert.equal(legacy.waterConflict,true);
+ assert.equal(row(legacy,"food").effective,0);
+ const includes=assess({...base,stocks:{"home:water":{qty:10,manualCountBasis:"includes_options"}}});
+ assert.equal(includes.waterStored,10);
+ assert.equal(row(includes,"water").effective,10);
+ assert.equal(includes.waterConflict,false);
+ assert.equal(row(includes,"food").effective,4);
+ const additional=assess({...base,stocks:{"home:water":{qty:10,manualCountBasis:"additional"}}});
+ assert.equal(additional.waterStored,18);
+ assert.equal(row(additional,"water").effective,18);
+ const expired=assess({...base,stocks:{"home:water":{qty:10,manualCountBasis:"includes_options"}},
+  variants:{...base.variants,"home:water2L":{qty:8,expiry:"2026-10-31"}}});
+ assert.equal(expired.waterStored,2,"expired itemized 8 L are not recycled into the general balance");
+ assert.equal(row(expired,"water").effective,2);
+ assert.equal(row(expired,"food").effective,0);
+});
+test("assembled toilet pairs and complete kits cannot duplicate manual category use counts",()=>{
+ const checks={toiletSeatConfirmed:true,toiletStorageConfirmed:true,toiletDisposalConfirmed:true,
+  toiletAssemblyConfirmed:true};
+ const variants={"home:toiletKit":{qty:5},"home:toiletBags":{bagQty:8,solidifierQty:6}};
+ const legacy=assess({...checks,stocks:{"home:toilet":{qty:10}},variants});
+ assert.equal(legacy.toiletReview.usableUses,6);
+ assert.equal(row(legacy,"toilet").effective,11,"count named kits and pairs, but not an ambiguous manual ten");
+ assert.equal(row(legacy,"toilet").listedOwned,11);
+ assert.equal(row(legacy,"toilet").requiresManualReview,true);
+ const includes=assess({...checks,stocks:{"home:toilet":{qty:15,manualCountBasis:"includes_options"}},variants});
+ assert.equal(row(includes,"toilet").effective,15,"five kits plus six pairs plus four other uses");
+ const additional=assess({...checks,stocks:{"home:toilet":{qty:10,manualCountBasis:"additional"}},variants});
+ assert.equal(row(additional,"toilet").effective,21);
+ const onlyPairs=assess({...checks,stocks:{"home:toilet":{qty:10}},variants:{"home:toiletBags":{bagQty:8,solidifierQty:6}}});
+ assert.equal(row(onlyPairs,"toilet").effective,6,"unreconciled manual uses do not double assembled loose components");
+ const noCheck=assess({...checks,toiletAssemblyConfirmed:false,
+  stocks:{"home:toilet":{qty:10,manualCountBasis:"includes_options"}},variants});
+ assert.equal(row(noCheck,"toilet").effective,4,"unverified six loose pairs remain unavailable");
+});
+test("charged banks and blackout lights honor manual/itemized overlap in every calculation path",()=>{
+ const manual={"home:powerbank":{qty:2,powerReadyQty:2,powerReadyConfirmed:true}};
+ const named={"home:batteryBank":{qty:2,powerReadyQty:2,powerReadyConfirmed:true}};
+ assert.equal(row(assess({stocks:manual,variants:named}),"powerbank").effective,2);
+ assert.equal(row(assess({stocks:{"home:powerbank":{...manual["home:powerbank"],manualCountBasis:"includes_options"}},variants:named}),"powerbank").effective,2);
+ assert.equal(row(assess({stocks:{"home:powerbank":{...manual["home:powerbank"],manualCountBasis:"additional"}},variants:named}),"powerbank").effective,4);
+ const m={"home:light":{qty:2,powerReadyQty:2,powerReadyConfirmed:true,
+  batteryType:"rechargeable",batteryPlanConfirmed:true,batteryPlanDays:3}};
+ const opts={"home:headlamp":{qty:2,powerReadyQty:2,powerReadyConfirmed:true,
+  batteryType:"rechargeable",batteryPlanConfirmed:true,batteryPlanDays:3}};
+ const blackout=assess({powerOut:true,stocks:m,variants:opts});
+ assert.equal(row(blackout,"light").currentEffective,2);
+ assert.equal(row(blackout,"light").sustainedEffective,2);
+ assert.equal(row(blackout,"light").requiresManualReview,true);
+ const distinct=assess({powerOut:true,stocks:{"home:light":{...m["home:light"],manualCountBasis:"additional"}},variants:opts});
+ assert.equal(row(distinct,"light").sustainedEffective,4);
+ assert.equal(row(distinct,"light").effective,4);
+});
 test("water-prepared alpha rice is never silently credited without a confirmed safe-water budget",()=>{
  const a=assess({noHeat:true,waterOut:true,variants:{"home:alphaRice":{qty:4}}});
  assert.equal(row(a,"food").effective,0);
@@ -398,7 +480,7 @@ test("confirmed water for dried vegetable side dish is allocated but never count
 test("named bottle capacities are explicit metadata, but core still stores litres for backward compatibility",()=>{
  const bottled=Object.fromEntries(opts.filter(o=>o.bottleLiters).map(o=>[o.id,o.bottleLiters]));
  assert.deepEqual(bottled,{water2L:2,water500:0.5});
- const a=assess({stocks:{"home:water":{qty:1}},
+ const a=assess({stocks:{"home:water":{qty:1,manualCountBasis:"additional"}},
   variants:{"home:water2L":{qty:6},"home:water500":{qty:2}}});
  assert.equal(row(a,"water").effective,9,"3 two-litre and 4 half-litre bottles, plus 1L manual");
  assert.equal(a.waterStored,9);
