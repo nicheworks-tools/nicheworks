@@ -68,6 +68,81 @@ test("power bank usability requires checked charge and compatible output/cable, 
  const packed=assess({mode:"go",variants:{"go:batteryBank":{qty:1,powerReadyQty:1,powerReadyConfirmed:true}}});
  assert.equal(row(packed,"powerbank").effective,1);
 });
+test("shared typed spare cells are allocated once across lights and radios",()=>{
+ const stocks={"home:batteries":{qty:99,batteryCells:{AA:6,AAA:6}},
+  "home:radio":{qty:1,powerReadyQty:1,powerReadyConfirmed:true,
+    batteryType:"AAA",cellsPerChange:3,plannedChanges:2,batteryPlanConfirmed:true,batteryPlanDays:3}};
+ const variants={"home:headlamp":{qty:2,powerReadyQty:2,powerReadyConfirmed:true,
+    batteryType:"AA",cellsPerChange:2,plannedChanges:1,batteryPlanConfirmed:true,batteryPlanDays:3},
+  "home:flashlight":{qty:1,powerReadyQty:1,powerReadyConfirmed:true,
+    batteryType:"AA",cellsPerChange:2,plannedChanges:1,batteryPlanConfirmed:true,batteryPlanDays:3}};
+ const a=assess({powerOut:true,stocks,variants});
+ const rows=Object.fromEntries(a.batteryReview.rows.map(r=>[r.type,r]));
+ assert.equal(rows.AA.required,6);
+ assert.equal(rows.AA.available,6);
+ assert.equal(rows.AAA.required,6);
+ assert.equal(row(a,"light").effective,3);
+ assert.equal(row(a,"radio").effective,1);
+ assert.equal(row(a,"light").currentEffective,3);
+ assert.equal(a.batteryReview.workingUnits,4);
+ assert.equal(a.batteryReview.sustainedUnits,4);
+ const short=assess({powerOut:true,stocks:{...stocks,"home:batteries":{qty:99,batteryCells:{AA:4,AAA:6}}},variants});
+ assert.equal(short.batteryReview.rows.find(x=>x.type==="AA").shortage,2);
+ assert.equal(row(short,"light").currentEffective,3);
+ assert.equal(row(short,"light").effective,0,"short shared AA budget blocks false period coverage for both devices");
+ assert.equal(row(short,"radio").effective,1,"sufficient AAA units remain covered");
+ assert.equal(short.batteryReview.sustainedUnits,1);
+ assert.equal(short.batteryReview.spareLegacySets,99,"legacy sets preserved but not converted to cells");
+ const normal=assess({powerOut:false,stocks:{...stocks,"home:batteries":{qty:99,batteryCells:{AA:4,AAA:6}}},variants});
+ assert.equal(row(normal,"light").effective,3,"current working units are distinct from blackout-period coverage");
+ assert.equal(row(normal,"light").sustainedEffective,0);
+});
+test("expired, wrong-size, unknown and fractional spares never cover a battery plan",()=>{
+ const headlamp={"home:headlamp":{qty:2,powerReadyQty:2,powerReadyConfirmed:true,
+   batteryType:"AA",cellsPerChange:3,plannedChanges:1,batteryPlanConfirmed:true,batteryPlanDays:3}};
+ const a=assess({powerOut:true,variants:headlamp,stocks:{"home:batteries":{qty:20,batteryCells:{AAA:20}}}});
+ assert.equal(row(a,"light").effective,0,"AAA and legacy packs cannot stand in for six AA");
+ const expired=assess({powerOut:true,variants:headlamp,stocks:{"home:batteries":{batteryCells:{AA:12},expiry:"2026-10-31"}}});
+ assert.equal(expired.batteryReview.rows.find(r=>r.type==="AA").available,0);
+ assert.equal(row(expired,"light").effective,0);
+ const invalid=assess({powerOut:true,variants:headlamp,stocks:{"home:batteries":{batteryCells:{AA:5.5}}}});
+ assert.equal(invalid.batteryReview.rows.find(r=>r.type==="AA").available,0,"fractional count must not be rounded up");
+ const unclassified=assess({powerOut:true,variants:{"home:headlamp":{...headlamp["home:headlamp"],batteryType:"other"}},stocks:{"home:batteries":{batteryCells:{AA:99}}}});
+ assert.equal(row(unclassified,"light").effective,0);
+ assert.equal(unclassified.batteryReview.uncheckedDevices,1);
+ const fractionalCycles=assess({powerOut:true,variants:{"home:headlamp":{...headlamp["home:headlamp"],plannedChanges:0.5}},stocks:{"home:batteries":{batteryCells:{AA:99}}}});
+ assert.equal(row(fractionalCycles,"light").effective,0);
+});
+test("zero replacement cycles and rechargeable endurance must be explicitly reviewed for selected days",()=>{
+ const checked={"home:headlamp":{qty:1,powerReadyQty:1,powerReadyConfirmed:true,
+   batteryType:"AA",cellsPerChange:2,plannedChanges:0,batteryPlanConfirmed:true,batteryPlanDays:3}};
+ const zero=assess({powerOut:true,variants:checked});
+ assert.equal(row(zero,"light").effective,1,"checked zero changes consume zero spares, not implicit runtime prediction");
+ assert.equal(zero.batteryReview.rows.find(r=>r.type==="AA").required,0);
+ const stale=assess({powerOut:true,days:7,variants:checked});
+ assert.equal(row(stale,"light").effective,0,"a 3-day approval cannot certify 7 days");
+ assert.equal(stale.batteryReview.uncheckedDevices,1);
+ const rechargeable=assess({powerOut:true,variants:{"home:headlamp":{qty:1,powerReadyQty:1,powerReadyConfirmed:true,
+   batteryType:"rechargeable",batteryPlanConfirmed:true,batteryPlanDays:3}}});
+ assert.equal(row(rechargeable,"light").effective,1,"confirmed built-in charge/endurance needs no disposable cells");
+ const notConfirmed=assess({powerOut:true,variants:{"home:headlamp":{qty:1,powerReadyQty:1,powerReadyConfirmed:true,batteryType:"rechargeable"}}});
+ assert.equal(row(notConfirmed,"light").effective,0);
+});
+test("battery inventory and device replacement plans are isolated by home and go-bag",()=>{
+ const stocks={"home:batteries":{batteryCells:{AA:100}},
+  "go:batteries":{batteryCells:{AA:4}}};
+ const variants={"go:headlamp":{qty:1,powerReadyQty:1,powerReadyConfirmed:true,
+  batteryType:"AA",cellsPerChange:2,plannedChanges:2,batteryPlanConfirmed:true,batteryPlanDays:1}};
+ const a=assess({powerOut:true,mode:"go",stocks,variants});
+ assert.equal(a.batteryReview.planDays,1);
+ assert.equal(a.batteryReview.rows.find(r=>r.type==="AA").available,4);
+ assert.equal(row(a,"light").effective,1);
+ const missing=assess({powerOut:true,mode:"go",stocks:{"home:batteries":{batteryCells:{AA:100}}},variants});
+ assert.equal(row(missing,"light").effective,0);
+ const wrongDays=assess({powerOut:true,mode:"go",stocks,variants:{"go:headlamp":{...variants["go:headlamp"],batteryPlanDays:7}}});
+ assert.equal(row(wrongDays,"light").effective,0,"home-day approvals cannot certify an evacuation bag");
+});
+
 test("water-prepared alpha rice is never silently credited without a confirmed safe-water budget",()=>{
  const a=assess({noHeat:true,waterOut:true,variants:{"home:alphaRice":{qty:4}}});
  assert.equal(row(a,"food").effective,0);
