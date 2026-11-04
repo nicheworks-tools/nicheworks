@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "maker": "MSI",
+  "scopeId": "jp-ms1542-gp-ge-20261104",
+  "status": "candidate-official-pdf-byte-gate",
+  "asOf": "2026-11-04",
+  "language": "ja",
+  "region": "JP",
+  "allowedDomains": [
+    "download.msi.com"
+  ],
+  "scopeLabel": "Bounded MSI GP66 Leopard 10U and GE66 Raider 10U MS-1542 internal-platform Japanese user-manual investigation. No public rows before PDF byte verification.",
+  "manufacturerOfficialMappingUrl": "https://us-spareparts.msi.com/products/msi-adaptor-s93-0409380-d04",
+  "manufacturerJapanesePlatformMap": "https://storage-asset.msi.com/jp/picture/image/2024_MSI_NB_JP/FAQ/%E3%82%A8%E3%83%8D%E3%83%AB%E3%82%AE%E3%83%BC%E6%B6%88%E8%B2%BB%E5%8A%B9%E7%8E%87%E4%B8%80%E8%A6%A7.pdf",
+  "groups": [
+    {
+      "group": "GP66 Leopard 10U Japanese manual (MS-1542 GP)",
+      "series": "GP66 Leopard 10U",
+      "manualUrl": "https://download.msi.com/archive/mnu_exe/nb/MS-1542_v1.0_Japanese_GP.pdf",
+      "models": [
+        "GP66 Leopard 10UE",
+        "GP66 Leopard 10UG",
+        "GP66 Leopard 10UH"
+      ],
+      "partCode": "MS-1542",
+      "type": "GP",
+      "sourceState": "official_pdf_indexed_live_probe_pending"
+    },
+    {
+      "group": "GE66 Raider 10U Japanese manual (MS-1542 GE)",
+      "series": "GE66 Raider 10U",
+      "manualUrl": "https://download.msi.com/archive/mnu_exe/nb/MS-1542_v1.0_Japanese_GE.pdf",
+      "models": [
+        "GE66 Raider 10UE",
+        "GE66 Raider 10UG",
+        "GE66 Raider 10UH"
+      ],
+      "partCode": "MS-1542",
+      "type": "GE",
+      "sourceState": "official_pdf_filename_reported_live_probe_pending"
+    }
+  ],
+  "manufacturerCrosswalk": "MSI-operated spareparts storefront S93-0409380-D04 lists GP66 Leopard 10UE/UG/UH and GE66 Raider 10UE/UG/UH with chassis MS-1542, independently supported for GE66 Raider 10U by MSI Japan published Energy Efficiency List. The spare-part product is provenance only, NOT a recommended accessory; no battery/charger compatibility assertion.",
+  "heldSource": {
+    "model": "GE65 Raider 9SF",
+    "sourceUrl": "https://download.msi.com/archive/mnu_exe/nb/16U1_v1.0_Japanese.pdf",
+    "reason": "Original 16U1 manual URL redirects to a different C_17F3 Japanese PDF when inspected. Cannot publish GE65 9SF under this link without a positive matched PDF."
+  },
+  "candidateCount": 6,
+  "pdfCount": 2,
+  "publishedCount": 0,
+  "publicationRule": "Download both exact files from manufacturer final host; require HTTP 200/206, exact filename unchanged, %PDF magic, Japanese manual heading in extracted pages, independently verify internal chassis mapping. If GE file fails hold its 3 models and publish only correctly verified GP group."
+}
