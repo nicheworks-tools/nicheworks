@@ -337,7 +337,14 @@ result.addEventListener("change",e=>{
   state.variants[key("toiletBags")]=item;save();preserveOpen();render();return;
  }
  const id=t.dataset.basic||t.dataset.target||t.dataset.basicExpiry;
- if(id){const item=Object.assign({},getBasic(id));if(t.dataset.basic)item.qty=n(t.value);
+ if(id){const item=Object.assign({},getBasic(id));
+  if(t.dataset.basic){
+    if(["gas","stove"].includes(id)&&(!t.checkValidity()||!Number.isInteger(Number(t.value)))){t.reportValidity();return}
+    const oldQty=n(item.qty),newQty=n(t.value);
+    item.qty=newQty;
+    if(newQty!==oldQty&&id==="gas"){item.heatCapacityUses=0;item.heatFuelCompatibleConfirmed=false}
+    if(newQty!==oldQty&&id==="stove")item.heatEquipmentConfirmed=false;
+  }
   if(t.dataset.target){if(t.value==="")delete item.target;else item.target=n(t.value)}
   if(t.dataset.basicExpiry)item.expiry=t.value;state.stocks[key(id)]=item;save();preserveOpen();render();return}
  const optionId=t.dataset.optionQty||t.dataset.optionBottles||t.dataset.optionExpiry||t.dataset.prepLiters||t.dataset.prepConfirm||
