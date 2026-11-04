@@ -1,0 +1,485 @@
+{
+  "schemaVersion": 1,
+  "maker": "Acer",
+  "scopeId": "acer-jp-six-japanese-user-manual-pdf-groups-20261104",
+  "scope": "Five Acer manufacturer Japanese PDF User Manuals covering 16 exact model identities; 1 previously indexed Swift 7 manual held due Acer /error_page redirect; not a complete Acer Japan catalog",
+  "asOf": "2026-11-04",
+  "region": "JP",
+  "language": "ja",
+  "status": "coverage-pass-complete",
+  "manufacturerSourceCatalog": "https://www.acer.com/jp-ja/support/drivers-and-manuals",
+  "manufacturerWin11ModelIndex": "https://www.acer.com/jp-ja/support/windows/windows-11-compatibility.html",
+  "allowedDomains": [
+    "global-download.acer.com"
+  ],
+  "groups": [
+    {
+      "group": "Aspire 5 2017",
+      "family": "Aspire",
+      "models": [
+        "A515-51",
+        "A515-51G",
+        "A515-41G"
+      ],
+      "url": "https://global-download.acer.com/GDFiles/Document/User%20Manual%20W10/User%20Manual%20W10_Acer_1.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=ASPIRE&Step3=ASPIRE+A615-51G&acerid=636391349708212744",
+      "indexedReference": "Acer 日本語ユーザーマニュアル、対象モデル A515-51/A515-51G/A515-41G、2017年8月 (manufacturer indexed PDF excerpt)"
+    },
+    {
+      "group": "Swift 3 2019",
+      "family": "Swift",
+      "models": [
+        "SF314-54",
+        "SF314-54G",
+        "SF314-56",
+        "SF314-56G"
+      ],
+      "url": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_1.0_A_A.pdf?acerid=636827713940084541",
+      "indexedReference": "Acer 日本語ユーザーマニュアル、対象モデル SF314-54/SF314-54G/SF314-56/SF314-56G、2019年1月"
+    },
+    {
+      "group": "Swift 3 2021",
+      "family": "Swift",
+      "models": [
+        "SF314-511",
+        "SF314-43"
+      ],
+      "url": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_1.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=&Step2=&Step3=SF314-43&acerid=638034717463645422",
+      "indexedReference": "Acer 日本語ユーザーマニュアル、対象モデル SF314-511/SF314-43、2021年9月"
+    },
+    {
+      "group": "Nitro 5 2021",
+      "family": "Nitro",
+      "models": [
+        "AN515-45",
+        "AN515-56",
+        "AN515-57",
+        "AN517-41",
+        "AN517-53",
+        "AN517-54"
+      ],
+      "url": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_2.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=NITRO&Step3=NITRO+AN515-57&acerid=637662502251816424",
+      "indexedReference": "Acer 日本語ユーザーマニュアル、対象モデル AN515-45/AN515-56/AN515-57/AN517-41/AN517-53/AN517-54、2021年8月"
+    },
+    {
+      "group": "Swift 16 AI 2026",
+      "family": "Swift",
+      "models": [
+        "SF16-71T"
+      ],
+      "url": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_1.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=&Step2=&Step3=SWIFT+SF16-71T&acerid=639101774452931484",
+      "indexedReference": "Acer 日本語ユーザーマニュアル、対象モデル SF16-71T、2026年3月"
+    }
+  ],
+  "modelCount": 16,
+  "pdfCount": 5,
+  "requireBeforePublication": "CI verifies final fetch domain, %PDF magic, extractable manual text, exact model tokens in PDF first pages, no model/URL guesses; no public rows before positive check",
+  "heldModels": [
+    {
+      "model": "SF713-51",
+      "family": "Swift",
+      "manufacturerUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual%20W10/User%20Manual%20W10_Acer_1.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=ULTRA-THIN&Step2=SWIFT&Step3=SF713-51&acerid=636397680437727859",
+      "state": "held",
+      "reason": "Verified 2026-11-04 GitHub Actions: Acer official indexed PDF source returned HTTP 200 with final destination https://global-download.acer.com/error_page, not a PDF. Model/guide source cannot be published.",
+      "attemptedDiscovery": [
+        "official manufacturer indexed Japanese manual PDF search",
+        "live original PDF URL download and final URL validation"
+      ],
+      "reviewedAt": "2026-11-04"
+    }
+  ],
+  "candidateUniverseModelCount": 17,
+  "scopeLabel": "Acer official Japanese manuals verified by downloadable PDF content: 5 bounded manufacturer-defined PDFs covering 16 distinct exact model codes; 1 previously indexed PDF held, not a full Acer catalog",
+  "universe": {
+    "sourceUrls": [
+      "https://global-download.acer.com/GDFiles/Document/User%20Manual%20W10/User%20Manual%20W10_Acer_1.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=ASPIRE&Step3=ASPIRE+A615-51G&acerid=636391349708212744",
+      "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_1.0_A_A.pdf?acerid=636827713940084541",
+      "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_1.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=&Step2=&Step3=SF314-43&acerid=638034717463645422",
+      "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_2.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=NITRO&Step3=NITRO+AN515-57&acerid=637662502251816424",
+      "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_1.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=&Step2=&Step3=SWIFT+SF16-71T&acerid=639101774452931484"
+    ],
+    "declaredCount": 17,
+    "models": [
+      "A515-51",
+      "A515-51G",
+      "A515-41G",
+      "SF314-54",
+      "SF314-54G",
+      "SF314-56",
+      "SF314-56G",
+      "SF314-511",
+      "SF314-43",
+      "AN515-45",
+      "AN515-56",
+      "AN515-57",
+      "AN517-41",
+      "AN517-53",
+      "AN517-54",
+      "SF16-71T",
+      "SF713-51"
+    ],
+    "populationMethod": "Explicit restricted manufacturer PDF cover-list scope: five Acer-issued Japanese user-manual PDFs list 16 distinct model codes in their first four pages, plus one manufacturer-indexed Swift 7 code held on current Acer /error_page. 17 is the bounded audited candidate universe, not any Acer catalog size.",
+    "sourceObservation": {
+      "date": "2026-11-04",
+      "validatedCiRunId": 41773975781,
+      "manualsChecked": 6,
+      "acceptedPdfCount": 5,
+      "publishedModels": 16,
+      "heldCount": 1,
+      "bytesVerified": true,
+      "tool": "GitHub Actions Ubuntu runner: HTTPS fetch + %PDF magic + pdftotext first 4 pages with exact model strings",
+      "heldReason": "SF713-51 Acer PDF redirect target /error_page"
+    }
+  },
+  "records": [
+    {
+      "model": "A515-51",
+      "state": "shared",
+      "manualUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual%20W10/User%20Manual%20W10_Acer_1.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=ASPIRE&Step3=ASPIRE+A615-51G&acerid=636391349708212744",
+      "supportUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual%20W10/User%20Manual%20W10_Acer_1.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=ASPIRE&Step3=ASPIRE+A615-51G&acerid=636391349708212744",
+      "evidenceUrls": [
+        "https://global-download.acer.com/GDFiles/Document/User%20Manual%20W10/User%20Manual%20W10_Acer_1.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=ASPIRE&Step3=ASPIRE+A615-51G&acerid=636391349708212744"
+      ],
+      "group": "Aspire 5 2017",
+      "coveredModels": [
+        "A515-51",
+        "A515-51G",
+        "A515-41G"
+      ],
+      "verifiedAt": "2026-11-04",
+      "manualKind": "pdf",
+      "reviewNote": "Live Acer PDF host and %PDF signature validated; manufacturer PDF first 4 pages explicitly names model. Group sharing determined only from cover's named model list.",
+      "ciRunId": 41773975781
+    },
+    {
+      "model": "A515-51G",
+      "state": "shared",
+      "manualUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual%20W10/User%20Manual%20W10_Acer_1.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=ASPIRE&Step3=ASPIRE+A615-51G&acerid=636391349708212744",
+      "supportUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual%20W10/User%20Manual%20W10_Acer_1.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=ASPIRE&Step3=ASPIRE+A615-51G&acerid=636391349708212744",
+      "evidenceUrls": [
+        "https://global-download.acer.com/GDFiles/Document/User%20Manual%20W10/User%20Manual%20W10_Acer_1.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=ASPIRE&Step3=ASPIRE+A615-51G&acerid=636391349708212744"
+      ],
+      "group": "Aspire 5 2017",
+      "coveredModels": [
+        "A515-51",
+        "A515-51G",
+        "A515-41G"
+      ],
+      "verifiedAt": "2026-11-04",
+      "manualKind": "pdf",
+      "reviewNote": "Live Acer PDF host and %PDF signature validated; manufacturer PDF first 4 pages explicitly names model. Group sharing determined only from cover's named model list.",
+      "ciRunId": 41773975781
+    },
+    {
+      "model": "A515-41G",
+      "state": "shared",
+      "manualUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual%20W10/User%20Manual%20W10_Acer_1.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=ASPIRE&Step3=ASPIRE+A615-51G&acerid=636391349708212744",
+      "supportUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual%20W10/User%20Manual%20W10_Acer_1.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=ASPIRE&Step3=ASPIRE+A615-51G&acerid=636391349708212744",
+      "evidenceUrls": [
+        "https://global-download.acer.com/GDFiles/Document/User%20Manual%20W10/User%20Manual%20W10_Acer_1.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=ASPIRE&Step3=ASPIRE+A615-51G&acerid=636391349708212744"
+      ],
+      "group": "Aspire 5 2017",
+      "coveredModels": [
+        "A515-51",
+        "A515-51G",
+        "A515-41G"
+      ],
+      "verifiedAt": "2026-11-04",
+      "manualKind": "pdf",
+      "reviewNote": "Live Acer PDF host and %PDF signature validated; manufacturer PDF first 4 pages explicitly names model. Group sharing determined only from cover's named model list.",
+      "ciRunId": 41773975781
+    },
+    {
+      "model": "SF314-54",
+      "state": "shared",
+      "manualUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_1.0_A_A.pdf?acerid=636827713940084541",
+      "supportUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_1.0_A_A.pdf?acerid=636827713940084541",
+      "evidenceUrls": [
+        "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_1.0_A_A.pdf?acerid=636827713940084541"
+      ],
+      "group": "Swift 3 2019",
+      "coveredModels": [
+        "SF314-54",
+        "SF314-54G",
+        "SF314-56",
+        "SF314-56G"
+      ],
+      "verifiedAt": "2026-11-04",
+      "manualKind": "pdf",
+      "reviewNote": "Live Acer PDF host and %PDF signature validated; manufacturer PDF first 4 pages explicitly names model. Group sharing determined only from cover's named model list.",
+      "ciRunId": 41773975781
+    },
+    {
+      "model": "SF314-54G",
+      "state": "shared",
+      "manualUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_1.0_A_A.pdf?acerid=636827713940084541",
+      "supportUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_1.0_A_A.pdf?acerid=636827713940084541",
+      "evidenceUrls": [
+        "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_1.0_A_A.pdf?acerid=636827713940084541"
+      ],
+      "group": "Swift 3 2019",
+      "coveredModels": [
+        "SF314-54",
+        "SF314-54G",
+        "SF314-56",
+        "SF314-56G"
+      ],
+      "verifiedAt": "2026-11-04",
+      "manualKind": "pdf",
+      "reviewNote": "Live Acer PDF host and %PDF signature validated; manufacturer PDF first 4 pages explicitly names model. Group sharing determined only from cover's named model list.",
+      "ciRunId": 41773975781
+    },
+    {
+      "model": "SF314-56",
+      "state": "shared",
+      "manualUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_1.0_A_A.pdf?acerid=636827713940084541",
+      "supportUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_1.0_A_A.pdf?acerid=636827713940084541",
+      "evidenceUrls": [
+        "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_1.0_A_A.pdf?acerid=636827713940084541"
+      ],
+      "group": "Swift 3 2019",
+      "coveredModels": [
+        "SF314-54",
+        "SF314-54G",
+        "SF314-56",
+        "SF314-56G"
+      ],
+      "verifiedAt": "2026-11-04",
+      "manualKind": "pdf",
+      "reviewNote": "Live Acer PDF host and %PDF signature validated; manufacturer PDF first 4 pages explicitly names model. Group sharing determined only from cover's named model list.",
+      "ciRunId": 41773975781
+    },
+    {
+      "model": "SF314-56G",
+      "state": "shared",
+      "manualUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_1.0_A_A.pdf?acerid=636827713940084541",
+      "supportUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_1.0_A_A.pdf?acerid=636827713940084541",
+      "evidenceUrls": [
+        "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_1.0_A_A.pdf?acerid=636827713940084541"
+      ],
+      "group": "Swift 3 2019",
+      "coveredModels": [
+        "SF314-54",
+        "SF314-54G",
+        "SF314-56",
+        "SF314-56G"
+      ],
+      "verifiedAt": "2026-11-04",
+      "manualKind": "pdf",
+      "reviewNote": "Live Acer PDF host and %PDF signature validated; manufacturer PDF first 4 pages explicitly names model. Group sharing determined only from cover's named model list.",
+      "ciRunId": 41773975781
+    },
+    {
+      "model": "SF314-511",
+      "state": "shared",
+      "manualUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_1.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=&Step2=&Step3=SF314-43&acerid=638034717463645422",
+      "supportUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_1.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=&Step2=&Step3=SF314-43&acerid=638034717463645422",
+      "evidenceUrls": [
+        "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_1.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=&Step2=&Step3=SF314-43&acerid=638034717463645422"
+      ],
+      "group": "Swift 3 2021",
+      "coveredModels": [
+        "SF314-511",
+        "SF314-43"
+      ],
+      "verifiedAt": "2026-11-04",
+      "manualKind": "pdf",
+      "reviewNote": "Live Acer PDF host and %PDF signature validated; manufacturer PDF first 4 pages explicitly names model. Group sharing determined only from cover's named model list.",
+      "ciRunId": 41773975781
+    },
+    {
+      "model": "SF314-43",
+      "state": "shared",
+      "manualUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_1.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=&Step2=&Step3=SF314-43&acerid=638034717463645422",
+      "supportUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_1.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=&Step2=&Step3=SF314-43&acerid=638034717463645422",
+      "evidenceUrls": [
+        "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_1.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=&Step2=&Step3=SF314-43&acerid=638034717463645422"
+      ],
+      "group": "Swift 3 2021",
+      "coveredModels": [
+        "SF314-511",
+        "SF314-43"
+      ],
+      "verifiedAt": "2026-11-04",
+      "manualKind": "pdf",
+      "reviewNote": "Live Acer PDF host and %PDF signature validated; manufacturer PDF first 4 pages explicitly names model. Group sharing determined only from cover's named model list.",
+      "ciRunId": 41773975781
+    },
+    {
+      "model": "AN515-45",
+      "state": "shared",
+      "manualUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_2.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=NITRO&Step3=NITRO+AN515-57&acerid=637662502251816424",
+      "supportUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_2.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=NITRO&Step3=NITRO+AN515-57&acerid=637662502251816424",
+      "evidenceUrls": [
+        "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_2.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=NITRO&Step3=NITRO+AN515-57&acerid=637662502251816424"
+      ],
+      "group": "Nitro 5 2021",
+      "coveredModels": [
+        "AN515-45",
+        "AN515-56",
+        "AN515-57",
+        "AN517-41",
+        "AN517-53",
+        "AN517-54"
+      ],
+      "verifiedAt": "2026-11-04",
+      "manualKind": "pdf",
+      "reviewNote": "Live Acer PDF host and %PDF signature validated; manufacturer PDF first 4 pages explicitly names model. Group sharing determined only from cover's named model list.",
+      "ciRunId": 41773975781
+    },
+    {
+      "model": "AN515-56",
+      "state": "shared",
+      "manualUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_2.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=NITRO&Step3=NITRO+AN515-57&acerid=637662502251816424",
+      "supportUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_2.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=NITRO&Step3=NITRO+AN515-57&acerid=637662502251816424",
+      "evidenceUrls": [
+        "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_2.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=NITRO&Step3=NITRO+AN515-57&acerid=637662502251816424"
+      ],
+      "group": "Nitro 5 2021",
+      "coveredModels": [
+        "AN515-45",
+        "AN515-56",
+        "AN515-57",
+        "AN517-41",
+        "AN517-53",
+        "AN517-54"
+      ],
+      "verifiedAt": "2026-11-04",
+      "manualKind": "pdf",
+      "reviewNote": "Live Acer PDF host and %PDF signature validated; manufacturer PDF first 4 pages explicitly names model. Group sharing determined only from cover's named model list.",
+      "ciRunId": 41773975781
+    },
+    {
+      "model": "AN515-57",
+      "state": "shared",
+      "manualUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_2.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=NITRO&Step3=NITRO+AN515-57&acerid=637662502251816424",
+      "supportUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_2.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=NITRO&Step3=NITRO+AN515-57&acerid=637662502251816424",
+      "evidenceUrls": [
+        "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_2.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=NITRO&Step3=NITRO+AN515-57&acerid=637662502251816424"
+      ],
+      "group": "Nitro 5 2021",
+      "coveredModels": [
+        "AN515-45",
+        "AN515-56",
+        "AN515-57",
+        "AN517-41",
+        "AN517-53",
+        "AN517-54"
+      ],
+      "verifiedAt": "2026-11-04",
+      "manualKind": "pdf",
+      "reviewNote": "Live Acer PDF host and %PDF signature validated; manufacturer PDF first 4 pages explicitly names model. Group sharing determined only from cover's named model list.",
+      "ciRunId": 41773975781
+    },
+    {
+      "model": "AN517-41",
+      "state": "shared",
+      "manualUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_2.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=NITRO&Step3=NITRO+AN515-57&acerid=637662502251816424",
+      "supportUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_2.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=NITRO&Step3=NITRO+AN515-57&acerid=637662502251816424",
+      "evidenceUrls": [
+        "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_2.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=NITRO&Step3=NITRO+AN515-57&acerid=637662502251816424"
+      ],
+      "group": "Nitro 5 2021",
+      "coveredModels": [
+        "AN515-45",
+        "AN515-56",
+        "AN515-57",
+        "AN517-41",
+        "AN517-53",
+        "AN517-54"
+      ],
+      "verifiedAt": "2026-11-04",
+      "manualKind": "pdf",
+      "reviewNote": "Live Acer PDF host and %PDF signature validated; manufacturer PDF first 4 pages explicitly names model. Group sharing determined only from cover's named model list.",
+      "ciRunId": 41773975781
+    },
+    {
+      "model": "AN517-53",
+      "state": "shared",
+      "manualUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_2.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=NITRO&Step3=NITRO+AN515-57&acerid=637662502251816424",
+      "supportUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_2.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=NITRO&Step3=NITRO+AN515-57&acerid=637662502251816424",
+      "evidenceUrls": [
+        "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_2.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=NITRO&Step3=NITRO+AN515-57&acerid=637662502251816424"
+      ],
+      "group": "Nitro 5 2021",
+      "coveredModels": [
+        "AN515-45",
+        "AN515-56",
+        "AN515-57",
+        "AN517-41",
+        "AN517-53",
+        "AN517-54"
+      ],
+      "verifiedAt": "2026-11-04",
+      "manualKind": "pdf",
+      "reviewNote": "Live Acer PDF host and %PDF signature validated; manufacturer PDF first 4 pages explicitly names model. Group sharing determined only from cover's named model list.",
+      "ciRunId": 41773975781
+    },
+    {
+      "model": "AN517-54",
+      "state": "shared",
+      "manualUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_2.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=NITRO&Step3=NITRO+AN515-57&acerid=637662502251816424",
+      "supportUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_2.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=NITRO&Step3=NITRO+AN515-57&acerid=637662502251816424",
+      "evidenceUrls": [
+        "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_2.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=NOTEBOOK&Step2=NITRO&Step3=NITRO+AN515-57&acerid=637662502251816424"
+      ],
+      "group": "Nitro 5 2021",
+      "coveredModels": [
+        "AN515-45",
+        "AN515-56",
+        "AN515-57",
+        "AN517-41",
+        "AN517-53",
+        "AN517-54"
+      ],
+      "verifiedAt": "2026-11-04",
+      "manualKind": "pdf",
+      "reviewNote": "Live Acer PDF host and %PDF signature validated; manufacturer PDF first 4 pages explicitly names model. Group sharing determined only from cover's named model list.",
+      "ciRunId": 41773975781
+    },
+    {
+      "model": "SF16-71T",
+      "state": "direct",
+      "manualUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_1.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=&Step2=&Step3=SWIFT+SF16-71T&acerid=639101774452931484",
+      "supportUrl": "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_1.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=&Step2=&Step3=SWIFT+SF16-71T&acerid=639101774452931484",
+      "evidenceUrls": [
+        "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_1.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=&Step2=&Step3=SWIFT+SF16-71T&acerid=639101774452931484"
+      ],
+      "group": "Swift 16 AI 2026",
+      "coveredModels": [
+        "SF16-71T"
+      ],
+      "verifiedAt": "2026-11-04",
+      "manualKind": "pdf",
+      "reviewNote": "Live Acer PDF host and %PDF signature validated; manufacturer PDF first 4 pages explicitly names model. Group sharing determined only from cover's named model list.",
+      "ciRunId": 41773975781
+    },
+    {
+      "model": "SF713-51",
+      "state": "held",
+      "reason": "Verified 2026-11-04 GitHub Actions: Acer official indexed PDF source returned HTTP 200 with final destination https://global-download.acer.com/error_page, not a PDF. Model/guide source cannot be published.",
+      "attemptedDiscovery": [
+        "official manufacturer indexed Japanese manual PDF search",
+        "live original PDF URL download and final URL validation"
+      ],
+      "evidenceUrls": [
+        "https://global-download.acer.com/GDFiles/Document/User%20Manual%20W10/User%20Manual%20W10_Acer_1.0_A_A.pdf?BC=ACER&LC=ja&OS=ALL&SC=AAP_3&Step1=ULTRA-THIN&Step2=SWIFT&Step3=SF713-51&acerid=636397680437727859"
+      ],
+      "reviewedAt": "2026-11-04",
+      "reviewNote": "Do not publish obsolete Acer PDF; live manufacturer redirect is an error page, not a user manual."
+    }
+  ],
+  "reconciliation": {
+    "candidateUniverse": 17,
+    "direct": 1,
+    "shared": 15,
+    "support_only": 0,
+    "held": 1,
+    "published": 16,
+    "verifiedOfficialPdfGroups": 5,
+    "brokenPdfGroups": 1
+  },
+  "refresh": {
+    "method": "Re-download all five Acer PDF URLs, check final URL host, %PDF magic and exact model text; recheck Swift 7 held URL independently before any promotion.",
+    "doNotInfer": "Other Acer configurations or models beyond explicit user-manual cover-list model codes."
+  }
+}

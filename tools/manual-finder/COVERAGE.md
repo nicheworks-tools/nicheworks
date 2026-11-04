@@ -1,6 +1,6 @@
 # ManualFinder Coverage Inventory
 
-Status date: 2026-11-03
+Status date: 2026-11-04
 
 This file is the cross-maker coverage authority for ManualFinder expansion work. It exists to prevent a single easy-to-crawl manufacturer from consuming the roadmap while major brands remain generic support links only.
 
@@ -17,7 +17,7 @@ All future model-level expansion must follow `COVERAGE_PASS_WORKFLOW.md`. Script
 
 ## Current verified model-level inventory
 
-With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifilm GFX/X, VAIO JP start-guide PCs, Samsung JP Galaxy smartphones, dynabook JP 2024–2026 PCs, Fujitsu FMWORLD LIFEBOOK U business PCs, Google Pixel JP model-specific safety/support documentation, Motorola JP current smartphone lineup, ASUS JP Vivobook series, and Xiaomi JP smartphone/tablet user-guide index, the accepted dataset contains **2,615 verified model/caliber rows**. **2,172 are outside Seiko**. Coverage-Pass publication contributes **1,047 reviewed rows across sixteen bounded manufacturer scopes**. The Xiaomi JP 60-device source reconciles to 59 positively verified manufacturer PDF guides and one held co-branded Leica model; 59 guide rows are published. This is not Xiaomi company-wide coverage.
+With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifilm GFX/X, VAIO JP start-guide PCs, Samsung JP Galaxy smartphones, dynabook JP 2024–2026 PCs, Fujitsu FMWORLD LIFEBOOK U business PCs, Google Pixel JP model-specific safety/support documentation, Motorola JP current smartphone lineup, ASUS JP Vivobook series, and Xiaomi JP smartphone/tablet user-guide index, the accepted dataset contains **2,631 verified model/caliber rows**. **2,188 are outside Seiko**. Coverage-Pass publication contributes **1,063 reviewed rows across seventeen bounded manufacturer scopes**. The Xiaomi JP 60-device source reconciles to 59 positively verified manufacturer PDF guides and one held co-branded Leica model; 59 guide rows are published. This is not Xiaomi company-wide coverage.
 
 | Maker / dataset identity | Verified rows | Current state | Notes |
 | --- | ---: | --- | --- |
@@ -50,12 +50,13 @@ With the completed Sony JP α E-mount, Panasonic JP LUMIX, Apple iPhone, Fujifil
 | Brother | 21 | expanded | Waves 3B+3F: 13 legacy MFC-J manual pages and 8 newly manufacturer-verified models (6 direct + 2 official shared manual identities), with 16 manufacturer-verified ink Amazon search offers. The separate legacy held model is unchanged. |
 | Insta360 | 7 | expanded | Product-specific official online manuals. |
 | Epson | 38 | expanded | Colorio Waves 3D+3G+3H+3I+3J: 6+8+8+9+7 exact official Epson model manuals, with individually verified printer ink queries. |
+| Acer | 16 | expanded, bounded | Five independent Japanese Acer user-manual PDF groups (Aspire 3 models, Swift 7, Nitro 6): 1 direct + 15 explicitly manufacturer-shared. Older Swift 7 PDF unavailable, held. No Acer-wide completeness. |
 | HP | 17 | expanded, bounded | Seventeen Japanese HP Pavilion, ProBook and EliteBook model/series official Setup and User Guides index pages with published Japanese User Guide listings; direct HP page recheck blocked HTTP 403 in this environment. No company-wide completeness. |
 | Lenovo | 13 | expanded, bounded | Thirteen verified Lenovo Japan ThinkPad Guides & Manuals pages across T/L/P/E/X1 families, exact machine types preserved; not whole family or company. |
 | Dell | 20 | expanded, bounded | Twenty individually verified Dell Japan model-specific Manuals and Documents index pages with owner/service user manuals; Inspiron, XPS, Latitude, Precision and OptiPlex. Not Dell company-wide or any entire family. |
 | Canon | 155 | expanded | Eighteen verified Waves 3E+3K+3L PIXUS printers plus 137 distinct official RF/EF-series lens instruction manual rows (123 direct + 14 shared) from Canon Japan nine-section lens-manual index. Lens scope does not claim Canon company-wide completeness; manufacturer direct PDFs verified. |
 | Hisense | 2 | expanded | Exact TV function-manual targets; coverage is still very thin. |
-| **Total** | **2,615** |  |  |
+| **Total** | **2,631** |  |  |
 
 Counts above are accepted repository rows, not estimates of manufacturer catalog size.
 
@@ -77,7 +78,7 @@ Counts above are accepted repository rows, not estimates of manufacturer catalog
 | 10 | Dell | **expanded — 20** | First bounded Dell Japan manufacturer-owned exact-model manuals index pass: 20 direct owner/service document listing pages; no entire-catalog claim |
 | 11 | Lenovo | **expanded — 13** | Thirteen explicit ThinkPad machine-type/SKU Japanese model-specific user/setup/maintenance manual indexes; Lenovo-wide coverage not claimed |
 | 12 | ASUS | **expanded — 35** | Manufacturer JP Vivobook category 35 products (API 20+15); 35 verified model-specific manual indexes, 0 held. Selected variant disclosed on each row. Other ASUS families not complete. |
-| 13 | Acer | generic-only | PC/mobile queue |
+| 13 | Acer | **expanded — 16** | Acer Japan-first bounded 5 verified Japanese manufacturer PDF manuals; 16 exact model codes from covers, 15 explicitly shared + 1 direct, Swift 7 SF713-51 PDF held after /error_page redirect; not Acer-wide |
 | 14 | MSI | generic-only | PC/mobile queue |
 | 15 | VAIO | **expanded — 82** | JP start-guide table scope complete: 21 direct HTML user guides + 61 exact support-only + 0 held; broader VAIO remains incomplete |
 | 16 | dynabook | **expanded — 177** | JP 2024–2026 announced PC manual index scope-complete: 16 direct + 161 vendor-defined shared PDFs, zero held. Older years remain incomplete. |
@@ -280,3 +281,7 @@ This is a bounded HP Japan source set of **17 exact official HP support setup-us
 ### Xiaomi JP live guide-index drift gate, 306 → 307 candidate (2026-11-03)
 
 The original accepted manufacturer snapshot had 306 total guide links; current live Xiaomi CMS reports 307, while the product scope in this registry is **only the first 74 mobile links, yielding 60 unique mobile models**. The fail-closed live reviewer now accepts either 306 or 307 full-index rows **only if both the official HTML and CMS have equal counts and identical ordered model names across the full index**, the 75th entry remains the REDMI Buds 5 Pro non-mobile boundary, and the SHA-256 of all 60 exact manufacturer model-to-guide href pairs remains identical to the previously locked manifest. The extra entry cannot enter the published mobile catalog; any second extra link or mobile source mutation fails. The source manifest's original 306 count remains an immutable historical snapshot, and newly observed full-index totals are emitted separately by the live review. This changes no published model/manual records, counts or PDF URLs; actual CI must still verify all existing PDFs and the held Leica classification independently.
+
+### Acer JP five manufacturer PDF user manuals, 16 exact model codes (2026-11-04)
+
+First verified Acer model-level publication. Five **Acer-hosted Japanese user-manual PDF files** were actually downloaded in GitHub Actions run **41773975781**, and each passed official final-host, HTTP status, `%PDF-` magic and first-four-page extracted-text checks covering all named model codes. Manufacturer cover-lists establish 3 Aspire 5 models (A515-51/A515-51G/A515-41G), 6 Swift models in two Swift 3 manuals (SF314-54/54G/56/56G, SF314-511/43), six Nitro 5 codes (AN515-45/56/57 and AN517-41/53/54), and one Swift 16 AI model (SF16-71T). **16 published = 1 exact single-model PDF + 15 manufacturer-defined shared PDF records.** An additional manufacturer-indexed Swift 7 SF713-51 PDF returned a final Acer `/error_page` instead of a valid PDF in CI; it remains **held and not published**. Audited candidate universe: **17 = 1 direct + 15 shared + 0 support_only + 1 held**. All exact URL and group associations are in `coverage-passes/acer/jp-six-japanese-user-manual-pdf-groups-20261104.json`; published rows in `data/manuals.coverage-pass.acer-jp-pdf16.js`, registered by `data/manuals.coverage-passes.js`. The five PDFs are manufacturer-issued, linked but not redistributed. This is not an exhaustive Acer catalog or proof that other configurations are interchangeable. Optional canonical Amazon Associates exact model searches use the existing `nicheworks09-22` tag, with no unverified charger/battery fits or sales claim. Main inventory **2,631 verified model/caliber rows**, outside Seiko 2,188, Coverage-Pass publication 1,063 across seventeen bounded manufacturer scopes.
