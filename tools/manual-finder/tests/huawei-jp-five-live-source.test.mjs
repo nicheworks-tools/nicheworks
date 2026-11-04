@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {verifyFaq,verifyProduct} from '../scripts/huawei-jp-5-live-source.mjs';
+const e={model:'Band 9',officialTableLabel:'HUAWEI Band 9',officialProductLabel:'HUAWEI Band 9',manualUrl:'https://consumer.huawei.com/jp/support/wearables/band9/'};
+const faq='<table><tr><td>HUAWEI Band 9</td><td><a href="https://consumer.huawei.com/jp/support/wearables/band9/">ダウンロードページ</a></td><td>〇</td><td>〇</td></tr></table>';
+assert.equal(verifyFaq(faq,e).listed,true);
+assert.throws(()=>verifyFaq(faq.replace('band9/','band8/'),e),/URL not paired/);
+assert.throws(()=>verifyFaq(faq.replace('HUAWEI Band 9','HUAWEI Band 10'),e),/model missing/);
+const page='<h1>HUAWEI Band 9取扱説明書とサービス</h1><h2>ダウンロード</h2>';
+assert.equal(verifyProduct(page,e).product,true);
+assert.throws(()=>verifyProduct(page.replace('Band 9','Band 10'),e),/identity missing/);
+assert.throws(()=>verifyProduct(page.replace('ダウンロード','サポート'),e),/download section absent/);
+console.log('Huawei official FAQ row identity, href and exact model manual page fail-closed fixture PASS.');

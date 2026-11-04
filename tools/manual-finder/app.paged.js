@@ -4,7 +4,7 @@
   const FULL = `${base}/data/manuals.full.js?v=mf-wave1-20260912a`;
   const WAVE2 = `${base}/data/manuals.wave2.js?v=mf-wave2c-20260912a`;
   const WAVE3 = `${base}/data/manuals.wave3.js?v=mf-wave3e-20260914a`;
-  const COVERAGE_PASSES = `${base}/data/manuals.coverage-passes.js?v=mf-msi6-20261104a`;
+  const COVERAGE_PASSES = `${base}/data/manuals.coverage-passes.js?v=mf-huawei5-20261104a`;
   const JSON_URL = `${base}/data/manuals.json?v=mf-wave2c-20260912a`;
   const S = { all: [], filtered: [], page: 1, per: 48, lang: isEn ? "en" : "ja" };
   const $ = (id) => document.getElementById(id);
