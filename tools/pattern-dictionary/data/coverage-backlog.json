@@ -13,16 +13,6 @@
   ],
   "candidates": [
     {
-      "id": "nishijin-ori",
-      "name": {
-        "ja": "西陣織",
-        "en": "Nishijin textile tradition"
-      },
-      "domain": "japanese-motifs",
-      "proposed_type": "tradition",
-      "status": "candidate-unverified"
-    },
-    {
       "id": "micro-check",
       "name": {
         "ja": "マイクロチェック",
@@ -83,16 +73,6 @@
       "status": "candidate-unverified"
     },
     {
-      "id": "fretwork",
-      "name": {
-        "ja": "透かし格子装飾",
-        "en": "Fretwork"
-      },
-      "domain": "geometry-and-ornament",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
       "id": "rocaille",
       "name": {
         "ja": "ロカイユ装飾",
@@ -117,16 +97,6 @@
       "name": {
         "ja": "バラのつぼみ柄",
         "en": "Rosebud print"
-      },
-      "domain": "floral-and-botanical",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
-      "id": "lotus-motif",
-      "name": {
-        "ja": "蓮華文様",
-        "en": "Lotus motif"
       },
       "domain": "floral-and-botanical",
       "proposed_type": "motif",
@@ -183,36 +153,6 @@
       "status": "candidate-unverified"
     },
     {
-      "id": "tortoiseshell",
-      "name": {
-        "ja": "べっ甲柄",
-        "en": "Tortoiseshell pattern"
-      },
-      "domain": "animal-and-organic",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
-      "id": "butterfly-print",
-      "name": {
-        "ja": "蝶柄",
-        "en": "Butterfly print"
-      },
-      "domain": "animal-and-organic",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
-      "id": "peacock-feather",
-      "name": {
-        "ja": "孔雀の羽根模様",
-        "en": "Peacock feather motif"
-      },
-      "domain": "animal-and-organic",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
       "id": "feather-print",
       "name": {
         "ja": "羽根柄",
@@ -227,16 +167,6 @@
       "name": {
         "ja": "珊瑚柄",
         "en": "Coral print"
-      },
-      "domain": "animal-and-organic",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
-      "id": "wood-grain",
-      "name": {
-        "ja": "木目模様",
-        "en": "Wood-grain pattern"
       },
       "domain": "animal-and-organic",
       "proposed_type": "motif",
@@ -503,26 +433,6 @@
       "status": "candidate-unverified"
     },
     {
-      "id": "pixel-pattern",
-      "name": {
-        "ja": "ピクセル模様",
-        "en": "Pixel pattern"
-      },
-      "domain": "modern-visual-patterns",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
-      "id": "digital-camouflage",
-      "name": {
-        "ja": "デジタル迷彩",
-        "en": "Digital camouflage"
-      },
-      "domain": "modern-visual-patterns",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
       "id": "glitch-pattern",
       "name": {
         "ja": "グリッチ模様",
@@ -547,16 +457,6 @@
       "name": {
         "ja": "ローポリ模様",
         "en": "Low-poly pattern"
-      },
-      "domain": "modern-visual-patterns",
-      "proposed_type": "motif",
-      "status": "candidate-unverified"
-    },
-    {
-      "id": "dither-pattern",
-      "name": {
-        "ja": "ディザ模様",
-        "en": "Dither pattern"
       },
       "domain": "modern-visual-patterns",
       "proposed_type": "motif",

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1536" viewBox="0 0 1536 1536" role="img" aria-label="digital-camouflage original illustrative repeat">
+<rect width="1536" height="1536" fill="#f8f5ed"/>
+<defs><g id="motif"><rect x="-184" y="-184" width="368" height="368" fill="#c4c0aa"/><path d="M-142 -124h16v14.4h6.4v17.6h-22.4v-9.6h-5.28v-22.4Z" fill="#536d5d"/><path d="M-69 -15h32v21.6h12.8v26.400000000000002h-44.8v-14.399999999999999h-10.56v-33.599999999999994Z" fill="#8e9d81"/><path d="M4 94h48v28.8h19.200000000000003v35.2h-67.19999999999999v-19.2h-15.84v-44.8Z" fill="#a9ad93"/><path d="M77 -127h64v7.2h25.6v8.8h-89.6v-4.8h-21.12v-11.2Z" fill="#5b6761"/><path d="M150 -18h16v14.4h6.4v17.6h-22.4v-9.6h-5.28v-22.4Z" fill="#536d5d"/><path d="M-107 91h32v21.6h12.8v26.400000000000002h-44.8v-14.399999999999999h-10.56v-33.599999999999994Z" fill="#8e9d81"/><path d="M-34 -130h48v28.8h19.200000000000003v35.2h-67.19999999999999v-19.2h-15.84v-44.8Z" fill="#a9ad93"/><path d="M39 -21h64v7.2h25.6v8.8h-89.6v-4.8h-21.12v-11.2Z" fill="#5b6761"/><path d="M112 88h16v14.4h6.4v17.6h-22.4v-9.6h-5.28v-22.4Z" fill="#536d5d"/><path d="M-145 -133h32v21.6h12.8v26.400000000000002h-44.8v-14.399999999999999h-10.56v-33.599999999999994Z" fill="#8e9d81"/><path d="M-72 -24h48v28.8h19.200000000000003v35.2h-67.19999999999999v-19.2h-15.84v-44.8Z" fill="#a9ad93"/><path d="M1 85h64v7.2h25.6v8.8h-89.6v-4.8h-21.12v-11.2Z" fill="#5b6761"/><path d="M74 -136h16v14.4h6.4v17.6h-22.4v-9.6h-5.28v-22.4Z" fill="#536d5d"/><path d="M147 -27h32v21.6h12.8v26.400000000000002h-44.8v-14.399999999999999h-10.56v-33.599999999999994Z" fill="#8e9d81"/><path d="M-110 82h48v28.8h19.200000000000003v35.2h-67.19999999999999v-19.2h-15.84v-44.8Z" fill="#a9ad93"/></g></defs>
+<use href="#motif" transform="translate(256 256)"/>
+<use href="#motif" transform="translate(768 256)"/>
+<use href="#motif" transform="translate(1280 256)"/>
+<use href="#motif" transform="translate(256 768)"/>
+<use href="#motif" transform="translate(768 768)"/>
+<use href="#motif" transform="translate(1280 768)"/>
+<use href="#motif" transform="translate(256 1280)"/>
+<use href="#motif" transform="translate(768 1280)"/>
+<use href="#motif" transform="translate(1280 1280)"/>
+</svg>

@@ -9,7 +9,7 @@
 - Publication contract: `canonical-100-v1`
 - Common specification: `common-spec/spec-ja.md`
 - Current dataset: `100 verified-publication patterns`
-- Additional published V2 supplement: `30 source-referenced JA/EN entries (130 total browsable; 260 static detail pages)`
+- Additional published V2 supplement: `40 source-referenced JA/EN entries (140 total browsable; 280 static detail pages)`
 - Product class: `static browser visual dictionary / discovery tool`
 - Monetization class: `AFFILIATE` (active Amazon.co.jp maintained-intent links)
 
@@ -211,3 +211,7 @@ Five newly researched textile appearance terms are published in the versioned `d
 ## V2 supplement 5: geometry, historical ornament and graphic effects (2026-11-03)
 
 Ten bilingual entries published in `data/v2-extension.json`: guilloche, rosette-ornament, sunburst, concentric-circles, mosaic-pattern, art-deco-fan, op-art-pattern, halftone-dots, topographic-contours, triangle-tessellation. External museum/design/math/cartography references and original illustrative SVGs support all entries. No external artwork is copied. New 20 static JA/EN pages, total **130** browseable identities and **260** page URLs after rollout, with 57 unverified unpublished candidate concepts remaining. Guilloche, Mosaic, Op Art and contour-inspired illustration are qualified for term scope. V2 tests now derive ID/count expectations dynamically and enforce the 87-original-candidate inventory conservation.
+
+## V2 supplement 6: cultural and graphic pattern coverage (2026-11-04)
+
+The versioned supplement now includes 40 referenced entries beyond the 100 frozen V1, totaling **140 browseable terms** and **280 static bilingual detail pages** after rollout. Newly added: nishijin-ori, lotus-motif, butterfly-print, peacock-feather, wood-grain, fretwork, digital-camouflage, pixel-pattern, dither-pattern, tortoiseshell. Original 1536 SVG reference schematics, reviewed JA/EN terminology and sources, confusion/qualification notes, and 20 static URLs supplied. 47 candidates remain. Nishijin is a regional tradition, fretwork a carved/pierced craft term, and faux tortoiseshell a mottled material look, distinct from the hexagonal kikko motif. Live production audit must explicitly select 40 after deployment.
