@@ -115,6 +115,7 @@ Amazon affiliate monetization is not part of the current product contract. The p
 
 - [ ] Each supported platform/source/domain/directory selection produces an appropriate checklist and common-error list without contacting the hosting platform.
 - [ ] GitHub branch-publishing guidance never presents `dist` or `public` as a valid source folder; it names `/` and `/docs` and directs other build outputs to an Actions artifact workflow.
+- [ ] With GitHub Pages + static/build output + root/docs, generated JP/EN guidance explicitly distinguishes Actions artifact deployment from copying files into a valid branch source; choosing a directory alone never implies publishing was configured.
 - [ ] GitHub custom-domain guidance distinguishes branch CNAME handling from custom Actions publishing.
 - [ ] Cloudflare guidance retains current build-output, Pages Functions compatibility, custom-domain, and Direct Upload caveats.
 - [ ] Initial HTML exposes the core current platform rules without requiring the user to generate a checklist.
