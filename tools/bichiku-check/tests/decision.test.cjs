@@ -162,6 +162,7 @@ test("blackout heat requires actual stove, fuel, capacity and food-by-food plans
  assert.equal(row(withoutStove,"food").effective,2);
  const withoutFuel=assess({...stock,powerOut:true,stocks:{...equipment,"home:gas":{qty:0,heatCapacityUses:2,heatFuelCompatibleConfirmed:true}}});
  assert.equal(row(withoutFuel,"food").effective,2);
+ assert.equal(withoutFuel.heatReview.verifiedCapacityUses,0,"fuel sessions cannot appear usable without physical canisters");
  const withoutSafety=assess({...stock,powerOut:true,stocks:{...equipment,"home:stove":{qty:1}}});
  assert.equal(row(withoutSafety,"food").effective,2);
  const withoutCompatibility=assess({...stock,powerOut:true,stocks:{...equipment,"home:gas":{qty:2,heatCapacityUses:2}}});
