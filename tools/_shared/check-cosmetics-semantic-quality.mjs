@@ -33,7 +33,7 @@ const PUBLIC_ROLE_CATEGORIES = new Set([
   'antioxidant', 'botanical', 'extract', 'plant extract', 'peptide', 'ferment',
   'thickener', 'emulsifier', 'chelator', 'chelating agent', 'ph', 'ph adjuster',
   'viscosity adjuster', 'buffer', 'conditioning', 'skin conditioning',
-  'hair conditioning'
+  'hair conditioning', 'bulking agent'
 ]);
 
 // Existing semantic-debt ceilings. These are ceilings, not targets: cleanup may
