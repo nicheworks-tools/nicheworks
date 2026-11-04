@@ -82,8 +82,9 @@ function heatSupplyReview(s,options,now){
  const fuelConfirmed=!!gas.heatFuelCompatibleConfirmed;
  const available=stoveCount>0&&canisterCount>0&&capacityUses>0&&equipmentConfirmed&&fuelConfirmed;
  const enough=uncheckedFoods.length===0&&requiredUses>0&&capacityUses>=requiredUses;
- return {stoveCount,canisterCount,capacityUses,requiredUses,uncheckedFoods,
-   equipmentConfirmed,fuelConfirmed,available,enough,ready:!s.noHeat&&available&&enough};
+ return {stoveCount,canisterCount,capacityUses,verifiedCapacityUses:available?capacityUses:0,
+   requiredUses,uncheckedFoods,equipmentConfirmed,fuelConfirmed,available,enough,
+   ready:!s.noHeat&&available&&enough};
 }
 // Do not treat an unverified legacy "bag + solidifier" quantity as assembled uses.
 // Existing qty remains in localStorage until the person rechecks each component.
