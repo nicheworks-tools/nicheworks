@@ -140,3 +140,46 @@ test("water-dependent noodles in blackout require BOTH safe measured water and o
  const noSafeWater=assess({...stock,offGridHeatConfirmed:true,safeWaterConfirmed:false});
  assert.equal(row(noSafeWater,"food").effective,0);
 });
+
+test("food-group audit records named staple complements separately, without changing staple shortages",()=>{
+ const a=assess({variants:{"home:tunaCan":{qty:4},"home:cannedVeg":{qty:6},"home:driedFruit":{qty:2}}});
+ const byRole=Object.fromEntries(a.foodGroups.map(g=>[g.role,g]));
+ assert.deepEqual(a.foodGroups.map(g=>g.role),["protein","vegetable","fruit"]);
+ assert.equal(byRole.protein.usableKinds,1);
+ assert.equal(byRole.vegetable.usableKinds,1);
+ assert.equal(byRole.fruit.usableKinds,1);
+ assert.equal(row(a,"food").effective,0,"side dishes and fruit must not become staple meals");
+ assert.equal(row(a,"food").missing,9);
+});
+test("food audit excludes expired or unverified items and does not guess category of manual stock",()=>{
+ const a=assess({stocks:{"home:food":{qty:9}},
+  variants:{"home:tunaCan":{qty:6,expiry:"2026-11-01"},"home:tofu":{qty:5},"home:cannedVeg":{qty:1}}});
+ const byRole=Object.fromEntries(a.foodGroups.map(g=>[g.role,g]));
+ assert.equal(byRole.protein.recordedKinds,2);
+ assert.equal(byRole.protein.usableKinds,0);
+ assert.equal(byRole.protein.needsReview,true);
+ assert.equal(byRole.vegetable.usableKinds,1);
+ assert.equal(byRole.fruit.usableKinds,0);
+ assert.equal(row(a,"food").effective,9,"manual food remains staple inventory, without unearned food-group claims");
+});
+test("confirmed water for dried vegetable side dish is allocated but never counted as a staple",()=>{
+ const stock={safeWaterConfirmed:true,waterOut:true,stocks:{"home:water":{qty:3}},
+   variants:{"home:driedVeg":{qty:2,prepWaterLiters:1.1,prepConfirmed:true}}};
+ const a=assess(stock);
+ const veg=a.foodGroups.find(g=>g.role==="vegetable");
+ assert.equal(a.waterAllocation,1.1);
+ assert.equal(a.waterRemainingAfterPrep,1.9);
+ assert.equal(veg.usableKinds,1);
+ assert.equal(row(a,"food").effective,0);
+ const b=assess({...stock,noHeat:true});
+ assert.equal(b.waterAllocation,0,"unusable heated vegetables must not reserve drinking water");
+ assert.equal(b.foodGroups.find(g=>g.role==="vegetable").usableKinds,0);
+});
+test("named bottle capacities are explicit metadata, but core still stores litres for backward compatibility",()=>{
+ const bottled=Object.fromEntries(opts.filter(o=>o.bottleLiters).map(o=>[o.id,o.bottleLiters]));
+ assert.deepEqual(bottled,{water2L:2,water500:0.5});
+ const a=assess({stocks:{"home:water":{qty:1}},
+  variants:{"home:water2L":{qty:6},"home:water500":{qty:2}}});
+ assert.equal(row(a,"water").effective,9,"3 two-litre and 4 half-litre bottles, plus 1L manual");
+ assert.equal(a.waterStored,9);
+});

@@ -158,3 +158,15 @@ body[data-stage]:not([data-stage="setup"]) .workspace{align-items:start}
 .seo-guide a{color:#075e6c;text-underline-offset:2px}
 @media(min-width:769px){.seo-guide{padding:22px}.seo-guide-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}}
 @media print{.seo-guide{display:none!important}}
+
+
+/* Audited food categories: inventory presence only, not a dietary adequacy score. */
+.g-food-review{margin:14px 0 5px;padding:12px;border:1px solid var(--line);border-radius:9px;background:#fff}
+.g-food-review h4{font-size:14px;line-height:1.4;margin:0 0 10px}
+.g-food-role{display:flex;gap:8px;flex-wrap:wrap;align-items:baseline;justify-content:space-between;border-top:1px solid var(--line);padding:9px 0;font-size:13px}
+.g-food-role strong{font-size:13px}
+.g-food-role span{color:var(--sub);font-size:12px}
+.g-food-review .g-fine{line-height:1.6;margin:8px 0}
+.g-food-review>a{font-size:12px;display:inline-flex;min-height:38px;align-items:center}
+@media (max-width:359px){.g-food-role{display:block}.g-food-role span{display:block;margin-top:3px}}
+@media print{.g-food-review{display:none!important}}
