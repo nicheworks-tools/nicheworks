@@ -94,6 +94,21 @@ Both English and Japanese OCR photo interfaces now have an **off-by-default** "E
 
 Automated regression: `node tools/_shared/check-fastscan-image-enhancement.mjs` checks untouched default-image handling, concrete grayscale pixel writes, upscale and memory cap, expected failure handling and blob-URL release, bilingual option wiring, optional QA comparison and photo privacy. The noindex QA page at `tools/inci-fastscan/qa/photo-ocr-benchmark.html` now exposes the same checkbox so manual testers can compare original and browser-enhanced scans of a **single independently transcribed real label**.
 
+## Japanese photographed-label INCI expansion — wave 5 (2026-11-04)
+
+Four **new, distinct full INCI identities** and Japanese source-label names, separately backed by an independent JP nomenclature reference plus COSMILE/industry documentation. All four remain legacy `safety: "unrated"` and carry neutral, HTTPS-source-backed function notes, **not** skin, allergy, pregnancy, regulatory or product safety assessments.
+
+| Published Japanese display label | Canonical INCI identity | Exact JP identity and neutral-role evidence |
+| --- | --- | --- |
+| セージ葉エキス | Salvia Officinalis Leaf Extract | [Japanese JP/INCI ingredient-name catalogue](https://beaker.media/jsln_ingredients/557469), [COSMILE skin-conditioning and cleansing](https://cosmileeurope.eu/inci/detail/14106/salvia-officinalis-leaf-extract/) |
+| サボンソウ葉エキス | Saponaria Officinalis Leaf Extract | [Japanese ingredient naming index](https://www.cosmetic-info.jp/jcln/result.php?-d=desc&-p=all&-r=20&name=%E3%82%A8%E3%82%AD%E3%82%B9&nameOp=cn), [COSMILE leaf-extract cleanser function](https://cosmileeurope.eu/inci/detail/14158/saponaria-officinalis-leaf-extract/) |
+| ホウケイ酸（Ca／Na） | Calcium Sodium Borosilicate | [Kaneda exact supplier Japanese display/INCI](https://cosmetic-material-database.custhelp.com/app/answers/list/p/30), [Korean Cosmetics Association glass composition](https://kcia.or.kr/cid/search/ingd_view.php?no=2954), [COSMILE bulking role](https://cosmileeurope.eu/inci/detail/2424/calcium-sodium-borosilicate/) |
+| オクタステアリン酸ポリグリセリル-6 | Polyglyceryl-6 Octastearate | [Japanese exact INCI/name reference](https://www.ishampoo.jp/kaiseki/ingredients/88143), [COSMILE emulsifying role](https://cosmileeurope.eu/inci/detail/12264/polyglyceryl-6-octastearate/) |
+
+The **exact Japanese source-name corpus positive-control** now expects at least **99 of 127** names to resolve (up from 95 after wave4), leaving **28** uncovered by the maintained and generated dictionary. This is **not** a photo transcription/OCR recall figure; the independently published formula/source list may not match photographed package version. No physical handset accuracy claim is made. Re-run the unchanged original and enhanced source-photo benchmarks in CI. Precise part/source distinctions are enforced: Saponaria **leaf** must never be collapsed into **leaf/root**, and **calcium sodium** borosilicate must never be mixed with **calcium aluminum** borosilicate. Likewise, the unresolved `レモン果実エキス` source spelling may map to multiple INCI names and is not force-matched in this wave.
+
+Dedicated regression: `node tools/inci-fastscan/qa/check-japanese-source-backed-wave5.mjs`, which is required by the full Cosmetics accuracy benchmark and actual Japanese photographed-package CI.
+
 ## Japanese photographed-label INCI expansion — wave 4 (2026-11-04)
 
 This source-backed wave adds **five new non-colliding canonical INCI identities with exact Japanese package names** to the two-product Japanese photographed-label research corpus. All records have `safety: "unrated"`, neutral ingredient-role notes, and two HTTPS nomenclature/function references. Do not infer safety, product suitability, or regulatory eligibility from a dictionary match.
