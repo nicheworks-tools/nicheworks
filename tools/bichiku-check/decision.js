@@ -94,7 +94,7 @@ function assessment(catalog,options,source,today){
  const foodGroups=foodRoleOverview(options,readiness,now);
  // MAFF adult staple/main-dish stock example: 3 portions per adult per day.
  // Suppress this simplified comparison when children or infants need individualized planning.
- const mainDishReferencePortions=calc.settings.adults>0&&calc.settings.children===0&&calc.settings.infants===0
+ const mainDishReferencePortions=calc.settings.mode==="home"&&calc.settings.adults>0&&calc.settings.children===0&&calc.settings.infants===0
    ?3*calc.settings.adults*calc.settings.days:null;
  const toiletBags=(s.variants||{})[s.mode+":toiletBags"]||{};
  const assemblyUses=s.toiletAssemblyConfirmed&&unexpired(toiletBags,now)?numeric(toiletBags.qty):0;
