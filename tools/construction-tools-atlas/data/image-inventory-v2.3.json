@@ -17,7 +17,7 @@
   },
   "sources": {
     "quality_manifest_version": "2026-09-14-manifest-8",
-    "image_registry_version": "2026-11-04-reviewed-image-wave10-saw-1",
+    "image_registry_version": "2026-11-05-reviewed-image-wave11-three-1",
     "exception_ledger_version": "2026-11-03-five-canonical-retirements-1",
     "source_ledgers": [
       {
@@ -29,6 +29,11 @@
         "file": "image-wave10-sources-v2.3.json",
         "version": "2026-11-04-reviewed-image-wave10-saw-1",
         "items": 1
+      },
+      {
+        "file": "image-wave11-sources-v2.3.json",
+        "version": "2026-11-05-reviewed-image-wave11-three-1",
+        "items": 3
       },
       {
         "file": "image-wave2-sources-v2.3.json",
@@ -74,14 +79,14 @@
   },
   "summary": {
     "corpus_entries": 5536,
-    "formal_image_entries": 54,
-    "missing_formal_image_entries": 5437,
+    "formal_image_entries": 57,
+    "missing_formal_image_entries": 5434,
     "not_required_entries": 45,
     "unobtainable_entries": 0,
     "classified_entries": 5536,
-    "formal_coverage_percent": 0.9754,
-    "registry_items": 54,
-    "source_ledger_items": 54,
+    "formal_coverage_percent": 1.0296,
+    "registry_items": 57,
+    "source_ledger_items": 57,
     "identity_holds": 0
   },
   "public_lifecycle": {
@@ -92,19 +97,19 @@
     "applicability_reviewed": 865,
     "required": 820,
     "on_hold": 0,
-    "final_dispositions": 99,
-    "unresolved": 766,
+    "final_dispositions": 102,
+    "unresolved": 763,
     "by_stage": {
       "unreviewed": 0,
       "not_required": 45,
-      "awaiting_source": 766,
+      "awaiting_source": 763,
       "candidate": 0,
       "provenance_verified": 0,
       "subject_verified": 0,
       "verified": 0,
-      "promoted": 54
+      "promoted": 57
     },
-    "evidence_sha256": "3fac9d8903c33f06d6090d6abf9a1d157cbbd3454b5ca4a8260f68b3907c19b6"
+    "evidence_sha256": "25057ddcb9f2fb6433bdefd4fb799fc3facdfa93aee9368b0c36b82b731baf2d"
   },
   "by_type": {
     "access": {
@@ -270,17 +275,17 @@
     },
     "tool": {
       "corpus": 379,
-      "formal_image": 45,
-      "missing_formal_image": 310,
+      "formal_image": 48,
+      "missing_formal_image": 307,
       "not_required": 24,
       "unobtainable": 0
     }
   },
   "hashes": {
     "corpus_id_sha256": "bff8aae6f75c763415864d81b9b2686131a2964b60bc354e85f84d64e3433f31",
-    "formal_image_id_sha256": "b2f9647fdda590ab51dee149ae72e061dbb3270f4a69a5775789947e5f1868ac",
-    "missing_formal_image_id_sha256": "690a6c714b0e3448fa304694a98cd9b33800cad788df296c7f22316b201007ee",
-    "classification_sha256": "1382b5fef372d98241ced6219491aa707e033a5860c64b8ff87b40a21296f02b"
+    "formal_image_id_sha256": "4abfdede601c1639f460b9fd0dc77c9b1952905f4c014cf5a56ef235a1f9b65a",
+    "missing_formal_image_id_sha256": "26181d9af248ebfb362cde5c670394f76b80a38d6485585d3ec33c06cf2d7758",
+    "classification_sha256": "53c24b33bf0f59755ad19565ba5d42bc81641593b8d20ad73bfd4309776df19f"
   },
   "missing_sample": [
     "access_door",
@@ -303,10 +308,10 @@
     "borescope",
     "brick_hammer",
     "brick_trowel",
-    "bucket",
     "butyl_tape_002",
     "cable_ramp",
-    "cable_tie",
-    "cable_tray"
+    "cable_tray",
+    "carpet_tile",
+    "caulk_back_up_tape"
   ]
 }

@@ -20,18 +20,18 @@
   "sources": {
     "publication_inventory_version": "2026-09-16-q014-identity-closure-1",
     "publication_id_sha256": "d0264617677052f0f446a0f4ebbfafc2315766d5858480b7103267320d88752d",
-    "image_registry_version": "2026-11-04-reviewed-image-wave10-saw-1",
+    "image_registry_version": "2026-11-05-reviewed-image-wave11-three-1",
     "image_exception_ledger_version": "2026-11-03-five-canonical-retirements-1"
   },
   "summary": {
     "public_entries": 865,
-    "formal_image_entries": 54,
-    "missing_formal_image_entries": 766,
+    "formal_image_entries": 57,
+    "missing_formal_image_entries": 763,
     "not_required_entries": 45,
     "unobtainable_entries": 0,
     "classified_entries": 865,
-    "formal_coverage_percent": 6.2428,
-    "registry_items_total": 54,
+    "formal_coverage_percent": 6.5896,
+    "registry_items_total": 57,
     "formal_images_inherited_via_redirect": 6,
     "formal_images_outside_public": 0,
     "image_exceptions_outside_public": 0,
@@ -46,20 +46,20 @@
       "applicability_reviewed": 865,
       "required": 820,
       "on_hold": 0,
-      "final_dispositions": 99,
-      "unresolved": 766,
+      "final_dispositions": 102,
+      "unresolved": 763,
       "by_stage": {
         "unreviewed": 0,
         "not_required": 45,
-        "awaiting_source": 766,
+        "awaiting_source": 763,
         "candidate": 0,
         "provenance_verified": 0,
         "subject_verified": 0,
         "verified": 0,
-        "promoted": 54
+        "promoted": 57
       }
     },
-    "evidence_sha256": "3fac9d8903c33f06d6090d6abf9a1d157cbbd3454b5ca4a8260f68b3907c19b6",
+    "evidence_sha256": "25057ddcb9f2fb6433bdefd4fb799fc3facdfa93aee9368b0c36b82b731baf2d",
     "rows": [
       {
         "id": "access_door",
@@ -376,15 +376,15 @@
       {
         "id": "bucket",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "A work bucket is a physical site container with clear visual identity; a representative reviewed photograph is appropriate.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+        "candidate_id": "wave11:bucket",
+        "source_entry_id": "bucket",
+        "attachment": "direct"
       },
       {
         "id": "butyl_tape_002",
@@ -415,15 +415,15 @@
       {
         "id": "cable_tie",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "A cable tie is a visually distinctive fastening item; a close subject-matched photograph is appropriate.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+        "candidate_id": "wave11:cable_tie",
+        "source_entry_id": "cable_tie",
+        "attachment": "direct"
       },
       {
         "id": "cable_tray",
@@ -649,15 +649,15 @@
       {
         "id": "chisel",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "A woodworking chisel is a distinctive bladed hand tool; a subject-matched photograph is appropriate.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+        "candidate_id": "wave11:chisel",
+        "source_entry_id": "chisel",
+        "attachment": "direct"
       },
       {
         "id": "circuit_breaker",
@@ -11458,17 +11458,17 @@
     },
     "tool": {
       "public_entries": 330,
-      "formal_image": 44,
-      "missing_formal_image": 262,
+      "formal_image": 47,
+      "missing_formal_image": 259,
       "not_required": 24,
       "unobtainable": 0
     }
   },
   "hashes": {
     "public_id_sha256": "d0264617677052f0f446a0f4ebbfafc2315766d5858480b7103267320d88752d",
-    "public_formal_image_id_sha256": "8b2210d4a221f0d82d9516b8347fdb97ed75b4313e4a6763077bde0d5150a282",
-    "public_missing_formal_image_id_sha256": "a63842d62b5e7dcc6dcc16844927a62721c06174e5fbabf293f293e5b827c7d9",
-    "public_image_classification_sha256": "51c09a4f946ec931444e002fb5bdeec33e2afa0f96d7284fa5f95a273e843beb"
+    "public_formal_image_id_sha256": "ff2db125d431083c0e4fa59e348f550564316244cd36a52fd469b05e2287d3bb",
+    "public_missing_formal_image_id_sha256": "dd3af81985aa2300049e85666bc1ab0a2fbe4778858d38d9240762d3fe69b6e2",
+    "public_image_classification_sha256": "272fc265c00b99725b9f1d3e14b439eb3c5c55e8de1a05e7f4f960b0fcf757a0"
   },
   "inherited_formal_images": [
     {
@@ -11517,12 +11517,12 @@
     "borescope",
     "brick_hammer",
     "brick_trowel",
-    "bucket",
     "butyl_tape_002",
     "cable_ramp",
-    "cable_tie",
     "cable_tray",
     "carpet_tile",
-    "caulk_back_up_tape"
+    "caulk_back_up_tape",
+    "caulk_finisher",
+    "caulking_scraper"
   ]
 }

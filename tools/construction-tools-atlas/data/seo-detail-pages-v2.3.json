@@ -12,15 +12,15 @@
     "revenue_priority_policy_version": "2026-09-19-revenue-priority-2",
     "public_content_quality_version": "2026-09-16-q014-identity-closure-1",
     "public_image_inventory_version": "2026-09-16-q014-identity-closure-1",
-    "image_registry_version": "2026-11-04-reviewed-image-wave10-saw-1",
+    "image_registry_version": "2026-11-05-reviewed-image-wave11-three-1",
     "affiliate_offers_version": "2026-09-18-wave6l-affiliate-1"
   },
   "summary": {
     "public_runtime_entries": 865,
-    "published_static_detail_pages": 45,
-    "with_promoted_image": 44,
+    "published_static_detail_pages": 48,
+    "with_promoted_image": 47,
     "image_not_required": 1,
-    "with_active_affiliate_mapping": 45
+    "with_active_affiliate_mapping": 48
   },
   "entries": [
     {
@@ -48,6 +48,18 @@
       "affiliate": "active"
     },
     {
+      "id": "bucket",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/bucket/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "cable_tie",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/cable_tie/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
       "id": "caliper",
       "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/caliper/",
       "image": "promoted",
@@ -56,6 +68,12 @@
     {
       "id": "caulking_gun",
       "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/caulking_gun/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "chisel",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/chisel/",
       "image": "promoted",
       "affiliate": "active"
     },

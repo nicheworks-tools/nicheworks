@@ -1,6 +1,6 @@
 {
   "schema": "cta-affiliate-image-acquisition-wave6-v2.3",
-  "version": "2026-11-04-reviewed-image-wave10-saw-1",
+  "version": "2026-11-05-reviewed-image-wave11-three-1",
   "policy": {
     "queue_order": "curated source-feasibility work order, NOT empirical market ranking",
     "no_guessed_search_volume": true,
@@ -17,8 +17,8 @@
   },
   "expected": {
     "active_affiliate_mappings": 430,
-    "revenue_ready": 45,
-    "awaiting_source": 385,
+    "revenue_ready": 48,
+    "awaiting_source": 382,
     "first_wave": 0,
     "source_leads": 3
   },
@@ -34,7 +34,10 @@
     "pipe_wrench",
     "wire_stripper",
     "speed_square",
-    "screwdriver"
+    "screwdriver",
+    "cable_tie",
+    "bucket",
+    "chisel"
   ],
   "source_leads": [
     {
@@ -143,6 +146,21 @@
       "entry_id": "nail_gun",
       "disposition": "promoted",
       "review": "Original JPEG / primary WebP visually inspected, Commons API SHA-1 matched verified original, attribution and publication lifecycle completed. Inspected original 2816x2112 JPEG and 960x720 WebP: one full pneumatic nail gun shown side-on with barrel, magazine, grip and air fitting; correct canonical subject."
+    },
+    {
+      "entry_id": "cable_tie",
+      "disposition": "promoted",
+      "review": "Full source JPEG and uncropped WebP visually inspected. License/attribution and exact Commons original SHA1 confirmed. Reviewed the original 1152x864 photo: distinct plastic cable tie locking heads, toothed straps and a closed green loop are visible; no product-pack-only image."
+    },
+    {
+      "entry_id": "bucket",
+      "disposition": "promoted",
+      "review": "Full source JPEG and uncropped WebP visually inspected. License/attribution and exact Commons original SHA1 confirmed. Reviewed full Commons photograph (3648x2736): a white plastic bucket with black carrying handle and open rim is fully visible; clear canonical bucket subject."
+    },
+    {
+      "entry_id": "chisel",
+      "disposition": "promoted",
+      "review": "Full source JPEG and uncropped WebP visually inspected. License/attribution and exact Commons original SHA1 confirmed. Reviewed the original 2992x2992 photograph: five full-size woodworking chisels, their handles, metal shafts and cutting edges are all identifiable."
     }
   ]
 }
