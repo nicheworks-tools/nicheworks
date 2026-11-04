@@ -1,0 +1,81 @@
+==> tools/color-replace/tests/behavior.test.mjs
+Color Replace behavior test passed.
+==> tools/csv-tidy/tests/behavior.test.mjs
+CSV Tidy behavior test passed.
+==> tools/exif-cleaner-mini/tests/behavior.test.mjs
+EXIF Cleaner Mini behavior test passed.
+==> tools/filetype-sniffer/tests/behavior.test.mjs
+FileType Sniffer behavior test passed.
+==> tools/jp-postal-lite/tests/behavior.test.mjs
+JP Postal Lite behavior test passed.
+==> tools/laundry-code-decode/tests/behavior.test.mjs
+Laundry Code Decode JIS L 0001:2024 behavior/data contract passed.
+==> tools/light-check/tests/behavior.test.mjs
+Light Check behavior test passed.
+==> tools/linebreak-doctor/tests/behavior.test.mjs
+LineBreak Doctor behavior test passed.
+==> tools/manual-finder/tests/behavior.test.mjs
+ManualFinder model-search and cross-maker consumable affiliate behavior tests passed.
+ManualFinder audited other-category model-search tests passed.
+ManualFinder RICOH consumables Wave 3 tests passed.
+ManualFinder OKI toner Wave 2 tests passed.
+ManualFinder OKI toner Wave 3 tests passed.
+ManualFinder OKI toner Wave 4 tests passed.
+ManualFinder OKI toner Wave 5 tests passed.
+ManualFinder OKI toner Wave 6 tests passed.
+ManualFinder OKI Ribbon Wave 1 tests passed.
+ManualFinder OKI value-service detail exclusion tests passed.
+ManualFinder KYOCERA copy-charge detail exclusion tests passed.
+ManualFinder KYOCERA toner Wave 8 tests passed.
+ManualFinder KYOCERA toner Wave 9 tests passed.
+ManualFinder KYOCERA toner Wave 10 tests passed.
+ManualFinder KYOCERA toner Wave 11 tests passed.
+ManualFinder KYOCERA toner Wave 12 tests passed.
+ManualFinder KYOCERA toner Wave 13 tests passed.
+ManualFinder KYOCERA toner Wave 14 tests passed.
+ManualFinder KYOCERA toner Wave 16 tests passed.
+ManualFinder KYOCERA wide-format toner Wave 17 tests passed.
+ManualFinder KYOCERA wide-format toner Wave 18 tests passed.
+ManualFinder KYOCERA toner Wave 19 tests passed.
+MANUALFINDER_AFFILIATE_COVERAGE {"total":1582,"basic":1073,"detail":285,"explicitlyExcluded":509,"excludedCategoryRecords":443,"makerIndexWithoutModel":66,"unclassified":0,"excludedCategories":["その他"],"excludedCategoryByMaker":{"Seiko":443},"printerDetailExcluded":7,"printerDetailExcludedByMaker":{"OKI":4,"KYOCERA Document Solutions":3},"printerMissingDetail":0,"printerMissingDetailByMaker":{},"printerMissingDetailModelsByMaker":{},"excludedFingerprint":"49e6ea9b3af3b076c76c17b5bbf16e2a483e8c10741c2a16683e39b8415e91ba","printerDetailExclusionFingerprint":"8e5b799ad801aee56b6489d4edebb2b50278a7459f3d339040fe2bb4be7a28c6","byCategory":{"PC・スマホ":{"total":18,"basic":0,"detail":0,"detailExcluded":0,"excludedCategory":0,"makerIndexWithoutModel":18,"unclassified":0},"家電":{"total":211,"basic":195,"detail":0,"detailExcluded":0,"excludedCategory":0,"makerIndexWithoutModel":16,"unclassified":0},"カメラ・映像":{"total":192,"basic":185,"detail":1,"detailExcluded":0,"excludedCategory":0,"makerIndexWithoutModel":7,"unclassified":0},"プリンター・複合機":{"total":296,"basic":291,"detail":284,"detailExcluded":7,"excludedCategory":0,"makerIndexWithoutModel":5,"unclassified":0},"その他":{"total":829,"basic":366,"detail":0,"detailExcluded":0,"excludedCategory":443,"makerIndexWithoutModel":20,"unclassified":0},"ネットワーク機器":{"total":31,"basic":31,"detail":0,"detailExcluded":0,"excludedCategory":0,"makerIndexWithoutModel":0,"unclassified":0},"オーディオ":{"total":5,"basic":5,"detail":0,"detailExcluded":0,"excludedCategory":0,"makerIndexWithoutModel":0,"unclassified":0}}}
+ManualFinder affiliate coverage audit passed.
+ManualFinder affiliate documentation sync audit passed.
+ManualFinder Nikon camera accessory Wave 1 passed.
+ManualFinder Nikon camera accessory Wave 2 passed.
+ManualFinder DJI Osmo Action camera accessory Wave 1 passed.
+ManualFinder DJI Air camera accessory Wave 2 passed.
+ManualFinder DJI Mini camera accessory Wave 3 passed.
+ManualFinder DJI Mavic 3 camera accessory Wave 4 passed.
+ManualFinder DJI Air 2S/Mavic Air 2 camera accessory Wave 5 passed.
+ManualFinder DJI compact power camera accessory Wave 6 passed.
+ManualFinder DJI Mini 2 camera accessory Wave 7 passed.
+ManualFinder DJI FPV camera accessory Wave 8 passed.
+ManualFinder DJI Avata camera accessory Wave 9 passed.
+ManualFinder DJI Mavic 2 camera accessory Wave 10 passed.
+ManualFinder DJI Mavic Mini camera accessory Wave 11 passed.
+ManualFinder DJI Mavic Air camera accessory Wave 12 passed.
+ManualFinder DJI Mavic Pro camera accessory Wave 13 passed.
+MANUALFINDER_CAMERA_ACCESSORY_COVERAGE {"cameraTotal":192,"cameraBasic":185,"cameraDetail":40,"cameraDetailExcluded":0,"cameraMissingAccessory":145,"cameraNonActionable":7,"cameraBasicByMaker":{"DJI":96,"OM SYSTEM":37,"GoPro":31,"Nikon":14,"Insta360":7},"cameraDetailByMaker":{"DJI":26,"Nikon":14},"cameraDetailExcludedByMaker":{},"cameraMissingAccessoryByMaker":{"DJI":70,"OM SYSTEM":37,"GoPro":31,"Insta360":7},"cameraMissingAccessoryModelsByMaker":{"DJI":["DJI Action 2","DJI Digital FPV System","DJI Goggles","DJI Goggles 2","DJI Goggles 3","DJI Goggles Integra","DJI Goggles N3","DJI Goggles RE","DJI Inspire 3","DJI Mavic 3 Enterprise","DJI Mavic 3M","DJI O3 Air Unit","DJI O4 Air Unit Series","DJI OM 4","DJI OM 4 SE","DJI OM 5","DJI Pocket 2","DJI RC","DJI RC 2","DJI RC Motion 2","DJI RC Motion 3","DJI RC Pro","DJI RC-N3 Remote Controller","DJI RS 2","DJI RS 3","DJI RS 3 Mini","DJI RS 3 Pro","DJI RS 4","DJI RS 4 Mini","DJI RS 4 Pro","DJI RS 5","DJI RSC 2","DJI Ronin 4D","DJI Ronin-SC","Inspire 1","Inspire 1 Pro/Raw","Inspire 2","Mavic 2 Enterprise Advanced","Mavic 2 Enterprise Series","Mavic Pro Platinum","Osmo","Osmo 360","Osmo Action","Osmo Mobile","Osmo Mobile 2","Osmo Mobile 3","Osmo Mobile 6","Osmo Mobile 7 Series","Osmo Mobile 8","Osmo Mobile SE","Osmo Nano","Osmo Pocket","Osmo Pocket 3","Osmo Pro and Raw","Osmo+","Phantom 3 Advanced","Phantom 3 Professional","Phantom 3 SE","Phantom 3 Standard","Phantom 4","Phantom 4 Advanced","Phantom 4 Pro","Phantom 4 Pro V2.0","Phantom 4 RTK","Ronin","Ronin 2","Ronin-M","Ronin-MX","Ronin-S","Spark"],"OM SYSTEM":["E-M1","E-M1 Mark II","E-M1 Mark III","E-M10","E-M10 Mark II","E-M10 Mark III","E-M10 Mark IV","E-M1X","E-M5","E-M5 Mark II","E-M5 Mark III","E-P1","E-P2","E-P3","E-P5","E-P7","E-PL1","E-PL10","E-PL2","E-PL3","E-PL5","E-PL6","E-PL7","E-PL8","E-PL9","E-PM1","E-PM2","OM-1","OM-1 Mark II","OM-3","OM-5","OM-5 Mark II","PEN-F","TG-4","TG-5","TG-6","TG-7"],"GoPro":["Fusion","HD HERO","HD HERO2","HERO","HERO 2014","HERO 2018","HERO Session","HERO+","HERO+ LCD","HERO10 Black","HERO11 Black","HERO11 Black Mini","HERO12 Black","HERO13 Black","HERO3","HERO3+","HERO4","HERO5 Black","HERO5 Session","HERO6 Black","HERO7 Black","HERO7 Silver","HERO7 White","HERO8 Black","HERO9 Black","LIT HERO","MAX","MAX2","MISSION 1","MISSION 1 PRO ILS","MISSION 1 Pro"],"Insta360":["Ace Pro 2","GO 3S","Link 2","Link 2C","X3","X4","X5"]},"cameraNonActionableByMaker":{"Canon":1,"DJI":1,"Fujifilm":1,"GoPro":1,"Nikon":1,"OM SYSTEM":1,"RICOH / PENTAX":1},"detailFingerprint":"d6707dfa730e5738ac9694c9d78889c01a6a4fbcc3e7e7c46f4bde22dacc696a","exclusionFingerprint":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+ManualFinder camera accessory coverage audit passed.
+ManualFinder camera accessory documentation sync audit passed.
+==> tools/money-template-checker/tests/behavior.test.mjs
+Money Template Checker behavior test passed.
+==> tools/name-old-kanji-checker/tests/behavior.test.mjs
+Name Old Kanji Checker behavior test passed.
+==> tools/phone-quickcheck/tests/behavior.test.mjs
+Phone QuickCheck behavior tests passed: search/i18n, recharge estimates, Apple unknown capacity, Lightning guidance, proprietary charging, and mobile sheet.
+==> tools/redirect-unwrapper/tests/behavior.test.mjs
+Redirect Unwrapper behavior test passed.
+==> tools/size-converter/tests/behavior.test.mjs
+Size Converter behavior test passed.
+==> tools/unicode-kanji-checker/tests/behavior.test.mjs
+Unicode Kanji Checker behavior test passed.
+==> tools/variant-kanji-compare/tests/behavior.test.mjs
+Variant Kanji Compare behavior test passed.
+==> tools/weatherdiff/tests/behavior.test.mjs
+WeatherDiff behavior test passed.
+==> tools/webp-avif-converter/tests/behavior.test.mjs
+WebP/AVIF Converter behavior test passed.
+==> tools/wifi-meter/tests/behavior.test.mjs
+WiFi Meter behavior test passed.
+Tool behavior tests passed: 19.
