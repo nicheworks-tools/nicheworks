@@ -174,6 +174,27 @@ async function httpSmoke(){
     assert.equal((html.match(/data-offer-key=/g)||[]).length,2,'Model affiliate handoffs must be verified '+target);
     assert.ok(html.includes('適格販売により収入を得ています'),'Model ad disclosure missing '+target);
   }
+
+  // Verify both ManualFinder locales really deploy the exact-SKU Samsung funnel
+  // and that the current app passes manufacturer manual evidence into matcher.
+  const manualMatcherResponse = await req('../manual-finder/phone-quickcheck-match.js');
+  assert.equal(manualMatcherResponse.status,200,'ManualFinder Galaxy matcher must be deployed');
+  const manualMatcher = await manualMatcherResponse.text();
+  assert.ok(manualMatcher.includes('SM-A233DZKDDCM'),'Live ManualFinder has no exact A23 DCM SKU');
+  assert.ok(manualMatcher.includes('SM-A223DZKADCM'),'Live ManualFinder has no exact A22 DCM SKU');
+  assert.ok(manualMatcher.includes('SM-A102DZRJDCM'),'Live ManualFinder has no exact A21 DCM SKU');
+  assert.ok(manualMatcher.includes('SM-A102DZRADCM'),'Live ManualFinder has no exact A20 DCM SKU');
+  const manualAppResponse = await req('../manual-finder/app.paged.js');
+  assert.equal(manualAppResponse.status,200,'ManualFinder JS must be deployed');
+  assert.ok((await manualAppResponse.text()).includes('linkFor(x.maker, x.model, x.manualUrl)'),
+    'Live ManualFinder is missing the required exact-source argument');
+  for (const locale of ['../manual-finder/','../manual-finder/en/']) {
+    const page = await req(locale);
+    assert.equal(page.status,200,'ManualFinder locale unavailable: '+locale);
+    assert.ok((await page.text()).includes('mf-galaxy-sku-20261104a'),
+      'ManualFinder has stale JS cache version: '+locale);
+  }
+  console.log('ManualFinder Galaxy referral HTTP PASS: 4 exact JP DCM SKU deep links, JP/EN scripts');
   console.log('Galaxy SEO HTTP PASS: 5 source-backed model guides and shared sponsored click tracker');
   console.log('SEO HTTP PASS: '+count+' crawlable phone entries, commercial charging guide');
   console.log('HTTP PASS: '+count+' verified public phones, assets and latest records');
