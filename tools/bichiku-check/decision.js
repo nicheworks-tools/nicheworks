@@ -81,12 +81,17 @@ function batterySupplyReview(s,options,now){
    validSpare&&Number.isInteger(Number((spare.batteryCells||{})[type]))?
      Math.floor(numeric((spare.batteryCells||{})[type])):0]));
  const devices=[];
+ const namedLightOwned=(options||[]).filter(o=>o.parent==="light"&&o.equivalence==="full")
+   .reduce((sum,o)=>sum+numeric(((s.variants||{})[mode+":"+o.id]||{}).qty),0);
  function include(source,id,parent,entry){
   const owned=Math.floor(numeric(entry.qty));
   if(!owned)return;
-  const working=unexpired(entry,now)&&entry.powerReadyConfirmed===true&&
+  const rawWorking=unexpired(entry,now)&&entry.powerReadyConfirmed===true&&
     Number.isInteger(Number(entry.powerReadyQty))?
     Math.min(owned,Math.floor(numeric(entry.powerReadyQty))):0;
+  const core=root.BichikuCore;
+  const working=source==="basic"&&parent==="light"&&core?
+    core.remainingManualQuantity(rawWorking,namedLightOwned,entry.manualCountBasis):rawWorking;
   if(!working)return;
   const type=String(entry.batteryType||"");
   const cells=Math.floor(numeric(entry.cellsPerChange));
@@ -204,14 +209,8 @@ function assessment(catalog,options,source,today){
  for(const row of calc.items){
   if(!["light","lantern","radio"].includes(row.item.id))continue;
   row.currentEffective=row.effective;
-  const sustaining=batteryReview.devices.filter(d=>d.parent===row.item.id);
-  const namedSustained=sustaining.filter(d=>d.source==="option")
+  row.sustainedEffective=batteryReview.devices.filter(d=>d.parent===row.item.id)
     .reduce((sum,d)=>sum+d.sustained,0);
-  const manualSustained=sustaining.filter(d=>d.source==="basic")
-    .reduce((sum,d)=>sum+d.sustained,0);
-  const entry=(s.stocks||{})[s.mode+":"+row.item.id]||{};
-  row.sustainedEffective=core.remainingManualQuantity(manualSustained,
-    row.variantOwned,entry.manualCountBasis)+namedSustained;
   if(s.powerOut){
    row.effective=row.sustainedEffective;
    row.missing=round(Math.max(0,row.required-row.effective));
@@ -258,10 +257,12 @@ function assessment(catalog,options,source,today){
     amount:waterAllocation,available:stored,condition:waterForPrep,requires:["safeWaterConfirmed","perItemPrepConfirmed","perItemWaterLiters"],
     note:waterConflict?"prepWaterInsufficient":s.safeWaterConfirmed?"waterAllocation":"prepWaterUnconfirmed"},
    {id:"batteryBudget",type:batteryReview.uncheckedDevices===0&&
-      batteryReview.shortages.length===0&&batteryReview.workingUnits>0?"ready":"review",
+      batteryReview.shortages.length===0&&batteryReview.workingUnits>0&&
+      !calc.items.some(r=>r.requiresManualReview&&["light","lantern","radio"].includes(r.item.id))?"ready":"review",
     amount:batteryReview.rows.reduce((n,r)=>n+r.required,0),
     available:batteryReview.rows.reduce((n,r)=>n+r.available,0),
-    condition:batteryReview.uncheckedDevices===0&&batteryReview.shortages.length===0,
+    condition:batteryReview.uncheckedDevices===0&&batteryReview.shortages.length===0&&
+      !calc.items.some(r=>r.requiresManualReview&&["light","lantern","radio"].includes(r.item.id)),
     requires:["batteries.batteryCells","devices.batteryType","devices.cellsPerChange",
       "devices.plannedChanges","devices.batteryPlanConfirmed"],
     note:"batterySharedBudget"},
