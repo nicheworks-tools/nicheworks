@@ -1636,12 +1636,12 @@
       "lgcode": "016098",
       "pref": "北海道",
       "municipality": "えりも町",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "limited",
+      "reviewed_at": "2026-11-05",
+      "qualifying_source_count": 2,
+      "distinct_link_type_count": 2,
       "service_provider": null,
-      "review_note": null
+      "review_note": "Batch 12: えりも町公式のごみ分別・令和8年度収集日案内と、2026-04-03更新の粗大ごみ・直接搬入手数料ページを確認。旧平成24年度分別PDFを令和8年度版と誤認しない。2独立URL・2種類のためlimited。"
     },
     {
       "lgcode": "016101",

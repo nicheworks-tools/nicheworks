@@ -1,0 +1,28 @@
+[
+  {
+    "pref": "北海道",
+    "city": "えりも町",
+    "name": "ごみの分別と出し方（令和8年度収集日・粗大ごみ・直接搬入案内）",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.erimo.lg.jp/section/choumin/u9c3nn0000000lmm.html",
+    "lgcode": "016098",
+    "last_checked": "2026-11-05",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "町公式。令和8年度収集日PDFへの案内あり。旧平成24年度の分別方法改正版も併記されているため、旧版を令和8年度版として扱わない。収集日PDFの地区別適用範囲は原文参照。"
+  },
+  {
+    "pref": "北海道",
+    "city": "えりも町",
+    "name": "ごみ処理手数料（粗大ごみ・直接搬入）",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.town.erimo.lg.jp/section/choumin/u9c3nn0000000lbr.html",
+    "lgcode": "016098",
+    "last_checked": "2026-11-05",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "町公式。2026年4月3日更新。粗大ごみの証紙料金と清掃センターへの事前連絡、直接搬入料金を案内。"
+  }
+]
