@@ -144,7 +144,7 @@ for (const item of items) {
     fail(`${slug}: og:url mismatch: expected ${expectedUrl}; found ${ogUrls[0] || '(empty)'}`);
   }
 
-  const schemaType = slug === 'release-guardian' ? 'TechArticle' : 'WebApplication';
+  const schemaType = ['release-guardian', 'product-founder-os'].includes(slug) ? 'TechArticle' : 'WebApplication';
   const apps = webApplications(html, relativeFile, schemaType);
   if (apps.length === 0) {
     fail(`${slug}: missing ${schemaType} JSON-LD`);

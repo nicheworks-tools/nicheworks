@@ -1,0 +1,27 @@
+name: Product Founder OS documentation schema regression
+
+on:
+  pull_request:
+    paths:
+      - "tools/product-founder-os/**"
+      - ".github/workflows/product-founder-doc-schema.yml"
+  push:
+    branches: [main]
+    paths:
+      - "tools/product-founder-os/**"
+      - ".github/workflows/product-founder-doc-schema.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  product-founder-doc:
+    name: Product Founder OS semantic documentation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Test both guide pages against real structured data
+        run: node --test tools/product-founder-os/documentation-schema.test.cjs

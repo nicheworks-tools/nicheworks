@@ -126,7 +126,7 @@ function check(file) {
     if (!html.includes('ca-pub-9879006623791275')) warnings.push('missing AdSense');
     if (!has(html, /application\/ld\+json/i)) warnings.push('missing JSON-LD');
     if (kind === 'tool') {
-      const expectedSchema = slug === 'release-guardian' ? 'TechArticle' : 'WebApplication';
+      const expectedSchema = ['release-guardian', 'product-founder-os'].includes(slug) ? 'TechArticle' : 'WebApplication';
       if (!html.includes(expectedSchema)) warnings.push(`missing ${expectedSchema} JSON-LD`);
     }
     if (!sitemap.includes(url)) warnings.push('not in sitemap.xml');
