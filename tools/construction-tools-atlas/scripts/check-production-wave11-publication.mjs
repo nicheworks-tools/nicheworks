@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import {createHash} from "node:crypto";
 const ROOT="https://nicheworks.app/tools/construction-tools-atlas";
 const ITEMS=[
-  ["cable_tie","992e9b0b6a214c1fa9c98e4b60871fb0ea677f88","結束バンド","Cable Tie"],
+  ["cable_tie","992e9b0b6a214c1fa9c98e4b60871fb0ea677f88","結束バンド","Cable tie"],
   ["bucket","900d18edd1a2956b7617db7a9e24ad9baac7b816","バケツ","Bucket"],
   ["chisel","a3f0ef8647c099528ee39cac9cfd5391a6662fd1","のみ","Chisel"]
 ];
