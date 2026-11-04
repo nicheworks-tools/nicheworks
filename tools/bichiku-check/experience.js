@@ -132,7 +132,7 @@ function renderChoices(a){
  // Older saved litres may not represent whole sealed bottles; preserve the original litres.
  const qValue=bottleFactor?(hasLegacyFraction?"":fmt(calculatedBottles)):fmt(n(v.qty));
  const qAttr=bottleFactor?"data-option-bottles":"data-option-qty";
- const vWaterNote=bottleFactor?'<p class="g-fine">'+esc(T.bottleSubtotal)+': <strong>'+fmt(n(v.qty))+'L</strong>. '+esc(T.bottleNote)+(hasLegacyFraction?' '+esc(T.bottleLegacy):'')+'</p>':"";
+ const vWaterNote=bottleFactor?'<p class="g-fine">'+esc(T.bottleSubtotal)+': <strong>'+fmt(n(v.qty))+'L</strong>. '+esc(T.bottleNote)+' '+esc(T.bottleWhole)+(hasLegacyFraction?' '+esc(T.bottleLegacy):'')+'</p>':"";
  const countable=o.equivalence==="full"&&(!state.noHeat||!["heat","verify"].includes(o.prep))&&(!state.powerOut||state.offGridHeatConfirmed||o.prep!=="heat")&&(!o.requiresWater||(a.waterForPrep&&v.prepConfirmed===true&&n(v.prepWaterLiters)>0));
  const unexpired=!v.expiry||v.expiry>=today();
  const ready=n(v.qty)>0&&unexpired&&(countable||(o.id==="toiletBags"&&state.toiletAssemblyConfirmed));
