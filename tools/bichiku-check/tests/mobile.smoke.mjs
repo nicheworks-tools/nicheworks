@@ -150,6 +150,10 @@ try{
   await page.locator('input[data-option-qty="cannedVeg"]').fill("3");
   await page.locator('input[data-option-qty="cannedVeg"]').press("Tab");
   assert.match(await page.locator(".g-food-role").nth(0).innerText(),/1 種類/);
+  assert.match(await page.locator('details.g-option[data-option="tunaCan"] .g-parent-fields label').first().innerText(),/主菜に使える食数/);
+  assert.match(await page.locator('details.g-option[data-option="cannedVeg"] .g-parent-fields label').first().innerText(),/登録数量/);
+  assert.match(await page.locator(".g-food-review").innerText(),/使用可能な主菜の登録食数: 2 食/);
+  assert.match(await page.locator(".g-food-review").innerText(),/成人の参考備蓄量/);
   assert.match(await page.locator(".g-food-role").nth(1).innerText(),/1 種類/);
   assert.match(await page.locator(".g-detail-status").innerText(),/21/,"vegetables and fish should not cover the 21 default staple portions");
   await page.reload({waitUntil:"domcontentloaded"});
