@@ -74,10 +74,15 @@ function foodGroupsHtml(a){
  '<h4>'+esc(T.foodGroupTitle)+'</h4>'+
  groups.map(g=>{
    const status=g.usableKinds>0?T.groupListed:g.recordedKinds>0?T.groupReview:T.groupEmpty;
+   const portions=g.role==="protein"?
+     '<p class="g-fine">'+esc(T.mainDishRegistered)+': <strong>'+fmt(g.usablePortions)+' '+esc(T.mealCount)+'</strong>'+
+     (a.mainDishReferencePortions===null?' · '+esc(T.mainDishIndividual):
+       ' / <a href="https://www.maff.go.jp/tokai/shohi/seikatsu/heya/rental/attach/pdf/saigairesipi-7.pdf" target="_blank" rel="noopener">'+esc(T.mainDishAdultExample)+'</a>: '+fmt(a.mainDishReferencePortions)+' '+esc(T.mealCount))+'</p>':"";
    return '<div class="g-food-role"><strong>'+esc(T["group"+g.role.charAt(0).toUpperCase()+g.role.slice(1)])+'</strong>'+
-    '<span>'+esc(status)+(g.usableKinds>0?' · '+g.usableKinds+' '+esc(T.groupKinds):"")+'</span></div>';
+    '<span>'+esc(status)+(g.usableKinds>0?' · '+g.usableKinds+' '+esc(T.groupKinds):"")+'</span></div>'+portions;
  }).join("")+
  '<p class="g-fine">'+esc(T.groupCaution)+'</p>'+
+ '<p class="g-fine">'+esc(T.groupPortionNote)+'</p>'+
  '<a href="https://www.maff.go.jp/j/zyukyu/foodstock/chapter03.html" target="_blank" rel="noopener">'+esc(T.groupSource)+'</a>'+
  '</div>';
 }
@@ -121,7 +126,7 @@ function renderChoices(a){
  if(!arr.length)return '<p class="g-fine">'+esc(T.noOptions)+'</p>';
  return arr.map(o=>{
  const v=getOption(o.id),bottleFactor=o.bottleLiters||0;
- const qLabel=bottleFactor?T.bottleCount:o.parent==="water"?T.litersTotal:o.parent==="food"?T.mealPortions:o.parent==="toilet"?T.toiletUses:T.quantity;
+ const qLabel=bottleFactor?T.bottleCount:o.parent==="water"?T.litersTotal:o.parent==="food"?(o.role==="staple"?T.mealPortions:o.role==="protein"?T.proteinPortions:T.produceQuantity):o.parent==="toilet"?T.toiletUses:T.quantity;
  const qValue=bottleFactor?fmt(n(v.qty)/bottleFactor):fmt(n(v.qty));
  const qAttr=bottleFactor?"data-option-bottles":"data-option-qty";
  const vWaterNote=bottleFactor?'<p class="g-fine">'+esc(T.bottleSubtotal)+': <strong>'+fmt(n(v.qty))+'L</strong>. '+esc(T.bottleNote)+'</p>':"";
