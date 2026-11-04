@@ -99,7 +99,7 @@ function heatControls(a){
   '<label class="g-check"><input type="checkbox" data-heat-check="stove" '+(stove.heatEquipmentConfirmed===true?"checked":"")+'>'+esc(T.heatEquipmentConfirm)+'</label>'+
   '<label class="g-check"><input type="checkbox" data-heat-check="gas" '+(gas.heatFuelCompatibleConfirmed===true?"checked":"")+'>'+esc(T.heatFuelConfirm)+'</label>'+
   '<p class="g-water-summary">'+esc(T.heatNeeded)+': <strong>'+fmt(h.requiredUses)+' '+esc(T.unitUses)+'</strong></p>'+
-  '<p class="g-water-summary">'+esc(T.heatAvailable)+': <strong>'+fmt(h.capacityUses)+' '+esc(T.unitUses)+'</strong></p>'+
+  '<p class="g-water-summary">'+esc(T.heatAvailable)+': <strong>'+fmt(h.verifiedCapacityUses)+' '+esc(T.unitUses)+'</strong></p>'+
   (h.uncheckedFoods.length?'<p class="g-pending">'+esc(T.heatUnchecked)+': '+fmt(h.uncheckedFoods.length)+'</p>':"")+
   (state.offGridHeatConfirmed?'<p class="g-fine">'+esc(T.heatLegacy)+'</p>':"")+
   '<p class="g-fine">'+esc(T.heatSafety)+' <a href="https://www.nite.go.jp/jiko/chuikanki/press/2024fy/prs241226.html" rel="noopener" target="_blank">'+esc(T.heatSafetySource)+'</a></p>'+
