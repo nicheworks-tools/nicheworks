@@ -11,11 +11,11 @@ test("generic sample button downloads a real four-column CSV without loading it 
   const files = [];
   const blobs = [];
   const input = { files: [], dispatchEvent() { throw new Error("generic download should not load a file"); } };
-  const button = { addEventListener(name, fn) { handlers.set(name, fn); } };
+  const button = { addEventListener(name, fn) { handlers.set("button:" + name, fn); } };
   const hint = { textContent: "" };
   const document = {
     readyState: "loading",
-    addEventListener(name, fn) { handlers.set(name, fn); },
+    addEventListener(name, fn) { handlers.set("document:" + name, fn); },
     querySelector(selector) {
       return { "#sampleBtn": button, "#fileInput": input, "#loadHint": hint }[selector] || null;
     },
@@ -34,9 +34,9 @@ test("generic sample button downloads a real four-column CSV without loading it 
     setTimeout(callback) { callback(); }
   };
   vm.runInNewContext(source, context);
-  handlers.get("DOMContentLoaded")();
-  assert.equal(typeof handlers.get("click"), "function");
-  handlers.get("click")();
+  handlers.get("document:DOMContentLoaded")();
+  assert.equal(typeof handlers.get("button:click"), "function");
+  handlers.get("button:click")();
   assert.deepEqual(files, ["sample-generic.csv"]);
   assert.equal(blobs.length, 1);
   const content = await blobs[0].text();
