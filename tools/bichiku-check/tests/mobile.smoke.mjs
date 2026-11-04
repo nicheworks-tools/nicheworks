@@ -196,6 +196,72 @@ try{
   console.log("PASS unmatched legacy water litres and integer bottle replacement");
   passed++;await ctx.close();
  }
+
+ // Toilet components require separately measured bag/absorbent counts and safe handling.
+ {
+  const {ctx,page,exceptions}=await open(390);
+  await page.locator("#calculate").click();
+  await page.locator('button[data-goal="toilet"]').click();
+  await page.locator('details.g-option[data-option="toiletBags"] summary').click();
+  await page.locator('input[data-toilet-component="bagQty"]').fill("8");
+  await page.locator('input[data-toilet-component="bagQty"]').press("Tab");
+  await page.locator('input[data-toilet-component="solidifierQty"]').fill("6");
+  await page.locator('input[data-toilet-component="solidifierQty"]').press("Tab");
+  assert.match(await page.locator(".g-detail-status").innerText(),/35/,"unverified components cannot cover 35 toilet uses");
+  await page.locator('input[data-toilet-component="solidifierQty"]').fill("2.5");
+  await page.locator('input[data-toilet-component="solidifierQty"]').press("Tab");
+  assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem("bichiku-check-v1")).variants["home:toiletBags"].solidifierQty),6,"fractional uses must not overwrite existing stock");
+  await page.locator('input[data-toilet-component="solidifierQty"]').fill("6");
+  await page.locator('input[data-toilet-component="solidifierQty"]').press("Tab");
+  await page.locator('input[data-setting="toiletAssemblyConfirmed"]').check();
+  await page.locator('input[data-setting="toiletSeatConfirmed"]').check();
+  await page.locator('input[data-setting="toiletStorageConfirmed"]').check();
+  assert.match(await page.locator(".g-detail-status").innerText(),/35/,"missing local disposal review blocks use");
+  await page.locator('input[data-setting="toiletDisposalConfirmed"]').check();
+  assert.match(await page.locator(".g-detail-status").innerText(),/29/,"six matched pairs count exactly once");
+  await page.locator('details.g-option[data-option="toiletKit"] summary').click();
+  await page.locator('input[data-option-qty="toiletKit"]').fill("5");
+  await page.locator('input[data-option-qty="toiletKit"]').press("Tab");
+  assert.match(await page.locator(".g-detail-status").innerText(),/24/,"five complete kits count separately");
+  await page.locator('input[data-setting="toiletStorageConfirmed"]').uncheck();
+  assert.match(await page.locator(".g-detail-status").innerText(),/35/,"unsafe storage blocks kits and loose pairs");
+  await page.reload({waitUntil:"domcontentloaded"});
+  await page.locator("#calculate").click();
+  await page.locator('button[data-goal="toilet"]').click();
+  await page.locator('details.g-option[data-option="toiletBags"] summary').click();
+  assert.equal(await page.locator('input[data-toilet-component="bagQty"]').inputValue(),"8");
+  assert.equal(await page.locator('input[data-toilet-component="solidifierQty"]').inputValue(),"6");
+  assert.equal(await page.locator('input[data-setting="toiletStorageConfirmed"]').isChecked(),false);
+  await noOverflow(page,"toilet matched-components 390px");
+  assert.deepEqual(exceptions,[]);
+  console.log("PASS toilet component matching, independent conditions and storage");
+  passed++;await ctx.close();
+ }
+
+ // Old combined-count stock is preserved but cannot silently become verified pairs.
+ {
+  const {ctx,page,exceptions}=await open(390);
+  await page.evaluate(()=>localStorage.setItem("bichiku-check-v1",JSON.stringify({
+   mode:"home",adults:1,days:7,stocks:{},variants:{"home:toiletBags":{qty:12}},
+   toiletAssemblyConfirmed:true,toiletSeatConfirmed:true,toiletStorageConfirmed:true,toiletDisposalConfirmed:true
+  })));
+  await page.reload({waitUntil:"domcontentloaded"});
+  await page.locator("#calculate").click();
+  await page.locator('button[data-goal="toilet"]').click();
+  await page.locator('details.g-option[data-option="toiletBags"] summary').click();
+  assert.match(await page.locator('details.g-option[data-option="toiletBags"]').innerText(),/以前の.*12/);
+  assert.match(await page.locator(".g-detail-status").innerText(),/35/,"legacy paired quantity needs explicit verification of both components");
+  await page.locator('input[data-toilet-component="bagQty"]').fill("12");
+  await page.locator('input[data-toilet-component="bagQty"]').press("Tab");
+  await page.locator('input[data-toilet-component="solidifierQty"]').fill("7");
+  await page.locator('input[data-toilet-component="solidifierQty"]').press("Tab");
+  assert.match(await page.locator(".g-detail-status").innerText(),/28/,"only seven separately confirmed combinations count");
+  assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem("bichiku-check-v1")).variants["home:toiletBags"].qty),12,"keep original saved legacy quantity for review");
+  assert.deepEqual(exceptions,[]);
+  console.log("PASS legacy toilet quantity preserved without automatic reuse");
+  passed++;await ctx.close();
+ }
+
  for(const [locale,dir] of locales){
   const {ctx,page,exceptions}=await open(390,dir);
   assert.equal(await page.locator("html").getAttribute("lang"),locale);
@@ -205,6 +271,10 @@ try{
   assert.ok(await page.locator(".g-layers>div").count()>=2,"floor and blanket separate "+locale);
   await page.locator('button[data-tab="fallback"]').click();
   assert.ok(await page.locator('details.g-option[data-option="cardboard"]').count(),"improvised cardboard "+locale);
+  await page.locator("button[data-back]").click();
+  await page.locator('button[data-goal="toilet"]').click();
+  assert.equal(await page.locator('input[data-setting^="toilet"]').count(),4,"four independent toilet confirmations "+locale);
+  assert.ok((await page.locator('label.g-check').filter({has:page.locator('input[data-setting="toiletDisposalConfirmed"]')}).innerText()).trim().length>10,"localized disposal language "+locale);
   await noOverflow(page,locale);
   assert.deepEqual(exceptions,[],"JS exceptions "+locale);
   await page.screenshot({path:path.join(folder,"locale-"+locale+".png"),fullPage:true});
