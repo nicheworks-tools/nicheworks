@@ -103,8 +103,8 @@ function conditions(a){
    ["toiletDisposalConfirmed",T.toiletDisposalConfirm]
   ];
   return '<p>'+esc(T.toiletExplanation)+'</p>'+
-    '<p class="g-water-summary">'+esc(T.toiletPairPotential)+': <strong>'+fmt(review.pairedUses)+' '+esc(T.toiletUses)+'</strong></p>'+
-    '<p class="g-water-summary">'+esc(T.toiletPairCredited)+': <strong>'+fmt(review.usableUses)+' '+esc(T.toiletUses)+'</strong></p>'+
+    '<p class="g-water-summary">'+esc(T.toiletPairPotential)+': <strong>'+fmt(review.pairedUses)+' '+esc(T.unitUses)+'</strong></p>'+
+    '<p class="g-water-summary">'+esc(T.toiletPairCredited)+': <strong>'+fmt(review.usableUses)+' '+esc(T.unitUses)+'</strong></p>'+
     checks.map(([id,label])=>'<label class="g-check"><input type="checkbox" data-setting="'+id+'" '+(state[id]?"checked":"")+'>'+esc(label)+'</label>').join("")+
     '<p class="g-fine">'+esc(T.toiletKitNote)+'</p>'+
     '<p class="g-fine">'+esc(T.toiletWasteNote)+' <a href="https://www.koho.metro.tokyo.lg.jp/2025/09/01-1.html" rel="noopener" target="_blank">'+esc(T.toiletSource)+'</a></p>';
