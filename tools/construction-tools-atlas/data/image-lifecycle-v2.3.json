@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-lifecycle-v2.3",
-  "version": "2026-11-04-reviewed-image-wave10-saw-1",
+  "version": "2026-11-05-reviewed-image-wave11-three-1",
   "candidates": [
     {
       "id": "existing:allen_key",
@@ -564,6 +564,33 @@
       "source_ref": {
         "file": "image-wave10-sources-v2.3.json",
         "entry_id": "reciprocating_saw"
+      }
+    },
+    {
+      "id": "wave11:cable_tie",
+      "source_entry_id": "cable_tie",
+      "kind": "photograph",
+      "source_ref": {
+        "file": "image-wave11-sources-v2.3.json",
+        "entry_id": "cable_tie"
+      }
+    },
+    {
+      "id": "wave11:bucket",
+      "source_entry_id": "bucket",
+      "kind": "photograph",
+      "source_ref": {
+        "file": "image-wave11-sources-v2.3.json",
+        "entry_id": "bucket"
+      }
+    },
+    {
+      "id": "wave11:chisel",
+      "source_entry_id": "chisel",
+      "kind": "photograph",
+      "source_ref": {
+        "file": "image-wave11-sources-v2.3.json",
+        "entry_id": "chisel"
       }
     }
   ],
@@ -1140,6 +1167,42 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-11-04T17:48:42Z",
+          "actor": "image-wave11-reviewed-20261105",
+          "reason": "Visually reviewed photograph of the full canonical tool or material.",
+          "candidate_id": "wave11:bucket",
+          "candidate_sha256": "b1629c0b6da3f3a49e5bc255c4a2de046b9d49feb91f56434d86addf1fe1a983",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-11-04T17:48:43Z",
+          "actor": "image-wave11-reviewed-20261105",
+          "reason": "Exact source bytes SHA-1 and length match pinned metadata and Commons MediaWiki API; author and license recorded.",
+          "candidate_id": "wave11:bucket",
+          "candidate_sha256": "b1629c0b6da3f3a49e5bc255c4a2de046b9d49feb91f56434d86addf1fe1a983",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-11-04T17:48:44Z",
+          "actor": "image-wave11-reviewed-20261105",
+          "reason": "Reviewed full Commons photograph (3648x2736): a white plastic bucket with black carrying handle and open rim is fully visible; clear canonical bucket subject.",
+          "candidate_id": "wave11:bucket",
+          "candidate_sha256": "b1629c0b6da3f3a49e5bc255c4a2de046b9d49feb91f56434d86addf1fe1a983",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-11-04T17:48:45Z",
+          "actor": "image-wave11-reviewed-20261105",
+          "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+          "candidate_id": "wave11:bucket",
+          "candidate_sha256": "b1629c0b6da3f3a49e5bc255c4a2de046b9d49feb91f56434d86addf1fe1a983",
+          "hold": null
         }
       ]
     },
@@ -1208,6 +1271,42 @@
           "reason": "A cable tie is a visually distinctive fastening item; a close subject-matched photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-11-04T17:48:37Z",
+          "actor": "image-wave11-reviewed-20261105",
+          "reason": "Visually reviewed photograph of the full canonical tool or material.",
+          "candidate_id": "wave11:cable_tie",
+          "candidate_sha256": "5479dba273c5a4238e16377146f828d3f365d47a9211770dade14605a9e530ce",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-11-04T17:48:38Z",
+          "actor": "image-wave11-reviewed-20261105",
+          "reason": "Exact source bytes SHA-1 and length match pinned metadata and Commons MediaWiki API; author and license recorded.",
+          "candidate_id": "wave11:cable_tie",
+          "candidate_sha256": "5479dba273c5a4238e16377146f828d3f365d47a9211770dade14605a9e530ce",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-11-04T17:48:39Z",
+          "actor": "image-wave11-reviewed-20261105",
+          "reason": "Reviewed the original 1152x864 photo: distinct plastic cable tie locking heads, toothed straps and a closed green loop are visible; no product-pack-only image.",
+          "candidate_id": "wave11:cable_tie",
+          "candidate_sha256": "5479dba273c5a4238e16377146f828d3f365d47a9211770dade14605a9e530ce",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-11-04T17:48:40Z",
+          "actor": "image-wave11-reviewed-20261105",
+          "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+          "candidate_id": "wave11:cable_tie",
+          "candidate_sha256": "5479dba273c5a4238e16377146f828d3f365d47a9211770dade14605a9e530ce",
           "hold": null
         }
       ]
@@ -1649,6 +1748,42 @@
           "reason": "A woodworking chisel is a distinctive bladed hand tool; a subject-matched photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-11-04T17:48:47Z",
+          "actor": "image-wave11-reviewed-20261105",
+          "reason": "Visually reviewed photograph of the full canonical tool or material.",
+          "candidate_id": "wave11:chisel",
+          "candidate_sha256": "4ee804b2f6851ed14cd8dc6d68fd7db5828638b23e340612c51e7f11ed5afee8",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-11-04T17:48:48Z",
+          "actor": "image-wave11-reviewed-20261105",
+          "reason": "Exact source bytes SHA-1 and length match pinned metadata and Commons MediaWiki API; author and license recorded.",
+          "candidate_id": "wave11:chisel",
+          "candidate_sha256": "4ee804b2f6851ed14cd8dc6d68fd7db5828638b23e340612c51e7f11ed5afee8",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-11-04T17:48:49Z",
+          "actor": "image-wave11-reviewed-20261105",
+          "reason": "Reviewed the original 2992x2992 photograph: five full-size woodworking chisels, their handles, metal shafts and cutting edges are all identifiable.",
+          "candidate_id": "wave11:chisel",
+          "candidate_sha256": "4ee804b2f6851ed14cd8dc6d68fd7db5828638b23e340612c51e7f11ed5afee8",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-11-04T17:48:50Z",
+          "actor": "image-wave11-reviewed-20261105",
+          "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+          "candidate_id": "wave11:chisel",
+          "candidate_sha256": "4ee804b2f6851ed14cd8dc6d68fd7db5828638b23e340612c51e7f11ed5afee8",
           "hold": null
         }
       ]

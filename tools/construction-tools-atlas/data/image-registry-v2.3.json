@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-registry-v2.3",
-  "version": "2026-11-04-reviewed-image-wave10-saw-1",
+  "version": "2026-11-05-reviewed-image-wave11-three-1",
   "policy": {
     "primary_format": "webp",
     "formal_min_state": "reviewed",
@@ -1303,6 +1303,78 @@
         "modifications": "Fit-within resize and auto-orientation, metadata stripped and WebP converted without cropping; original retained locally, public domain status unchanged."
       },
       "notes": "Wave10: Reviewed original 1008x523 JPEG: the full Craftsman reciprocating saw is identifiable, including blade, shoe, tool body and rear trigger handle. Fit-within WebP derivatives retain the full photo without cropping. Earlier cropped Makita candidates remain historical rejections."
+    },
+    {
+      "entry_id": "cable_tie",
+      "alt_ja": "白い背景上の黒・緑・青・白の樹脂製結束バンドとロック部分",
+      "alt_en": "Assorted black, green, blue and white nylon cable ties with locking heads",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/cable_tie/source.jpg",
+        "display": "./images/cable_tie/primary.webp",
+        "thumbnail": "./images/cable_tie/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Cable_ties.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Cable_ties.jpg",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "author": "Silverxxx (English Wikipedia)",
+        "attribution": "Silverxxx (English Wikipedia) / Wikimedia Commons, CC BY-SA 3.0",
+        "source_sha1": "992e9b0b6a214c1fa9c98e4b60871fb0ea677f88",
+        "modifications": "Auto-oriented, fit-within resized without cropping, metadata stripped, and converted to local WebP; exact original retained; derivative stays under source license."
+      },
+      "notes": "Wave11: Reviewed the original 1152x864 photo: distinct plastic cable tie locking heads, toothed straps and a closed green loop are visible; no product-pack-only image. Exact Commons original SHA-1 verified against independent pin and live MediaWiki API."
+    },
+    {
+      "entry_id": "bucket",
+      "alt_ja": "屋外の木製床面に置かれた黒い持ち手付き白い樹脂製バケツ",
+      "alt_en": "White plastic bucket with black carrying handle on a wooden deck",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/bucket/source.jpg",
+        "display": "./images/bucket/primary.webp",
+        "thumbnail": "./images/bucket/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/4/41/White_plastic_bucket.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:White_plastic_bucket.jpg",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "author": "Santeri Viinamäki",
+        "attribution": "Santeri Viinamäki / Wikimedia Commons, CC BY-SA 4.0",
+        "source_sha1": "900d18edd1a2956b7617db7a9e24ad9baac7b816",
+        "modifications": "Auto-oriented, fit-within resized without cropping, metadata stripped, and converted to local WebP; exact original retained; derivative stays under source license."
+      },
+      "notes": "Wave11: Reviewed full Commons photograph (3648x2736): a white plastic bucket with black carrying handle and open rim is fully visible; clear canonical bucket subject. Exact Commons original SHA-1 verified against independent pin and live MediaWiki API."
+    },
+    {
+      "entry_id": "chisel",
+      "alt_ja": "木の台上に並んだ幅の異なる木工用のみ5本と刃先",
+      "alt_en": "Five woodworking chisels with wooden handles and different cutting-edge widths",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/chisel/source.jpg",
+        "display": "./images/chisel/primary.webp",
+        "thumbnail": "./images/chisel/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Wood_chisels.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Wood_chisels.jpg",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "author": "Michaelkurek011",
+        "attribution": "Michaelkurek011 / Wikimedia Commons, CC BY-SA 4.0",
+        "source_sha1": "a3f0ef8647c099528ee39cac9cfd5391a6662fd1",
+        "modifications": "Auto-oriented, fit-within resized without cropping, metadata stripped, and converted to local WebP; exact original retained; derivative stays under source license."
+      },
+      "notes": "Wave11: Reviewed the original 2992x2992 photograph: five full-size woodworking chisels, their handles, metal shafts and cutting edges are all identifiable. Exact Commons original SHA-1 verified against independent pin and live MediaWiki API."
     }
   ]
 }

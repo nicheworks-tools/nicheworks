@@ -1,0 +1,56 @@
+{
+  "schema": "cta-image-wave11-sources-v2.3",
+  "version": "2026-11-05-reviewed-image-wave11-three-1",
+  "policy": {
+    "runtime_hotlink": false,
+    "source_provider": "Wikimedia Commons",
+    "promotion_rule": "Only three visually reviewed source photos with independently pinned original SHA-1, a Commons API byte/hash match, and complete uncropped local WebP may be published."
+  },
+  "items": [
+    {
+      "entry_id": "cable_tie",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Cable_ties.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Cable_ties.jpg",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "author": "Silverxxx (English Wikipedia)",
+      "attribution": "Silverxxx (English Wikipedia) / Wikimedia Commons, CC BY-SA 3.0",
+      "source_sha1": "992e9b0b6a214c1fa9c98e4b60871fb0ea677f88",
+      "source_filename": "source.jpg",
+      "expected_sha1": "992e9b0b6a214c1fa9c98e4b60871fb0ea677f88",
+      "subject_match": "matched",
+      "review_state": "verified",
+      "review_note": "Reviewed the original 1152x864 photo: distinct plastic cable tie locking heads, toothed straps and a closed green loop are visible; no product-pack-only image."
+    },
+    {
+      "entry_id": "bucket",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/4/41/White_plastic_bucket.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:White_plastic_bucket.jpg",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "author": "Santeri Viinamäki",
+      "attribution": "Santeri Viinamäki / Wikimedia Commons, CC BY-SA 4.0",
+      "source_sha1": "900d18edd1a2956b7617db7a9e24ad9baac7b816",
+      "source_filename": "source.jpg",
+      "expected_sha1": "900d18edd1a2956b7617db7a9e24ad9baac7b816",
+      "subject_match": "matched",
+      "review_state": "verified",
+      "review_note": "Reviewed full Commons photograph (3648x2736): a white plastic bucket with black carrying handle and open rim is fully visible; clear canonical bucket subject."
+    },
+    {
+      "entry_id": "chisel",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Wood_chisels.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Wood_chisels.jpg",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "author": "Michaelkurek011",
+      "attribution": "Michaelkurek011 / Wikimedia Commons, CC BY-SA 4.0",
+      "source_sha1": "a3f0ef8647c099528ee39cac9cfd5391a6662fd1",
+      "source_filename": "source.jpg",
+      "expected_sha1": "a3f0ef8647c099528ee39cac9cfd5391a6662fd1",
+      "subject_match": "matched",
+      "review_state": "verified",
+      "review_note": "Reviewed the original 2992x2992 photograph: five full-size woodworking chisels, their handles, metal shafts and cutting edges are all identifiable."
+    }
+  ]
+}
