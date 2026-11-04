@@ -94,6 +94,24 @@ Both English and Japanese OCR photo interfaces now have an **off-by-default** "E
 
 Automated regression: `node tools/_shared/check-fastscan-image-enhancement.mjs` checks untouched default-image handling, concrete grayscale pixel writes, upscale and memory cap, expected failure handling and blob-URL release, bilingual option wiring, optional QA comparison and photo privacy. The noindex QA page at `tools/inci-fastscan/qa/photo-ocr-benchmark.html` now exposes the same checkbox so manual testers can compare original and browser-enhanced scans of a **single independently transcribed real label**.
 
+## Japanese photographed-label INCI expansion — wave 4 (2026-11-04)
+
+This source-backed wave adds **five new non-colliding canonical INCI identities with exact Japanese package names** to the two-product Japanese photographed-label research corpus. All records have `safety: "unrated"`, neutral ingredient-role notes, and two HTTPS nomenclature/function references. Do not infer safety, product suitability, or regulatory eligibility from a dictionary match.
+
+| Actual published Japanese display | Canonical INCI | Independent identity/role sources |
+| --- | --- | --- |
+| セラミドAG | Ceramide AG | [Nippon Seika manufacturer Japanese name/INCI table](https://nipponseika-cosme.com/products/phytopresome-cera-v), [COSMILE humectant/conditioning role](https://cosmileeurope.eu/inci/detail/23595/ceramide-ag/) |
+| 金 | Gold | [Cosmetic-Info.jp exact Japanese / INCI entry](https://www.cosmetic-info.jp/jcln/detail.php?id=3169), [COSMILE colour and conditioning roles](https://cosmileeurope.eu/inci/detail/6171/gold/) |
+| 銀 | Silver | [Beaker ingredient-name/INCI record](https://beaker.media/jsln_ingredients/555881), [COSMILE conditioning/deodorant roles](https://cosmileeurope.eu/inci/detail/20223/silver/) |
+| ラウリン酸メチルヘプチル | Methylheptyl Laurate | [Japanese exact ingredient/INCI listing](https://www.ishampoo.jp/kaiseki/ingredients/59577), [COSMILE emollient role](https://cosmileeurope.eu/inci/detail/17786/methylheptyl-laurate/) |
+| o-シメン-5-オール | o-Cymen-5-ol | [Cosmetic-Info.jp **revised** Japanese display/INCI entry](https://www.cosmetic-info.jp/jcln/detail.php?id=11529), [COSMILE preservative role](https://cosmileeurope.eu/inci/detail/9545/o-cymen-5-ol/) |
+
+The old `シメン-5-オール` spelling is not silently substituted for the newer official `o-シメン-5-オール`; only the exact published corpus spelling is registered here. The o-Cymen-5-ol supplier and display-name references identify **concentration-dependent restrictions in Japan**. Gold and Silver may require form-/market-dependent review. **The UI remains non-safety-rating**, and this work does **not** certify a particular product's permitted concentration, compliance or safety.
+
+Two particular candidate source-list names are deliberately **not matched**: `ハマメリス水` has been used for more than one Japanese-display-name/INCI identity ([separate distillate/water entries](https://www.cosmetic-info.jp/jcln/detail.php?id=79787)); `白金` is associated with both Platinum and Platinum Powder ([JP nomenclature entry](https://beaker.media/jsln_ingredients/557480)). A product source list alone is insufficient to choose between those. A similarly named `コロイド性白金` is also held until an exact Japanese-source/INCI mapping is reviewed; never merge these as synonyms.
+
+Pre-wave 4: **90/127** publicly published Japanese product ingredient names matched the maintained dictionary. Post-wave 4 expected: **95/127**, with **32/127** still needing independent source-backed identity review. The dedicated `qa/check-japanese-source-backed-wave4.mjs` asserts exact JP/INCI identity, individual source URLs, preservation of existing canonical names, distinct entries rather than arbitrary aliases, `unrated` legacy safety and source-list positive-control coverage. Both core cosmetics QA and **actual Japanese photographed-product CI** run the tests. These 127 names are **public product-formula reference names**, not verified package-photo transcriptions; optional image preprocessing is still off by default and these data do not certify phone OCR accuracy.
+
 ## Japanese photographed-label INCI expansion — wave 3 (2026-11-03)
 
 Following the source-backed first nine exact Japanese display-name aliases and four new canonical substances, the fixed Japanese photographed-package source inventory still contained **44 names absent from the maintained dictionary**. This wave adds **seven different, source-verified INCI substances**, each with the exact product label spelling and an individually source-backed, *neutral* function note. **All seven keep the explicit legacy `safety: "unrated"`; no new safety, pregnancy, allergy, efficacy, product or regulatory verdict is manufactured.**
