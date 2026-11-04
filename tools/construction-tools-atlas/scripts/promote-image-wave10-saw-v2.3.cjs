@@ -4,6 +4,7 @@ const fs=require("node:fs"),fsp=require("node:fs/promises"),path=require("node:p
 const ROOT=path.resolve(__dirname,".."),DATA=path.join(ROOT,"data"),IMAGES=path.join(ROOT,"images");
 const ID="reciprocating_saw",VERSION="2026-11-04-reviewed-image-wave10-saw-1";
 const COMMONS_FILENAME="Reciprocating Saw.JPG",SOURCE_PAGE="https://commons.wikimedia.org/wiki/File:Reciprocating_Saw.JPG",SOURCE_URL="https://upload.wikimedia.org/wikipedia/commons/0/04/Reciprocating_Saw.JPG";
+const EXPECTED_SHA1="9047f33a40e43b9467118af7f30851eda425fc04";
 const AUTHOR="Junglecat",LICENSE="Public Domain (PD-self)",LICENSE_URL="https://commons.wikimedia.org/wiki/Template:PD-self",ATTRIBUTION="Junglecat / Wikimedia Commons, Public Domain (PD-self)";
 const ASSESSMENT="Reviewed original 1008x523 JPEG: the full Craftsman reciprocating saw is identifiable, including blade, shoe, tool body and rear trigger handle. Fit-within WebP derivatives retain the full photo without cropping. Earlier cropped Makita candidates remain historical rejections.";
 const read=(name)=>JSON.parse(fs.readFileSync(path.join(DATA,name),"utf8")),write=(name,obj)=>fs.writeFileSync(path.join(DATA,name),JSON.stringify(obj,null,2)+"\n");
@@ -22,9 +23,11 @@ async function getSource(){
   const resp=await fetch(api,{headers:{"user-agent":ua,"accept":"application/json"}});
   ensure(resp.ok,"Commons API HTTP "+resp.status);
   const body=await resp.json(),meta=Object.values(body.query?.pages||{})[0]?.imageinfo?.[0];
-  ensure(meta&&meta.sha1===hash&&meta.size===bytes.length,"original hash/size disagrees with Commons");
+  ensure(meta&&meta.sha1===hash&&hash===EXPECTED_SHA1&&meta.size===bytes.length,"original hash/size differs from independently pinned Commons original");
   const a=new URL(meta.url),b=new URL(SOURCE_URL);
-  ensure(a.origin===b.origin&&a.pathname===b.pathname&&!a.search&&!a.hash,"Commons URL differs from reviewed original "+JSON.stringify({api_url:meta.url,expected_url:SOURCE_URL,sha1:hash}));
+  const tracking={utm_source:"commons.wikimedia.org",utm_campaign:"imageinfo",utm_content:"original"};
+  const queryValid=[...a.searchParams].every(([key,value])=>Object.hasOwn(tracking,key)&&tracking[key]===value);
+  ensure(a.origin===b.origin&&a.pathname===b.pathname&&queryValid&&!a.hash,"Commons URL differs from reviewed original "+JSON.stringify({api_url:meta.url,expected_url:SOURCE_URL,sha1:hash}));
   console.log("CTA_WAVE10_SOURCE_VERIFIED="+JSON.stringify({entry_id:ID,sha1:hash,bytes:bytes.length,url:SOURCE_URL}));
   return{bytes,hash};
 }
