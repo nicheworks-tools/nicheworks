@@ -33,15 +33,21 @@ function unexpired(item,now){
  return !expiry||expiry>=now;
 }
 function storedWater(s,options,now){
- let sum=0;
+ let namedOwned=0,namedUsable=0;
  const general=(s.stocks||{})[s.mode+":water"]||{};
- if(unexpired(general,now))sum+=numeric(general.qty);
  for(const o of (options||[])){
-   if(o.parent!=="water"||o.equivalence!=="full")continue;
-   const entry=(s.variants||{})[s.mode+":"+o.id]||{};
-   if(unexpired(entry,now))sum+=numeric(entry.qty);
+  if(o.parent!=="water"||o.equivalence!=="full")continue;
+  const entry=(s.variants||{})[s.mode+":"+o.id]||{};
+  namedOwned+=numeric(entry.qty);
+  if(unexpired(entry,now))namedUsable+=numeric(entry.qty);
  }
- return round(sum);
+ const manual=unexpired(general,now)?numeric(general.qty):0;
+ // Use the same overlap rule as the displayed water row; do not let
+ // food preparation spend water counted twice in legacy inventory.
+ const core=root.BichikuCore;
+ const manualExtra=core&&core.remainingManualQuantity?
+   core.remainingManualQuantity(manual,namedOwned,general.manualCountBasis):manual;
+ return round(namedUsable+manualExtra);
 }
 // Presence of food groups is an inventory audit, NOT a nutrient or calorie score.
 // Only explicitly catalogued ready-to-use foods count; unclassified stocks remain unknown.
@@ -198,8 +204,14 @@ function assessment(catalog,options,source,today){
  for(const row of calc.items){
   if(!["light","lantern","radio"].includes(row.item.id))continue;
   row.currentEffective=row.effective;
-  row.sustainedEffective=batteryReview.devices.filter(d=>d.parent===row.item.id)
+  const sustaining=batteryReview.devices.filter(d=>d.parent===row.item.id);
+  const namedSustained=sustaining.filter(d=>d.source==="option")
     .reduce((sum,d)=>sum+d.sustained,0);
+  const manualSustained=sustaining.filter(d=>d.source==="basic")
+    .reduce((sum,d)=>sum+d.sustained,0);
+  const entry=(s.stocks||{})[s.mode+":"+row.item.id]||{};
+  row.sustainedEffective=core.remainingManualQuantity(manualSustained,
+    row.variantOwned,entry.manualCountBasis)+namedSustained;
   if(s.powerOut){
    row.effective=row.sustainedEffective;
    row.missing=round(Math.max(0,row.required-row.effective));
@@ -215,10 +227,19 @@ function assessment(catalog,options,source,today){
  const toilet=calc.items.find(x=>x.item.id==="toilet");
  if(toilet){
    toilet.assembledUses=assemblyUses;
-   // Count a matched pair as owned even if it needs installation/disposal review;
-   // only verified uses cover the shortage. Old unverified qty is NOT auto-credited.
-   toilet.owned=round(toilet.owned+toiletReview.pairedUses);
-   toilet.effective=round(toilet.effective+assemblyUses);
+   // Loose bag/solidifier pairs may already be included in a manual total.
+   const listed=toilet.variantOwned+toiletReview.pairedUses;
+   const manual=(s.stocks||{})[s.mode+":toilet"]||{};
+   const basis=manual.manualCountBasis;
+   toilet.listedOwned=listed;
+   toilet.requiresManualReview=toilet.ownedManual>0&&listed>0&&
+     !["additional","includes_options"].includes(basis);
+   const creditedManual=core.remainingManualQuantity(toilet.rawManualEffective,listed,basis);
+   const recordedManual=core.remainingManualQuantity(toilet.ownedManual,listed,basis);
+   toilet.manualEffective=creditedManual;
+   toilet.owned=toilet.ownedManual>0&&listed>0&&basis!=="additional"?
+     Math.max(toilet.ownedManual,listed):round(listed+recordedManual);
+   toilet.effective=round(toilet.variantEffective+creditedManual+assemblyUses);
    toilet.missing=round(Math.max(0,toilet.required-toilet.effective));
  }
  const byId=new Map(calc.items.map(x=>[x.item.id,x]));
