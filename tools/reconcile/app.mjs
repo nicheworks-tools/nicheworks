@@ -14,6 +14,9 @@ const PRO_XLSX_MAX_BYTES = 25 * 1024 * 1024;
 const RECONCILE_PRODUCT_ID = 'reconcile.pro_v1';
 const RECONCILE_FEATURE_ID = 'reconcile_pro_v1';
 const profileStore = createProfileStore(localStorage);
+const loadEpoch = { a: 0, b: 0 };
+let inputEpoch = 0;
+let pendingReparse = 0;
 
 const state = {
   lang: localStorage.getItem('nw_lang') || (navigator.language.startsWith('ja') ? 'ja' : 'en'),
@@ -30,6 +33,30 @@ const state = {
 };
 
 const $ = (id) => document.getElementById(id);
+
+function invalidateResults() {
+  inputEpoch += 1;
+  state.results = [];
+  state.filtered = [];
+  state.runContext = null;
+  state.resultPage = 1;
+  $('summary').replaceChildren();
+  $('resultBody').replaceChildren();
+  $('resultCount').textContent = '0 / 0';
+  $('resultPage').textContent = '0 / 0';
+  $('resultPrevBtn').disabled = true;
+  $('resultNextBtn').disabled = true;
+}
+
+function clearLoadedSide(side) {
+  state[side] = null;
+  const suffix = side.toUpperCase();
+  for (const field of ['amount', 'date', 'reference', 'description']) {
+    populateSelect($(`${field}${suffix}`), [], message('未選択', 'Not selected'));
+  }
+  hideSheetSelect(side);
+  renderPreview(side);
+}
 const message = (ja, en) => state.lang === 'ja' ? ja : en;
 
 function escapeHtml(value) {
@@ -272,10 +299,12 @@ function currentSideMapping(side) {
 }
 
 async function reparseLoadedCsv(side) {
+  const version = loadEpoch[side];
   const current = state[side];
   if (!current || current.type !== 'csv' || !current.sourceFile) return false;
   const previous = currentSideMapping(side);
   const parsed = await readCsvFile(current.sourceFile, { encoding: $('encoding').value, delimiter: selectedCsvDelimiter() });
+  if (version !== loadEpoch[side] || current !== state[side]) return false;
   const table = tableFromRows(parsed.rows, Number($('headerRow').value || 1));
   if (!rowLimitOk(table, 'csv')) return false;
   state[side] = {
@@ -297,24 +326,31 @@ async function reparseLoadedCsv(side) {
 }
 
 async function reparseLoadedCsvs({ announce = true } = {}) {
+  pendingReparse += 1;
+  const version = inputEpoch;
   let reparsed = 0;
   try {
     for (const side of ['a', 'b']) {
       if (await reparseLoadedCsv(side)) reparsed += 1;
     }
   } catch (error) {
-    setNotice(message(`CSV解析設定を適用できませんでした: ${error.message}`, `Could not apply CSV parser settings: ${error.message}`), 'error');
+    if (version === inputEpoch) {
+      setNotice(message(`CSV解析設定を適用できませんでした: ${error.message}`, `Could not apply CSV parser settings: ${error.message}`), 'error');
+    }
     return false;
+  } finally {
+    pendingReparse -= 1;
   }
-  if (announce && reparsed) {
+  if (announce && reparsed && version === inputEpoch) {
     setNotice(message(`CSV解析設定を${reparsed}ファイルに再適用しました。`, `Reapplied CSV parser settings to ${reparsed} loaded file(s).`), 'success');
   }
-  return true;
+  return version === inputEpoch;
 }
 
-async function loadCsv(side, file) {
+async function loadCsv(side, file, version) {
   const selectedDelimiter = selectedCsvDelimiter();
   const parsed = await readCsvFile(file, { encoding: $('encoding').value, delimiter: selectedDelimiter });
+  if (version !== loadEpoch[side]) return;
   const table = tableFromRows(parsed.rows, Number($('headerRow').value || 1));
   hideSheetSelect(side);
   if (!installTable(side, table, {
@@ -329,9 +365,11 @@ async function loadCsv(side, file) {
   setNotice(message(`${side.toUpperCase()}のCSVを読み込みました。`, `Loaded CSV file ${side.toUpperCase()}.`), 'success');
 }
 
-async function loadXlsx(side, file) {
+async function loadXlsx(side, file, version) {
   await ensureXlsxAvailable();
+  if (version !== loadEpoch[side]) return;
   const source = await readXlsxFile(file);
+  if (version !== loadEpoch[side]) return;
   const sheetName = source.sheetNames[0];
   const table = tableFromXlsx(source, sheetName, Number($('headerRow').value || 1));
   configureSheetSelect(side, source.sheetNames, sheetName);
@@ -352,6 +390,9 @@ function maxFileBytesFor(type) {
 }
 
 async function loadFile(side, file) {
+  const version = ++loadEpoch[side];
+  invalidateResults();
+  clearLoadedSide(side);
   if (!file) return;
   const lower = file.name.toLowerCase();
   const type = lower.endsWith('.xlsx') ? 'xlsx' : lower.endsWith('.csv') ? 'csv' : '';
@@ -366,9 +407,10 @@ async function loadFile(side, file) {
     return;
   }
   try {
-    if (type === 'csv') await loadCsv(side, file);
-    else await loadXlsx(side, file);
+    if (type === 'csv') await loadCsv(side, file, version);
+    else await loadXlsx(side, file, version);
   } catch (error) {
+    if (version !== loadEpoch[side]) return;
     const code = String(error?.message || error);
     if (code === 'xlsx_library_missing' || code === 'xlsx_vendor_load_failed') {
       setNotice(message('XLSX処理ライブラリを読み込めませんでした。ローカルvendorの読み込みに失敗したためXLSX処理を停止しました。', 'The XLSX library could not be loaded. XLSX processing stopped because the local vendor payload failed to load.'), 'warning');
@@ -434,6 +476,9 @@ function setMapping(side, savedMapping) {
 async function applyProfile(profile) {
   const config = profile?.config;
   if (!config) return;
+  invalidateResults();
+  ++loadEpoch.a;
+  ++loadEpoch.b;
   $('encoding').value = config.parser.encoding;
   $('delimiter').value = config.parser.delimiter === '\t' ? 'tab' : config.parser.delimiter;
   $('headerRow').value = String(config.parser.headerRow);
@@ -528,6 +573,8 @@ async function importProfiles(file) {
 }
 
 function run() {
+  invalidateResults();
+  if (pendingReparse > 0) return setNotice(message('CSV解析設定の適用中です。完了後に照合してください。', 'CSV settings are being applied. Run reconciliation after parsing finishes.'), 'warning');
   if (!state.a || !state.b) return setNotice(message('ファイルAとBを読み込んでください。', 'Load both file A and file B.'), 'error');
   const mappingA = mapping('a');
   const mappingB = mapping('b');
@@ -628,8 +675,10 @@ function exportCsv() {
 async function exportXlsx() {
   if (!requirePro()) return;
   if (!state.results.length || !state.runContext) return setNotice(message('先に照合してください。', 'Run reconciliation first.'), 'error');
+  const version = inputEpoch;
   try {
     await ensureXlsxAvailable();
+    if (version !== inputEpoch || !state.runContext) return;
     const bytes = resultsWorkbookBytes(state.results, state.runContext);
     downloadBytes(`nicheworks-reconcile-${new Date().toISOString().slice(0, 10)}.xlsx`, bytes, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
   } catch (error) {
@@ -638,6 +687,9 @@ async function exportXlsx() {
 }
 
 function loadSample() {
+  ++loadEpoch.a;
+  ++loadEpoch.b;
+  invalidateResults();
   const csvA = 'Date,Reference,Description,Amount\n2026-09-01,ORD-001,Alpha,12800\n2026-09-02,ORD-002,Beta,5500\n2026-09-03,ORD-003,Gamma,20000\n2026-09-04,ORD-004,Delta,10000\n';
   const csvB = 'Transaction Date,Transaction ID,Memo,Total\n2026-09-01,ORD-001,Alpha settlement,12800\n2026-09-03,ORD-002,Beta settlement,5500\n2026-09-03,ORD-003,Gamma settlement,20000\n2026-09-05,ORD-999,Other,7777\n';
   const make = (text, name) => {
@@ -667,22 +719,41 @@ function wire() {
   document.querySelectorAll('[data-lang]').forEach((button) => button.addEventListener('click', () => setLang(button.dataset.lang)));
   $('fileA').addEventListener('change', (event) => loadFile('a', event.target.files[0]));
   $('fileB').addEventListener('change', (event) => loadFile('b', event.target.files[0]));
-  $('encoding').addEventListener('change', () => reparseLoadedCsvs());
-  $('delimiter').addEventListener('change', () => reparseLoadedCsvs());
+  for (const control of ['encoding', 'delimiter']) {
+    $(control).addEventListener('change', () => {
+      ++loadEpoch.a;
+      ++loadEpoch.b;
+      invalidateResults();
+      reparseLoadedCsvs();
+    });
+  }
   $('sheetA').addEventListener('change', (event) => {
+    invalidateResults();
     if (!state.a?.xlsxSource) return;
     state.a.sheetName = event.target.value;
     rebuildSide('a');
   });
   $('sheetB').addEventListener('change', (event) => {
+    invalidateResults();
     if (!state.b?.xlsxSource) return;
     state.b.sheetName = event.target.value;
     rebuildSide('b');
   });
   $('headerRow').addEventListener('change', () => {
+    ++loadEpoch.a;
+    ++loadEpoch.b;
+    invalidateResults();
     if (state.a) rebuildSide('a');
     if (state.b) rebuildSide('b');
   });
+  for (const side of ['A', 'B']) {
+    for (const field of ['amount', 'date', 'reference', 'description']) {
+      $(`${field}${side}`).addEventListener('change', invalidateResults);
+    }
+  }
+  for (const control of ['dateTolerance', 'dateMode', 'amountTolerance', 'signMode', 'groupMatching', 'maxGroupSize']) {
+    $(control).addEventListener('change', invalidateResults);
+  }
   $('sampleBtn').addEventListener('click', loadSample);
   $('reconcileBtn').addEventListener('click', run);
   $('statusFilter').addEventListener('change', applyFilter);
