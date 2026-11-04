@@ -7,9 +7,9 @@ import { spawn } from "node:child_process";
 
 
 const ORIGIN="https://nicheworks.app";
-const EXPECTED_ASSET_VERSION="20261103-final-five-identities-1";
-const PREVIOUS_ASSET_VERSION="20261102-reviewed-aliases-wave3-4";
-const SECOND_PREVIOUS_ASSET_VERSION="20261102-reviewed-aliases-wave3-3";
+const EXPECTED_ASSET_VERSION="20261103-final-five-reviewed-aliases-2";
+const PREVIOUS_ASSET_VERSION="20261103-final-five-identities-1";
+const SECOND_PREVIOUS_ASSET_VERSION="20261102-reviewed-aliases-wave3-4";
 const ALLOW_PREVIOUS_ASSET_VERSION=process.env.CTA_ALLOW_PREVIOUS_ASSET_VERSION==="1";
 
 const chrome = ["google-chrome", "google-chrome-stable", "chromium", "chromium-browser"].find(name =>
@@ -118,6 +118,20 @@ async function smoke(lang,allowPreviousAssetVersion,expectedAssetVersion,previou
       await sleep(100);
       check(query("#detailAliases")?.textContent.includes(wave3Term),
         "Wave3 production search result does not display its reviewed alias: "+wave3Term);
+      if(lang==="en"){
+        for(const [term,id] of [["Serrated trowel","notched_trowel"],["Diamond cutting blade","diamond_blade"]]){
+          input.value=term;
+          input.dispatchEvent(new Event("input",{bubbles:true}));
+          await sleep(160);
+          const match=query("#resultList .resultRow");
+          check(match?.dataset.entryId===id,
+            "Final-five production EN alias missing or misranked: "+term+" -> "+id+" (first="+match?.dataset.entryId+")");
+          match.click();
+          await sleep(100);
+          check(query("#detailAliases")?.textContent.includes(term),
+            "Final-five production EN alias missing from canonical detail: "+term);
+        }
+      }
     }
     const viewport=window.innerWidth, clientWidth=document.documentElement.clientWidth;
     const overflow=Math.max(document.documentElement.scrollWidth,document.body.scrollWidth)-clientWidth;
@@ -195,7 +209,9 @@ try {
     assert.ok(result.clientWidth <= width && result.clientWidth >= width - (mobile ? 0 : 24), "Incorrect layout viewport width; allow native desktop scrollbar");
     console.log("PASS", lang, width + "px", JSON.stringify(result));
   }
-  console.log("Construction Tools Atlas PRODUCTION Chromium PASS: actual public nicheworks.app, 360px/390px mobile and 1280px desktop, JA/EN, 865 current entries, aliases, detail sheet and zero horizontal overflow.");
+  console.log("Construction Tools Atlas PRODUCTION Chromium PASS: actual public nicheworks.app, 360px/390px mobile and 1280px desktop, JA/EN, "+
+    (ALLOW_PREVIOUS_ASSET_VERSION?"PR compatibility permitted (see per-viewport version/count above)":"STRICT 865-current production plus reviewed final-five aliases")+
+    ", detail sheet and zero horizontal overflow.");
 } finally {
   if (websocket?.readyState === WebSocket.OPEN) websocket.close();
   child.kill("SIGTERM");
