@@ -396,7 +396,7 @@
       const message = `${MESSAGES[lang].required}${missing.join(" / ")}`;
       setError(message);
       showToast(message);
-      setGeneratedState(false);
+      resetOutputs("dirty");
       return;
     }
 
