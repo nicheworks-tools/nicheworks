@@ -94,7 +94,9 @@
       const items = [
         "Choose the GitHub Pages publishing source: Deploy from a branch or GitHub Actions",
         "For branch publishing, the source folder can only be /(root) or /docs",
-        (s.outputFolder === "dist" || s.outputFolder === "public")
+        s.sourceType === "static" && (s.outputFolder === "root" || s.outputFolder === "docs")
+          ? "For an already-built static output, choose GitHub Actions artifact publishing, or explicitly copy the files to the selected /(root) or /docs branch source; the directory selector alone does not configure publishing"
+          : (s.outputFolder === "dist" || s.outputFolder === "public")
           ? `The selected ${labels[s.outputFolder]} folder is not a branch-publishing source; use GitHub Actions to build/upload the Pages artifact, or copy the publishable files to /(root) or /docs`
           : `If publishing from a branch, confirm ${labels[s.outputFolder]} is the selected Pages source and the entry file is at the top level`,
         "Check the Pages deployment workflow/run for build or deployment failures",
@@ -123,7 +125,9 @@
     const items = [
       "GitHub Pagesの公開方式がDeploy from a branchかGitHub Actionsか確認する",
       "branch公開で選べるsource folderは/(root)または/docsのみ",
-      (s.outputFolder === "dist" || s.outputFolder === "public")
+      s.sourceType === "static" && (s.outputFolder === "root" || s.outputFolder === "docs")
+        ? "ビルド済みの静的出力はGitHub ActionsのPages artifactで公開するか、公開ファイルを選択した/(root)または/docsのbranch sourceへ明示的に配置する。directoryの選択だけでは公開設定にならない"
+        : (s.outputFolder === "dist" || s.outputFolder === "public")
         ? `選択した${labels[s.outputFolder]}はbranch公開のsource folderにはできない。GitHub Actionsでbuild成果物をPages artifactとしてdeployするか、公開ファイルを/(root)または/docsへ置く`
         : `branch公開ならPages設定で${labels[s.outputFolder]}をsourceに選び、entry fileがsource直下にあるか確認する`,
       "Pagesのdeployment workflow / Actions runでbuild・deploy失敗を確認する",
