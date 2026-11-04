@@ -1,0 +1,26 @@
+{
+  "schema": "cta-image-wave10-sources-v2.3",
+  "version": "2026-11-04-reviewed-image-wave10-saw-1",
+  "policy": {
+    "runtime_hotlink": false,
+    "source_provider": "Wikimedia Commons",
+    "promotion_rule": "Full image visually reviewed and retained; independent original SHA-1 check against Commons API."
+  },
+  "items": [
+    {
+      "entry_id": "reciprocating_saw",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Reciprocating_Saw.JPG",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Reciprocating_Saw.JPG",
+      "license": "Public Domain (PD-self)",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-self",
+      "author": "Junglecat",
+      "attribution": "Junglecat / Wikimedia Commons, Public Domain (PD-self)",
+      "source_sha1": "9047f33a40e43b9467118af7f30851eda425fc04",
+      "source_filename": "source.jpg",
+      "expected_sha1": "9047f33a40e43b9467118af7f30851eda425fc04",
+      "subject_match": "matched",
+      "review_state": "verified",
+      "review_note": "Reviewed original 1008x523 JPEG: the full Craftsman reciprocating saw is identifiable, including blade, shoe, tool body and rear trigger handle. Fit-within WebP derivatives retain the full photo without cropping. Earlier cropped Makita candidates remain historical rejections."
+    }
+  ]
+}

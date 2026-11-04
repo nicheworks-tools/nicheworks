@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-registry-v2.3",
-  "version": "2026-10-31-reviewed-image-wave9-four-1",
+  "version": "2026-11-04-reviewed-image-wave10-saw-1",
   "policy": {
     "primary_format": "webp",
     "formal_min_state": "reviewed",
@@ -1279,6 +1279,30 @@
         "source_sha1": "ccf42ce9ccf4d0054b7d2c703efa806249b80663"
       },
       "notes": "Wave9: full original/derivative visual review and pinned binary SHA-1 verification; Inspected original 2816x2112 JPEG and 960x720 WebP: one full pneumatic nail gun shown side-on with barrel, magazine, grip and air fitting; correct canonical subject."
+    },
+    {
+      "entry_id": "reciprocating_saw",
+      "alt_ja": "刃先・シュー・本体・後部グリップまで写ったレシプロソー",
+      "alt_en": "Complete reciprocating saw with blade, shoe, body and trigger grip",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/reciprocating_saw/source.jpg",
+        "display": "./images/reciprocating_saw/primary.webp",
+        "thumbnail": "./images/reciprocating_saw/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Reciprocating_Saw.JPG",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Reciprocating_Saw.JPG",
+        "license": "Public Domain (PD-self)",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-self",
+        "author": "Junglecat",
+        "attribution": "Junglecat / Wikimedia Commons, Public Domain (PD-self)",
+        "source_sha1": "9047f33a40e43b9467118af7f30851eda425fc04",
+        "modifications": "Fit-within resize and auto-orientation, metadata stripped and WebP converted without cropping; original retained locally, public domain status unchanged."
+      },
+      "notes": "Wave10: Reviewed original 1008x523 JPEG: the full Craftsman reciprocating saw is identifiable, including blade, shoe, tool body and rear trigger handle. Fit-within WebP derivatives retain the full photo without cropping. Earlier cropped Makita candidates remain historical rejections."
     }
   ]
 }

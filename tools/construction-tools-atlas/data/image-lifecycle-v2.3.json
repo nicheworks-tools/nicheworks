@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-lifecycle-v2.3",
-  "version": "2026-11-03-retired-five-canonical-provenance-1",
+  "version": "2026-11-04-reviewed-image-wave10-saw-1",
   "candidates": [
     {
       "id": "existing:allen_key",
@@ -555,6 +555,15 @@
       "source_ref": {
         "file": "image-wave9-sources-v2.3.json",
         "entry_id": "nail_gun"
+      }
+    },
+    {
+      "id": "wave10:reciprocating_saw",
+      "source_entry_id": "reciprocating_saw",
+      "kind": "photograph",
+      "source_ref": {
+        "file": "image-wave10-sources-v2.3.json",
+        "entry_id": "reciprocating_saw"
       }
     }
   ],
@@ -18248,6 +18257,42 @@
           "reason": "A reciprocating saw is a distinctive power tool with a protruding reciprocating blade; a subject-matched photograph strongly aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-11-04T07:38:30Z",
+          "actor": "image-wave10-reviewed-20261104",
+          "reason": "Full-tool Commons replacement selected after previous cropped-image rejections.",
+          "candidate_id": "wave10:reciprocating_saw",
+          "candidate_sha256": "56521ad2befaa5e77b1e31f82de80b0c476d57315538648dd5170cb68526ed32",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-11-04T07:38:31Z",
+          "actor": "image-wave10-reviewed-20261104",
+          "reason": "Verified exact source URL, byte length and original SHA-1 against Commons MediaWiki API; PD-self attribution recorded.",
+          "candidate_id": "wave10:reciprocating_saw",
+          "candidate_sha256": "56521ad2befaa5e77b1e31f82de80b0c476d57315538648dd5170cb68526ed32",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-11-04T07:38:32Z",
+          "actor": "image-wave10-reviewed-20261104",
+          "reason": "Reviewed original 1008x523 JPEG: the full Craftsman reciprocating saw is identifiable, including blade, shoe, tool body and rear trigger handle. Fit-within WebP derivatives retain the full photo without cropping. Earlier cropped Makita candidates remain historical rejections.",
+          "candidate_id": "wave10:reciprocating_saw",
+          "candidate_sha256": "56521ad2befaa5e77b1e31f82de80b0c476d57315538648dd5170cb68526ed32",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-11-04T07:38:33Z",
+          "actor": "image-wave10-reviewed-20261104",
+          "reason": "Retained exact JPEG; separately generated uncropped local WebP primary and thumb; provenance registry updated.",
+          "candidate_id": "wave10:reciprocating_saw",
+          "candidate_sha256": "56521ad2befaa5e77b1e31f82de80b0c476d57315538648dd5170cb68526ed32",
           "hold": null
         }
       ]
