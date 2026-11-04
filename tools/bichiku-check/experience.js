@@ -12,7 +12,7 @@ const fmt=x=>Number.isInteger(x)?String(x):String(Math.round(x*100)/100);
 const unit=id=>id==="water"?"L":id==="food"?T.unitMeals:id==="toilet"?T.unitUses:"";
 const today=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
 let state=Object.assign({},defaults),stage="setup",goal="food",tab="emergency",search="",showAll=false;
-let openOptions=new Set(),openParents=new Set(),selected=null,impression=false,advancedOpen=false;
+let openOptions=new Set(),openParents=new Set(),selected=null,impression=false,advancedOpen=false,batteryPanelOpen=false;
 try{const saved=JSON.parse(localStorage.getItem("bichiku-check-v1")||"null");if(saved&&typeof saved==="object"&&!Array.isArray(saved))state=Object.assign({},defaults,saved)}catch(_){}
 if(!state.stocks||Array.isArray(state.stocks))state.stocks={};
 if(!state.variants||Array.isArray(state.variants))state.variants={};
@@ -67,6 +67,8 @@ function resultsPage(a){
 function preserveOpen(){
  result.querySelectorAll("details[data-option]").forEach(el=>{if(el.open)openOptions.add(el.dataset.option);else openOptions.delete(el.dataset.option)});
  result.querySelectorAll("details[data-parent]").forEach(el=>{if(el.open)openParents.add(el.dataset.parent);else openParents.delete(el.dataset.parent)});
+ const batteryPanel=result.querySelector("details[data-battery-stock-panel]");
+ if(batteryPanel)batteryPanelOpen=batteryPanel.open;
 }
 function foodGroupsHtml(a){
  const groups=a.foodGroups||[];
@@ -105,6 +107,26 @@ function heatControls(a){
   '<p class="g-fine">'+esc(T.heatSafety)+' <a href="https://www.nite.go.jp/jiko/chuikanki/press/2024fy/prs241226.html" rel="noopener" target="_blank">'+esc(T.heatSafetySource)+'</a></p>'+
   '<p class="g-fine">'+esc(T.heatReference)+' <a href="https://www.maff.go.jp/j/zyukyu/foodstock/chapter07.html" rel="noopener" target="_blank">'+esc(T.heatReferenceSource)+'</a></p></div>';
 }
+function batterySummary(a){
+ const b=a.batteryReview,spare=getBasic("batteries");
+ return '<div class="g-battery-review"><h4>'+esc(T.batteryTitle)+'</h4>'+
+  '<p class="g-fine">'+esc(T.batteryExplanation)+'</p>'+
+  '<details class="g-option" data-battery-stock-panel '+(batteryPanelOpen?"open":"")+'><summary>'+esc(T.batteryInventory)+'</summary>'+
+  '<div class="g-option-body"><p class="g-fine">'+esc(T.batteryLegacy)+' '+fmt(n(spare.qty))+'</p>'+
+  '<div class="g-parent-fields">'+decision.batteryTypes.map(type=>
+   '<label>'+esc(type)+' · '+esc(T.batteryUnits)+
+   '<input type="number" min="0" max="10000000" step="1" inputmode="numeric" data-battery-stock="'+type+'" value="'+fmt(n((spare.batteryCells||{})[type]))+'"></label>'
+   ).join("")+'</div></div></details>'+
+  '<p class="g-water-summary">'+esc(T.batteryWorking)+': <strong>'+fmt(b.workingUnits)+'</strong> · '+
+   esc(T.batterySustained)+': <strong>'+fmt(b.sustainedUnits)+'</strong></p>'+
+  '<div class="g-layers">'+b.rows.filter(r=>r.required>0||r.available>0).map(r=>
+   '<div><b>'+esc(r.type)+'</b><span>'+esc(T.batteryRequired)+': '+fmt(r.required)+
+   ' / '+esc(T.batteryAvailable)+': '+fmt(r.available)+
+   (r.shortage?' · '+esc(T.batteryShortage)+': '+fmt(r.shortage):"")+'</span></div>').join("")+'</div>'+
+  (b.uncheckedDevices?'<p class="g-pending">'+esc(T.batteryUnchecked)+': '+fmt(b.uncheckedDevices)+'</p>':"")+
+  '<p class="g-fine">'+esc(T.batteryNoDouble)+'</p>'+
+  '<p class="g-fine">'+esc(T.batterySafety)+' <a href="https://baj.or.jp/safety/primarybattery_light/safety20.html" target="_blank" rel="noopener">'+esc(T.batterySource)+'</a></p></div>';
+}
 function conditions(a){
  if(goal==="food")return '<p>'+esc(a.waterConflict?T.waterShort:T.foodRequires)+'</p>'+
  '<label class="g-check"><input type="checkbox" data-setting="safeWaterConfirmed" '+(state.safeWaterConfirmed?"checked":"")+'>'+esc(T.waterConfirm)+'</label>'+
@@ -116,7 +138,7 @@ function conditions(a){
  if(goal==="power")return '<p>'+esc(T.energyExplanation)+'</p>'+
   '<p class="g-fine">'+esc(T.energyNoConversion)+'</p>'+
   '<p class="g-fine">'+esc(T.energySafety)+' <a href="https://www.hkd.meti.go.jp/hokih/20220826/index.htm" rel="noopener" target="_blank">'+esc(T.energySafetySource)+'</a></p>'+
-  (state.powerOut&&!state.noHeat?heatControls(a):"");
+  batterySummary(a)+(state.powerOut&&!state.noHeat?heatControls(a):"");
  if(goal==="toilet"){
   const review=a.toiletReview;
   const checks=[
@@ -140,6 +162,23 @@ function conditions(a){
 }
 const energyParents=new Set(["light","lantern","radio","powerbank"]);
 function isEnergyOption(o){return o.parent==="light"||o.id==="batteryBank"}
+function batteryPlanFields(item,id,isBasic){
+ const source=(isBasic?"basic:":"option:")+id;
+ const currentDays=state.mode==="go"?1:n(state.days);
+ const confirmed=item.batteryPlanConfirmed===true&&item.batteryPlanDays===currentDays;
+ const types=["",...decision.batteryTypes,"rechargeable"];
+ return '<div class="g-battery-device"><p class="g-fine">'+esc(T.batteryPerDevice)+'</p>'+
+  '<div class="g-parent-fields"><label>'+esc(T.batteryType)+
+   '<select data-battery-type="'+source+'">'+types.map(type=>
+    '<option value="'+esc(type)+'" '+(type===(item.batteryType||"")?"selected":"")+'>'+
+     esc(type===""?T.batteryUnknown:type==="rechargeable"?T.batteryRechargeable:type)+'</option>').join("")+'</select></label>'+
+   '<label>'+esc(T.batteryPerChange)+
+    '<input type="number" min="0" max="10000000" step="1" inputmode="numeric" data-battery-cells="'+source+'" value="'+fmt(n(item.cellsPerChange))+'"></label>'+
+   '<label>'+esc(T.batteryCycles)+
+    '<input type="number" min="0" max="10000000" step="1" inputmode="numeric" data-battery-changes="'+source+'" value="'+fmt(n(item.plannedChanges))+'"></label></div>'+
+   '<label class="g-check"><input type="checkbox" data-battery-confirm="'+source+'" '+(confirmed?"checked":"")+'>'+esc(T.batteryPlanConfirm)+'</label>'+
+   '<p class="g-fine">'+esc(T.batteryRechargeableNote)+'</p></div>';
+}
 function energyFields(item,id,isBasic,isBank){
  const input=isBasic?"data-energy-basic-ready":"data-energy-option-ready";
  const check=isBasic?"data-energy-basic-confirm":"data-energy-option-confirm";
@@ -147,17 +186,21 @@ function energyFields(item,id,isBasic,isBank){
   '<input type="number" min="0" max="10000000" step="1" inputmode="numeric" '+input+'="'+id+'" value="'+fmt(n(item.powerReadyQty))+'"></label>'+
   '<label class="g-check"><input type="checkbox" '+check+'="'+id+'" '+(item.powerReadyConfirmed===true?"checked":"")+'>'+
     esc(isBank?T.energyBankConfirm:T.energyDeviceConfirm)+'</label>'+
-  '<p class="g-fine">'+esc(T.energyItemCaution)+'</p></div>';
+  '<p class="g-fine">'+esc(T.energyItemCaution)+'</p>'+
+  (isBank?"":batteryPlanFields(item,id,isBasic))+'</div>';
 }
 function parentRows(a){
  const g=a.groups.find(x=>x.id===goal);
  return g.rows.map(row=>{
  const id=row.item.id,x=getBasic(id);
  const powerFields=energyParents.has(id)?energyFields(x,id,true,id==="powerbank"):"";
+ const batteryDuration=state.powerOut&&["light","lantern","radio"].includes(id)?
+  '<p class="g-fine">'+esc(T.batteryWorking)+': '+fmt(row.currentEffective)+
+  ' / '+esc(T.batterySustained)+': '+fmt(row.sustainedEffective)+'</p>':"";
  return '<div class="g-parent"><div class="g-parent-head"><strong>'+esc(row.item.names[lang]||row.item.names.ja)+'</strong>'+
  '<span class="'+(row.missing?"g-danger":"g-ok")+'">'+esc(T.missing)+': '+fmt(row.missing)+unit(id)+'</span></div>'+meter(row)+
  '<div class="g-parent-fields"><label>'+esc(T.manual)+' · '+esc(id==="water"?T.litersTotal:id==="food"?T.mealPortions:id==="toilet"?T.toiletUses:T.quantity)+'<input type="number" min="0" max="10000000" inputmode="decimal" step="'+(id==="water"?"0.5":"1")+'" data-basic="'+id+'" value="'+fmt(n(x.qty))+'"></label>'+
- '<span>'+esc(T.need)+': '+fmt(row.required)+unit(id)+'</span></div>'+powerFields+
+ '<span>'+esc(T.need)+': '+fmt(row.required)+unit(id)+'</span></div>'+batteryDuration+powerFields+
  '<details data-parent="'+id+'" '+(openParents.has(id)?"open":"")+'><summary>'+esc(T.target)+' / '+esc(T.expiry)+'</summary>'+
  '<div class="g-parent-fields"><label>'+esc(T.target)+'<input type="number" min="0" data-target="'+id+'" value="'+(x.target==null?"":fmt(n(x.target)))+'" placeholder="'+fmt(row.autoTarget)+'"></label>'+
  '<label>'+esc(T.expiry)+'<input type="date" data-basic-expiry="'+id+'" value="'+esc(x.expiry||"")+'"></label></div></details></div>';
@@ -187,8 +230,10 @@ function renderChoices(a){
  const kitReady=o.id!=="toiletKit"||(state.toiletSeatConfirmed&&state.toiletStorageConfirmed&&state.toiletDisposalConfirmed);
  const countable=o.equivalence==="full"&&kitReady&&(!state.noHeat||!["heat","verify"].includes(o.prep))&&(!state.powerOut||a.heatReady||o.prep!=="heat")&&(!o.requiresWater||(a.waterForPrep&&v.prepConfirmed===true&&n(v.prepWaterLiters)>0));
  const unexpired=!v.expiry||v.expiry>=today();
+ const sustained=state.powerOut&&o.parent==="light"?
+   a.batteryReview.devices.some(d=>d.source==="option"&&d.id===o.id&&d.sustained>0):true;
  const ready=isToiletParts?a.toiletReview.usableUses>0:
-   (n(v.qty)>0&&unexpired&&countable&&(!energyOption||energyReady));
+   (n(v.qty)>0&&unexpired&&countable&&(!energyOption||energyReady)&&sustained);
  const registered=isToiletParts?n(v.bagQty)+n(v.solidifierQty)+n(v.qty):n(v.qty);
  const itemStatus=registered===0?T.enterQuantity:!unexpired?T.expiredOption:o.equivalence!=="full"&&!isToiletParts?T.notEquivalent:ready?T.counted:T.notReady;
  const quantityFields=isToiletParts?
@@ -329,6 +374,37 @@ result.addEventListener("input",e=>{
 result.addEventListener("change",e=>{
  const t=e.target;if(t.dataset.shop){if(!selected)selected=new Set();if(t.checked)selected.add(t.dataset.shop);else selected.delete(t.dataset.shop);render();return}
  if(t.dataset.setting){state[t.dataset.setting]=t.type==="checkbox"?t.checked:n(t.value);save();preserveOpen();render();return}
+ if(t.dataset.batteryStock){
+  const type=t.dataset.batteryStock;
+  if(!decision.batteryTypes.includes(type)||!t.checkValidity()||!Number.isInteger(Number(t.value))){t.reportValidity();return}
+  const item=Object.assign({},getBasic("batteries"));
+  item.batteryCells=Object.assign({},item.batteryCells||{},{[type]:n(t.value)});
+  state.stocks[key("batteries")]=item;save();preserveOpen();render();return;
+ }
+ const batteryTarget=t.dataset.batteryType||t.dataset.batteryCells||t.dataset.batteryChanges||t.dataset.batteryConfirm;
+ if(batteryTarget){
+  const [kind,id]=batteryTarget.split(":");
+  const valid=(kind==="basic"&&["light","lantern","radio"].includes(id))||
+   (kind==="option"&&choices.some(o=>o.id===id&&o.parent==="light"&&o.equivalence==="full"));
+  if(!valid)return;
+  const item=Object.assign({},kind==="basic"?getBasic(id):getOption(id));
+  if(t.dataset.batteryType){
+   if(!["",...decision.batteryTypes,"rechargeable"].includes(t.value))return;
+   item.batteryType=t.value;item.batteryPlanConfirmed=false;
+  }
+  if(t.dataset.batteryCells||t.dataset.batteryChanges){
+   if(!t.checkValidity()||!Number.isInteger(Number(t.value))){t.reportValidity();return}
+   if(t.dataset.batteryCells)item.cellsPerChange=n(t.value);
+   if(t.dataset.batteryChanges)item.plannedChanges=n(t.value);
+   item.batteryPlanConfirmed=false;
+  }
+  if(t.dataset.batteryConfirm){
+   item.batteryPlanConfirmed=t.checked;
+   item.batteryPlanDays=state.mode==="go"?1:n(state.days);
+  }
+  if(kind==="basic")state.stocks[key(id)]=item;else state.variants[key(id)]=item;
+  save();preserveOpen();render();return;
+ }
  const energyBasic=t.dataset.energyBasicReady||t.dataset.energyBasicConfirm;
  if(energyBasic&&energyParents.has(energyBasic)){
   const item=Object.assign({},getBasic(energyBasic));
@@ -336,6 +412,7 @@ result.addEventListener("change",e=>{
    if(!t.checkValidity()||!Number.isInteger(Number(t.value))){t.reportValidity();return}
    item.powerReadyQty=n(t.value);item.powerReadyConfirmed=false;
   }else item.powerReadyConfirmed=t.checked;
+  item.batteryPlanConfirmed=false;
   state.stocks[key(energyBasic)]=item;save();preserveOpen();render();return;
  }
  if(t.dataset.heatStock){
@@ -373,10 +450,10 @@ result.addEventListener("change",e=>{
     item.qty=newQty;
     if(newQty!==oldQty&&id==="gas"){item.heatCapacityUses=0;item.heatFuelCompatibleConfirmed=false}
     if(newQty!==oldQty&&id==="stove")item.heatEquipmentConfirmed=false;
-    if(newQty!==oldQty&&energyParents.has(id))item.powerReadyConfirmed=false;
+    if(newQty!==oldQty&&energyParents.has(id)){item.powerReadyConfirmed=false;item.batteryPlanConfirmed=false}
   }
   if(t.dataset.target){if(t.value==="")delete item.target;else item.target=n(t.value)}
-  if(t.dataset.basicExpiry){item.expiry=t.value;if(energyParents.has(id))item.powerReadyConfirmed=false}
+  if(t.dataset.basicExpiry){item.expiry=t.value;if(energyParents.has(id)){item.powerReadyConfirmed=false;item.batteryPlanConfirmed=false}}
   state.stocks[key(id)]=item;save();preserveOpen();render();return}
  const optionId=t.dataset.optionQty||t.dataset.optionBottles||t.dataset.optionExpiry||t.dataset.prepLiters||t.dataset.prepConfirm||
    t.dataset.heatSessions||t.dataset.heatConfirm||t.dataset.energyOptionReady||t.dataset.energyOptionConfirm;
@@ -387,7 +464,7 @@ result.addEventListener("change",e=>{
   if(t.dataset.optionQty){
     item.qty=n(t.value);item.prepConfirmed=false;
     if(choices.some(o=>o.id===optionId&&o.parent==="food"&&o.prep==="heat"))item.heatConfirmed=false;
-    if(energyOption)item.powerReadyConfirmed=false;
+    if(energyOption){item.powerReadyConfirmed=false;item.batteryPlanConfirmed=false}
   }
   if(t.dataset.optionBottles){
     // step=1 is not enforced on change events; reject fractional bottle counts.
@@ -398,7 +475,7 @@ result.addEventListener("change",e=>{
   }
   if(t.dataset.optionExpiry){
     item.expiry=t.value;
-    if(energyOption)item.powerReadyConfirmed=false;
+    if(energyOption){item.powerReadyConfirmed=false;item.batteryPlanConfirmed=false}
   }
   if(t.dataset.prepLiters){item.prepWaterLiters=n(t.value);item.prepConfirmed=false}
   if(t.dataset.prepConfirm)item.prepConfirmed=t.checked;
@@ -409,9 +486,11 @@ result.addEventListener("change",e=>{
   if(t.dataset.heatConfirm)item.heatConfirmed=t.checked;
   if(t.dataset.energyOptionReady){
     if(!energyOption||!t.checkValidity()||!Number.isInteger(Number(t.value))){t.reportValidity();return}
-    item.powerReadyQty=n(t.value);item.powerReadyConfirmed=false;
+    item.powerReadyQty=n(t.value);item.powerReadyConfirmed=false;item.batteryPlanConfirmed=false;
   }
-  if(t.dataset.energyOptionConfirm&&energyOption)item.powerReadyConfirmed=t.checked;
+  if(t.dataset.energyOptionConfirm&&energyOption){
+   item.powerReadyConfirmed=t.checked;item.batteryPlanConfirmed=false;
+  }
   state.variants[key(optionId)]=item;save();preserveOpen();render()
  }
 });

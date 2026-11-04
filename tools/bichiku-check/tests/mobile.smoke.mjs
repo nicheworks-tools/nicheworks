@@ -453,6 +453,105 @@ try{
   passed++;await ctx.close();
  }
 
+
+ // Spare AA cells must be budgeted across ALL lights and radios without duplication.
+ {
+  const {ctx,page,exceptions}=await open(390);
+  await page.locator('input[data-condition="powerOut"]').check();
+  await page.locator("#calculate").click();
+  await page.locator('button[data-goal="power"]').click();
+  await page.locator('details.g-option[data-option="headlamp"] summary').click();
+  await page.locator('input[data-option-qty="headlamp"]').fill("2");
+  await page.locator('input[data-option-qty="headlamp"]').press("Tab");
+  await page.locator('input[data-energy-option-ready="headlamp"]').fill("2");
+  await page.locator('input[data-energy-option-ready="headlamp"]').press("Tab");
+  await page.locator('input[data-energy-option-confirm="headlamp"]').check();
+  assert.match(await page.locator(".g-detail-status").innerText(),/2/,"operational lights alone do not establish multi-day battery coverage");
+  await page.locator('select[data-battery-type="option:headlamp"]').selectOption("AA");
+  await page.locator('input[data-battery-cells="option:headlamp"]').fill("3");
+  await page.locator('input[data-battery-cells="option:headlamp"]').press("Tab");
+  await page.locator('input[data-battery-changes="option:headlamp"]').fill("1");
+  await page.locator('input[data-battery-changes="option:headlamp"]').press("Tab");
+  await page.locator('input[data-battery-confirm="option:headlamp"]').check();
+  await page.locator('details[data-battery-stock-panel] summary').click();
+  await page.locator('input[data-battery-stock="AAA"]').fill("99");
+  await page.locator('input[data-battery-stock="AAA"]').press("Tab");
+  assert.match(await page.locator(".g-detail-status").innerText(),/2/,"AAA stock cannot cover AA devices");
+  await page.locator('input[data-battery-stock="AA"]').fill("5");
+  await page.locator('input[data-battery-stock="AA"]').press("Tab");
+  assert.match(await page.locator(".g-detail-status").innerText(),/2/,"five AA cells insufficient for two times three AA replacements");
+  await page.locator('input[data-battery-stock="AA"]').fill("5.5");
+  await page.locator('input[data-battery-stock="AA"]').press("Tab");
+  assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem("bichiku-check-v1")).stocks["home:batteries"].batteryCells.AA),5,
+   "fractional battery inventory must be rejected without changing storage");
+  await page.locator('input[data-battery-stock="AA"]').fill("6");
+  await page.locator('input[data-battery-stock="AA"]').press("Tab");
+  assert.match(await page.locator(".g-detail-status").innerText(),/0/,"six AA cells verify two sustained headlamps");
+  assert.equal(await page.locator('details[data-battery-stock-panel]').getAttribute("open"),"",
+   "battery inventory panel must stay open for multiple entries");
+  await page.locator('input[data-basic="radio"]').fill("1");
+  await page.locator('input[data-basic="radio"]').press("Tab");
+  await page.locator('input[data-energy-basic-ready="radio"]').fill("1");
+  await page.locator('input[data-energy-basic-ready="radio"]').press("Tab");
+  await page.locator('input[data-energy-basic-confirm="radio"]').check();
+  await page.locator('select[data-battery-type="basic:radio"]').selectOption("AA");
+  await page.locator('input[data-battery-cells="basic:radio"]').fill("2");
+  await page.locator('input[data-battery-cells="basic:radio"]').press("Tab");
+  await page.locator('input[data-battery-changes="basic:radio"]').fill("1");
+  await page.locator('input[data-battery-changes="basic:radio"]').press("Tab");
+  await page.locator('input[data-battery-confirm="basic:radio"]').check();
+  assert.equal(await page.evaluate(()=>{
+   const s=JSON.parse(localStorage.getItem("bichiku-check-v1"));
+   return window.BichikuDecision.assessment(window.BICHIKU_CATALOG,window.BICHIKU_OPTIONS,s,"2026-11-04").batteryReview.rows.find(x=>x.type==="AA").required;
+  }),8,"six AA for headlamps plus two for radio, not six reused");
+  assert.match(await page.locator(".g-detail-status").innerText(),/2/,"type-wide shortage must revoke incomplete period coverage");
+  await page.locator('input[data-battery-stock="AA"]').fill("8");
+  await page.locator('input[data-battery-stock="AA"]').press("Tab");
+  assert.match(await page.locator(".g-detail-status").innerText(),/0/);
+  await page.reload({waitUntil:"domcontentloaded"});
+  await page.locator("#calculate").click();
+  await page.locator('button[data-goal="power"]').click();
+  assert.equal(await page.locator('input[data-battery-stock="AA"]').inputValue(),"8");
+  await page.locator('details.g-option[data-option="headlamp"] summary').click();
+  assert.equal(await page.locator('input[data-battery-confirm="option:headlamp"]').isChecked(),true);
+  await noOverflow(page,"shared AA cell budget 390px");
+  assert.deepEqual(exceptions,[]);
+  console.log("PASS spare battery types, shared radio+headlamp budget, invalid counts and storage");
+  passed++;await ctx.close();
+ }
+
+ // Legacy spare sets are not converted to cells; changing days invalidates checked plans.
+ {
+  const {ctx,page,exceptions}=await open(320);
+  await page.evaluate(()=>localStorage.setItem("bichiku-check-v1",JSON.stringify({
+   mode:"home",adults:1,days:3,powerOut:true,
+   stocks:{"home:batteries":{qty:99}},
+   variants:{"home:headlamp":{qty:2,powerReadyQty:2,powerReadyConfirmed:true,
+    batteryType:"AA",cellsPerChange:2,plannedChanges:1,batteryPlanConfirmed:true,batteryPlanDays:3}}
+  })));
+  await page.reload({waitUntil:"domcontentloaded"});
+  await page.locator("#calculate").click();
+  await page.locator('button[data-goal="power"]').click();
+  assert.match(await page.locator(".g-detail-status").innerText(),/2/,"99 untyped sets cannot cover AA requirements");
+  await page.locator('details[data-battery-stock-panel] summary').click();
+  assert.match(await page.locator(".g-battery-review").innerText(),/99/);
+  await page.locator('input[data-battery-stock="AA"]').fill("4");
+  await page.locator('input[data-battery-stock="AA"]').press("Tab");
+  assert.match(await page.locator(".g-detail-status").innerText(),/0/);
+  await noOverflow(page,"battery planning 320px");
+  await page.locator("button[data-back]").click();
+  await page.locator("button[data-edit]").click();
+  await page.locator('button[data-select="days"][data-value="7"]').click();
+  await page.locator("#calculate").click();
+  await page.locator('button[data-goal="power"]').click();
+  assert.match(await page.locator(".g-detail-status").innerText(),/2/,"3-day verification must not certify 7-day operation");
+  await page.locator('details.g-option[data-option="headlamp"] summary').click();
+  assert.equal(await page.locator('input[data-battery-confirm="option:headlamp"]').isChecked(),false);
+  assert.deepEqual(exceptions,[]);
+  console.log("PASS legacy battery sets not converted and planning days invalidate verification");
+  passed++;await ctx.close();
+ }
+
  for(const [locale,dir] of locales){
   const {ctx,page,exceptions}=await open(390,dir);
   assert.equal(await page.locator("html").getAttribute("lang"),locale);
@@ -482,6 +581,9 @@ try{
    "energy-dependent options display whole-unit input "+locale);
   assert.ok((await page.locator('label.g-check').filter({has:page.locator('input[data-energy-option-confirm="headlamp"]')}).innerText()).trim().length>10,
    "localized energy confirmation "+locale);
+  assert.equal(await page.locator('input[data-battery-stock]').count(),7,"seven battery types shown "+locale);
+  assert.equal(await page.locator('select[data-battery-type="option:headlamp"]').count(),1,"localized device battery type "+locale);
+  assert.ok((await page.locator('label.g-check').filter({has:page.locator('input[data-battery-confirm="option:headlamp"]')}).innerText()).trim().length>10,"localized battery plan confirmation "+locale);
   await noOverflow(page,locale);
   assert.deepEqual(exceptions,[],"JS exceptions "+locale);
   await page.screenshot({path:path.join(folder,"locale-"+locale+".png"),fullPage:true});
