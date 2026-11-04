@@ -62,6 +62,57 @@ function foodRoleOverview(options,s,now){
      needsReview:saved.length>0&&usable.length===0};
  });
 }
+// Reserve spare cells per battery SIZE across every registered working device.
+ // Spare cells are NOT installed batteries; unknown-size legacy "sets" are never
+ // converted to cells. Device runtime and replacement cycles come from the user.
+const batteryTypes=Object.freeze(["AA","AAA","C","D","9V","CR2032","CR123A"]);
+function batterySupplyReview(s,options,now){
+ const mode=s.mode==="go"?"go":"home";
+ const planDays=mode==="go"?1:([3,7,14].includes(Number(s.days))?Number(s.days):7);
+ const spare=(s.stocks||{})[mode+":batteries"]||{};
+ const validSpare=unexpired(spare,now);
+ const avail=Object.fromEntries(batteryTypes.map(type=>[type,
+   validSpare&&Number.isInteger(Number((spare.batteryCells||{})[type]))?
+     Math.floor(numeric((spare.batteryCells||{})[type])):0]));
+ const devices=[];
+ function include(source,id,parent,entry){
+  const owned=Math.floor(numeric(entry.qty));
+  if(!owned)return;
+  const working=unexpired(entry,now)&&entry.powerReadyConfirmed===true&&
+    Number.isInteger(Number(entry.powerReadyQty))?
+    Math.min(owned,Math.floor(numeric(entry.powerReadyQty))):0;
+  if(!working)return;
+  const type=String(entry.batteryType||"");
+  const cells=Math.floor(numeric(entry.cellsPerChange));
+  const changes=Math.floor(numeric(entry.plannedChanges));
+  const freshWhole=Number.isInteger(Number(entry.cellsPerChange))&&Number.isInteger(Number(entry.plannedChanges));
+  const verified=entry.batteryPlanConfirmed===true&&entry.batteryPlanDays===planDays&&
+    (type==="rechargeable" || (batteryTypes.includes(type)&&freshWhole&&cells>0));
+  const required=verified&&type!=="rechargeable"?working*cells*changes:0;
+  devices.push({source,id,parent,owned,working,type,cells,changes,required,
+    verified,sustained:0,needsReview:!verified});
+ }
+ for(const id of ["light","lantern","radio"])
+  include("basic",id,id,(s.stocks||{})[mode+":"+id]||{});
+ for(const o of (options||[])){
+  if(o.parent!=="light"||o.equivalence!=="full")continue;
+  include("option",o.id,o.parent,(s.variants||{})[mode+":"+o.id]||{});
+ }
+ const rows=batteryTypes.map(type=>{
+  const required=devices.filter(d=>d.type===type&&d.verified).reduce((sum,d)=>sum+d.required,0);
+  const available=avail[type];
+  return {type,available,required,shortage:Math.max(0,required-available),enough:available>=required};
+ });
+ const budget=Object.fromEntries(rows.map(x=>[x.type,x]));
+ for(const d of devices){
+  d.sustained=d.verified&&(d.type==="rechargeable"||budget[d.type]?.enough)?d.working:0;
+ }
+ return {planDays,devices,rows,spareLegacySets:numeric(spare.qty),
+   workingUnits:devices.reduce((v,d)=>v+d.working,0),
+   sustainedUnits:devices.reduce((v,d)=>v+d.sustained,0),
+   uncheckedDevices:devices.filter(d=>d.needsReview).length,
+   shortages:rows.filter(r=>r.shortage>0)};
+}
 // A blackout heating budget is a USER-VERIFIED number of cooking sessions.
 // Never infer sessions per gas canister from its count or a national reference number.
 function heatSupplyReview(s,options,now){
@@ -121,6 +172,7 @@ function assessment(catalog,options,source,today){
  const s=normalize(source),now=validDate(today)||new Date().toISOString().slice(0,10);
  const stored=storedWater(s,options,now);
  const heatReview=heatSupplyReview(s,options,now);
+ const batteryReview=batterySupplyReview(s,options,now);
  const heatReady=!s.noHeat&&(!s.powerOut||heatReview.ready);
  // Each water-dependent food must have its own complete, package-checked water allocation.
  // An old saved global water number cannot automatically verify any food item.
@@ -141,6 +193,18 @@ function assessment(catalog,options,source,today){
  const core=root.BichikuCore;
  if(!core)throw Error("BichikuCore is required");
  const calc=core.calculate(catalog,readiness,now,options);
+ // Keep immediate working stock visible separately from preparedness across
+ // the selected time horizon. A blackout needs an explicit replacement plan.
+ for(const row of calc.items){
+  if(!["light","lantern","radio"].includes(row.item.id))continue;
+  row.currentEffective=row.effective;
+  row.sustainedEffective=batteryReview.devices.filter(d=>d.parent===row.item.id)
+    .reduce((sum,d)=>sum+d.sustained,0);
+  if(s.powerOut){
+   row.effective=row.sustainedEffective;
+   row.missing=round(Math.max(0,row.required-row.effective));
+  }
+ }
  const foodGroups=foodRoleOverview(options,readiness,now);
  // MAFF adult staple/main-dish stock example: 3 portions per adult per day.
  // Suppress this simplified comparison when children or infants need individualized planning.
@@ -172,6 +236,14 @@ function assessment(catalog,options,source,today){
    {id:"foodPrep",type:waterForPrep?"ready":"review",
     amount:waterAllocation,available:stored,condition:waterForPrep,requires:["safeWaterConfirmed","perItemPrepConfirmed","perItemWaterLiters"],
     note:waterConflict?"prepWaterInsufficient":s.safeWaterConfirmed?"waterAllocation":"prepWaterUnconfirmed"},
+   {id:"batteryBudget",type:batteryReview.uncheckedDevices===0&&
+      batteryReview.shortages.length===0&&batteryReview.workingUnits>0?"ready":"review",
+    amount:batteryReview.rows.reduce((n,r)=>n+r.required,0),
+    available:batteryReview.rows.reduce((n,r)=>n+r.available,0),
+    condition:batteryReview.uncheckedDevices===0&&batteryReview.shortages.length===0,
+    requires:["batteries.batteryCells","devices.batteryType","devices.cellsPerChange",
+      "devices.plannedChanges","devices.batteryPlanConfirmed"],
+    note:"batterySharedBudget"},
    {id:"heatFuel",type:heatReview.ready?"ready":"review",amount:heatReview.requiredUses,
     available:heatReview.capacityUses,condition:heatReview.ready,
     requires:["stove.qty","stove.heatEquipmentConfirmed","gas.qty","gas.heatCapacityUses",
@@ -189,12 +261,12 @@ function assessment(catalog,options,source,today){
  calc.missingCount=calc.items.filter(x=>x.missing>0).length;
  calc.coreMissingCount=calc.items.filter(x=>x.priority===1&&x.missing>0).length;
  calc.filledCount=calc.items.filter(x=>x.missing===0).length;
- return {settings:s,calc,groups:status,combinations,foodGroups,mainDishReferencePortions,toiletReview,heatReview,
+ return {settings:s,calc,groups:status,combinations,foodGroups,mainDishReferencePortions,toiletReview,heatReview,batteryReview,
    heatReady,waterForPrep,waterStored:stored,
    waterAllocation,uncheckedFoods,waterRemainingAfterPrep:round(Math.max(0,stored-waterAllocation)),
    food,water,pad,warmth,waterConflict};
 }
-const api=Object.freeze({assessment,groups,optionUsable,storedWater,foodRoleOverview,toiletSupplyReview,heatSupplyReview});
+const api=Object.freeze({assessment,groups,optionUsable,storedWater,foodRoleOverview,toiletSupplyReview,heatSupplyReview,batterySupplyReview,batteryTypes});
 root.BichikuDecision=api;
 if(typeof module==="object"&&module.exports)module.exports=api;
 })(typeof globalThis==="object"?globalThis:this);
