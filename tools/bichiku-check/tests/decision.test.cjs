@@ -205,7 +205,7 @@ test("assembled toilet pairs and complete kits cannot duplicate manual category 
  assert.equal(row(onlyPairs,"toilet").effective,6,"unreconciled manual uses do not double assembled loose components");
  const noCheck=assess({...checks,toiletAssemblyConfirmed:false,
   stocks:{"home:toilet":{qty:10,manualCountBasis:"includes_options"}},variants});
- assert.equal(row(noCheck,"toilet").effective,4,"unverified six loose pairs remain unavailable");
+ assert.equal(row(noCheck,"toilet").effective,9,"five complete kits plus four separately counted manual uses; six loose pairs remain unusable");
 });
 test("charged banks and blackout lights honor manual/itemized overlap in every calculation path",()=>{
  const manual={"home:powerbank":{qty:2,powerReadyQty:2,powerReadyConfirmed:true}};
