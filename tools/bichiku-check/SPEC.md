@@ -96,3 +96,11 @@ Named 2L/500mL bottled-water variants accept whole bottle counts in the UI and c
 - Reject fractional stove, canister, fuel-session or food-session entries. User edits to stove/gas quantities or food heating demand must invalidate the related confirmations; do not delete legacy `offGridHeatConfirmed`.
 - Distinguish from everyday heating without power outage and from `noHeat`. Apply to supplemental heated food as well as heat-dependent staple food; enforce the same budget across them. Block the entire uncertain heating group if totals exceed capacity rather than allocating a shared fuel unit multiple times.
 - Keep home/go-bag per-mode quantities separate. Provide JP/EN/ZH/VI labels and mobile/browser decision regressions.
+
+## Separating powered operational units from device ownership (2026-11-04)
+
+- Applies to `stocks[mode+":"+id]` for `id in {light,lantern,radio,powerbank}` and `variants[mode+":"+id]` for explicit `{headlamp,ledLantern,flashlight,batteryBank}` options (or future `parent:"light"` options).
+- `qty` = physically held items. `powerReadyQty` = personally verified working devices with fitted/compatible cells or charge. `powerReadyConfirmed` must be true before any working units are credited. Credited count is capped at `qty`, and noninteger counts are rejected. The count does not establish battery runtime or charging cycles.
+- For battery banks, confirmation includes remaining charge, safe physical condition, appropriate connectors, and cable/device output compatibility; merely holding a separate `cable` item is insufficient. For lights/radios, confirmation includes working power and an operation or replacement-battery plan. `batteries` stocks are recorded as spare sets and do not automatically attach to any lamp.
+- Existing `qty` values and localStorage key remain untouched, but old unverified units are not silently credited. Quantity, operating count and expiry updates invalidate approval. Manual entries are considered separately from named variants to avoid duplicate physical device counting.
+- Reference sources are generic safety and inventory guidance, not product-certification proof. Always show JP/EN/zh/vi text, without changing the seven-goal/four-stage flow, shopping links or SEO.
