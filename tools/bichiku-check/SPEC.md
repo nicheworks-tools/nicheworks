@@ -79,3 +79,11 @@ Shopping initially selects the first eight visible missing categories only. More
 In the food detail, an informational food-group audit lists **types of usable registered protein, vegetable and fruit options** separately from main-staple portion targets. Expired or unverified items are excluded. It is not a nutrient, calorie or meal adequacy assessment; manual generic food holdings cannot be analyzed by group. Water-dependent vegetable side dishes now allocate their independently confirmed water but do not count as staple portions.
 
 Named 2L/500mL bottled-water variants accept whole bottle counts in the UI and convert to persisted litres (2 or 0.5 respectively). Legacy stored variant quantity remains interpreted as litres; other water items require explicit litre totals because container size varies. Prevent double-entry under generic water category.
+
+## Toilet-assembly decision precision (2026-11-04)
+
+- Preserve 44 classifications/81 concrete options and existing persisted storage key. In the `toiletBags` entry, `bagQty` and `solidifierQty` are separately entered whole-use counts. The legacy `qty` field remains stored/displayed for manual review but never itself proves a usable matched pair.
+- Credited loose-component uses = `min(floor(bagQty), floor(solidifierQty))` if the option is not expired **and** `toiletAssemblyConfirmed`, `toiletSeatConfirmed`, `toiletStorageConfirmed`, and `toiletDisposalConfirmed` are all true. Otherwise credit zero. Do not infer specific product compatibility or local disposal instructions.
+- Complete `toiletKit` units require verified safe installation, sealed storage and disposal. They are not dependent on the loose-pair compatibility flag.
+- Separate `home:` and `go:` entries; never silently migrate old `qty` into two component counts. Duplicate physical items must not be included both as a complete kit and as loose supplies.
+- Informational help explains that waste classification/collection is locally determined. Maintain JP/EN/zh-CN/VI strings and regression tests.

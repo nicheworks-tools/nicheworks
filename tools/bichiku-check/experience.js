@@ -5,7 +5,7 @@ const lang=document.body.getAttribute("data-lang")||"ja",L=window.BICHIKU_I18N[l
 const O=window.BICHIKU_OPTIONS_UI[lang],catalog=window.BICHIKU_CATALOG,choices=window.BICHIKU_OPTIONS;
 const decision=window.BichikuDecision,affiliate=window.NWAmazonAffiliate;
 const setup=document.getElementById("setup"),result=document.getElementById("results");
-const defaults={mode:"home",adults:1,children:0,infants:0,pets:0,days:7,powerOut:false,waterOut:false,noHeat:false,offGridHeatConfirmed:false,diet:false,safeWaterConfirmed:false,prepWaterLiters:0,toiletAssemblyConfirmed:false,stocks:{},variants:{}};
+const defaults={mode:"home",adults:1,children:0,infants:0,pets:0,days:7,powerOut:false,waterOut:false,noHeat:false,offGridHeatConfirmed:false,diet:false,safeWaterConfirmed:false,prepWaterLiters:0,toiletAssemblyConfirmed:false,toiletSeatConfirmed:false,toiletStorageConfirmed:false,toiletDisposalConfirmed:false,stocks:{},variants:{}};
 const key=id=>state.mode+":"+id,esc=x=>String(x==null?"":x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const n=x=>Number.isFinite(Number(x))?Math.min(10000000,Math.max(0,Number(x))):0;
 const fmt=x=>Number.isInteger(x)?String(x):String(Math.round(x*100)/100);
@@ -94,8 +94,21 @@ function conditions(a){
  '<p class="g-water-summary">'+esc(T.prepAllocated)+': <strong>'+fmt(a.waterAllocation)+'L</strong></p>'+
  '<p class="g-water-summary">'+esc(T.waterRemaining)+': <strong>'+fmt(a.waterRemainingAfterPrep)+'L</strong></p>'+
  (a.uncheckedFoods.length?'<p class="g-fine">'+esc(T.prepUnchecked)+'</p>':"")+foodGroupsHtml(a);
- if(goal==="toilet")return '<p>'+esc(T.toiletExplanation)+'</p>'+
- '<label class="g-check"><input type="checkbox" data-setting="toiletAssemblyConfirmed" '+(state.toiletAssemblyConfirmed?"checked":"")+'>'+esc(T.toiletConfirm)+'</label>';
+ if(goal==="toilet"){
+  const review=a.toiletReview;
+  const checks=[
+   ["toiletAssemblyConfirmed",T.toiletPairConfirm],
+   ["toiletSeatConfirmed",T.toiletSeatConfirm],
+   ["toiletStorageConfirmed",T.toiletStorageConfirm],
+   ["toiletDisposalConfirmed",T.toiletDisposalConfirm]
+  ];
+  return '<p>'+esc(T.toiletExplanation)+'</p>'+
+    '<p class="g-water-summary">'+esc(T.toiletPairPotential)+': <strong>'+fmt(review.pairedUses)+' '+esc(T.unitUses)+'</strong></p>'+
+    '<p class="g-water-summary">'+esc(T.toiletPairCredited)+': <strong>'+fmt(review.usableUses)+' '+esc(T.unitUses)+'</strong></p>'+
+    checks.map(([id,label])=>'<label class="g-check"><input type="checkbox" data-setting="'+id+'" '+(state[id]?"checked":"")+'>'+esc(label)+'</label>').join("")+
+    '<p class="g-fine">'+esc(T.toiletKitNote)+'</p>'+
+    '<p class="g-fine">'+esc(T.toiletWasteNote)+' <a href="https://www.koho.metro.tokyo.lg.jp/2025/09/01-1.html" rel="noopener" target="_blank">'+esc(T.toiletSource)+'</a></p>';
+ }
  if(goal==="warmth")return '<p>'+esc(T.floorExplanation)+'</p><div class="g-layers">'+["sleepPad","blanket"].map(id=>{
   const x=a.calc.items.find(r=>r.item.id===id);return x?'<div><b>'+esc(x.item.names[lang])+'</b><span>'+esc(T.missing)+': '+fmt(x.missing)+'</span></div>':"";
  }).join("")+'</div>';
@@ -133,18 +146,28 @@ function renderChoices(a){
  const qValue=bottleFactor?(hasLegacyFraction?"":fmt(calculatedBottles)):fmt(n(v.qty));
  const qAttr=bottleFactor?"data-option-bottles":"data-option-qty";
  const vWaterNote=bottleFactor?'<p class="g-fine">'+esc(T.bottleSubtotal)+': <strong>'+fmt(n(v.qty))+'L</strong>. '+esc(T.bottleNote)+' '+esc(T.bottleWhole)+(hasLegacyFraction?' '+esc(T.bottleLegacy):'')+'</p>':"";
- const countable=o.equivalence==="full"&&(!state.noHeat||!["heat","verify"].includes(o.prep))&&(!state.powerOut||state.offGridHeatConfirmed||o.prep!=="heat")&&(!o.requiresWater||(a.waterForPrep&&v.prepConfirmed===true&&n(v.prepWaterLiters)>0));
+ const isToiletParts=o.id==="toiletBags";
+ const kitReady=o.id!=="toiletKit"||(state.toiletSeatConfirmed&&state.toiletStorageConfirmed&&state.toiletDisposalConfirmed);
+ const countable=o.equivalence==="full"&&kitReady&&(!state.noHeat||!["heat","verify"].includes(o.prep))&&(!state.powerOut||state.offGridHeatConfirmed||o.prep!=="heat")&&(!o.requiresWater||(a.waterForPrep&&v.prepConfirmed===true&&n(v.prepWaterLiters)>0));
  const unexpired=!v.expiry||v.expiry>=today();
- const ready=n(v.qty)>0&&unexpired&&(countable||(o.id==="toiletBags"&&state.toiletAssemblyConfirmed));
- const itemStatus=n(v.qty)===0?T.enterQuantity:!unexpired?T.expiredOption:o.equivalence!=="full"&&o.id!=="toiletBags"?T.notEquivalent:ready?T.counted:T.notReady;
+ const ready=isToiletParts?a.toiletReview.usableUses>0:(n(v.qty)>0&&unexpired&&countable);
+ const registered=isToiletParts?n(v.bagQty)+n(v.solidifierQty)+n(v.qty):n(v.qty);
+ const itemStatus=registered===0?T.enterQuantity:!unexpired?T.expiredOption:o.equivalence!=="full"&&!isToiletParts?T.notEquivalent:ready?T.counted:T.notReady;
+ const quantityFields=isToiletParts?
+   '<div class="g-parent-fields"><label>'+esc(T.toiletBagsQty)+'<input type="number" min="0" max="10000000" step="1" inputmode="numeric" data-toilet-component="bagQty" value="'+fmt(n(v.bagQty))+'"></label>'+
+   '<label>'+esc(T.toiletSolidifierQty)+'<input type="number" min="0" max="10000000" step="1" inputmode="numeric" data-toilet-component="solidifierQty" value="'+fmt(n(v.solidifierQty))+'"></label></div>'+
+   '<div class="g-parent-fields"><label>'+esc(T.expiry)+'<input type="date" data-option-expiry="'+o.id+'" value="'+esc(v.expiry||"")+'"></label></div>'+
+   (n(v.qty)>0?'<p class="g-fine">'+esc(T.toiletLegacy)+' <strong>'+fmt(n(v.qty))+'</strong></p>':"")+
+   '<p class="g-fine">'+esc(T.toiletPairNoDouble)+'</p>':
+   '<div class="g-parent-fields"><label>'+esc(qLabel)+'<input type="number" min="0" max="10000000" step="'+(bottleFactor?"1":o.parent==="water"?"0.5":"1")+'" inputmode="decimal" '+qAttr+'="'+o.id+'" value="'+qValue+'"></label>'+
+   '<label>'+esc(T.expiry)+'<input type="date" data-option-expiry="'+o.id+'" value="'+esc(v.expiry||"")+'"></label></div>'+vWaterNote;
  const name=o.names[lang]||o.names.ja;
  const warning=(O.notes||{})[o.warning]||"";
  return '<details class="g-option" data-option="'+o.id+'" '+(openOptions.has(o.id)?"open":"")+'>'+
  '<summary><strong>'+esc(name)+'</strong><small>'+esc(O[o.kind]||o.kind)+'</small></summary>'+
  '<div class="g-option-body"><p>'+esc(warning)+'</p><p class="'+(ready?"g-ok":"g-pending")+'">'+esc(itemStatus)+'</p>'+
  (o.sourceUrl?'<a href="'+esc(o.sourceUrl)+'" target="_blank" rel="noopener">'+esc(T.official)+'</a>':"")+
- '<div class="g-parent-fields"><label>'+esc(qLabel)+'<input type="number" min="0" max="10000000" step="'+(bottleFactor?"1":o.parent==="water"?"0.5":"1")+'" inputmode="decimal" '+qAttr+'="'+o.id+'" value="'+qValue+'"></label>'+
- '<label>'+esc(T.expiry)+'<input type="date" data-option-expiry="'+o.id+'" value="'+esc(v.expiry||"")+'"></label></div>'+vWaterNote+
+ quantityFields+
  (o.requiresWater?'<div class="g-water-item"><label class="g-input">'+esc(T.prepPerFood)+'<input type="number" min="0" max="10000000" step="0.1" inputmode="decimal" data-prep-liters="'+o.id+'" value="'+fmt(n(v.prepWaterLiters))+'"></label>'+
  '<label class="g-check"><input type="checkbox" data-prep-confirm="'+o.id+'" '+(v.prepConfirmed===true?"checked":"")+'>'+esc(T.prepItemConfirm)+'</label>'+
  '<p class="g-fine">'+esc(T.prepNumberWarning)+'</p></div>':"")+
@@ -262,6 +285,13 @@ result.addEventListener("input",e=>{
 result.addEventListener("change",e=>{
  const t=e.target;if(t.dataset.shop){if(!selected)selected=new Set();if(t.checked)selected.add(t.dataset.shop);else selected.delete(t.dataset.shop);render();return}
  if(t.dataset.setting){state[t.dataset.setting]=t.type==="checkbox"?t.checked:n(t.value);save();preserveOpen();render();return}
+ if(t.dataset.toiletComponent){
+  const field=t.dataset.toiletComponent;
+  if(!["bagQty","solidifierQty"].includes(field)||!t.checkValidity()||!Number.isInteger(Number(t.value))){t.reportValidity();return}
+  const item=Object.assign({},getOption("toiletBags"));
+  item[field]=n(t.value);
+  state.variants[key("toiletBags")]=item;save();preserveOpen();render();return;
+ }
  const id=t.dataset.basic||t.dataset.target||t.dataset.basicExpiry;
  if(id){const item=Object.assign({},getBasic(id));if(t.dataset.basic)item.qty=n(t.value);
   if(t.dataset.target){if(t.value==="")delete item.target;else item.target=n(t.value)}

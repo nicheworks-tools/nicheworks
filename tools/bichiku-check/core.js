@@ -23,6 +23,9 @@
       prepWaterLiters: num(s.prepWaterLiters,0,0,10000000),
       enforceConditions: !!s.enforceConditions,
       toiletAssemblyConfirmed: !!s.toiletAssemblyConfirmed,
+      toiletSeatConfirmed: !!s.toiletSeatConfirmed,
+      toiletStorageConfirmed: !!s.toiletStorageConfirmed,
+      toiletDisposalConfirmed: !!s.toiletDisposalConfirmed,
       diet: !!s.diet,
       budget: num(s.budget, 0, 0, 10000000),
       stocks: s.stocks && typeof s.stocks === "object" && !Array.isArray(s.stocks) ? s.stocks : {},
@@ -61,6 +64,10 @@
   }
   function optionAvailable(option, settings, stockEntry) {
     if (option.equivalence !== "full") return false;
+    // A complete toilet kit is unusable without an identified safe installation
+    // and a sealed-storage/disposal plan. No assumptions about local waste rules.
+    if (option.id === "toiletKit" && settings.enforceConditions &&
+        (!settings.toiletSeatConfirmed || !settings.toiletStorageConfirmed || !settings.toiletDisposalConfirmed)) return false;
     if (option.parent === "food" && settings.noHeat && ["heat","verify"].includes(option.prep)) return false;
     // Power outage removes ordinary electricity-dependent cooking until the user
     // explicitly confirms a fuelled, safely usable off-grid heating alternative.
