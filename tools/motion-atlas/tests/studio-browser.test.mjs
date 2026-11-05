@@ -95,8 +95,19 @@ try{
    const reduced=matchMedia("(prefers-reduced-motion: reduce)").matches;
    if(reduced)check(sequence.every(node=>node.getAnimations().length===0),"Reduced motion still animates");
    else check(sequence.some(node=>node.getAnimations().length>0),"Motion preview not animating");
+   const scrub=document.querySelector("#timeline-scrub");
+   check(scrub&&document.querySelector("#timeline-cursor"),"Missing timeline playhead controls");
+   scrub.value="550";scrub.dispatchEvent(new Event("input",{bubbles:true}));
+   check(scrub.value==="550"&&document.querySelector("#timeline-cursor").textContent==="550 ms","Scrub position not updated");
+   const scrubbed=all(".studio-layer").flatMap(layer=>layer.getAnimations());
+   if(reduced)check(scrubbed.length===0,"Reduced motion scrub must remain static");
+   else {
+    check(scrubbed.length===3,"Scrub did not create a paused track per layer");
+    check(scrubbed.every(a=>a.playState==="paused"&&Math.abs(a.currentTime-550)<=2),"Scrub position not respected");
+   }
    document.querySelector("#stop").click();
    check(document.querySelector(".studio-layer").getAnimations().length===0,"Stop did not cancel");
+   check(document.querySelector("#timeline-scrub").value==="0","Stop did not reset playhead");
    document.querySelector("#export").click();
    check(document.querySelector("#export-output").hidden,"Export bypassed purchase check");
    check(document.querySelector("#export-download").hidden,"Download unexpectedly enabled");
