@@ -72,6 +72,7 @@ on:
       - 'tools/inci-fastscan/qa/check-japanese-source-backed-wave9.mjs'
       - 'tools/inci-fastscan/qa/check-japanese-source-backed-wave10.mjs'
       - 'tools/inci-fastscan/qa/check-japanese-source-backed-wave11.mjs'
+      - 'tools/inci-fastscan/qa/check-japanese-source-backed-wave12.mjs'
       - 'tools/inci-fastscan/qa/japanese-source-alias-evidence.mjs'
       - 'tools/_shared/check-fastscan-result-controls.mjs'
       - 'tools/_shared/check-fastscan-review-queue.mjs'
@@ -320,6 +321,8 @@ jobs:
         run: node tools/inci-fastscan/qa/check-japanese-source-backed-wave10.mjs
       - name: Wave 11 Silver Oxide verified bilingual antimicrobial role
         run: node tools/inci-fastscan/qa/check-japanese-source-backed-wave11.mjs
+      - name: Wave 12 Japanese exact lemon fruit and cypress leaf identities
+        run: node tools/inci-fastscan/qa/check-japanese-source-backed-wave12.mjs
       - name: FastScan result controls regression
         run: node tools/_shared/check-fastscan-result-controls.mjs
       - name: FastScan review queue regression
