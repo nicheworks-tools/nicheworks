@@ -515,3 +515,7 @@ Six exact GP66 Leopard 10UE/UG/UH and GE66 Raider 10UE/UG/UH model searches thro
 ### HUAWEI wearable five official manual-download indexes (2026-11-04)
 
 The five exact manufacturer-confirmed Japanese WATCH/Band model-level manual indexes are correctly classified as `その他` (wearables), **not** mislabelled `PC・スマホ` to manufacture Amazon revenue links. Current canonical tagged model-search configuration explicitly excludes unaudited `その他` makers; therefore this batch adds **zero** Amazon tagged searches, batteries, watchbands or accessory fit assertions. Manufacturer evidence: `coverage-passes/huawei/jp-wearables-five-user-guides-20261104.json`. Existing printer ink inventory unchanged.
+
+### OPPO Japan seven exact verified mobile model searches (2026-11-05)
+
+Seven actual Japanese manufacturer PDF guide rows enable existing canonical opt-in Amazon Associates exact **device** searches (`PC・スマホ`, `tag=nicheworks09-22`). Held Reno A/Reno7 A candidate PDFs are excluded from model/public/commercial publication. No product inventory, reported sales, charger/battery fit or other accessory compatibility is inferred. Source `coverage-passes/oppo/jp-first-nine-mobile-guidepdf-20261105.json`. Printer ink inventory unchanged.

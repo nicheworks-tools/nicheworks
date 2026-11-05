@@ -1,0 +1,25 @@
+name: ManualFinder OPPO Japan nine candidate PDF source gate
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/**'
+      - '.github/workflows/manualfinder-oppo-jp-nine-pdf-gate.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  oppo-japan-nine-real-pdfs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify strict manufacturer PDF identity fixture
+        run: node tools/manual-finder/tests/oppo-jp-nine-pdf-probe.test.mjs
+      - name: Download all nine OPPO manufacturer Japanese PDFs and verify exact model text
+        run: |
+          set -euo pipefail
+          if ! command -v pdftotext >/dev/null 2>&1; then sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils; fi
+          node tools/manual-finder/scripts/oppo-jp-nine-pdf-probe.mjs

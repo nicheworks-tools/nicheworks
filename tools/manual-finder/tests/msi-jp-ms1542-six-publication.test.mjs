@@ -60,9 +60,9 @@ assert.deepEqual(rows.filter(x=>x.model.startsWith('GP66')).map(x=>x.manualUrl).
 assert.deepEqual(rows.filter(x=>x.model.startsWith('GE66')).map(x=>x.manualUrl).every(x=>x.endsWith('_GE.pdf')),true);
 assert.ok(!rows.some(x=>x.model.includes('GE65')));
 const cov=fs.readFileSync(new URL('COVERAGE.md',root),'utf8');
-assert.ok(cov.includes('**2,660 verified model/caliber rows**'));
-assert.ok(cov.includes('| **Total** | **2,660** |'));
+assert.ok(cov.includes('**2,667 verified model/caliber rows**'));
+assert.ok(cov.includes('| **Total** | **2,667** |'));
 assert.ok(cov.includes('| MSI | 6 | expanded, bounded |'));
 assert.ok(cov.includes('| 14 | MSI | **expanded — 6**'));
-for(const f of ['index.html','en/index.html','app.paged.js'])assert.ok(fs.readFileSync(new URL(f,root),'utf8').includes('mf-huawei5-20261104a'),f);
+for(const f of ['index.html','en/index.html','app.paged.js'])assert.ok(fs.readFileSync(new URL(f,root),'utf8').includes('mf-oppo7-20261105a'),f);
 console.log('MSI JP 2 Japanese PDF / 6 exact manufacturer-platform mapped variants (all 6 shared), no inferred parts; bilingual runtime and affiliate PASS.');

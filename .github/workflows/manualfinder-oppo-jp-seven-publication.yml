@@ -1,0 +1,39 @@
+name: ManualFinder OPPO JP seven verified guide PDFs publication
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/**'
+      - '.github/workflows/manualfinder-oppo-jp-seven-publication.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  oppo-jp-seven:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate seven published, two held and manufacturer guard fixtures
+        run: |
+          node tools/manual-finder/tests/oppo-jp-seven-publication.test.mjs
+          node tools/manual-finder/tests/oppo-jp-nine-pdf-probe.test.mjs
+      - name: Re-download seven official PDF guides to verify manufacturer bytes and model text
+        run: |
+          if ! command -v pdftotext >/dev/null 2>&1; then sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils; fi
+          node tools/manual-finder/scripts/oppo-jp-nine-pdf-probe.mjs
+      - name: Prior manufacturer and affiliate regression tests
+        run: |
+          node tools/manual-finder/tests/coverage-pass-pipeline.test.mjs
+          node tools/manual-finder/tests/huawei-jp-five-publication.test.mjs
+          node tools/manual-finder/tests/msi-jp-ms1542-six-publication.test.mjs
+          node tools/manual-finder/tests/nec-lavie-jp-exact18-publication.test.mjs
+          node tools/manual-finder/tests/acer-jp-pdf16-publication.test.mjs
+          node tools/manual-finder/tests/hp-jp-17-publication.test.mjs
+          node tools/manual-finder/tests/lenovo-jp-13-publication.test.mjs
+          node tools/manual-finder/tests/dell-jp-20-publication.test.mjs
+          node tools/manual-finder/tests/canon-pixus-wave3l-publication.test.mjs
+          node tools/manual-finder/tests/affiliate-coverage.test.mjs
+          node tools/manual-finder/tests/affiliate-doc-sync.test.mjs
