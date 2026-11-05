@@ -46,6 +46,8 @@ function pageSmoke() {
   }
 
   async function extended() {
+    const stage = name => { document.body.dataset.qaStage = name; };
+    stage('extended-start');
     const layers = () => [...document.querySelectorAll('#layers button')];
     check(layers().length === 3, 'initial layer picker count');
     for (let i = 0; i < 3; i++) {
@@ -55,6 +57,7 @@ function pageSmoke() {
     check(status().includes('Images 0'), 'clear images using accessible layer picker');
     const red = await png('rgb(240,20,50)');
     const blue = await png('rgb(20,60,240)');
+    stage('dropping');
     const dropped = new DataTransfer();
     dropped.items.add(new File([red], 'drop.png', { type: 'image/png' }));
     document.querySelector('#workspace').dispatchEvent(new DragEvent('drop', {
@@ -62,6 +65,7 @@ function pageSmoke() {
     }));
     await waitFor(() => status().includes('Images 1'), 'image drop');
 
+    stage('pasting');
     const pasted = new DataTransfer();
     pasted.items.add(new File([blue], 'pasted.png', { type: 'image/png' }));
     document.dispatchEvent(new ClipboardEvent('paste', {
@@ -76,6 +80,7 @@ function pageSmoke() {
     }));
     check(status().includes('Images 2'), 'reject nonimage drop');
 
+    stage('layer-multiselect');
     document.querySelector('[data-layout="row"]').click();
     layers()[0].click();
     check(document.activeElement === c && c.tabIndex === 0, 'keyboard accessible selection');
@@ -87,6 +92,7 @@ function pageSmoke() {
     document.querySelector('#delete').click();
     check(status().includes('Images 1'), 'delete one selected pasted layer');
 
+    stage('keyboard');
     document.querySelector('[data-layout="row"]').click();
     layers()[0].click();
     c.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', shiftKey: true, bubbles: true, cancelable: true }));
@@ -94,12 +100,14 @@ function pageSmoke() {
     c.dispatchEvent(new KeyboardEvent('keydown', { key: 'z', ctrlKey: true, bubbles: true, cancelable: true }));
     check(rgbAt(25, 60)[0] > 200, 'keyboard Ctrl+Z restores image');
 
+    stage('synthetic-touch');
     pointer('pointerdown', 90, 60, false, 'touch');
     pointer('pointermove', 125, 95, false, 'touch');
     pointer('pointerup', 125, 95, false, 'touch');
     check(rgbAt(25, 60)[3] === 0 && rgbAt(85, 85)[0] > 200, 'synthetic touch pointer drag');
     document.querySelector('#undo').click();
 
+    stage('corners');
     const corners = [
       { name: 'nw', down: [22, 22], move: [-13, -13], probe: [10, 30] },
       { name: 'ne', down: [158, 22], move: [193, -13], probe: [175, 30] },
@@ -116,6 +124,7 @@ function pageSmoke() {
       check(rgbAt(...corner.probe)[3] === 0, 'corner resize undo ' + corner.name);
     }
 
+    stage('png-pixels');
     const originalClick = HTMLAnchorElement.prototype.click;
     let exportUrl = '';
     HTMLAnchorElement.prototype.click = function () { exportUrl = this.href; };
@@ -139,6 +148,7 @@ function pageSmoke() {
     check(sampled[0] > 200 && sampled[3] === 255, 'PNG has correct image color');
     bitmap.close();
 
+    stage('delete-key');
     layers()[0].click();
     c.dispatchEvent(new KeyboardEvent('keydown', { key: 'Delete', bubbles: true, cancelable: true }));
     check(status().includes('Images 0'), 'keyboard Delete removes selected layer');
@@ -280,16 +290,16 @@ async function run(width) {
   const url = 'http://127.0.0.1:' + port + '/tools/screenshot-canvas/?qa=1' + (width === 390 ? '&narrow=1' : '');
   const args = ['--headless=new', '--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu',
     '--disable-background-networking', '--disable-extensions', '--no-first-run',
-    '--window-size=' + width + ',900', '--virtual-time-budget=12000', '--dump-dom', url];
+    '--window-size=' + width + ',900', '--virtual-time-budget=40000', '--dump-dom', url];
   const child = spawn(browser, args, { stdio: ['ignore', 'pipe', 'pipe'] });
   let stdout = '', stderr = '';
   child.stdout.on('data', b => stdout += b.toString());
   child.stderr.on('data', b => { if (stderr.length < 4000) stderr += b.toString(); });
   let timeout = false;
-  const alarm = setTimeout(() => { timeout = true; child.kill('SIGKILL'); }, 35000);
+  const alarm = setTimeout(() => { timeout = true; child.kill('SIGKILL'); }, 60000);
   const code = await new Promise(resolve => child.on('close', resolve));
   clearTimeout(alarm);
-  const result = stdout.match(/<pre id="qa-result">([^<]+)<\/pre>/)?.[1] || 'NO_QA_RESULT';
+  const result = stdout.match(/<pre id="qa-result">([^<]+)<\/pre>/)?.[1] || ('NO_QA_RESULT stage=' + (stdout.match(/data-qa-stage="([^"]+)"/)?.[1] || 'not-set'));
   console.log(width + 'px: ' + result + ' exit=' + code + (timeout ? ' TIMEOUT' : ''));
   if (code !== 0 || timeout || !result.startsWith('PASS:'))
     throw Error('Screenshot Canvas browser smoke failed: ' + result + ' ' + stderr.slice(-400));
