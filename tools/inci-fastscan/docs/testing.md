@@ -94,6 +94,21 @@ Both English and Japanese OCR photo interfaces now have an **off-by-default** "E
 
 Automated regression: `node tools/_shared/check-fastscan-image-enhancement.mjs` checks untouched default-image handling, concrete grayscale pixel writes, upscale and memory cap, expected failure handling and blob-URL release, bilingual option wiring, optional QA comparison and photo privacy. The noindex QA page at `tools/inci-fastscan/qa/photo-ocr-benchmark.html` now exposes the same checkbox so manual testers can compare original and browser-enhanced scans of a **single independently transcribed real label**.
 
+## Japanese photographed-label INCI expansion — wave 10 (2026-11-05)
+
+Adds **two** exact canonical INCI identities supported by separately published manufacturer Japanese ingredient names and manufacturer/COSMILE international nomenclature. The fixed 127-name source corpus expects **118/127 (92.91%)** dictionary coverage with **9** missing after CI success. Both are maintained as `safety: "unrated"` and neutral source-backed functions (NOT product compliance/safety findings).
+
+| Exact published Japanese ingredient name | Canonical INCI | Paired name/neutral role evidence |
+| --- | --- | --- |
+| コロイド性白金 | Colloidal Platinum | [Yamakawa B2B supplier Japanese name and matching INCI](https://www.yamakawa-and.co.jp/products/index.php?inCtg=%E3%82%B9%E3%82%AD%E3%83%B3%E3%82%B1%E3%82%A2&mode=dtl), [COSMILE antioxidant function](https://cosmileeurope.eu/inci/detail/3751/colloidal-platinum/) |
+| クロレラ/シロバナルーピンタンパク発酵物 | Chlorella Vulgaris/Lupinus Albus Protein Ferment | [Toyo Science (RAHN) exact Japanese display](https://www.toyo-asia.co.jp/assets/export/trade/tra00300/tra00302/tra00302_01/tra00302_32.htm), [RAHN original manufacturer's INCI blend](https://www.rahn-group.com/en/cosmetics/rahn-cosmetic-actives/product-overview/product-overview-skincare/detail/cellactive.html), [COSMILE skin conditioning function](https://cosmileeurope.eu/inci/detail/18754/chlorella-vulgaris-lupinus-albus-protein-ferment/) |
+
+**Identity boundaries:** Neither `白金` (which has more than one possible INCI) nor `Platinum Powder` is silently equated to `Colloidal Platinum`; Chlorella/Lupinus co-ferment is not replaced by plain Chlorella Ferment or Lupinus Albus Protein. `Colloidal Platinum` also has antimicrobial and deodorant functions in COSMILE; its independently listed **antioxidant** function is a supported public role. The separately held `Silver Oxide` antimicrobial-only identity remains excluded pending a verified bilingual role implementation.
+
+**Evidence boundary:** The ingredient lists come from public products adjacent to genuine packaging photos, with photo/formula-version alignment not independently confirmed. A source-list text positive-control is **not** OCR photo recall, actual mobile device precision, cosmetic safety rating, EU/JP market compliance or regulatory clearance. Actual OCR QA remains a separate workflow.
+
+New `qa/check-japanese-source-backed-wave10.mjs` verifies exact source names, noncolliding full identities, public neutral roles, source URLs, strict real production parser and coverage; it runs in both Cosmetics accuracy and Japanese real pictured-package CI.
+
 ## Japanese photographed-label INCI expansion — wave 9 (2026-11-05)
 
 Five source-verified **distinct INCI identities** were matched to the exact Japanese spelling in the existing two-product published source-list corpus. All five have neutral, HTTPS-backed roles, no new safety grades (`safety: "unrated"`) and are tested using the strict production label matcher. This **source-list dictionary support** must never be represented as photograph OCR recall, exact packaging-formula matching, regulatory compliance, or suitability for a specific person.
