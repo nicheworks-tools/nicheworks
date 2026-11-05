@@ -203,8 +203,8 @@ function pageSmoke() {
     check(c.width===1600 && c.height===900,'reject 144MP canvas without allocating');
     check(widthInput.value==='1600' && heightInput.value==='900','restore invalid size input');
     check(!error.hidden && /2,400万|24 million/i.test(error.textContent),'canvas size error announced');
-    const oversized = new File(['x'], 'too-large.png', {type:'image/png'});
-    Object.defineProperty(oversized,'size',{value:34*1024*1024});
+    const oversized = new File([new Uint8Array(33*1024*1024)], 'too-large.png', {type:'image/png'});
+    check(oversized.size>32*1024*1024,'oversized test file genuinely exceeds cap');
     const oversizedFiles=new DataTransfer();
     oversizedFiles.items.add(oversized);
     input.files=oversizedFiles.files;
