@@ -178,7 +178,7 @@ async function httpSmoke(){
   // Four additional Japanese manufacturer guides must deploy as static SEO pages
   // with exact deep links, source citations and sponsored Amazon search referrals.
   for (const [slug,model] of [
-    ['google-pixel-9a','Google Pixel 9a'],
+    ['google-pixel-9a','Pixel 9a'],
     ['sharp-aquos-sense9','AQUOS sense9'],
     ['sony-xperia-1-vii','Xperia 1 VII'],
     ['oppo-reno14-5g','OPPO Reno14 5G']
