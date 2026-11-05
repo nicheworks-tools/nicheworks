@@ -549,7 +549,8 @@ test("food audit excludes expired or unverified items and does not guess categor
  assert.equal(row(a,"food").effective,9,"manual food remains staple inventory, without unearned food-group claims");
 });
 test("confirmed water for dried vegetable side dish is allocated but never counted as a staple",()=>{
- const stock={safeWaterConfirmed:true,waterOut:true,stocks:{"home:water":{qty:3}},
+ const stock={safeWaterConfirmed:true,waterOut:true,stocks:{"home:water":{qty:3,
+   drinkingReserveLiters:1.5,drinkingReserveConfirmed:true,drinkingReservePlanDays:3}},
    variants:{"home:driedVeg":{qty:2,prepWaterLiters:1.1,prepConfirmed:true}}};
  const a=assess(stock);
  const veg=a.foodGroups.find(g=>g.role==="vegetable");
