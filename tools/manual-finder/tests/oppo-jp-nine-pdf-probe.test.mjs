@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import {manifest,checkPdf} from '../scripts/oppo-jp-nine-pdf-probe.mjs';
 assert.equal(manifest.groups.length,9);
+assert.equal(manifest.records.filter(x=>x.state==='direct').length,7);
+assert.equal(manifest.records.filter(x=>x.state==='held').length,2);
 assert.equal(new Set(manifest.groups.map(x=>x.model)).size,9);
 assert.equal(new Set(manifest.groups.map(x=>x.manualUrl)).size,9);
 const bytes=Buffer.concat([Buffer.from('%PDF-1.7'),Buffer.alloc(70000)]);

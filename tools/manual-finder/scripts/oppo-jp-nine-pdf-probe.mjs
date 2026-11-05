@@ -20,7 +20,7 @@ export function checkPdf(group,bytes,text,finalUrl){
  if(!/ガイド|初期設定|基本設定|ご利用|取扱説明書|カメラ|使い/.test(text))throw Error(group.model+': Japanese operational guide content not verified');
  return{model:group.model,kind:group.documentType,edition:group.edition,bytes:bytes.length,pdfMagic:bytes.subarray(0,8).toString('latin1'),finalUrl,exactModelVerified:true};
 }
-export async function probe(groups=manifest.groups,{fetcher=fetch,pdfText}={}){
+export async function probe(groups=manifest.groups.filter(g=>manifest.records.some(r=>r.model===g.model&&r.state==='direct')),{fetcher=fetch,pdfText}={}){
  const dir=await fs.mkdtemp(path.join(os.tmpdir(),'oppo-pdf-'));
  const pass=[],failed=[];
  try{
@@ -44,6 +44,8 @@ export async function probe(groups=manifest.groups,{fetcher=fetch,pdfText}={}){
  }finally{await fs.rm(dir,{recursive:true,force:true})}
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
+ const expected=manifest.records.filter(r=>r.state==='direct').length;
+ if(expected!==7||manifest.records.filter(r=>r.state==='held').length!==2)throw Error('Expected exactly 7 published PDFs and 2 held sources');
  const result=await probe();
- if(result.failed.length)process.exitCode=1;
+ if(result.failed.length||result.verified.length!==expected)process.exitCode=1;
 }
