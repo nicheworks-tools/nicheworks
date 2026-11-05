@@ -80,6 +80,28 @@ function pageSmoke() {
     }));
     check(status().includes('Images 2'), 'reject nonimage drop');
 
+    stage('jpeg-webp');
+    const formatCanvas = document.createElement('canvas');
+    formatCanvas.width = 32;
+    formatCanvas.height = 32;
+    formatCanvas.getContext('2d').fillRect(0, 0, 32, 32);
+    const encode = type => new Promise(resolve => formatCanvas.toBlob(resolve, type));
+    const jpeg = await encode('image/jpeg');
+    const webp = await encode('image/webp');
+    check(jpeg?.type === 'image/jpeg' && webp?.type === 'image/webp', 'Chromium image encoders support JPEG/WebP');
+    const additional = new DataTransfer();
+    additional.items.add(new File([jpeg], 'photo.jpg', { type: 'image/jpeg' }));
+    additional.items.add(new File([webp], 'capture.webp', { type: 'image/webp' }));
+    input.files = additional.files;
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+    await waitFor(() => status().includes('Images 4'), 'JPEG/WebP import');
+    check(layers().length === 4, 'JPEG/WebP layers added');
+    for (let i = 0; i < 2; i++) {
+      layers()[2].click();
+      document.querySelector('#delete').click();
+    }
+    check(status().includes('Images 2'), 'JPEG/WebP QA images cleared');
+
     stage('layer-order');
     document.querySelector('[data-layout="overlay"]').click();
     check(rgbAt(790, 450)[2] > 200, 'last layer visible on top');
