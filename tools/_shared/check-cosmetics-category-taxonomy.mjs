@@ -10,7 +10,7 @@ const taxonomy = JSON.parse(fs.readFileSync(path.join(root, 'tools/_shared/cosme
 
 const EXPECTED_CATEGORIES = new Set([
   'solvent', 'humectant', 'preservative', 'thickener', 'pH adjuster', 'antioxidant', 'viscosity adjuster', 'chelating agent',
-  'skin conditioning', 'emollient', 'cleanser', 'emulsifier', 'smoothing', 'buffer', 'uv filter', 'fragrance', 'binder', 'film former', 'hair conditioning', 'moisturizer', 'colorant', 'bulking agent'
+  'skin conditioning', 'emollient', 'cleanser', 'emulsifier', 'smoothing', 'buffer', 'uv filter', 'fragrance', 'binder', 'film former', 'hair conditioning', 'moisturizer', 'colorant', 'bulking agent', 'antimicrobial'
 ]);
 const EXPECTED_AUTHORITY_FUNCTIONS = Object.freeze({
   'solvent': ['solvent'],
@@ -34,7 +34,8 @@ const EXPECTED_AUTHORITY_FUNCTIONS = Object.freeze({
   'hair conditioning': ['hair conditioning'],
   'moisturizer': ['保湿'],
   'colorant': ['colorant'],
-  'bulking agent': ['bulking']
+  'bulking agent': ['bulking'],
+  'antimicrobial': ['antimicrobial']
 });
 const EXPECTED_WAVE3_PROMOTED = new Set(['sodium chloride', 'disodium edta']);
 const EXPECTED_WAVE4_PROMOTED = new Set(['tocopheryl acetate']);
@@ -110,7 +111,8 @@ assert.equal(authorityFunctionToCategory.get('binding'), 'binder', 'COSMILE BIND
 assert.equal(authorityFunctionToCategory.get('film forming'), 'film former', 'COSMILE FILM FORMING must map explicitly to film former');
 assert.equal(authorityFunctionToCategory.get('hair conditioning'), 'hair conditioning', 'COSMILE HAIR CONDITIONING must map explicitly to hair conditioning');
 assert.equal(authorityFunctionToCategory.get('保湿'), 'moisturizer', 'Kao official 保湿 function must map explicitly to moisturizer');
-assert.equal(authorityFunctionToCategory.size, 29, 'authority function vocabulary must include reviewed COLORANT and BULKING semantics');
+assert.equal(authorityFunctionToCategory.size, 30, 'authority function vocabulary includes independently reviewed ANTIMICROBIAL semantics');
+assert.equal(authorityFunctionToCategory.get('antimicrobial'), 'antimicrobial', 'COSMILE ANTIMICROBIAL is separate from preservative');
 assert.equal(authorityFunctionToCategory.get('bulking'), 'bulking agent', 'bulking function is explicitly and exclusively mapped');
 
 const runtimeMappings = {};
