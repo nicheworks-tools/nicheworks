@@ -94,6 +94,21 @@ Both English and Japanese OCR photo interfaces now have an **off-by-default** "E
 
 Automated regression: `node tools/_shared/check-fastscan-image-enhancement.mjs` checks untouched default-image handling, concrete grayscale pixel writes, upscale and memory cap, expected failure handling and blob-URL release, bilingual option wiring, optional QA comparison and photo privacy. The noindex QA page at `tools/inci-fastscan/qa/photo-ocr-benchmark.html` now exposes the same checkbox so manual testers can compare original and browser-enhanced scans of a **single independently transcribed real label**.
 
+## Japanese actual-photograph segmentation comparison (2026-11-05)
+
+The same two previously pinned publicly photographed Japanese cosmetics labels are used to compare **PSM3 (automatic page), PSM4 (single column), and PSM11 (sparse text)** against the existing **PSM6** control on **identical Chromium-canvas-enhanced pixels**, with one pinned `jpn+eng` Tesseract.js worker. These modes are QA **experiments only**: no production default, user setting, source-label contents, or dictionary matching is changed. Independent source-page ingredient lists can differ from the packaging photo version; these are **source-anchored comparison numbers**, not true fully transcribed label accuracy. CI artifacts and logs contain only numeric metrics, fixed research photo IDs, and no recognized or reference texts.
+
+The production PSM6 control from [PR #1745 Japanese real-photo CI](https://github.com/nicheworks-tools/nicheworks/actions/runs/41999137455) was **28/121 (23.14%)** for unprocessed images and **52/121 (42.98%)** after browser-canvas enhancement; the ZIGEN sample improved 0→28 supported-name matches while the KISOCARE sample declined 28→24. This mixed result **does not** justify enabling preprocessing globally. A segmentation setting also cannot be promoted on two source-to-photo proxy pairs alone. New fixed-mode results are logged as `FASTSCAN_JAPANESE_PSM_PHOTO` and `FASTSCAN_JAPANESE_PSM_AGG` when GitHub Actions actually completes. In all cases, the parser denominator and all ambiguous-name holds remain unchanged.
+
+### Regulatory/name ambiguity gate for six remaining source strings
+
+- `ハマメリス水`: a documented same-label INCI collision; deleted old display entry, no automatic pick. [Cosmetic-Info](https://www.cosmetic-info.jp/jcln/detail.php?id=79787)
+- `アミノカプロン酸`: the Japanese short name is documented for ε-aminocaproic acid, but EU **Annex II/7** prohibits aminocaproic acid and its salts in EU cosmetics. Do not assign an unrestricted public role or assume that Japanese and EU product compliance are equivalent. [Co-op name evidence](https://www.co-op.ne.jp/cosmetics/element/detail.html?CD=8006541), [EU-linked ingredient evidence](https://cosingchecker.com/ingredients/84492-6-aminocaproic-acid/). Check the original EU Annex directly before making legal assertions in the UI.
+- `ホップ花エキス`: `Humulus Lupulus (Hops) Flower Extract` was **retired in 2019**, consolidated under `Humulus Lupulus (Hops) Extract`. Do not silently cast retired flower-specific identity to current plant-wide identity. [Name history](https://www.cosmetic-info.jp/appendices/past.php?-p=all&categoryID%5B0%5D=cosInfo)
+- `プラセンタエキス`: same Japanese display refers to both Placental Protein and Placental Extract. [Multiple-INCI naming record](https://www.cosmetic-info.jp/jcln/detail.php?id=1567)
+- `白金`: same Japanese display refers to Platinum Powder and Platinum; do not conflate with the distinct `コロイド性白金` / Colloidal Platinum. [JP nomenclature](https://beaker.media/jsln_ingredients/557480)
+- `オレンジ油`: although the cosmetic-name listing pairs it with `Citrus Aurantium Dulcis (Orange) Oil`, a same-name Japanese pharmacopoeial oil has a **different definition**; retain as unresolved pending product-specific source context. [Cosmetic-Info](https://www.cosmetic-info.jp/jcln/detail.php?id=79783)
+
 ## Japanese photographed-label INCI expansion — wave 12 (2026-11-05)
 
 Two more **independently evidenced Japanese exact source names** were added. This raises the published-ingredient-text dictionary-support control from **119/127 to at least 121/127**, leaving **at most 6** unmatched labels. This is **not the accuracy of Japanese photograph OCR** or a confirmation that the photographs and vendor ingredient declarations share a formula/lot version.
