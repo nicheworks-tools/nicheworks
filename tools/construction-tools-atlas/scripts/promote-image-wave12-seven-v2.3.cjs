@@ -14,7 +14,7 @@ const ITEMS=[
     "license": "Public Domain (PD-user)",
     "license_url": "https://commons.wikimedia.org/wiki/Template:PD-user",
     "attribution": "Hyena / Wikimedia Commons, Public Domain; color adjustment by Hohum",
-    "pin": "UNPINNED",
+    "pin": "babc6384b8b1da00554341aac3e78522fb3fcd47",
     "alt_ja": "地面に横たえられた、金属頭部と長い柄があるつるはし",
     "alt_en": "Full pickaxe with long handle and metal head lying on the ground",
     "review": "Commons photo subject: a complete pickaxe lying on the ground, with a visible handle and double-ended metal head. Current Commons original includes an explicitly documented color correction."
@@ -42,7 +42,7 @@ const ITEMS=[
     "license": "Public Domain (PD-self)",
     "license_url": "https://commons.wikimedia.org/wiki/Template:PD-self",
     "attribution": "Vsolymossy / Wikimedia Commons, Public Domain (PD-self)",
-    "pin": "UNPINNED",
+    "pin": "3b76fd58afbf903f3d505d194a715349250952ed",
     "alt_ja": "塗装に用いる刷毛の実物写真",
     "alt_en": "Painting brush with handle and bristles",
     "review": "Commons original 2814x1876 photograph explicitly identified as a paint application brush (trincha), not an artistic illustration."
