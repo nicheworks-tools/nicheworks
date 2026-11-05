@@ -1922,12 +1922,12 @@
       "lgcode": "016683",
       "pref": "北海道",
       "municipality": "白糠町",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "standard",
+      "reviewed_at": "2026-11-06",
+      "qualifying_source_count": 3,
+      "distinct_link_type_count": 3,
       "service_provider": null,
-      "review_note": null
+      "review_note": "白糠町公式（2026-04-01更新）で分別、令和8年度地区別収集日、クリーンセンター直接搬入の独立3URLを確認。地区別日程を全町共通と扱わない。"
     },
     {
       "lgcode": "016918",
