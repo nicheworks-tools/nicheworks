@@ -47,10 +47,12 @@ jobs:
                && grep -q '#workspace' "$dir/style.css"; then
               if [[ "$require_new_code" -eq 0 ]] \
                  || { grep -q 'id="layers"' "$dir/index.html" \
-                      && grep -q 'function renderLayers' "$dir/app.js"; }; then
+                      && grep -q 'function renderLayers' "$dir/app.js" \
+                      && grep -q 'id="error"' "$dir/index.html" \
+                      && grep -q 'MAX_CANVAS_PIXELS=24000000' "$dir/app.js"; }; then
                 echo "PASS: production HTML/JS/CSS/help pages served with expected content"
                 if [[ "$require_new_code" -eq 1 ]]; then
-                  echo "PASS: deployed page includes newly merged keyboard/layer functionality"
+                  echo "PASS: deployed page includes keyboard/layer and 24MP memory guard functionality"
                 fi
                 exit 0
               fi
