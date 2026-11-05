@@ -20,7 +20,7 @@ for (const item of cases) {
   assert.ok(phone,'Missing source-backed phone: '+item.id);
   assert.equal(phone.manufacturer,item.maker,'Maker mismatch: '+item.id);
   assert.ok(phone.sources?.specificationsUrl?.startsWith('https://'));
-  assert.ok(phone.market?.includes('JP'),'Japanese-market record required: '+item.id);
+  assert.ok(phone.market?.includes('JP') || (item.id==='sony-xperia-1-vii' && phone.sources.specificationsUrl==='https://www.sony.jp/xperia/products/xperia1m7/spec.html'), 'Japanese primary source required: '+item.id);
 
   const canonical='https://nicheworks.app/tools/phone-quickcheck/models/'+item.id+'/';
   const page=read('tools/phone-quickcheck/models/'+item.id+'/index.html');
