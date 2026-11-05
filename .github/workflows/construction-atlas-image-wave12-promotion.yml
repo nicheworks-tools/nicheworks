@@ -37,7 +37,6 @@ jobs:
             tools/construction-tools-atlas/images/ladder/ \
             tools/construction-tools-atlas/images/masking_tape/ \
             tools/construction-tools-atlas/images/extension_cord/ \
-
             tools/construction-tools-atlas/images/ATTRIBUTION.md \
             tools/construction-tools-atlas/data/image-wave12-sources-v2.3.json \
             tools/construction-tools-atlas/data/image-registry-v2.3.json \
