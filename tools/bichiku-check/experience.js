@@ -148,6 +148,11 @@ function drinkingBudgetControls(a){
  '<p class="g-water-summary">'+esc(T.drinkStored)+': <strong>'+fmt(d.available)+'L</strong></p>'+
  '<p class="g-water-summary">'+esc(T.drinkPrep)+': <strong>'+fmt(a.waterAllocation)+'L</strong></p>'+
  '<p class="g-water-summary">'+esc(T.drinkTotal)+': <strong>'+fmt(d.combinedAllocation)+'L</strong></p>'+
+ '<p class="g-water-summary">'+esc(T.drinkBaselineTarget)+': <strong>'+fmt(d.baseRequired)+'L</strong></p>'+
+ (state.waterOut&&d.confirmed?
+  '<p class="g-water-summary">'+esc(T.drinkUpdatedTarget)+': <strong>'+fmt(d.resolvedRequired)+'L</strong></p>'+
+  (d.extraRequired>0?'<p class="g-pending">'+esc(T.drinkTargetRise)+': <strong>'+fmt(d.extraRequired)+'L</strong></p>':"")+
+  '<p class="g-water-summary">'+esc(T.drinkShopShortage)+': <strong>'+fmt(d.shoppingMissing)+'L</strong></p>':"")+
  (d.confirmed?'<p class="g-water-summary">'+esc(T.drinkFree)+': <strong>'+fmt(d.afterBoth)+'L</strong></p>':
  '<p class="g-pending">'+esc(T.drinkUnconfirmed)+'</p>')+
  (d.overcommitted?'<p class="g-pending">'+esc(T.drinkOvercommitted)+'</p>':"")+
@@ -328,7 +333,8 @@ function shoppingRows(a){
  return (showAll?arr:arr.slice(0,8)).map(row=>{
  const id=row.item.id,check=selected.has(id);
  return '<div class="g-shop-row"><label class="g-shop-check"><input type="checkbox" data-shop="'+id+'" '+(check?"checked":"")+'>'+
- '<span><strong>'+esc(row.item.names[lang]||row.item.names.ja)+'</strong><small>'+esc(T.missing)+': '+fmt(row.missing)+unit(id)+'</small></span></label>'+
+ '<span><strong>'+esc(row.item.names[lang]||row.item.names.ja)+'</strong><small>'+esc(T.missing)+': '+fmt(row.missing)+unit(id)+'</small>'+
+ (id==="water"&&row.allocationExtraRequired>0?'<small>'+esc(T.drinkShoppingReason)+': +'+fmt(row.allocationExtraRequired)+'L</small>':"")+'</span></label>'+
  (check&&row.item.search?'<div class="g-aff" data-category-aff="'+id+'"></div>':"")+'</div>';
  }).join("");
 }
