@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-registry-v2.3",
-  "version": "2026-11-05-reviewed-image-wave11-three-1",
+  "version": "2026-11-05-reviewed-image-wave12-seven-1",
   "policy": {
     "primary_format": "webp",
     "formal_min_state": "reviewed",
@@ -1375,6 +1375,174 @@
         "modifications": "Auto-oriented, fit-within resized without cropping, metadata stripped, and converted to local WebP; exact original retained; derivative stays under source license."
       },
       "notes": "Wave11: Reviewed the original 2992x2992 photograph: five full-size woodworking chisels, their handles, metal shafts and cutting edges are all identifiable. Exact Commons original SHA-1 verified against independent pin and live MediaWiki API."
+    },
+    {
+      "entry_id": "pickaxe",
+      "alt_ja": "地面に横たえられた、金属頭部と長い柄があるつるはし",
+      "alt_en": "Full pickaxe with long handle and metal head lying on the ground",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/pickaxe/source.jpg",
+        "display": "./images/pickaxe/primary.webp",
+        "thumbnail": "./images/pickaxe/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Pickaxe.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Pickaxe.jpg",
+        "license": "Public Domain (PD-user)",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-user",
+        "author": "Hyena (original photograph; color adjustment by Hohum)",
+        "attribution": "Hyena / Wikimedia Commons, Public Domain; color adjustment by Hohum",
+        "source_sha1": "babc6384b8b1da00554341aac3e78522fb3fcd47",
+        "modifications": "Auto-oriented, fit-within resized without cropping, metadata stripped, and converted to local WebP; exact original retained; derivative stays under source license."
+      },
+      "notes": "Wave12: Commons photo subject: a complete pickaxe lying on the ground, with a visible handle and double-ended metal head. Current Commons original includes an explicitly documented color correction. Exact Commons original SHA-1 verified against independent pin and live MediaWiki API."
+    },
+    {
+      "entry_id": "paint_roller",
+      "alt_ja": "塗装用ローラーが写った作業用具の写真",
+      "alt_en": "Paint roller for applying paint to surfaces",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/paint_roller/source.jpg",
+        "display": "./images/paint_roller/primary.webp",
+        "thumbnail": "./images/paint_roller/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Paint_roller_2.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Paint_roller_2.jpg",
+        "license": "CC BY 2.0",
+        "license_url": "https://creativecommons.org/licenses/by/2.0/",
+        "author": "Maggie",
+        "attribution": "Maggie / Wikimedia Commons (originally Flickr), CC BY 2.0",
+        "source_sha1": "77a00b805fe23a06d10948e26cb5a1b2551d063e",
+        "modifications": "Auto-oriented, fit-within resized without cropping, metadata stripped, and converted to local WebP; exact original retained; derivative stays under source license."
+      },
+      "notes": "Wave12: Commons author/source/CC-BY verified; original 1024x768 photograph explicitly captioned Paint roller; a real application roller, not a printmaking roller. Exact Commons original SHA-1 verified against independent pin and live MediaWiki API."
+    },
+    {
+      "entry_id": "paint_brush",
+      "alt_ja": "塗装に用いる刷毛の実物写真",
+      "alt_en": "Painting brush with handle and bristles",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/paint_brush/source.jpg",
+        "display": "./images/paint_brush/primary.webp",
+        "thumbnail": "./images/paint_brush/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/8/88/Paintbrush.JPG",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Paintbrush.JPG",
+        "license": "Public Domain (PD-self)",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-self",
+        "author": "Vsolymossy",
+        "attribution": "Vsolymossy / Wikimedia Commons, Public Domain (PD-self)",
+        "source_sha1": "3b76fd58afbf903f3d505d194a715349250952ed",
+        "modifications": "Auto-oriented, fit-within resized without cropping, metadata stripped, and converted to local WebP; exact original retained; derivative stays under source license."
+      },
+      "notes": "Wave12: Commons original 2814x1876 photograph explicitly identified as a paint application brush (trincha), not an artistic illustration. Exact Commons original SHA-1 verified against independent pin and live MediaWiki API."
+    },
+    {
+      "entry_id": "nails",
+      "alt_ja": "頭部と軸が見える亜鉛めっきされた建築用釘の接写",
+      "alt_en": "Close-up of galvanized metal nails showing their heads and shafts",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/nails/source.jpg",
+        "display": "./images/nails/primary.webp",
+        "thumbnail": "./images/nails/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/c/cc/NailsCloseup.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:NailsCloseup.jpg",
+        "license": "CC0 1.0",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "author": "Raysonho @ Open Grid Scheduler / Grid Engine",
+        "attribution": "Raysonho @ Open Grid Scheduler / Grid Engine / Wikimedia Commons, CC0 1.0",
+        "source_sha1": "3443c86316469094ff173160b5f863b1b3cb47a9",
+        "modifications": "Auto-oriented, fit-within resized without cropping, metadata stripped, and converted to local WebP; exact original retained; derivative stays under source license."
+      },
+      "notes": "Wave12: Commons source photo and CC0 reviewed: a close-up explicitly showing galvanized metal nails, appropriate for fastener identification. Exact Commons original SHA-1 verified against independent pin and live MediaWiki API."
+    },
+    {
+      "entry_id": "ladder",
+      "alt_ja": "9段の踏み桟がある約6フィートのはしご",
+      "alt_en": "Nine-rung ladder approximately six feet tall",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/ladder/source.jpg",
+        "display": "./images/ladder/primary.webp",
+        "thumbnail": "./images/ladder/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Ladder.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Ladder.jpg",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "author": "Pankit gami",
+        "attribution": "Pankit gami / Wikimedia Commons, CC BY-SA 3.0",
+        "source_sha1": "a9bf2747eb702e7133626c86594badb9aa03f75a",
+        "modifications": "Auto-oriented, fit-within resized without cropping, metadata stripped, and converted to local WebP; exact original retained; derivative stays under source license."
+      },
+      "notes": "Wave12: Commons original 600x800 photograph depicts a standalone nine-rung ladder, 6 ft tall; correct tool identification. Exact Commons original SHA-1 verified against independent pin and live MediaWiki API."
+    },
+    {
+      "entry_id": "masking_tape",
+      "alt_ja": "DCM製の緑色の養生用マスキングテープ",
+      "alt_en": "Green DCM brand masking tape for surface protection",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/masking_tape/source.jpg",
+        "display": "./images/masking_tape/primary.webp",
+        "thumbnail": "./images/masking_tape/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/4/43/DCM_Masking_Tape.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:DCM_Masking_Tape.jpg",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "author": "運動会プロテインパワー",
+        "attribution": "運動会プロテインパワー / Wikimedia Commons, CC BY-SA 4.0",
+        "source_sha1": "32b9e75d202297b1ff6332af9d44a6c6181aaf7c",
+        "modifications": "Auto-oriented, fit-within resized without cropping, metadata stripped, and converted to local WebP; exact original retained; derivative stays under source license."
+      },
+      "notes": "Wave12: Commons original 2432x1824 clearly identifies a DCM green masking/protection tape; original brand is named in alt, not used as an endorsement. Exact Commons original SHA-1 verified against independent pin and live MediaWiki API."
+    },
+    {
+      "entry_id": "extension_cord",
+      "alt_ja": "米国式NEMAプラグと3口コンセントを備えた黄色い延長コード",
+      "alt_en": "Yellow US-style extension cord with NEMA 5-15 plug and three receptacles",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/extension_cord/source.jpg",
+        "display": "./images/extension_cord/primary.webp",
+        "thumbnail": "./images/extension_cord/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Extension_cord.JPG",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Extension_cord.JPG",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "author": "Taylor Cedarmas (Dhscommtech)",
+        "attribution": "Taylor Cedarmas (Dhscommtech, English Wikipedia) / Wikimedia Commons, CC BY-SA 3.0",
+        "source_sha1": "dd31c1f9fc625b0b6b44ae9c83238ca2d8e5d571",
+        "modifications": "Auto-oriented, fit-within resized without cropping, metadata stripped, and converted to local WebP; exact original retained; derivative stays under source license."
+      },
+      "notes": "Wave12: Commons original 3072x2048 clearly identified as a yellow three-outlet NEMA 5-15 extension cord; Japanese plug compatibility must not be implied. Exact Commons original SHA-1 verified against independent pin and live MediaWiki API."
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-lifecycle-v2.3",
-  "version": "2026-11-05-reviewed-image-wave11-three-1",
+  "version": "2026-11-05-reviewed-image-wave12-seven-1",
   "candidates": [
     {
       "id": "existing:allen_key",
@@ -591,6 +591,69 @@
       "source_ref": {
         "file": "image-wave11-sources-v2.3.json",
         "entry_id": "chisel"
+      }
+    },
+    {
+      "id": "wave12:pickaxe",
+      "source_entry_id": "pickaxe",
+      "kind": "photograph",
+      "source_ref": {
+        "file": "image-wave12-sources-v2.3.json",
+        "entry_id": "pickaxe"
+      }
+    },
+    {
+      "id": "wave12:paint_roller",
+      "source_entry_id": "paint_roller",
+      "kind": "photograph",
+      "source_ref": {
+        "file": "image-wave12-sources-v2.3.json",
+        "entry_id": "paint_roller"
+      }
+    },
+    {
+      "id": "wave12:paint_brush",
+      "source_entry_id": "paint_brush",
+      "kind": "photograph",
+      "source_ref": {
+        "file": "image-wave12-sources-v2.3.json",
+        "entry_id": "paint_brush"
+      }
+    },
+    {
+      "id": "wave12:nails",
+      "source_entry_id": "nails",
+      "kind": "photograph",
+      "source_ref": {
+        "file": "image-wave12-sources-v2.3.json",
+        "entry_id": "nails"
+      }
+    },
+    {
+      "id": "wave12:ladder",
+      "source_entry_id": "ladder",
+      "kind": "photograph",
+      "source_ref": {
+        "file": "image-wave12-sources-v2.3.json",
+        "entry_id": "ladder"
+      }
+    },
+    {
+      "id": "wave12:masking_tape",
+      "source_entry_id": "masking_tape",
+      "kind": "photograph",
+      "source_ref": {
+        "file": "image-wave12-sources-v2.3.json",
+        "entry_id": "masking_tape"
+      }
+    },
+    {
+      "id": "wave12:extension_cord",
+      "source_entry_id": "extension_cord",
+      "kind": "photograph",
+      "source_ref": {
+        "file": "image-wave12-sources-v2.3.json",
+        "entry_id": "extension_cord"
       }
     }
   ],
@@ -3258,6 +3321,42 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-11-05T03:05:42Z",
+          "actor": "image-wave12-reviewed-20261105",
+          "reason": "Visually reviewed photograph of the full canonical tool or material.",
+          "candidate_id": "wave12:extension_cord",
+          "candidate_sha256": "6d5cb78ec5da060bf48fede984018643d19985ec94728a513dad22b3dd227c0b",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-11-05T03:05:43Z",
+          "actor": "image-wave12-reviewed-20261105",
+          "reason": "Exact source bytes SHA-1 and length match pinned metadata and Commons MediaWiki API; author and license recorded.",
+          "candidate_id": "wave12:extension_cord",
+          "candidate_sha256": "6d5cb78ec5da060bf48fede984018643d19985ec94728a513dad22b3dd227c0b",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-11-05T03:05:44Z",
+          "actor": "image-wave12-reviewed-20261105",
+          "reason": "Commons original 3072x2048 clearly identified as a yellow three-outlet NEMA 5-15 extension cord; Japanese plug compatibility must not be implied.",
+          "candidate_id": "wave12:extension_cord",
+          "candidate_sha256": "6d5cb78ec5da060bf48fede984018643d19985ec94728a513dad22b3dd227c0b",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-11-05T03:05:45Z",
+          "actor": "image-wave12-reviewed-20261105",
+          "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+          "candidate_id": "wave12:extension_cord",
+          "candidate_sha256": "6d5cb78ec5da060bf48fede984018643d19985ec94728a513dad22b3dd227c0b",
+          "hold": null
         }
       ]
     },
@@ -4855,6 +4954,42 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-11-05T03:05:32Z",
+          "actor": "image-wave12-reviewed-20261105",
+          "reason": "Visually reviewed photograph of the full canonical tool or material.",
+          "candidate_id": "wave12:ladder",
+          "candidate_sha256": "3f63a53c89d3933fe20d285f87b68115e29b8730a0a8eee88d146ee0c713e307",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-11-05T03:05:33Z",
+          "actor": "image-wave12-reviewed-20261105",
+          "reason": "Exact source bytes SHA-1 and length match pinned metadata and Commons MediaWiki API; author and license recorded.",
+          "candidate_id": "wave12:ladder",
+          "candidate_sha256": "3f63a53c89d3933fe20d285f87b68115e29b8730a0a8eee88d146ee0c713e307",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-11-05T03:05:34Z",
+          "actor": "image-wave12-reviewed-20261105",
+          "reason": "Commons original 600x800 photograph depicts a standalone nine-rung ladder, 6 ft tall; correct tool identification.",
+          "candidate_id": "wave12:ladder",
+          "candidate_sha256": "3f63a53c89d3933fe20d285f87b68115e29b8730a0a8eee88d146ee0c713e307",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-11-05T03:05:35Z",
+          "actor": "image-wave12-reviewed-20261105",
+          "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+          "candidate_id": "wave12:ladder",
+          "candidate_sha256": "3f63a53c89d3933fe20d285f87b68115e29b8730a0a8eee88d146ee0c713e307",
+          "hold": null
         }
       ]
     },
@@ -5273,6 +5408,42 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-11-05T03:05:37Z",
+          "actor": "image-wave12-reviewed-20261105",
+          "reason": "Visually reviewed photograph of the full canonical tool or material.",
+          "candidate_id": "wave12:masking_tape",
+          "candidate_sha256": "04d49a1918840e52d835b44d23a56ac0c375a4d2c6b4c37c8d390083f743f624",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-11-05T03:05:38Z",
+          "actor": "image-wave12-reviewed-20261105",
+          "reason": "Exact source bytes SHA-1 and length match pinned metadata and Commons MediaWiki API; author and license recorded.",
+          "candidate_id": "wave12:masking_tape",
+          "candidate_sha256": "04d49a1918840e52d835b44d23a56ac0c375a4d2c6b4c37c8d390083f743f624",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-11-05T03:05:39Z",
+          "actor": "image-wave12-reviewed-20261105",
+          "reason": "Commons original 2432x1824 clearly identifies a DCM green masking/protection tape; original brand is named in alt, not used as an endorsement.",
+          "candidate_id": "wave12:masking_tape",
+          "candidate_sha256": "04d49a1918840e52d835b44d23a56ac0c375a4d2c6b4c37c8d390083f743f624",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-11-05T03:05:40Z",
+          "actor": "image-wave12-reviewed-20261105",
+          "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+          "candidate_id": "wave12:masking_tape",
+          "candidate_sha256": "04d49a1918840e52d835b44d23a56ac0c375a4d2c6b4c37c8d390083f743f624",
+          "hold": null
         }
       ]
     },
@@ -5681,6 +5852,42 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-11-05T03:05:27Z",
+          "actor": "image-wave12-reviewed-20261105",
+          "reason": "Visually reviewed photograph of the full canonical tool or material.",
+          "candidate_id": "wave12:nails",
+          "candidate_sha256": "3484fd753f84ed303bd4d709864db14577b491f015bf5367208544a2ff16d69e",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-11-05T03:05:28Z",
+          "actor": "image-wave12-reviewed-20261105",
+          "reason": "Exact source bytes SHA-1 and length match pinned metadata and Commons MediaWiki API; author and license recorded.",
+          "candidate_id": "wave12:nails",
+          "candidate_sha256": "3484fd753f84ed303bd4d709864db14577b491f015bf5367208544a2ff16d69e",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-11-05T03:05:29Z",
+          "actor": "image-wave12-reviewed-20261105",
+          "reason": "Commons source photo and CC0 reviewed: a close-up explicitly showing galvanized metal nails, appropriate for fastener identification.",
+          "candidate_id": "wave12:nails",
+          "candidate_sha256": "3484fd753f84ed303bd4d709864db14577b491f015bf5367208544a2ff16d69e",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-11-05T03:05:30Z",
+          "actor": "image-wave12-reviewed-20261105",
+          "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+          "candidate_id": "wave12:nails",
+          "candidate_sha256": "3484fd753f84ed303bd4d709864db14577b491f015bf5367208544a2ff16d69e",
+          "hold": null
         }
       ]
     },
@@ -5833,6 +6040,42 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-11-05T03:05:22Z",
+          "actor": "image-wave12-reviewed-20261105",
+          "reason": "Visually reviewed photograph of the full canonical tool or material.",
+          "candidate_id": "wave12:paint_brush",
+          "candidate_sha256": "f7d1a795e3d1f02658398f0085f9a3e3eb76b7787187726590d5aa25b3853d4e",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-11-05T03:05:23Z",
+          "actor": "image-wave12-reviewed-20261105",
+          "reason": "Exact source bytes SHA-1 and length match pinned metadata and Commons MediaWiki API; author and license recorded.",
+          "candidate_id": "wave12:paint_brush",
+          "candidate_sha256": "f7d1a795e3d1f02658398f0085f9a3e3eb76b7787187726590d5aa25b3853d4e",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-11-05T03:05:24Z",
+          "actor": "image-wave12-reviewed-20261105",
+          "reason": "Commons original 2814x1876 photograph explicitly identified as a paint application brush (trincha), not an artistic illustration.",
+          "candidate_id": "wave12:paint_brush",
+          "candidate_sha256": "f7d1a795e3d1f02658398f0085f9a3e3eb76b7787187726590d5aa25b3853d4e",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-11-05T03:05:25Z",
+          "actor": "image-wave12-reviewed-20261105",
+          "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+          "candidate_id": "wave12:paint_brush",
+          "candidate_sha256": "f7d1a795e3d1f02658398f0085f9a3e3eb76b7787187726590d5aa25b3853d4e",
+          "hold": null
         }
       ]
     },
@@ -5855,6 +6098,42 @@
           "reason": "A paint roller is a physical finishing tool with a distinctive roller cover and frame; a reviewed photograph aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-11-05T03:05:17Z",
+          "actor": "image-wave12-reviewed-20261105",
+          "reason": "Visually reviewed photograph of the full canonical tool or material.",
+          "candidate_id": "wave12:paint_roller",
+          "candidate_sha256": "cfce07033d79f13d4af514ec5a74e81f37362b9cbf0e1685c76d9f774582bb9a",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-11-05T03:05:18Z",
+          "actor": "image-wave12-reviewed-20261105",
+          "reason": "Exact source bytes SHA-1 and length match pinned metadata and Commons MediaWiki API; author and license recorded.",
+          "candidate_id": "wave12:paint_roller",
+          "candidate_sha256": "cfce07033d79f13d4af514ec5a74e81f37362b9cbf0e1685c76d9f774582bb9a",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-11-05T03:05:19Z",
+          "actor": "image-wave12-reviewed-20261105",
+          "reason": "Commons author/source/CC-BY verified; original 1024x768 photograph explicitly captioned Paint roller; a real application roller, not a printmaking roller.",
+          "candidate_id": "wave12:paint_roller",
+          "candidate_sha256": "cfce07033d79f13d4af514ec5a74e81f37362b9cbf0e1685c76d9f774582bb9a",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-11-05T03:05:20Z",
+          "actor": "image-wave12-reviewed-20261105",
+          "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+          "candidate_id": "wave12:paint_roller",
+          "candidate_sha256": "cfce07033d79f13d4af514ec5a74e81f37362b9cbf0e1685c76d9f774582bb9a",
           "hold": null
         }
       ]
@@ -5975,6 +6254,42 @@
           "reason": "A pickaxe is a distinctive physical digging/breaking hand tool; a subject-matched photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-11-05T03:05:12Z",
+          "actor": "image-wave12-reviewed-20261105",
+          "reason": "Visually reviewed photograph of the full canonical tool or material.",
+          "candidate_id": "wave12:pickaxe",
+          "candidate_sha256": "f921fd4f38b51fe4f255046096d65532eb1c80d9ebd26a419a8a135babb86883",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-11-05T03:05:13Z",
+          "actor": "image-wave12-reviewed-20261105",
+          "reason": "Exact source bytes SHA-1 and length match pinned metadata and Commons MediaWiki API; author and license recorded.",
+          "candidate_id": "wave12:pickaxe",
+          "candidate_sha256": "f921fd4f38b51fe4f255046096d65532eb1c80d9ebd26a419a8a135babb86883",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-11-05T03:05:14Z",
+          "actor": "image-wave12-reviewed-20261105",
+          "reason": "Commons photo subject: a complete pickaxe lying on the ground, with a visible handle and double-ended metal head. Current Commons original includes an explicitly documented color correction.",
+          "candidate_id": "wave12:pickaxe",
+          "candidate_sha256": "f921fd4f38b51fe4f255046096d65532eb1c80d9ebd26a419a8a135babb86883",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-11-05T03:05:15Z",
+          "actor": "image-wave12-reviewed-20261105",
+          "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+          "candidate_id": "wave12:pickaxe",
+          "candidate_sha256": "f921fd4f38b51fe4f255046096d65532eb1c80d9ebd26a419a8a135babb86883",
           "hold": null
         }
       ]
