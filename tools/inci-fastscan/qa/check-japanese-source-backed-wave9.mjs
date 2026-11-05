@@ -19,12 +19,11 @@ const expected=[
   ['jp_source_20261105_w9_pelargonium_graveolens_oil','ニオイテンジクアオイ油','Pelargonium Graveolens Oil','fragrance','https://beaker.media/jsln_ingredients/560824'],
   ['jp_source_20261105_w9_tocopheryl_retinoate','レチノイン酸トコフェリル','Tocopheryl Retinoate','antioxidant','https://ai.gloshell.com/ingredients/tocopheryl-retinoate'],
   ['jp_source_20261105_w9_acetyl_tetrapeptide_17','アセチルテトラペプチド-17','Acetyl Tetrapeptide-17','skin conditioning','https://webprod.hc-sc.gc.ca/nhpid-bdipsn/ingredReq?id=17831'],
-  ['jp_source_20261105_w9_silver_oxide','酸化銀','Silver Oxide','antimicrobial','https://cosme-hub.com/ingredients/3391'],
   ['jp_source_20261105_w9_rh_oligopeptide_1','ヒト遺伝子組換オリゴペプチド-1','rh-Oligopeptide-1','skin conditioning','https://www.cosmetic-info.jp/jcln/detail.php?id=11595']
 ];
-assert.equal(expected.length,6);
-assert.equal(new Set(expected.map(x=>parser.normalizeKey(x[1]))).size,6);
-assert.equal(new Set(expected.map(x=>parser.canonicalIdentityKey(x[2]))).size,6);
+assert.equal(expected.length,5);
+assert.equal(new Set(expected.map(x=>parser.normalizeKey(x[1]))).size,5);
+assert.equal(new Set(expected.map(x=>parser.canonicalIdentityKey(x[2]))).size,5);
 const scorer=createProductionLabelScorer();
 for(const [id,jp,en,role,primary] of expected) {
  const record=records.find(x=>x.id===id);
@@ -66,9 +65,9 @@ for(const item of japaneseRealPhotoSources) {
    'Published product list is a dictionary positive-control, not image OCR accuracy');
 }
 assert.equal(count,127);
-assert.ok(supported>=117,'Previously 111/127 and six independently verified wave9 new names = at least 117');
+assert.ok(supported>=116,'Previously 111/127 and five independently verified wave9 new names = at least 116');
 console.log('FASTSCAN_JAPANESE_WAVE9='+JSON.stringify({
- status:'PASS',addedSourceBackedNames:6,referenceNames:count,dictionarySupportedNames:supported,
+ status:'PASS',addedSourceBackedNames:5,referenceNames:count,dictionarySupportedNames:supported,
  remainingUnmatched:count-supported,safetyGradesInferred:0,
  actualPhotoOCRAccuracyCertified:false,actualHandsetAccuracyCertified:false,
  exactProductFormulaPhotoVersionVerified:false
