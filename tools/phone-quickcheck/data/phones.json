@@ -12708,7 +12708,7 @@
       "charging": {
         "connector": "USB-C",
         "battery": {
-          "capacityMah": null,
+          "capacityMah": 2915,
           "valueClass": "manufacturer",
           "sourceRef": "https://support.google.com/pixelphone/answer/16043605?hl=ja"
         },
