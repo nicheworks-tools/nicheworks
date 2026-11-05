@@ -125,7 +125,7 @@
     "language": "ja",
     "name": "白糠町クリーンセンターへのごみの直接搬入",
     "type": "持込施設",
-    "link_type": "drop_off",
+    "link_type": "dropoff_facility",
     "url": "https://www.town.shiranuka.lg.jp/section/hoken/qvum4j00000012r5.html",
     "scope_note": "町公式2026-04-01更新。和天別1324番地2、持込可能品目・受付日時を掲載。"
   }
