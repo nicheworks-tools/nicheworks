@@ -4,12 +4,24 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
+      - 'tools/manual-finder/phone-quickcheck-match.js'
+      - 'tools/manual-finder/app.paged.js'
+      - 'tools/manual-finder/index.html'
+      - 'tools/manual-finder/en/index.html'
+      - 'tools/manual-finder/data/manuals.coverage-pass.samsung-jp-galaxy-smartphones.js'
+      - 'scripts/check-manualfinder-phone-galaxy-funnel.mjs'
       - '.github/workflows/phone-quickcheck-production-smoke.yml'
       - 'scripts/check-phone-quickcheck-production.mjs'
   push:
     branches:
       - main
     paths:
+      - 'tools/manual-finder/phone-quickcheck-match.js'
+      - 'tools/manual-finder/app.paged.js'
+      - 'tools/manual-finder/index.html'
+      - 'tools/manual-finder/en/index.html'
+      - 'tools/manual-finder/data/manuals.coverage-pass.samsung-jp-galaxy-smartphones.js'
+      - 'scripts/check-manualfinder-phone-galaxy-funnel.mjs'
       - 'tools/phone-quickcheck/**'
       - 'scripts/check-phone-quickcheck-production.mjs'
       - '.github/workflows/phone-quickcheck-production-smoke.yml'
@@ -26,6 +38,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Validate exact-SKU Galaxy and retained iPhone/Pixel mappings
+        run: node scripts/check-manualfinder-phone-galaxy-funnel.mjs
+      - name: Syntax check for production Chrome harness
+        run: node --check scripts/check-phone-quickcheck-production.mjs
       - name: Verify Chromium installed on runner
         run: google-chrome --version
       - name: Verify deployed HTTP assets and browser behavior at 5 viewports
