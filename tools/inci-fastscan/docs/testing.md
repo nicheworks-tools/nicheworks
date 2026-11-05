@@ -94,6 +94,21 @@ Both English and Japanese OCR photo interfaces now have an **off-by-default** "E
 
 Automated regression: `node tools/_shared/check-fastscan-image-enhancement.mjs` checks untouched default-image handling, concrete grayscale pixel writes, upscale and memory cap, expected failure handling and blob-URL release, bilingual option wiring, optional QA comparison and photo privacy. The noindex QA page at `tools/inci-fastscan/qa/photo-ocr-benchmark.html` now exposes the same checkbox so manual testers can compare original and browser-enhanced scans of a **single independently transcribed real label**.
 
+## Japanese photographed-label INCI expansion — wave 12 (2026-11-05)
+
+Two more **independently evidenced Japanese exact source names** were added. This raises the published-ingredient-text dictionary-support control from **119/127 to at least 121/127**, leaving **at most 6** unmatched labels. This is **not the accuracy of Japanese photograph OCR** or a confirmation that the photographs and vendor ingredient declarations share a formula/lot version.
+
+| Japanese published name | Exact maintained INCI identity | Identity evidence and supported neutral role |
+| --- | --- | --- |
+| レモン果実エキス | Citrus Limon (Lemon) Fruit Extract | [Japanese ingredient name/INCI list](https://www.cosmetic-info.jp/jcln/result.php?-d=desc&-f=name&-p=17&-r=20&name=%E3%82%A8%E3%82%AD%E3%82%B9&nameOp=cn); [ICHIMARU PHARCOS raw material declaration](https://www.ichimaru.co.jp/cosmetics/63); [COSMILE skin-conditioning role](https://cosmileeurope.eu/inci/detail/18171/citrus-limon-fruit-extract/) |
+| イタリアイトスギ葉油 | Cupressus Sempervirens Leaf Oil | [Waphyto Japanese/INCI ingredient glossary](https://waphyto.com/pages/glossary); [COSMILE leaf-only oil/ fragrance function](https://cosmileeurope.eu/inci/detail/18169/cupressus-sempervirens-leaf-oil/) |
+
+**Important exact-part boundary:** lemon **fruit extract** is not lemon **peel** extract, and cypress **leaf oil** is not cypress **leaf/nut/stem oil**. Existing published Japanese names are used for strict recognition only. The two added records retain legacy `safety: "unrated"`, contain neutral ingredient roles with HTTPS provenance, and do not claim product safety, legal clearance or batch equivalence.
+
+Unmatched public source names after this wave: `ハマメリス水`, `アミノカプロン酸`, `ホップ花エキス`, `プラセンタエキス`, `白金`, `オレンジ油`. The first, fourth, fifth and sixth have known same-label or incompatible-identity ambiguities. `ホップ花エキス` is documented under an INCI identity retired and folded into a broader hops extract; it must not be silently promoted to a current flower-specific identity. `アミノカプロン酸` needs function/regulatory and synonym handling review rather than guessed public semantics.
+
+The dedicated gate `node tools/inci-fastscan/qa/check-japanese-source-backed-wave12.mjs` enforces source-backed, non-colliding exact IDs, neutral notes, correct distinct plant parts, fail-closed ambiguous names, and source-list positive-control coverage. Both Cosmetics and photographed Japanese label CI run it. Neither test certifies actual phone OCR performance.
+
 ## Japanese photographed-label INCI expansion — wave 11: Silver Oxide bilingual antimicrobial role (2026-11-05)
 
 The source product list contains the exact Japanese display `酸化銀`. Japanese ingredient nomenclature identifies it as `Silver Oxide`, and COSMILE separately confirms **ANTIMICROBIAL** (microorganism growth control), **not** necessarily the cosmetic regulatory category **preservative**.
