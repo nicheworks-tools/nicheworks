@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-18",
+  "updatedAt": "2026-11-05",
   "policy": "reviewed_unknowns_preserve_unknown_when_primary_evidence_does_not_support_a_stronger_jp_canonical_claim",
   "entries": [
     {
@@ -314,6 +314,232 @@
         "https://www.apple.com/jp/newsroom/2026/09/apple-unveils-iphone-duo/"
       ],
       "reviewedAt": "2026-09-19"
+    },
+    {
+      "phoneId": "google-pixel-3",
+      "field": "included.adapter",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_retail_package_contents_unverified",
+      "reason": "The maintained official manufacturer/carrier specification does not conclusively establish the exact AC adapter in-box state for the Japan retail configuration. It may differ by carrier, market, or bundle; keep it unknown pending explicit SKU-level evidence.",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+      ],
+      "reviewedAt": "2026-11-05"
+    },
+    {
+      "phoneId": "google-pixel-3",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_retail_package_contents_unverified",
+      "reason": "The maintained official manufacturer/carrier specification does not conclusively establish the exact charging cable in-box state for the Japan retail configuration. It may differ by carrier, market, or bundle; keep it unknown pending explicit SKU-level evidence.",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+      ],
+      "reviewedAt": "2026-11-05"
+    },
+    {
+      "phoneId": "google-pixel-3",
+      "field": "water",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_model_water_rating_unverified",
+      "reason": "The maintained official manufacturer/carrier specifications do not establish a verified Japan-model ingress-protection grade or explicit non-resistance classification for this exact record. Retain unknown rather than applying a similar phone's rating.",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+      ],
+      "reviewedAt": "2026-11-05"
+    },
+    {
+      "phoneId": "google-pixel-3a",
+      "field": "included.adapter",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_retail_package_contents_unverified",
+      "reason": "The maintained official manufacturer/carrier specification does not conclusively establish the exact AC adapter in-box state for the Japan retail configuration. It may differ by carrier, market, or bundle; keep it unknown pending explicit SKU-level evidence.",
+      "evidenceUrls": [
+        "https://www.docomo.ne.jp/support/product/pixel3a/spec.html",
+        "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+      ],
+      "reviewedAt": "2026-11-05"
+    },
+    {
+      "phoneId": "google-pixel-3a",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_retail_package_contents_unverified",
+      "reason": "The maintained official manufacturer/carrier specification does not conclusively establish the exact charging cable in-box state for the Japan retail configuration. It may differ by carrier, market, or bundle; keep it unknown pending explicit SKU-level evidence.",
+      "evidenceUrls": [
+        "https://www.docomo.ne.jp/support/product/pixel3a/spec.html",
+        "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+      ],
+      "reviewedAt": "2026-11-05"
+    },
+    {
+      "phoneId": "google-pixel-3a",
+      "field": "water",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_model_water_rating_unverified",
+      "reason": "The maintained official manufacturer/carrier specifications do not establish a verified Japan-model ingress-protection grade or explicit non-resistance classification for this exact record. Retain unknown rather than applying a similar phone's rating.",
+      "evidenceUrls": [
+        "https://www.docomo.ne.jp/support/product/pixel3a/spec.html",
+        "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+      ],
+      "reviewedAt": "2026-11-05"
+    },
+    {
+      "phoneId": "google-pixel-3a-xl",
+      "field": "included.adapter",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_retail_package_contents_unverified",
+      "reason": "The maintained official manufacturer/carrier specification does not conclusively establish the exact AC adapter in-box state for the Japan retail configuration. It may differ by carrier, market, or bundle; keep it unknown pending explicit SKU-level evidence.",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+      ],
+      "reviewedAt": "2026-11-05"
+    },
+    {
+      "phoneId": "google-pixel-3a-xl",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_retail_package_contents_unverified",
+      "reason": "The maintained official manufacturer/carrier specification does not conclusively establish the exact charging cable in-box state for the Japan retail configuration. It may differ by carrier, market, or bundle; keep it unknown pending explicit SKU-level evidence.",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+      ],
+      "reviewedAt": "2026-11-05"
+    },
+    {
+      "phoneId": "google-pixel-3a-xl",
+      "field": "water",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_model_water_rating_unverified",
+      "reason": "The maintained official manufacturer/carrier specifications do not establish a verified Japan-model ingress-protection grade or explicit non-resistance classification for this exact record. Retain unknown rather than applying a similar phone's rating.",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+      ],
+      "reviewedAt": "2026-11-05"
+    },
+    {
+      "phoneId": "google-pixel-4",
+      "field": "included.adapter",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_retail_package_contents_unverified",
+      "reason": "The maintained official manufacturer/carrier specification does not conclusively establish the exact AC adapter in-box state for the Japan retail configuration. It may differ by carrier, market, or bundle; keep it unknown pending explicit SKU-level evidence.",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+      ],
+      "reviewedAt": "2026-11-05"
+    },
+    {
+      "phoneId": "google-pixel-4",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_retail_package_contents_unverified",
+      "reason": "The maintained official manufacturer/carrier specification does not conclusively establish the exact charging cable in-box state for the Japan retail configuration. It may differ by carrier, market, or bundle; keep it unknown pending explicit SKU-level evidence.",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+      ],
+      "reviewedAt": "2026-11-05"
+    },
+    {
+      "phoneId": "google-pixel-4",
+      "field": "water",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_model_water_rating_unverified",
+      "reason": "The maintained official manufacturer/carrier specifications do not establish a verified Japan-model ingress-protection grade or explicit non-resistance classification for this exact record. Retain unknown rather than applying a similar phone's rating.",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+      ],
+      "reviewedAt": "2026-11-05"
+    },
+    {
+      "phoneId": "google-pixel-4-xl",
+      "field": "included.adapter",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_retail_package_contents_unverified",
+      "reason": "The maintained official manufacturer/carrier specification does not conclusively establish the exact AC adapter in-box state for the Japan retail configuration. It may differ by carrier, market, or bundle; keep it unknown pending explicit SKU-level evidence.",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+      ],
+      "reviewedAt": "2026-11-05"
+    },
+    {
+      "phoneId": "google-pixel-4-xl",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_retail_package_contents_unverified",
+      "reason": "The maintained official manufacturer/carrier specification does not conclusively establish the exact charging cable in-box state for the Japan retail configuration. It may differ by carrier, market, or bundle; keep it unknown pending explicit SKU-level evidence.",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+      ],
+      "reviewedAt": "2026-11-05"
+    },
+    {
+      "phoneId": "google-pixel-4-xl",
+      "field": "water",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_model_water_rating_unverified",
+      "reason": "The maintained official manufacturer/carrier specifications do not establish a verified Japan-model ingress-protection grade or explicit non-resistance classification for this exact record. Retain unknown rather than applying a similar phone's rating.",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+      ],
+      "reviewedAt": "2026-11-05"
+    },
+    {
+      "phoneId": "xiaomi-redmi-14c",
+      "field": "water",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_model_water_rating_unverified",
+      "reason": "The maintained official manufacturer/carrier specifications do not establish a verified Japan-model ingress-protection grade or explicit non-resistance classification for this exact record. Retain unknown rather than applying a similar phone's rating.",
+      "evidenceUrls": [
+        "https://www.mi.com/jp/product/redmi-14-c/specs/"
+      ],
+      "reviewedAt": "2026-11-05"
+    },
+    {
+      "phoneId": "sharp-aquos-sense2-shm08",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_retail_package_contents_unverified",
+      "reason": "The maintained official manufacturer/carrier specification does not conclusively establish the exact charging cable in-box state for the Japan retail configuration. It may differ by carrier, market, or bundle; keep it unknown pending explicit SKU-level evidence.",
+      "evidenceUrls": [
+        "https://jp.sharp/products/shm08/spec.html"
+      ],
+      "reviewedAt": "2026-11-05"
+    },
+    {
+      "phoneId": "sharp-aquos-sense3-lite",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_retail_package_contents_unverified",
+      "reason": "The maintained official manufacturer/carrier specification does not conclusively establish the exact charging cable in-box state for the Japan retail configuration. It may differ by carrier, market, or bundle; keep it unknown pending explicit SKU-level evidence.",
+      "evidenceUrls": [
+        "https://jp.sharp/k-tai/19winter/spec_sense3_lite.html",
+        "https://jp.sharp/products/aquos-sense3-lite-r/spec.html"
+      ],
+      "reviewedAt": "2026-11-05"
+    },
+    {
+      "phoneId": "motorola-moto-g05",
+      "field": "included.adapter",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_retail_package_contents_unverified",
+      "reason": "The maintained official manufacturer/carrier specification does not conclusively establish the exact AC adapter in-box state for the Japan retail configuration. It may differ by carrier, market, or bundle; keep it unknown pending explicit SKU-level evidence.",
+      "evidenceUrls": [
+        "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192472/~/仕様---moto-g05",
+        "https://jp-jp.support.motorola.com/app/answers/detail/a_id/187375/~/specifications---moto-g05"
+      ],
+      "reviewedAt": "2026-11-05"
+    },
+    {
+      "phoneId": "motorola-moto-g05",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_retail_package_contents_unverified",
+      "reason": "The maintained official manufacturer/carrier specification does not conclusively establish the exact charging cable in-box state for the Japan retail configuration. It may differ by carrier, market, or bundle; keep it unknown pending explicit SKU-level evidence.",
+      "evidenceUrls": [
+        "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192472/~/仕様---moto-g05",
+        "https://jp-jp.support.motorola.com/app/answers/detail/a_id/187375/~/specifications---moto-g05"
+      ],
+      "reviewedAt": "2026-11-05"
     }
   ]
 }

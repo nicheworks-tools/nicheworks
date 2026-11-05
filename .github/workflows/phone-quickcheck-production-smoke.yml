@@ -44,7 +44,11 @@ jobs:
         run: node --check scripts/check-phone-quickcheck-production.mjs
       - name: Verify Chromium installed on runner
         run: google-chrome --version
+      - name: Validate new models and Amazon searches before deployment
+        if: github.event_name == 'pull_request'
+        run: node scripts/check-phone-quickcheck-265-listings-and-affiliates.mjs
       - name: Verify deployed HTTP assets and browser behavior at 5 viewports
+        if: github.event_name != 'pull_request'
         env:
           CHROME_BIN: google-chrome
           PHONE_SMOKE_RETRIES: '8'

@@ -207,6 +207,22 @@ async function httpSmoke(){
 
   }
 
+  // Verify representative new pages on main deployment only; PR runs against prior production.
+  if (process.env.PHONE_SMOKE_REQUIRE_CROSS_MAKER === 'true') {
+    for(const slug of ["google-pixel-3a","google-pixel-4-xl","sharp-aquos-sense2-shm08","xiaomi-redmi-14c","motorola-moto-g05","apple-iphone-17","samsung-galaxy-s26","sony-xperia-10-vii","oppo-find-x9","fcnt-arrows-alpha-m08","nothing-phone-3a","zte-nubia-flip-2"]) {
+      const endpoint='models/'+slug+'/';
+      const response=await req(endpoint);
+      assert.equal(response.status,200,'New profile HTTP '+endpoint);
+      const html=await response.text();
+      assert.ok(html.includes('<link rel="canonical" href="'+url.origin+url.pathname+endpoint+'">'),'New canonical '+slug);
+      assert.equal((html.match(/class="amazon" data-offer-key=/g)||[]).length,4,'Four sponsored referrals '+slug);
+      assert.ok(html.includes('適格販売により収入を得ています'),'Amazon disclosure '+slug);
+    }
+    const directory=await (await req('models/')).text();
+    assert.equal((directory.match(/data-phone-id=/g)||[]).length,265,'265 static index rows in production');
+    console.log('265 listings and 12 source-backed affiliate profiles HTTP PASS');
+  }
+
   // Verify both ManualFinder locales really deploy the exact-SKU Samsung funnel
   // and that the current app passes manufacturer manual evidence into matcher.
   const manualMatcherResponse = await req('../manual-finder/phone-quickcheck-match.js');

@@ -1,6 +1,6 @@
 {
   "version": 8,
-  "updatedAt": "2026-11-02",
+  "updatedAt": "2026-11-05",
   "phones": [
     {
       "id": "apple-iphone-18-pro",
@@ -12682,6 +12682,519 @@
         "packageUrl": "https://jp.sharp/products/shm11/spec.html",
         "chargingUrl": "https://jp.sharp/products/shm11/spec.html",
         "verifiedAt": "2026-11-02"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "google-pixel-3",
+      "manufacturer": "Google",
+      "model": "Pixel 3",
+      "aliases": [
+        "Google Pixel 3",
+        "Pixel3"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2018,
+      "dimensions": {
+        "heightMm": 145.6,
+        "widthMm": 68.2,
+        "depthMm": 7.9
+      },
+      "weightG": 148,
+      "displayInch": 5.5,
+      "waterRating": null,
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 2915,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+        },
+        "wiredRecommendedW": 18,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 2.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
+        "manualUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
+        "verifiedAt": "2026-11-05",
+        "chargingUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
+        "wirelessUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "google-pixel-3a",
+      "manufacturer": "Google",
+      "model": "Pixel 3a",
+      "aliases": [
+        "Google Pixel 3a",
+        "Pixel3a"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2019,
+      "dimensions": {
+        "heightMm": 151.3,
+        "widthMm": 70.1,
+        "depthMm": 8.2
+      },
+      "weightG": 147,
+      "displayInch": 5.6,
+      "waterRating": null,
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 3000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.docomo.ne.jp/support/product/pixel3a/spec.html"
+        },
+        "wiredRecommendedW": 18,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 2.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.docomo.ne.jp/support/product/pixel3a/spec.html",
+        "manualUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
+        "verifiedAt": "2026-11-05",
+        "chargingUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "google-pixel-3a-xl",
+      "manufacturer": "Google",
+      "model": "Pixel 3a XL",
+      "aliases": [
+        "Google Pixel 3a XL",
+        "Pixel3aXL"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2019,
+      "dimensions": {
+        "heightMm": 160.1,
+        "widthMm": 76.1,
+        "depthMm": 8.2
+      },
+      "weightG": 167,
+      "displayInch": 6,
+      "waterRating": null,
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 3700,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+        },
+        "wiredRecommendedW": 18,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 2.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
+        "manualUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
+        "verifiedAt": "2026-11-05",
+        "chargingUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "google-pixel-4",
+      "manufacturer": "Google",
+      "model": "Pixel 4",
+      "aliases": [
+        "Google Pixel 4",
+        "Pixel4"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2019,
+      "dimensions": {
+        "heightMm": 147.1,
+        "widthMm": 68.8,
+        "depthMm": 8.2
+      },
+      "weightG": 162,
+      "displayInch": 5.7,
+      "waterRating": null,
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 2800,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+        },
+        "wiredRecommendedW": 18,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
+        "manualUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
+        "verifiedAt": "2026-11-05",
+        "chargingUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
+        "wirelessUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "google-pixel-4-xl",
+      "manufacturer": "Google",
+      "model": "Pixel 4 XL",
+      "aliases": [
+        "Google Pixel 4 XL",
+        "Pixel4XL"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2019,
+      "dimensions": {
+        "heightMm": 160.4,
+        "widthMm": 75.1,
+        "depthMm": 8.2
+      },
+      "weightG": 193,
+      "displayInch": 6.3,
+      "waterRating": null,
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 3700,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+        },
+        "wiredRecommendedW": 18,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
+        "manualUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
+        "verifiedAt": "2026-11-05",
+        "chargingUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
+        "wirelessUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "xiaomi-redmi-note-14-pro-5g",
+      "manufacturer": "Xiaomi",
+      "model": "REDMI Note 14 Pro 5G",
+      "aliases": [
+        "Xiaomi REDMI Note 14 Pro 5G",
+        "REDMINote14Pro5G"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "dimensions": {
+        "heightMm": 162.33,
+        "widthMm": 74.42
+      },
+      "displayInch": 6.67,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 5110,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.mi.com/jp/product/redmi-note-14-pro-5g/specs/"
+        },
+        "wiredRecommendedW": 45,
+        "wiredMaxW": null,
+        "protocols": [
+          "45W TurboCharge"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.mi.com/jp/product/redmi-note-14-pro-5g/specs/",
+        "manualUrl": "https://www.mi.com/jp/product/redmi-note-14-pro-5g/specs/",
+        "verifiedAt": "2026-11-05",
+        "chargingUrl": "https://www.mi.com/jp/product/redmi-note-14-pro-5g/specs/"
+      },
+      "affiliateKeys": [],
+      "reviewNotes": "カラーで厚さが異なる。45W TurboChargeは一般USB PDによる45W受電の保証ではない。",
+      "physicalVariants": [
+        {
+          "key": "midnight-black",
+          "labelJa": "ミッドナイトブラック",
+          "labelEn": "Midnight Black",
+          "depthMm": 8.4,
+          "weightG": 190
+        },
+        {
+          "key": "lavender-purple",
+          "labelJa": "ラベンダーパープル",
+          "labelEn": "Lavender Purple",
+          "depthMm": 8.55,
+          "weightG": 190
+        }
+      ]
+    },
+    {
+      "id": "xiaomi-redmi-14c",
+      "manufacturer": "Xiaomi",
+      "model": "Redmi 14C",
+      "aliases": [
+        "Xiaomi Redmi 14C",
+        "Redmi14C"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2024,
+      "dimensions": {
+        "heightMm": 171.88,
+        "widthMm": 77.8
+      },
+      "displayInch": 6.88,
+      "waterRating": null,
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 5160,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.mi.com/jp/product/redmi-14-c/specs/"
+        },
+        "wiredRecommendedW": 33,
+        "wiredMaxW": 18,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.mi.com/jp/product/redmi-14-c/specs/",
+        "manualUrl": "https://www.mi.com/jp/product/redmi-14-c/specs/",
+        "verifiedAt": "2026-11-05",
+        "chargingUrl": "https://www.mi.com/jp/product/redmi-14-c/specs/"
+      },
+      "affiliateKeys": [],
+      "reviewNotes": "色別重量204.8〜211.9g、端末18W受電上限と同梱33W充電器の出力を区別。",
+      "physicalVariants": [
+        {
+          "key": "midnight-black",
+          "labelJa": "ミッドナイトブラック",
+          "labelEn": "Midnight Black",
+          "depthMm": 8.22,
+          "weightG": 211.9
+        },
+        {
+          "key": "sage-green",
+          "labelJa": "セージグリーン",
+          "labelEn": "Sage Green",
+          "depthMm": 8.22,
+          "weightG": 207.1
+        },
+        {
+          "key": "starry-blue",
+          "labelJa": "スターリーブルー",
+          "labelEn": "Starry Blue",
+          "depthMm": 8.22,
+          "weightG": 204.8
+        }
+      ]
+    },
+    {
+      "id": "sharp-aquos-sense2-shm08",
+      "manufacturer": "SHARP",
+      "model": "AQUOS sense2 (SH-M08)",
+      "aliases": [
+        "SHARP AQUOS sense2 (SH-M08)",
+        "AQUOSsense2(SH-M08)"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2018,
+      "dimensions": {
+        "heightMm": 148,
+        "widthMm": 71,
+        "depthMm": 8.4
+      },
+      "weightG": 155,
+      "displayInch": 5.5,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 2700,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://jp.sharp/products/shm08/spec.html"
+        },
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "included"
+      },
+      "sources": {
+        "specificationsUrl": "https://jp.sharp/products/shm08/spec.html",
+        "manualUrl": "https://jp.sharp/products/shm08/spec.html",
+        "verifiedAt": "2026-11-05",
+        "releaseUrl": "https://corporate.jp.sharp/news/181220-a.html"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "sharp-aquos-sense3-lite",
+      "manufacturer": "SHARP",
+      "model": "AQUOS sense3 lite",
+      "aliases": [
+        "SHARP AQUOS sense3 lite",
+        "AQUOSsense3lite"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2019,
+      "dimensions": {
+        "heightMm": 147,
+        "widthMm": 70,
+        "depthMm": 8.9
+      },
+      "weightG": 166,
+      "displayInch": 5.5,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://jp.sharp/k-tai/19winter/spec_sense3_lite.html"
+        },
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "included"
+      },
+      "sources": {
+        "specificationsUrl": "https://jp.sharp/k-tai/19winter/spec_sense3_lite.html",
+        "manualUrl": "https://jp.sharp/products/aquos-sense3-lite-r/spec.html",
+        "verifiedAt": "2026-11-05"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "motorola-moto-g05",
+      "manufacturer": "Motorola",
+      "model": "moto g05",
+      "aliases": [
+        "Motorola moto g05",
+        "motog05"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "dimensions": {
+        "heightMm": 165.67,
+        "widthMm": 75.98,
+        "depthMm": 8.17
+      },
+      "weightG": 188.8,
+      "displayInch": 6.7,
+      "waterRating": "IP52",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 5200,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192472/~/仕様---moto-g05"
+        },
+        "wiredRecommendedW": null,
+        "wiredMaxW": 18,
+        "protocols": [
+          "TurboPower"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192472/~/仕様---moto-g05",
+        "manualUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/187375/~/specifications---moto-g05",
+        "verifiedAt": "2026-11-05",
+        "chargingUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192472/~/仕様---moto-g05"
       },
       "affiliateKeys": []
     }
