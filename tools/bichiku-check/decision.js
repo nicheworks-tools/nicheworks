@@ -195,8 +195,31 @@ function assessment(catalog,options,source,today){
  const checked=waterDetails.filter(x=>x.entry.prepConfirmed===true&&numeric(x.entry.prepWaterLiters)>0);
  const waterAllocation=round(checked.reduce((sum,x)=>sum+numeric(x.entry.prepWaterLiters),0));
  const uncheckedFoods=waterDetails.filter(x=>!checked.includes(x)).map(x=>x.option.id);
- const waterConflict=s.waterOut&&waterAllocation>stored;
- const waterForPrep=s.safeWaterConfirmed&&waterAllocation>0&&!waterConflict;
+ // MAFF's 3 L/person/day example is drinking PLUS food preparation; it
+ // must not be automatically inflated by adding food-preparation litres.
+ // Still, any individual litre can only be allocated once during outage.
+ // Users explicitly choose their actual drinking reserve for this period.
+ const waterEntry=(s.stocks||{})[s.mode+":water"]||{};
+ const planDays=s.mode==="go"?1:([3,7,14].includes(Number(s.days))?Number(s.days):7);
+ const drinkingReserveLiters=numeric(waterEntry.drinkingReserveLiters);
+ const household=Number(s.adults||0)+Number(s.children||0)+Number(s.infants||0)+Number(s.pets||0);
+ const reserveValueValid=Number.isFinite(Number(waterEntry.drinkingReserveLiters))&&
+   Number(waterEntry.drinkingReserveLiters)>=0;
+ const drinkingReserveConfirmed=waterEntry.drinkingReserveConfirmed===true&&
+   waterEntry.drinkingReservePlanDays===planDays&&reserveValueValid&&
+   (household<=0||drinkingReserveLiters>0);
+ const combinedAllocation=round(drinkingReserveLiters+waterAllocation);
+ const waterOvercommitted=s.waterOut&&drinkingReserveConfirmed&&combinedAllocation>stored;
+ const waterConflict=s.waterOut&&(waterAllocation>stored||waterOvercommitted);
+ const waterBudgetNeedsReview=s.waterOut&&waterAllocation>0&&!drinkingReserveConfirmed;
+ const waterForPrep=s.safeWaterConfirmed&&waterAllocation>0&&!waterConflict&&
+   (!s.waterOut||drinkingReserveConfirmed);
+ const drinkingReview={
+   planDays,reserveLiters:drinkingReserveLiters,confirmed:drinkingReserveConfirmed,
+   combinedAllocation,available:stored,overcommitted:waterOvercommitted,
+   needsReview:waterBudgetNeedsReview,
+   afterBoth:drinkingReserveConfirmed?round(Math.max(0,stored-combinedAllocation)):null
+ };
  // Overwrite the legacy one-checkbox approval for actual calculation; it remains
  // saved for the person's reference but never authorizes unmeasured heating.
  const readiness=Object.assign({},s,{prepWaterSufficient:waterForPrep,
@@ -254,8 +277,11 @@ function assessment(catalog,options,source,today){
  const pad=byId.get("sleepPad"),warmth=byId.get("blanket");
  const combinations=[
    {id:"foodPrep",type:waterForPrep?"ready":"review",
-    amount:waterAllocation,available:stored,condition:waterForPrep,requires:["safeWaterConfirmed","perItemPrepConfirmed","perItemWaterLiters"],
-    note:waterConflict?"prepWaterInsufficient":s.safeWaterConfirmed?"waterAllocation":"prepWaterUnconfirmed"},
+    amount:waterAllocation,available:stored,condition:waterForPrep,
+    requires:["safeWaterConfirmed","perItemPrepConfirmed","perItemWaterLiters",
+      "water.drinkingReserveLiters","water.drinkingReserveConfirmed"],
+    note:waterConflict?"prepWaterInsufficient":waterBudgetNeedsReview?"drinkingReserveReview":
+      s.safeWaterConfirmed?"waterAllocation":"prepWaterUnconfirmed"},
    {id:"batteryBudget",type:batteryReview.uncheckedDevices===0&&
       batteryReview.shortages.length===0&&batteryReview.workingUnits>0&&
       !calc.items.some(r=>r.requiresManualReview&&["light","lantern","radio"].includes(r.item.id))?"ready":"review",
@@ -284,7 +310,7 @@ function assessment(catalog,options,source,today){
  calc.coreMissingCount=calc.items.filter(x=>x.priority===1&&x.missing>0).length;
  calc.filledCount=calc.items.filter(x=>x.missing===0).length;
  return {settings:s,calc,groups:status,combinations,foodGroups,mainDishReferencePortions,toiletReview,heatReview,batteryReview,
-   heatReady,waterForPrep,waterStored:stored,
+   heatReady,waterForPrep,waterStored:stored,drinkingReview,
    waterAllocation,uncheckedFoods,waterRemainingAfterPrep:round(Math.max(0,stored-waterAllocation)),
    food,water,pad,warmth,waterConflict};
 }
