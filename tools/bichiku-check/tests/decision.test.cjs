@@ -228,6 +228,83 @@ test("charged banks and blackout lights honor manual/itemized overlap in every c
  assert.equal(row(distinct,"light").sustainedEffective,4);
  assert.equal(row(distinct,"light").effective,4);
 });
+test("outage drinking reserve and food prep share exactly one confirmed water pool",()=>{
+ const base={noHeat:true,waterOut:true,safeWaterConfirmed:true,
+   stocks:{"home:water":{qty:5}},
+   variants:{"home:alphaRice":{qty:4,prepConfirmed:true,prepWaterLiters:2}}};
+ const old=assess(base);
+ assert.equal(old.waterStored,5);
+ assert.equal(old.waterAllocation,2);
+ assert.equal(old.drinkingReview.needsReview,true);
+ assert.equal(old.drinkingReview.afterBoth,null);
+ assert.equal(old.waterConflict,false,"preparation alone fits the stock, but drinking allocation is still unresolved");
+ assert.equal(old.waterForPrep,false);
+ assert.equal(row(old,"food").effective,0);
+ assert.equal(row(old,"water").effective,5,"do not add preparation litres to the common 3 L/day baseline");
+ const confirmed=assess({...base,stocks:{"home:water":{qty:5,drinkingReserveLiters:3,
+   drinkingReserveConfirmed:true,drinkingReservePlanDays:3}}});
+ assert.equal(confirmed.drinkingReview.confirmed,true);
+ assert.equal(confirmed.drinkingReview.combinedAllocation,5);
+ assert.equal(confirmed.drinkingReview.afterBoth,0);
+ assert.equal(confirmed.waterForPrep,true);
+ assert.equal(row(confirmed,"food").effective,4);
+ assert.equal(row(confirmed,"water").effective,5,"physically held stock stays five litres, not five minus preparation");
+ const excessive=assess({...base,stocks:{"home:water":{qty:5,drinkingReserveLiters:4,
+   drinkingReserveConfirmed:true,drinkingReservePlanDays:3}}});
+ assert.equal(excessive.drinkingReview.overcommitted,true);
+ assert.equal(excessive.waterConflict,true);
+ assert.equal(excessive.waterForPrep,false);
+ assert.equal(row(excessive,"food").effective,0,"the same litre cannot be allocated for both uses");
+ assert.equal(row(excessive,"water").effective,5);
+ const normal=assess({...base,waterOut:false});
+ assert.equal(normal.waterForPrep,true,"do not require an outage bottled-water plan with working water supply");
+ assert.equal(row(normal,"food").effective,4);
+});
+test("drinking reserve confirmations do not transfer across days or evacuation modes",()=>{
+ const base={noHeat:true,waterOut:true,safeWaterConfirmed:true,
+   stocks:{"home:water":{qty:4,drinkingReserveLiters:2,drinkingReserveConfirmed:true,drinkingReservePlanDays:3}},
+   variants:{"home:alphaRice":{qty:2,prepWaterLiters:1,prepConfirmed:true}}};
+ const a=assess(base);
+ assert.equal(a.waterForPrep,true);
+ assert.equal(a.drinkingReview.planDays,3);
+ const changed=assess({...base,days:7});
+ assert.equal(changed.drinkingReview.confirmed,false);
+ assert.equal(changed.waterForPrep,false);
+ assert.equal(row(changed,"food").effective,0);
+ const packed=assess({...base,mode:"go",stocks:{...base.stocks,
+   "go:water":{qty:3,drinkingReserveLiters:1,drinkingReserveConfirmed:true,drinkingReservePlanDays:1}},
+   variants:{...base.variants,"go:alphaRice":{qty:2,prepWaterLiters:1,prepConfirmed:true}}});
+ assert.equal(packed.waterStored,3);
+ assert.equal(packed.drinkingReview.planDays,1);
+ assert.equal(packed.waterForPrep,true);
+ const absent=assess({...base,mode:"go",
+  variants:{"go:alphaRice":{qty:2,prepWaterLiters:1,prepConfirmed:true}}});
+ assert.equal(absent.waterStored,0);
+ assert.equal(absent.waterForPrep,false);
+});
+test("zero, malformed, expired and duplicate water cannot validate a drinking plan",()=>{
+ const base={noHeat:true,waterOut:true,safeWaterConfirmed:true,
+   variants:{"home:alphaRice":{qty:2,prepWaterLiters:1,prepConfirmed:true}}};
+ const zero=assess({...base,stocks:{"home:water":{qty:9,drinkingReserveLiters:0,
+   drinkingReserveConfirmed:true,drinkingReservePlanDays:3}}});
+ assert.equal(zero.drinkingReview.confirmed,false);
+ assert.equal(zero.waterForPrep,false);
+ const malformed=assess({...base,stocks:{"home:water":{qty:9,drinkingReserveLiters:"n/a",
+   drinkingReserveConfirmed:true,drinkingReservePlanDays:3}}});
+ assert.equal(malformed.drinkingReview.confirmed,false);
+ assert.equal(malformed.waterForPrep,false);
+ const expired=assess({...base,stocks:{"home:water":{qty:6,expiry:"2026-10-31",
+   drinkingReserveLiters:2,drinkingReserveConfirmed:true,drinkingReservePlanDays:3}}});
+ assert.equal(expired.waterStored,0);
+ assert.equal(expired.waterForPrep,false);
+ const double=assess({...base,stocks:{"home:water":{qty:5,drinkingReserveLiters:4,
+    drinkingReserveConfirmed:true,drinkingReservePlanDays:3}},
+   variants:{...base.variants,"home:water2L":{qty:4}}});
+ assert.equal(double.waterStored,4,"unreconciled parent/variant overlap does not create five litres");
+ assert.equal(double.drinkingReview.combinedAllocation,5);
+ assert.equal(double.waterConflict,true);
+ assert.equal(row(double,"food").effective,0);
+});
 test("water-prepared alpha rice is never silently credited without a confirmed safe-water budget",()=>{
  const a=assess({noHeat:true,waterOut:true,variants:{"home:alphaRice":{qty:4}}});
  assert.equal(row(a,"food").effective,0);
