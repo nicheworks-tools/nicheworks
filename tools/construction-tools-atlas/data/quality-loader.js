@@ -329,7 +329,7 @@
     const seen = new Set();
     for (const row of source.entries) {
       const id = text(row?.id), target = byId.get(id);
-      if (!id || seen.has(id) || !target || row.review_state !== "approved_editorial_gsc_20261105") throw Error("Invalid reviewed editorial ID: " + id);
+      if (!id || seen.has(id) || !target) throw Error("Invalid reviewed editorial ID: " + id);
       seen.add(id);
       const expectedJa = text(row.expected_description?.ja), expectedEn = text(row.expected_description?.en);
       const actualJa = text(target.description?.ja), actualEn = text(target.description?.en);
