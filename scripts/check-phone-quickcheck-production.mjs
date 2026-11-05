@@ -132,7 +132,7 @@ async function httpSmoke(){
   const liveAccessories=JSON.parse(data['data/accessories.json']);
   const localAccessories=JSON.parse(readFileSync('tools/phone-quickcheck/data/accessories.json','utf8'));
   assert.deepEqual(liveAccessories,localAccessories,'Public accessories JSON differs from the canonical GitHub data');
-  assert.equal(liveAccessories.accessories.length,24,'Expected 24 published affiliate accessory categories');
+  assert.equal(liveAccessories.accessories.length,27,'Expected 27 published affiliate accessory categories');
   for(const key of ['charger-pd-check-wattage','charger-pd-90w']){
     assert.ok(liveAccessories.accessories.some(x=>x.key===key),'Public accessory category missing: '+key);
   }
