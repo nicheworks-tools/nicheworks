@@ -1,0 +1,16 @@
+name: Message generator production regression
+on:
+  pull_request:
+    paths:
+      - 'tools/message-generator/**'
+      - '.github/workflows/message-generator-regression.yml'
+  workflow_dispatch:
+jobs:
+  production-node:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tools/message-generator/tests/copy-revision.test.cjs
