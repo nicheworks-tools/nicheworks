@@ -20,7 +20,7 @@ const liteDescriptions = runtimeObject(liteFile, 'ROLE_DESCRIPTIONS');
 const fastLabels = runtimeObject(scanFile, 'ROLE_LABELS');
 const fastDescriptions = runtimeObject(scanFile, 'ROLE_DESCRIPTIONS');
 
-const categories = ['buffer', 'conditioning', 'skin conditioning', 'hair conditioning', 'plant extract', 'bulking agent'];
+const categories = ['buffer', 'conditioning', 'skin conditioning', 'hair conditioning', 'plant extract', 'bulking agent', 'antimicrobial'];
 for (const category of categories) {
   for (const lang of ['ja', 'en']) {
     assert.ok(liteLabels[category]?.[lang], `Lite missing ${category} ${lang} label`);
@@ -29,5 +29,11 @@ for (const category of categories) {
     assert.equal(liteDescriptions[category][lang], fastDescriptions[category]?.[lang], `description parity: ${category} ${lang}`);
   }
 }
+assert.notEqual(liteLabels.antimicrobial.en, liteLabels.preservative.en,
+  'Antimicrobial is not synonymous with preservative');
+assert.notEqual(liteDescriptions.antimicrobial.ja, liteDescriptions.preservative.ja,
+  'Do not promise product preservation for antimicrobial ingredients');
+assert.match(fastDescriptions.antimicrobial.en, /microorganisms/i);
+assert.match(liteDescriptions.antimicrobial.ja, /微生物/);
 assert.equal(liteLabels.general.en, 'Information incomplete', 'general must not become a supported public role');
-console.log('COSMETICS_ROLE_PARITY=PASS: six bilingual role categories match in Lite and FastScan; general remains incomplete');
+console.log('COSMETICS_ROLE_PARITY=PASS: seven bilingual role categories match in Lite and FastScan; general remains incomplete');
