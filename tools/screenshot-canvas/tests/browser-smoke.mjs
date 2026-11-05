@@ -194,6 +194,8 @@ function pageSmoke() {
     await waitFor(() => status().includes('画像 0 枚'), 'app initialization');
     const startWidth = c.width;
     check(startWidth === 1600, 'initial canvas width');
+    input.focus();
+    check(document.activeElement === input && getComputedStyle(input).display !== 'none', 'keyboard-only image import remains focusable');
     const red = await png('rgb(240,20,50)');
     const blue = await png('rgb(20,60,240)');
     const files = new DataTransfer();

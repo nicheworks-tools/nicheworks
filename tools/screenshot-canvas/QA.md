@@ -11,6 +11,7 @@
 - [x] Move an image with pointer events and simulated touch-type PointerEvents.
 - [x] Resize from all four corner handles and undo each resize.
 - [x] Keyboard-select a layer, use Shift+Arrow to move, Ctrl+Z and Delete.
+- [x] Reach the file input using keyboard focus (input is visually hidden, not display:none).
 - [x] Test row, column, grid, overlay, opacity, canvas dimensions, background, undo and redo.
 - [x] Check PNG export filename, MIME type, pixel color and transparent background.
 - [x] Switch between Japanese and English without losing controls.
