@@ -1,0 +1,19 @@
+name: Pages Deploy Guide regression
+on:
+  pull_request:
+    paths:
+      - 'tools/pages-deploy-guide/**'
+      - '.github/workflows/pages-deploy-guide-regression.yml'
+  push:
+    paths:
+      - 'tools/pages-deploy-guide/**'
+      - '.github/workflows/pages-deploy-guide-regression.yml'
+jobs:
+  production-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tools/pages-deploy-guide/tests/copy-download-regression.test.mjs

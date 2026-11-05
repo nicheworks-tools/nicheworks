@@ -6,6 +6,7 @@
   let generated = false;
   let combinedText = "";
   let markdownText = "";
+  let resultVersion = 0;
 
   const $ = (id) => document.getElementById(id);
   const isEn = () => document.documentElement.lang === "en";
@@ -58,9 +59,15 @@
     a.href = url;
     a.download = filename;
     document.body.appendChild(a);
-    a.click();
-    a.remove();
-    setTimeout(() => URL.revokeObjectURL(url), 500);
+    try {
+      a.click();
+      return true;
+    } catch (_) {
+      return false;
+    } finally {
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 500);
+    }
   }
 
   function selections() {
@@ -269,6 +276,7 @@
     combinedText = data.combined;
     markdownText = data.markdown;
     generated = true;
+    resultVersion += 1;
   }
 
   function fileName() {
@@ -287,12 +295,16 @@
     $("generate").addEventListener("click", render);
     $("copyAll").addEventListener("click", async () => {
       if (!generated) return toast(msg("先に生成してください。", "Generate a checklist first."));
-      toast(await copy(combinedText) ? msg("全結果をコピーしました。", "Copied all results.") : msg("コピーに失敗しました。", "Copy failed."));
+      const version = resultVersion;
+      const value = combinedText;
+      const copied = await copy(value);
+      if (version !== resultVersion) return;
+      toast(copied ? msg("全結果をコピーしました。", "Copied all results.") : msg("コピーに失敗しました。", "Copy failed."));
     });
     $("downloadMd").addEventListener("click", () => {
       if (!generated) return toast(msg("先に生成してください。", "Generate a checklist first."));
-      saveFile(fileName(), markdownText);
-      toast(msg("Markdownを保存しました。", "Markdown saved."));
+      const started = saveFile(fileName(), markdownText);
+      toast(started ? msg("Markdownのダウンロードを開始しました。", "Markdown download started.") : msg("ダウンロードを開始できませんでした。", "Could not start download."));
     });
     ["platform", "sourceType", "customDomain", "outputFolder"].forEach((id) => $(id).addEventListener("change", () => { if (generated) render(); }));
     void OFUSE_URL;
