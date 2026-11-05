@@ -392,6 +392,57 @@ async function browserSmoke(){
       console.log('Affiliate PASS: '+width+'px, live EN/JA tagged links, sponsored rel and disclosure, generic USB-PD, Alpha2 90W');
       console.log('Chrome PASS: '+width+'px, no overflow, search, JP/EN, '+(jp.mobile?'mobile sheet':'desktop detail'));
     }
+
+    // Public browser-level verification of the existing exact-source Galaxy
+    // referral. This is deliberately separate from static source/HTTP checks.
+    const docomoGalaxy = [
+      ['Galaxy A23 5G','SM-A233DZKDDCM','samsung-galaxy-a23-5g-sc56c'],
+      ['Galaxy A22 5G','SM-A223DZKADCM','samsung-galaxy-a22-5g-sc56b'],
+      ['Galaxy A21','SM-A102DZRJDCM','samsung-galaxy-a21-sc42a'],
+      ['Galaxy A20','SM-A102DZRADCM','samsung-galaxy-a20-sc02m']
+    ];
+    await send('Emulation.setDeviceMetricsOverride',
+      {width:390,height:844,deviceScaleFactor:1,mobile:true});
+    for (const locale of ['ja','en']) {
+      const manualUrl=new URL(locale==='ja'?'../manual-finder/':'../manual-finder/en/',url);
+      const nav=await send('Page.navigate',{url:manualUrl.href});
+      if(nav.errorText)throw new Error('ManualFinder '+locale+' navigation: '+nav.errorText);
+      await until(async()=>{
+        const status=await evalJs('({loaded:document.querySelectorAll("#results .card").length>0,matcher:typeof window.MANUALFINDER_QC?.linkFor==="function",count:document.querySelector("#resultCount")?.textContent||""})');
+        return status.loaded&&status.matcher&&status.count&&!/読み込み中|Loading/i.test(status.count);
+      },60000);
+      for (const [model,sku,slug] of docomoGalaxy) {
+        const card=await evalJs('(()=>{const input=document.querySelector("#searchInput");input.value='+JSON.stringify(sku)+';input.dispatchEvent(new Event("input",{bubbles:true}));const c=[...document.querySelectorAll("#results .card")].find(x=>x.dataset.maker==="Samsung Mobile"&&x.dataset.model==='+JSON.stringify(model)+');const link=c?.querySelector(".phone-quickcheck-link");return {card:!!c,href:link?.getAttribute("href")||null,visible:!!link&&getComputedStyle(link).display!=="none"};})()');
+        assert.ok(card.card,locale+' ManualFinder public result missing exact SKU '+sku);
+        assert.equal(card.href,'/tools/phone-quickcheck/models/'+slug+'/',
+          locale+' ManualFinder rendered wrong Galaxy SKU referral for '+model);
+        assert.ok(card.visible,locale+' ManualFinder Galaxy referral is hidden for '+model);
+      }
+      const excluded=await evalJs('(()=>{const input=document.querySelector("#searchInput");input.value="Galaxy S24 FE";input.dispatchEvent(new Event("input",{bubbles:true}));const cards=[...document.querySelectorAll("#results .card")].filter(x=>x.dataset.maker==="Samsung Mobile"&&x.dataset.model==="Galaxy S24 FE");return {found:cards.length,referral:cards.some(x=>!!x.querySelector(".phone-quickcheck-link"))};})()');
+      assert.ok(excluded.found>0,locale+' ManualFinder S24 FE result missing');
+      assert.equal(excluded.referral,false,locale+' ManualFinder must not confuse S24 FE SKU variants');
+
+      // Click the real generated anchor, observe the synchronous privacy-safe
+      // delegated GA4 event, then validate navigation to the published guide.
+      const clicked=await evalJs('(()=>{const input=document.querySelector("#searchInput");input.value="SM-A233DZKDDCM";input.dispatchEvent(new Event("input",{bubbles:true}));const c=[...document.querySelectorAll("#results .card")].find(x=>x.dataset.maker==="Samsung Mobile"&&x.dataset.model==="Galaxy A23 5G");const a=c?.querySelector(".phone-quickcheck-link");if(!a)return {clicked:false};const seen=[];const prior=window.gtag;window.gtag=(...args)=>seen.push(args);const href=a.getAttribute("href");a.click();const event=seen.find(x=>x[0]==="event"&&x[1]==="manualfinder_phone_quickcheck_click");window.gtag=prior;return {clicked:true,href,event:event?{name:event[1],params:event[2]}:null};})()');
+      assert.ok(clicked.clicked,locale+' A23 quick-check link was not clickable');
+      assert.ok(clicked.event,locale+' ManualFinder affiliate funnel GA4 click event missing');
+      assert.equal(clicked.event.params.maker,'Samsung Mobile',
+        locale+' ManualFinder funnel GA4 maker bucket mismatch');
+      assert.equal(clicked.event.params.category,'PC・スマホ',
+        locale+' ManualFinder funnel GA4 category mismatch');
+      for(const forbidden of ['model','sku','manualUrl','search_query','search_term','device_id']){
+        assert.ok(!(forbidden in clicked.event.params),
+          locale+' ManualFinder GA4 must not transmit '+forbidden);
+      }
+      await until(async()=>{
+        const state=await evalJs('({path:location.pathname,heading:document.querySelector("h1")?.textContent||""})');
+        return state.path==='/tools/phone-quickcheck/models/samsung-galaxy-a23-5g-sc56c/' &&
+          state.heading.includes('Galaxy A23 5G');
+      },25000);
+      console.log('ManualFinder '+locale+' public Chrome PASS: 4 DCM Galaxy referrals, S24 FE blocked, A23 real navigation and privacy-safe event');
+    }
+
   }finally{
     client?.close();child.kill('SIGTERM');await sleep(300);
     rmSync(dir,{recursive:true,force:true});
