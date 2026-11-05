@@ -9,7 +9,7 @@ import zipfile
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
-from playwright.async_api import async_playwright
+from playwright.async_api import async_playwright, expect
 
 EXT = Path(__file__).resolve().parents[1] / "extension"
 PAGES = {
@@ -50,10 +50,10 @@ async def main():
                     await page.locator("#url").fill(root)
                     await page.locator("#max-pages").fill("3")
                     await page.locator("#discover").click()
-                    await page.wait_for_function("document.querySelector('#discovery-status').textContent.includes('Discovered 3 HTML pages')", timeout=30000)
+                    await expect(page.locator("#discovery-status")).to_contain_text("Discovered 3 HTML pages", timeout=30000)
                     assert await page.locator("#pages input:checked").count() == 3
                     await page.locator("#batch-start").click()
-                    await page.wait_for_function("document.querySelector('#batch-status').textContent.includes('ZIP ready.')", timeout=90000)
+                    await expect(page.locator("#batch-status")).to_contain_text("ZIP ready.", timeout=90000)
                     assert await page.locator("#batch-download").is_visible()
                     async with page.expect_download() as download_info:
                         await page.locator("#batch-download").click()
