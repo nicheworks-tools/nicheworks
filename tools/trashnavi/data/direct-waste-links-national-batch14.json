@@ -1,0 +1,54 @@
+[
+  {
+    "pref": "北海道",
+    "city": "新ひだか町",
+    "name": "ごみ分別等パンフレット（令和8年度版）",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.shinhidaka-hokkaido.jp/hotnews/detail/00003918.html",
+    "lgcode": "016101",
+    "last_checked": "2026-11-05",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "町公式、2026-04-14更新。令和8年度版分別パンフレットと静内・三石別収集表を掲載。"
+  },
+  {
+    "pref": "北海道",
+    "city": "新ひだか町",
+    "name": "静内地区ごみ収集日程表（令和8年）",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.shinhidaka-hokkaido.jp/hotnews/files/00003900/00003918/R8%E9%9D%99%E5%86%85%E3%81%94%E3%81%BF%E5%8F%8E%E9%9B%86.pdf",
+    "lgcode": "016101",
+    "last_checked": "2026-11-05",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "静内地区のみ。町名・字別の収集日と令和8年1月からの一時的収集時刻変更を明記。"
+  },
+  {
+    "pref": "北海道",
+    "city": "新ひだか町",
+    "name": "三石地区ごみ収集カレンダー（令和8年度版）",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.shinhidaka-hokkaido.jp/hotnews/files/00003900/00003918/R8%E4%B8%89%E7%9F%B3%E3%81%94%E3%81%BF%E5%8F%8E%E9%9B%86%E3%82%AB%E3%83%AC%E3%83%B3%E3%83%80%E3%83%BC.pdf",
+    "lgcode": "016101",
+    "last_checked": "2026-11-05",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "三石地区のみ、2026-04-01〜2027-03-31。西端地区国道沿い以外は静内地区表参照。"
+  },
+  {
+    "pref": "北海道",
+    "city": "新ひだか町",
+    "name": "日高中部環境センター持込パンフレット",
+    "type": "持込施設",
+    "link_type": "drop_off",
+    "url": "https://www.shinhidaka-hokkaido.jp/hotnews/files/00003900/00003918/%E6%97%A5%E9%AB%98%E4%B8%AD%E9%83%A8%E7%92%B0%E5%A2%83%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E6%8C%81%E8%BE%BC%E3%83%91%E3%83%B3%E3%83%95%E3%83%AC%E3%83%83%E3%83%88.pdf",
+    "lgcode": "016101",
+    "last_checked": "2026-11-05",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "町公式掲載の広域処理施設持込案内。10kg180円、受入条件と時間を記載。"
+  }
+]
