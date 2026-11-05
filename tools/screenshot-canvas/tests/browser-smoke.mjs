@@ -194,6 +194,23 @@ function pageSmoke() {
     await waitFor(() => status().includes('画像 0 枚'), 'app initialization');
     const startWidth = c.width;
     check(startWidth === 1600, 'initial canvas width');
+    const error = document.querySelector('#error');
+    check(error?.getAttribute('role') === 'alert', 'accessible image error region exists');
+    const widthInput = document.querySelector('#width'),heightInput=document.querySelector('#height');
+    widthInput.value='12000';
+    heightInput.value='12000';
+    widthInput.dispatchEvent(new Event('change',{bubbles:true}));
+    check(c.width===1600 && c.height===900,'reject 144MP canvas without allocating');
+    check(widthInput.value==='1600' && heightInput.value==='900','restore invalid size input');
+    check(!error.hidden && /2,400万|24 million/i.test(error.textContent),'canvas size error announced');
+    const oversized = new File(['x'], 'too-large.png', {type:'image/png'});
+    Object.defineProperty(oversized,'size',{value:34*1024*1024});
+    const oversizedFiles=new DataTransfer();
+    oversizedFiles.items.add(oversized);
+    input.files=oversizedFiles.files;
+    input.dispatchEvent(new Event('change',{bubbles:true}));
+    await waitFor(()=>!error.hidden && /32MB/i.test(error.textContent),'oversized file rejection');
+    check(status().includes('画像 0 枚'),'oversized file did not import');
     input.focus();
     check(document.activeElement === input && getComputedStyle(input).display !== 'none', 'keyboard-only image import remains focusable');
     const red = await png('rgb(240,20,50)');
@@ -204,6 +221,13 @@ function pageSmoke() {
     input.files = files.files;
     input.dispatchEvent(new Event('change', { bubbles: true }));
     await waitFor(() => status().includes('画像 2 枚'), 'two image imports');
+    check(error.hidden, 'successful import clears previous warning');
+    const broken = new DataTransfer();
+    broken.items.add(new File(['not-a-png'], 'broken.png', {type:'image/png'}));
+    input.files=broken.files;
+    input.dispatchEvent(new Event('change',{bubbles:true}));
+    await waitFor(()=>!error.hidden && /32MB/i.test(error.textContent),'invalid image decode error');
+    check(status().includes('画像 2 枚'),'invalid image not imported');
 
     document.querySelector('[data-layout="row"]').click();
     check(rgbAt(40, 40)[0] > 200, 'row layout first image color');
