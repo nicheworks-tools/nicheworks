@@ -89,5 +89,44 @@
     "link_type": "bulky_waste",
     "url": "https://www.town.teshikaga.hokkaido.jp/kurashi/soshikiichiran/kankyoseikatsuka/1/1/502.html",
     "scope_note": "町公式ページ2026-04-01更新。「粗大ごみの出し方」に自己搬入・引取依頼・料金・連絡方法を記載。同ページに美留和処理場の直接搬入案内も掲載。"
+  },
+  {
+    "pref": "北海道",
+    "city": "白糠町",
+    "lgcode": "016683",
+    "last_checked": "2026-11-06",
+    "status": "active",
+    "language": "ja",
+    "name": "ごみの分別",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.shiranuka.lg.jp/section/hoken/h8v21a000000hr7o.html",
+    "scope_note": "町公式2026-04-01更新。分別種類・指定袋の案内。掲載PDFの年度は別途確認が必要。"
+  },
+  {
+    "pref": "北海道",
+    "city": "白糠町",
+    "lgcode": "016683",
+    "last_checked": "2026-11-06",
+    "status": "active",
+    "language": "ja",
+    "name": "ごみの収集日・令和8年度収集カレンダー",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.town.shiranuka.lg.jp/section/hoken/nfml630000000ey9.html",
+    "scope_note": "町公式2026-04-01更新。令和8年度の地区別収集日。町内地区で収集日が異なる。"
+  },
+  {
+    "pref": "北海道",
+    "city": "白糠町",
+    "lgcode": "016683",
+    "last_checked": "2026-11-06",
+    "status": "active",
+    "language": "ja",
+    "name": "白糠町クリーンセンターへのごみの直接搬入",
+    "type": "持込施設",
+    "link_type": "drop_off",
+    "url": "https://www.town.shiranuka.lg.jp/section/hoken/qvum4j00000012r5.html",
+    "scope_note": "町公式2026-04-01更新。和天別1324番地2、持込可能品目・受付日時を掲載。"
   }
 ]
