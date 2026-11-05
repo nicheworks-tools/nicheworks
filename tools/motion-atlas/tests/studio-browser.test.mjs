@@ -133,6 +133,48 @@ try{
    check(document.querySelector("#export-output").hidden,"Stale readme remained after editing");
    window.fetch=oldFetch;localStorage.removeItem(key);
 
+   // Project files must be portable (no purchase keys), readable offline, and validated before editor mutation.
+   const oldClick=HTMLAnchorElement.prototype.click,oldCreate=URL.createObjectURL;
+   let blobProject=null,projectDownloadName="";
+   HTMLAnchorElement.prototype.click=function(){projectDownloadName=this.download;};
+   URL.createObjectURL=function(blob){blobProject=blob;return oldCreate.call(URL,blob);};
+   try{document.querySelector("#save-project").click();}
+   finally{HTMLAnchorElement.prototype.click=oldClick;URL.createObjectURL=oldCreate;}
+   check(projectDownloadName==="motion-atlas-studio-project.json","Wrong project download name");
+   check(blobProject?.type?.startsWith("application/json"),"Project file not JSON");
+   const portable=JSON.parse(await blobProject.text());
+   check(portable.schema==="motion-atlas-studio-project-v1","Missing project schema");
+   check(portable.text==="CHANGED","Project saved stale editor content");
+   check(portable.tracks.length===3,"Track order/count not retained");
+   check(Object.keys(portable).sort().join(",")==="schema,text,tracks","Project contains unexpected keys");
+   check(!JSON.stringify(portable).includes("cs_test_"),"Purchase bearer leaked into portable project");
+   const picker=document.querySelector("#import-project");
+   const chooseFile=(value)=>{
+    const transfer=new DataTransfer();
+    transfer.items.add(new File([value],"project.json",{type:"application/json"}));
+    picker.files=transfer.files;
+    picker.dispatchEvent(new Event("change",{bubbles:true}));
+   };
+   const beforeBad=JSON.stringify(portable.tracks);
+   chooseFile(JSON.stringify({schema:portable.schema,text:"ATTACK",tracks:[{effect:"unknown",delay:0,duration:500,easing:"linear"}]}));
+   await new Promise(r=>setTimeout(r,70));
+   check(document.querySelector("#target-text").value==="CHANGED","Invalid import modified editor text");
+   check(all(".track").length===3,"Invalid import damaged tracks");
+   chooseFile(JSON.stringify({schema:"other-version",text:"ATTACK",tracks:portable.tracks}));
+   await new Promise(r=>setTimeout(r,70));
+   check(document.querySelector("#target-text").value==="CHANGED","Unknown version changed editor");
+   chooseFile("x".repeat(13000));
+   await new Promise(r=>setTimeout(r,70));
+   check(document.querySelector("#target-text").value==="CHANGED","Oversized JSON changed editor");
+   chooseFile(JSON.stringify({schema:portable.schema,text:"TRANSFERRED",tracks:portable.tracks,sessionId:"cs_test_leak",paid:true}));
+   for(let n=0;n<30&&document.querySelector("#target-text").value!=="TRANSFERRED";n++)
+    await new Promise(resolve=>setTimeout(resolve,30));
+   check(document.querySelector("#target-text").value==="TRANSFERRED","Valid import failed");
+   check(all(".track").length===3,"Valid import lost tracks");
+   check(JSON.stringify(all(".track").map(row=>row.querySelector(".track-effect")?.value))===JSON.stringify(portable.tracks.map(t=>t.effect)),"Track order changed during import");
+   check(document.documentElement.scrollWidth-document.documentElement.clientWidth<=8,"Project controls caused horizontal overflow");
+
+
    return {ok:true,width:window.innerWidth,count:all(".track").length,reduced};
   }catch(error){return {ok:false,error:error.message,width:window.innerWidth};}
  }
