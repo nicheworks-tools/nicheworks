@@ -94,6 +94,20 @@ Both English and Japanese OCR photo interfaces now have an **off-by-default** "E
 
 Automated regression: `node tools/_shared/check-fastscan-image-enhancement.mjs` checks untouched default-image handling, concrete grayscale pixel writes, upscale and memory cap, expected failure handling and blob-URL release, bilingual option wiring, optional QA comparison and photo privacy. The noindex QA page at `tools/inci-fastscan/qa/photo-ocr-benchmark.html` now exposes the same checkbox so manual testers can compare original and browser-enhanced scans of a **single independently transcribed real label**.
 
+## Japanese photographed-label INCI expansion — wave 8 (2026-11-05)
+
+Adds three more independent exact JP→INCI identities from the same 127-name published ZIGEN/KISOCARE source-list corpus. All are `safety: "unrated"`, with neutral, source-backed functions only. This is an exact-name **dictionary positive-control**; it does not verify genuine photograph OCR, packaging/formula version identity, mobile capture quality, product safety or legal eligibility.
+
+| Published Japanese source display | Canonical INCI | Independent nomenclature/function sources |
+| --- | --- | --- |
+| 水添ナタネ油アルコール | Hydrogenated Rapeseed Alcohol | [Kokyu Alcohol Kogyo manufacturer exact JP/INCI](https://www.kak.co.jp/product/saturated_higher_alcohol/item_68), [COSMILE emollient/viscosity functions](https://cosmileeurope.eu/inci/detail/6706/hydrogenated-rapeseed-alcohol/) |
+| セイヨウオトギリソウ花/葉/茎エキス | Hypericum Perforatum Flower/Leaf/Stem Extract | [Beaker Japanese official nomenclature transcription](https://beaker.media/jsln_ingredients/560722), [Maruzen manufacturer exact product identity](https://www.maruzenpcy.co.jp/productguide/list/cosmetics/), [COSMILE conditioning](https://cosmileeurope.eu/inci/detail/7238/hypericum-perforatum-flower-leaf-stem-extract/) |
+| レチノイルヒアルロン酸Na | Sodium Retinoyl Hyaluronate | [Higuchi/Contipro distributor exact JP/INCI specification](https://pub-mediabox-storage.rxweb-prd.com/exhibitor/products/exh-9ff50b94-edf3-4efe-990d-a632b21c382d/product-documents/pro-303560a5-2e15-48d2-b9a1-559897da840e/1ce46ebf-44aa-4c53-b745-7b894ac30992.pdf), [COSMILE skin conditioning](https://cosmileeurope.eu/inci/detail/28894/sodium-retinoyl-hyaluronate/), [independent Japanese/INCI product evidence](https://cosme-hub.com/stats/new-ingredients) |
+
+Exact published-source-list coverage gate becomes **at least 111 of 127**, leaving **16** unmatched if CI succeeds. Preserve separate canonical identities for fatty alcohol vs oil, Hypericum flower/leaf/stem vs whole-plant extract, and retinoyl hyaluronate vs hyaluronate alone. Other ambiguous, source-dependent and retired naming cases remain on hold. All test image files are ephemeral and never committed/uploaded.
+
+The new `qa/check-japanese-source-backed-wave8.mjs` regression is required in the all-cosmetics accuracy benchmark and photographed Japanese real-package OCR workflow along with waves 1–7.
+
 ## Japanese photographed-label INCI expansion — wave 7 (2026-11-05)
 
 Three independent, source-backed full INCI identities from the existing two-product published source-list corpus are added, with exact photographed-product **reference-list** Japanese names and neutral function descriptions. All three stay `safety: "unrated"`, and neither the images, source pages, nor ingredients have been verified as exact same-formulation versions.

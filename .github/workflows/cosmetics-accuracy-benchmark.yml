@@ -68,6 +68,7 @@ on:
       - 'tools/inci-fastscan/qa/check-japanese-source-backed-wave5.mjs'
       - 'tools/inci-fastscan/qa/check-japanese-source-backed-wave6.mjs'
       - 'tools/inci-fastscan/qa/check-japanese-source-backed-wave7.mjs'
+      - 'tools/inci-fastscan/qa/check-japanese-source-backed-wave8.mjs'
       - 'tools/inci-fastscan/qa/japanese-source-alias-evidence.mjs'
       - 'tools/_shared/check-fastscan-result-controls.mjs'
       - 'tools/_shared/check-fastscan-review-queue.mjs'
@@ -308,6 +309,8 @@ jobs:
         run: node tools/inci-fastscan/qa/check-japanese-source-backed-wave6.mjs
       - name: Wave 7 Japanese source-backed three exact names
         run: node tools/inci-fastscan/qa/check-japanese-source-backed-wave7.mjs
+      - name: Wave 8 Japanese source-backed three full INCI names
+        run: node tools/inci-fastscan/qa/check-japanese-source-backed-wave8.mjs
       - name: FastScan result controls regression
         run: node tools/_shared/check-fastscan-result-controls.mjs
       - name: FastScan review queue regression
