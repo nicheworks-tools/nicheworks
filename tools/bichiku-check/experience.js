@@ -63,10 +63,14 @@ function overlapWarning(a){
  return items.length?'<p class="g-pending">'+esc(T.overlapAlert)+': <strong>'+
   fmt(items.length)+'</strong> · '+esc(T.overlapShoppingCaution)+'</p>':"";
 }
+function waterBudgetWarning(a){
+ return state.waterOut&&a.waterAllocation>0&&!a.waterForPrep?
+  '<p class="g-pending">'+esc(T.drinkBudgetAlert)+'</p>':"";
+}
 function resultsPage(a){
  const total=a.groups.reduce((sum,g)=>sum+g.missingCategories,0);
  return '<div class="g-head"><h2>'+esc(T.step2)+'</h2><button type="button" data-edit class="g-link">'+esc(T.edit)+'</button></div>'+
- '<p class="g-lead">'+esc(T.guide)+'</p>'+overlapWarning(a)+'<div class="g-total"><strong>'+total+'</strong><span>'+esc(T.missingItems)+'</span></div>'+
+ '<p class="g-lead">'+esc(T.guide)+'</p>'+overlapWarning(a)+waterBudgetWarning(a)+'<div class="g-total"><strong>'+total+'</strong><span>'+esc(T.missingItems)+'</span></div>'+
  '<div class="g-goals">'+groupCards(a)+'</div><button type="button" class="primary wide" data-shopping>'+esc(T.toShopping)+' →</button>';
 }
 function preserveOpen(){
@@ -132,9 +136,27 @@ function batterySummary(a){
   '<p class="g-fine">'+esc(T.batteryNoDouble)+'</p>'+
   '<p class="g-fine">'+esc(T.batterySafety)+' <a href="https://baj.or.jp/safety/primarybattery_light/safety20.html" target="_blank" rel="noopener">'+esc(T.batterySource)+'</a></p></div>';
 }
+function drinkingBudgetControls(a){
+ const d=a.drinkingReview,water=getBasic("water");
+ return '<div class="g-water-item g-drinking-review">'+
+ '<p class="g-fine">'+esc(T.drinkBudgetExplanation)+
+ ' <a href="https://www.maff.go.jp/j/zyukyu/foodstock/imadoki/imadoki02_10.html" target="_blank" rel="noopener">'+esc(T.drinkBudgetSource)+'</a></p>'+
+ '<div class="g-parent-fields"><label>'+esc(T.drinkReserveLabel)+
+ '<input type="number" min="0" max="10000000" step="0.1" inputmode="decimal" data-drink-reserve="1" value="'+fmt(n(water.drinkingReserveLiters))+'"></label>'+
+ '<span>'+esc(T.drinkPlanDays)+': '+fmt(d.planDays)+'</span></div>'+
+ '<label class="g-check"><input type="checkbox" data-drink-confirm="1" '+(d.confirmed?"checked":"")+'>'+esc(T.drinkConfirm)+'</label>'+
+ '<p class="g-water-summary">'+esc(T.drinkStored)+': <strong>'+fmt(d.available)+'L</strong></p>'+
+ '<p class="g-water-summary">'+esc(T.drinkPrep)+': <strong>'+fmt(a.waterAllocation)+'L</strong></p>'+
+ '<p class="g-water-summary">'+esc(T.drinkTotal)+': <strong>'+fmt(d.combinedAllocation)+'L</strong></p>'+
+ (d.confirmed?'<p class="g-water-summary">'+esc(T.drinkFree)+': <strong>'+fmt(d.afterBoth)+'L</strong></p>':
+ '<p class="g-pending">'+esc(T.drinkUnconfirmed)+'</p>')+
+ (d.overcommitted?'<p class="g-pending">'+esc(T.drinkOvercommitted)+'</p>':"")+
+ '<p class="g-fine">'+esc(T.drinkReserveCaution)+'</p></div>';
+}
 function conditions(a){
  if(goal==="food")return '<p>'+esc(a.waterConflict?T.waterShort:T.foodRequires)+'</p>'+
  '<label class="g-check"><input type="checkbox" data-setting="safeWaterConfirmed" '+(state.safeWaterConfirmed?"checked":"")+'>'+esc(T.waterConfirm)+'</label>'+
+ (state.waterOut?drinkingBudgetControls(a):"")+
  (state.powerOut&&!state.noHeat?'<p class="g-pending">'+esc(T.heatUnconfirmed)+'</p>'+heatControls(a):"")+
  '<p class="g-fine">'+esc(T.prepExplanation)+'</p>'+
  '<p class="g-water-summary">'+esc(T.prepAllocated)+': <strong>'+fmt(a.waterAllocation)+'L</strong></p>'+
@@ -162,7 +184,9 @@ function conditions(a){
  if(goal==="warmth")return '<p>'+esc(T.floorExplanation)+'</p><div class="g-layers">'+["sleepPad","blanket"].map(id=>{
   const x=a.calc.items.find(r=>r.item.id===id);return x?'<div><b>'+esc(x.item.names[lang])+'</b><span>'+esc(T.missing)+': '+fmt(x.missing)+'</span></div>':"";
  }).join("")+'</div>';
- if(goal==="water")return '<p>'+esc(T.waterHint)+'</p><p>'+esc(T.waterRemaining)+': '+fmt(a.waterRemainingAfterPrep)+'L</p>';
+ if(goal==="water")return '<p>'+esc(T.waterHint)+'</p>'+
+ (state.waterOut?drinkingBudgetControls(a):"")+
+ '<p>'+esc(T.waterRemaining)+': '+fmt(a.waterRemainingAfterPrep)+'L</p>';
  return '<p>'+esc(T[goal+"Hint"]||T.otherConditions)+'</p>';
 }
 const energyParents=new Set(["light","lantern","radio","powerbank"]);
@@ -288,7 +312,7 @@ function detailPage(a){
  return '<div class="g-head"><button type="button" data-back class="g-link">← '+esc(T.back)+'</button>'+
  '<button type="button" data-shopping class="g-link">'+esc(T.shopping)+'</button></div>'+
  '<h2>'+esc(T.step3)+'</h2><h3>'+esc(T[goal])+'</h3>'+
- '<div class="g-detail-status"><strong>'+esc(T.missing)+': '+fmt(r.missing)+unit(r.item.id)+'</strong>'+meter(r)+'<p>'+count(r)+'</p></div>'+overlapWarning(a)+
+ '<div class="g-detail-status"><strong>'+esc(T.missing)+': '+fmt(r.missing)+unit(r.item.id)+'</strong>'+meter(r)+'<p>'+count(r)+'</p></div>'+overlapWarning(a)+waterBudgetWarning(a)+
  '<section class="g-conditions"><h3>'+esc(T.conditionsTitle)+'</h3>'+conditions(a)+'</section>'+
  '<section><h3>'+esc(T.stock)+'</h3>'+parentRows(a)+'</section>'+
  '<section><h3>'+esc(T.step3)+'</h3><p class="g-fine">'+esc(T.disclosure)+'</p><div id="affiliate-inline" class="affiliate-inline"></div><div class="g-tabs">'+["emergency","everyday","fallback"].map(id=>
@@ -312,7 +336,7 @@ function shoppingPage(a){
  const missing=a.calc.items.filter(x=>x.missing>0);
  return '<div class="g-head"><button type="button" data-back class="g-link">← '+esc(T.back)+'</button>'+
  '<button data-edit type="button" class="g-link">'+esc(T.edit)+'</button></div><h2>'+esc(T.step4)+'</h2>'+
- '<p class="g-lead">'+esc(T.shopHelp)+'</p>'+overlapWarning(a)+
+ '<p class="g-lead">'+esc(T.shopHelp)+'</p>'+overlapWarning(a)+waterBudgetWarning(a)+
  '<p class="g-fine">'+esc(T.shopShowing)+'</p>'+
  '<p id="g-shop-selected" class="g-shop-counter">'+esc(T.shopSelected)+': <strong>'+(selected===null?Math.min(missing.length,8):missing.filter(x=>selected.has(x.item.id)).length)+'</strong></p>'+
  '<p class="g-fine">'+esc(T.disclosure)+'</p>'+
@@ -394,6 +418,17 @@ result.addEventListener("input",e=>{
 result.addEventListener("change",e=>{
  const t=e.target;if(t.dataset.shop){if(!selected)selected=new Set();if(t.checked)selected.add(t.dataset.shop);else selected.delete(t.dataset.shop);render();return}
  if(t.dataset.setting){state[t.dataset.setting]=t.type==="checkbox"?t.checked:n(t.value);save();preserveOpen();render();return}
+ if(t.dataset.drinkReserve||t.dataset.drinkConfirm){
+  const item=Object.assign({},getBasic("water"));
+  if(t.dataset.drinkReserve){
+   if(!t.checkValidity()||t.value.trim()===""){t.reportValidity();return}
+   item.drinkingReserveLiters=n(t.value);item.drinkingReserveConfirmed=false;
+  }else{
+   item.drinkingReserveConfirmed=t.checked;
+   item.drinkingReservePlanDays=state.mode==="go"?1:n(state.days);
+  }
+  state.stocks[key("water")]=item;save();preserveOpen();render();return;
+ }
  if(t.dataset.manualBasis){
   const id=t.dataset.manualBasis;
   if(!catalog.some(i=>i.id===id)||!["","additional","includes_options"].includes(t.value))return;
@@ -478,12 +513,14 @@ result.addEventListener("change",e=>{
     const oldQty=n(item.qty),newQty=n(t.value);
     item.qty=newQty;
     if(newQty!==oldQty)item.manualCountBasis="";
+    if(newQty!==oldQty&&id==="water")item.drinkingReserveConfirmed=false;
     if(newQty!==oldQty&&id==="gas"){item.heatCapacityUses=0;item.heatFuelCompatibleConfirmed=false}
     if(newQty!==oldQty&&id==="stove")item.heatEquipmentConfirmed=false;
     if(newQty!==oldQty&&energyParents.has(id)){item.powerReadyConfirmed=false;item.batteryPlanConfirmed=false}
   }
   if(t.dataset.target){if(t.value==="")delete item.target;else item.target=n(t.value)}
   if(t.dataset.basicExpiry){item.expiry=t.value;item.manualCountBasis="";
+    if(id==="water")item.drinkingReserveConfirmed=false;
     if(energyParents.has(id)){item.powerReadyConfirmed=false;item.batteryPlanConfirmed=false}}
   state.stocks[key(id)]=item;save();preserveOpen();render();return}
  const optionId=t.dataset.optionQty||t.dataset.optionBottles||t.dataset.optionExpiry||t.dataset.prepLiters||t.dataset.prepConfirm||
@@ -527,7 +564,15 @@ result.addEventListener("change",e=>{
    const o=choices.find(x=>x.id===optionId);
    if(o&&n(getBasic(o.parent).qty)>0){
     const parent=Object.assign({},getBasic(o.parent),{manualCountBasis:""});
+    if(o.parent==="water")parent.drinkingReserveConfirmed=false;
     state.stocks[key(o.parent)]=parent;
+   }
+  }
+  if(t.dataset.optionQty||t.dataset.optionBottles||t.dataset.optionExpiry){
+   const changedOption=choices.find(o=>o.id===optionId);
+   if(changedOption&&changedOption.parent==="water"){
+    const water=Object.assign({},getBasic("water"),{drinkingReserveConfirmed:false});
+    state.stocks[key("water")]=water;
    }
   }
   save();preserveOpen();render()
