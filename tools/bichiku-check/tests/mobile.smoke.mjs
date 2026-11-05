@@ -79,6 +79,12 @@ try{
  await page.locator('button[data-goal="water"]').click();
  await page.locator('input[data-basic="water"]').fill("5");
  await page.locator('input[data-basic="water"]').press("Tab");
+ assert.match(await page.locator(".g-drinking-review").innerText(),/飲用/);
+ await page.locator('input[data-drink-reserve]').fill("3");
+ await page.locator('input[data-drink-reserve]').press("Tab");
+ assert.equal(await page.locator('input[data-drink-confirm]').isChecked(),false);
+ await page.locator('input[data-drink-confirm]').check();
+ assert.match(await page.locator(".g-drinking-review").innerText(),/未配分水/);
  await page.locator("button[data-back]").click();
  await page.locator('button[data-goal="food"]').click();
  assert.match(await page.locator(".g-detail-status").innerText(),/18/,"count verified water-prepared rice once water is available");
@@ -621,6 +627,72 @@ try{
   await noOverflow(page,"320px toilet overlap reconciliation");
   console.log("PASS portable toilet kit/loose pairs versus manual count without duplicate credit");
   passed++;await ctx.close();
+ }
+
+
+ // Water outage: preserve independent drinking litres; never double-spend prep litres.
+ {
+  const {ctx,page,exceptions}=await open(320);
+  await page.locator('input[data-condition="noHeat"]').check();
+  await page.locator('input[data-condition="waterOut"]').check();
+  await page.locator("#calculate").click();
+  await page.locator('button[data-goal="food"]').click();
+  await page.locator('input[data-setting="safeWaterConfirmed"]').check();
+  await page.locator('details.g-option[data-option="alphaRice"] summary').click();
+  await page.locator('input[data-option-qty="alphaRice"]').fill("3");
+  await page.locator('input[data-option-qty="alphaRice"]').press("Tab");
+  await page.locator('input[data-prep-liters="alphaRice"]').fill("2");
+  await page.locator('input[data-prep-liters="alphaRice"]').press("Tab");
+  await page.locator('input[data-prep-confirm="alphaRice"]').check();
+  await page.locator('button[data-back]').click();
+  await page.locator('button[data-goal="water"]').click();
+  await page.locator('input[data-basic="water"]').fill("5");
+  await page.locator('input[data-basic="water"]').press("Tab");
+  assert.equal(await page.locator('input[data-drink-confirm]').isChecked(),false);
+  await page.locator('input[data-drink-reserve]').fill("3");
+  await page.locator('input[data-drink-reserve]').press("Tab");
+  await page.locator('input[data-drink-confirm]').check();
+  assert.match(await page.locator(".g-drinking-review").innerText(),/5L/);
+  await page.locator('button[data-back]').click();
+  await page.locator('button[data-goal="food"]').click();
+  assert.match(await page.locator(".g-detail-status").innerText(),/18/,"5L covers 3L drinking and 2L prep");
+  await page.locator('input[data-drink-reserve]').fill("4");
+  await page.locator('input[data-drink-reserve]').press("Tab");
+  assert.equal(await page.locator('input[data-drink-confirm]').isChecked(),false);
+  await page.locator('input[data-drink-confirm]').check();
+  assert.match(await page.locator(".g-detail-status").innerText(),/21/,"6L combined cannot reuse 5L twice");
+  assert.ok((await page.locator(".g-drinking-review").innerText()).includes("超え"));
+  await page.locator('input[data-drink-reserve]').fill("2.5");
+  await page.locator('input[data-drink-reserve]').press("Tab");
+  await page.locator('input[data-drink-confirm]').check();
+  assert.match(await page.locator(".g-detail-status").innerText(),/18/);
+  await page.reload({waitUntil:"domcontentloaded"});
+  await page.locator("#calculate").click();
+  await page.locator('button[data-goal="water"]').click();
+  assert.equal(await page.locator('input[data-drink-reserve]').inputValue(),"2.5");
+  assert.equal(await page.locator('input[data-drink-confirm]').isChecked(),true);
+  await page.locator('input[data-basic="water"]').fill("6");
+  await page.locator('input[data-basic="water"]').press("Tab");
+  assert.equal(await page.locator('input[data-drink-confirm]').isChecked(),false,
+    "changing water stock invalidates drinking allocation approval");
+  await noOverflow(page,"320px drinking+prep allocation");
+  assert.deepEqual(exceptions,[]);
+  console.log("PASS shared drinking/cooking water, overcommit and stock invalidation");
+  passed++;await ctx.close();
+ }
+
+ // Localized water allocation controls must remain usable in every supported language.
+ for(const [locale,dir] of locales){
+  const {ctx,page,exceptions}=await open(390,dir);
+  await page.locator('input[data-condition="waterOut"]').check();
+  await page.locator("#calculate").click();
+  await page.locator('button[data-goal="water"]').click();
+  assert.equal(await page.locator('input[data-drink-reserve]').count(),1);
+  assert.equal(await page.locator('input[data-drink-confirm]').count(),1);
+  assert.ok((await page.locator(".g-drinking-review").innerText()).length>100,"localized water plan "+locale);
+  await noOverflow(page,"drinking allocation "+locale);
+  assert.deepEqual(exceptions,[]);
+  console.log("PASS drinking budget locale "+locale);passed++;await ctx.close();
  }
 
  for(const [locale,dir] of locales){
