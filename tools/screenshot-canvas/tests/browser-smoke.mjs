@@ -80,6 +80,15 @@ function pageSmoke() {
     }));
     check(status().includes('Images 2'), 'reject nonimage drop');
 
+    stage('layer-order');
+    document.querySelector('[data-layout="overlay"]').click();
+    check(rgbAt(790, 450)[2] > 200, 'last layer visible on top');
+    layers()[0].click();
+    document.querySelector('#front').click();
+    check(rgbAt(790, 450)[0] > 200, 'bring first layer to front');
+    document.querySelector('#back').click();
+    check(rgbAt(790, 450)[2] > 200, 'send selected layer to back');
+
     stage('layer-multiselect');
     document.querySelector('[data-layout="row"]').click();
     layers()[0].click();
@@ -281,7 +290,8 @@ const server = http.createServer((req, res) => {
   if (type === 'text/html' && url.searchParams.has('qa')) {
     let html = data.toString('utf8');
     html = html.replace(/<script\b[^>]*\bsrc="https:\/\/[^"]+"[^>]*><\/script>/g, '');
-    if (url.searchParams.has('narrow')) html = html.replace('<body>', '<body style="width:390px;max-width:390px">');
+    const narrow = Number(url.searchParams.get('narrow'));
+    if (narrow >= 320 && narrow <= 500) html = html.replace('<body>', '<body style="width:' + narrow + 'px;max-width:' + narrow + 'px">');
     data = Buffer.from(html.replace('</body>', injected + '</body>'));
   }
   res.writeHead(200, { 'Content-Type': type + '; charset=utf-8', 'Cache-Control': 'no-store' }).end(data);
@@ -289,7 +299,7 @@ const server = http.createServer((req, res) => {
 await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
 const port = server.address().port;
 async function run(width) {
-  const url = 'http://127.0.0.1:' + port + '/tools/screenshot-canvas/?qa=1' + (width === 390 ? '&narrow=1' : '');
+  const url = 'http://127.0.0.1:' + port + '/tools/screenshot-canvas/?qa=1' + (width <= 390 ? '&narrow=' + width : '');
   const args = ['--headless=new', '--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu',
     '--disable-background-networking', '--disable-extensions', '--no-first-run',
     '--window-size=' + width + ',900', '--virtual-time-budget=40000', '--dump-dom', url];
@@ -309,6 +319,7 @@ async function run(width) {
 try {
   await run(1440);
   await run(390);
+  await run(360);
   console.log('Screenshot Canvas Chromium browser smoke PASS');
 } catch (error) {
   console.error(error);
