@@ -1,0 +1,22 @@
+name: Command Safety Checker regression
+on:
+  pull_request:
+    paths:
+      - 'tools/command-safety-checker/**'
+      - 'scripts/check-command-safety-stale-results.test.mjs'
+      - '.github/workflows/command-safety-checker-regression.yml'
+  push:
+    paths:
+      - 'tools/command-safety-checker/**'
+      - 'scripts/check-command-safety-stale-results.test.mjs'
+      - '.github/workflows/command-safety-checker-regression.yml'
+jobs:
+  production-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test scripts/check-command-safety-stale-results.test.mjs
