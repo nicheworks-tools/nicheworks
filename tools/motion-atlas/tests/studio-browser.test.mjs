@@ -189,7 +189,7 @@ try{
    return {ok:true,width:window.innerWidth,count:all(".track").length,reduced};
   }catch(error){return {ok:false,error:error.message,width:window.innerWidth};}
  }
- for(const [lang,page,width] of [["en","/tools/motion-atlas/studio/",390],["ja","/tools/motion-atlas/ja/studio/",390],["en","/tools/motion-atlas/studio/",1280],["ja","/tools/motion-atlas/ja/studio/",1280]]){
+ for(const [lang,page,width] of ["en","ja"].flatMap(lang=>[320,360,390,1280].map(width=>[lang,lang==="ja"?"/tools/motion-atlas/ja/studio/":"/tools/motion-atlas/studio/",width]))){
   await call("Emulation.setDeviceMetricsOverride",{width,height:850,mobile:width<600,screenWidth:width,screenHeight:850,deviceScaleFactor:1});
   await call("Emulation.setTouchEmulationEnabled",{enabled:width<600});
   await call("Emulation.setEmulatedMedia",{features:[{name:"prefers-reduced-motion",value:lang==="ja"?"reduce":"no-preference"}]});
