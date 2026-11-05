@@ -32,6 +32,16 @@ for(const [locale,html] of [["en",en],["ja",ja]]){
 }
 assert.match(client,/motion-atlas-studio-project-v1/,"Stable versioned Studio project schema is required");
 assert.match(client,/function normalizeProject\(input\)/,"Strict import validation must exist");
+
+for(const [locale,html] of [["en",en],["ja",ja]]){
+ assert.match(html,/id="timeline-scrub"/,locale+": accessible seek input missing");
+ assert.match(html,/id="timeline-cursor"/,locale+": playhead output missing");
+}
+assert.match(client,/function scrubTo\(ms\)/,"Preview seeking must use an actual time offset");
+assert.match(client,/animation\.pause\(\);animation\.currentTime=selected/,"WAAPI animations must be positioned at selected frame");
+assert.match(client,/if\(playbackFrame\)\{cancelAnimationFrame\(playbackFrame\)/,"Editing must cancel stale animation frame");
+assert.match(css,/\.timeline-scrubber\{/,"Playhead needs mobile responsive styles");
+
 assert.match(client,/new Blob\(\[bytes\]/,"Project JSON must be exported locally");
 assert.match(client,/anchor\.download="motion-atlas-studio-project\.json"/);
 assert.match(client,/new Blob\(\[contents\]\)\.size>12288/,"Import size must be capped");
