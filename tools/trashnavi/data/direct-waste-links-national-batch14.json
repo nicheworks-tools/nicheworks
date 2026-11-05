@@ -50,5 +50,44 @@
     "status": "active",
     "language": "ja",
     "scope_note": "町公式掲載の広域処理施設持込案内。10kg180円、受入条件と時間を記載。"
+  },
+  {
+    "pref": "北海道",
+    "city": "弟子屈町",
+    "lgcode": "016659",
+    "last_checked": "2026-11-05",
+    "status": "active",
+    "language": "ja",
+    "name": "令和8年度 ごみ収集年間スケジュール・廃棄物処理施設開場日程表",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.town.teshikaga.hokkaido.jp/material/files/group/6/R8sukeju-ru.pdf",
+    "scope_note": "町公式PDF。令和8年度（2026-04-01〜2027-03-31）。町内各地区の収集区分と美留和処理場の開場日を掲載。地区ごとの曜日を区別。"
+  },
+  {
+    "pref": "北海道",
+    "city": "弟子屈町",
+    "lgcode": "016659",
+    "last_checked": "2026-11-05",
+    "status": "active",
+    "language": "ja",
+    "name": "ごみの分け方・出し方辞典「たつじん」",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.teshikaga.hokkaido.jp/material/files/group/6/R8_tatsujin.pdf",
+    "scope_note": "町公式掲載の分別辞典PDF。ファイル名R8_tatsujin.pdf。適用地区・詳細は冊子本文を参照。"
+  },
+  {
+    "pref": "北海道",
+    "city": "弟子屈町",
+    "lgcode": "016659",
+    "last_checked": "2026-11-05",
+    "status": "active",
+    "language": "ja",
+    "name": "粗大ごみの出し方・処理料金（弟子屈町公式）",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.town.teshikaga.hokkaido.jp/kurashi/soshikiichiran/kankyoseikatsuka/1/1/502.html",
+    "scope_note": "町公式ページ2026-04-01更新。「粗大ごみの出し方」に自己搬入・引取依頼・料金・連絡方法を記載。同ページに美留和処理場の直接搬入案内も掲載。"
   }
 ]
