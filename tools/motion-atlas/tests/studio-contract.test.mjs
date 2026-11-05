@@ -24,6 +24,21 @@ for(const html of [en,ja]){
  assert.match(html,/studio\.js/);
  assert.doesNotMatch(html,/buy\.stripe\.com|<form[^>]+checkout|stripe\.com\/checkout/);
 }
+
+for(const [locale,html] of [["en",en],["ja",ja]]){
+ assert.match(html,/id="save-project"/,locale+": missing project download");
+ assert.match(html,/id="import-project"/,locale+": missing project upload");
+ assert.match(html,/accept="\.json,application\/json"/);
+}
+assert.match(client,/motion-atlas-studio-project-v1/,"Stable versioned Studio project schema is required");
+assert.match(client,/function normalizeProject\(input\)/,"Strict import validation must exist");
+assert.match(client,/new Blob\(\[bytes\]/,"Project JSON must be exported locally");
+assert.match(client,/anchor\.download="motion-atlas-studio-project\.json"/);
+assert.match(client,/new Blob\(\[contents\]\)\.size>12288/,"Import size must be capped");
+assert.match(client,/function importProject\(\)/);
+assert.match(client,/project=normalizeProject\(JSON\.parse\(contents\)\)/,"Import must validate before editor mutation");
+assert.match(client,/if\(!Object\.hasOwn\(values,name\)\)/,"Local preset lookup must reject inherited property names");
+
 assert.match(client,/\.animate\(EFFECTS\[track\.effect\]/,"Timeline preview must use WAAPI");
 assert.match(client,/localStorage\.setItem\(STORAGE/,"Browser-local preset storage required");
 assert.match(client,/nicheworks:billing:session:motion_atlas\.studio_v1/);
@@ -60,7 +75,7 @@ const config=JSON.parse(fs.readFileSync(path.resolve(root,"../../config/billing/
 const studioProduct=config.products.find(p=>p.productId===STUDIO_PRODUCT_ID);
 assert.ok(studioProduct,"Studio must be registered as separate billing product");
 assert.equal(studioProduct.checkout?.enabled,false,"Studio checkout must remain off before price approval");
-assert.equal(studioProduct.price.amount,null,"Do not invent approved Studio price");
+assert.equal(studioProduct.price.amount,null,"Do not activate runtime Stripe pricing while GitLab migration is unfinished");
 assert.equal(studioProduct.price.currency,null);
 assert.equal(studioProduct.priceTierId,null,"No price tier before approval");
 assert.equal(studioProduct.stripe.mode,"not_connected");
