@@ -4,7 +4,7 @@
 - Motion Atlas Studio future price is **JPY 980, one-time**. This is an approved planning amount, **not** a live Stripe price.
 - Billing/checkout activation is explicitly deferred until the ongoing GitLab migration has completed. Do **not** set an active Stripe Price ID, enable checkout, migrate production billing, or accept real payments here.
 - The 42-motion free Motion Atlas catalogue and all existing free outputs remain free.
-- GitHub `nicheworks-tools/nicheworks` is presently the production branch. GitLab `nicheworks-group/nicheworks-migration-test` currently carries matching key Motion Atlas files (verified 2026-11-05); do not overwrite or implicitly merge migration work.
+- Deployment cutover is a separate workstream. Keep this feature change limited to this repository; do not alter another deployment project or expose account-to-account relationships in public documentation.
 
 ## Goal
 Close non-billing gaps in Studio as a usable motion-composition editor. Local preset persistence alone is not portable across devices or hosting migration. Add self-contained project export/import with strict schema and visible error handling, then expand usability tests.
