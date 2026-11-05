@@ -60,7 +60,7 @@
       } catch (_) {
         return false;
       } finally {
-        document.body.removeChild(textarea);
+        textarea.remove();
       }
     }
   };
@@ -72,9 +72,15 @@
     anchor.href = url;
     anchor.download = filename;
     document.body.appendChild(anchor);
-    anchor.click();
-    anchor.remove();
-    window.setTimeout(() => URL.revokeObjectURL(url), 500);
+    try {
+      anchor.click();
+      return true;
+    } catch (_) {
+      return false;
+    } finally {
+      anchor.remove();
+      window.setTimeout(() => URL.revokeObjectURL(url), 500);
+    }
   };
 
   const getCurrentLang = () => document.documentElement.lang === "en" ? "en" : "ja";
@@ -93,8 +99,12 @@
       en: "Copy failed. Select and copy the text manually."
     },
     saved: {
-      ja: "保存しました。",
-      en: "Saved."
+      ja: "ダウンロードを開始しました。",
+      en: "Download started."
+    },
+    saveFailed: {
+      ja: "ダウンロードを開始できませんでした。",
+      en: "Could not start download."
     }
   };
 
@@ -262,6 +272,7 @@
     let hasGenerated = false;
     let currentText = "";
     let generatedType = null;
+    let generation = 0;
 
     const setGeneratedState = (generated) => {
       hasGenerated = generated;
@@ -272,6 +283,7 @@
     };
 
     const invalidateGenerated = () => {
+      generation += 1;
       generatedType = null;
       currentText = "";
       output.textContent = "";
@@ -285,6 +297,7 @@
     };
 
     const render = () => {
+      generation += 1;
       currentText = buildChecklist(toolType.value);
       generatedType = toolType.value;
       output.textContent = currentText;
@@ -303,20 +316,22 @@
 
     copyButton.addEventListener("click", async () => {
       if (!requireGenerated()) return;
+      const token = generation;
       const ok = await copyToClipboard(currentText);
+      if (token !== generation) return;
       showToast(ok ? messages.copied[getCurrentLang()] : messages.copyFailed[getCurrentLang()]);
     });
 
     saveMdButton.addEventListener("click", () => {
       if (!requireGenerated()) return;
-      downloadText(buildFilename("md"), currentText);
-      showToast(messages.saved[getCurrentLang()]);
+      const ok = downloadText(buildFilename("md"), currentText);
+      showToast((ok ? messages.saved : messages.saveFailed)[getCurrentLang()]);
     });
 
     saveTxtButton.addEventListener("click", () => {
       if (!requireGenerated()) return;
-      downloadText(buildFilename("txt"), currentText);
-      showToast(messages.saved[getCurrentLang()]);
+      const ok = downloadText(buildFilename("txt"), currentText);
+      showToast((ok ? messages.saved : messages.saveFailed)[getCurrentLang()]);
     });
 
     invalidateGenerated();
