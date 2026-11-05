@@ -174,7 +174,8 @@ test("water-for-preparation matches deduplicated water stock rather than phantom
  assert.equal(row(legacy,"water").effective,8);
  assert.equal(legacy.waterConflict,true);
  assert.equal(row(legacy,"food").effective,0);
- const includes=assess({...base,stocks:{"home:water":{qty:10,manualCountBasis:"includes_options"}}});
+ const includes=assess({...base,stocks:{"home:water":{qty:10,manualCountBasis:"includes_options",
+   drinkingReserveLiters:1,drinkingReserveConfirmed:true,drinkingReservePlanDays:3}}});
  assert.equal(includes.waterStored,10);
  assert.equal(row(includes,"water").effective,10);
  assert.equal(includes.waterConflict,false);
@@ -235,7 +236,8 @@ test("water-prepared alpha rice is never silently credited without a confirmed s
 });
 test("safe water + quantified allocation permits only explicitly usable food, from the SAME water pool",()=>{
  const a=assess({noHeat:true,waterOut:true,safeWaterConfirmed:true,prepWaterLiters:1,
-  stocks:{"home:water":{qty:4}},variants:{"home:alphaRice":{qty:4,prepConfirmed:true,prepWaterLiters:1},"home:cupNoodles":{qty:8}}});
+  stocks:{"home:water":{qty:4,drinkingReserveLiters:3,drinkingReserveConfirmed:true,drinkingReservePlanDays:3}},
+  variants:{"home:alphaRice":{qty:4,prepConfirmed:true,prepWaterLiters:1},"home:cupNoodles":{qty:8}}});
  assert.equal(row(a,"food").effective,4);
  assert.equal(row(a,"food").missing,5);
  assert.equal(row(a,"water").effective,4); // No phantom extra water or double subtraction
@@ -318,7 +320,8 @@ test("water-dependent cooked noodles are NOT credited during an outage without s
  assert.equal(row(a,"food").effective,2); // The heating-only pack rice is not modeled as water-dependent
  assert.equal(row(a,"food").missing,7);
  const b=assess({waterOut:true,noHeat:false,safeWaterConfirmed:true,prepWaterLiters:1,
-  stocks:{"home:water":{qty:3}},variants:{"home:cupNoodles":{qty:9,prepConfirmed:true,prepWaterLiters:1}}});
+  stocks:{"home:water":{qty:3,drinkingReserveLiters:2,drinkingReserveConfirmed:true,drinkingReservePlanDays:3}},
+  variants:{"home:cupNoodles":{qty:9,prepConfirmed:true,prepWaterLiters:1}}});
  assert.equal(row(b,"food").effective,9);
  assert.equal(b.waterRemainingAfterPrep,2);
 });
@@ -332,7 +335,7 @@ test("legacy global water volume is insufficient: each water-dependent item need
  assert.ok(a.uncheckedFoods.includes("emergencyPorridge"));
 });
 test("one confirmed food does not grant water-preparation permission to unconfirmed foods",()=>{
- const a=assess({noHeat:true,waterOut:true,safeWaterConfirmed:true,stocks:{"home:water":{qty:6}},
+ const a=assess({noHeat:true,waterOut:true,safeWaterConfirmed:true,stocks:{"home:water":{qty:6,drinkingReserveLiters:3,drinkingReserveConfirmed:true,drinkingReservePlanDays:3}},
   variants:{"home:alphaRice":{qty:3,prepWaterLiters:0.9,prepConfirmed:true},
             "home:emergencyPorridge":{qty:6}}});
  assert.equal(a.waterAllocation,0.9);
@@ -381,7 +384,8 @@ test("blackout heat requires actual stove, fuel, capacity and food-by-food plans
 });
 test("fuel session budget is shared across EVERY heated food, not reused per product",()=>{
  const data={powerOut:true,waterOut:true,safeWaterConfirmed:true,
-   stocks:{"home:water":{qty:4},"home:stove":{qty:1,heatEquipmentConfirmed:true},
+   stocks:{"home:water":{qty:4,drinkingReserveLiters:3,drinkingReserveConfirmed:true,drinkingReservePlanDays:3},
+     "home:stove":{qty:1,heatEquipmentConfirmed:true},
      "home:gas":{qty:1,heatCapacityUses:2,heatFuelCompatibleConfirmed:true}},
    variants:{"home:packRice":{qty:3,heatSessions:2,heatConfirmed:true},
      "home:cupNoodles":{qty:4,heatSessions:1,heatConfirmed:true,prepConfirmed:true,prepWaterLiters:1}}};
@@ -432,7 +436,8 @@ test("declared no-heat scenario overrides even fully measured fuel and cooking p
 });
 test("water-dependent noodles in blackout require BOTH safe measured water and measured cooking fuel",()=>{
  const stock={powerOut:true,waterOut:true,safeWaterConfirmed:true,
-   stocks:{"home:water":{qty:5},"home:stove":{qty:1,heatEquipmentConfirmed:true},
+   stocks:{"home:water":{qty:5,drinkingReserveLiters:3,drinkingReserveConfirmed:true,drinkingReservePlanDays:3},
+     "home:stove":{qty:1,heatEquipmentConfirmed:true},
      "home:gas":{qty:2,heatCapacityUses:2,heatFuelCompatibleConfirmed:true}},
    variants:{"home:cupNoodles":{qty:3,heatSessions:1,heatConfirmed:true,prepConfirmed:true,prepWaterLiters:1.5}}};
  const ready=assess(stock);
