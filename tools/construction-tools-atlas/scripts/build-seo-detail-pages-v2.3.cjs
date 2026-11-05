@@ -275,7 +275,10 @@ function renderPage({ entry, image, offer, entryById, launchSet, resolveCanonica
   const canonical = canonicalEntryUrl(entry.id);
   const atlasUrl = atlasDeepLink(entry.id);
   const primaryDescription = description.ja || summary.ja || description.en || summary.en;
-  const metaDescription = truncate(`${titleJa}（${titleEn}）の意味・用途・英語名・関連情報を確認できるConstruction Tools Atlasの項目ページ。 ${primaryDescription}`);
+  const seoTitle = text(entry?.seo?.title_ja) || `${titleJa}（${titleEn}）とは？用途・英語名 | Construction Tools Atlas`;
+  const metaDescription = text(entry?.seo?.meta_description_ja)
+    ? truncate(text(entry.seo.meta_description_ja))
+    : truncate(`${titleJa}（${titleEn}）の意味・用途・英語名・関連情報を確認できるConstruction Tools Atlasの項目ページ。 ${primaryDescription}`);
   const socialImage = image
     ? `https://nicheworks.app${image.display}`
     : "https://nicheworks.app/assets/ogp.png";
@@ -317,7 +320,7 @@ function renderPage({ entry, image, offer, entryById, launchSet, resolveCanonica
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <title>${escapeHtml(titleJa)}（${escapeHtml(titleEn)}）とは？用途・英語名 | Construction Tools Atlas</title>
+  <title>${escapeHtml(seoTitle)}</title>
   <meta name="description" content="${escapeHtml(metaDescription)}">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="${escapeHtml(canonical)}">
