@@ -65,6 +65,22 @@
         "title_ja": "フルハーネスとは？墜落制止用器具の用途・点検ポイント | Construction Tools Atlas",
         "meta_description_ja": "フルハーネス型墜落制止用器具の用途と点検ポイント。ベルト、ランヤード、接続器具、アンカー位置、必要な落下距離の確認事項を紹介。"
       }
+    },
+    {
+      "id": "rotary_hammer",
+      "review_state": "approved_editorial_gsc_20261105",
+      "expected_description": {
+        "ja": "打撃機構でコンクリート等に穴あけする電動工具。 材質に合うビットを選ぶと仕上がりが安定する。 回転体に巻き込まれないよう手袋や袖に注意。",
+        "en": "A powerful drill with hammer action for concrete and masonry. Keep loose clothing and gloves away from rotating parts. Pick the right bit for the material for cleaner results."
+      },
+      "description": {
+        "ja": "ハンマードリルはコンクリートや石材への穴あけに使う電動工具。SDSなどのビット取付規格、穴径、作業モード、粉じん対策を確認して選ぶ。",
+        "en": "A rotary hammer is a power tool used to drill concrete and masonry. Check bit shank compatibility, hole diameter, operating mode, and dust control requirements."
+      },
+      "seo": {
+        "title_ja": "ハンマードリルとは？コンクリート穴あけ・SDS規格 | Construction Tools Atlas",
+        "meta_description_ja": "ハンマードリルの用途と選び方。コンクリートの穴あけ、SDS規格、ビットの適合、作業モード、粉じん対策を解説。"
+      }
     }
   ],
   "scope": "Existing publicly indexed Construction Tools Atlas entries with measured GSC impressions, reviewed 2026-11-05",
