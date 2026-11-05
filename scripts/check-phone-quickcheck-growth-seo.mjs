@@ -8,9 +8,9 @@ const growth = JSON.parse(read('tools/phone-quickcheck/data/phones-growth-202611
 const phones = [...base, ...growth];
 const accessory = JSON.parse(read('tools/phone-quickcheck/data/accessories.json')).accessories;
 const all = new Map(phones.map(phone=>[phone.id,phone]));
-assert.equal(phones.length,255);
-assert.equal(all.size,255);
-assert.equal(new Set(phones.map(x => x.manufacturer+':'+x.model)).size,255);
+assert.equal(phones.length,265);
+assert.equal(all.size,265);
+assert.equal(new Set(phones.map(x => x.manufacturer+':'+x.model)).size,265);
 assert.equal(new Set(phones.map(x=>x.manufacturer)).size,11);
 assert.equal(growth.length,14);
 for(const item of growth){
@@ -19,14 +19,14 @@ for(const item of growth){
   assert.equal(item.sources.verifiedAt,'2026-11-03',item.id+' verified date');
   assert.ok(item.charging?.connector,item.id+' charging connector');
 }
-assert.equal(accessory.length,24);
+assert.equal(accessory.length,27);
 for (const k of ['charger-pps-65w','charger-oppo-airvooc']){
   assert.ok(accessory.some(x=>x.key===k),'missing accessory '+k);
 }
 
 const index=read('tools/phone-quickcheck/models/index.html');
-assert.equal((index.match(/data-phone-id=/g)||[]).length,255);
-assert.match(index,/<title>スマホ255機種/);
+assert.equal((index.match(/data-phone-id=/g)||[]).length,265);
+assert.match(index,/<title>スマホ265機種/);
 assert.match(index,/CollectionPage/);
 for(const phone of phones){
   assert.ok(index.includes('data-phone-id="'+phone.id+'"'),'missing static model '+phone.id);
@@ -34,7 +34,7 @@ for(const phone of phones){
   assert.ok(index.includes(phone.sources.specificationsUrl.replace(/&/g,'&amp;')),'missing primary source '+phone.id);
 }
 const main=read('tools/phone-quickcheck/index.html');
-assert.match(main,/255機種/);
+assert.match(main,/265機種/);
 assert.ok(main.includes('href="./models/"'));
 assert.ok(main.includes('href="./charging-guide/"'));
 const app=read('tools/phone-quickcheck/app.js');
@@ -66,4 +66,4 @@ for(const path of ['','models/','charging-guide/']){
   assert.ok(sitemap.includes('<loc>https://nicheworks.app/tools/phone-quickcheck/'+path+'</loc>'),'missing sitemap '+path);
 }
 assert.ok(!index.includes('<meta name="robots" content="noindex'));
-console.log('Phone QuickCheck SEO growth PASS: 255 official-source phones, 11 makers, 24 accessories, fully crawlable model index, guide, sitemap and affiliate disclosure.');
+console.log('Phone QuickCheck SEO growth PASS: 265 official-source phones, 11 makers, 27 accessories, fully crawlable model index, guide, sitemap and affiliate disclosure.');

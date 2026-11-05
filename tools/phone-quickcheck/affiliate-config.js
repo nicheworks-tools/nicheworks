@@ -49,7 +49,10 @@
     offer("charger-qi", "wireless_charger", "Qi ワイヤレス充電器", "AmazonでQi充電器を探す", "Find a Qi charger on Amazon"),
     offer("charger-qi2", "wireless_charger", "Qi2 ワイヤレス充電器", "AmazonでQi2充電器を探す", "Find a Qi2 charger on Amazon"),
     offer("charger-qi2-case-required", "wireless_charger", "Qi2 ワイヤレス充電器", "AmazonでQi2充電器を探す", "Find a Qi2 charger on Amazon"),
-    offer("powerbank-10000-usbc", "power_bank", "10000mAh USB-C モバイルバッテリー PD", "Amazonで10,000mAhモバイルバッテリーを探す", "Find a 10,000mAh power bank on Amazon")
+    offer("powerbank-10000-usbc", "power_bank", "10000mAh USB-C モバイルバッテリー PD", "Amazonで10,000mAhモバイルバッテリーを探す", "Find a 10,000mAh power bank on Amazon"),
+    offer("charger-compat-check", "wired_charger", "スマホ 有線充電器 USB-C USB-A", "Amazonで充電器を探す（適合確認）", "Find wall chargers on Amazon (check compatibility)"),
+    offer("phone-case-model-search", "protection", "スマートフォン ケース 機種名 確認", "Amazonで機種別ケースを探す", "Find model-specific cases on Amazon"),
+    offer("screen-film-model-search", "protection", "スマートフォン 画面 ガラスフィルム 機種名", "Amazonで機種別保護フィルムを探す", "Find model-specific screen protectors on Amazon")
   ]);
 
   const offerMap = Object.freeze(Object.fromEntries(offers.map((item) => [item.key, item])));
@@ -74,7 +77,8 @@
     cable: template.proofUrl,
     wired_charger: template.proofUrl,
     wireless_charger: template.proofUrl,
-    power_bank: template.proofUrl
+    power_bank: template.proofUrl,
+    protection: template.proofUrl
   });
 
   window.NWPhoneQuickCheckAffiliate = Object.freeze({

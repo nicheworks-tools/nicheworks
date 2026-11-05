@@ -25,7 +25,7 @@ check(config?.template?.status === 'verified', 'tagged-search template must be v
 check(config?.template?.verificationMethod === 'shared_link_checker_validated_tagged_search_format', 'verification method mismatch');
 check(String(config?.template?.proofUrl || '').includes('tag=nicheworks09-22'), 'proof URL must contain the maintained tracking ID');
 
-const expectedTargets = ['cable', 'wired_charger', 'wireless_charger', 'power_bank'];
+const expectedTargets = ['cable', 'wired_charger', 'wireless_charger', 'power_bank', 'protection'];
 for (const target of expectedTargets) {
   check(typeof config?.targets?.[target] === 'string' && config.targets[target].startsWith('https://'), `missing active coarse target: ${target}`);
 }
@@ -36,7 +36,7 @@ check(new Set(accessoryKeys).size === accessoryKeys.length, 'accessory keys must
 for (const key of ['charger-pd-check-wattage', 'charger-pd-90w']) {
   check(accessoryKeys.includes(key), `required source-backed charger category missing: ${key}`);
 }
-check(accessories.length >= 22, 'expanded affiliate catalog must contain at least 22 classes');
+check(accessories.length >= 27, 'expanded affiliate catalog must contain at least 27 classes');
 
 for (const key of accessoryKeys) {
   const offer = config?.getOffer?.(key);
@@ -112,6 +112,7 @@ execFileSync(process.execPath, ['scripts/check-phone-quickcheck-model-index.mjs'
 execFileSync(process.execPath, ['scripts/check-phone-quickcheck-model-profiles.mjs'], { stdio: 'inherit' });
 // Source-backed commercial SEO guides beyond the existing five Galaxy profiles.
 execFileSync(process.execPath, ['scripts/check-phone-quickcheck-cross-maker-profiles.mjs'], { stdio: 'inherit' });
+execFileSync(process.execPath, ['scripts/check-phone-quickcheck-265-listings-and-affiliates.mjs'], { stdio: 'inherit' });
 
 // Verify exact-SKU Samsung ManualFinder→Phone QuickCheck model-profile conversion.
 execFileSync(process.execPath, ['scripts/check-manualfinder-phone-galaxy-funnel.mjs'], { stdio: 'inherit' });

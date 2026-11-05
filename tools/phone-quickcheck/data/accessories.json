@@ -1,6 +1,6 @@
 {
   "version": 7,
-  "updatedAt": "2026-11-03",
+  "updatedAt": "2026-11-05",
   "accessories": [
     {
       "key": "cable-usbc-usbc",
@@ -192,6 +192,30 @@
       "labelEn": "OPPO AIRVOOC wireless charger",
       "noteJa": "OPPO独自AIRVOOC対応機向け。一般的なQi製品とは出力を同一視せず、対象機種・電源アダプターの条件を確認してください。",
       "noteEn": "For OPPO AIRVOOC phones. Do not equate generic Qi speeds with proprietary AIRVOOC; confirm device and adapter support.",
+      "amazonUrl": null
+    },
+    {
+      "key": "charger-compat-check",
+      "labelJa": "スマホ向け有線充電器（端子と規格は要確認）",
+      "labelEn": "Phone wall charger (check port and profile)",
+      "noteJa": "充電方式・電圧とケーブルをメーカー仕様で確認してください。検索は互換性を保証しません。",
+      "noteEn": "Check device power profiles and cable. Search does not guarantee compatibility.",
+      "amazonUrl": null
+    },
+    {
+      "key": "phone-case-model-search",
+      "labelJa": "機種名別 保護ケース検索",
+      "labelEn": "Case search for exact phone model",
+      "noteJa": "完全な型番・ボタンとカメラ位置を照合してください。",
+      "noteEn": "Verify exact model/SKU, ports and camera cutout.",
+      "amazonUrl": null
+    },
+    {
+      "key": "screen-film-model-search",
+      "labelJa": "機種名別 画面保護フィルム検索",
+      "labelEn": "Screen protector search for exact phone model",
+      "noteJa": "画面形状とモデル番号を確認。折りたたみ内側フィルムはメーカーの指示を優先。",
+      "noteEn": "Confirm model and screen shape; follow manufacturer guidance for foldable inner films.",
       "amazonUrl": null
     }
   ]
