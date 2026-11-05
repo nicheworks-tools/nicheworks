@@ -227,6 +227,26 @@ function assessment(catalog,options,source,today){
  const core=root.BichikuCore;
  if(!core)throw Error("BichikuCore is required");
  const calc=core.calculate(catalog,readiness,now,options);
+ // The combined 3 L/person/day reference is NOT increased by cooking water.
+ // However, when a household has explicitly verified a larger drinking+prep
+ // allocation, that physical allocation is an additional constraint on
+ // the SAME water stock. Reflect the stronger target in shortages, cards,
+ // shopping lists, and all export paths, instead of blocking food only.
+ const waterStockRow=calc.items.find(x=>x.item.id==="water");
+ if(waterStockRow){
+  drinkingReview.baseRequired=waterStockRow.required;
+  drinkingReview.referenceRequired=waterStockRow.autoTarget;
+  const actualPlanTarget=s.waterOut&&drinkingReserveConfirmed?combinedAllocation:0;
+  drinkingReview.extraRequired=round(Math.max(0,actualPlanTarget-waterStockRow.required));
+  waterStockRow.allocationExtraRequired=drinkingReview.extraRequired;
+  waterStockRow.confirmedAllocationRequired=s.waterOut&&drinkingReserveConfirmed?combinedAllocation:null;
+  if(drinkingReview.extraRequired>0){
+   waterStockRow.required=round(waterStockRow.required+drinkingReview.extraRequired);
+   waterStockRow.missing=round(Math.max(0,waterStockRow.required-waterStockRow.effective));
+  }
+  drinkingReview.resolvedRequired=waterStockRow.required;
+  drinkingReview.shoppingMissing=waterStockRow.missing;
+ }
  // Keep immediate working stock visible separately from preparedness across
  // the selected time horizon. A blackout needs an explicit replacement plan.
  for(const row of calc.items){

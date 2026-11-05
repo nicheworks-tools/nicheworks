@@ -681,6 +681,47 @@ try{
   passed++;await ctx.close();
  }
 
+ // An explicit drinking+prep plan can exceed the reference target, even when
+ // the reference itself appears fully covered. Shopping must show the real gap.
+ {
+  const {ctx,page,exceptions}=await open(320);
+  await page.evaluate(()=>localStorage.setItem("bichiku-check-v1",JSON.stringify({
+    mode:"home",adults:1,children:0,infants:0,pets:0,days:3,
+    noHeat:true,waterOut:true,safeWaterConfirmed:true,
+    stocks:{"home:water":{qty:10,drinkingReserveLiters:9,
+      drinkingReserveConfirmed:true,drinkingReservePlanDays:3}},
+    variants:{"home:alphaRice":{qty:2,prepConfirmed:true,prepWaterLiters:2}}
+  })));
+  await page.reload({waitUntil:"domcontentloaded"});
+  await page.locator("#calculate").click();
+  const overviewWater=page.locator(".g-goal").filter({has:page.locator('button[data-goal="water"]')});
+  assert.match(await overviewWater.innerText(),/1L/,"overview must show shortage versus 11L allocation, not legacy 9L target");
+  await page.locator('button[data-goal="water"]').click();
+  assert.match(await page.locator(".g-detail-status").innerText(),/不足: 1L/);
+  const summary=await page.locator(".g-drinking-review").innerText();
+  assert.match(summary,/11L/,"visible adjusted requirement");
+  assert.match(summary,/2L/,"explain two litres above nine-litre target");
+  await page.locator('button[data-shopping]').first().click();
+  const waterShop=page.locator(".g-shop-row").filter({has:page.locator('input[data-shop="water"]')});
+  assert.equal(await waterShop.count(),1,"short water must be in default shopping list");
+  assert.match(await waterShop.innerText(),/不足: 1L/);
+  assert.match(await waterShop.innerText(),/\+2L/,"shopping must explain allocation-driven extra litres");
+  await noOverflow(page,"320px adjusted water shopping");
+  await page.locator('button[data-back]').click();
+  await page.locator('button[data-goal="water"]').click();
+  await page.locator('input[data-drink-reserve]').fill("8");
+  await page.locator('input[data-drink-reserve]').press("Tab");
+  assert.equal(await page.locator('input[data-drink-confirm]').isChecked(),false);
+  assert.match(await page.locator(".g-detail-status").innerText(),/不足: 0L/,"unverified old plan must not inflate shopping target");
+  await page.locator('input[data-drink-confirm]').check();
+  assert.match(await page.locator(".g-detail-status").innerText(),/不足: 0L/,"verified ten-litre plan fits ten stocked litres");
+  await page.locator('button[data-shopping]').first().click();
+  assert.equal(await page.locator('.g-shop-row input[data-shop="water"]').count(),0,"water must disappear from shopping once allocation fits the stock");
+  assert.deepEqual(exceptions,[]);
+  console.log("PASS verified water plan increases overview and shopping target without double adding prep");
+  passed++;await ctx.close();
+ }
+
  // Localized water allocation controls must remain usable in every supported language.
  for(const [locale,dir] of locales){
   const {ctx,page,exceptions}=await open(390,dir);

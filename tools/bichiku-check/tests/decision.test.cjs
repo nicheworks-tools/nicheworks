@@ -260,6 +260,70 @@ test("outage drinking reserve and food prep share exactly one confirmed water po
  assert.equal(normal.waterForPrep,true,"do not require an outage bottled-water plan with working water supply");
  assert.equal(row(normal,"food").effective,4);
 });
+test("verified drinking+prep allocation raises water shortage and shopping target when above baseline",()=>{
+ const base={noHeat:true,waterOut:true,safeWaterConfirmed:true,
+   stocks:{"home:water":{qty:10,drinkingReserveLiters:9,
+     drinkingReserveConfirmed:true,drinkingReservePlanDays:3}},
+   variants:{"home:alphaRice":{qty:2,prepConfirmed:true,prepWaterLiters:2}}};
+ const over=assess(base);
+ const water=row(over,"water");
+ assert.equal(water.autoTarget,9,"3L/day includes both drinking and food preparation");
+ assert.equal(water.required,11,"verified eleven litres overrule the nine-litre reference");
+ assert.equal(water.effective,10);
+ assert.equal(water.missing,1,"shopping must list the one-litre physical shortfall");
+ assert.equal(water.allocationExtraRequired,2);
+ assert.equal(over.drinkingReview.baseRequired,9);
+ assert.equal(over.drinkingReview.referenceRequired,9);
+ assert.equal(over.drinkingReview.resolvedRequired,11);
+ assert.equal(over.drinkingReview.extraRequired,2);
+ assert.equal(over.drinkingReview.shoppingMissing,1);
+ assert.equal(over.waterConflict,true);
+ assert.equal(row(over,"food").effective,0,"food still blocks when cooking water would consume drinking reserve");
+ assert.equal(over.groups.find(x=>x.id==="water").primary.missing,1,"overview card uses the same shortage");
+ const enough=assess({...base,stocks:{"home:water":{...base.stocks["home:water"],qty:11}}});
+ assert.equal(row(enough,"water").required,11);
+ assert.equal(row(enough,"water").missing,0);
+ assert.equal(enough.waterForPrep,true);
+ assert.equal(row(enough,"food").effective,2);
+ assert.equal(enough.drinkingReview.shoppingMissing,0);
+});
+test("water shopping target takes max of custom target and verified allocation without double-adding prep",()=>{
+ const base={noHeat:true,waterOut:true,safeWaterConfirmed:true,
+   stocks:{"home:water":{qty:10,target:12,drinkingReserveLiters:9,
+     drinkingReserveConfirmed:true,drinkingReservePlanDays:3}},
+   variants:{"home:alphaRice":{qty:2,prepConfirmed:true,prepWaterLiters:2}}};
+ const custom=assess(base);
+ assert.equal(row(custom,"water").autoTarget,9);
+ assert.equal(row(custom,"water").required,12,"custom twelve-litre goal remains larger than verified eleven");
+ assert.equal(row(custom,"water").missing,2);
+ assert.equal(custom.drinkingReview.extraRequired,0,"no addition to a target that already covers the plan");
+ const relaxed=assess({...base,stocks:{"home:water":{...base.stocks["home:water"],target:2}}});
+ assert.equal(row(relaxed,"water").required,11,"a two-litre custom goal cannot hide eleven litres of committed use");
+ assert.equal(relaxed.drinkingReview.extraRequired,9);
+ const notConfirmed=assess({...base,stocks:{"home:water":{...base.stocks["home:water"],drinkingReserveConfirmed:false,target:2}}});
+ assert.equal(row(notConfirmed,"water").required,2,"unchecked allocations remain unverified, not fabricated purchases");
+ assert.equal(row(notConfirmed,"food").effective,0);
+ const normal=assess({...base,waterOut:false});
+ assert.equal(row(normal,"water").required,12,"functioning water supply retains previous target");
+ assert.equal(normal.drinkingReview.extraRequired,0);
+});
+test("go-bag verified water allocation drives only its own shopping shortage",()=>{
+ const packed={waterOut:true,noHeat:true,safeWaterConfirmed:true,mode:"go",
+   stocks:{"home:water":{qty:100},"go:water":{qty:1,drinkingReserveLiters:1.2,
+     drinkingReserveConfirmed:true,drinkingReservePlanDays:1}},
+   variants:{"go:alphaRice":{qty:1,prepConfirmed:true,prepWaterLiters:0.4}}};
+ const a=assess(packed);
+ assert.equal(row(a,"water").autoTarget,0.5,"go-bag reference is a carry amount, not the household requirement");
+ assert.equal(row(a,"water").required,1.6);
+ assert.equal(row(a,"water").missing,0.6);
+ assert.equal(a.drinkingReview.shoppingMissing,0.6);
+ assert.equal(a.drinkingReview.extraRequired,1.1);
+ assert.equal(a.waterConflict,true);
+ const adequate=assess({...packed,stocks:{...packed.stocks,"go:water":{...packed.stocks["go:water"],qty:1.6}}});
+ assert.equal(row(adequate,"water").missing,0);
+ assert.equal(adequate.waterForPrep,true);
+ assert.equal(row(adequate,"food").effective,1);
+});
 test("drinking reserve confirmations do not transfer across days or evacuation modes",()=>{
  const base={noHeat:true,waterOut:true,safeWaterConfirmed:true,
    stocks:{"home:water":{qty:4,drinkingReserveLiters:2,drinkingReserveConfirmed:true,drinkingReservePlanDays:3}},
