@@ -1,0 +1,57 @@
+name: Construction Atlas Wave12 Seven Verified Images
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/construction-atlas-image-wave12-promotion.yml'
+      - 'tools/construction-tools-atlas/scripts/promote-image-wave12-seven-v2.3.cjs'
+permissions:
+  contents: write
+jobs:
+  promote-reviewed-wave12:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'feat/atlas-image-wave12-seven-20261105'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install ImageMagick
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qq -y imagemagick
+      - name: Compare seven pinned original JPEG hashes to Commons API before formal publication
+        run: node tools/construction-tools-atlas/scripts/promote-image-wave12-seven-v2.3.cjs
+      - name: Commit verified source binaries, optimized WebP, attribution and SEO snapshots
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -- \
+            tools/construction-tools-atlas/images/pickaxe/ \
+            tools/construction-tools-atlas/images/paint_roller/ \
+            tools/construction-tools-atlas/images/paint_brush/ \
+            tools/construction-tools-atlas/images/nails/ \
+            tools/construction-tools-atlas/images/ladder/ \
+            tools/construction-tools-atlas/images/masking_tape/ \
+            tools/construction-tools-atlas/images/extension_cord/ \
+
+            tools/construction-tools-atlas/images/ATTRIBUTION.md \
+            tools/construction-tools-atlas/data/image-wave12-sources-v2.3.json \
+            tools/construction-tools-atlas/data/image-registry-v2.3.json \
+            tools/construction-tools-atlas/data/image-lifecycle-v2.3.json \
+            tools/construction-tools-atlas/data/image-inventory-v2.3.json \
+            tools/construction-tools-atlas/data/public-image-inventory-v2.3.json \
+            tools/construction-tools-atlas/data/affiliate-image-acquisition-wave6-v2.3.json \
+            tools/construction-tools-atlas/data/affiliate-image-acquisition-queue-v2.3.json \
+            tools/construction-tools-atlas/data/seo-detail-pages-v2.3.json \
+            tools/construction-tools-atlas/detail-image-hotfix.js \
+            tools/construction-tools-atlas/entries/ tools/construction-tools-atlas/sitemap.xml sitemap.xml
+          git diff --cached --stat
+          if git diff --cached --quiet; then echo 'No verified Wave12 images generated'; exit 1; fi
+          git -c user.name='github-actions[bot]' \
+            -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+            commit -m 'feat(atlas): promote seven Commons images and 55-page SEO cohort'
+          git push origin HEAD:feat/atlas-image-wave12-seven-20261105
