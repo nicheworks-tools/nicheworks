@@ -94,6 +94,20 @@ Both English and Japanese OCR photo interfaces now have an **off-by-default** "E
 
 Automated regression: `node tools/_shared/check-fastscan-image-enhancement.mjs` checks untouched default-image handling, concrete grayscale pixel writes, upscale and memory cap, expected failure handling and blob-URL release, bilingual option wiring, optional QA comparison and photo privacy. The noindex QA page at `tools/inci-fastscan/qa/photo-ocr-benchmark.html` now exposes the same checkbox so manual testers can compare original and browser-enhanced scans of a **single independently transcribed real label**.
 
+## Japanese photographed-label INCI expansion — wave 11: Silver Oxide bilingual antimicrobial role (2026-11-05)
+
+The source product list contains the exact Japanese display `酸化銀`. Japanese ingredient nomenclature identifies it as `Silver Oxide`, and COSMILE separately confirms **ANTIMICROBIAL** (microorganism growth control), **not** necessarily the cosmetic regulatory category **preservative**.
+
+| Japanese display | Distinct INCI | Neutral role / evidence |
+| --- | --- | --- |
+| 酸化銀 | Silver Oxide | [JP ingredient name & exact INCI](https://cosme-hub.com/ingredients/3391), [COSMILE EU antimicrobial role](https://cosmileeurope.eu/de/inci/inhaltsstoff/14475/silver-oxide/), [independent Japanese cosmetic nomenclature](https://ai.gloshell.com/ingredients/silver-oxide?lang=ja) |
+
+**Corrected readiness blocker:** Wave 9 intentionally held Silver Oxide because `antimicrobial` lacked bilingual role text and produced hard failures in `check-cosmetics-public-role-readiness` and `check-cosmetics-completion-readiness`. Wave 11 first adds a distinct **antimicrobial** category label (抗菌 / Antimicrobial) and explicitly neutral, correctly scoped descriptions in **both** `cosmetic-ingredient-checker-lite/app.js` and `inci-fastscan/js/web_ui.js`. Its wording limits the claim to a listed functional role and explicitly says this does not establish preservation efficacy, product safety or legal use. `preservative` remains separate. The category is source-backed in the shared taxonomy, and both audited public category lists now include this actually implemented bilingual category. Frozen debt ceilings are unchanged. Strict role parity checks enforce both languages, no role synonym and no unsupported generic fallback.
+
+The Silver Oxide dictionary entry is a **new standalone canonical identity** with exact Japanese spelling and non-misleading `category:"antimicrobial"`, `safety:"unrated"` and neutral sourced note, not a synonym for Silver or colloidal metal. All previous unique identities and matching tests remain intact. The wave11 regression exercises the strict production scorer, both UI language strings, note/source quality, identity separation, and source-list positive-control threshold **119/127** (up from 118), leaving **8** unmatched once CI succeeds.
+
+**Not a safety verdict:** An ingredient name and function does not certify legal use, a specific recipe, concentration, patient suitability, independently matched package photo or actual OCR recognition precision. Source photo/product version may differ. No image or OCR content uploaded.
+
 ## Japanese photographed-label INCI expansion — wave 10 (2026-11-05)
 
 Adds **two** exact canonical INCI identities supported by separately published manufacturer Japanese ingredient names and manufacturer/COSMILE international nomenclature. The fixed 127-name source corpus expects **118/127 (92.91%)** dictionary coverage with **9** missing after CI success. Both are maintained as `safety: "unrated"` and neutral source-backed functions (NOT product compliance/safety findings).
