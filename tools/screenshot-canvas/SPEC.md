@@ -19,7 +19,7 @@ Arrange multiple screenshots in one editable browser Canvas for comparison and P
 ## Inputs
 
 - Local PNG/JPEG/WebP image files.
-- Canvas width and height (100–12000 px), background, layout, gap, and opacity.
+- Canvas width and height (100–12,000px per side, no more than 24MP total), background, layout, gap, and opacity.
 - Pointer interactions, language toggle, and image-selection controls.
 
 ## Outputs
@@ -49,17 +49,19 @@ Toolbar wraps at narrow widths; Canvas viewport is horizontally scrollable when 
 ## Limits and non-goals
 
 - This is not website capture, OCR, or screenshot stitching with smart overlap detection.
-- Device memory and browser maximum Canvas dimensions may limit high-resolution export.
+- Individual PNG/JPEG/WebP files must be at most 32MiB and 24MP. Total source pixels across image layers must stay within 48MP. Canvas size/export is limited to 24MP, and rejected/corrupt files report errors without losing the composition.
+- Device memory and browser maximum Canvas dimensions can still limit high-resolution export.
 - Image upload is not implemented.
 - Full common-shell monetization and analytics integration is tracked separately.
 
 ## Acceptance criteria
 
 - [ ] Import at least three files using image picker and drag/drop, move and resize selected images.
-- [ ] Undo/redo restore image geometry, opacity, background, and Canvas dimensions.
-- [ ] PNG export matches composition without including blue selection handles.
-- [ ] Verify JP/EN mode and narrow mobile Canvas handling.
-- [ ] Complete website shell integration and browser smoke before release.
+- [x] Undo/redo restores image geometry, opacity, background, and Canvas dimensions in Chromium CI.
+- [x] PNG export matches composition without selection handles, verified against export canvas pixels.
+- [x] Verify JP/EN mode and constrained 390px and 360px layouts in Chromium.
+- [x] Reject oversized/corrupt image inputs and invalid canvas requests safely.
+- [x] Website shell integration and browser smoke verified; physical-device testing remains separate.
 
 ## Implementation evidence
 
