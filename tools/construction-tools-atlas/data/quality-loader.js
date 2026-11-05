@@ -342,7 +342,7 @@
       target.meta = { ...(target.meta || {}), reviewed_editorial_version:REVIEWED_EDITORIAL_VERSION };
       stats.editorialImprovementsApplied += 1;
     }
-    if (stats.editorialImprovementsApplied !== 5) throw Error("Missing reviewed editorial targets");
+    if (stats.editorialImprovementsApplied !== 3) throw Error("Missing reviewed editorial targets");
   }
 
   function resolveCanonicalId(id) {
