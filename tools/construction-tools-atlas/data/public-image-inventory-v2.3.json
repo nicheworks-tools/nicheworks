@@ -20,18 +20,18 @@
   "sources": {
     "publication_inventory_version": "2026-09-16-q014-identity-closure-1",
     "publication_id_sha256": "d0264617677052f0f446a0f4ebbfafc2315766d5858480b7103267320d88752d",
-    "image_registry_version": "2026-11-05-reviewed-image-wave11-three-1",
+    "image_registry_version": "2026-11-05-reviewed-image-wave12-seven-1",
     "image_exception_ledger_version": "2026-11-03-five-canonical-retirements-1"
   },
   "summary": {
     "public_entries": 865,
-    "formal_image_entries": 57,
-    "missing_formal_image_entries": 763,
+    "formal_image_entries": 64,
+    "missing_formal_image_entries": 756,
     "not_required_entries": 45,
     "unobtainable_entries": 0,
     "classified_entries": 865,
-    "formal_coverage_percent": 6.5896,
-    "registry_items_total": 57,
+    "formal_coverage_percent": 7.3988,
+    "registry_items_total": 64,
     "formal_images_inherited_via_redirect": 6,
     "formal_images_outside_public": 0,
     "image_exceptions_outside_public": 0,
@@ -46,20 +46,20 @@
       "applicability_reviewed": 865,
       "required": 820,
       "on_hold": 0,
-      "final_dispositions": 102,
-      "unresolved": 763,
+      "final_dispositions": 109,
+      "unresolved": 756,
       "by_stage": {
         "unreviewed": 0,
         "not_required": 45,
-        "awaiting_source": 763,
+        "awaiting_source": 756,
         "candidate": 0,
         "provenance_verified": 0,
         "subject_verified": 0,
         "verified": 0,
-        "promoted": 57
+        "promoted": 64
       }
     },
-    "evidence_sha256": "25057ddcb9f2fb6433bdefd4fb799fc3facdfa93aee9368b0c36b82b731baf2d",
+    "evidence_sha256": "a0f3605ab420ce5de20ebebbbd8f24a2f5e0123c22779f239a12ffd44956bae2",
     "rows": [
       {
         "id": "access_door",
@@ -1390,15 +1390,15 @@
       {
         "id": "extension_cord",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "An extension cord is a physical electrical accessory with clear visual identity; a reviewed photograph is appropriate.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+        "candidate_id": "wave12:extension_cord",
+        "source_entry_id": "extension_cord",
+        "attachment": "direct"
       },
       {
         "id": "extension_pole",
@@ -2196,15 +2196,15 @@
       {
         "id": "ladder",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "A ladder is a physical access device with stable visual identity; a reviewed photograph is appropriate.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+        "candidate_id": "wave12:ladder",
+        "source_entry_id": "ladder",
+        "attachment": "direct"
       },
       {
         "id": "lag_screw",
@@ -2417,15 +2417,15 @@
       {
         "id": "masking_tape",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "Masking tape is a physical finishing/protection material with a recognizable roll and applied edge use; a reviewed photograph is appropriate.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+        "candidate_id": "wave12:masking_tape",
+        "source_entry_id": "masking_tape",
+        "attachment": "direct"
       },
       {
         "id": "masonry_chisel",
@@ -2612,15 +2612,15 @@
       {
         "id": "nails",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "Nails are physical fasteners with a clear canonical form; a representative reviewed photograph is appropriate.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+        "candidate_id": "wave12:nails",
+        "source_entry_id": "nails",
+        "attachment": "direct"
       },
       {
         "id": "nonwoven_fabric",
@@ -2703,28 +2703,28 @@
       {
         "id": "paint_brush",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "A paint brush is a physical finishing tool with clear visual identity; a reviewed photograph is appropriate.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+        "candidate_id": "wave12:paint_brush",
+        "source_entry_id": "paint_brush",
+        "attachment": "direct"
       },
       {
         "id": "paint_roller",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "A paint roller is a physical finishing tool with a distinctive roller cover and frame; a reviewed photograph aids recognition.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+        "candidate_id": "wave12:paint_roller",
+        "source_entry_id": "paint_roller",
+        "attachment": "direct"
       },
       {
         "id": "paint_sprayer",
@@ -2794,15 +2794,15 @@
       {
         "id": "pickaxe",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "A pickaxe is a distinctive physical digging/breaking hand tool; a subject-matched photograph is appropriate.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+        "candidate_id": "wave12:pickaxe",
+        "source_entry_id": "pickaxe",
+        "attachment": "direct"
       },
       {
         "id": "pipe_cutter",
@@ -11388,8 +11388,8 @@
     },
     "material": {
       "public_entries": 158,
-      "formal_image": 3,
-      "missing_formal_image": 155,
+      "formal_image": 4,
+      "missing_formal_image": 154,
       "not_required": 0,
       "unobtainable": 0
     },
@@ -11458,17 +11458,17 @@
     },
     "tool": {
       "public_entries": 330,
-      "formal_image": 47,
-      "missing_formal_image": 259,
+      "formal_image": 53,
+      "missing_formal_image": 253,
       "not_required": 24,
       "unobtainable": 0
     }
   },
   "hashes": {
     "public_id_sha256": "d0264617677052f0f446a0f4ebbfafc2315766d5858480b7103267320d88752d",
-    "public_formal_image_id_sha256": "ff2db125d431083c0e4fa59e348f550564316244cd36a52fd469b05e2287d3bb",
-    "public_missing_formal_image_id_sha256": "dd3af81985aa2300049e85666bc1ab0a2fbe4778858d38d9240762d3fe69b6e2",
-    "public_image_classification_sha256": "272fc265c00b99725b9f1d3e14b439eb3c5c55e8de1a05e7f4f960b0fcf757a0"
+    "public_formal_image_id_sha256": "b5fdee1a2c91252400676d1c51526824bb99aa9b8f8eb4629bcb38e71226a203",
+    "public_missing_formal_image_id_sha256": "4ebfb8dee45c179921ba4e525924c1dfa8ed1f527c2787e51945df8184356aab",
+    "public_image_classification_sha256": "bb06499d760277163797742a2d9c9732a3212e0c45327ece5e6cf9eacca1a067"
   },
   "inherited_formal_images": [
     {

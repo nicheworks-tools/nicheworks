@@ -1,6 +1,6 @@
 {
   "schema": "cta-affiliate-image-acquisition-wave6-v2.3",
-  "version": "2026-11-05-reviewed-image-wave11-three-1",
+  "version": "2026-11-05-reviewed-image-wave12-seven-1",
   "policy": {
     "queue_order": "curated source-feasibility work order, NOT empirical market ranking",
     "no_guessed_search_volume": true,
@@ -17,8 +17,8 @@
   },
   "expected": {
     "active_affiliate_mappings": 430,
-    "revenue_ready": 48,
-    "awaiting_source": 382,
+    "revenue_ready": 55,
+    "awaiting_source": 375,
     "first_wave": 0,
     "source_leads": 3
   },
@@ -37,7 +37,14 @@
     "screwdriver",
     "cable_tie",
     "bucket",
-    "chisel"
+    "chisel",
+    "pickaxe",
+    "paint_roller",
+    "paint_brush",
+    "nails",
+    "ladder",
+    "masking_tape",
+    "extension_cord"
   ],
   "source_leads": [
     {
@@ -161,6 +168,41 @@
       "entry_id": "chisel",
       "disposition": "promoted",
       "review": "Full source JPEG and uncropped WebP visually inspected. License/attribution and exact Commons original SHA1 confirmed. Reviewed the original 2992x2992 photograph: five full-size woodworking chisels, their handles, metal shafts and cutting edges are all identifiable."
+    },
+    {
+      "entry_id": "pickaxe",
+      "disposition": "promoted",
+      "review": "Full source JPEG and uncropped WebP visually inspected. License/attribution and exact Commons original SHA1 confirmed. Commons photo subject: a complete pickaxe lying on the ground, with a visible handle and double-ended metal head. Current Commons original includes an explicitly documented color correction."
+    },
+    {
+      "entry_id": "paint_roller",
+      "disposition": "promoted",
+      "review": "Full source JPEG and uncropped WebP visually inspected. License/attribution and exact Commons original SHA1 confirmed. Commons author/source/CC-BY verified; original 1024x768 photograph explicitly captioned Paint roller; a real application roller, not a printmaking roller."
+    },
+    {
+      "entry_id": "paint_brush",
+      "disposition": "promoted",
+      "review": "Full source JPEG and uncropped WebP visually inspected. License/attribution and exact Commons original SHA1 confirmed. Commons original 2814x1876 photograph explicitly identified as a paint application brush (trincha), not an artistic illustration."
+    },
+    {
+      "entry_id": "nails",
+      "disposition": "promoted",
+      "review": "Full source JPEG and uncropped WebP visually inspected. License/attribution and exact Commons original SHA1 confirmed. Commons source photo and CC0 reviewed: a close-up explicitly showing galvanized metal nails, appropriate for fastener identification."
+    },
+    {
+      "entry_id": "ladder",
+      "disposition": "promoted",
+      "review": "Full source JPEG and uncropped WebP visually inspected. License/attribution and exact Commons original SHA1 confirmed. Commons original 600x800 photograph depicts a standalone nine-rung ladder, 6 ft tall; correct tool identification."
+    },
+    {
+      "entry_id": "masking_tape",
+      "disposition": "promoted",
+      "review": "Full source JPEG and uncropped WebP visually inspected. License/attribution and exact Commons original SHA1 confirmed. Commons original 2432x1824 clearly identifies a DCM green masking/protection tape; original brand is named in alt, not used as an endorsement."
+    },
+    {
+      "entry_id": "extension_cord",
+      "disposition": "promoted",
+      "review": "Full source JPEG and uncropped WebP visually inspected. License/attribution and exact Commons original SHA1 confirmed. Commons original 3072x2048 clearly identified as a yellow three-outlet NEMA 5-15 extension cord; Japanese plug compatibility must not be implied."
     }
   ]
 }

@@ -12,15 +12,15 @@
     "revenue_priority_policy_version": "2026-09-19-revenue-priority-2",
     "public_content_quality_version": "2026-09-16-q014-identity-closure-1",
     "public_image_inventory_version": "2026-09-16-q014-identity-closure-1",
-    "image_registry_version": "2026-11-05-reviewed-image-wave11-three-1",
+    "image_registry_version": "2026-11-05-reviewed-image-wave12-seven-1",
     "affiliate_offers_version": "2026-09-18-wave6l-affiliate-1"
   },
   "summary": {
     "public_runtime_entries": 865,
-    "published_static_detail_pages": 48,
-    "with_promoted_image": 47,
+    "published_static_detail_pages": 55,
+    "with_promoted_image": 54,
     "image_not_required": 1,
-    "with_active_affiliate_mapping": 48
+    "with_active_affiliate_mapping": 55
   },
   "entries": [
     {
@@ -108,6 +108,12 @@
       "affiliate": "active"
     },
     {
+      "id": "extension_cord",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/extension_cord/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
       "id": "fire_extinguisher",
       "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/fire_extinguisher/",
       "image": "promoted",
@@ -162,6 +168,12 @@
       "affiliate": "active"
     },
     {
+      "id": "ladder",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/ladder/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
       "id": "laser_distance_meter",
       "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/laser_distance_meter/",
       "image": "promoted",
@@ -170,6 +182,12 @@
     {
       "id": "laser_level",
       "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/laser_level/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "masking_tape",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/masking_tape/",
       "image": "promoted",
       "affiliate": "active"
     },
@@ -192,14 +210,38 @@
       "affiliate": "active"
     },
     {
+      "id": "nails",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/nails/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
       "id": "notched_trowel",
       "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/notched_trowel/",
       "image": "promoted",
       "affiliate": "active"
     },
     {
+      "id": "paint_brush",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/paint_brush/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "paint_roller",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/paint_roller/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
       "id": "paint_tray",
       "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/paint_tray/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "pickaxe",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/pickaxe/",
       "image": "promoted",
       "affiliate": "active"
     },
