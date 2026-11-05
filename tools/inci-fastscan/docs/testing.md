@@ -94,6 +94,21 @@ Both English and Japanese OCR photo interfaces now have an **off-by-default** "E
 
 Automated regression: `node tools/_shared/check-fastscan-image-enhancement.mjs` checks untouched default-image handling, concrete grayscale pixel writes, upscale and memory cap, expected failure handling and blob-URL release, bilingual option wiring, optional QA comparison and photo privacy. The noindex QA page at `tools/inci-fastscan/qa/photo-ocr-benchmark.html` now exposes the same checkbox so manual testers can compare original and browser-enhanced scans of a **single independently transcribed real label**.
 
+## Japanese photographed-label INCI expansion — wave 6 (2026-11-05)
+
+Six additional **distinct, source-backed INCI identities** are registered against the exact Japanese spellings in the existing two-product published ingredient reference corpus. This is **source-list dictionary coverage**, not independent OCR accuracy or a confirmed match between an available photo and the published formula version. All six records use legacy `safety: "unrated"` and neutral functions only; no concentration, regulatory, product suitability, efficacy or personal safety finding is implied.
+
+| Published Japanese label | Exact INCI identity | Evidence (Japanese identity; independently documented role) |
+| --- | --- | --- |
+| ゴボウ根エキス | Arctium Lappa Root Extract | [Beaker JP/INCI](https://beaker.media/jsln_ingredients/556491), [COSMILE skin conditioning](https://cosmileeurope.eu/inci/detail/1132/arctium-lappa-root-extract/) |
+| イタドリ根エキス | Polygonum Cuspidatum Root Extract | [Beaker JP/INCI](https://beaker.media/jsln_ingredients/557764), [COSMILE antioxidant](https://cosmileeurope.eu/inci/detail/12297/polygonum-cuspidatum-root-extract/) |
+| イランイラン花油 | Cananga Odorata Flower Oil | [Yamamoto Koryo supplier JP/INCI](https://www.ypcyy.co.jp/product/natural/floral/ylang-ylang-complete/), [COSMILE fragrance](https://cosmileeurope.eu/inci/detail/2516/cananga-odorata-flower-oil/) |
+| ヒアルロン酸クロスポリマー-2-Na | Sodium Hyaluronate Crosspolymer-2 | [Beaker JP/INCI](https://beaker.media/jsln_ingredients/565567), [COSMILE humectant](https://cosmileeurope.eu/inci/detail/14811/sodium-hyaluronate-crosspolymer-2/) |
+| 水添レチノール | Hydrogenated Retinol | [Beaker JP/INCI](https://beaker.media/jsln_ingredients/560083), [COSMILE skin conditioning](https://cosmileeurope.eu/inci/detail/6710/hydrogenated-retinol/) |
+| レチノイン酸ヒドロキシピナコロン | Hydroxypinacolone Retinoate | [TUNEMAKERS exact ingredient manufacturer listing](https://tunemakers.net/products/0211390), [COSMILE skin conditioning](https://cosmileeurope.eu/inci/detail/7142/hydroxypinacolone-retinoate/) |
+
+Expected exact-name support becomes **105/127**, with **22** remaining unmatched in this fixed product-source corpus after CI validates. Explicitly ambiguous items such as `ハマメリス水`, `レモン果実エキス`, `白金`, and `コロイド性白金` remain on hold; no guess-based aliases or botanical-part merges are permitted. No image data is uploaded. Dedicated regression `node tools/inci-fastscan/qa/check-japanese-source-backed-wave6.mjs` is wired to both the Cosmetics accuracy and actual Japanese photographed-label workflows.
+
 ## Japanese photographed-label INCI expansion — wave 5 (2026-11-04)
 
 Four **new, distinct full INCI identities** and Japanese source-label names, separately backed by an independent JP nomenclature reference plus COSMILE/industry documentation. All four remain legacy `safety: "unrated"` and carry neutral, HTTPS-source-backed function notes, **not** skin, allergy, pregnancy, regulatory or product safety assessments.
