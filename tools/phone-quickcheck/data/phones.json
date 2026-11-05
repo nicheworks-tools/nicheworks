@@ -12728,7 +12728,9 @@
       "sources": {
         "specificationsUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
         "manualUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
-        "verifiedAt": "2026-11-05"
+        "verifiedAt": "2026-11-05",
+        "chargingUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
+        "wirelessUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja"
       },
       "affiliateKeys": []
     },
@@ -12775,7 +12777,8 @@
       "sources": {
         "specificationsUrl": "https://www.docomo.ne.jp/support/product/pixel3a/spec.html",
         "manualUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
-        "verifiedAt": "2026-11-05"
+        "verifiedAt": "2026-11-05",
+        "chargingUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja"
       },
       "affiliateKeys": []
     },
@@ -12822,7 +12825,8 @@
       "sources": {
         "specificationsUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
         "manualUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
-        "verifiedAt": "2026-11-05"
+        "verifiedAt": "2026-11-05",
+        "chargingUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja"
       },
       "affiliateKeys": []
     },
@@ -12869,7 +12873,9 @@
       "sources": {
         "specificationsUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
         "manualUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
-        "verifiedAt": "2026-11-05"
+        "verifiedAt": "2026-11-05",
+        "chargingUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
+        "wirelessUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja"
       },
       "affiliateKeys": []
     },
@@ -12916,7 +12922,9 @@
       "sources": {
         "specificationsUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
         "manualUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
-        "verifiedAt": "2026-11-05"
+        "verifiedAt": "2026-11-05",
+        "chargingUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
+        "wirelessUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja"
       },
       "affiliateKeys": []
     },
@@ -12961,7 +12969,8 @@
       "sources": {
         "specificationsUrl": "https://www.mi.com/jp/product/redmi-note-14-pro-5g/specs/",
         "manualUrl": "https://www.mi.com/jp/product/redmi-note-14-pro-5g/specs/",
-        "verifiedAt": "2026-11-05"
+        "verifiedAt": "2026-11-05",
+        "chargingUrl": "https://www.mi.com/jp/product/redmi-note-14-pro-5g/specs/"
       },
       "affiliateKeys": [],
       "reviewNotes": "カラーで厚さが異なる。45W TurboChargeは一般USB PDによる45W受電の保証ではない。",
@@ -13021,7 +13030,8 @@
       "sources": {
         "specificationsUrl": "https://www.mi.com/jp/product/redmi-14-c/specs/",
         "manualUrl": "https://www.mi.com/jp/product/redmi-14-c/specs/",
-        "verifiedAt": "2026-11-05"
+        "verifiedAt": "2026-11-05",
+        "chargingUrl": "https://www.mi.com/jp/product/redmi-14-c/specs/"
       },
       "affiliateKeys": [],
       "reviewNotes": "色別重量204.8〜211.9g、端末18W受電上限と同梱33W充電器の出力を区別。",
@@ -13183,7 +13193,8 @@
       "sources": {
         "specificationsUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192472/~/仕様---moto-g05",
         "manualUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/187375/~/specifications---moto-g05",
-        "verifiedAt": "2026-11-05"
+        "verifiedAt": "2026-11-05",
+        "chargingUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192472/~/仕様---moto-g05"
       },
       "affiliateKeys": []
     }
