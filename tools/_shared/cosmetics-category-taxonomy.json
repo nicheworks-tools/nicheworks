@@ -25,6 +25,7 @@
     "hair conditioning": { "authority_functions": ["hair conditioning"] },
     "moisturizer": { "authority_functions": ["保湿"] },
     "colorant": { "authority_functions": ["colorant"] },
+    "antimicrobial": { "authority_functions": ["antimicrobial"] },
     "bulking agent": { "authority_functions": ["bulking"] }
   },
   "reviewed_mappings": {
