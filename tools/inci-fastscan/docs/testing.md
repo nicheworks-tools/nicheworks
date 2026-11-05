@@ -94,6 +94,24 @@ Both English and Japanese OCR photo interfaces now have an **off-by-default** "E
 
 Automated regression: `node tools/_shared/check-fastscan-image-enhancement.mjs` checks untouched default-image handling, concrete grayscale pixel writes, upscale and memory cap, expected failure handling and blob-URL release, bilingual option wiring, optional QA comparison and photo privacy. The noindex QA page at `tools/inci-fastscan/qa/photo-ocr-benchmark.html` now exposes the same checkbox so manual testers can compare original and browser-enhanced scans of a **single independently transcribed real label**.
 
+## Japanese photographed-label INCI expansion — wave 9 (2026-11-05)
+
+Five source-verified **distinct INCI identities** were matched to the exact Japanese spelling in the existing two-product published source-list corpus. All five have neutral, HTTPS-backed roles, no new safety grades (`safety: "unrated"`) and are tested using the strict production label matcher. This **source-list dictionary support** must never be represented as photograph OCR recall, exact packaging-formula matching, regulatory compliance, or suitability for a specific person.
+
+| Exact source-list Japanese display | INCI canonical name | Source-based rationale |
+| --- | --- | --- |
+| エゾウコギ根エキス | Acanthopanax Senticosus (Eleuthero) Root Extract | [Raw-material supplier exact Japanese/INCI](https://www.holstein.co.jp/products/cosmetics/phytocodine/), [COSMILE skin conditioning](https://cosmileeurope.eu/inci/detail/182/acanthopanax-senticosus-root-extract/) |
+| ニオイテンジクアオイ油 | Pelargonium Graveolens Oil | [Japanese INCI nomenclature database](https://beaker.media/jsln_ingredients/560824), [original oil supplier](https://www.ypcyy.co.jp/product/natural/floral/geranium-oil-nq/), [COSMILE fragrance](https://cosmileeurope.eu/inci/detail/18151/pelargonium-graveolens-oil/) |
+| レチノイン酸トコフェリル | Tocopheryl Retinoate | [JP identity mapping](https://ai.gloshell.com/ingredients/tocopheryl-retinoate), [COSMILE antioxidant](https://cosmileeurope.eu/de/inci/inhaltsstoff/16248/tocopheryl-retinoate/), [Japanese ingredient supplier](https://www.corefront.com/products/cosmetic-ingredients-anti-wrinkle/) |
+| アセチルテトラペプチド-17 | Acetyl Tetrapeptide-17 | [Japanese ingredient-name database](https://www.cosmetic-info.jp/jcln/result.php?-d=desc&-f=name&-p=all&-r=20&name=%E3%83%86%E3%83%88%E3%83%A9&nameOp=cn), [Health Canada ICID-based skin conditioning role](https://webprod.hc-sc.gc.ca/nhpid-bdipsn/ingredReq?id=17831) |
+| ヒト遺伝子組換オリゴペプチド-1 | rh-Oligopeptide-1 | [Japanese cosmetic ingredient identity and skin conditioning](https://www.cosmetic-info.jp/jcln/detail.php?id=11595), [Korean Cosmetics Association](https://kcia.or.kr/cid/search/ingd_view.php?no=5034), [Japan EGF Association rh/sh distinction](https://egf-association.jp/INCI_2024_7/INCI_meishou_2.html) |
+
+**Regulatory distinction:** `rh-Oligopeptide-1` is distinct from `sh-Oligopeptide-1`; sources also identify an **EU Annex II/416 prohibition** for the rh identity. This is a factual regulatory flag, **not** a general ingredient or product safety judgement, and it does not certify the sampled product's legal market status. A public-facing legal compliance conclusion requires a separate jurisdiction/formulation review. Source: [Japan EGF Association](https://www.egf-association.jp/INCI_2024_7/INNCI_QA.html), [cosmetic nomenclature reference](https://www.cosmetic-info.jp/jcln/detail.php?id=11595).
+
+**Held:** The exact Japanese/INCI name `酸化銀` / `Silver Oxide` has independent [JP/INCI](https://cosme-hub.com/ingredients/3391) and [COSMILE antimicrobial role](https://cosmileeurope.eu/de/inci/inhaltsstoff/14475/silver-oxide/) evidence, but `antimicrobial` is not yet an implemented bilingual role category. Adding it with `note_verified: true` fails the frozen shared readiness gates. It is deliberately excluded until a fully supported bilingual role explanation ships; do not mislabel it `preservative`.
+
+After workflow validation, fixed 127-name corpus source support is expected to increase **111→116/127**, leaving **11** unmatched. Retired botanical names, `sh-` variants, platinum/colloidal platinum and photo/formula ambiguity are not silently collapsed. Both Cosmetics accuracy benchmark and actual Japanese source-photo QA run `qa/check-japanese-source-backed-wave9.mjs` along with preceding waves.
+
 ## Japanese photographed-label INCI expansion — wave 8 (2026-11-05)
 
 Adds three more independent exact JP→INCI identities from the same 127-name published ZIGEN/KISOCARE source-list corpus. All are `safety: "unrated"`, with neutral, source-backed functions only. This is an exact-name **dictionary positive-control**; it does not verify genuine photograph OCR, packaging/formula version identity, mobile capture quality, product safety or legal eligibility.
