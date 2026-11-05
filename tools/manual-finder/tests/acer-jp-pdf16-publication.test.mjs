@@ -59,11 +59,11 @@ for(const row of rows){
  assert.equal(affiliate.getConsumableOffers(row).length,0,'no inferred battery, charger or other accessory fits');
 }
 const cov=fs.readFileSync(new URL('COVERAGE.md',root),'utf8');
-assert.ok(cov.includes('**2,660 verified model/caliber rows**'));
-assert.ok(cov.includes('| **Total** | **2,660** |'));
+assert.ok(cov.includes('**2,667 verified model/caliber rows**'));
+assert.ok(cov.includes('| **Total** | **2,667** |'));
 assert.ok(cov.includes('| Acer | 16 | expanded, bounded |'));
 assert.ok(cov.includes('| 13 | Acer | **expanded — 16**'));
 for(const p of ['index.html','en/index.html','app.paged.js']){
- assert.ok(fs.readFileSync(new URL(p,root),'utf8').includes('mf-huawei5-20261104a'));
+ assert.ok(fs.readFileSync(new URL(p,root),'utf8').includes('mf-oppo7-20261105a'));
 }
 console.log('Acer JP publication: 5 actual Japanese PDFs / 16 models (1 direct + 15 explicitly shared), Swift7 held, tagged model searches, bilingual loader and documentation PASS.');
