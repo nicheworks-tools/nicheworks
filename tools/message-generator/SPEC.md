@@ -67,7 +67,9 @@ The selector form and single generated-result block are compact and suitable for
 
 - [ ] Funeral drafts do not insert generic relationship gratitude, ordinary greetings, or business sign-offs in any culture/formality combination; other purposes retain their relationship wording.
 
-- [ ] Clipboard completion from an earlier generation must not display a stale success/failure notice after input changes, regeneration, or a newer result; production Node VM regression must pass.\n\n## Implementation evidence
+- [ ] Clipboard completion from an earlier generation must not display a stale success/failure notice after input changes, regeneration, or a newer result; production Node VM regression must pass.
+
+## Implementation evidence
 
 - `tools/message-generator/index.html`
 - `tools/message-generator/app.js`
