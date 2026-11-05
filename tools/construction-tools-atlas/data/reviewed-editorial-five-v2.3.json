@@ -49,6 +49,22 @@
         "title_ja": "レーザー墨出し器とは？水平・垂直の墨出しと選び方 | Construction Tools Atlas",
         "meta_description_ja": "レーザー墨出し器の用途と選び方を解説。水平・垂直ライン、自動整準範囲、精度、作業距離、受光器対応を確認するポイントを紹介。"
       }
+    },
+    {
+      "id": "safety_harness",
+      "review_state": "approved_editorial_gsc_20261105",
+      "expected_description": {
+        "ja": "高所作業時の墜落を防ぐための安全装備。 無理な姿勢や単独作業を避ける。 作業前に危険源を確認して共有する。\n高所作業で墜落時の身体保持と制止に用いるフルハーネス型墜落制止用器具。サイズ、ランヤード方式、接続器具、使用条件を作業方法と規則に合わせる。",
+        "en": "Safety equipment to prevent falls when working at height. Avoid unsafe postures and working alone when risky. Protective gear or procedures to reduce accidents."
+      },
+      "description": {
+        "ja": "フルハーネス型墜落制止用器具は、高所作業で墜落時に身体を保持するための装備。使用前にベルト・縫製・金具・ランヤードを点検し、適切な接続先と必要な落下距離を確認する。",
+        "en": "A full-body fall-arrest harness supports the wearer during work at height. Inspect webbing, stitching, connectors, and lanyards before use. Follow equipment instructions for suitable anchor connections and clearance."
+      },
+      "seo": {
+        "title_ja": "フルハーネスとは？墜落制止用器具の用途・点検ポイント | Construction Tools Atlas",
+        "meta_description_ja": "フルハーネス型墜落制止用器具の用途と点検ポイント。ベルト、ランヤード、接続器具、アンカー位置、必要な落下距離の確認事項を紹介。"
+      }
     }
   ],
   "scope": "Existing publicly indexed Construction Tools Atlas entries with measured GSC impressions, reviewed 2026-11-05",
