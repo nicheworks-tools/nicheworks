@@ -2,3 +2,19 @@
 .track-ruler{height:12px;position:relative;border-radius:999px;background:repeating-linear-gradient(90deg,#edf2fd 0,#edf2fd calc(10% - 1px),#c7d4ed calc(10% - 1px),#c7d4ed 10%);overflow:hidden;margin-top:12px}.track-bar{height:100%;min-width:4px;position:absolute;top:0;left:0;background:#375fe4;border-radius:999px}.studio-layer{transform-origin:center center}
 
 .export-files{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.export-files[hidden]{display:none!important}.export-files button{min-width:0;overflow-wrap:anywhere;white-space:normal}
+
+.project-portability{margin-top:22px;padding-top:14px;border-top:1px solid var(--line)}
+.project-portability h3{margin:0 0 8px}
+.project-portability p{font-size:.9rem;color:var(--muted);line-height:1.5;margin:.25rem 0 .75rem}
+.project-controls{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:end;gap:10px}
+.project-controls button{width:100%;min-height:44px}
+.project-controls label{grid-column:2;grid-row:1;margin:0;font-size:.85rem}
+.project-controls input[type=file]{grid-column:2;grid-row:2;width:100%;min-width:0;max-width:100%;font-size:.86rem}
+.project-controls input[type=file]::file-selector-button{font:inherit;padding:.35rem;border:1px solid var(--line);border-radius:7px;background:var(--light);color:var(--text)}
+@media(max-width:480px){.project-controls{grid-template-columns:minmax(0,1fr)}.project-controls label,.project-controls input[type=file]{grid-column:1;grid-row:auto}}
+
+.timeline-scrubber{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px;background:#f5f8ff;border:1px solid var(--line);border-radius:12px;padding:9px 12px;margin:12px 0}
+.timeline-scrubber label{margin:0;font-size:.88rem;white-space:nowrap}
+.timeline-scrubber input[type=range]{width:100%;min-width:0;accent-color:var(--blue);cursor:pointer}
+.timeline-scrubber output{min-width:62px;text-align:right;font-size:.88rem;font-variant-numeric:tabular-nums}
+@media(max-width:390px){.timeline-scrubber{grid-template-columns:minmax(0,1fr) auto}.timeline-scrubber label{grid-column:1/-1}.timeline-scrubber input[type=range]{grid-column:1}.timeline-scrubber output{grid-column:2}}

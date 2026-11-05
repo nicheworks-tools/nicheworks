@@ -95,8 +95,19 @@ try{
    const reduced=matchMedia("(prefers-reduced-motion: reduce)").matches;
    if(reduced)check(sequence.every(node=>node.getAnimations().length===0),"Reduced motion still animates");
    else check(sequence.some(node=>node.getAnimations().length>0),"Motion preview not animating");
+   const scrub=document.querySelector("#timeline-scrub");
+   check(scrub&&document.querySelector("#timeline-cursor"),"Missing timeline playhead controls");
+   scrub.value="550";scrub.dispatchEvent(new Event("input",{bubbles:true}));
+   check(scrub.value==="550"&&document.querySelector("#timeline-cursor").textContent==="550 ms","Scrub position not updated");
+   const scrubbed=all(".studio-layer").flatMap(layer=>layer.getAnimations());
+   if(reduced)check(scrubbed.length===0,"Reduced motion scrub must remain static");
+   else {
+    check(scrubbed.length===3,"Scrub did not create a paused track per layer");
+    check(scrubbed.every(a=>a.playState==="paused"&&Math.abs(a.currentTime-550)<=2),"Scrub position not respected");
+   }
    document.querySelector("#stop").click();
    check(document.querySelector(".studio-layer").getAnimations().length===0,"Stop did not cancel");
+   check(document.querySelector("#timeline-scrub").value==="0","Stop did not reset playhead");
    document.querySelector("#export").click();
    check(document.querySelector("#export-output").hidden,"Export bypassed purchase check");
    check(document.querySelector("#export-download").hidden,"Download unexpectedly enabled");
@@ -133,10 +144,52 @@ try{
    check(document.querySelector("#export-output").hidden,"Stale readme remained after editing");
    window.fetch=oldFetch;localStorage.removeItem(key);
 
+   // Project files must be portable (no purchase keys), readable offline, and validated before editor mutation.
+   const oldClick=HTMLAnchorElement.prototype.click,oldCreate=URL.createObjectURL;
+   let blobProject=null,projectDownloadName="";
+   HTMLAnchorElement.prototype.click=function(){projectDownloadName=this.download;};
+   URL.createObjectURL=function(blob){blobProject=blob;return oldCreate.call(URL,blob);};
+   try{document.querySelector("#save-project").click();}
+   finally{HTMLAnchorElement.prototype.click=oldClick;URL.createObjectURL=oldCreate;}
+   check(projectDownloadName==="motion-atlas-studio-project.json","Wrong project download name");
+   check(blobProject?.type?.startsWith("application/json"),"Project file not JSON");
+   const portable=JSON.parse(await blobProject.text());
+   check(portable.schema==="motion-atlas-studio-project-v1","Missing project schema");
+   check(portable.text==="CHANGED","Project saved stale editor content");
+   check(portable.tracks.length===3,"Track order/count not retained");
+   check(Object.keys(portable).sort().join(",")==="schema,text,tracks","Project contains unexpected keys");
+   check(!JSON.stringify(portable).includes("cs_test_"),"Purchase bearer leaked into portable project");
+   const picker=document.querySelector("#import-project");
+   const chooseFile=(value)=>{
+    const transfer=new DataTransfer();
+    transfer.items.add(new File([value],"project.json",{type:"application/json"}));
+    picker.files=transfer.files;
+    picker.dispatchEvent(new Event("change",{bubbles:true}));
+   };
+   const beforeBad=JSON.stringify(portable.tracks);
+   chooseFile(JSON.stringify({schema:portable.schema,text:"ATTACK",tracks:[{effect:"unknown",delay:0,duration:500,easing:"linear"}]}));
+   await new Promise(r=>setTimeout(r,70));
+   check(document.querySelector("#target-text").value==="CHANGED","Invalid import modified editor text");
+   check(all(".track").length===3,"Invalid import damaged tracks");
+   chooseFile(JSON.stringify({schema:"other-version",text:"ATTACK",tracks:portable.tracks}));
+   await new Promise(r=>setTimeout(r,70));
+   check(document.querySelector("#target-text").value==="CHANGED","Unknown version changed editor");
+   chooseFile("x".repeat(13000));
+   await new Promise(r=>setTimeout(r,70));
+   check(document.querySelector("#target-text").value==="CHANGED","Oversized JSON changed editor");
+   chooseFile(JSON.stringify({schema:portable.schema,text:"TRANSFERRED",tracks:portable.tracks,sessionId:"cs_test_leak",paid:true}));
+   for(let n=0;n<30&&document.querySelector("#target-text").value!=="TRANSFERRED";n++)
+    await new Promise(resolve=>setTimeout(resolve,30));
+   check(document.querySelector("#target-text").value==="TRANSFERRED","Valid import failed");
+   check(all(".track").length===3,"Valid import lost tracks");
+   check(JSON.stringify(all(".track").map(row=>row.querySelector(".track-effect")?.value))===JSON.stringify(portable.tracks.map(t=>t.effect)),"Track order changed during import");
+   check(document.documentElement.scrollWidth-document.documentElement.clientWidth<=8,"Project controls caused horizontal overflow");
+
+
    return {ok:true,width:window.innerWidth,count:all(".track").length,reduced};
   }catch(error){return {ok:false,error:error.message,width:window.innerWidth};}
  }
- for(const [lang,page,width] of [["en","/tools/motion-atlas/studio/",390],["ja","/tools/motion-atlas/ja/studio/",390],["en","/tools/motion-atlas/studio/",1280],["ja","/tools/motion-atlas/ja/studio/",1280]]){
+ for(const [lang,page,width] of ["en","ja"].flatMap(lang=>[320,360,390,1280].map(width=>[lang,lang==="ja"?"/tools/motion-atlas/ja/studio/":"/tools/motion-atlas/studio/",width]))){
   await call("Emulation.setDeviceMetricsOverride",{width,height:850,mobile:width<600,screenWidth:width,screenHeight:850,deviceScaleFactor:1});
   await call("Emulation.setTouchEmulationEnabled",{enabled:width<600});
   await call("Emulation.setEmulatedMedia",{features:[{name:"prefers-reduced-motion",value:lang==="ja"?"reduce":"no-preference"}]});
