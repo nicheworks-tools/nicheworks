@@ -320,7 +320,7 @@ function renderPage({ entry, image, offer, entryById, launchSet, resolveCanonica
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <title>${escapeHtml(titleJa)}（${escapeHtml(titleEn)}）とは？用途・英語名 | Construction Tools Atlas</title>
+  <title>${escapeHtml(seoTitle)}</title>
   <meta name="description" content="${escapeHtml(metaDescription)}">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="${escapeHtml(canonical)}">
