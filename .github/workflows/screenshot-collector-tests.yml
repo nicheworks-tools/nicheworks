@@ -19,3 +19,9 @@ jobs:
           for file in apps/screenshot-collector/extension/*.js; do node --check "$file"; done
       - name: URL policy and ZIP unit tests
         run: node --test apps/screenshot-collector/tests/*.test.mjs
+      - name: Install browser QA tooling
+        run: |
+          python3 -m pip install --break-system-packages playwright==1.56.0
+          python3 -m playwright install --with-deps chromium
+      - name: Chromium extension end-to-end QA
+        run: python3 apps/screenshot-collector/tests/browser-integration.py
