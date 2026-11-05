@@ -12,3 +12,9 @@
 .project-controls input[type=file]{grid-column:2;grid-row:2;width:100%;min-width:0;max-width:100%;font-size:.86rem}
 .project-controls input[type=file]::file-selector-button{font:inherit;padding:.35rem;border:1px solid var(--line);border-radius:7px;background:var(--light);color:var(--text)}
 @media(max-width:480px){.project-controls{grid-template-columns:minmax(0,1fr)}.project-controls label,.project-controls input[type=file]{grid-column:1;grid-row:auto}}
+
+.timeline-scrubber{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px;background:#f5f8ff;border:1px solid var(--line);border-radius:12px;padding:9px 12px;margin:12px 0}
+.timeline-scrubber label{margin:0;font-size:.88rem;white-space:nowrap}
+.timeline-scrubber input[type=range]{width:100%;min-width:0;accent-color:var(--blue);cursor:pointer}
+.timeline-scrubber output{min-width:62px;text-align:right;font-size:.88rem;font-variant-numeric:tabular-nums}
+@media(max-width:390px){.timeline-scrubber{grid-template-columns:minmax(0,1fr) auto}.timeline-scrubber label{grid-column:1/-1}.timeline-scrubber input[type=range]{grid-column:1}.timeline-scrubber output{grid-column:2}}
