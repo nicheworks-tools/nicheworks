@@ -331,6 +331,8 @@
       const id = text(row?.id), target = byId.get(id);
       if (!id || seen.has(id) || !target) throw Error("Invalid reviewed editorial ID: " + id);
       seen.add(id);
+      if (row.review_state === "pending_review") continue;
+      if (row.review_state !== "approved_editorial_gsc_20261105") throw Error("Invalid editorial state: " + id);
       const expectedJa = text(row.expected_description?.ja), expectedEn = text(row.expected_description?.en);
       const actualJa = text(target.description?.ja), actualEn = text(target.description?.en);
       const nextJa = text(row.description?.ja), nextEn = text(row.description?.en);
