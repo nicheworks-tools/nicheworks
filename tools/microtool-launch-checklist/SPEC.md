@@ -73,3 +73,11 @@ The primary flow is one select control followed by actions and a single output b
 - `tools/microtool-launch-checklist/index.html`
 - `tools/microtool-launch-checklist/app.js`
 - `tools/microtool-launch-checklist/style.css`
+
+## Async copy and export regression acceptance (2026-11-05)
+
+- A clipboard operation completing after tool-type change or regeneration must not display stale feedback.
+- A failed Markdown/TXT download initiation must show failure, not success, and clean up its temporary anchor.
+- Successful initiation is described as download started, not guaranteed disk persistence.
+- Production script regression: `node --test tools/microtool-launch-checklist/tests/async-export.test.mjs`.
+- Browser viewport and download permission checks remain pending; Node regression alone does not establish second-pass acceptance.

@@ -1,0 +1,16 @@
+name: Microtool checklist production regression
+on:
+  pull_request:
+    paths:
+      - 'tools/microtool-launch-checklist/**'
+      - '.github/workflows/microtool-checklist-regression.yml'
+  workflow_dispatch:
+jobs:
+  production-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tools/microtool-launch-checklist/tests/async-export.test.mjs
