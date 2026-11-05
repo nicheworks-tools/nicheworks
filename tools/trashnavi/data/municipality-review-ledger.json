@@ -1647,12 +1647,12 @@
       "lgcode": "016101",
       "pref": "北海道",
       "municipality": "新ひだか町",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "standard",
+      "reviewed_at": "2026-11-05",
+      "qualifying_source_count": 4,
+      "distinct_link_type_count": 3,
       "service_provider": null,
-      "review_note": null
+      "review_note": "町公式2026-04-14更新の分別案内、静内・三石別令和8年度収集表、日高中部環境センター持込案内を検証。地区別日程は相互に一般化しない。"
     },
     {
       "lgcode": "016314",
