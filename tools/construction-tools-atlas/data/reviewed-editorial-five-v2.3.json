@@ -33,6 +33,22 @@
         "title_ja": "ボールバルブとは？配管での用途・開閉構造と選定ポイント | Construction Tools Atlas",
         "meta_description_ja": "ボールバルブの内部構造と配管での開閉・遮断用途を解説。圧力・温度・流体の定格、接続方法、ハンドル操作や流量調整の注意点を整理。"
       }
+    },
+    {
+      "id": "laser_level",
+      "review_state": "approved_editorial_gsc_20261105",
+      "expected_description": {
+        "ja": "レーザーで水平・垂直ラインを投影して墨出しを補助する。 短い距離と長い距離で道具を使い分ける。 水平や垂直、勾配の確認に使う。",
+        "en": "Projects laser lines to assist layout, level, and plumb references. Use different sizes for short vs long spans. Checks level, plumb, or slope."
+      },
+      "description": {
+        "ja": "レーザー墨出し器は、水平・垂直などのレーザーラインを投影し、壁や天井の位置決め・墨出しに共通の基準を示す機器。精度・作業距離・自動整準範囲・受光器対応を確認して選ぶ。",
+        "en": "A laser level projects horizontal and vertical reference lines to support layout and alignment across floors, walls, and ceilings. Select it based on accuracy, working distance, self-leveling range, and receiver compatibility."
+      },
+      "seo": {
+        "title_ja": "レーザー墨出し器とは？水平・垂直の墨出しと選び方 | Construction Tools Atlas",
+        "meta_description_ja": "レーザー墨出し器の用途と選び方を解説。水平・垂直ライン、自動整準範囲、精度、作業距離、受光器対応を確認するポイントを紹介。"
+      }
     }
   ],
   "scope": "Existing publicly indexed Construction Tools Atlas entries with measured GSC impressions, reviewed 2026-11-05",
