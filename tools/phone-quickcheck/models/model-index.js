@@ -37,17 +37,18 @@
 
     for (const group of groups) {
       for (const row of group.rows) {
-        const anchor = row.querySelector("th a");
-        if (!anchor) continue;
-        anchor.addEventListener("click", () => {
-          if (typeof window.gtag !== "function") return;
-          // No search text, model ID, model name or click destination URL.
-          window.gtag("event", "phone_index_model_click", {
-            tool_slug: "phone-quickcheck",
-            maker_bucket: group.maker,
-            placement: "static_model_index"
+        // Track both the main tool handoff and any directly linked SEO profile.
+        // Retain the coarse event schema; neither the search text nor model identity leaves the browser.
+        for (const anchor of row.querySelectorAll("th a")) {
+          anchor.addEventListener("click", () => {
+            if (typeof window.gtag !== "function") return;
+            window.gtag("event", "phone_index_model_click", {
+              tool_slug: "phone-quickcheck",
+              maker_bucket: group.maker,
+              placement: "static_model_index"
+            });
           });
-        });
+        }
       }
     }
 
