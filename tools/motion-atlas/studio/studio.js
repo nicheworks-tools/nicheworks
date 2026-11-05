@@ -19,7 +19,7 @@ const WORDS = ja ? {
  effect:"演出",delay:"開始時刻（ms）",duration:"再生時間（ms）",easing:"速度曲線",
  up:"上へ",down:"下へ",remove:"削除",empty:"少なくとも1件必要です",
  max:"最大8件です",invalid:"時間の入力を確認してください",long:"合計時間は15秒以内にしてください",
- running:"モーションを再生しました。",stopped:"停止しました。",reduced:"動きを減らす設定のため静止表示にしました。",
+ running:"モーションを再生しました。",stopped:"停止しました。",scrubbed:"選択した位置をプレビューしています。",reduced:"動きを減らす設定のため静止表示にしました。",
  saved:"プリセットを保存しました。",loaded:"プリセットを読み込みました。",deleted:"プリセットを削除しました。",projectSaved:"プロジェクトJSONを保存しました。",projectImported:"プロジェクトを読み込みました。",projectInvalid:"JSONの形式・対応バージョン・モーション設定を確認してください。編集中の内容は変更していません。",projectTooLarge:"JSONファイルが大きすぎます（上限12 KB）。",presetLimit:"プリセットは50件まで保存できます。",
  noPreset:"保存したプリセットがありません。",saveFail:"ブラウザへの保存に失敗しました。",
  noName:"保存名を入力してください。",notForSale:"Studioは販売準備中です。購入済みの有効な権限がないためコード生成はできません。",
@@ -29,7 +29,7 @@ const WORDS = ja ? {
  effect:"Effect",delay:"Start (ms)",duration:"Length (ms)",easing:"Easing",
  up:"Up",down:"Down",remove:"Remove",empty:"At least one track is required.",
  max:"Maximum 8 tracks",invalid:"Check the start and duration values.",long:"Keep the timeline within 15 seconds.",
- running:"Motion sequence playing.",stopped:"Stopped.",reduced:"Reduced-motion preference active: stationary preview shown.",
+ running:"Motion sequence playing.",stopped:"Stopped.",scrubbed:"Preview at the selected timeline position.",reduced:"Reduced-motion preference active: stationary preview shown.",
  saved:"Preset saved.",loaded:"Preset loaded.",deleted:"Preset deleted.",projectSaved:"Project JSON saved.",projectImported:"Project restored.",projectInvalid:"Invalid JSON, version or motion settings. Current work was not changed.",projectTooLarge:"Project file is too large (12 KB maximum).",presetLimit:"You can store up to 50 local presets.",
  noPreset:"No saved presets.",saveFail:"Unable to save to this browser.",
  noName:"Enter a preset name.",notForSale:"Studio is not on sale yet. No verified paid entitlement is available for code export.",
@@ -41,7 +41,7 @@ const PROJECT_SCHEMA="motion-atlas-studio-project-v1";
 const SESSION_KEY="nicheworks:billing:session:motion_atlas.studio_v1";
 const defaultTrack=(effect,delay,duration)=>({effect,delay,duration,easing:"ease-out"});
 let tracks=[defaultTrack("fade-up",0,750),defaultTrack("overshoot",320,720)];
-let animations=[],bundle=null,exportSignature="";
+let animations=[],bundle=null,exportSignature="",playbackFrame=0;
 const getText=()=>String($("target-text").value||"").slice(0,80).replace(/[\u0000-\u001f\u007f]/g,"");
 const el=(name,text,className)=>{
  const node=document.createElement(name);
@@ -101,6 +101,8 @@ async function importProject(){
 
 function updateTotal(){
  $("total-duration").textContent=String(total())+" ms";
+ $("timeline-scrub").max=String(Math.min(total(),15000));
+ if(Number($("timeline-scrub").value)>total())setPlayhead(total());
  $("add-track").disabled=tracks.length>=8;
  if(total()>15000)message(WORDS.long);
 }
@@ -170,6 +172,8 @@ function invalidateExportIfEdited(){
  $("export-output").hidden=true;$("export-output").textContent="";
 }
 function createStage(){
+ if(playbackFrame){cancelAnimationFrame(playbackFrame);playbackFrame=0;}
+ setPlayhead(0);
  invalidateExportIfEdited();
  animations.forEach(a=>a.cancel());animations=[];
  const stage=$("stage");stage.replaceChildren();
@@ -181,15 +185,44 @@ function createStage(){
  parent.append(content);
  return stage.querySelectorAll(".studio-layer");
 }
+function setPlayhead(ms){
+ const value=Math.max(0,Math.min(total(),Math.round(ms/10)*10));
+ $("timeline-scrub").value=String(value);
+ $("timeline-cursor").textContent=String(value)+" ms";
+}
+function timelineOptions(track){
+ return {delay:track.delay,duration:track.duration,easing:track.easing,fill:"both",iterations:1};
+}
 function play(){
  if(!valid()){message(WORDS.invalid);return;}
  const layers=Array.from(createStage());
  if(window.matchMedia("(prefers-reduced-motion: reduce)").matches){message(WORDS.reduced);return;}
  tracks.forEach((track,i)=>{
-  const animation=layers[i].animate(EFFECTS[track.effect],{delay:track.delay,duration:track.duration,easing:track.easing,fill:"both",iterations:1});
+  const animation=layers[i].animate(EFFECTS[track.effect],timelineOptions(track));
   animations.push(animation);
  });
+ const start=performance.now();
+ function update(now){
+  setPlayhead(Math.min(total(),now-start));
+  if(now-start<total())playbackFrame=requestAnimationFrame(update);
+  else playbackFrame=0;
+ }
+ playbackFrame=requestAnimationFrame(update);
  message(WORDS.running);
+}
+function scrubTo(ms){
+ if(!valid()){message(WORDS.invalid);return;}
+ const layers=Array.from(createStage());
+ const selected=Math.max(0,Math.min(total(),ms));
+ if(window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+  setPlayhead(selected);message(WORDS.reduced);return;
+ }
+ tracks.forEach((track,i)=>{
+  const animation=layers[i].animate(EFFECTS[track.effect],timelineOptions(track));
+  animation.pause();animation.currentTime=selected;
+  animations.push(animation);
+ });
+ setPlayhead(selected);message(WORDS.scrubbed);
 }
 function stop(){createStage();message(WORDS.stopped);}
 function safePresets(){
@@ -324,6 +357,7 @@ $("add-track").addEventListener("click",()=>{
 });
 $("preview").addEventListener("click",play);
 $("stop").addEventListener("click",stop);
+$("timeline-scrub").addEventListener("input",()=>scrubTo(Number($("timeline-scrub").value)));
 $("save-preset").addEventListener("click",save);
 $("save-project").addEventListener("click",downloadProject);
 $("import-project").addEventListener("change",importProject);
