@@ -1,5 +1,44 @@
 {
   "schema": "cta-reviewed-editorial-five-v2.3",
   "version": "2026-11-05-gsc-five-source-guard-1",
-  "entries": []
+  "entries": [
+    {
+      "id": "insulation",
+      "review_state": "approved_editorial_gsc_20261105",
+      "expected_description": {
+        "ja": "「断熱材」：建材・資材の呼び方。用途や規格は製品で異なる。 用途と環境（屋内/屋外）で選定する。",
+        "en": "A material/building supply term. Specs vary by product. Storage conditions can affect performance. Pick based on use case and environment."
+      },
+      "description": {
+        "ja": "断熱材は、壁・屋根・天井などを通る熱の移動を抑えるための建築材料。グラスウールなど種類や厚さを設計条件に合わせて選び、隙間・過度な圧縮・熱源との離隔に注意して施工する。",
+        "en": "Insulation is a building material used to reduce heat transfer through walls, roofs, and ceilings. Choose the type and thickness for the design and install it continuously without gaps or excessive compression, observing clearance requirements around heat sources."
+      },
+      "seo": {
+        "title_ja": "断熱材とは？種類・厚さと施工時の注意点 | Construction Tools Atlas",
+        "meta_description_ja": "断熱材の種類・厚さの選び方と壁・屋根への施工時の注意点を解説。隙間や過度な圧縮、熱源との離隔、保護具など確認すべき項目を日英で紹介。"
+      }
+    },
+    {
+      "id": "ball_valve",
+      "review_state": "approved_editorial_gsc_20261105",
+      "expected_description": {
+        "ja": "「ボールバルブ」：建材・資材の呼び方。用途や規格は製品で異なる。 保管条件で性能が変わることがある。",
+        "en": "A material/building supply term. Specs vary by product. Pick based on use case and environment. Storage conditions can affect performance."
+      },
+      "description": {
+        "ja": "ボールバルブは、内部の球体を回転させて配管内の流れを開閉する弁。給水枝管などの遮断や設備保守に用い、流体・圧力・温度に合う定格、配管接続方式、ハンドルの操作空間を確認する。",
+        "en": "A ball valve uses a rotating internal ball to open or shut off flow in a pipe. It can isolate a water supply branch for maintenance. Check the fluid, pressure and temperature ratings, connection method, and handle access before selection."
+      },
+      "seo": {
+        "title_ja": "ボールバルブとは？配管での用途・開閉構造と選定ポイント | Construction Tools Atlas",
+        "meta_description_ja": "ボールバルブの内部構造と配管での開閉・遮断用途を解説。圧力・温度・流体の定格、接続方法、ハンドル操作や流量調整の注意点を整理。"
+      }
+    }
+  ],
+  "scope": "Existing publicly indexed Construction Tools Atlas entries with measured GSC impressions, reviewed 2026-11-05",
+  "policy": {
+    "source": "Existing canonical published definitions, details and safety notes",
+    "expected_source_match": "Exact original bilingual definition",
+    "preserve": "Canonical term, aliases, image, attribution, affiliate mapping, detailed notes"
+  }
 }
