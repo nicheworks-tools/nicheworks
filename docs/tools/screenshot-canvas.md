@@ -23,7 +23,7 @@ PNG/JPEG/WebP image files through file picker, drag/drop, and clipboard paste; p
 
 ## 4. Processing behavior
 
-Each loaded image is decoded into an in-memory Image. The tool renders them on one Canvas without network upload; selection allows pointer movement, four-corner proportional resizing, Shift-click multiple selection, duplication, deletion, and layer operations. Layout buttons arrange images in rows, columns, grid, or overlay. Undo/redo stores bounded edit history.
+Each loaded image is decoded into an in-memory Image. The tool renders them on one Canvas without network upload; selection allows pointer movement, four-corner proportional resizing, Shift-click multiple selection, duplication, deletion, and layer operations. Keyboard-accessible layer buttons allow selection; arrows move selected images, Shift+arrows move by ten pixels, Delete removes them, and Ctrl+Z/Ctrl+Y perform history operations when Canvas is focused. Layout buttons arrange images in rows, columns, grid, or overlay. Undo/redo stores bounded edit history.
 
 ## 5. Outputs
 
@@ -39,7 +39,7 @@ Image pixels stay in browser memory. No uploaded-image endpoint or localStorage/
 
 ## 8. Responsive contract
 
-Hybrid layout: toolbars wrap on narrow screens and the wide Canvas is scrollable. Verify touch input separately and preserve minimum 360px support.
+Hybrid layout: toolbars wrap on narrow screens, the wide Canvas is scrollable, and image layers can be selected with keyboard-accessible buttons. Minimum 360px content width has automated Chromium regression coverage; physical touch input remains unverified.
 
 ## 9. Language contract
 
@@ -63,13 +63,16 @@ Usage documentation is provided in `tools/screenshot-canvas/usage.html` and `usa
 
 ## 14. Functional acceptance tests
 
-- [ ] Import multiple local images with picker, drop, and paste.
-- [ ] Move images, resize each corner, multi-select, reorder, delete, and duplicate.
-- [ ] Verify row/column/grid/overlay layouts and transparent PNG export.
-- [x] Verify undo/redo restores geometry, opacity, background, and dimensions (Chromium smoke).
-- [ ] Verify mobile touch and keyboard/accessibility behavior and JA/EN labels.
+- [x] Import PNG, JPEG and WebP files and exercise file picker, drag/drop, and browser clipboard image paste.
+- [x] Move, resize each corner, multi-select, reorder, duplicate and delete local images.
+- [x] Verify row, column, grid and overlay layouts, PNG pixel colors, and alpha transparency.
+- [x] Verify undo/redo for position, corner resizing, background, opacity, dimensions and deletion.
+- [x] Verify keyboard-accessible image layer selection, Shift+Arrow movement, Ctrl+Z and Delete.
+- [x] Simulate touch-type PointerEvents and verify 1440px / 390px / 360px layouts and JA/EN switch.
+- [ ] Confirm on actual iOS/Android hardware and with screen-reader assistive technology.
+- [ ] Stress-test extreme canvas dimensions on limited-memory devices.
 
-GitHub Actions runs `tools/screenshot-canvas/tests/browser-smoke.mjs` in Chromium against the repository files at desktop content width 1425px and constrained content width 390px. Passed coverage includes two-image import, row/grid/column/overlay arrangement, pointer drag, undo/redo, background, opacity, canvas dimensions, duplicate/delete, PNG export, and language switch. Tests do not certify hardware touch interaction, clipboard paste, drag/drop, all four resize corners, or keyboard accessibility. The 390px mode constrains body layout because headless Chrome's minimum viewport is 500px.
+GitHub Actions runs `tools/screenshot-canvas/tests/browser-smoke.mjs` in Chromium against committed source files. The constrained layouts set body content widths to 390px and 360px because Chrome's headless window has a 500px minimum. Touch-type PointerEvents and browser ClipboardEvents are synthetic and do not certify physical gestures or OS clipboard permissions. The PNG export test inspects the actual export canvas pixels and MIME type and confirms that a downloadable PNG blob is created.
 
 ## 15. Explicit tool-specific exceptions
 

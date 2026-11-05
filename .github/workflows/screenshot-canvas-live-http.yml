@@ -1,0 +1,61 @@
+name: Screenshot Canvas live HTTP verification
+
+on:
+  pull_request:
+    paths:
+      - 'tools/screenshot-canvas/**'
+      - '.github/workflows/screenshot-canvas-live-http.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/screenshot-canvas/**'
+      - '.github/workflows/screenshot-canvas-live-http.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  live-http:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - name: Verify public HTML, JS, CSS and usage pages from outside Cloudflare
+        shell: bash
+        run: |
+          set -euo pipefail
+          dir="$(mktemp -d)"
+          trap 'rm -rf "$dir"' EXIT
+          attempts=4
+          require_new_code=0
+          if [[ "$GITHUB_EVENT_NAME" == "push" ]]; then
+            attempts=25
+            require_new_code=1
+          fi
+          base="https://nicheworks.app/tools/screenshot-canvas"
+          for attempt in $(seq 1 "$attempts"); do
+            printf 'Public HTTP attempt %s/%s\n' "$attempt" "$attempts"
+            if curl -fLsS --connect-timeout 8 --max-time 25 "$base/" -o "$dir/index.html" \
+               && curl -fLsS --connect-timeout 8 --max-time 25 "$base/app.js" -o "$dir/app.js" \
+               && curl -fLsS --connect-timeout 8 --max-time 25 "$base/style.css" -o "$dir/style.css" \
+               && curl -fLsS --connect-timeout 8 --max-time 25 "$base/usage.html" -o "$dir/usage.html" \
+               && curl -fLsS --connect-timeout 8 --max-time 25 "$base/usage-en.html" -o "$dir/usage-en.html" \
+               && grep -q 'id="canvas"' "$dir/index.html" \
+               && grep -q 'function render' "$dir/app.js" \
+               && grep -q 'Screenshot Canvas' "$dir/usage.html" \
+               && grep -q 'Screenshot Canvas' "$dir/usage-en.html" \
+               && grep -q '#workspace' "$dir/style.css"; then
+              if [[ "$require_new_code" -eq 0 ]] \
+                 || { grep -q 'id="layers"' "$dir/index.html" \
+                      && grep -q 'function renderLayers' "$dir/app.js"; }; then
+                echo "PASS: production HTML/JS/CSS/help pages served with expected content"
+                if [[ "$require_new_code" -eq 1 ]]; then
+                  echo "PASS: deployed page includes newly merged keyboard/layer functionality"
+                fi
+                exit 0
+              fi
+            fi
+            if [[ "$attempt" -lt "$attempts" ]]; then sleep 10; fi
+          done
+          echo "::error::Screenshot Canvas public HTTP validation did not pass"
+          exit 1

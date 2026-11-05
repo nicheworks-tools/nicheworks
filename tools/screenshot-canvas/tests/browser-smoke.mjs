@@ -36,14 +36,160 @@ function pageSmoke() {
   function rgbAt(x, y) {
     return c.getContext('2d').getImageData(x, y, 1, 1).data;
   }
-  function pointer(type, x, y, shiftKey = false) {
+  function pointer(type, x, y, shiftKey = false, pointerType = 'mouse') {
     const rect = c.getBoundingClientRect();
     c.dispatchEvent(new PointerEvent(type, {
-      bubbles: true, pointerId: 123, pointerType: 'mouse', shiftKey,
+      bubbles: true, pointerId: 123, pointerType, shiftKey,
       clientX: rect.left + x * rect.width / c.width,
       clientY: rect.top + y * rect.height / c.height
     }));
   }
+
+  async function extended() {
+    const stage = name => { document.body.dataset.qaStage = name; };
+    stage('extended-start');
+    const layers = () => [...document.querySelectorAll('#layers button')];
+    check(layers().length === 3, 'initial layer picker count');
+    for (let i = 0; i < 3; i++) {
+      layers()[0].click();
+      document.querySelector('#delete').click();
+    }
+    check(status().includes('Images 0'), 'clear images using accessible layer picker');
+    const red = await png('rgb(240,20,50)');
+    const blue = await png('rgb(20,60,240)');
+    stage('dropping');
+    const dropped = new DataTransfer();
+    dropped.items.add(new File([red], 'drop.png', { type: 'image/png' }));
+    document.querySelector('#workspace').dispatchEvent(new DragEvent('drop', {
+      bubbles: true, cancelable: true, dataTransfer: dropped
+    }));
+    await waitFor(() => status().includes('Images 1'), 'image drop');
+
+    stage('pasting');
+    const pasted = new DataTransfer();
+    pasted.items.add(new File([blue], 'pasted.png', { type: 'image/png' }));
+    document.dispatchEvent(new ClipboardEvent('paste', {
+      bubbles: true, clipboardData: pasted
+    }));
+    await waitFor(() => status().includes('Images 2'), 'image paste');
+
+    const invalid = new DataTransfer();
+    invalid.items.add(new File(['not an image'], 'bad.txt', { type: 'text/plain' }));
+    document.querySelector('#workspace').dispatchEvent(new DragEvent('drop', {
+      bubbles: true, cancelable: true, dataTransfer: invalid
+    }));
+    check(status().includes('Images 2'), 'reject nonimage drop');
+
+    stage('jpeg-webp');
+    const formatCanvas = document.createElement('canvas');
+    formatCanvas.width = 32;
+    formatCanvas.height = 32;
+    formatCanvas.getContext('2d').fillRect(0, 0, 32, 32);
+    const encode = type => {const url=formatCanvas.toDataURL(type);check(url.startsWith('data:'+type+';base64,'),'canvas supports '+type);const bytes=Uint8Array.from(atob(url.split(',')[1]),ch=>ch.charCodeAt(0));return new Blob([bytes],{type});};
+    const jpeg = encode('image/jpeg');
+    const webp = encode('image/webp');
+    check(jpeg?.type === 'image/jpeg' && webp?.type === 'image/webp', 'Chromium image encoders support JPEG/WebP');
+    const additional = new DataTransfer();
+    additional.items.add(new File([jpeg], 'photo.jpg', { type: 'image/jpeg' }));
+    additional.items.add(new File([webp], 'capture.webp', { type: 'image/webp' }));
+    input.files = additional.files;
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+    await waitFor(() => status().includes('Images 4'), 'JPEG/WebP import');
+    check(layers().length === 4, 'JPEG/WebP layers added');
+    for (let i = 0; i < 2; i++) {
+      layers()[2].click();
+      document.querySelector('#delete').click();
+    }
+    check(status().includes('Images 2'), 'JPEG/WebP QA images cleared');
+
+    stage('layer-order');
+    document.querySelector('[data-layout="overlay"]').click();
+    check(rgbAt(790, 450)[2] > 200, 'last layer visible on top');
+    layers()[0].click();
+    document.querySelector('#front').click();
+    check(rgbAt(790, 450)[0] > 200, 'bring first layer to front');
+    document.querySelector('#back').click();
+    check(rgbAt(790, 450)[2] > 200, 'send selected layer to back');
+
+    stage('layer-multiselect');
+    document.querySelector('[data-layout="row"]').click();
+    layers()[0].click();
+    check(document.activeElement === c && c.tabIndex === 0, 'keyboard accessible selection');
+    check(layers()[0].getAttribute('aria-pressed') === 'true', 'selected layer exposed to screen reader');
+    pointer('pointerdown', 205, 60, true);
+    check(status().includes('Selected 2'), 'Shift pointer multi-selection');
+    check(layers().filter(button => button.getAttribute('aria-pressed') === 'true').length === 2, 'multi-selection announced');
+    layers()[1].click();
+    document.querySelector('#delete').click();
+    check(status().includes('Images 1'), 'delete one selected pasted layer');
+
+    stage('keyboard');
+    document.querySelector('[data-layout="row"]').click();
+    layers()[0].click();
+    c.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', shiftKey: true, bubbles: true, cancelable: true }));
+    check(rgbAt(25, 60)[3] === 0, 'keyboard Shift+ArrowRight moves image 10px');
+    c.dispatchEvent(new KeyboardEvent('keydown', { key: 'z', ctrlKey: true, bubbles: true, cancelable: true }));
+    check(rgbAt(25, 60)[0] > 200, 'keyboard Ctrl+Z restores image');
+
+    stage('synthetic-touch');
+    pointer('pointerdown', 90, 60, false, 'touch');
+    pointer('pointermove', 125, 95, false, 'touch');
+    pointer('pointerup', 125, 95, false, 'touch');
+    check(rgbAt(25, 60)[3] === 0 && rgbAt(85, 85)[0] > 200, 'synthetic touch pointer drag');
+    document.querySelector('#undo').click();
+
+    stage('corners');
+    const corners = [
+      { name: 'nw', down: [22, 22], move: [-13, -13], probe: [10, 30] },
+      { name: 'ne', down: [158, 22], move: [193, -13], probe: [175, 30] },
+      { name: 'sw', down: [22, 98], move: [-13, 133], probe: [10, 112] },
+      { name: 'se', down: [158, 98], move: [193, 133], probe: [175, 112] }
+    ];
+    for (const corner of corners) {
+      layers()[0].click();
+      pointer('pointerdown', ...corner.down);
+      pointer('pointermove', ...corner.move);
+      pointer('pointerup', ...corner.move);
+      check(rgbAt(...corner.probe)[0] > 200, 'corner resize ' + corner.name);
+      document.querySelector('#undo').click();
+      check(rgbAt(...corner.probe)[3] === 0, 'corner resize undo ' + corner.name);
+    }
+
+    stage('png-pixels');
+    const originalClick = HTMLAnchorElement.prototype.click;
+    const originalToBlob = HTMLCanvasElement.prototype.toBlob;
+    let exportedPixels = false, exportFilename = '';
+    HTMLCanvasElement.prototype.toBlob = function (callback, type, quality) {
+      if (this !== c) {
+        check(type === 'image/png', 'PNG is actually encoded as PNG');
+        const out = this.getContext('2d');
+        check(this.width === c.width && this.height === c.height, 'PNG dimensions');
+        check(out.getImageData(4, 4, 1, 1).data[3] === 0, 'PNG preserves transparency');
+        const sampled = out.getImageData(25, 60, 1, 1).data;
+        check(sampled[0] > 200 && sampled[3] === 255, 'PNG pixels contain red image without selection overlay');
+        exportedPixels = true;
+      }
+      return originalToBlob.call(this, callback, type, quality);
+    };
+    HTMLAnchorElement.prototype.click = function () { exportFilename = this.download; };
+    try {
+      document.querySelector('#export').click();
+      check(exportedPixels, 'export used expected canvas content');
+      await waitFor(() => exportFilename === 'screenshot-canvas.png', 'PNG file name');
+    } finally {
+      HTMLAnchorElement.prototype.click = originalClick;
+      HTMLCanvasElement.prototype.toBlob = originalToBlob;
+    }
+
+    stage('delete-key');
+    layers()[0].click();
+    c.dispatchEvent(new KeyboardEvent('keydown', { key: 'Delete', bubbles: true, cancelable: true }));
+    check(status().includes('Images 0'), 'keyboard Delete removes selected layer');
+    document.querySelector('#undo').click();
+    check(status().includes('Images 1'), 'undo keyboard delete');
+    check(layers().length === 1, 'layer picker restored after undo');
+  }
+
   async function test() {
     await waitFor(() => status().includes('画像 0 枚'), 'app initialization');
     const startWidth = c.width;
@@ -129,6 +275,7 @@ function pageSmoke() {
     lang.value = 'en';
     lang.dispatchEvent(new Event('change', { bubbles: true }));
     check(status().includes('Images 3'), 'English UI switch: ' + JSON.stringify({status:status(), value:lang.value, documentLanguage:document.documentElement.lang}));
+    await extended();
     check(errors.length === 0, 'browser runtime errors: ' + errors.join(' | '));
     check(document.body.scrollWidth - document.body.clientWidth <= 8, 'page horizontal overflow');
     return 'PASS:IMPORT2:ROW:DRAG:UNDO_REDO:BACKGROUND:OPACITY:SIZE:DUPLICATE:DELETE:LAYOUTS:PNG:LANG:CONTENT' + document.body.clientWidth + ':VIEWPORT' + window.innerWidth;
@@ -165,7 +312,8 @@ const server = http.createServer((req, res) => {
   if (type === 'text/html' && url.searchParams.has('qa')) {
     let html = data.toString('utf8');
     html = html.replace(/<script\b[^>]*\bsrc="https:\/\/[^"]+"[^>]*><\/script>/g, '');
-    if (url.searchParams.has('narrow')) html = html.replace('<body>', '<body style="width:390px;max-width:390px">');
+    const narrow = Number(url.searchParams.get('narrow'));
+    if (narrow >= 320 && narrow <= 500) html = html.replace('<body>', '<body style="width:' + narrow + 'px;max-width:' + narrow + 'px">');
     data = Buffer.from(html.replace('</body>', injected + '</body>'));
   }
   res.writeHead(200, { 'Content-Type': type + '; charset=utf-8', 'Cache-Control': 'no-store' }).end(data);
@@ -173,19 +321,19 @@ const server = http.createServer((req, res) => {
 await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
 const port = server.address().port;
 async function run(width) {
-  const url = 'http://127.0.0.1:' + port + '/tools/screenshot-canvas/?qa=1' + (width === 390 ? '&narrow=1' : '');
+  const url = 'http://127.0.0.1:' + port + '/tools/screenshot-canvas/?qa=1' + (width <= 390 ? '&narrow=' + width : '');
   const args = ['--headless=new', '--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu',
     '--disable-background-networking', '--disable-extensions', '--no-first-run',
-    '--window-size=' + width + ',900', '--virtual-time-budget=12000', '--dump-dom', url];
+    '--window-size=' + width + ',900', '--virtual-time-budget=40000', '--dump-dom', url];
   const child = spawn(browser, args, { stdio: ['ignore', 'pipe', 'pipe'] });
   let stdout = '', stderr = '';
   child.stdout.on('data', b => stdout += b.toString());
   child.stderr.on('data', b => { if (stderr.length < 4000) stderr += b.toString(); });
   let timeout = false;
-  const alarm = setTimeout(() => { timeout = true; child.kill('SIGKILL'); }, 35000);
+  const alarm = setTimeout(() => { timeout = true; child.kill('SIGKILL'); }, 60000);
   const code = await new Promise(resolve => child.on('close', resolve));
   clearTimeout(alarm);
-  const result = stdout.match(/<pre id="qa-result">([^<]+)<\/pre>/)?.[1] || 'NO_QA_RESULT';
+  const result = stdout.match(/<pre id="qa-result">([^<]+)<\/pre>/)?.[1] || ('NO_QA_RESULT stage=' + (stdout.match(/data-qa-stage="([^"]+)"/)?.[1] || 'not-set'));
   console.log(width + 'px: ' + result + ' exit=' + code + (timeout ? ' TIMEOUT' : ''));
   if (code !== 0 || timeout || !result.startsWith('PASS:'))
     throw Error('Screenshot Canvas browser smoke failed: ' + result + ' ' + stderr.slice(-400));
@@ -193,6 +341,7 @@ async function run(width) {
 try {
   await run(1440);
   await run(390);
+  await run(360);
   console.log('Screenshot Canvas Chromium browser smoke PASS');
 } catch (error) {
   console.error(error);
