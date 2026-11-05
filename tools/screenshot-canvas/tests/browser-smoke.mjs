@@ -85,9 +85,9 @@ function pageSmoke() {
     formatCanvas.width = 32;
     formatCanvas.height = 32;
     formatCanvas.getContext('2d').fillRect(0, 0, 32, 32);
-    const encode = type => new Promise(resolve => formatCanvas.toBlob(resolve, type));
-    const jpeg = await encode('image/jpeg');
-    const webp = await encode('image/webp');
+    const encode = type => {const url=formatCanvas.toDataURL(type);check(url.startsWith('data:'+type+';base64,'),'canvas supports '+type);const bytes=Uint8Array.from(atob(url.split(',')[1]),ch=>ch.charCodeAt(0));return new Blob([bytes],{type});};
+    const jpeg = encode('image/jpeg');
+    const webp = encode('image/webp');
     check(jpeg?.type === 'image/jpeg' && webp?.type === 'image/webp', 'Chromium image encoders support JPEG/WebP');
     const additional = new DataTransfer();
     additional.items.add(new File([jpeg], 'photo.jpg', { type: 'image/jpeg' }));
