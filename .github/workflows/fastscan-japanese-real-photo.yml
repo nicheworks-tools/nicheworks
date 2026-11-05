@@ -16,6 +16,7 @@ on:
       - 'tools/inci-fastscan/qa/check-japanese-source-backed-wave5.mjs'
       - 'tools/inci-fastscan/qa/check-japanese-source-backed-wave6.mjs'
       - 'tools/inci-fastscan/qa/check-japanese-source-backed-wave7.mjs'
+      - 'tools/inci-fastscan/qa/check-japanese-source-backed-wave8.mjs'
       - 'tools/inci-fastscan/validate-dictionary.mjs'
       - 'tools/_shared/check-cosmetics-semantic-quality.mjs'
       - 'tools/inci-fastscan/data/ingredients*.json'
@@ -66,6 +67,7 @@ jobs:
           node tools/inci-fastscan/qa/check-japanese-source-backed-wave5.mjs
           node tools/inci-fastscan/qa/check-japanese-source-backed-wave6.mjs
           node tools/inci-fastscan/qa/check-japanese-source-backed-wave7.mjs
+          node tools/inci-fastscan/qa/check-japanese-source-backed-wave8.mjs
 
       - name: Retrieve actual publicly pictured Japanese ingredient labels (temporary)
         shell: bash
