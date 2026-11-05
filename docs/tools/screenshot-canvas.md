@@ -31,7 +31,7 @@ Canvas preview and locally generated `screenshot-canvas.png` via Canvas toBlob. 
 
 ## 6. Error behavior
 
-Unsupported image formats are ignored. Image read errors revoke the temporary object URL. Canvas dimensions outside 100–12000px are rejected. PNG export failure displays an alert. Browser memory limits can prevent very large Canvas exports.
+Unsupported or corrupt image inputs are rejected with an accessible on-page error. Individual files must be at most 32MiB and 24MP; combined source image pixels across layers must remain within 48MP. Each canvas dimension must be 100–12,000px with a 24MP total limit, which prevents accidental 12,000×12,000px allocations. Images decode in sequence to preserve selection order and temporary object URLs are revoked. PNG export errors are recoverable and shown in the page. These caps are defensive and do not guarantee performance on low-memory devices.
 
 ## 7. Privacy/data handling
 
@@ -70,7 +70,8 @@ Usage documentation is provided in `tools/screenshot-canvas/usage.html` and `usa
 - [x] Verify keyboard-accessible image layer selection, Shift+Arrow movement, Ctrl+Z and Delete.
 - [x] Simulate touch-type PointerEvents and verify 1440px / 390px / 360px layouts and JA/EN switch.
 - [ ] Confirm on actual iOS/Android hardware and with screen-reader assistive technology.
-- [ ] Stress-test extreme canvas dimensions on limited-memory devices.
+- [x] Reject over-limit canvas requests, corrupted image files, and oversized files with the existing composition retained.
+- [ ] Stress-test allowed high-resolution compositions on low-memory physical devices.
 
 GitHub Actions runs `tools/screenshot-canvas/tests/browser-smoke.mjs` in Chromium against committed source files. The constrained layouts set body content widths to 390px and 360px because Chrome's headless window has a 500px minimum. Touch-type PointerEvents and browser ClipboardEvents are synthetic and do not certify physical gestures or OS clipboard permissions. The PNG export test inspects the actual export canvas pixels and MIME type and confirms that a downloadable PNG blob is created.
 
