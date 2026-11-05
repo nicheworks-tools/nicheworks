@@ -52,7 +52,7 @@
     },
     {
       "id": "safety_harness",
-      "review_state": "approved_editorial_gsc_20261105",
+      "review_state": "pending_review",
       "expected_description": {
         "ja": "高所作業時の墜落を防ぐための安全装備。 無理な姿勢や単独作業を避ける。 作業前に危険源を確認して共有する。\n高所作業で墜落時の身体保持と制止に用いるフルハーネス型墜落制止用器具。サイズ、ランヤード方式、接続器具、使用条件を作業方法と規則に合わせる。",
         "en": "Safety equipment to prevent falls when working at height. Avoid unsafe postures and working alone when risky. Protective gear or procedures to reduce accidents."
@@ -68,7 +68,7 @@
     },
     {
       "id": "rotary_hammer",
-      "review_state": "approved_editorial_gsc_20261105",
+      "review_state": "pending_review",
       "expected_description": {
         "ja": "打撃機構でコンクリート等に穴あけする電動工具。 材質に合うビットを選ぶと仕上がりが安定する。 回転体に巻き込まれないよう手袋や袖に注意。",
         "en": "A powerful drill with hammer action for concrete and masonry. Keep loose clothing and gloves away from rotating parts. Pick the right bit for the material for cleaner results."
@@ -83,7 +83,7 @@
       }
     }
   ],
-  "scope": "Existing publicly indexed Construction Tools Atlas entries with measured GSC impressions, reviewed 2026-11-05",
+  "scope": "Five measured-GSC pages tracked; three source-guarded reviews approved for immediate publication, two awaiting complete synchronized publication",
   "policy": {
     "source": "Existing canonical published definitions, details and safety notes",
     "expected_source_match": "Exact original bilingual definition",
