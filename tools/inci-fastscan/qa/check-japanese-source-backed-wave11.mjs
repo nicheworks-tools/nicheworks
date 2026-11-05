@@ -40,7 +40,7 @@ for(const source of [lite,scan]) {
  assert.match(source,/microorganisms/i);
  assert.match(source,/微生物/);
  assert.match(source,/製品の防腐性能や使用上の安全性を保証するものではありません/);
- assert.match(source,/not establish a product's preservation performance or safety/);
+ assert.match(source,/not establish a product preservation capability or individual suitability/);
 }
 assert.match(semantic,/'antimicrobial'/);
 assert.match(completion,/'antimicrobial'/);
