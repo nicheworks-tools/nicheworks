@@ -126,27 +126,29 @@ function pageSmoke() {
 
     stage('png-pixels');
     const originalClick = HTMLAnchorElement.prototype.click;
-    let exportUrl = '';
-    HTMLAnchorElement.prototype.click = function () { exportUrl = this.href; };
+    const originalToBlob = HTMLCanvasElement.prototype.toBlob;
+    let exportedPixels = false, exportFilename = '';
+    HTMLCanvasElement.prototype.toBlob = function (callback, type, quality) {
+      if (this !== c) {
+        check(type === 'image/png', 'PNG is actually encoded as PNG');
+        const out = this.getContext('2d');
+        check(this.width === c.width && this.height === c.height, 'PNG dimensions');
+        check(out.getImageData(4, 4, 1, 1).data[3] === 0, 'PNG preserves transparency');
+        const sampled = out.getImageData(25, 60, 1, 1).data;
+        check(sampled[0] > 200 && sampled[3] === 255, 'PNG pixels contain red image without selection overlay');
+        exportedPixels = true;
+      }
+      return originalToBlob.call(this, callback, type, quality);
+    };
+    HTMLAnchorElement.prototype.click = function () { exportFilename = this.download; };
     try {
       document.querySelector('#export').click();
-      await waitFor(() => exportUrl.startsWith('blob:'), 'real exported blob URL');
+      check(exportedPixels, 'export used expected canvas content');
+      await waitFor(() => exportFilename === 'screenshot-canvas.png', 'PNG file name');
     } finally {
       HTMLAnchorElement.prototype.click = originalClick;
+      HTMLCanvasElement.prototype.toBlob = originalToBlob;
     }
-    const response = await fetch(exportUrl);
-    check(response.ok, 'PNG blob is fetchable');
-    const bitmap = await createImageBitmap(await response.blob());
-    const output = document.createElement('canvas');
-    output.width = bitmap.width;
-    output.height = bitmap.height;
-    const out = output.getContext('2d');
-    out.drawImage(bitmap, 0, 0);
-    check(output.width === c.width && output.height === c.height, 'PNG dimensions');
-    check(out.getImageData(4, 4, 1, 1).data[3] === 0, 'PNG keeps alpha transparency');
-    const sampled = out.getImageData(25, 60, 1, 1).data;
-    check(sampled[0] > 200 && sampled[3] === 255, 'PNG has correct image color');
-    bitmap.close();
 
     stage('delete-key');
     layers()[0].click();
