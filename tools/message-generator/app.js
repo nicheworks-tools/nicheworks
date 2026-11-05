@@ -181,6 +181,7 @@ let uiLang = "jp";
 let lastContext = null;
 let currentMessage = "";
 let copyNotice = null;
+let copyRequestRevision = 0;
 
 function pick(list) {
   return list[Math.floor(Math.random() * list.length)];
@@ -300,6 +301,7 @@ let generationRevision = 0;
 
 function invalidateGeneratedMessage() {
   generationRevision += 1;
+  copyRequestRevision += 1;
   lastContext = null;
   currentMessage = "";
   document.getElementById("result-text").textContent = "";
@@ -313,6 +315,8 @@ function handleGenerate(regenerate) {
   if (!(context.purpose && context.culture && context.formality)) return;
   lastContext = context;
   const revision = ++generationRevision;
+  copyRequestRevision += 1;
+  if (copyNotice) copyNotice.textContent = "";
   showProgress(true);
   window.setTimeout(() => {
     if (revision !== generationRevision) return;
@@ -336,10 +340,12 @@ async function copyText(text) {
   textarea.style.position = "fixed";
   textarea.style.left = "-9999px";
   document.body.appendChild(textarea);
-  textarea.select();
   let ok = false;
-  try { ok = document.execCommand("copy"); } catch (_) { ok = false; }
-  textarea.remove();
+  try {
+    textarea.select();
+    ok = document.execCommand("copy");
+  } catch (_) { ok = false; }
+  finally { textarea.remove(); }
   return ok;
 }
 
@@ -377,7 +383,11 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("regenerate-btn")?.addEventListener("click", () => handleGenerate(true));
   document.getElementById("copy-btn")?.addEventListener("click", async () => {
     if (!currentMessage) return;
-    const ok = await copyText(currentMessage);
+    const message = currentMessage;
+    const generation = generationRevision;
+    const request = ++copyRequestRevision;
+    const ok = await copyText(message);
+    if (request !== copyRequestRevision || generation !== generationRevision || currentMessage !== message) return;
     showCopyNotice(ok ? UI[uiLang].copied : UI[uiLang].copyFailed);
   });
 
