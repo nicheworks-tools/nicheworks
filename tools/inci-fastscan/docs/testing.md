@@ -94,6 +94,20 @@ Both English and Japanese OCR photo interfaces now have an **off-by-default** "E
 
 Automated regression: `node tools/_shared/check-fastscan-image-enhancement.mjs` checks untouched default-image handling, concrete grayscale pixel writes, upscale and memory cap, expected failure handling and blob-URL release, bilingual option wiring, optional QA comparison and photo privacy. The noindex QA page at `tools/inci-fastscan/qa/photo-ocr-benchmark.html` now exposes the same checkbox so manual testers can compare original and browser-enhanced scans of a **single independently transcribed real label**.
 
+## Japanese photographed-label INCI expansion — wave 7 (2026-11-05)
+
+Three independent, source-backed full INCI identities from the existing two-product published source-list corpus are added, with exact photographed-product **reference-list** Japanese names and neutral function descriptions. All three stay `safety: "unrated"`, and neither the images, source pages, nor ingredients have been verified as exact same-formulation versions.
+
+| Japanese ingredient source-list display | INCI identity | Source evidence |
+| --- | --- | --- |
+| オランダガラシ葉/茎エキス | Nasturtium Officinale Leaf/Stem Extract | [Ichimaru Falcos Japanese/INCI exact ingredient table](https://www.ichimaru.co.jp/dev/cosmetics/176), [COSMILE skin conditioning](https://cosmileeurope.eu/inci/detail/9392/nasturtium-officinale-leaf-stem-extract/) |
+| セイヨウキズタ葉/茎エキス | Hedera Helix (Ivy) Leaf/Stem Extract | [Ikeda Bussan Japanese/INCI full botanical identity](https://www.ikedabussan.com/itemindex/itemdetail/72), [Korea Cosmetics Association leaf/stem INCI identity](https://kcia.or.kr/cid/search/ingd_view.php?no=857), [COSMILE skin conditioning](https://cosmileeurope.eu/inci/detail/6293/hedera-helix-leaf-stem-extract/) |
+| オニサルビア油 | Salvia Sclarea (Clary) Oil | [Yamamoto fragrance supplier exact JP/INCI](https://www.ypcyy.co.jp/product/natural/herbal/clary-sage-french/), [Korea Cosmetics Association INCI/fragrance](https://kcia.or.kr/cid/search/ingd_view.php?no=3184) |
+
+Expected dictionary positive-control coverage becomes **108/127**, leaving **19** source names unmatched if workflow tests pass. Ivy's documented botanical parenthetical name is preserved rather than guessing equivalence with a separately named generic/whole-plant record. Botanical species and part distinctions are exact-match only. Ambiguous `イタリアイトスギ葉油` is explicitly **not** collapsed into the independently listed `イタリアイトスギ葉／実／茎油`; other historical/retired or multi-INCI source names remain on hold.
+
+`qa/check-japanese-source-backed-wave7.mjs` enforces identity uniqueness, URLs, strict matching, exact source-list spellings and threshold while remaining separate from photograph OCR/photo-version accuracy, mobile QA, regulatory and product-safety claims. Both required cosmetics CI and genuine Japanese photographed-label CI run the added test.
+
 ## Japanese photographed-label INCI expansion — wave 6 (2026-11-05)
 
 Six additional **distinct, source-backed INCI identities** are registered against the exact Japanese spellings in the existing two-product published ingredient reference corpus. This is **source-list dictionary coverage**, not independent OCR accuracy or a confirmed match between an available photo and the published formula version. All six records use legacy `safety: "unrated"` and neutral functions only; no concentration, regulatory, product suitability, efficacy or personal safety finding is implied.
