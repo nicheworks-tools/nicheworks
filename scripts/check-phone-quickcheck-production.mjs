@@ -175,6 +175,38 @@ async function httpSmoke(){
     assert.ok(html.includes('適格販売により収入を得ています'),'Model ad disclosure missing '+target);
   }
 
+  // Newly added pages are checked locally in PR CI and only required on deployed main.
+  if (process.env.PHONE_SMOKE_REQUIRE_CROSS_MAKER === 'true') {
+  // Four additional Japanese manufacturer guides must deploy as static SEO pages
+  // with exact deep links, source citations and sponsored Amazon search referrals.
+  for (const [slug,model] of [
+    ['google-pixel-9a','Pixel 9a'],
+    ['sharp-aquos-sense9','AQUOS sense9'],
+    ['sony-xperia-1-vii','Xperia 1 VII'],
+    ['oppo-reno14-5g','OPPO Reno14 5G']
+  ]) {
+    const endpoint='models/'+slug+'/';
+    const response=await req(endpoint);
+    assert.equal(response.status,200,'New SEO guide HTTP status '+endpoint);
+    const html=await response.text();
+    assert.ok(html.includes('<link rel="canonical" href="'+url.origin+url.pathname+endpoint+'">'),
+      'New SEO guide canonical missing '+slug);
+    assert.ok(html.includes('href="/tools/phone-quickcheck/?model='+encodeURIComponent(model)+'"'),
+      'New SEO guide exact-model application link missing '+slug);
+    assert.ok(html.includes('適格販売により収入を得ています'),
+      'New SEO guide Amazon Associates disclosure missing '+slug);
+    assert.equal((html.match(/class="amazon" data-offer-key=/g)||[]).length,2,
+      'New SEO guide must have two maintained Amazon search referrals '+slug);
+  }
+  const enrichedIndex=await (await req('models/')).text();
+  for(const slug of ['google-pixel-9a','sharp-aquos-sense9','sony-xperia-1-vii','oppo-reno14-5g']) {
+    assert.ok(enrichedIndex.includes('href="./'+slug+'/">充電器・サイズの個別ガイド'),
+      'Static model directory missing new SEO guide referral '+slug);
+  }
+  console.log('Cross-maker SEO HTTP PASS: four new JP phone profiles, catalog inbound links and sponsored searches');
+
+  }
+
   // Verify both ManualFinder locales really deploy the exact-SKU Samsung funnel
   // and that the current app passes manufacturer manual evidence into matcher.
   const manualMatcherResponse = await req('../manual-finder/phone-quickcheck-match.js');

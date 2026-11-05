@@ -11,9 +11,14 @@ assert.ok(html.includes('<script src="./model-index.js" defer></script>'));
 assert.ok(html.includes('tbody tr[hidden],main section[hidden]'));
 
 function item(name){
-  const handlers={};
-  const a={textContent:name,addEventListener:(event,cb)=>{handlers[event]=cb},click:()=>handlers.click?.()};
-  return {hidden:false,querySelector:(sel)=>sel==='th a'?a:null,anchor:a};
+  const makeAnchor=()=>{
+    const handlers={};
+    return {textContent:name,addEventListener:(event,cb)=>{handlers[event]=cb},click:()=>handlers.click?.()};
+  };
+  const a=makeAnchor();
+  const guide=makeAnchor();
+  return {hidden:false,querySelector:(sel)=>sel==='th a'?a:null,
+    querySelectorAll:(sel)=>sel==='th a'?[a,guide]:[],anchor:a,guide};
 }
 function section(maker,models){
   const rows=models.map(item);
@@ -53,4 +58,8 @@ assert.equal(payload.maker_bucket,'google');
 assert.equal(payload.placement,'static_model_index');
 assert.deepEqual(Object.keys(payload).sort(),['maker_bucket','placement','tool_slug']);
 assert.equal(JSON.stringify(payload).includes('Pixel'),false,'No model or search string must enter GA4');
+groups[1].rows[0].guide.click();
+assert.equal(events.length,2,'SEO profile link must also emit model-index click');
+assert.deepEqual(JSON.stringify(events[1]),JSON.stringify(events[0]),
+  'SEO profile click must retain the same coarse privacy-safe event schema');
 console.log('Phone QuickCheck model index PASS: 255 pre-rendered entries, local NFKC search, accessible count, maker-only click analytics.');

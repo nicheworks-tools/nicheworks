@@ -48,6 +48,7 @@ jobs:
         env:
           CHROME_BIN: google-chrome
           PHONE_SMOKE_RETRIES: '8'
+          PHONE_SMOKE_REQUIRE_CROSS_MAKER: ${{ github.event_name != 'pull_request' }}
           PHONE_SMOKE_RETRY_DELAY_MS: '15000'
         run: node scripts/check-phone-quickcheck-production.mjs --url=https://nicheworks.app/tools/phone-quickcheck/
       - name: Save production viewport screenshots
