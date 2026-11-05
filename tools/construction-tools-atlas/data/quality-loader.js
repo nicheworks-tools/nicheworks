@@ -7,6 +7,8 @@
   const ENRICHMENT_PATH = "./data/content-enrichment-v2.3.json";
   const ENRICHMENT_MANIFEST_PATH = "./data/content-enrichment-manifest-v2.3.json";
   const DEFINITION_PROMOTIONS_PATH = "./data/definition-promotions-v2.3.json";
+  const REVIEWED_EDITORIAL_PATH = "./data/reviewed-editorial-five-v2.3.json";
+  const REVIEWED_EDITORIAL_VERSION = "2026-11-05-gsc-five-source-guard-1";
   const REVIEWED_ALIASES_PATH = "./data/reviewed-aliases-v3.json";
   const REVIEWED_ALIASES_VERSION = "20261103-final-five-reviewed-aliases-2";
   const DEFINITION_PROMOTIONS_VERSION = "20261103-source-backed-144-1";
@@ -28,7 +30,9 @@
     if (!path) return null;
     try {
       const baseName = String(path).split("/").pop();
-      const url = baseName === "reviewed-aliases-v3.json"
+      const url = baseName === "reviewed-editorial-five-v2.3.json"
+        ? path + "?v=" + REVIEWED_EDITORIAL_VERSION
+        : baseName === "reviewed-aliases-v3.json"
         ? path + "?v=" + REVIEWED_ALIASES_VERSION
         : baseName === "definition-promotions-v2.3.json"
           ? path + "?v=" + DEFINITION_PROMOTIONS_VERSION
@@ -109,7 +113,7 @@
       contentEnrichmentDuplicateTargets:0, contentEnrichmentDuplicateSample:[],
       definitionPromotionsApplied:0, definitionPromotionsSourceDrift:0, definitionPromotionsMissingTargets:0,
       definitionPromotionsProblems:[],
-      reviewedAliasesApplied:0, reviewedAliasesProblems:[], removed:[]
+      reviewedAliasesApplied:0, reviewedAliasesProblems:[], editorialImprovementsApplied:0, removed:[]
     };
   }
 
@@ -319,6 +323,28 @@
     }
   }
 
+  function applyReviewedEditorial(merged, source, stats) {
+    if (source?.schema !== "cta-reviewed-editorial-five-v2.3" || source?.version !== REVIEWED_EDITORIAL_VERSION || source.entries?.length !== 5) throw Error("Missing or outdated reviewed five-entry editorial ledger");
+    const byId = new Map(merged.map(entry => [text(entry.id), entry]));
+    const seen = new Set();
+    for (const row of source.entries) {
+      const id = text(row?.id), target = byId.get(id);
+      if (!id || seen.has(id) || !target || row.review_state !== "approved_editorial_gsc_20261105") throw Error("Invalid reviewed editorial ID: " + id);
+      seen.add(id);
+      const expectedJa = text(row.expected_description?.ja), expectedEn = text(row.expected_description?.en);
+      const actualJa = text(target.description?.ja), actualEn = text(target.description?.en);
+      const nextJa = text(row.description?.ja), nextEn = text(row.description?.en);
+      if (!expectedJa || !expectedEn || actualJa !== expectedJa || actualEn !== expectedEn ||
+        nextJa.length < 55 || nextEn.length < 80 || nextJa === actualJa || nextEn === actualEn ||
+        !text(row.seo?.title_ja) || !text(row.seo?.meta_description_ja)) throw Error("Reviewed editorial source drift or invalid bilingual content for " + id);
+      target.description = { ...target.description, ja:nextJa, en:nextEn };
+      target.seo = { title_ja:text(row.seo.title_ja), meta_description_ja:text(row.seo.meta_description_ja) };
+      target.meta = { ...(target.meta || {}), reviewed_editorial_version:REVIEWED_EDITORIAL_VERSION };
+      stats.editorialImprovementsApplied += 1;
+    }
+    if (stats.editorialImprovementsApplied !== 5) throw Error("Missing reviewed editorial targets");
+  }
+
   function resolveCanonicalId(id) {
     let current = text(id); const redirects = window.CTA_CANONICAL_REDIRECTS || {}; const seen = new Set();
     while (current && Object.prototype.hasOwnProperty.call(redirects, current) && !seen.has(current)) { seen.add(current); current = text(redirects[current]); }
@@ -346,10 +372,11 @@
     const identityPath = options.identityResolutionPath || IDENTITY_PATH;
     const definitionPromotionsPath = options.definitionPromotionsPath || DEFINITION_PROMOTIONS_PATH;
     const reviewedAliasesPath = options.reviewedAliasesPath || REVIEWED_ALIASES_PATH;
+    const reviewedEditorialPath = options.reviewedEditorialPath || REVIEWED_EDITORIAL_PATH;
     const basePaths = Array.isArray(options.basePaths) ? options.basePaths : BASE_PATHS;
 
-    const [manifest, enrichmentManifest, redirects, identity, definitionPromotions, reviewedAliases] = await Promise.all([
-      fetchJson(manifestPath), fetchJson(enrichmentManifestPath), fetchJson(redirectPath), fetchJson(identityPath), fetchJson(definitionPromotionsPath), fetchJson(reviewedAliasesPath)
+    const [manifest, enrichmentManifest, redirects, identity, definitionPromotions, reviewedAliases, editorial] = await Promise.all([
+      fetchJson(manifestPath), fetchJson(enrichmentManifestPath), fetchJson(redirectPath), fetchJson(identityPath), fetchJson(definitionPromotionsPath), fetchJson(reviewedAliasesPath), fetchJson(reviewedEditorialPath)
     ]);
     const packPaths = manifestPaths(manifest);
     const enrichmentPaths = manifestPaths(enrichmentManifest);
@@ -367,10 +394,11 @@
     const enrichedIds = new Set(); enrichments.forEach((enrichment) => applyEnrichment(merged, enrichment, stats, enrichedIds));
     applyDefinitionPromotions(merged, definitionPromotions, stats);
     applyReviewedAliases(merged, reviewedAliases, stats);
+    applyReviewedEditorial(merged, editorial, stats);
     migrateFavorites(stats);
     stats.merged = merged.length; stats.removedCount = stats.raw - stats.merged;
     window.CTA_DATA_DIAGNOSTICS = stats;
-    if (stats.removedCount > 0 || stats.canonicalRedirectsApplied > 0 || stats.identityNameOverridesApplied > 0 || stats.identityTypeOverridesApplied > 0 || stats.identityAliasRemovalsApplied > 0 || stats.favoriteIdsMigrated > 0 || stats.contentEnriched > 0 || stats.contentEnrichmentMissingTargets > 0 || stats.contentEnrichmentDuplicateTargets > 0 || stats.definitionPromotionsApplied > 0 || stats.definitionPromotionsProblems.length > 0 || stats.reviewedAliasesApplied > 0 || stats.reviewedAliasesProblems.length > 0) {
+    if (stats.removedCount > 0 || stats.canonicalRedirectsApplied > 0 || stats.identityNameOverridesApplied > 0 || stats.identityTypeOverridesApplied > 0 || stats.identityAliasRemovalsApplied > 0 || stats.favoriteIdsMigrated > 0 || stats.contentEnriched > 0 || stats.contentEnrichmentMissingTargets > 0 || stats.contentEnrichmentDuplicateTargets > 0 || stats.definitionPromotionsApplied > 0 || stats.definitionPromotionsProblems.length > 0 || stats.reviewedAliasesApplied > 0 || stats.reviewedAliasesProblems.length > 0 || stats.editorialImprovementsApplied > 0) {
       console.info("Construction Tools Atlas data dedupe/quarantine/redirect/enrichment", stats);
     }
     return merged;
