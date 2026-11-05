@@ -39,6 +39,14 @@ const browserContext = await browser.newContext({
 });
 const page = await browserContext.newPage();
 const results = [];
+// Fixed, ground-truth-independent segmentation comparison on *the same*
+// Chromium-enhanced pixel bytes. PSM6 remains the production/control mode.
+// NEVER choose a per-photo winner using published source reference names.
+const alternatePsm = Object.freeze([
+  { key: 'autoPage', mode: '3' },
+  { key: 'singleColumn', mode: '4' },
+  { key: 'sparseText', mode: '11' }
+]);
 
 function scoreCandidate(raw, reference) {
   const prepared = context.post.postProcessOcrText(
@@ -88,7 +96,30 @@ try {
       });
     }, image.toString('base64'));
     assert.ok(enhancedBytesBase64?.length > 1000);
-    const enhanced = await assessPhoto(Buffer.from(enhancedBytesBase64, 'base64'), source);
+    const enhancedBytes = Buffer.from(enhancedBytesBase64, 'base64');
+    const enhanced = await assessPhoto(enhancedBytes, source);
+    const enhancedSegmentation = {};
+    for (const variant of alternatePsm) {
+      await worker.setParameters({ tessedit_pageseg_mode: variant.mode });
+      const began = performance.now();
+      const recognized = await worker.recognize(enhancedBytes);
+      const durationMs = Math.round(performance.now() - began);
+      const prepared = scoreCandidate(recognized?.data?.text || '', source.ingredients);
+      enhancedSegmentation[variant.key] = {
+        durationMs,
+        strict: metric(source.ingredients, prepared, parser.splitIngredients),
+        analysis: await scorer.assess(prepared, source.ingredientList)
+      };
+      console.log('FASTSCAN_JAPANESE_PSM_PHOTO=' + JSON.stringify({
+        id: source.id, variant: variant.key, mode: variant.mode,
+        durationMs,
+        supportedNames: enhancedSegmentation[variant.key].analysis.eligibleReferenceUniqueNames,
+        exactSourceMatches: enhancedSegmentation[variant.key].analysis.afterRepair.exactReferenceHits,
+        additionalMatches: enhancedSegmentation[variant.key].analysis.afterRepair.extraMatchesNotInAnnotation
+      }));
+    }
+    // Ensure no experimental PSM spills into the next photographed sample.
+    await worker.setParameters({ tessedit_pageseg_mode: '6' });
 
     // The source-only control checks that parser and dictionary evaluation
     // agrees with its own published factual source reference. NOT OCR.
@@ -100,7 +131,8 @@ try {
       sourceVariantVersionVerified: false,
       sourceControl,
       original: control,
-      enhanced
+      enhanced,
+      enhancedSegmentation
     };
     results.push(row);
     console.log('FASTSCAN_JAPANESE_REAL_PHOTO=' + JSON.stringify({
@@ -129,6 +161,13 @@ assert.equal(original.eligibleReferenceUniqueNames, enhanced.eligibleReferenceUn
   'Compared arms must use the same canonical supported name denominator');
 assert.ok(original.eligibleReferenceUniqueNames > 0,
   'Must have actual dictionary-covered Japanese source ingredient identities');
+const alternateSummaries = Object.fromEntries(alternatePsm.map(variant => {
+  const summary = aggregateProductionAssessments(
+    results.map(row => ({ analysis: row.enhancedSegmentation[variant.key].analysis })));
+  assert.equal(summary.eligibleReferenceUniqueNames, enhanced.eligibleReferenceUniqueNames,
+    'Alternate PSM cannot change the fixed supported-name denominator');
+  return [variant.key, { pageSegMode: variant.mode, ...summary }];
+}));
 const sourceControl = aggregateProductionAssessments(results.map(row => ({ analysis: row.sourceControl })));
 assert.equal(sourceControl.afterRepairHits, sourceControl.eligibleReferenceUniqueNames,
   'Published reference token self-match must be complete on supported entries');
@@ -161,9 +200,24 @@ const report = {
   publishedSourceReferenceControl: sourceControl,
   originalPhoto: original,
   chromiumEnhanced: enhanced,
+  enhancedPageSegmentationExperiments: alternateSummaries,
   samples: results
 };
 fs.writeFileSync(reportFile, JSON.stringify(report, null, 2) + '\n');
+for (const variant of alternatePsm) {
+  const data = alternateSummaries[variant.key];
+  console.log('FASTSCAN_JAPANESE_PSM_AGG=' + JSON.stringify({
+    variant: variant.key, mode: variant.mode,
+    photos: data.photos,
+    dictionarySupportedSourceReferences: data.eligibleReferenceUniqueNames,
+    exactSupportedSourceMatches: data.afterRepairHits,
+    sourceBasedRecallPercent: +(data.afterRepairRecallOfDictionarySupported * 100).toFixed(2),
+    additionalMatchesNotInPublishedReference: data.afterRepairExtraNotInAnnotation,
+    fixedPSM6ControlHits: enhanced.afterRepairHits,
+    productionSettingChanged: false,
+    researchOnly: true
+  }));
+}
 for (const [name, data] of [['original', original], ['chromiumEnhanced', enhanced]]) {
   console.log('FASTSCAN_JAPANESE_REAL_PHOTO_AGG=' + JSON.stringify({
     variant: name,
