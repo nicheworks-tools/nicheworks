@@ -115,7 +115,7 @@ jobs:
           curl --fail --silent --show-error --location --retry 3 \
             --connect-timeout 20 --max-time 120 \
             --user-agent 'Mozilla/5.0 (compatible; NicheWorks-Research-OCR/1.0)' \
-            'https://cloudflare.lipscosme.com/image/f5b50fa925ac91660be84c6d-1580295578.png' \
+            'https://cloudflare.lipscosme.com/image/f5b50fa925ac91660be84c6d-1580295578.png?auto=avif%2Cwebp&fio=1&orient=1&width=1424' \
             --output "$FASTSCAN_JA_CORPUS_DIR/muji-sensitive-highmoist-2020-photo-12.png"
           curl --fail --silent --show-error --location --retry 3 \
             --connect-timeout 20 --max-time 120 \
