@@ -94,6 +94,20 @@ Both English and Japanese OCR photo interfaces now have an **off-by-default** "E
 
 Automated regression: `node tools/_shared/check-fastscan-image-enhancement.mjs` checks untouched default-image handling, concrete grayscale pixel writes, upscale and memory cap, expected failure handling and blob-URL release, bilingual option wiring, optional QA comparison and photo privacy. The noindex QA page at `tools/inci-fastscan/qa/photo-ocr-benchmark.html` now exposes the same checkbox so manual testers can compare original and browser-enhanced scans of a **single independently transcribed real label**.
 
+## Japanese actual-photograph crop/contrast fixed-recipe trial (2026-11-06)
+
+Use the **existing two genuine photographed Japanese cosmetic packages** to test three source-independent image preprocessing recipes against the identical `jpn+eng` pinned Tesseract.js PSM6 engine:
+
+- `contrast140`: production browser `prepareFastScanOcrImage`, enhancement enabled, CSS contrast at **140%**, no crop.
+- `edgeCrop5`: enhancement enabled, remove **5% from all four image edges**, CSS contrast 100%.
+- `edgeCrop5Contrast140`: enhancement enabled, 5% all-edge crop and CSS contrast 140%.
+
+The unchanged `chromiumEnhanced` PSM6 control uses the same original image bytes and production canvas function with enhancement on, contrast 100%, and no crop. All four recipes have the same source-reference supported-name denominator, and PSM6 is restored for every arm. No per-photo oracle/ground-truth-informed crop is permitted. A fixed all-edge crop may *lose* ingredients printed close to the boundary; any negative result is preserved. This is **experiment-only** and does not change the production scan/preview controls or defaults.
+
+The CI writes `FASTSCAN_JAPANESE_PIXEL_PHOTO` and `FASTSCAN_JAPANESE_PIXEL_AGG` with metrics only; the usual artifact includes numeric results without raw images, ingredient lists or OCR text. It evaluates *public product source lists*, not independently transcribed same-package ingredient panels. No inference about physical smartphone precision or safety is permitted. Before changing defaults, require a more diverse and independently transcribed Japanese corpus and mobile-browser execution.
+
+The prior reference for PSM6 and enhanced browser pixels was **52/121 (42.98%)** on two non-batch-matched source pairs; it is not a product-quality acceptance threshold. New candidate results are recorded only after actual CI measurement.
+
 ## Japanese actual-photograph segmentation comparison (2026-11-05)
 
 The same two previously pinned publicly photographed Japanese cosmetics labels are used to compare **PSM3 (automatic page), PSM4 (single column), and PSM11 (sparse text)** against the existing **PSM6** control on **identical Chromium-canvas-enhanced pixels**, with one pinned `jpn+eng` Tesseract.js worker. These modes are QA **experiments only**: no production default, user setting, source-label contents, or dictionary matching is changed. Independent source-page ingredient lists can differ from the packaging photo version; these are **source-anchored comparison numbers**, not true fully transcribed label accuracy. CI artifacts and logs contain only numeric metrics, fixed research photo IDs, and no recognized or reference texts.
