@@ -63,5 +63,18 @@
     "status": "active",
     "language": "ja",
     "scope_note": "町公式の令和5年度版マニュアル掲載ページ。令和8年度版と誤認しない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "厚岸町",
+    "name": "ごみの分別について",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.akkeshi-town.jp/kurashi/sumai/gomi_recycle/bunbetsu/",
+    "lgcode": "016624",
+    "last_checked": "2026-11-07",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "厚岸町公式。6分別17種類の分別案内。掲載分別表は令和3年10月改訂であり、令和8年度版とは扱わない。"
   }
 ]
