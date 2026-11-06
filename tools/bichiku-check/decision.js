@@ -248,6 +248,25 @@ function assessment(catalog,options,source,today){
  const core=root.BichikuCore;
  if(!core)throw Error("BichikuCore is required");
  const calc=core.calculate(catalog,readiness,now,options);
+ // The legacy "one set of spare batteries" target is not a meaningful unit
+ // for an explicitly confirmed plan whose requirement is measured in cells
+ // by battery size. Never convert unknown legacy sets to AA/AAA/etc cells.
+ // An explicit user target for sets remains independent and is retained.
+ const batteryStockRow=calc.items.find(x=>x.item.id==="batteries");
+ const typedBatteryPlan=s.powerOut&&batteryReview.devices.some(d=>d.verified&&d.required>0);
+ const typedBatteryShortages=s.powerOut?
+   batteryReview.rows.filter(r=>r.shortage>0).map(r=>({
+     type:r.type,required:r.required,available:r.available,missing:r.shortage
+   })):[];
+ batteryReview.typedPlan=typedBatteryPlan;
+ batteryReview.shoppingShortages=typedBatteryShortages;
+ if(batteryStockRow&&typedBatteryPlan&&!batteryStockRow.hasCustomTarget){
+  // The general example "1 set" is superseded by counted, type-specific
+  // confirmed demand; it is not another required purchase on top of cells.
+  batteryStockRow.required=0;
+  batteryStockRow.missing=0;
+  batteryStockRow.typedPlanReplacesExample=true;
+ }
  // The combined 3 L/person/day reference is NOT increased by cooking water.
  // However, when a household has explicitly verified a larger drinking+prep
  // allocation, that physical allocation is an additional constraint on
@@ -310,8 +329,10 @@ function assessment(catalog,options,source,today){
    const rows=g.members.map(id=>byId.get(id)).filter(Boolean);
    if(!rows.length)return null;
    const p=byId.get(g.primary)||rows[0];
-   const needed=rows.filter(x=>x.missing>0).length;
-   return {id:g.id,primary:p,rows,missingCategories:needed,hasGap:needed>0};
+   const typedGaps=g.id==="power"?typedBatteryShortages.length:0;
+   const needed=rows.filter(x=>x.missing>0).length+typedGaps;
+   return {id:g.id,primary:p,rows,typedBatteryShortages:g.id==="power"?typedBatteryShortages:[],
+     missingCategories:needed,hasGap:needed>0};
  }).filter(Boolean);
  const water=byId.get("water");
  const food=byId.get("food");
@@ -347,7 +368,7 @@ function assessment(catalog,options,source,today){
     note:"sleepLayers",requires:["sleepPad","blanket"]}
  ];
  // Recompute metadata after optional assemblies. Never mark a category "ready" from a conditional substitute alone.
- calc.missingCount=calc.items.filter(x=>x.missing>0).length;
+ calc.missingCount=calc.items.filter(x=>x.missing>0).length+typedBatteryShortages.length;
  calc.coreMissingCount=calc.items.filter(x=>x.priority===1&&x.missing>0).length;
  calc.filledCount=calc.items.filter(x=>x.missing===0).length;
  return {settings:s,calc,groups:status,combinations,foodGroups,mainDishReferencePortions,toiletReview,heatReview,batteryReview,
