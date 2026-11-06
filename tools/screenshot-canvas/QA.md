@@ -8,6 +8,7 @@
 - [x] Paste an image through a browser ClipboardEvent.
 - [x] Reject non-image files, oversized inputs and corrupt PNGs without losing existing layers.
 - [x] Reject 12,000×12,000px (144MP) canvas allocation, preserving the previous 1600×900 composition.
+- [x] Allocate/render an allowed 6000×4000 (24MP) canvas in desktop Chromium, refuse 6000×4001, undo safely and recover from a failed PNG encoder.
 - [x] Verify layer picker, multi-select, foreground/background ordering.
 - [x] Move an image with pointer events and simulated touch-type PointerEvents.
 - [x] Resize from all four corner handles and undo each resize.
