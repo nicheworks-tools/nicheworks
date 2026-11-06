@@ -1,0 +1,1826 @@
+{
+  "schema": 1,
+  "kind": "UNVERIFIED_OFFICIAL_SITE_LINK_CANDIDATES",
+  "generated_at": "2026-11-06T21:28:02.448Z",
+  "shard": 3,
+  "size": 50,
+  "warning": "Do not mark as reviewed or publish these candidates. Verify target page contents, year, scope and authority. Empty candidates do not mean source absence.",
+  "counts": {
+    "scanned": 31,
+    "with_candidates": 26,
+    "candidate_urls": 215,
+    "not_scanned": 3
+  },
+  "results": [
+    {
+      "lgcode": "016454",
+      "pref": "北海道",
+      "municipality": "豊頃町",
+      "official_home": "https://www.toyokoro.jp/",
+      "status": "scanned",
+      "candidates": [
+        {
+          "url": "https://www.toyokoro.jp/calendar/",
+          "official_link_label": "カレンダーで 探す",
+          "found_on": "https://www.toyokoro.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.toyokoro.jp/life/1/7/",
+          "official_link_label": "ゴミ・環境",
+          "found_on": "https://www.toyokoro.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.toyokoro.jp/calendar/index.php",
+          "official_link_label": "カレンダー表示",
+          "found_on": "https://www.toyokoro.jp/calendar/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.toyokoro.jp/page/5746.html",
+          "official_link_label": "ごみ収集日",
+          "found_on": "https://www.toyokoro.jp/life/1/7/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.toyokoro.jp/page/7545.html",
+          "official_link_label": "豊頃町指定ごみ袋についてのお知らせ",
+          "found_on": "https://www.toyokoro.jp/life/1/7/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.toyokoro.jp/life/1/7/36/",
+          "official_link_label": "家庭ごみ",
+          "found_on": "https://www.toyokoro.jp/life/1/7/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.toyokoro.jp/page/1124.html",
+          "official_link_label": "農業関係ごみについて",
+          "found_on": "https://www.toyokoro.jp/life/1/7/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.toyokoro.jp/page/1123.html",
+          "official_link_label": "事業系一般ごみについて",
+          "found_on": "https://www.toyokoro.jp/life/1/7/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.toyokoro.jp/page/1122.html",
+          "official_link_label": "ごみ不法投棄、屋外焼却 禁止！！",
+          "found_on": "https://www.toyokoro.jp/life/1/7/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.toyokoro.jp/life/1/7/37/",
+          "official_link_label": "エコ・リサイクル",
+          "found_on": "https://www.toyokoro.jp/life/1/7/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.toyokoro.jp/page/1119.html",
+          "official_link_label": "家電リサイクル法対象品の処分方法",
+          "found_on": "https://www.toyokoro.jp/life/1/7/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.toyokoro.jp/page/1114.html",
+          "official_link_label": "ごみの分別方法と出し方",
+          "found_on": "https://www.toyokoro.jp/life/1/7/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.toyokoro.jp/life/1/7/38/",
+          "official_link_label": "ごみ処理施設",
+          "found_on": "https://www.toyokoro.jp/life/1/7/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.toyokoro.jp/page/1117.html",
+          "official_link_label": "引越しごみなどの十勝環境複合事務組合「くりりんセンター」への自己搬入",
+          "found_on": "https://www.toyokoro.jp/life/1/7/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.toyokoro.jp/page/1039.html",
+          "official_link_label": "ボランティアごみの無料回収",
+          "found_on": "https://www.toyokoro.jp/life/1/7/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        }
+      ],
+      "note": "manual_verification_required"
+    },
+    {
+      "lgcode": "016489",
+      "pref": "北海道",
+      "municipality": "陸別町",
+      "official_home": "https://www.rikubetsu.jp/",
+      "status": "scanned",
+      "candidates": [
+        {
+          "url": "https://www.rikubetsu.jp/kurashi/gomi/",
+          "official_link_label": "ごみ・リサイクル",
+          "found_on": "https://www.rikubetsu.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.rikubetsu.jp/kurashi-calendar/",
+          "official_link_label": "くらしのカレンダー",
+          "found_on": "https://www.rikubetsu.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.rikubetsu.jp/kurashi/gomi/osirase/",
+          "official_link_label": "家庭ごみ分別のお知らせ(保存版)",
+          "found_on": "https://www.rikubetsu.jp/kurashi/gomi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.rikubetsu.jp/kurashi/gomi/gomigaido/",
+          "official_link_label": "新訂版 ごみの出し方ガイド",
+          "found_on": "https://www.rikubetsu.jp/kurashi/gomi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.rikubetsu.jp/kurashi/gomi/gomiitiran/",
+          "official_link_label": "新訂版 ごみの分け方・出し方一覧表",
+          "found_on": "https://www.rikubetsu.jp/kurashi/gomi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.rikubetsu.jp/file/contents/87/11856/hozon.pdf",
+          "official_link_label": "家電リサイクル対象品の処分について",
+          "found_on": "https://www.rikubetsu.jp/kurashi/gomi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.rikubetsu.jp/kurashi/gomi/sanpai_ijikanri/",
+          "official_link_label": "産業廃棄物処理施設の維持管理状況",
+          "found_on": "https://www.rikubetsu.jp/kurashi/gomi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.rikubetsu.jp/kurashi/gomi/ippanhaiki_ijikanri/",
+          "official_link_label": "一般廃棄物処理施設の維持管理について",
+          "found_on": "https://www.rikubetsu.jp/kurashi/gomi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.rikubetsu.jp/calendar/",
+          "official_link_label": "イベントカレンダー",
+          "found_on": "https://www.rikubetsu.jp/kurashi-calendar/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        }
+      ],
+      "note": "manual_verification_required"
+    },
+    {
+      "lgcode": "016497",
+      "pref": "北海道",
+      "municipality": "浦幌町",
+      "official_home": "https://www.urahoro.jp/",
+      "status": "not_scanned",
+      "candidates": [],
+      "note": "robots_unavailable"
+    },
+    {
+      "lgcode": "016616",
+      "pref": "北海道",
+      "municipality": "釧路町",
+      "official_home": "http://www.town.kushiro.lg.jp/",
+      "status": "scanned",
+      "candidates": [
+        {
+          "url": "http://www.town.kushiro.lg.jp/living-guide/00011.html",
+          "official_link_label": "ごみ・リサイクル (11件)",
+          "found_on": "http://www.town.kushiro.lg.jp/living-guide/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "http://www.town.kushiro.lg.jp/living-guide/10204/00011/192444150311.html",
+          "official_link_label": "ごみの収集料金",
+          "found_on": "http://www.town.kushiro.lg.jp/living-guide/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "http://www.town.kushiro.lg.jp/living-guide/10204/00011/342414150316.html",
+          "official_link_label": "ごみ処分場への直接搬入",
+          "found_on": "http://www.town.kushiro.lg.jp/living-guide/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "http://www.town.kushiro.lg.jp/living-guide/10204/00011/462404150312.html",
+          "official_link_label": "ごみの収集",
+          "found_on": "http://www.town.kushiro.lg.jp/living-guide/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "http://www.town.kushiro.lg.jp/living-guide/10204/00011/502417150312.html",
+          "official_link_label": "ごみの分け方",
+          "found_on": "http://www.town.kushiro.lg.jp/living-guide/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "http://www.town.kushiro.lg.jp/living-guide/10204/00011/225403531013.html",
+          "official_link_label": "各種処理に困るごみの排出方法",
+          "found_on": "http://www.town.kushiro.lg.jp/living-guide/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "http://www.town.kushiro.lg.jp/living-guide/10205/00036/232617210817.html",
+          "official_link_label": "LINE｜粗大ごみ申請の操作方法",
+          "found_on": "http://www.town.kushiro.lg.jp/living-guide/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "http://www.town.kushiro.lg.jp/living-guide/10205/00036/230721230816.html",
+          "official_link_label": "LINE｜ごみカレンダーの操作方法",
+          "found_on": "http://www.town.kushiro.lg.jp/living-guide/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "http://www.town.kushiro.lg.jp/living-guide/10205/00036/234321540817.html",
+          "official_link_label": "LINE｜ごみの分別検索の操作方法",
+          "found_on": "http://www.town.kushiro.lg.jp/living-guide/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "http://www.town.kushiro.lg.jp/information/00003.html",
+          "official_link_label": "ごみリサイクル (3件)",
+          "found_on": "http://www.town.kushiro.lg.jp/information/10104/00028/233803050716.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        }
+      ],
+      "note": "manual_verification_required"
+    },
+    {
+      "lgcode": "016624",
+      "pref": "北海道",
+      "municipality": "厚岸町",
+      "official_home": "https://www.akkeshi-town.jp/",
+      "status": "scanned",
+      "candidates": [
+        {
+          "url": "https://www.akkeshi-town.jp/calendar/",
+          "official_link_label": "厚岸町カレンダー",
+          "found_on": "https://www.akkeshi-town.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.akkeshi-town.jp/shisetsu/haikibutsu/",
+          "official_link_label": "廃棄物処理施設",
+          "found_on": "https://www.akkeshi-town.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.akkeshi-town.jp/shisetsu/haikibutsu/dust/",
+          "official_link_label": "厚岸町ごみ処理場",
+          "found_on": "https://www.akkeshi-town.jp/shisetsu/haikibutsu/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.akkeshi-town.jp/kurashi/sumai/gomi_recycle/",
+          "official_link_label": "ごみ・リサイクル",
+          "found_on": "https://www.akkeshi-town.jp/kurashi/sumai/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        }
+      ],
+      "note": "manual_verification_required"
+    },
+    {
+      "lgcode": "016632",
+      "pref": "北海道",
+      "municipality": "浜中町",
+      "official_home": "https://www.townhamanaka.jp/",
+      "status": "scanned",
+      "candidates": [
+        {
+          "url": "https://www.townhamanaka.jp/kurashi_kankyou/kankyou/gomi_bunbetsu.html",
+          "official_link_label": "ごみの分別について",
+          "found_on": "https://www.townhamanaka.jp/seikatu/seikatukankyou.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.townhamanaka.jp/kurashi_kankyou/kankyou/haikibutsu_syobunjo.html",
+          "official_link_label": "浜中町廃棄物最終処分場の維持管理に関する情報の公表について",
+          "found_on": "https://www.townhamanaka.jp/seikatu/seikatukankyou.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        }
+      ],
+      "note": "manual_verification_required"
+    },
+    {
+      "lgcode": "016675",
+      "pref": "北海道",
+      "municipality": "鶴居村",
+      "official_home": "https://www.vill.tsurui.lg.jp/",
+      "status": "scanned",
+      "candidates": [],
+      "note": "limited_scan_no_candidate_not_proof_of_absence"
+    },
+    {
+      "lgcode": "016918",
+      "pref": "北海道",
+      "municipality": "別海町",
+      "official_home": "https://betsukai.jp/",
+      "status": "not_scanned",
+      "candidates": [],
+      "note": "robots_unavailable"
+    },
+    {
+      "lgcode": "016926",
+      "pref": "北海道",
+      "municipality": "中標津町",
+      "official_home": "https://www.nakashibetsu.jp/",
+      "status": "not_scanned",
+      "candidates": [],
+      "note": "robots_unavailable"
+    },
+    {
+      "lgcode": "016934",
+      "pref": "北海道",
+      "municipality": "標津町",
+      "official_home": "https://www.shibetsutown.jp/",
+      "status": "scanned",
+      "candidates": [
+        {
+          "url": "https://www.shibetsutown.jp/life/?category=14",
+          "official_link_label": "ごみ・リサイクル",
+          "found_on": "https://www.shibetsutown.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.shibetsutown.jp/purpose/?purpose=7",
+          "official_link_label": "ごみ・環境",
+          "found_on": "https://www.shibetsutown.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.shibetsutown.jp/calendar/",
+          "official_link_label": "イベントカレンダー",
+          "found_on": "https://www.shibetsutown.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.shibetsutown.jp/life/?content=736",
+          "official_link_label": "年末年始のごみ収集について",
+          "found_on": "https://www.shibetsutown.jp/life/?category=14",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.shibetsutown.jp/life/?content=724",
+          "official_link_label": "新指定ごみ袋使用のお願いについて",
+          "found_on": "https://www.shibetsutown.jp/life/?category=14",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.shibetsutown.jp/life/?content=707",
+          "official_link_label": "レジ袋は資源ごみ廃棄には使用できません。",
+          "found_on": "https://www.shibetsutown.jp/life/?category=14",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.shibetsutown.jp/life/?category=114",
+          "official_link_label": "ごみ収集日程・分別方法",
+          "found_on": "https://www.shibetsutown.jp/life/?category=14",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.shibetsutown.jp/life/?content=606",
+          "official_link_label": "指定ごみ袋・し尿証紙販売店一覧",
+          "found_on": "https://www.shibetsutown.jp/life/?category=14",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.shibetsutown.jp/life/?content=608",
+          "official_link_label": "事業者の皆様へ（事業系ごみ）",
+          "found_on": "https://www.shibetsutown.jp/life/?category=14",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.shibetsutown.jp/life/?content=607",
+          "official_link_label": "清掃センターへのごみ直接搬入方法",
+          "found_on": "https://www.shibetsutown.jp/life/?category=14",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.shibetsutown.jp/life/?content=605",
+          "official_link_label": "ごみ袋の見直し等の概要について",
+          "found_on": "https://www.shibetsutown.jp/life/?category=14",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.shibetsutown.jp/life/?content=588",
+          "official_link_label": "標津町 一般廃棄物処理基本計画",
+          "found_on": "https://www.shibetsutown.jp/life/?category=14",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.shibetsutown.jp/life/?content=614",
+          "official_link_label": "その他のごみ",
+          "found_on": "https://www.shibetsutown.jp/purpose/?purpose=7",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.shibetsutown.jp/life/?content=609",
+          "official_link_label": "ごみ収集日程・ごみ分別一覧表",
+          "found_on": "https://www.shibetsutown.jp/purpose/?purpose=7",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.shibetsutown.jp/life/?content=627",
+          "official_link_label": "燃やせるごみ・燃やせないごみ",
+          "found_on": "https://www.shibetsutown.jp/purpose/?purpose=7",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        }
+      ],
+      "note": "manual_verification_required"
+    },
+    {
+      "lgcode": "016942",
+      "pref": "北海道",
+      "municipality": "羅臼町",
+      "official_home": "https://www.rausu-town.jp/",
+      "status": "scanned",
+      "candidates": [
+        {
+          "url": "https://www.rausu-town.jp/pages/dekigoto/20",
+          "official_link_label": "ごみの日を知りたい",
+          "found_on": "https://www.rausu-town.jp/index",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.rausu-town.jp/pages/cat/2",
+          "official_link_label": "ごみ",
+          "found_on": "https://www.rausu-town.jp/index",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        }
+      ],
+      "note": "manual_verification_required"
+    },
+    {
+      "lgcode": "022021",
+      "pref": "青森県",
+      "municipality": "弘前市",
+      "official_home": "https://www.city.hirosaki.aomori.jp/",
+      "status": "scanned",
+      "candidates": [
+        {
+          "url": "https://www.city.hirosaki.aomori.jp/kurashi/gomi/index.html",
+          "official_link_label": "ごみ リサイクル",
+          "found_on": "https://www.city.hirosaki.aomori.jp/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.hirosaki.aomori.jp/calendar.html",
+          "official_link_label": "イベントカレンダー",
+          "found_on": "https://www.city.hirosaki.aomori.jp/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        }
+      ],
+      "note": "manual_verification_required"
+    },
+    {
+      "lgcode": "022039",
+      "pref": "青森県",
+      "municipality": "八戸市",
+      "official_home": "https://www.city.hachinohe.aomori.jp/",
+      "status": "scanned",
+      "candidates": [
+        {
+          "url": "https://www.city.hachinohe.aomori.jp/calendar.html?type-display=0&area-display=0&eventTypeNo=7",
+          "official_link_label": "イベントカレンダー",
+          "found_on": "https://www.city.hachinohe.aomori.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.hachinohe.aomori.jp/benri/gomi_kensaku/index.html",
+          "official_link_label": "ごみの出し方",
+          "found_on": "https://www.city.hachinohe.aomori.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.hachinohe.aomori.jp/benri/gomi_kensaku/kateigomi/index.html",
+          "official_link_label": "家庭ごみの出し方検索",
+          "found_on": "https://www.city.hachinohe.aomori.jp/benri/gomi_kensaku/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.hachinohe.aomori.jp/benri/gomi_kensaku/kateigomi/6628.html",
+          "official_link_label": "家庭ごみの出し方検索",
+          "found_on": "https://www.city.hachinohe.aomori.jp/benri/gomi_kensaku/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.hachinohe.aomori.jp/benri/gomi_kensaku/chikubetsu/index.html",
+          "official_link_label": "地区別収集日検索",
+          "found_on": "https://www.city.hachinohe.aomori.jp/benri/gomi_kensaku/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.hachinohe.aomori.jp/benri/gomi_kensaku/chikubetsu/6633.html",
+          "official_link_label": "地区別収集日検索",
+          "found_on": "https://www.city.hachinohe.aomori.jp/benri/gomi_kensaku/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.hachinohe.aomori.jp/kurashi_tetsuzuki/gomi_kankyo_pet/index.html",
+          "official_link_label": "ごみ・環境・ペット",
+          "found_on": "https://www.city.hachinohe.aomori.jp/kurashi_tetsuzuki/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.hachinohe.aomori.jp/kurashi_tetsuzuki/gomi_kankyo_pet/gomi_recycle/index.html",
+          "official_link_label": "ごみの捨て方・減量・処理",
+          "found_on": "https://www.city.hachinohe.aomori.jp/kurashi_tetsuzuki/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.hachinohe.aomori.jp/kurashi_tetsuzuki/gomi_kankyo_pet/kogai_haikibutsu/index.html",
+          "official_link_label": "公害・廃棄物",
+          "found_on": "https://www.city.hachinohe.aomori.jp/kurashi_tetsuzuki/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        }
+      ],
+      "note": "manual_verification_required"
+    },
+    {
+      "lgcode": "022047",
+      "pref": "青森県",
+      "municipality": "黒石市",
+      "official_home": "https://www.city.kuroishi.aomori.jp/",
+      "status": "scanned",
+      "candidates": [
+        {
+          "url": "https://www.city.kuroishi.aomori.jp/kurashi/kurashi/gomi_recycle/index.html",
+          "official_link_label": "ごみ・リサイクル",
+          "found_on": "https://www.city.kuroishi.aomori.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.kuroishi.aomori.jp/news/kurashi/2026-1002-0925-31.html",
+          "official_link_label": "電池類は絶対に指定ごみ袋に入れないでください",
+          "found_on": "https://www.city.kuroishi.aomori.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.kuroishi.aomori.jp/news/kurashi/2026-0806-1720-31.html",
+          "official_link_label": "市公式LINEでごみの分別が検索できます",
+          "found_on": "https://www.city.kuroishi.aomori.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.kuroishi.aomori.jp/news/kurashi/2026-0508-1034-31.html",
+          "official_link_label": "指定ごみ袋は必要な数量を購入してください",
+          "found_on": "https://www.city.kuroishi.aomori.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.kuroishi.aomori.jp/news/kurashi/2026-0409-2043-31.html",
+          "official_link_label": "ごみの出し方にご注意ください",
+          "found_on": "https://www.city.kuroishi.aomori.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.kuroishi.aomori.jp/news/kurashi/namagomishoriki_josei.html",
+          "official_link_label": "生ごみ処理機器購入費補助金",
+          "found_on": "https://www.city.kuroishi.aomori.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.kuroishi.aomori.jp/kurashi/kurashi/gomi_recycle/",
+          "official_link_label": "ごみ・リサイクル",
+          "found_on": "https://www.city.kuroishi.aomori.jp/kurashi/kurashi/gomi_recycle/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.kuroishi.aomori.jp/kurashi/kurashi/gomi_recycle/gomi_syusyu.html",
+          "official_link_label": "ごみの出し方",
+          "found_on": "https://www.city.kuroishi.aomori.jp/kurashi/kurashi/gomi_recycle/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.kuroishi.aomori.jp/kurashi/kurashi/gomi_recycle/gomi_sodai.html",
+          "official_link_label": "粗大ごみ収集",
+          "found_on": "https://www.city.kuroishi.aomori.jp/kurashi/kurashi/gomi_recycle/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.kuroishi.aomori.jp/kurashi/kurashi/gomi_recycle/gomi_yuryo.html",
+          "official_link_label": "家庭ごみの有料化・指定ごみ袋について",
+          "found_on": "https://www.city.kuroishi.aomori.jp/kurashi/kurashi/gomi_recycle/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.kuroishi.aomori.jp/kurashi/kurashi/gomi_recycle/gomihenkou202604.html",
+          "official_link_label": "ごみ処理方法等の一部変更について",
+          "found_on": "https://www.city.kuroishi.aomori.jp/kurashi/kurashi/gomi_recycle/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.kuroishi.aomori.jp/kurashi/kurashi/gomi_recycle/gomi_jigyou.html",
+          "official_link_label": "事業系ごみ",
+          "found_on": "https://www.city.kuroishi.aomori.jp/kurashi/kurashi/gomi_recycle/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.kuroishi.aomori.jp/kurashi/kurashi/gomi_recycle/files/R8_gimi_dashikata.pdf",
+          "official_link_label": "家庭ごみの正しい出し方【図解】 (1183キロバイト)",
+          "found_on": "https://www.city.kuroishi.aomori.jp/kurashi/kurashi/gomi_recycle/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.kuroishi.aomori.jp/kurashi/kurashi/gomi_recycle/files/gomiposuta-eigo_itiran.pdf",
+          "official_link_label": "家庭ごみの正しい出し方【英語版_一覧】 (2730キロバイト)",
+          "found_on": "https://www.city.kuroishi.aomori.jp/kurashi/kurashi/gomi_recycle/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.kuroishi.aomori.jp/kurashi/kurashi/gomi_recycle/files/gomiposuta-eigo_wakekata.pdf",
+          "official_link_label": "家庭ごみの正しい出し方【英語版_詳解】 (3002キロバイト)",
+          "found_on": "https://www.city.kuroishi.aomori.jp/kurashi/kurashi/gomi_recycle/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.kuroishi.aomori.jp/news/kurashi/files/gomi_chatbot.jpg",
+          "official_link_label": "ごみ分別チャットボットの入力方法 (115キロバイト)",
+          "found_on": "https://www.city.kuroishi.aomori.jp/news/kurashi/2026-0806-1720-31.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.kuroishi.aomori.jp/news/kurashi/files/20260518_shiteitennitiran.pdf",
+          "official_link_label": "黒石市指定ごみ袋・粗大ごみ処理券取扱い指定店一覧 (96キロバイト)",
+          "found_on": "https://www.city.kuroishi.aomori.jp/news/kurashi/2026-0508-1034-31.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        }
+      ],
+      "note": "manual_verification_required"
+    },
+    {
+      "lgcode": "022055",
+      "pref": "青森県",
+      "municipality": "五所川原市",
+      "official_home": "https://www.city.goshogawara.lg.jp/",
+      "status": "scanned",
+      "candidates": [
+        {
+          "url": "https://www.city.goshogawara.lg.jp/kenkou/fukushi/2024-0419-1331-716.html",
+          "official_link_label": "子育てイベントカレンダー 令和8年11月",
+          "found_on": "https://www.city.goshogawara.lg.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.goshogawara.lg.jp/kosodate/2024-0823-1356-787.html",
+          "official_link_label": "子育てイベントカレンダー",
+          "found_on": "https://www.city.goshogawara.lg.jp/kenkou/fukushi/2024-0419-1331-716.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        }
+      ],
+      "note": "manual_verification_required"
+    },
+    {
+      "lgcode": "022063",
+      "pref": "青森県",
+      "municipality": "十和田市",
+      "official_home": "https://www.city.towada.lg.jp/",
+      "status": "scanned",
+      "candidates": [
+        {
+          "url": "https://www.city.towada.lg.jp/kurashi/seikatsu/recycle/2026-0518-1933-98.html",
+          "official_link_label": "◆指定ごみ袋の品薄等に伴う臨時措置を終了します",
+          "found_on": "https://www.city.towada.lg.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.towada.lg.jp/kurashi/seikatsu/recycle/2026-0503-1052-97.html",
+          "official_link_label": "生ごみ処理機等購入費助成金のお知らせ くらし環境課 環境衛生係",
+          "found_on": "https://www.city.towada.lg.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.towada.lg.jp/calendar.html",
+          "official_link_label": "総合カレンダー",
+          "found_on": "https://www.city.towada.lg.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.towada.lg.jp/kurashi/seikatsu/recycle/index.html",
+          "official_link_label": "ごみ・リサイクル",
+          "found_on": "https://www.city.towada.lg.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.towada.lg.jp/kurashi/seikatsu/recycle/",
+          "official_link_label": "ごみ・リサイクル",
+          "found_on": "https://www.city.towada.lg.jp/kurashi/seikatsu/recycle/2026-0518-1933-98.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.towada.lg.jp/kurashi/seikatsu/recycle/files/shiteigomibukurorinjisotisyuuryoutirashi.pdf",
+          "official_link_label": "指定ごみ袋臨時措置終了チラシ (95KB)",
+          "found_on": "https://www.city.towada.lg.jp/kurashi/seikatsu/recycle/2026-0518-1933-98.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.towada.lg.jp/kurashi/seikatsu/recycle/files/shiteigomibukurorinjisotitirashi.pdf",
+          "official_link_label": "指定ごみ袋臨時措置チラシ (441KB)",
+          "found_on": "https://www.city.towada.lg.jp/kurashi/seikatsu/recycle/2026-0518-1933-98.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.towada.lg.jp/kurashi/seikatsu/recycle/files/namagomisyorikichirasi.pdf",
+          "official_link_label": "生ごみ処理機等購入費助成のご案内（チラシ） (953KB)",
+          "found_on": "https://www.city.towada.lg.jp/kurashi/seikatsu/recycle/2026-0503-1052-97.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.towada.lg.jp/kurashi/seikatsu/recycle/files/namagomisyorikizyosei.png",
+          "official_link_label": "生ごみ処理機等の購入費を補助します！（ポスター） (2234KB)",
+          "found_on": "https://www.city.towada.lg.jp/kurashi/seikatsu/recycle/2026-0503-1052-97.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.towada.lg.jp/kurashi/seikatsu/recycle/files/02yousikidai1gou.pdf",
+          "official_link_label": "令和８年度十和田市生ごみ処理機等購入費助成金交付申請書兼請求書（様式第１号）",
+          "found_on": "https://www.city.towada.lg.jp/kurashi/seikatsu/recycle/2026-0503-1052-97.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.towada.lg.jp/kurashi/seikatsu/recycle/files/01kouhuyoukou.pdf",
+          "official_link_label": "令和８年度十和田市生ごみ処理機等購入費助成金交付要綱（本文） (77KB)",
+          "found_on": "https://www.city.towada.lg.jp/kurashi/seikatsu/recycle/2026-0503-1052-97.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.towada.lg.jp/kurashi/seikatsu/recycle/2023-0626-1706-98.html",
+          "official_link_label": "生ごみ回収によるごみの減量とリサイクルへの取り組み くらし環境課 環境衛生係",
+          "found_on": "https://www.city.towada.lg.jp/kurashi/seikatsu/recycle/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.towada.lg.jp/kurashi/seikatsu/recycle/2026-0330-1832-98.html",
+          "official_link_label": "令和８年度家庭ごみの出し方（ごみカレンダー）",
+          "found_on": "https://www.city.towada.lg.jp/kurashi/seikatsu/recycle/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.towada.lg.jp/kurashi/seikatsu/recycle/2025-0317-1020-98.html",
+          "official_link_label": "令和７年度家庭ごみの出し方（ごみカレンダー）",
+          "found_on": "https://www.city.towada.lg.jp/kurashi/seikatsu/recycle/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.towada.lg.jp/kurashi/seikatsu/recycle/guidebook.html",
+          "official_link_label": "十和田市 ごみと資源の出し方ガイドブック",
+          "found_on": "https://www.city.towada.lg.jp/kurashi/seikatsu/recycle/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        }
+      ],
+      "note": "manual_verification_required"
+    },
+    {
+      "lgcode": "022071",
+      "pref": "青森県",
+      "municipality": "三沢市",
+      "official_home": "https://www.city.misawa.lg.jp/",
+      "status": "scanned",
+      "candidates": [
+        {
+          "url": "https://www.city.misawa.lg.jp/index.cfm/22,1745,19,136,html",
+          "official_link_label": "ごみの収集",
+          "found_on": "https://www.city.misawa.lg.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.misawa.lg.jp/index.cfm/22,0,19,html",
+          "official_link_label": "ごみ・リサイクル・し尿",
+          "found_on": "https://www.city.misawa.lg.jp/index.cfm/22,1745,19,136,html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.misawa.lg.jp/index.cfm/22,0,19,136,html",
+          "official_link_label": "ごみの収集・持ち込み・集積場所",
+          "found_on": "https://www.city.misawa.lg.jp/index.cfm/22,1745,19,136,html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.misawa.lg.jp/index.cfm/22,0,19,439,html",
+          "official_link_label": "災害廃棄物",
+          "found_on": "https://www.city.misawa.lg.jp/index.cfm/22,1745,19,136,html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.misawa.lg.jp/index.cfm/22,1745,c,html/1745/20260318-174854.pdf",
+          "official_link_label": "R8ごみ資源物収集日程表（地区1）",
+          "found_on": "https://www.city.misawa.lg.jp/index.cfm/22,1745,19,136,html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.misawa.lg.jp/index.cfm/22,1745,c,html/1745/20260318-174934.pdf",
+          "official_link_label": "R8ごみ資源物収集カレンダー（地区1）",
+          "found_on": "https://www.city.misawa.lg.jp/index.cfm/22,1745,19,136,html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.misawa.lg.jp/index.cfm/22,1745,c,html/1745/20260318-175037.pdf",
+          "official_link_label": "R8ごみ資源物収集日程表（地区1、英語版）",
+          "found_on": "https://www.city.misawa.lg.jp/index.cfm/22,1745,19,136,html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.misawa.lg.jp/index.cfm/22,1745,c,html/1745/1-kasugadai.pdf",
+          "official_link_label": "R7ごみ資源物収集日程表（地区1）",
+          "found_on": "https://www.city.misawa.lg.jp/index.cfm/22,1745,19,136,html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.misawa.lg.jp/index.cfm/22,1745,c,html/1745/20250314-095400.pdf",
+          "official_link_label": "R7ごみ資源物収集カレンダー（地区1）",
+          "found_on": "https://www.city.misawa.lg.jp/index.cfm/22,1745,19,136,html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.misawa.lg.jp/index.cfm/22,1745,c,html/1745/1-kasugadai_EN.pdf",
+          "official_link_label": "R7ごみ資源物収集日程表（地区1、英語版）",
+          "found_on": "https://www.city.misawa.lg.jp/index.cfm/22,1745,19,136,html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.misawa.lg.jp/index.cfm/22,1745,c,html/1745/20260318-175144.pdf",
+          "official_link_label": "R8ごみ資源物収集日程表（地区2）",
+          "found_on": "https://www.city.misawa.lg.jp/index.cfm/22,1745,19,136,html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.misawa.lg.jp/index.cfm/22,1745,c,html/1745/20260318-175243.pdf",
+          "official_link_label": "R8ごみ資源物収集カレンダー(地区2)",
+          "found_on": "https://www.city.misawa.lg.jp/index.cfm/22,1745,19,136,html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.misawa.lg.jp/index.cfm/22,1745,c,html/1745/20260318-175312.pdf",
+          "official_link_label": "R8ごみ資源物収集日程表（地区2、英語版）",
+          "found_on": "https://www.city.misawa.lg.jp/index.cfm/22,1745,19,136,html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.misawa.lg.jp/index.cfm/22,1745,c,html/1745/2-sakuracho.pdf",
+          "official_link_label": "R7ごみ資源物収集日程表（地区2）",
+          "found_on": "https://www.city.misawa.lg.jp/index.cfm/22,1745,19,136,html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.misawa.lg.jp/index.cfm/22,1745,c,html/1745/20250314-095649.pdf",
+          "official_link_label": "R7ごみ資源物収集カレンダー（地区2）",
+          "found_on": "https://www.city.misawa.lg.jp/index.cfm/22,1745,19,136,html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        }
+      ],
+      "note": "manual_verification_required"
+    },
+    {
+      "lgcode": "022080",
+      "pref": "青森県",
+      "municipality": "むつ市",
+      "official_home": "https://www.city.mutsu.lg.jp/",
+      "status": "scanned",
+      "candidates": [
+        {
+          "url": "https://www.city.mutsu.lg.jp/topics/news/gomibukuro_shiteigai.html",
+          "official_link_label": "【重要】指定ごみ袋（もえる・大サイズ）に関する臨時措置は10月19日に解除しました。",
+          "found_on": "https://www.city.mutsu.lg.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.mutsu.lg.jp/kurashi/kankyo/gomi/",
+          "official_link_label": "家庭から出るごみの捨て方について",
+          "found_on": "https://www.city.mutsu.lg.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.mutsu.lg.jp/kurashi/kankyo/gomi/syorigyo_gyosya.html",
+          "official_link_label": "むつ市一般廃棄物処理業許可業者について",
+          "found_on": "https://www.city.mutsu.lg.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.mutsu.lg.jp/government/bousai/genshiryoku/rfsteikihoukoku.html",
+          "official_link_label": "リサイクル燃料備蓄センターの安全協定に基づく定期報告",
+          "found_on": "https://www.city.mutsu.lg.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.mutsu.lg.jp/kurashi/kankyo/recycle/gomibukuro_koukoku.html",
+          "official_link_label": "市指定ごみ袋への広告掲載募集",
+          "found_on": "https://www.city.mutsu.lg.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.mutsu.lg.jp/bunka/sports/event/sportscalender/",
+          "official_link_label": "スポーツカレンダー",
+          "found_on": "https://www.city.mutsu.lg.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.mutsu.lg.jp/kurashi/kankyo/gomi/new_gomi_calendar.html",
+          "official_link_label": "ごみカレンダー",
+          "found_on": "https://www.city.mutsu.lg.jp/kurashi/kankyo/gomi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.mutsu.lg.jp/kurashi/kankyo/gomi/gomi_app.html",
+          "official_link_label": "予約ができる「ごみ関連メニュー」を市公式LINEで配信中",
+          "found_on": "https://www.city.mutsu.lg.jp/kurashi/kankyo/gomi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.mutsu.lg.jp/kurashi/kankyo/gomi/gomi_bunrui.html",
+          "official_link_label": "ごみ分類辞典",
+          "found_on": "https://www.city.mutsu.lg.jp/kurashi/kankyo/gomi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.mutsu.lg.jp/kurashi/kankyo/gomi/moerugomi.html",
+          "official_link_label": "「もえるごみ」の種類と出し方",
+          "found_on": "https://www.city.mutsu.lg.jp/kurashi/kankyo/gomi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.mutsu.lg.jp/kurashi/kankyo/gomi/moenaigomi.html",
+          "official_link_label": "「もえないごみ」の種類と出し方",
+          "found_on": "https://www.city.mutsu.lg.jp/kurashi/kankyo/gomi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.mutsu.lg.jp/kurashi/kankyo/gomi/shigengomi.html",
+          "official_link_label": "「資源ごみ」の種類と出し方",
+          "found_on": "https://www.city.mutsu.lg.jp/kurashi/kankyo/gomi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.mutsu.lg.jp/kurashi/kankyo/gomi/yuugaigomi.html",
+          "official_link_label": "「有害ごみ」の種類と出し方",
+          "found_on": "https://www.city.mutsu.lg.jp/kurashi/kankyo/gomi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.mutsu.lg.jp/kurashi/kankyo/gomi/sodaigomi.html",
+          "official_link_label": "「粗大ごみ」の種類と出し方",
+          "found_on": "https://www.city.mutsu.lg.jp/kurashi/kankyo/gomi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.mutsu.lg.jp/kurashi/kankyo/gomi/kaden_recycle.html",
+          "official_link_label": "家電リサイクル法対象品（テレビ、冷蔵庫、洗濯機、エアコン等）の処分",
+          "found_on": "https://www.city.mutsu.lg.jp/kurashi/kankyo/gomi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.mutsu.lg.jp/kurashi/kankyo/gomi/files/R8_11_2kyokagyousha.pdf",
+          "official_link_label": "むつ市一般廃棄物処理業許可業者一覧表（令和8年11月2日現在） (199KB)",
+          "found_on": "https://www.city.mutsu.lg.jp/kurashi/kankyo/gomi/syorigyo_gyosya.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        }
+      ],
+      "note": "manual_verification_required"
+    },
+    {
+      "lgcode": "022098",
+      "pref": "青森県",
+      "municipality": "つがる市",
+      "official_home": "https://www.city.tsugaru.aomori.jp/",
+      "status": "scanned",
+      "candidates": [
+        {
+          "url": "https://www.city.tsugaru.aomori.jp/calendar.html",
+          "official_link_label": "イベントカレンダー",
+          "found_on": "https://www.city.tsugaru.aomori.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.tsugaru.aomori.jp/joho/mokuteki/life/garbage_recycle/gomi/index.html",
+          "official_link_label": "ごみ分別検索",
+          "found_on": "https://www.city.tsugaru.aomori.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.tsugaru.aomori.jp/joho/mokuteki/life/garbage_recycle/index.html",
+          "official_link_label": "ごみ・リサイクル",
+          "found_on": "https://www.city.tsugaru.aomori.jp/joho/mokuteki/life/garbage_recycle/gomi/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.tsugaru.aomori.jp/joho/mokuteki/life/garbage_recycle/gomi/1766.html",
+          "official_link_label": "ごみ分別検索",
+          "found_on": "https://www.city.tsugaru.aomori.jp/joho/mokuteki/life/garbage_recycle/gomi/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.tsugaru.aomori.jp/joho/mokuteki/life/garbage_recycle/gominobumbetsu_shobun/index.html",
+          "official_link_label": "ごみの分別・処分",
+          "found_on": "https://www.city.tsugaru.aomori.jp/joho/mokuteki/life/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.tsugaru.aomori.jp/joho/mokuteki/life/garbage_recycle/gomioherasutorikumi/index.html",
+          "official_link_label": "ごみを減らす取り組み",
+          "found_on": "https://www.city.tsugaru.aomori.jp/joho/mokuteki/life/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.tsugaru.aomori.jp/joho/mokuteki/life/garbage_recycle/gomishushucalendar/index.html",
+          "official_link_label": "ごみ収集カレンダー",
+          "found_on": "https://www.city.tsugaru.aomori.jp/joho/mokuteki/life/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        }
+      ],
+      "note": "manual_verification_required"
+    },
+    {
+      "lgcode": "022101",
+      "pref": "青森県",
+      "municipality": "平川市",
+      "official_home": "https://www.city.hirakawa.lg.jp/",
+      "status": "scanned",
+      "candidates": [
+        {
+          "url": "https://www.city.hirakawa.lg.jp/kurashi/kankyou/shushu/R8_gomi_calendar.html",
+          "official_link_label": "ごみ収集カレンダー",
+          "found_on": "https://www.city.hirakawa.lg.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.hirakawa.lg.jp/calendar.html",
+          "official_link_label": "イベントカレンダー",
+          "found_on": "https://www.city.hirakawa.lg.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.hirakawa.lg.jp/kurashi/kankyou/",
+          "official_link_label": "ごみ・環境",
+          "found_on": "https://www.city.hirakawa.lg.jp/kurashi/kankyou/shushu/R8_gomi_calendar.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.hirakawa.lg.jp/kurashi/kankyou/shushu/",
+          "official_link_label": "ごみ収集",
+          "found_on": "https://www.city.hirakawa.lg.jp/kurashi/kankyou/shushu/R8_gomi_calendar.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.hirakawa.lg.jp/kurashi/kankyou/shushu/files/R8_hiraka.pdf",
+          "official_link_label": "令和８年度ごみ収集カレンダー（平賀地域） (1847KB)",
+          "found_on": "https://www.city.hirakawa.lg.jp/kurashi/kankyou/shushu/R8_gomi_calendar.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.hirakawa.lg.jp/kurashi/kankyou/shushu/files/R8_onoe.pdf",
+          "official_link_label": "令和８年度ごみ収集カレンダー（尾上地域） (1815KB)",
+          "found_on": "https://www.city.hirakawa.lg.jp/kurashi/kankyou/shushu/R8_gomi_calendar.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.hirakawa.lg.jp/kurashi/kankyou/shushu/files/R8_ikarigaseki.pdf",
+          "official_link_label": "令和８年度ごみ収集カレンダー（碇ヶ関地域） (1826KB)",
+          "found_on": "https://www.city.hirakawa.lg.jp/kurashi/kankyou/shushu/R8_gomi_calendar.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.hirakawa.lg.jp/kurashi/kankyou/index.html",
+          "official_link_label": "ごみ・環境",
+          "found_on": "https://www.city.hirakawa.lg.jp/kurashi/kankyou/shushu/R8_gomi_calendar.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.hirakawa.lg.jp/kurashi/keikaku/gomishori.html",
+          "official_link_label": "第２次平川市ごみ処理基本計画",
+          "found_on": "https://www.city.hirakawa.lg.jp/kurashi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.hirakawa.lg.jp/kurashi/kankyou/shushu/toriatsukaiten_bosyuu.html",
+          "official_link_label": "「共通指定ごみ袋」・「平川市粗大ごみ処理券」の取扱店を募集しています",
+          "found_on": "https://www.city.hirakawa.lg.jp/kurashi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.hirakawa.lg.jp/kurashi/kankyou/shushu/gomi_calendar_R8.html",
+          "official_link_label": "収集カレンダー",
+          "found_on": "https://www.city.hirakawa.lg.jp/kurashi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.hirakawa.lg.jp/kurashi/kankyou/shushu/R8_sogdaigomi.html",
+          "official_link_label": "粗大ごみ収集",
+          "found_on": "https://www.city.hirakawa.lg.jp/kurashi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.hirakawa.lg.jp/kurashi/keikaku/bunbetsushuushuu.html",
+          "official_link_label": "分別収集計画",
+          "found_on": "https://www.city.hirakawa.lg.jp/kurashi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.hirakawa.lg.jp/kurashi/keikaku/2021-0225-0929-33.html",
+          "official_link_label": "平川市災害廃棄物処理計画",
+          "found_on": "https://www.city.hirakawa.lg.jp/kurashi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.city.hirakawa.lg.jp/kurashi/kankyou/shushu/index.html",
+          "official_link_label": "ごみ収集",
+          "found_on": "https://www.city.hirakawa.lg.jp/kurashi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        }
+      ],
+      "note": "manual_verification_required"
+    },
+    {
+      "lgcode": "023019",
+      "pref": "青森県",
+      "municipality": "平内町",
+      "official_home": "https://www.town.hiranai.aomori.jp/",
+      "status": "scanned",
+      "candidates": [
+        {
+          "url": "https://www.town.hiranai.aomori.jp/calendar.html",
+          "official_link_label": "イベントカレンダーへ",
+          "found_on": "https://www.town.hiranai.aomori.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.hiranai.aomori.jp/kurashi/gomi/1/gomi_search/index.html",
+          "official_link_label": "ごみ出し検索ナビ ごみの分別方法の検索ができます",
+          "found_on": "https://www.town.hiranai.aomori.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.hiranai.aomori.jp/kurashi/gomi/index.html",
+          "official_link_label": "ごみ・リサイクル",
+          "found_on": "https://www.town.hiranai.aomori.jp/kurashi/gomi/1/gomi_search/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.hiranai.aomori.jp/kurashi/gomi/1/index.html",
+          "official_link_label": "ごみの出し方",
+          "found_on": "https://www.town.hiranai.aomori.jp/kurashi/gomi/1/gomi_search/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.hiranai.aomori.jp/kurashi/gomi/1/gomi_search/1737.html",
+          "official_link_label": "家庭ごみの出し方検索",
+          "found_on": "https://www.town.hiranai.aomori.jp/kurashi/gomi/1/gomi_search/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.hiranai.aomori.jp/kurashi/gomi/2/index.html",
+          "official_link_label": "ごみ処理施設",
+          "found_on": "https://www.town.hiranai.aomori.jp/kurashi/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        }
+      ],
+      "note": "manual_verification_required"
+    },
+    {
+      "lgcode": "023035",
+      "pref": "青森県",
+      "municipality": "今別町",
+      "official_home": "https://www.town.imabetsu.lg.jp/",
+      "status": "scanned",
+      "candidates": [
+        {
+          "url": "https://www.town.imabetsu.lg.jp/kurashi/sumai/bunbetsu.html",
+          "official_link_label": "ごみ分別について",
+          "found_on": "https://www.town.imabetsu.lg.jp/kurashi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.imabetsu.lg.jp/kurashi/sumai/shushu.html",
+          "official_link_label": "ごみ収集日・場所",
+          "found_on": "https://www.town.imabetsu.lg.jp/kurashi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.imabetsu.lg.jp/kurashi/sumai/2019-0307-0923-1.html",
+          "official_link_label": "ごみ収集カレンダー",
+          "found_on": "https://www.town.imabetsu.lg.jp/kurashi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.imabetsu.lg.jp/news/calendar.html",
+          "official_link_label": "イベントカレンダー",
+          "found_on": "https://www.town.imabetsu.lg.jp/news/gyousei/2026-0209-1752-1.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        }
+      ],
+      "note": "manual_verification_required"
+    },
+    {
+      "lgcode": "023043",
+      "pref": "青森県",
+      "municipality": "蓬田村",
+      "official_home": "https://www.vill.yomogita.lg.jp/",
+      "status": "scanned",
+      "candidates": [
+        {
+          "url": "https://www.vill.yomogita.lg.jp/kurashi/recycle/",
+          "official_link_label": "ごみ・リサイクル",
+          "found_on": "https://www.vill.yomogita.lg.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.vill.yomogita.lg.jp/kurashi/recycle/siteigomi.html",
+          "official_link_label": "蓬田村指定ごみ袋について",
+          "found_on": "https://www.vill.yomogita.lg.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.vill.yomogita.lg.jp/sonsei/keikaku/saigaihaikibutusyorikeikaku.html",
+          "official_link_label": "蓬田村災害廃棄物処理計画",
+          "found_on": "https://www.vill.yomogita.lg.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.vill.yomogita.lg.jp/kurashi/recycle/bunbetsu.html",
+          "official_link_label": "ごみの分別",
+          "found_on": "https://www.vill.yomogita.lg.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.vill.yomogita.lg.jp/kurashi/recycle/index.html",
+          "official_link_label": "ごみ・リサイクル",
+          "found_on": "https://www.vill.yomogita.lg.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.vill.yomogita.lg.jp/kurashi/recycle/dashikata.html",
+          "official_link_label": "ごみの出し方について",
+          "found_on": "https://www.vill.yomogita.lg.jp/kurashi/recycle/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.vill.yomogita.lg.jp/kurashi/recycle/yuryoka.html",
+          "official_link_label": "ごみの有料化について",
+          "found_on": "https://www.vill.yomogita.lg.jp/kurashi/recycle/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.vill.yomogita.lg.jp/sonsei/keikaku/files/saigaihaikibutusyori.pdf",
+          "official_link_label": "蓬田村災害廃棄物処理計画 (2122KB)",
+          "found_on": "https://www.vill.yomogita.lg.jp/sonsei/keikaku/saigaihaikibutusyorikeikaku.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.vill.yomogita.lg.jp/kurashi/recycle/files/2026yomogitagomi.pdf",
+          "official_link_label": "蓬田・宮本・郷沢・瀬辺地・広瀬・高根 ごみ収集カレンダー (3903KB)",
+          "found_on": "https://www.vill.yomogita.lg.jp/kurashi/recycle/bunbetsu.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.vill.yomogita.lg.jp/kurashi/recycle/files/2026nakazawagomi.pdf",
+          "official_link_label": "中沢・長科・阿弥陀川・ぐっと町会 ごみ収集カレンダー (3895KB)",
+          "found_on": "https://www.vill.yomogita.lg.jp/kurashi/recycle/bunbetsu.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        }
+      ],
+      "note": "manual_verification_required"
+    },
+    {
+      "lgcode": "023078",
+      "pref": "青森県",
+      "municipality": "外ヶ浜町",
+      "official_home": "https://www.town.sotogahama.lg.jp/",
+      "status": "scanned",
+      "candidates": [
+        {
+          "url": "https://www.town.sotogahama.lg.jp/kurashi/kankyo/bunbetsu_jiten.html",
+          "official_link_label": "ごみ分別辞典",
+          "found_on": "https://www.town.sotogahama.lg.jp/kurashi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.sotogahama.lg.jp/kurashi/kankyo/gomi.html",
+          "official_link_label": "ごみについて",
+          "found_on": "https://www.town.sotogahama.lg.jp/kurashi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.sotogahama.lg.jp/kurashi/kankyo/rinji_sochi.html",
+          "official_link_label": "家庭ごみ収集に関する臨時措置について",
+          "found_on": "https://www.town.sotogahama.lg.jp/kurashi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.sotogahama.lg.jp/kurashi/kankyo/recycle.html",
+          "official_link_label": "リサイクル",
+          "found_on": "https://www.town.sotogahama.lg.jp/kurashi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        }
+      ],
+      "note": "manual_verification_required"
+    },
+    {
+      "lgcode": "023213",
+      "pref": "青森県",
+      "municipality": "鰺ヶ沢町",
+      "official_home": "https://www.town.ajigasawa.lg.jp/",
+      "status": "scanned",
+      "candidates": [
+        {
+          "url": "https://www.town.ajigasawa.lg.jp/kurashi/seikatsu/gomi/index.html",
+          "official_link_label": "ごみの分別",
+          "found_on": "https://www.town.ajigasawa.lg.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.ajigasawa.lg.jp/kurashi/seikatsu/gomi/seikatsuieisei01.html",
+          "official_link_label": "ごみの分け方・出し方（五十音順）",
+          "found_on": "https://www.town.ajigasawa.lg.jp/kurashi/seikatsu/gomi/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.ajigasawa.lg.jp/kurashi/seikatsu/gomi/gomicalendar.html",
+          "official_link_label": "鰺ヶ沢町ごみ収集カレンダー（令和8年度）",
+          "found_on": "https://www.town.ajigasawa.lg.jp/kurashi/seikatsu/gomi/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.ajigasawa.lg.jp/kurashi/seikatsu/gomi/gomi13bunbetu.html",
+          "official_link_label": "環境・未来のために13分別",
+          "found_on": "https://www.town.ajigasawa.lg.jp/kurashi/seikatsu/gomi/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.ajigasawa.lg.jp/kurashi/seikatsu/gomi/gomihannbaikakaku.html",
+          "official_link_label": "指定ごみ袋・粗大ごみ処理券の規格と販売価格",
+          "found_on": "https://www.town.ajigasawa.lg.jp/kurashi/seikatsu/gomi/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.ajigasawa.lg.jp/kurashi/seikatsu/gomi/gomidashi_chui.html",
+          "official_link_label": "ごみを出す際の注意",
+          "found_on": "https://www.town.ajigasawa.lg.jp/kurashi/seikatsu/gomi/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.ajigasawa.lg.jp/kurashi/seikatsu/gomi/kadenrecicle.html",
+          "official_link_label": "家電4品目のリサイクル（有料）",
+          "found_on": "https://www.town.ajigasawa.lg.jp/kurashi/seikatsu/gomi/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.ajigasawa.lg.jp/kurashi/seikatsu/gomi/gomi_mochikomi.html",
+          "official_link_label": "ごみを自分で持ち込みする場合",
+          "found_on": "https://www.town.ajigasawa.lg.jp/kurashi/seikatsu/gomi/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.ajigasawa.lg.jp/kurashi/seikatsu/gomi/jutakukasaigomi.html",
+          "official_link_label": "住宅火災ごみの受け入れについて",
+          "found_on": "https://www.town.ajigasawa.lg.jp/kurashi/seikatsu/gomi/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.ajigasawa.lg.jp/kurashi/seikatsu/gomi/gennryou.html",
+          "official_link_label": "減量のためのリサイクル心得",
+          "found_on": "https://www.town.ajigasawa.lg.jp/kurashi/seikatsu/gomi/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.ajigasawa.lg.jp/kurashi/seikatsu/gomi_huhotoki.html",
+          "official_link_label": "ごみの不法投棄は犯罪です！",
+          "found_on": "https://www.town.ajigasawa.lg.jp/kurashi/seikatsu/gomi/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.ajigasawa.lg.jp/kurashi/seikatsu/gomi_3r.html",
+          "official_link_label": "「混ぜればごみ・分ければ資源」3R（スリーアール）について",
+          "found_on": "https://www.town.ajigasawa.lg.jp/kurashi/seikatsu/gomi/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.ajigasawa.lg.jp/kurashi/seikatsu/pcbhaikibutsu.html",
+          "official_link_label": "PCB廃棄物の処分期限が迫っています！",
+          "found_on": "https://www.town.ajigasawa.lg.jp/kurashi/seikatsu/gomi/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.ajigasawa.lg.jp/kurashi/seikatsu/gomi_shobun.html",
+          "official_link_label": "ごみの処分について",
+          "found_on": "https://www.town.ajigasawa.lg.jp/kurashi/seikatsu/gomi/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        }
+      ],
+      "note": "manual_verification_required"
+    },
+    {
+      "lgcode": "023230",
+      "pref": "青森県",
+      "municipality": "深浦町",
+      "official_home": "https://www.town.fukaura.lg.jp/",
+      "status": "scanned",
+      "candidates": [
+        {
+          "url": "https://www.town.fukaura.lg.jp/category/bunya/seikatsu_kankyo/gomi/",
+          "official_link_label": "ごみ",
+          "found_on": "https://www.town.fukaura.lg.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.fukaura.lg.jp/doc/2026033100027/",
+          "official_link_label": "深浦町災害廃棄物処理計画を策定しました",
+          "found_on": "https://www.town.fukaura.lg.jp/category/bunya/seikatsu_kankyo/gomi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.fukaura.lg.jp/doc/2023102300012/",
+          "official_link_label": "ごみの出し方・分け方",
+          "found_on": "https://www.town.fukaura.lg.jp/category/bunya/seikatsu_kankyo/gomi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.fukaura.lg.jp/doc/2019071100142/",
+          "official_link_label": "使用済小型家電リサイクルについて",
+          "found_on": "https://www.town.fukaura.lg.jp/category/bunya/seikatsu_kankyo/gomi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.fukaura.lg.jp/doc/2019071100104/",
+          "official_link_label": "生ごみの減量について",
+          "found_on": "https://www.town.fukaura.lg.jp/category/bunya/seikatsu_kankyo/gomi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        }
+      ],
+      "note": "manual_verification_required"
+    },
+    {
+      "lgcode": "023434",
+      "pref": "青森県",
+      "municipality": "西目屋村",
+      "official_home": "https://www.nishimeya.jp/",
+      "status": "scanned",
+      "candidates": [
+        {
+          "url": "https://www.nishimeya.jp/kurashinojoho/gomi_kankyo/index.html",
+          "official_link_label": "ごみ・環境",
+          "found_on": "https://www.nishimeya.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.nishimeya.jp/kurashinojoho/gomi_kankyo/587.html",
+          "official_link_label": "ごみの減量にご協力ください",
+          "found_on": "https://www.nishimeya.jp/kurashinojoho/gomi_kankyo/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.nishimeya.jp/kurashinojoho/gomi_kankyo/589.html",
+          "official_link_label": "ごみの分別と出し方",
+          "found_on": "https://www.nishimeya.jp/kurashinojoho/gomi_kankyo/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.nishimeya.jp/kurashi_tetsuzuki/gomi_kankyo/index.html",
+          "official_link_label": "ごみ・環境",
+          "found_on": "https://www.nishimeya.jp/kurashi_tetsuzuki/index.html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        }
+      ],
+      "note": "manual_verification_required"
+    },
+    {
+      "lgcode": "023612",
+      "pref": "青森県",
+      "municipality": "藤崎町",
+      "official_home": "https://www.town.fujisaki.lg.jp/",
+      "status": "scanned",
+      "candidates": [
+        {
+          "url": "https://www.town.fujisaki.lg.jp/index.cfm/7,0,24,html",
+          "official_link_label": "ごみ・環境",
+          "found_on": "https://www.town.fujisaki.lg.jp/index.cfm/7,html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.fujisaki.lg.jp/index.cfm/7,0,24,458,html",
+          "official_link_label": "ごみ・リサイクル・し尿",
+          "found_on": "https://www.town.fujisaki.lg.jp/index.cfm/7,html",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        }
+      ],
+      "note": "manual_verification_required"
+    },
+    {
+      "lgcode": "023621",
+      "pref": "青森県",
+      "municipality": "大鰐町",
+      "official_home": "http://www.town.owani.lg.jp/",
+      "status": "scanned",
+      "candidates": [],
+      "note": "limited_scan_no_candidate_not_proof_of_absence"
+    },
+    {
+      "lgcode": "023671",
+      "pref": "青森県",
+      "municipality": "田舎館村",
+      "official_home": "http://www.vill.inakadate.lg.jp/",
+      "status": "scanned",
+      "candidates": [
+        {
+          "url": "http://www.vill.inakadate.lg.jp/docs/2023040500017/",
+          "official_link_label": "『田舎館村災害廃棄物処理計画』の策定について",
+          "found_on": "http://www.vill.inakadate.lg.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "http://www.vill.inakadate.lg.jp/bunya/gomi/",
+          "official_link_label": "ゴミ・リサイクル",
+          "found_on": "http://www.vill.inakadate.lg.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "http://www.vill.inakadate.lg.jp/docs/2023040500017/files/saigai-haikibutsu-plan_v2c.pdf",
+          "official_link_label": "田舎館村災害廃棄物処理計画.pdf(5MB)",
+          "found_on": "http://www.vill.inakadate.lg.jp/docs/2023040500017/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "http://www.vill.inakadate.lg.jp/docs/2020010900020/",
+          "official_link_label": "事業系ごみについて",
+          "found_on": "http://www.vill.inakadate.lg.jp/bunya/gomi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "http://www.vill.inakadate.lg.jp/docs/2020010900013/",
+          "official_link_label": "家庭ごみの出し方・分け方について",
+          "found_on": "http://www.vill.inakadate.lg.jp/bunya/gomi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "http://www.vill.inakadate.lg.jp/docs/2026052700017/",
+          "official_link_label": "田舎館村一般廃棄物処理計画（基本計画・実施計画）の策定について",
+          "found_on": "http://www.vill.inakadate.lg.jp/bunya/gomi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "http://www.vill.inakadate.lg.jp/docs/2026030400014/",
+          "official_link_label": "ごみ処理方法の変更（令和８年４月１日～）",
+          "found_on": "http://www.vill.inakadate.lg.jp/bunya/gomi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "http://www.vill.inakadate.lg.jp/docs/2019020500016/",
+          "official_link_label": "家電リサイクル法対象製品について",
+          "found_on": "http://www.vill.inakadate.lg.jp/bunya/gomi/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        }
+      ],
+      "note": "manual_verification_required"
+    },
+    {
+      "lgcode": "023817",
+      "pref": "青森県",
+      "municipality": "板柳町",
+      "official_home": "https://www.town.itayanagi.aomori.jp/",
+      "status": "scanned",
+      "candidates": [
+        {
+          "url": "https://www.town.itayanagi.aomori.jp/calender/index.php",
+          "official_link_label": "行事カレンダー",
+          "found_on": "https://www.town.itayanagi.aomori.jp/",
+          "discovery_depth": 1,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.itayanagi.aomori.jp/calender/",
+          "official_link_label": "行事カレンダー",
+          "found_on": "https://www.town.itayanagi.aomori.jp/calender/index.php",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        },
+        {
+          "url": "https://www.town.itayanagi.aomori.jp/life/refuse/index.html",
+          "official_link_label": "ごみ・環境・すまい",
+          "found_on": "https://www.town.itayanagi.aomori.jp/life/",
+          "discovery_depth": 2,
+          "verification": "UNVERIFIED"
+        }
+      ],
+      "note": "manual_verification_required"
+    }
+  ]
+}
