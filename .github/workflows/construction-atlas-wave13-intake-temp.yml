@@ -48,7 +48,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git rm .github/workflows/construction-atlas-wave13-intake-temp.yml
           git add tools/construction-tools-atlas sitemap.xml
-          git diff --cached --check
+          git diff --cached --check -- tools/construction-tools-atlas/data tools/construction-tools-atlas/images/ATTRIBUTION.md tools/construction-tools-atlas/scripts sitemap.xml
           git diff --cached --stat | tail -35
           git commit -m "feat(atlas): stage ten pinned Commons image originals and uncropped WebP"
           git push origin HEAD:refs/heads/feat/atlas-wave13-reviewed-ten-20261106
