@@ -8,7 +8,7 @@
   const ENRICHMENT_MANIFEST_PATH = "./data/content-enrichment-manifest-v2.3.json";
   const DEFINITION_PROMOTIONS_PATH = "./data/definition-promotions-v2.3.json";
   const REVIEWED_EDITORIAL_PATH = "./data/reviewed-editorial-five-v2.3.json";
-  const REVIEWED_EDITORIAL_VERSION = "2026-11-05-gsc-five-source-guard-1";
+  const REVIEWED_EDITORIAL_VERSION = "2026-11-06-gsc-five-source-guard-2";
   const REVIEWED_ALIASES_PATH = "./data/reviewed-aliases-v3.json";
   const REVIEWED_ALIASES_VERSION = "20261103-final-five-reviewed-aliases-2";
   const DEFINITION_PROMOTIONS_VERSION = "20261103-source-backed-144-1";
