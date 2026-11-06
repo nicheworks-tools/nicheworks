@@ -32,6 +32,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Verify five reviewed pages against exact source and generator
+        run: |
+          node tools/construction-tools-atlas/scripts/build-seo-detail-pages-v2.3.cjs --check
+          node tools/construction-tools-atlas/scripts/check-reviewed-five-editorial-v2.3.cjs
       - name: Verify installed Chrome/Chromium
         run: command -v google-chrome || command -v google-chrome-stable || command -v chromium
       - name: Check live Chromium probe syntax
