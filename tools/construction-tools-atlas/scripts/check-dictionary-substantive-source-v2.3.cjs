@@ -7,6 +7,17 @@ const {runPublicLoader}=require("./audit-public-image-inventory-v2.3.cjs");
  assert.equal(overlay.schema,"cta-definition-promotions-v2.3");
  assert.equal(overlay.entries.length,144,"144 individually identified public canonical definitions expected");
  const rows=new Map(overlay.entries.map(row=>[row.id,row]));
+ const reviewed=JSON.parse(fs.readFileSync(path.join(__dirname,"..","data","reviewed-editorial-five-v2.3.json"),"utf8"));
+ assert.equal(reviewed.schema,"cta-reviewed-editorial-five-v2.3");
+ assert.equal(reviewed.entries.length,5);
+ const allowed=new Map();
+ for(const patch of reviewed.entries){
+  if(patch.review_state!=="approved_editorial_gsc_20261105")continue;
+  assert(!allowed.has(patch.id),"Repeated reviewed editorial ID");
+  allowed.set(patch.id,patch);
+ }
+ assert.equal(allowed.size,5,"All five source-guarded editorial reviews required");
+
  assert.equal(rows.size,144,"duplicate promoted canonical id");
  const ids=new Set(),pending=[],maintained=[],promoted=[];
  for(const entry of runtime.entries){
@@ -27,8 +38,17 @@ const {runPublicLoader}=require("./audit-public-image-inventory-v2.3.cjs");
      (en.length<135&&detailEn.length>=125&&!detailEn.includes(en)))pending.push(id);
   if(rows.has(id)){
    const patch=rows.get(id);
-   assert.equal(ja,patch.definition_ja,id+": promoted Japanese source differs");
-   assert.equal(en,patch.definition_en,id+": promoted English source differs");
+   const newer=allowed.get(id);
+   if(newer){
+    assert.equal(newer.expected_description.ja,patch.definition_ja,id+": editorial original Japanese source changed");
+    assert.equal(newer.expected_description.en,patch.definition_en,id+": editorial original English source changed");
+    assert.equal(ja,newer.description.ja,id+": reviewed Japanese source differs");
+    assert.equal(en,newer.description.en,id+": reviewed English source differs");
+    assert.equal(entry.meta?.reviewed_editorial_version,reviewed.version,id+": editorial provenance lost");
+   }else{
+    assert.equal(ja,patch.definition_ja,id+": promoted Japanese source differs");
+    assert.equal(en,patch.definition_en,id+": promoted English source differs");
+   }
    assert(entry.summary?.ja || entry.summary_ja,id+": concise browse summary lost");
    assert.equal(entry.meta?.definition_promotion_version,overlay.version,id+": provenance lost");
    promoted.push(id);

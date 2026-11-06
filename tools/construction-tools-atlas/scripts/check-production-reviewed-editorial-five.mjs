@@ -5,8 +5,8 @@ import fs from "node:fs";
 const ROOT="https://nicheworks.app/tools/construction-tools-atlas";
 const ledger=JSON.parse(fs.readFileSync(new URL("../data/reviewed-editorial-five-v2.3.json",import.meta.url),"utf8"));
 const rows=ledger.entries.filter(r=>r.review_state==="approved_editorial_gsc_20261105");
-assert.equal(rows.length,3,"Exactly three approved editorial entries");
-const gate="atlas-editorial-three-20261105";
+assert.equal(rows.length,5,"Exactly three approved editorial entries");
+const gate="atlas-editorial-five-20261106";
 async function fetchLive(p){
  const res=await fetch(ROOT+"/"+p+"?audit="+gate,{headers:{"cache-control":"no-cache","user-agent":"NicheWorks-Atlas-SEO-Production-QA/2.3"},signal:AbortSignal.timeout(35000),redirect:"follow"});
  assert.equal(res.status,200,"Live public HTTP 200 required: "+p+" (HTTP "+res.status+")");
@@ -41,4 +41,4 @@ for(const row of rows){
  assert.ok(schema,id+": schema missing");
  assert.equal(JSON.parse(schema[1])[0].description,row.description.ja,id+": structured description stale");
 }
-console.log("CTA_LIVE_REVIEWED_EDITORIAL_THREE_PASS="+JSON.stringify({entries:rows.map(x=>x.id),public_terms:865,seo_pages:seo.summary.published_static_detail_pages,formal_images:publicInventory.summary.formal_image_entries,bilingual_definitions:6,verified_titles:3,verified_meta:3}));
+console.log("CTA_LIVE_REVIEWED_EDITORIAL_FIVE_PASS="+JSON.stringify({entries:rows.map(x=>x.id),public_terms:865,seo_pages:seo.summary.published_static_detail_pages,formal_images:publicInventory.summary.formal_image_entries,bilingual_definitions:10,verified_titles:5,verified_meta:5}));

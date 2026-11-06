@@ -7,7 +7,7 @@ on:
       - 'tools/construction-tools-atlas/scripts/check-production-saw-publication.mjs'
       - 'tools/construction-tools-atlas/scripts/check-production-wave11-publication.mjs'
       - 'tools/construction-tools-atlas/scripts/check-production-wave12-publication.mjs'
-      - 'tools/construction-tools-atlas/scripts/check-production-reviewed-editorial-three.mjs'
+      - 'tools/construction-tools-atlas/scripts/check-production-reviewed-editorial-five.mjs'
       - '.github/workflows/construction-atlas-production-360.yml'
   push:
     branches: [main]
@@ -32,6 +32,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Verify five reviewed pages against exact source and generator
+        run: |
+          node tools/construction-tools-atlas/scripts/build-seo-detail-pages-v2.3.cjs --check
+          node tools/construction-tools-atlas/scripts/check-reviewed-five-editorial-v2.3.cjs
       - name: Verify installed Chrome/Chromium
         run: command -v google-chrome || command -v google-chrome-stable || command -v chromium
       - name: Check live Chromium probe syntax
@@ -84,14 +88,14 @@ jobs:
             if ((i==attempts)); then exit 1; fi
             sleep 45
           done
-      - name: Verify three reviewed live Atlas SEO pages
+      - name: Verify five reviewed live Atlas SEO pages
         if: github.event_name != 'pull_request'
         shell: bash
         run: |
           attempts=1
           if [[ "${{ github.event_name }}" == "push" ]]; then attempts=8; fi
           for ((i=1; i<=attempts; i++)); do
-            if node tools/construction-tools-atlas/scripts/check-production-reviewed-editorial-three.mjs; then exit 0; fi
+            if node tools/construction-tools-atlas/scripts/check-production-reviewed-editorial-five.mjs; then exit 0; fi
             if ((i==attempts)); then exit 1; fi
             sleep 45
           done
