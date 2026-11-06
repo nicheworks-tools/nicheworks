@@ -51,9 +51,9 @@ for(const row of rows){
  assert.equal(affiliate.getConsumableOffers(row).length,0);
 }
 const coverage=fs.readFileSync(new URL('COVERAGE.md',root),'utf8');
-assert.ok(coverage.includes('**2,679 verified model/caliber rows**'));
-assert.ok(coverage.includes('| **Total** | **2,679** |'));
+assert.ok(coverage.includes('**2,685 verified model/caliber rows**'));
+assert.ok(coverage.includes('| **Total** | **2,685** |'));
 assert.ok(coverage.includes('| Huawei | 5 | expanded, bounded |'));
 assert.ok(coverage.includes('| 21 | Huawei | **expanded — 5**'));
-for(const f of ['index.html','en/index.html','app.paged.js'])assert.ok(fs.readFileSync(new URL(f,root),'utf8').includes('mf-oneplus12-20261106a'),f);
+for(const f of ['index.html','en/index.html','app.paged.js'])assert.ok(fs.readFileSync(new URL(f,root),'utf8').includes('mf-dyson6-20261106a'),f);
 console.log('Huawei JP official FAQ table 5 manual download indexes, exact product pages, no unsupported direct PDF and no unauthorized affiliate category, runtime PASS.');
