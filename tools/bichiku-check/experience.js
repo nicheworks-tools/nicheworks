@@ -19,6 +19,13 @@ if(!state.variants||Array.isArray(state.variants))state.variants={};
 const save=()=>{try{localStorage.setItem("bichiku-check-v1",JSON.stringify(state))}catch(_){}};
 const calc=()=>decision.assessment(catalog,choices,state,today());
 const getBasic=id=>state.stocks[key(id)]||{},getOption=id=>state.variants[key(id)]||{};
+// A change to the household or the outage scenario requires a new deliberate
+// review of the previously approved drinking quantity. Preserve every litre.
+function revokeDrinkingApproval(){
+ const k=key("water"),entry=state.stocks[k];
+ if(entry&&entry.drinkingReserveConfirmed===true)
+  state.stocks[k]=Object.assign({},entry,{drinkingReserveConfirmed:false});
+}
 const targetUrls={};
 function addTarget(id,query){
  if(!query)return;
@@ -154,7 +161,7 @@ function drinkingBudgetControls(a){
   (d.extraRequired>0?'<p class="g-pending">'+esc(T.drinkTargetRise)+': <strong>'+fmt(d.extraRequired)+'L</strong></p>':"")+
   '<p class="g-water-summary">'+esc(T.drinkShopShortage)+': <strong>'+fmt(d.shoppingMissing)+'L</strong></p>':"")+
  (d.confirmed?'<p class="g-water-summary">'+esc(T.drinkFree)+': <strong>'+fmt(d.afterBoth)+'L</strong></p>':
- '<p class="g-pending">'+esc(T.drinkUnconfirmed)+'</p>')+
+ '<p class="g-pending">'+esc(d.householdChanged?T.drinkHouseholdChanged:T.drinkUnconfirmed)+'</p>')+
  (d.overcommitted?'<p class="g-pending">'+esc(T.drinkOvercommitted)+'</p>':"")+
  '<p class="g-fine">'+esc(T.drinkReserveCaution)+'</p></div>';
 }
@@ -386,12 +393,30 @@ function changeStage(next,id){
 setup.addEventListener("click",e=>{
  const advanced=setup.querySelector("details.advanced");if(advanced)advancedOpen=advanced.open;
  const inc=e.target.closest("[data-inc]");
- if(inc){const id=inc.dataset.field;state[id]=Math.max(id==="adults"?1:0,Math.min(["adults","children"].includes(id)?15:10,n(state[id])+Number(inc.dataset.inc)));save();renderSetup();return}
+ if(inc){
+  const id=inc.dataset.field,previous=n(state[id]);
+  state[id]=Math.max(id==="adults"?1:0,Math.min(["adults","children"].includes(id)?15:10,previous+Number(inc.dataset.inc)));
+  if(n(state[id])!==previous&&["adults","children","infants","pets"].includes(id))revokeDrinkingApproval();
+  save();renderSetup();return;
+ }
  const select=e.target.closest("[data-select]");
- if(select){state[select.dataset.select]=select.dataset.select==="days"?Number(select.dataset.value):select.dataset.value;save();renderSetup();return}
+ if(select){
+  const id=select.dataset.select,value=id==="days"?Number(select.dataset.value):select.dataset.value;
+  if(id==="days"&&state.days!==value)revokeDrinkingApproval();
+  state[id]=value;save();renderSetup();return;
+ }
  if(e.target.closest("#calculate")){selected=null;showAll=false;changeStage("results")}
 });
-setup.addEventListener("change",e=>{if(e.target.dataset.condition){const id=e.target.dataset.condition;state[id]=e.target.checked;if(id==="powerOut"||id==="noHeat")state.offGridHeatConfirmed=false;save()}});
+setup.addEventListener("change",e=>{if(e.target.dataset.condition){
+ const id=e.target.dataset.condition,next=e.target.checked;
+ if(id==="waterOut"&&state.waterOut!==next){
+  revokeDrinkingApproval();
+  state.safeWaterConfirmed=false;
+ }
+ state[id]=next;
+ if(id==="powerOut"||id==="noHeat")state.offGridHeatConfirmed=false;
+ save();
+}});
 result.addEventListener("click",e=>{
  const b=e.target.closest("button");if(!b)return;
  if(b.hasAttribute("data-edit")){stage="setup";render();setup.scrollIntoView({behavior:"smooth",block:"start"});return}
@@ -432,6 +457,7 @@ result.addEventListener("change",e=>{
   }else{
    item.drinkingReserveConfirmed=t.checked;
    item.drinkingReservePlanDays=state.mode==="go"?1:n(state.days);
+   item.drinkingReserveHousehold=decision.drinkingHouseholdKey(state);
   }
   state.stocks[key("water")]=item;save();preserveOpen();render();return;
  }

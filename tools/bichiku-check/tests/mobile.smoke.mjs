@@ -689,7 +689,7 @@ try{
     mode:"home",adults:1,children:0,infants:0,pets:0,days:3,
     noHeat:true,waterOut:true,safeWaterConfirmed:true,
     stocks:{"home:water":{qty:10,drinkingReserveLiters:9,
-      drinkingReserveConfirmed:true,drinkingReservePlanDays:3}},
+      drinkingReserveConfirmed:true,drinkingReservePlanDays:3,drinkingReserveHousehold:"1:0:0:0"}},
     variants:{"home:alphaRice":{qty:2,prepConfirmed:true,prepWaterLiters:2}}
   })));
   await page.reload({waitUntil:"domcontentloaded"});
@@ -719,6 +719,77 @@ try{
   assert.equal(await page.locator('.g-shop-row input[data-shop="water"]').count(),0,"water must disappear from shopping once allocation fits the stock");
   assert.deepEqual(exceptions,[]);
   console.log("PASS verified water plan increases overview and shopping target without double adding prep");
+  passed++;await ctx.close();
+ }
+
+ // A saved drinking plan cannot cover a different roster, even on the same day plan.
+ {
+  const {ctx,page,exceptions}=await open(390);
+  await page.evaluate(()=>localStorage.setItem("bichiku-check-v1",JSON.stringify({
+   mode:"home",adults:1,children:0,infants:0,pets:0,days:3,
+   waterOut:true,noHeat:true,safeWaterConfirmed:true,
+   stocks:{"home:water":{qty:8,drinkingReserveLiters:5,
+     drinkingReserveConfirmed:true,drinkingReservePlanDays:3,
+     drinkingReserveHousehold:"1:0:0:0"}},
+   variants:{"home:alphaRice":{qty:3,prepConfirmed:true,prepWaterLiters:2}}
+  })));
+  await page.reload({waitUntil:"domcontentloaded"});
+  await page.locator("#calculate").click();
+  await page.locator('button[data-goal="food"]').click();
+  assert.equal(await page.locator('input[data-drink-confirm]').isChecked(),true);
+  assert.match(await page.locator(".g-detail-status").innerText(),/6/,"confirmed plan credits three rice portions");
+  await page.locator('button[data-back]').click();
+  await page.locator('button[data-edit]').click();
+  await page.locator('button[data-inc="1"][data-field="adults"]').click();
+  await page.locator("#calculate").click();
+  await page.locator('button[data-goal="food"]').click();
+  assert.equal(await page.locator('input[data-drink-confirm]').isChecked(),false,"more adults invalidate prior drinking review");
+  assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem("bichiku-check-v1")).stocks["home:water"].drinkingReserveLiters),5,
+   "old water amount must not be deleted");
+  assert.match(await page.locator(".g-drinking-review").innerText(),/未確認/);
+  await page.locator('input[data-drink-confirm]').check();
+  assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem("bichiku-check-v1")).stocks["home:water"].drinkingReserveHousehold),"2:0:0:0");
+  await page.reload({waitUntil:"domcontentloaded"});
+  await page.locator("#calculate").click();
+  await page.locator('button[data-goal="food"]').click();
+  assert.equal(await page.locator('input[data-drink-confirm]').isChecked(),true,"new roster-bound review persists");
+  await page.locator('button[data-back]').click();
+  await page.locator('button[data-edit]').click();
+  await page.locator('button[data-select="days"][data-value="7"]').click();
+  await page.locator("#calculate").click();
+  await page.locator('button[data-goal="food"]').click();
+  assert.equal(await page.locator('input[data-drink-confirm]').isChecked(),false,"changing planning days invalidates the review");
+  await page.locator('button[data-back]').click();
+  await page.locator('button[data-edit]').click();
+  await page.locator('input[data-condition="waterOut"]').uncheck();
+  await page.locator('input[data-condition="waterOut"]').check();
+  assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem("bichiku-check-v1")).safeWaterConfirmed),false,
+   "changing water outage scope also revokes potable-water safety confirmation");
+  await noOverflow(page,"390px roster-scoped drinking review");
+  assert.deepEqual(exceptions,[]);
+  console.log("PASS drinking confirmation revoked on adults/day/outage change while preserving litres");
+  passed++;await ctx.close();
+ }
+ // Old localStorage approvals with no household snapshot are not trusted.
+ {
+  const {ctx,page,exceptions}=await open(320);
+  await page.evaluate(()=>localStorage.setItem("bichiku-check-v1",JSON.stringify({
+   mode:"home",adults:1,days:3,noHeat:true,waterOut:true,safeWaterConfirmed:true,
+   stocks:{"home:water":{qty:8,drinkingReserveLiters:5,
+     drinkingReserveConfirmed:true,drinkingReservePlanDays:3}},
+   variants:{"home:alphaRice":{qty:3,prepConfirmed:true,prepWaterLiters:2}}
+  })));
+  await page.reload({waitUntil:"domcontentloaded"});
+  await page.locator("#calculate").click();
+  await page.locator('button[data-goal="food"]').click();
+  assert.equal(await page.locator('input[data-drink-confirm]').isChecked(),false);
+  assert.match(await page.locator(".g-drinking-review").innerText(),/人数構成/);
+  assert.match(await page.locator(".g-detail-status").innerText(),/9/,"legacy water review cannot certify hydrated food");
+  await page.locator('input[data-drink-confirm]').check();
+  assert.match(await page.locator(".g-detail-status").innerText(),/6/,"fresh review credits food without erasing old stock");
+  assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem("bichiku-check-v1")).stocks["home:water"].drinkingReserveHousehold),"1:0:0:0");
+  assert.deepEqual(exceptions,[]);
+  console.log("PASS legacy drinking approval requires fresh household confirmation at 320px");
   passed++;await ctx.close();
  }
 
