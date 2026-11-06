@@ -71,5 +71,10 @@ Object.assign(extra.ja,{drinkBaselineTarget:"従来の水の必要目安（変�
 Object.assign(extra.en,{drinkBaselineTarget:"Previously selected water requirement",drinkUpdatedTarget:"Water required for the verified allocation",drinkTargetRise:"Additional litres needed above the existing target",drinkShopShortage:"Water shortage included in the shopping list",drinkShoppingReason:"Extra requirement from verified drinking and preparation allocations"});
 Object.assign(extra.zh,{drinkBaselineTarget:"原先设定的备水需求量",drinkUpdatedTarget:"按已核实饮用及调理配额计算的需水量",drinkTargetRise:"超出原定需水目标的增量",drinkShopShortage:"购物清单所列缺水量",drinkShoppingReason:"已核实饮用与调理配额增加的需水量"});
 Object.assign(extra.vi,{drinkBaselineTarget:"Nhu cầu nước theo mục tiêu trước đó",drinkUpdatedTarget:"Nhu cầu nước theo phân bổ đã xác minh",drinkTargetRise:"Lượng tăng thêm so với mục tiêu ban đầu",drinkShopShortage:"Số lít thiếu trong danh sách mua sắm",drinkShoppingReason:"Phần nước tăng thêm từ phân bổ uống và chế biến đã xác minh"});
+// Drinking-water verification is scoped to the actual household roster.
+Object.assign(extra.ja,{drinkHouseholdChanged:"人数構成が変わったか、以前の確認に人数の記録がありません。飲用水の必要量を再確認し、確認欄を選び直してください。旧データは保持されます。"});
+Object.assign(extra.en,{drinkHouseholdChanged:"Household counts have changed, or the earlier approval did not record who it covered. Recheck drinking-water needs and confirm again; saved quantities are retained."});
+Object.assign(extra.zh,{drinkHouseholdChanged:"家庭成员人数已变化，或旧确认记录未包含人数。请重新核实饮用水需求并再次确认；已保存的数量不会删除。"});
+Object.assign(extra.vi,{drinkHouseholdChanged:"Số người/vật nuôi đã thay đổi hoặc lần xác nhận cũ không lưu thành phần gia đình. Hãy kiểm tra lại nhu cầu uống và xác nhận lần nữa; số lượng đã lưu vẫn được giữ."});
 for(const [lang,text] of Object.entries(extra))Object.assign(window.BICHIKU_GUIDED_TEXT[lang],text);
 })();
