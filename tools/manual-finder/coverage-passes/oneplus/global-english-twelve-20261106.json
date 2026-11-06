@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "maker": "OnePlus",
   "scopeId": "global-official-12-model-english-pdf-candidate-20261106",
-  "scopeLabel": "12 individually located manufacturer English language PDFs, eight full operating manuals and four region-specific quick guides; candidate only until live PDF bytes and exact identity pass",
-  "status": "reviewing",
+  "scopeLabel": "Twelve positively byte-verified OnePlus manufacturer-hosted English PDFs: 8 detailed device-specific user manuals and 4 EU quick guides, explicitly bounded; no vendor-wide or Japan documentation coverage",
+  "status": "coverage-pass-complete",
   "asOf": "2026-11-06",
   "region": "Global",
   "language": "en",
@@ -40,7 +40,7 @@
       "OnePlus Nord 4"
     ],
     "declaredCount": 12,
-    "populationMethod": "Finite 12 exact OnePlus manufacturer-owned PDF files separately indexed on oneplus.com and service.oneplus.com; deliberately narrow selection, not OnePlus vendor catalog nor a published complete country model list.",
+    "populationMethod": "Deliberately bounded twelve independently indexed actual OnePlus-official PDF source URLs (eight English full manuals, four EU quick guides); every PDF was downloaded in Actions 42168500772, exact official origin/final path/%PDF header and first-five-page exact model or printed manufacturer CPH code verified. Not manufacturer-wide completeness.",
     "sourceObservation": {
       "observedAt": "2026-11-06",
       "eightFullManuals": 8,
@@ -50,177 +50,212 @@
         "www.oneplus.com"
       ],
       "marketNote": "Most direct PDFs are in English; latest four Quick Guide candidates are EU editions. Japan-specific applicability and translations are NOT claimed.",
-      "identityNote": "Full manual requires exact product name in extracted text; EU Quick Guide requires its manufacturer's printed internal CPH model code. Document-title differences must not be suppressed."
+      "identityNote": "Full manual requires exact product name in extracted text; EU Quick Guide requires its manufacturer's printed internal CPH model code. Document-title differences must not be suppressed.",
+      "liveRunId": 42168500772,
+      "officialPdfCount": 12,
+      "verifiedModels": 12,
+      "held": 0,
+      "bytesValidated": true,
+      "firstPagesVerified": 5,
+      "fullManuals": 8,
+      "EUQuickGuides": 4,
+      "language": "English",
+      "notJapanese": true,
+      "scopeNote": "For EU guides internal CPH code plus original brand/maker filename confirms corresponding named model; CPH equivalence is manufacturer-printed source code, not assumed Japanese-market SKU."
     }
   },
   "records": [
     {
       "model": "OnePlus 8",
-      "state": "held",
+      "state": "direct",
       "manualUrl": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_8_User_Manual_EN.pdf",
+      "supportUrl": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_8_User_Manual_EN.pdf",
       "evidenceUrls": [
         "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_8_User_Manual_EN.pdf"
       ],
-      "reason": "Candidate manufacturer PDF indexed; full binary magic and exact model text not yet independently validated in CI.",
-      "attemptedDiscovery": [
-        "official-site individual indexed manufacturer PDF",
-        "queued GitHub Actions live download verification"
-      ],
-      "reviewedAt": "2026-11-06"
+      "manualKind": "direct-full-user-manual-pdf",
+      "documentType": "full",
+      "edition": "English official global user manual",
+      "printedCode": "OnePlus 8",
+      "reviewedAt": "2026-11-06",
+      "liveVerificationRun": 42168500772,
+      "reviewNote": "Manufacturer-hosted English operational manual: exact device name extracted in first-five PDF pages; full PDF format, official final path and text verified in GitHub Actions 42168500772."
     },
     {
       "model": "OnePlus 9",
-      "state": "held",
+      "state": "direct",
       "manualUrl": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_User_Manual_EN.pdf",
+      "supportUrl": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_User_Manual_EN.pdf",
       "evidenceUrls": [
         "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_User_Manual_EN.pdf"
       ],
-      "reason": "Candidate manufacturer PDF indexed; full binary magic and exact model text not yet independently validated in CI.",
-      "attemptedDiscovery": [
-        "official-site individual indexed manufacturer PDF",
-        "queued GitHub Actions live download verification"
-      ],
-      "reviewedAt": "2026-11-06"
+      "manualKind": "direct-full-user-manual-pdf",
+      "documentType": "full",
+      "edition": "English official global user manual",
+      "printedCode": "OnePlus 9",
+      "reviewedAt": "2026-11-06",
+      "liveVerificationRun": 42168500772,
+      "reviewNote": "Manufacturer-hosted English operational manual: exact device name extracted in first-five PDF pages; full PDF format, official final path and text verified in GitHub Actions 42168500772."
     },
     {
       "model": "OnePlus Nord 3 5G",
-      "state": "held",
+      "state": "direct",
       "manualUrl": "https://service.oneplus.com/content/dam/support/user-manuals/en/OnePlus_Nord_3_5G_User_Manual_EN.pdf",
+      "supportUrl": "https://service.oneplus.com/content/dam/support/user-manuals/en/OnePlus_Nord_3_5G_User_Manual_EN.pdf",
       "evidenceUrls": [
         "https://service.oneplus.com/content/dam/support/user-manuals/en/OnePlus_Nord_3_5G_User_Manual_EN.pdf"
       ],
-      "reason": "Candidate manufacturer PDF indexed; full binary magic and exact model text not yet independently validated in CI.",
-      "attemptedDiscovery": [
-        "official-site individual indexed manufacturer PDF",
-        "queued GitHub Actions live download verification"
-      ],
-      "reviewedAt": "2026-11-06"
+      "manualKind": "direct-full-user-manual-pdf",
+      "documentType": "full",
+      "edition": "English official global user manual",
+      "printedCode": "Nord 3 5G",
+      "reviewedAt": "2026-11-06",
+      "liveVerificationRun": 42168500772,
+      "reviewNote": "Manufacturer-hosted English operational manual: exact device name extracted in first-five PDF pages; full PDF format, official final path and text verified in GitHub Actions 42168500772."
     },
     {
       "model": "OnePlus Nord N30 5G",
-      "state": "held",
+      "state": "direct",
       "manualUrl": "https://service.oneplus.com/content/dam/support/user-manuals/en/OnePlus_Nord_N30_5G_User_Manual_EN.pdf",
+      "supportUrl": "https://service.oneplus.com/content/dam/support/user-manuals/en/OnePlus_Nord_N30_5G_User_Manual_EN.pdf",
       "evidenceUrls": [
         "https://service.oneplus.com/content/dam/support/user-manuals/en/OnePlus_Nord_N30_5G_User_Manual_EN.pdf"
       ],
-      "reason": "Candidate manufacturer PDF indexed; full binary magic and exact model text not yet independently validated in CI.",
-      "attemptedDiscovery": [
-        "official-site individual indexed manufacturer PDF",
-        "queued GitHub Actions live download verification"
-      ],
-      "reviewedAt": "2026-11-06"
+      "manualKind": "direct-full-user-manual-pdf",
+      "documentType": "full",
+      "edition": "English official global user manual",
+      "printedCode": "Nord N30 5G",
+      "reviewedAt": "2026-11-06",
+      "liveVerificationRun": 42168500772,
+      "reviewNote": "Manufacturer-hosted English operational manual: exact device name extracted in first-five PDF pages; full PDF format, official final path and text verified in GitHub Actions 42168500772."
     },
     {
       "model": "OnePlus Nord 2T 5G",
-      "state": "held",
+      "state": "direct",
       "manualUrl": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_Nord_2T_5G_User_Manual_EN.pdf",
+      "supportUrl": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_Nord_2T_5G_User_Manual_EN.pdf",
       "evidenceUrls": [
         "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_Nord_2T_5G_User_Manual_EN.pdf"
       ],
-      "reason": "Candidate manufacturer PDF indexed; full binary magic and exact model text not yet independently validated in CI.",
-      "attemptedDiscovery": [
-        "official-site individual indexed manufacturer PDF",
-        "queued GitHub Actions live download verification"
-      ],
-      "reviewedAt": "2026-11-06"
+      "manualKind": "direct-full-user-manual-pdf",
+      "documentType": "full",
+      "edition": "English official global user manual",
+      "printedCode": "Nord 2T 5G",
+      "reviewedAt": "2026-11-06",
+      "liveVerificationRun": 42168500772,
+      "reviewNote": "Manufacturer-hosted English operational manual: exact device name extracted in first-five PDF pages; full PDF format, official final path and text verified in GitHub Actions 42168500772."
     },
     {
       "model": "OnePlus Nord N300 5G",
-      "state": "held",
+      "state": "direct",
       "manualUrl": "https://service.oneplus.com/content/dam/support/user-manuals/en/OnePlus_Nord_N300_5G_User_Manual_EN.pdf",
+      "supportUrl": "https://service.oneplus.com/content/dam/support/user-manuals/en/OnePlus_Nord_N300_5G_User_Manual_EN.pdf",
       "evidenceUrls": [
         "https://service.oneplus.com/content/dam/support/user-manuals/en/OnePlus_Nord_N300_5G_User_Manual_EN.pdf"
       ],
-      "reason": "Candidate manufacturer PDF indexed; full binary magic and exact model text not yet independently validated in CI.",
-      "attemptedDiscovery": [
-        "official-site individual indexed manufacturer PDF",
-        "queued GitHub Actions live download verification"
-      ],
-      "reviewedAt": "2026-11-06"
+      "manualKind": "direct-full-user-manual-pdf",
+      "documentType": "full",
+      "edition": "English official global user manual",
+      "printedCode": "Nord N300 5G",
+      "reviewedAt": "2026-11-06",
+      "liveVerificationRun": 42168500772,
+      "reviewNote": "Manufacturer-hosted English operational manual: exact device name extracted in first-five PDF pages; full PDF format, official final path and text verified in GitHub Actions 42168500772."
     },
     {
       "model": "OnePlus Nord N200 5G",
-      "state": "held",
+      "state": "direct",
       "manualUrl": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_Nord_N200_5G_User_Manual_EN.pdf",
+      "supportUrl": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_Nord_N200_5G_User_Manual_EN.pdf",
       "evidenceUrls": [
         "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_Nord_N200_5G_User_Manual_EN.pdf"
       ],
-      "reason": "Candidate manufacturer PDF indexed; full binary magic and exact model text not yet independently validated in CI.",
-      "attemptedDiscovery": [
-        "official-site individual indexed manufacturer PDF",
-        "queued GitHub Actions live download verification"
-      ],
-      "reviewedAt": "2026-11-06"
+      "manualKind": "direct-full-user-manual-pdf",
+      "documentType": "full",
+      "edition": "English official global user manual",
+      "printedCode": "Nord N200 5G",
+      "reviewedAt": "2026-11-06",
+      "liveVerificationRun": 42168500772,
+      "reviewNote": "Manufacturer-hosted English operational manual: exact device name extracted in first-five PDF pages; full PDF format, official final path and text verified in GitHub Actions 42168500772."
     },
     {
       "model": "OnePlus Nord N20 5G",
-      "state": "held",
+      "state": "direct",
       "manualUrl": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_Nord_N20_5G_User_Manual_EN.pdf",
+      "supportUrl": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_Nord_N20_5G_User_Manual_EN.pdf",
       "evidenceUrls": [
         "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_Nord_N20_5G_User_Manual_EN.pdf"
       ],
-      "reason": "Candidate manufacturer PDF indexed; full binary magic and exact model text not yet independently validated in CI.",
-      "attemptedDiscovery": [
-        "official-site individual indexed manufacturer PDF",
-        "queued GitHub Actions live download verification"
-      ],
-      "reviewedAt": "2026-11-06"
+      "manualKind": "direct-full-user-manual-pdf",
+      "documentType": "full",
+      "edition": "English official global user manual",
+      "printedCode": "Nord N20 5G",
+      "reviewedAt": "2026-11-06",
+      "liveVerificationRun": 42168500772,
+      "reviewNote": "Manufacturer-hosted English operational manual: exact device name extracted in first-five PDF pages; full PDF format, official final path and text verified in GitHub Actions 42168500772."
     },
     {
       "model": "OnePlus 13",
-      "state": "held",
+      "state": "direct",
       "manualUrl": "https://www.oneplus.com/content/dam/oneplus/2024/eu/store/safety_guide/OnePlus_13_Quick_Guide.pdf",
+      "supportUrl": "https://www.oneplus.com/content/dam/oneplus/2024/eu/store/safety_guide/OnePlus_13_Quick_Guide.pdf",
       "evidenceUrls": [
         "https://www.oneplus.com/content/dam/oneplus/2024/eu/store/safety_guide/OnePlus_13_Quick_Guide.pdf"
       ],
-      "reason": "Candidate manufacturer PDF indexed; full binary magic and exact model text not yet independently validated in CI.",
-      "attemptedDiscovery": [
-        "official-site individual indexed manufacturer PDF",
-        "queued GitHub Actions live download verification"
-      ],
-      "reviewedAt": "2026-11-06"
+      "manualKind": "direct-quick-guide-pdf",
+      "documentType": "quick",
+      "edition": "English EU quick guide (not full manual)",
+      "printedCode": "CPH2653",
+      "reviewedAt": "2026-11-06",
+      "liveVerificationRun": 42168500772,
+      "reviewNote": "EU edition short guide, not full user manual: manufacturer original URL and original PDF CPH printed product code CPH2653 matched in first-five pages with guide headings; manufacturer full user manual scope not implied."
     },
     {
       "model": "OnePlus 13R",
-      "state": "held",
+      "state": "direct",
       "manualUrl": "https://www.oneplus.com/content/dam/oneplus/2024/eu/store/safety_guide/OnePlus_13R_Quick_Guide.pdf",
+      "supportUrl": "https://www.oneplus.com/content/dam/oneplus/2024/eu/store/safety_guide/OnePlus_13R_Quick_Guide.pdf",
       "evidenceUrls": [
         "https://www.oneplus.com/content/dam/oneplus/2024/eu/store/safety_guide/OnePlus_13R_Quick_Guide.pdf"
       ],
-      "reason": "Candidate manufacturer PDF indexed; full binary magic and exact model text not yet independently validated in CI.",
-      "attemptedDiscovery": [
-        "official-site individual indexed manufacturer PDF",
-        "queued GitHub Actions live download verification"
-      ],
-      "reviewedAt": "2026-11-06"
+      "manualKind": "direct-quick-guide-pdf",
+      "documentType": "quick",
+      "edition": "English EU quick guide (not full manual)",
+      "printedCode": "CPH2645",
+      "reviewedAt": "2026-11-06",
+      "liveVerificationRun": 42168500772,
+      "reviewNote": "EU edition short guide, not full user manual: manufacturer original URL and original PDF CPH printed product code CPH2645 matched in first-five pages with guide headings; manufacturer full user manual scope not implied."
     },
     {
       "model": "OnePlus 15",
-      "state": "held",
+      "state": "direct",
       "manualUrl": "https://www.oneplus.com/content/dam/oneplus/2024/eu/store/safety_guide/OnePlus_15_Quick_Guide.pdf",
+      "supportUrl": "https://www.oneplus.com/content/dam/oneplus/2024/eu/store/safety_guide/OnePlus_15_Quick_Guide.pdf",
       "evidenceUrls": [
         "https://www.oneplus.com/content/dam/oneplus/2024/eu/store/safety_guide/OnePlus_15_Quick_Guide.pdf"
       ],
-      "reason": "Candidate manufacturer PDF indexed; full binary magic and exact model text not yet independently validated in CI.",
-      "attemptedDiscovery": [
-        "official-site individual indexed manufacturer PDF",
-        "queued GitHub Actions live download verification"
-      ],
-      "reviewedAt": "2026-11-06"
+      "manualKind": "direct-quick-guide-pdf",
+      "documentType": "quick",
+      "edition": "English EU quick guide (not full manual)",
+      "printedCode": "CPH2747",
+      "reviewedAt": "2026-11-06",
+      "liveVerificationRun": 42168500772,
+      "reviewNote": "EU edition short guide, not full user manual: manufacturer original URL and original PDF CPH printed product code CPH2747 matched in first-five pages with guide headings; manufacturer full user manual scope not implied."
     },
     {
       "model": "OnePlus Nord 4",
-      "state": "held",
+      "state": "direct",
       "manualUrl": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_Nord4_Quick_Guide_EU.pdf",
+      "supportUrl": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_Nord4_Quick_Guide_EU.pdf",
       "evidenceUrls": [
         "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_Nord4_Quick_Guide_EU.pdf"
       ],
-      "reason": "Candidate manufacturer PDF indexed; full binary magic and exact model text not yet independently validated in CI.",
-      "attemptedDiscovery": [
-        "official-site individual indexed manufacturer PDF",
-        "queued GitHub Actions live download verification"
-      ],
-      "reviewedAt": "2026-11-06"
+      "manualKind": "direct-quick-guide-pdf",
+      "documentType": "quick",
+      "edition": "English EU quick guide (not full manual)",
+      "printedCode": "CPH2663",
+      "reviewedAt": "2026-11-06",
+      "liveVerificationRun": 42168500772,
+      "reviewNote": "EU edition short guide, not full user manual: manufacturer original URL and original PDF CPH printed product code CPH2663 matched in first-five pages with guide headings; manufacturer full user manual scope not implied."
     }
   ],
   "groups": [
@@ -335,11 +370,15 @@
   ],
   "reconciliation": {
     "captured": 12,
-    "direct": 0,
+    "direct": 12,
     "shared": 0,
     "support_only": 0,
-    "held": 12,
-    "public": 0
+    "held": 0,
+    "public": 12
   },
-  "published": 0
+  "published": 12,
+  "refresh": {
+    "method": "Download all 12 OnePlus original English manufacturer PDFs; verify final manufacturer origin and exact filename, PDF magic, first five pages printed model or CPH ID and guide content; hold drift instead of asserting Japanese docs or differing device editions.",
+    "liveGateRunId": 42168500772
+  }
 }
