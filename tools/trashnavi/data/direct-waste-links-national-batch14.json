@@ -219,5 +219,31 @@
     "link_type": "collection_calendar",
     "url": "https://www.town.taiki.hokkaido.jp/kurashi-tetsuzuki/gomi-kankyohozen/4/1761.html",
     "scope_note": "町公式の地域別収集日検索入口。地区ごとの収集日を確認するもので、町全域共通カレンダーではない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "広尾町",
+    "lgcode": "016420",
+    "last_checked": "2026-11-06",
+    "status": "active",
+    "language": "ja",
+    "name": "ごみ収集日（町内会別・令和8年度大型ごみ）",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.town.hiroo.lg.jp/kurashi/seikatsu/gomi/shuushuubi/",
+    "scope_note": "町公式。町内会別の収集日と令和8年度大型ごみ日程を掲載。区域ごとに異なるため全町一律の日程として扱わない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "広尾町",
+    "lgcode": "016420",
+    "last_checked": "2026-11-06",
+    "status": "active",
+    "language": "ja",
+    "name": "ごみの出し方・南十勝環境衛生センターへの持ち込み",
+    "type": "持込施設",
+    "link_type": "dropoff_facility",
+    "url": "https://www.town.hiroo.lg.jp/kurashi/seikatsu/gomi/dashikata/",
+    "scope_note": "町公式。南十勝環境衛生センター（広尾町紋別760番地3）の持込料金・受付時間を案内。平日9:00–12:00、13:00–16:30。"
   }
 ]
