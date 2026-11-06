@@ -336,5 +336,31 @@
     "link_type": "dropoff_facility",
     "url": "https://www.town.honbetsu.hokkaido.jp/web/life/details/post_65.html",
     "scope_note": "町公式。銀河クリーンセンターは火災により家庭一般ごみ・粗大ごみ受入停止。くりりんセンターの搬入案内あり。"
+  },
+  {
+    "pref": "北海道",
+    "city": "足寄町",
+    "lgcode": "016471",
+    "last_checked": "2026-11-06",
+    "status": "active",
+    "language": "ja",
+    "name": "ごみの出し方",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.ashoro.hokkaido.jp/kurashi/kurashi-tetsuzuki/gomi-kankyo/bunbetsu/gomidashi.html",
+    "scope_note": "町公式。分別、粗大ごみの予約、自己搬入案内を掲載。2025年5月15日更新。銀河クリーンセンターの受入可否は利用前に最新情報を確認。"
+  },
+  {
+    "pref": "北海道",
+    "city": "足寄町",
+    "lgcode": "016471",
+    "last_checked": "2026-11-06",
+    "status": "active",
+    "language": "ja",
+    "name": "ゴミの収集日（テキスト版）",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.town.ashoro.hokkaido.jp/kurashi/kurashi-tetsuzuki/gomi-kankyo/bunbetsu/page_116.html",
+    "scope_note": "町公式。市街地A・B・C地区など地区別曜日を記載。2025年5月15日更新であり令和8年度カレンダーとは断定しない。"
   }
 ]
