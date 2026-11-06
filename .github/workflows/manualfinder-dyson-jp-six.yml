@@ -1,0 +1,22 @@
+name: ManualFinder Dyson JP six exact manual index source gate
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/**'
+      - '.github/workflows/manualfinder-dyson-jp-six.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  dyson-jp-six:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate variant and manual section rejection fixture
+        run: node tools/manual-finder/tests/dyson-jp-six-manual-index-live.test.mjs
+      - name: Verify six exact Dyson Japan manual indexes at five live manufacturer pages
+        run: node tools/manual-finder/scripts/dyson-jp-six-manual-index-live.mjs

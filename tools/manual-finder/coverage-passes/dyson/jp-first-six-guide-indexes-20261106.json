@@ -1,0 +1,180 @@
+{
+  "schemaVersion": 1,
+  "maker": "Dyson",
+  "scopeId": "jp-first-six-manual-indexes-20261106",
+  "scopeLabel": "Dyson Japan first six bounded exact product/manual index targets: V15, Gen5, V12 SV46/SV20, SV10K V8 Slim and Airwrap i.d.",
+  "status": "reviewing",
+  "asOf": "2026-11-06",
+  "region": "JP",
+  "language": "ja",
+  "allowedDomains": [
+    "dyson.co.jp"
+  ],
+  "universe": {
+    "sourceUrls": [
+      "https://www.dyson.co.jp/support/vacuum-cleaners/cordless/v15-detect",
+      "https://www.dyson.co.jp/support/vacuum-cleaners/cordless/gen5detect",
+      "https://www.dyson.co.jp/support/vacuum-cleaners/cordless/v12-detect-slim",
+      "https://www.dyson.co.jp/support/journey/guides/436158-01?machineId=436158-01",
+      "https://www.dyson.co.jp/support/hair-care/hair-stylers/airwrap-id"
+    ],
+    "models": [
+      "V15 Detect",
+      "Gen5detect",
+      "V12 Detect Slim (SV46)",
+      "V12 Detect Slim (SV20)",
+      "V8 Slim Fluffy Black (SV10K EXT BK)",
+      "Airwrap i.d."
+    ],
+    "declaredCount": 6,
+    "populationMethod": "Deliberately bounded six verified product or hardware-variant manual listings from five individually discovered Dyson Japan official product service pages. V12 SV46 and SV20 each have a separate named PDF link on the same support page. Not Dyson brand-wide or full vacuum catalog.",
+    "sourceObservation": {
+      "manufacturerOfficialDomain": "www.dyson.co.jp",
+      "capturedAt": "2026-11-06",
+      "knownVariantSplit": "V12 Detect Slim SV46 and SV20 manual links are listed separately in one official model support page; do not merge their manual compatibilities",
+      "mediaType": "manufacturer manual download INDEX pages, not direct PDF file URLs",
+      "manualDownloadHeadings": "取扱説明書 and PDF",
+      "sourcePages": "www.dyson.co.jp/support/...",
+      "productPages": 5
+    }
+  },
+  "products": [
+    {
+      "model": "V15 Detect",
+      "name": "Dyson V15 Detect",
+      "url": "https://www.dyson.co.jp/support/vacuum-cleaners/cordless/v15-detect",
+      "needle": "Dyson V15 Detect",
+      "group": "vacuum",
+      "extra": ""
+    },
+    {
+      "model": "Gen5detect",
+      "name": "Dyson Gen5detect",
+      "url": "https://www.dyson.co.jp/support/vacuum-cleaners/cordless/gen5detect",
+      "needle": "Dyson Gen5detect",
+      "group": "vacuum",
+      "extra": ""
+    },
+    {
+      "model": "V12 Detect Slim (SV46)",
+      "name": "Dyson V12 Detect Slim (SV46)",
+      "url": "https://www.dyson.co.jp/support/vacuum-cleaners/cordless/v12-detect-slim",
+      "needle": "V12 Detect Slim (SV46)",
+      "group": "vacuum",
+      "extra": "Other SV20 manual separately listed; select SV46 explicitly"
+    },
+    {
+      "model": "V12 Detect Slim (SV20)",
+      "name": "Dyson V12 Detect Slim (SV20)",
+      "url": "https://www.dyson.co.jp/support/vacuum-cleaners/cordless/v12-detect-slim",
+      "needle": "V12 Detect Slim (SV20)",
+      "group": "vacuum",
+      "extra": "Other SV46 manual separately listed; select SV20 explicitly"
+    },
+    {
+      "model": "V8 Slim Fluffy Black (SV10K EXT BK)",
+      "name": "Dyson V8 Slim Fluffy Black (SV10K EXT BK)",
+      "url": "https://www.dyson.co.jp/support/journey/guides/436158-01?machineId=436158-01",
+      "needle": "V8 Slim Fluffy Black (SV10K EXT BK)",
+      "group": "vacuum",
+      "extra": "Model-specific product journey page; manual heading says V8 Slim, not a SKU-distinct PDF claim"
+    },
+    {
+      "model": "Airwrap i.d.",
+      "name": "Dyson Airwrap i.d.",
+      "url": "https://www.dyson.co.jp/support/hair-care/hair-stylers/airwrap-id",
+      "needle": "Dyson Airwrap i.d.",
+      "group": "hair",
+      "extra": "Manufacturer index separately lists full Japanese PDF; not conflated with classic Airwrap"
+    }
+  ],
+  "records": [
+    {
+      "model": "V15 Detect",
+      "state": "held",
+      "evidenceUrls": [
+        "https://www.dyson.co.jp/support/vacuum-cleaners/cordless/v15-detect"
+      ],
+      "reason": "Manufacturer official page indexed by public search; independent live GitHub Actions model/manual contents not yet verified.",
+      "attemptedDiscovery": [
+        "manufacturer public product manual index discovery",
+        "strict live model title and 取扱説明書 PDF section probe queued"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "model": "Gen5detect",
+      "state": "held",
+      "evidenceUrls": [
+        "https://www.dyson.co.jp/support/vacuum-cleaners/cordless/gen5detect"
+      ],
+      "reason": "Manufacturer official page indexed by public search; independent live GitHub Actions model/manual contents not yet verified.",
+      "attemptedDiscovery": [
+        "manufacturer public product manual index discovery",
+        "strict live model title and 取扱説明書 PDF section probe queued"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "model": "V12 Detect Slim (SV46)",
+      "state": "held",
+      "evidenceUrls": [
+        "https://www.dyson.co.jp/support/vacuum-cleaners/cordless/v12-detect-slim"
+      ],
+      "reason": "Manufacturer official page indexed by public search; independent live GitHub Actions model/manual contents not yet verified.",
+      "attemptedDiscovery": [
+        "manufacturer public product manual index discovery",
+        "strict live model title and 取扱説明書 PDF section probe queued"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "model": "V12 Detect Slim (SV20)",
+      "state": "held",
+      "evidenceUrls": [
+        "https://www.dyson.co.jp/support/vacuum-cleaners/cordless/v12-detect-slim"
+      ],
+      "reason": "Manufacturer official page indexed by public search; independent live GitHub Actions model/manual contents not yet verified.",
+      "attemptedDiscovery": [
+        "manufacturer public product manual index discovery",
+        "strict live model title and 取扱説明書 PDF section probe queued"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "model": "V8 Slim Fluffy Black (SV10K EXT BK)",
+      "state": "held",
+      "evidenceUrls": [
+        "https://www.dyson.co.jp/support/journey/guides/436158-01?machineId=436158-01"
+      ],
+      "reason": "Manufacturer official page indexed by public search; independent live GitHub Actions model/manual contents not yet verified.",
+      "attemptedDiscovery": [
+        "manufacturer public product manual index discovery",
+        "strict live model title and 取扱説明書 PDF section probe queued"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "model": "Airwrap i.d.",
+      "state": "held",
+      "evidenceUrls": [
+        "https://www.dyson.co.jp/support/hair-care/hair-stylers/airwrap-id"
+      ],
+      "reason": "Manufacturer official page indexed by public search; independent live GitHub Actions model/manual contents not yet verified.",
+      "attemptedDiscovery": [
+        "manufacturer public product manual index discovery",
+        "strict live model title and 取扱説明書 PDF section probe queued"
+      ],
+      "reviewedAt": "2026-11-06"
+    }
+  ],
+  "reconciliation": {
+    "captured": 6,
+    "direct": 0,
+    "shared": 0,
+    "support_only": 0,
+    "held": 6,
+    "public": 0
+  },
+  "published": 0
+}
