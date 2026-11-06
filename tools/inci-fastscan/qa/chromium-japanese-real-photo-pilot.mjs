@@ -47,6 +47,16 @@ const alternatePsm = Object.freeze([
   { key: 'singleColumn', mode: '4' },
   { key: 'sparseText', mode: '11' }
 ]);
+// Fixed, source-independent pixel recipes. Each uses the SAME production
+// prepareFastScanOcrImage implementation as the photo preview and OCR input.
+// No reference-informed per-product crop or automatic production promotion.
+const edgeCrop5 = Object.freeze({ left: 5, right: 5, top: 5, bottom: 5 });
+const zeroCrop = Object.freeze({ left: 0, right: 0, top: 0, bottom: 0 });
+const pixelRecipes = Object.freeze([
+  { key: 'contrast140', contrastPercent: 140, crop: zeroCrop },
+  { key: 'edgeCrop5', contrastPercent: 100, crop: edgeCrop5 },
+  { key: 'edgeCrop5Contrast140', contrastPercent: 140, crop: edgeCrop5 }
+]);
 
 function scoreCandidate(raw, reference) {
   const prepared = context.post.postProcessOcrText(
@@ -120,6 +130,39 @@ try {
     }
     // Ensure no experimental PSM spills into the next photographed sample.
     await worker.setParameters({ tessedit_pageseg_mode: '6' });
+    const fixedPixelExperiments = {};
+    for (const candidate of pixelRecipes) {
+      const variantBase64 = await page.evaluate(async ({ sourceBase64, contrastPercent, crop }) => {
+        const raw = atob(sourceBase64);
+        const bytes = new Uint8Array(raw.length);
+        for (let i = 0; i < raw.length; i++) bytes[i] = raw.charCodeAt(i);
+        const input = new File([bytes], 'public-japanese-label.jpg', { type: 'image/jpeg' });
+        const output = await window.prepareFastScanOcrImage(input, 0, {
+          enhanceForOcr: true, contrastPercent, deskewDegrees: 0, crop
+        });
+        return await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onerror = () => reject(new Error('Cannot encode local cropped canvas'));
+          reader.onload = () => resolve(String(reader.result || '').split(',')[1]);
+          reader.readAsDataURL(output);
+        });
+      }, {
+        sourceBase64: image.toString('base64'), contrastPercent: candidate.contrastPercent,
+        crop: candidate.crop
+      });
+      assert.ok(variantBase64?.length > 1000, 'Real adjusted pixels are required');
+      const measured = await assessPhoto(Buffer.from(variantBase64, 'base64'), source);
+      assert.equal(measured.analysis.eligibleReferenceUniqueNames,
+        enhanced.analysis.eligibleReferenceUniqueNames, 'Fixed corpus denominator must not change');
+      fixedPixelExperiments[candidate.key] = measured;
+      console.log('FASTSCAN_JAPANESE_PIXEL_PHOTO=' + JSON.stringify({
+        id: source.id, variant: candidate.key,
+        sourceSupportedNames: measured.analysis.eligibleReferenceUniqueNames,
+        exactSourceMatches: measured.analysis.afterRepair.exactReferenceHits,
+        additionalMatches: measured.analysis.afterRepair.extraMatchesNotInAnnotation,
+        durationMs: measured.durationMs
+      }));
+    }
 
     // The source-only control checks that parser and dictionary evaluation
     // agrees with its own published factual source reference. NOT OCR.
@@ -132,7 +175,8 @@ try {
       sourceControl,
       original: control,
       enhanced,
-      enhancedSegmentation
+      enhancedSegmentation,
+      fixedPixelExperiments
     };
     results.push(row);
     console.log('FASTSCAN_JAPANESE_REAL_PHOTO=' + JSON.stringify({
@@ -168,6 +212,17 @@ const alternateSummaries = Object.fromEntries(alternatePsm.map(variant => {
     'Alternate PSM cannot change the fixed supported-name denominator');
   return [variant.key, { pageSegMode: variant.mode, ...summary }];
 }));
+const pixelSummaries = Object.fromEntries(pixelRecipes.map(candidate => {
+  const summary = aggregateProductionAssessments(results.map(
+    row => ({ analysis: row.fixedPixelExperiments[candidate.key].analysis })));
+  assert.equal(summary.eligibleReferenceUniqueNames, enhanced.eligibleReferenceUniqueNames,
+    'Pixel variation cannot alter the matched-source-name denominator');
+  return [candidate.key, {
+    contrastPercent: candidate.contrastPercent,
+    cropPercentEachEdge: candidate.crop.left,
+    ...summary
+  }];
+}));
 const sourceControl = aggregateProductionAssessments(results.map(row => ({ analysis: row.sourceControl })));
 assert.equal(sourceControl.afterRepairHits, sourceControl.eligibleReferenceUniqueNames,
   'Published reference token self-match must be complete on supported entries');
@@ -201,9 +256,23 @@ const report = {
   originalPhoto: original,
   chromiumEnhanced: enhanced,
   enhancedPageSegmentationExperiments: alternateSummaries,
+  chromiumFixedPixelExperiments: pixelSummaries,
   samples: results
 };
 fs.writeFileSync(reportFile, JSON.stringify(report, null, 2) + '\n');
+for (const candidate of pixelRecipes) {
+  const data = pixelSummaries[candidate.key];
+  console.log('FASTSCAN_JAPANESE_PIXEL_AGG=' + JSON.stringify({
+    variant: candidate.key, photos: data.photos,
+    dictionarySupportedSourceReferences: data.eligibleReferenceUniqueNames,
+    exactSupportedSourceMatches: data.afterRepairHits,
+    sourceBasedRecallPercent: +(data.afterRepairRecallOfDictionarySupported * 100).toFixed(2),
+    additionalMatchesNotInPublishedReference: data.afterRepairExtraNotInAnnotation,
+    fixedEnhancedPSM6ControlHits: enhanced.afterRepairHits,
+    productionDefaultChanged: false, physicalPhoneCertified: false,
+    photoAndSourceBatchMatchCertified: false
+  }));
+}
 for (const variant of alternatePsm) {
   const data = alternateSummaries[variant.key];
   console.log('FASTSCAN_JAPANESE_PSM_AGG=' + JSON.stringify({
