@@ -7,8 +7,8 @@ const growth=JSON.parse(read('tools/phone-quickcheck/data/phones-growth-20261103
 const all=[...base,...growth],idx=read('tools/phone-quickcheck/models/index.html');
 const sitemap=read('sitemap.xml'),cats=JSON.parse(read('tools/phone-quickcheck/data/accessories.json')).accessories;
 const newPhones=["google-pixel-3-xl","oppo-a79-5g","oppo-a73","oppo-reno3-a","xiaomi-poco-x7-pro","xiaomi-poco-f7-pro","motorola-moto-g66j-5g","zte-nubia-s-5g-a403zt","sharp-aquos-sense6s-shg07","sony-xperia-10-iii-lite-xqbt44"],profiles=["google-pixel-3-xl","oppo-a79-5g","oppo-a73","oppo-reno3-a","xiaomi-poco-x7-pro","xiaomi-poco-f7-pro","motorola-moto-g66j-5g","zte-nubia-s-5g-a403zt","sharp-aquos-sense6s-shg07","sony-xperia-10-iii-lite-xqbt44","apple-iphone-17-pro","apple-iphone-17-pro-max","apple-iphone-air","apple-iphone-14-plus","google-pixel-9-pro","google-pixel-9-pro-xl","google-pixel-8","samsung-galaxy-s24","samsung-galaxy-s24-ultra","samsung-galaxy-a36-5g","samsung-galaxy-a54-5g","samsung-galaxy-s23","samsung-galaxy-s23-ultra-sc52d","sony-xperia-10-vi","sony-xperia-1-v","sony-xperia-10-v","sony-xperia-5-v","sharp-aquos-r9","sharp-aquos-wish4","sharp-aquos-r8","oppo-a3-5g","oppo-reno11-a","oppo-a5x","xiaomi-redmi-note-13-pro-5g","xiaomi-redmi-12-5g","xiaomi-15-ultra","motorola-moto-g24","motorola-edge-50-pro","fcnt-arrows-we2-m07","nothing-cmf-phone-1"];
-assert.equal(all.length,275);assert.equal(new Set(all.map(p=>p.id)).size,275);assert.equal(growth.length,14);assert.equal(cats.length,27);
-assert.equal(newPhones.length,10);assert.equal(profiles.length,40);assert.equal((idx.match(/data-phone-id=/g)||[]).length,275);
+assert.equal(all.length,285);assert.equal(new Set(all.map(p=>p.id)).size,285);assert.equal(growth.length,14);assert.equal(cats.length,27);
+assert.equal(newPhones.length,10);assert.equal(profiles.length,40);assert.equal((idx.match(/data-phone-id=/g)||[]).length,285);
 const reviews=JSON.parse(read('tools/phone-quickcheck/data/reviewed-unknowns.json')).entries;
 for(const id of newPhones){const p=all.find(x=>x.id===id);assert.ok(p);assert.ok(p.market.includes('JP'));assert.equal(p.sources.verifiedAt,'2026-11-06');assert.ok(p.sources.specificationsUrl.startsWith('https://'));
 for(const [field,unknown] of [['included.adapter',p.included.adapter==='unknown'],['included.cable',p.included.cable==='unknown'],['water',p.waterRating==null&&p.waterStatus!=='not_resistant']])if(unknown)assert.ok(reviews.some(x=>x.phoneId===id&&x.field===field&&x.status==='reviewed_unresolved'),'Unreviewed unknown '+id+field);
@@ -31,4 +31,4 @@ const script=read('tools/phone-quickcheck/models/model-profile-affiliate.js');
 assert.ok(script.includes('"powerbank-10000-usbc"'));assert.ok(!script.includes('phone.model')&&!script.includes('window.location'));
 const ctx={window:{},URL};vm.runInNewContext(read('tools/phone-quickcheck/affiliate-config.js'),ctx);
 assert.equal(new URL(ctx.window.NWPhoneQuickCheckAffiliate.getOffer('powerbank-10000-usbc').url).searchParams.get('tag'),'nicheworks09-22');
-console.log('Phone commercial growth PASS: 275 phones, 40 more SEO profiles, 200 Amazon category-search handoffs.');
+console.log('Phone commercial growth PASS: 285 phones, 40 more SEO profiles, 200 Amazon category-search handoffs.');

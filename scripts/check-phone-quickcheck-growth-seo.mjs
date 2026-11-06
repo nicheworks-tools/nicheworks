@@ -8,9 +8,9 @@ const growth = JSON.parse(read('tools/phone-quickcheck/data/phones-growth-202611
 const phones = [...base, ...growth];
 const accessory = JSON.parse(read('tools/phone-quickcheck/data/accessories.json')).accessories;
 const all = new Map(phones.map(phone=>[phone.id,phone]));
-assert.equal(phones.length,275);
-assert.equal(all.size,275);
-assert.equal(new Set(phones.map(x => x.manufacturer+':'+x.model)).size,275);
+assert.equal(phones.length,285);
+assert.equal(all.size,285);
+assert.equal(new Set(phones.map(x => x.manufacturer+':'+x.model)).size,285);
 assert.equal(new Set(phones.map(x=>x.manufacturer)).size,11);
 assert.equal(growth.length,14);
 for(const item of growth){
@@ -25,8 +25,8 @@ for (const k of ['charger-pps-65w','charger-oppo-airvooc']){
 }
 
 const index=read('tools/phone-quickcheck/models/index.html');
-assert.equal((index.match(/data-phone-id=/g)||[]).length,275);
-assert.match(index,/<title>スマホ275機種/);
+assert.equal((index.match(/data-phone-id=/g)||[]).length,285);
+assert.match(index,/<title>スマホ285機種/);
 assert.match(index,/CollectionPage/);
 for(const phone of phones){
   assert.ok(index.includes('data-phone-id="'+phone.id+'"'),'missing static model '+phone.id);
@@ -34,7 +34,7 @@ for(const phone of phones){
   assert.ok(index.includes(phone.sources.specificationsUrl.replace(/&/g,'&amp;')),'missing primary source '+phone.id);
 }
 const main=read('tools/phone-quickcheck/index.html');
-assert.match(main,/275機種/);
+assert.match(main,/285機種/);
 assert.ok(main.includes('href="./models/"'));
 assert.ok(main.includes('href="./charging-guide/"'));
 const app=read('tools/phone-quickcheck/app.js');
@@ -66,4 +66,4 @@ for(const path of ['','models/','charging-guide/']){
   assert.ok(sitemap.includes('<loc>https://nicheworks.app/tools/phone-quickcheck/'+path+'</loc>'),'missing sitemap '+path);
 }
 assert.ok(!index.includes('<meta name="robots" content="noindex'));
-console.log('Phone QuickCheck SEO growth PASS: 275 official-source phones, 11 makers, 27 accessories, fully crawlable model index, guide, sitemap and affiliate disclosure.');
+console.log('Phone QuickCheck SEO growth PASS: 285 official-source phones, 11 makers, 27 accessories, fully crawlable model index, guide, sitemap and affiliate disclosure.');

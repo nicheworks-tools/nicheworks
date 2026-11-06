@@ -4,7 +4,7 @@ import vm from 'node:vm';
 
 const html=fs.readFileSync('tools/phone-quickcheck/models/index.html','utf8');
 const script=fs.readFileSync('tools/phone-quickcheck/models/model-index.js','utf8');
-assert.equal((html.match(/data-phone-id=/g)||[]).length,275,'All 275 rows must remain static and crawlable');
+assert.equal((html.match(/data-phone-id=/g)||[]).length,285,'All 285 rows must remain static and crawlable');
 assert.ok(html.includes('<input id="modelSearch" type="search"'));
 assert.ok(html.includes('id="modelSearchCount"'));
 assert.ok(html.includes('<script src="./model-index.js" defer></script>'));
@@ -62,4 +62,4 @@ groups[1].rows[0].guide.click();
 assert.equal(events.length,2,'SEO profile link must also emit model-index click');
 assert.deepEqual(JSON.stringify(events[1]),JSON.stringify(events[0]),
   'SEO profile click must retain the same coarse privacy-safe event schema');
-console.log('Phone QuickCheck model index PASS: 275 pre-rendered entries, local NFKC search, accessible count, maker-only click analytics.');
+console.log('Phone QuickCheck model index PASS: 285 pre-rendered entries, local NFKC search, accessible count, maker-only click analytics.');

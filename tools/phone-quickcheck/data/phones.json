@@ -13689,6 +13689,560 @@
         "verifiedAt": "2026-11-06"
       },
       "affiliateKeys": []
+    },
+    {
+      "id": "xiaomi-redmi-15-5g",
+      "manufacturer": "Xiaomi",
+      "model": "REDMI 15 5G",
+      "aliases": [
+        "Xiaomi REDMI 15 5G",
+        "REDMI155G"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "dimensions": {
+        "heightMm": 169.48,
+        "widthMm": 80.45,
+        "depthMm": 8.4
+      },
+      "weightG": 217,
+      "displayInch": 6.9,
+      "waterRating": "IP64",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 7000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.mi.com/jp/product/redmi-15-5g/specs/"
+        },
+        "wiredRecommendedW": 33,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "not_included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.mi.com/jp/product/redmi-15-5g/specs/",
+        "manualUrl": "https://www.mi.com/jp/product/redmi-15-5g/specs/",
+        "verifiedAt": "2026-11-06",
+        "chargingUrl": "https://www.mi.com/jp/product/redmi-15-5g/specs/",
+        "waterUrl": "https://www.mi.com/jp/product/redmi-15-5g/specs/",
+        "packageUrl": "https://www.mi.com/jp/product/redmi-15-5g/specs/"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "xiaomi-redmi-note-15-5g",
+      "manufacturer": "Xiaomi",
+      "model": "REDMI Note 15 5G",
+      "aliases": [
+        "Xiaomi REDMI Note 15 5G",
+        "REDMINote155G"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 164,
+        "widthMm": 75.42
+      },
+      "displayInch": 6.77,
+      "waterRating": "IP66",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 5520,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.mi.com/jp/product/redmi-note-15-5g/specs/"
+        },
+        "wiredRecommendedW": 45,
+        "wiredMaxW": null,
+        "protocols": [
+          "45W TurboCharge",
+          "USB PD"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.mi.com/jp/product/redmi-note-15-5g/specs/",
+        "manualUrl": "https://www.mi.com/jp/product/redmi-note-15-5g/specs/",
+        "verifiedAt": "2026-11-06",
+        "chargingUrl": "https://www.mi.com/jp/product/redmi-note-15-5g/specs/",
+        "waterUrl": "https://www.mi.com/jp/product/redmi-note-15-5g/specs/",
+        "packageUrl": "https://www.mi.com/jp/product/redmi-note-15-5g/specs/"
+      },
+      "affiliateKeys": [],
+      "physicalVariants": [
+        {
+          "key": "black-blue",
+          "labelJa": "ブラック／グレイシアブルー",
+          "labelEn": "Black/Glacier Blue",
+          "depthMm": 7.35,
+          "weightG": 178
+        },
+        {
+          "key": "mist-purple",
+          "labelJa": "ミストパープル",
+          "labelEn": "Mist Purple",
+          "depthMm": 7.4,
+          "weightG": 178
+        }
+      ]
+    },
+    {
+      "id": "xiaomi-redmi-note-15-pro-5g",
+      "manufacturer": "Xiaomi",
+      "model": "REDMI Note 15 Pro 5G",
+      "aliases": [
+        "Xiaomi REDMI Note 15 Pro 5G",
+        "REDMINote15Pro5G"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2026,
+      "dimensions": {
+        "heightMm": 163.61,
+        "widthMm": 78.09,
+        "depthMm": 7.96
+      },
+      "weightG": 200,
+      "displayInch": 6.83,
+      "waterRating": null,
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 6580,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.mi.com/jp/product/redmi-note-15-pro-5g/specs/"
+        },
+        "wiredRecommendedW": 45,
+        "wiredMaxW": null,
+        "protocols": [
+          "45W TurboCharge",
+          "USB PD 2.0",
+          "USB PD 3.0",
+          "PPS"
+        ],
+        "pps": "supported",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "wirelessStatus": "not_supported"
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.mi.com/jp/product/redmi-note-15-pro-5g/specs/",
+        "manualUrl": "https://www.mi.com/jp/product/redmi-note-15-pro-5g/specs/",
+        "verifiedAt": "2026-11-06",
+        "chargingUrl": "https://www.mi.com/jp/support/faq/details/KA-660455/",
+        "wirelessUrl": "https://www.mi.com/jp/support/faq/details/KA-660455/"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "xiaomi-poco-f7",
+      "manufacturer": "Xiaomi",
+      "model": "POCO F7",
+      "aliases": [
+        "Xiaomi POCO F7",
+        "POCOF7"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "dimensions": {
+        "heightMm": 163.1,
+        "widthMm": 77.9,
+        "depthMm": 8.2
+      },
+      "weightG": 215.7,
+      "displayInch": 6.83,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 6500,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.mi.com/jp/product/poco-f7/specs/"
+        },
+        "wiredRecommendedW": 90,
+        "wiredMaxW": null,
+        "protocols": [
+          "90W HyperCharge"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.mi.com/jp/product/poco-f7/specs/",
+        "manualUrl": "https://www.mi.com/jp/product/poco-f7/specs/",
+        "verifiedAt": "2026-11-06",
+        "chargingUrl": "https://www.mi.com/jp/product/poco-f7/specs/",
+        "waterUrl": "https://www.mi.com/jp/product/poco-f7/specs/",
+        "packageUrl": "https://www.mi.com/jp/product/poco-f7/specs/"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "xiaomi-poco-f7-ultra",
+      "manufacturer": "Xiaomi",
+      "model": "POCO F7 Ultra",
+      "aliases": [
+        "Xiaomi POCO F7 Ultra",
+        "POCOF7Ultra"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "dimensions": {
+        "heightMm": 160.26,
+        "widthMm": 74.95,
+        "depthMm": 8.39
+      },
+      "weightG": 212,
+      "displayInch": 6.67,
+      "waterRating": null,
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 5300,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.mi.com/jp/product/poco-f7-ultra/specs/"
+        },
+        "wiredRecommendedW": 120,
+        "wiredMaxW": null,
+        "protocols": [
+          "120W HyperCharge"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Wireless charging (standard unconfirmed)",
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.mi.com/jp/product/poco-f7-ultra/specs/",
+        "manualUrl": "https://www.mi.com/jp/product/poco-f7-ultra/specs/",
+        "verifiedAt": "2026-11-06",
+        "chargingUrl": "https://www.mi.com/jp/product/poco-f7-ultra/specs/",
+        "wirelessUrl": "https://www.mi.com/jp/product/poco-f7-ultra/specs/",
+        "packageUrl": "https://www.mi.com/jp/product/poco-f7-ultra/specs/"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "xiaomi-xiaomi-15t",
+      "manufacturer": "Xiaomi",
+      "model": "Xiaomi 15T",
+      "aliases": [
+        "Xiaomi Xiaomi 15T",
+        "Xiaomi15T"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "dimensions": {
+        "heightMm": 163.2,
+        "widthMm": 78,
+        "depthMm": 7.5
+      },
+      "weightG": 194,
+      "displayInch": 6.83,
+      "waterRating": null,
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 5500,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.mi.com/jp/product/xiaomi-15t/specs/"
+        },
+        "wiredRecommendedW": 67,
+        "wiredMaxW": null,
+        "protocols": [
+          "67W HyperCharge",
+          "USB PD 3.0",
+          "PPS"
+        ],
+        "pps": "supported",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "wirelessStatus": "not_supported"
+      },
+      "included": {
+        "cable": "included",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.mi.com/jp/product/xiaomi-15t/specs/",
+        "manualUrl": "https://www.mi.com/jp/product/xiaomi-15t/specs/",
+        "verifiedAt": "2026-11-06",
+        "chargingUrl": "https://www.mi.com/jp/support/faq/details/KA-692446/",
+        "wirelessUrl": "https://www.mi.com/jp/support/faq/details/KA-692446/",
+        "packageUrl": "https://www.mi.com/jp/support/faq/details/KA-692446/"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "xiaomi-xiaomi-15t-pro",
+      "manufacturer": "Xiaomi",
+      "model": "Xiaomi 15T Pro",
+      "aliases": [
+        "Xiaomi Xiaomi 15T Pro",
+        "Xiaomi15TPro"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "dimensions": {
+        "heightMm": 162.7,
+        "widthMm": 77.9,
+        "depthMm": 7.96
+      },
+      "weightG": 210,
+      "displayInch": 6.83,
+      "waterRating": null,
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 5500,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.mi.com/jp/product/xiaomi-15t-pro/specs/"
+        },
+        "wiredRecommendedW": 90,
+        "wiredMaxW": null,
+        "protocols": [
+          "90W HyperCharge"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Wireless charging (standard unconfirmed)",
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.mi.com/jp/product/xiaomi-15t-pro/specs/",
+        "manualUrl": "https://www.mi.com/jp/product/xiaomi-15t-pro/specs/",
+        "verifiedAt": "2026-11-06",
+        "chargingUrl": "https://www.mi.com/jp/product/xiaomi-15t-pro/specs/",
+        "wirelessUrl": "https://www.mi.com/jp/product/xiaomi-15t-pro/specs/",
+        "packageUrl": "https://www.mi.com/jp/product/xiaomi-15t-pro/specs/"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "sharp-aquos-r9-pro",
+      "manufacturer": "SHARP",
+      "model": "AQUOS R9 pro",
+      "aliases": [
+        "SHARP AQUOS R9 pro",
+        "AQUOSR9pro"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2024,
+      "dimensions": {
+        "heightMm": 162,
+        "widthMm": 78,
+        "depthMm": 9.3
+      },
+      "weightG": 229,
+      "displayInch": 6.7,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.sharp.co.jp/k-tai/products/aquos-r9-pro/specs/"
+        },
+        "wiredRecommendedW": 32,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB Power Delivery Revision 3.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.sharp.co.jp/k-tai/products/aquos-r9-pro/specs/",
+        "manualUrl": "https://www.sharp.co.jp/k-tai/products/aquos-r9-pro/specs/",
+        "verifiedAt": "2026-11-06",
+        "chargingUrl": "https://www.sharp.co.jp/k-tai/products/aquos-r9-pro/specs/",
+        "wirelessUrl": "https://www.sharp.co.jp/k-tai/products/aquos-r9-pro/specs/",
+        "waterUrl": "https://www.sharp.co.jp/k-tai/products/aquos-r9-pro/specs/",
+        "packageUrl": "https://www.sharp.co.jp/k-tai/products/aquos-r9-pro/specs/"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "xiaomi-xiaomi-14t",
+      "manufacturer": "Xiaomi",
+      "model": "Xiaomi 14T",
+      "aliases": [
+        "Xiaomi Xiaomi 14T",
+        "Xiaomi14T"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2024,
+      "dimensions": {
+        "heightMm": 160.5,
+        "widthMm": 75.1
+      },
+      "displayInch": 6.67,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.mi.com/jp/product/xiaomi-14t/specs/"
+        },
+        "wiredRecommendedW": 67,
+        "wiredMaxW": null,
+        "protocols": [
+          "67W HyperCharge",
+          "USB PD 3.0",
+          "USB PD 2.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null,
+        "wirelessStatus": "not_supported"
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.mi.com/jp/product/xiaomi-14t/specs/",
+        "manualUrl": "https://www.mi.com/jp/product/xiaomi-14t/specs/",
+        "verifiedAt": "2026-11-06",
+        "chargingUrl": "https://www.mi.com/jp/product/xiaomi-14t/specs/",
+        "wirelessUrl": "https://www.mi.com/jp/support/faq/details/KA-498291/",
+        "waterUrl": "https://www.mi.com/jp/product/xiaomi-14t/specs/"
+      },
+      "affiliateKeys": [],
+      "physicalVariants": [
+        {
+          "key": "glass",
+          "labelJa": "ガラス背面",
+          "labelEn": "Glass",
+          "depthMm": 7.8,
+          "weightG": 195
+        },
+        {
+          "key": "pu",
+          "labelJa": "PU背面",
+          "labelEn": "PU",
+          "depthMm": 7.95,
+          "weightG": 193
+        }
+      ]
+    },
+    {
+      "id": "xiaomi-xiaomi-15",
+      "manufacturer": "Xiaomi",
+      "model": "Xiaomi 15",
+      "aliases": [
+        "Xiaomi Xiaomi 15",
+        "Xiaomi15"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "dimensions": {
+        "heightMm": 152.3,
+        "widthMm": 71.2
+      },
+      "displayInch": 6.36,
+      "waterRating": null,
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 5240,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.mi.com/jp/product/xiaomi-15/specs/"
+        },
+        "wiredRecommendedW": 90,
+        "wiredMaxW": null,
+        "protocols": [
+          "90W HyperCharge",
+          "USB PD 3.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Wireless charging (standard unconfirmed)",
+        "wirelessMaxW": null
+      },
+      "included": {
+        "cable": "unknown",
+        "adapter": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.mi.com/jp/product/xiaomi-15/specs/",
+        "manualUrl": "https://www.mi.com/jp/product/xiaomi-15/specs/",
+        "verifiedAt": "2026-11-06",
+        "chargingUrl": "https://www.mi.com/jp/product/xiaomi-15/specs/",
+        "wirelessUrl": "https://www.mi.com/jp/product/xiaomi-15/specs/",
+        "packageUrl": "https://www.mi.com/jp/product/xiaomi-15/specs/"
+      },
+      "affiliateKeys": [],
+      "physicalVariants": [
+        {
+          "key": "standard",
+          "labelJa": "ブラック／ホワイト／グリーン",
+          "labelEn": "Black/White/Green",
+          "depthMm": 8.08,
+          "weightG": 191
+        },
+        {
+          "key": "liquid-silver",
+          "labelJa": "リキッドシルバー",
+          "labelEn": "Liquid Silver",
+          "depthMm": 8.48,
+          "weightG": 192
+        }
+      ]
     }
   ]
 }
