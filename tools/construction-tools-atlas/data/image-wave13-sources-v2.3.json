@@ -1,10 +1,10 @@
 {
   "schema": "cta-image-wave13-sources-v2.3",
-  "version": "2026-11-06-reviewed-image-wave13-ten-1",
+  "version": "2026-11-06-reviewed-image-wave13-eight-1",
   "policy": {
     "runtime_hotlink": false,
     "source_provider": "Wikimedia Commons",
-    "promotion_rule": "Only ten source-pinned original photos with independently pinned original SHA-1, a Commons API byte/hash match, and complete uncropped local WebP may be published."
+    "promotion_rule": "Only eight source-pinned original photos with independently pinned original SHA-1, a Commons API byte/hash match, and complete uncropped local WebP may be published."
   },
   "items": [
     {
@@ -51,21 +51,6 @@
       "subject_match": "matched",
       "review_state": "verified",
       "review_note": "Older electrically powered standalone concrete mixer according to Commons."
-    },
-    {
-      "entry_id": "crimping_tool",
-      "source_url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Crimping_tool1.jpg",
-      "source_page": "https://commons.wikimedia.org/wiki/File:Crimping_tool1.jpg",
-      "license": "CC BY-SA 3.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
-      "author": "messi (1messi01)",
-      "attribution": "messi (1messi01) / Wikimedia Commons, CC BY-SA 3.0",
-      "source_sha1": "318b3cf2df9169856d3a763a1f06b5a85271cc3d",
-      "source_filename": "source.jpg",
-      "expected_sha1": "318b3cf2df9169856d3a763a1f06b5a85271cc3d",
-      "subject_match": "matched",
-      "review_state": "verified",
-      "review_note": "Commons labels this photo as a crimping tool. Check jaws and handles."
     },
     {
       "entry_id": "fish_tape",
@@ -141,21 +126,6 @@
       "subject_match": "matched",
       "review_state": "verified",
       "review_note": "Museum object identified on Commons as a plumb bob; verify tool identity."
-    },
-    {
-      "entry_id": "pvc_pipe",
-      "source_url": "https://upload.wikimedia.org/wikipedia/commons/d/dc/PVC_Pipe.jpg",
-      "source_page": "https://commons.wikimedia.org/wiki/File:PVC_Pipe.jpg",
-      "license": "CC BY-SA 3.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
-      "author": "Nikat",
-      "attribution": "Nikat / Wikimedia Commons, CC BY-SA 3.0",
-      "source_sha1": "752f3f097cc553f64d795b170cb860b53c67547a",
-      "source_filename": "source.jpg",
-      "expected_sha1": "752f3f097cc553f64d795b170cb860b53c67547a",
-      "subject_match": "matched",
-      "review_state": "verified",
-      "review_note": "Commons photo of PVC Pipe, no claims about strength or grades."
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-registry-v2.3",
-  "version": "2026-11-06-reviewed-image-wave13-ten-1",
+  "version": "2026-11-06-reviewed-image-wave13-eight-1",
   "policy": {
     "primary_format": "webp",
     "formal_min_state": "reviewed",
@@ -1617,30 +1617,6 @@
       "notes": "Wave13: Older electrically powered standalone concrete mixer according to Commons. Exact Commons original SHA-1 verified against independent pin and live MediaWiki API."
     },
     {
-      "entry_id": "crimping_tool",
-      "alt_ja": "電気配線用圧着工具",
-      "alt_en": "Handheld crimping tool",
-      "image_state": "verified",
-      "subject_match": "matched",
-      "migration_state": "promoted",
-      "primary": {
-        "source": "./images/crimping_tool/source.jpg",
-        "display": "./images/crimping_tool/primary.webp",
-        "thumbnail": "./images/crimping_tool/thumb.webp"
-      },
-      "source": {
-        "source_url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Crimping_tool1.jpg",
-        "source_page": "https://commons.wikimedia.org/wiki/File:Crimping_tool1.jpg",
-        "license": "CC BY-SA 3.0",
-        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
-        "author": "messi (1messi01)",
-        "attribution": "messi (1messi01) / Wikimedia Commons, CC BY-SA 3.0",
-        "source_sha1": "318b3cf2df9169856d3a763a1f06b5a85271cc3d",
-        "modifications": "Auto-oriented, fit-within resized without cropping, metadata stripped, and converted to local WebP; exact original retained; derivative stays under source license."
-      },
-      "notes": "Wave13: Commons labels this photo as a crimping tool. Check jaws and handles. Exact Commons original SHA-1 verified against independent pin and live MediaWiki API."
-    },
-    {
       "entry_id": "fish_tape",
       "alt_ja": "配線用フィッシュテープのリール",
       "alt_en": "Electrical fish tape reel",
@@ -1759,30 +1735,6 @@
         "modifications": "Auto-oriented, fit-within resized without cropping, metadata stripped, and converted to local WebP; exact original retained; derivative stays under source license."
       },
       "notes": "Wave13: Museum object identified on Commons as a plumb bob; verify tool identity. Exact Commons original SHA-1 verified against independent pin and live MediaWiki API."
-    },
-    {
-      "entry_id": "pvc_pipe",
-      "alt_ja": "塩ビ配管材の実物",
-      "alt_en": "PVC pipe",
-      "image_state": "verified",
-      "subject_match": "matched",
-      "migration_state": "promoted",
-      "primary": {
-        "source": "./images/pvc_pipe/source.jpg",
-        "display": "./images/pvc_pipe/primary.webp",
-        "thumbnail": "./images/pvc_pipe/thumb.webp"
-      },
-      "source": {
-        "source_url": "https://upload.wikimedia.org/wikipedia/commons/d/dc/PVC_Pipe.jpg",
-        "source_page": "https://commons.wikimedia.org/wiki/File:PVC_Pipe.jpg",
-        "license": "CC BY-SA 3.0",
-        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
-        "author": "Nikat",
-        "attribution": "Nikat / Wikimedia Commons, CC BY-SA 3.0",
-        "source_sha1": "752f3f097cc553f64d795b170cb860b53c67547a",
-        "modifications": "Auto-oriented, fit-within resized without cropping, metadata stripped, and converted to local WebP; exact original retained; derivative stays under source license."
-      },
-      "notes": "Wave13: Commons photo of PVC Pipe, no claims about strength or grades. Exact Commons original SHA-1 verified against independent pin and live MediaWiki API."
     }
   ]
 }

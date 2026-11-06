@@ -20,18 +20,18 @@
   "sources": {
     "publication_inventory_version": "2026-09-16-q014-identity-closure-1",
     "publication_id_sha256": "d0264617677052f0f446a0f4ebbfafc2315766d5858480b7103267320d88752d",
-    "image_registry_version": "2026-11-06-reviewed-image-wave13-ten-1",
+    "image_registry_version": "2026-11-06-reviewed-image-wave13-eight-1",
     "image_exception_ledger_version": "2026-11-03-five-canonical-retirements-1"
   },
   "summary": {
     "public_entries": 865,
-    "formal_image_entries": 74,
-    "missing_formal_image_entries": 746,
+    "formal_image_entries": 72,
+    "missing_formal_image_entries": 748,
     "not_required_entries": 45,
     "unobtainable_entries": 0,
     "classified_entries": 865,
-    "formal_coverage_percent": 8.5549,
-    "registry_items_total": 74,
+    "formal_coverage_percent": 8.3237,
+    "registry_items_total": 72,
     "formal_images_inherited_via_redirect": 6,
     "formal_images_outside_public": 0,
     "image_exceptions_outside_public": 0,
@@ -46,20 +46,20 @@
       "applicability_reviewed": 865,
       "required": 820,
       "on_hold": 0,
-      "final_dispositions": 119,
-      "unresolved": 746,
+      "final_dispositions": 117,
+      "unresolved": 748,
       "by_stage": {
         "unreviewed": 0,
         "not_required": 45,
-        "awaiting_source": 746,
+        "awaiting_source": 748,
         "candidate": 0,
         "provenance_verified": 0,
         "subject_verified": 0,
         "verified": 0,
-        "promoted": 74
+        "promoted": 72
       }
     },
-    "evidence_sha256": "91d01cccca677b109782789f8d420120eeaab7be1c63a596979c1a7f05407b69",
+    "evidence_sha256": "203a4bf4749d3cdfd4117f48d16ec49e51f973c74fca79f682940464173ffee0",
     "rows": [
       {
         "id": "access_door",
@@ -1000,15 +1000,15 @@
       {
         "id": "crimping_tool",
         "applicability": "required",
-        "stage": "promoted",
+        "stage": "awaiting_source",
         "applicability_reviewed": true,
-        "provenance_verified": true,
-        "subject_verified": true,
+        "provenance_verified": false,
+        "subject_verified": false,
         "hold": null,
-        "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
-        "candidate_id": "wave13:crimping_tool",
-        "source_entry_id": "crimping_tool",
-        "attachment": "direct"
+        "reason": "A crimping tool is a distinctive hand tool with crimping dies/jaws; a subject-matched photograph aids identification.",
+        "candidate_id": null,
+        "source_entry_id": null,
+        "attachment": "none"
       },
       {
         "id": "curing_tape",
@@ -3080,15 +3080,15 @@
       {
         "id": "pvc_pipe",
         "applicability": "required",
-        "stage": "promoted",
+        "stage": "awaiting_source",
         "applicability_reviewed": true,
-        "provenance_verified": true,
-        "subject_verified": true,
+        "provenance_verified": false,
+        "subject_verified": false,
         "hold": null,
-        "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
-        "candidate_id": "wave13:pvc_pipe",
-        "source_entry_id": "pvc_pipe",
-        "attachment": "direct"
+        "reason": "PVC pipe is a physical piping material with recognizable rigid tube and fitting forms; a reviewed photograph is appropriate.",
+        "candidate_id": null,
+        "source_entry_id": null,
+        "attachment": "none"
       },
       {
         "id": "q011_anti_slip_tape",
@@ -11458,17 +11458,17 @@
     },
     "tool": {
       "public_entries": 330,
-      "formal_image": 63,
-      "missing_formal_image": 243,
+      "formal_image": 61,
+      "missing_formal_image": 245,
       "not_required": 24,
       "unobtainable": 0
     }
   },
   "hashes": {
     "public_id_sha256": "d0264617677052f0f446a0f4ebbfafc2315766d5858480b7103267320d88752d",
-    "public_formal_image_id_sha256": "650769ce24b923e89cc60475cbc6278fe1bce7db295d6ab3a9f848a5ba28e166",
-    "public_missing_formal_image_id_sha256": "d80ed3d51f028677f5734c758f3b4595003d45e8e94006b8077d3f0f39b537a1",
-    "public_image_classification_sha256": "c3f20f6bf89bf4b27d35366c04ca202ff7554d98b731c40277f3b53fae422388"
+    "public_formal_image_id_sha256": "c926eab39ff2ae9bf1bac4889da28d242859e9da07967382f5da5fe1aaa79eea",
+    "public_missing_formal_image_id_sha256": "4d759e5623eb390e80df0c8fed020f7ae46cb7eea27cca7aa9f57fc423f30d84",
+    "public_image_classification_sha256": "4d3286dbf6c69120f084cd3c1d7f083f8f77077b5dff33371cf476b9ba9745b3"
   },
   "inherited_formal_images": [
     {

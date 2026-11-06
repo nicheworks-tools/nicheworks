@@ -1,6 +1,6 @@
 {
   "schema": "cta-affiliate-image-acquisition-wave6-v2.3",
-  "version": "2026-11-06-reviewed-image-wave13-ten-1",
+  "version": "2026-11-06-reviewed-image-wave13-eight-1",
   "policy": {
     "queue_order": "curated source-feasibility work order, NOT empirical market ranking",
     "no_guessed_search_volume": true,
@@ -17,8 +17,8 @@
   },
   "expected": {
     "active_affiliate_mappings": 430,
-    "revenue_ready": 65,
-    "awaiting_source": 365,
+    "revenue_ready": 63,
+    "awaiting_source": 367,
     "first_wave": 0,
     "source_leads": 3
   },
@@ -48,13 +48,11 @@
     "anchor_bolt",
     "bolt_nut",
     "concrete_mixer",
-    "crimping_tool",
     "fish_tape",
     "generator",
     "heat_gun",
     "hole_saw",
-    "plumb_bob",
-    "pvc_pipe"
+    "plumb_bob"
   ],
   "source_leads": [
     {
@@ -230,11 +228,6 @@
       "review": "Original JPEG, WebP and Commons source bytes SHA1 verified in staging; final visual review required before merge. Older electrically powered standalone concrete mixer according to Commons."
     },
     {
-      "entry_id": "crimping_tool",
-      "disposition": "promoted",
-      "review": "Original JPEG, WebP and Commons source bytes SHA1 verified in staging; final visual review required before merge. Commons labels this photo as a crimping tool. Check jaws and handles."
-    },
-    {
       "entry_id": "fish_tape",
       "disposition": "promoted",
       "review": "Original JPEG, WebP and Commons source bytes SHA1 verified in staging; final visual review required before merge. Flickr-originated Commons image, described as a 50-foot reel."
@@ -258,11 +251,6 @@
       "entry_id": "plumb_bob",
       "disposition": "promoted",
       "review": "Original JPEG, WebP and Commons source bytes SHA1 verified in staging; final visual review required before merge. Museum object identified on Commons as a plumb bob; verify tool identity."
-    },
-    {
-      "entry_id": "pvc_pipe",
-      "disposition": "promoted",
-      "review": "Original JPEG, WebP and Commons source bytes SHA1 verified in staging; final visual review required before merge. Commons photo of PVC Pipe, no claims about strength or grades."
     }
   ]
 }
