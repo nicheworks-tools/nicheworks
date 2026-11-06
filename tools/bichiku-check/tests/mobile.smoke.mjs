@@ -636,7 +636,7 @@ try{
   await page.locator('details[data-battery-stock-panel] summary').click();
   await page.locator('input[data-battery-stock="AA"]').fill("4");
   await page.locator('input[data-battery-stock="AA"]').press("Tab");
-  await page.locator("button[data-shopping]").click();
+  await page.locator("button[data-shopping]").first().click();
   assert.equal(await page.locator('.g-shop-row input[data-shop="battery:AA"]').count(),0,
    "once four AA cells are physically present there is no AA shortfall to buy");
   await noOverflow(page,"320px typed battery shopping and export");
