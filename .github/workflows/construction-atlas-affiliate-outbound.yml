@@ -1,0 +1,38 @@
+name: Construction Atlas Affiliate Outbound Contract
+on:
+  pull_request:
+    paths:
+      - 'assets/amazon-affiliate.js'
+      - 'tools/construction-tools-atlas/seo-detail-v2.3.js'
+      - 'tools/construction-tools-atlas/scripts/check-affiliate-outbound-contract-v2.3.cjs'
+      - 'tools/construction-tools-atlas/data/seo-detail-pages-v2.3.json'
+      - 'tools/construction-tools-atlas/data/affiliate-offers-v2.3.json'
+      - 'tools/construction-tools-atlas/entries/**'
+      - '.github/workflows/construction-atlas-affiliate-outbound.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'assets/amazon-affiliate.js'
+      - 'tools/construction-tools-atlas/seo-detail-v2.3.js'
+      - 'tools/construction-tools-atlas/scripts/check-affiliate-outbound-contract-v2.3.cjs'
+      - 'tools/construction-tools-atlas/data/seo-detail-pages-v2.3.json'
+      - 'tools/construction-tools-atlas/data/affiliate-offers-v2.3.json'
+      - 'tools/construction-tools-atlas/entries/**'
+      - '.github/workflows/construction-atlas-affiliate-outbound.yml'
+permissions:
+  contents: read
+jobs:
+  verify-outbound-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate affiliate helper and detail controller
+        run: |
+          node --check assets/amazon-affiliate.js
+          node --check tools/construction-tools-atlas/seo-detail-v2.3.js
+      - name: Verify every static commercial page sends exactly one privacy-bucketed event on click
+        run: node tools/construction-tools-atlas/scripts/check-affiliate-outbound-contract-v2.3.cjs
