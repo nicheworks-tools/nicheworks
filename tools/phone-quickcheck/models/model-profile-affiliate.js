@@ -1,7 +1,7 @@
 (() => {
   "use strict";
   // Never transmit user-entered search strings, model names or Amazon URL to GA4.
-  const keys = new Set(["charger-pd-check-wattage","charger-compat-check","cable-usbc-usbc","cable-usbc-lightning","phone-case-model-search","screen-film-model-search"]);
+  const keys = new Set(["charger-pd-check-wattage","charger-compat-check","cable-usbc-usbc","cable-usbc-lightning","phone-case-model-search","screen-film-model-search","powerbank-10000-usbc"]);
   const init = () => document.querySelectorAll('a[data-offer-key]').forEach(link => {
     const key = String(link.dataset.offerKey || "");
     if (!keys.has(key)) return;

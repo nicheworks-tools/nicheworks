@@ -219,8 +219,22 @@ async function httpSmoke(){
       assert.ok(html.includes('適格販売により収入を得ています'),'Amazon disclosure '+slug);
     }
     const directory=await (await req('models/')).text();
-    assert.equal((directory.match(/data-phone-id=/g)||[]).length,265,'265 static index rows in production');
-    console.log('265 listings and 12 source-backed affiliate profiles HTTP PASS');
+    assert.equal((directory.match(/data-phone-id=/g)||[]).length,275,'275 static index rows in production');
+    console.log('275 listings and 12 source-backed affiliate profiles HTTP PASS');
+  }
+
+  if (process.env.PHONE_SMOKE_REQUIRE_CROSS_MAKER === 'true') {
+    for(const slug of ["google-pixel-3-xl","oppo-a79-5g","oppo-a73","oppo-reno3-a","xiaomi-poco-x7-pro","xiaomi-poco-f7-pro","motorola-moto-g66j-5g","zte-nubia-s-5g-a403zt","sharp-aquos-sense6s-shg07","sony-xperia-10-iii-lite-xqbt44","apple-iphone-17-pro","apple-iphone-17-pro-max","apple-iphone-air","apple-iphone-14-plus"]){
+      const endpoint='models/'+slug+'/';const response=await req(endpoint);
+      assert.equal(response.status,200,'New source-backed guide status '+slug);
+      const body=await response.text();
+      assert.ok(body.includes('<link rel="canonical" href="'+url.origin+url.pathname+endpoint+'">'),'Canonical '+slug);
+      assert.equal((body.match(/class="amazon" data-offer-key=/g)||[]).length,5,'Five sponsored searches '+slug);
+      assert.ok(body.includes('適格販売により収入を得ています'),'Amazon Associates disclosure '+slug);
+    }
+    const listing=await (await req('models/')).text();
+    assert.equal((listing.match(/data-phone-id=/g)||[]).length,275,'Published static 275-model index missing');
+    console.log('275 growth HTTP PASS: 14 representative commercial pages, five Amazon search links each');
   }
 
   // Verify both ManualFinder locales really deploy the exact-SKU Samsung funnel
