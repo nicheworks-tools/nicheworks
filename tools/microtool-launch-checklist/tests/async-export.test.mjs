@@ -4,7 +4,7 @@ import { readFileSync } from "node:fs";
 import vm from "node:vm";
 
 const source = readFileSync(new URL("../app.js", import.meta.url), "utf8");
-function setup({ failDownload = false, delayedCopy = false } = {}) {
+function setup({ failDownload = false, delayedCopy = false, failObjectURL = false, failAppend = false } = {}) {
   const listeners = new Map();
   const elements = new Map();
   const make = (id = "") => ({
@@ -19,24 +19,25 @@ function setup({ failDownload = false, delayedCopy = false } = {}) {
   let resolveCopy;
   const document = {
     documentElement: { lang: "en" },
-    body: { appendChild() {}, removeChild() {} },
+    body: { appendChild(el) { if (failAppend && el.id === "a") throw Error("append blocked"); }, removeChild() {} },
     getElementById(id) { return elements.get(id); },
     querySelectorAll() { return []; },
     createElement(tag) { return make(tag); },
     addEventListener(type, fn) { listeners.set("document:" + type, fn); },
     execCommand() { return true; },
   };
+  let revoked = 0;
   const context = {
     document, navigator: { language: "en", clipboard: { writeText: () => delayedCopy ? new Promise(resolve => { resolveCopy = resolve; }) : Promise.resolve() } },
     localStorage: { getItem() { return null; }, setItem() {} },
     window: { clearTimeout() {}, setTimeout() { return 1; } },
-    Blob, URL: { createObjectURL() { return "blob:test"; }, revokeObjectURL() {} },
+    Blob, URL: { createObjectURL() { if (failObjectURL) throw Error("object URL blocked"); return "blob:test"; }, revokeObjectURL() { revoked += 1; } },
     Date,
   };
   vm.runInNewContext(source, context);
   listeners.get("document:DOMContentLoaded")();
   const fire = (id, type = "click") => listeners.get(id + ":" + type)();
-  return { fire, elements, finishCopy: () => resolveCopy() };
+  return { fire, elements, revoked: () => revoked, finishCopy: () => resolveCopy() };
 }
 test("stale clipboard completion does not overwrite feedback after selection changes", async () => {
   const ui = setup({ delayedCopy: true });
@@ -62,4 +63,19 @@ test("successful export reports initiation rather than completed disk save", () 
   ui.fire("generateChecklist");
   ui.fire("saveChecklistMd");
   assert.equal(ui.elements.get("toast").textContent, "Download started.");
+});
+
+test("object URL creation failure reports export failure for both formats", () => {
+  const ui = setup({ failObjectURL: true });
+  ui.fire("generateChecklist");
+  for (const id of ["saveChecklistMd", "saveChecklistTxt"]) {
+    assert.doesNotThrow(() => ui.fire(id));
+    assert.equal(ui.elements.get("toast").textContent, "Could not start download.");
+  }
+});
+test("anchor insertion failure reports failure and schedules URL cleanup", () => {
+  const ui = setup({ failAppend: true });
+  ui.fire("generateChecklist");
+  assert.doesNotThrow(() => ui.fire("saveChecklistMd"));
+  assert.equal(ui.elements.get("toast").textContent, "Could not start download.");
 });

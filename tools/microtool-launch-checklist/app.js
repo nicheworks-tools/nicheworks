@@ -66,20 +66,30 @@
   };
 
   const downloadText = (filename, text) => {
-    const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const anchor = document.createElement("a");
-    anchor.href = url;
-    anchor.download = filename;
-    document.body.appendChild(anchor);
+    let url = null;
+    let anchor = null;
     try {
+      const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+      url = URL.createObjectURL(blob);
+      anchor = document.createElement("a");
+      anchor.href = url;
+      anchor.download = filename;
+      document.body.appendChild(anchor);
       anchor.click();
       return true;
     } catch (_) {
       return false;
     } finally {
-      anchor.remove();
-      window.setTimeout(() => URL.revokeObjectURL(url), 500);
+      if (anchor) {
+        try { anchor.remove(); } catch (_) {}
+      }
+      if (url !== null) {
+        try {
+          window.setTimeout(() => URL.revokeObjectURL(url), 500);
+        } catch (_) {
+          try { URL.revokeObjectURL(url); } catch (_) {}
+        }
+      }
     }
   };
 
