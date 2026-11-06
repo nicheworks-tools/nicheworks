@@ -194,11 +194,17 @@
 
     const addScore = () => {
       const name = playerName.value.trim() || "Player";
-      const score = Number(scoreValue.value);
-      const safeScore = Number.isFinite(score) ? score : 0;
+      const rawScore = scoreValue.value.trim();
+      const score = Number(rawScore);
+      if (!rawScore || !Number.isFinite(score)) {
+        scoreValue.setCustomValidity("Enter a valid finite score.");
+        scoreValue.reportValidity();
+        return;
+      }
+      scoreValue.setCustomValidity("");
       const entry = {
         name,
-        score: safeScore,
+        score,
         time: new Date().toLocaleString()
       };
       scores = [entry, ...scores].slice(0, 50);
@@ -210,6 +216,7 @@
     btnStart.addEventListener("click", startTimer);
     btnPause.addEventListener("click", pauseTimer);
     btnReset.addEventListener("click", resetTimer);
+    scoreValue.addEventListener("input", () => scoreValue.setCustomValidity(""));
     btnAdd.addEventListener("click", addScore);
 
     btnExport.addEventListener("click", () => {
