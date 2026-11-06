@@ -47,9 +47,14 @@ async def main():
                     extension_id = worker.url.split("/")[2]
                     page = await browser.new_page()
                     await page.goto(f"chrome-extension://{extension_id}/collector.html")
+                    page.on("console", lambda msg: print("BROWSER CONSOLE:", msg.type, msg.text, flush=True))
+                    page.on("pageerror", lambda err: print("BROWSER PAGEERROR:", err, flush=True))
                     await page.locator("#url").fill(root)
                     await page.locator("#max-pages").fill("3")
+                    print("BEFORE DISCOVERY:", await page.locator("#url").input_value(), flush=True)
                     await page.locator("#discover").click()
+                    print("AFTER DISCOVERY CLICK:", await page.locator("#discovery-status").inner_text(), flush=True)
+                    print("PERMISSIONS:", await page.evaluate("""async () => ({all: await chrome.permissions.getAll(), granted: await chrome.permissions.contains({origins: [new URL(document.querySelector(\'#url\').value).origin + \'/*\']})})"""), flush=True)
                     await expect(page.locator("#discovery-status")).to_contain_text("Discovered 3 HTML pages", timeout=30000)
                     assert await page.locator("#pages input:checked").count() == 3
                     await page.locator("#batch-start").click()
