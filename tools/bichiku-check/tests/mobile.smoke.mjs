@@ -531,6 +531,62 @@ try{
   passed++;await ctx.close();
  }
 
+ // Reserve four available AA cells for two headlamps while excluding a
+ // separate radio: the tool must never silently choose an allocation itself.
+ {
+  const {ctx,page,exceptions}=await open(320);
+  await page.evaluate(()=>localStorage.setItem("bichiku-check-v1",JSON.stringify({
+   mode:"home",adults:1,days:3,powerOut:true,
+   stocks:{"home:batteries":{batteryCells:{AA:4}},
+     "home:radio":{qty:1,powerReadyQty:1,powerReadyConfirmed:true,
+       batteryType:"AA",cellsPerChange:2,plannedChanges:1,
+       batteryPlanConfirmed:true,batteryPlanDays:3}},
+   variants:{"home:headlamp":{qty:2,powerReadyQty:2,powerReadyConfirmed:true,
+      batteryType:"AA",cellsPerChange:2,plannedChanges:1,
+      batteryPlanConfirmed:true,batteryPlanDays:3}}
+  })));
+  await page.reload({waitUntil:"domcontentloaded"});
+  await page.locator("#calculate").click();
+  await page.locator('button[data-goal="power"]').click();
+  assert.match(await page.locator(".g-detail-status").innerText(),/2/,"short shared AA budget cannot automatically choose the headlamps");
+  await page.locator('details.g-option[data-option="headlamp"] summary').click();
+  assert.equal(await page.locator('input[data-battery-reserve="option:headlamp"]').inputValue(),"",
+   "blank legacy battery reservation means all working units, not zero");
+  await page.locator('input[data-battery-reserve="basic:radio"]').fill("0");
+  await page.locator('input[data-battery-reserve="basic:radio"]').press("Tab");
+  assert.equal(await page.locator('input[data-battery-confirm="basic:radio"]').isChecked(),false,
+   "changing one reserved-device count revokes prior approval");
+  await page.locator('input[data-battery-confirm="basic:radio"]').check();
+  const now=await page.evaluate(()=>{
+   const s=JSON.parse(localStorage.getItem("bichiku-check-v1"));
+   return window.BichikuDecision.assessment(window.BICHIKU_CATALOG,window.BICHIKU_OPTIONS,s,"2026-11-04");
+  });
+  assert.equal(now.batteryReview.rows.find(r=>r.type==="AA").required,4);
+  assert.equal(now.batteryReview.rows.find(r=>r.type==="AA").shortage,0);
+  assert.equal(now.calc.items.find(r=>r.item.id==="light").effective,2);
+  assert.equal(now.calc.items.find(r=>r.item.id==="radio").effective,0);
+  assert.match(await page.locator(".g-battery-review").innerText(),/一部/);
+  assert.match(await page.locator(".g-detail-status").innerText(),/0/,"light shortage disappears after explicit AA allocation");
+  await page.locator('input[data-battery-reserve="basic:radio"]').fill("1");
+  await page.locator('input[data-battery-reserve="basic:radio"]').press("Tab");
+  await page.locator('input[data-battery-confirm="basic:radio"]').check();
+  const excess=await page.evaluate(()=>{
+   const s=JSON.parse(localStorage.getItem("bichiku-check-v1"));
+   return window.BichikuDecision.assessment(window.BICHIKU_CATALOG,window.BICHIKU_OPTIONS,s,"2026-11-04");
+  });
+  assert.equal(excess.batteryReview.rows.find(r=>r.type==="AA").shortage,2);
+  assert.equal(excess.calc.items.find(r=>r.item.id==="light").effective,0,
+   "reintroducing an over-budget radio cannot double-use the same AA cells");
+  await page.reload({waitUntil:"domcontentloaded"});
+  await page.locator("#calculate").click();
+  await page.locator('button[data-goal="power"]').click();
+  assert.equal(await page.locator('input[data-battery-reserve="basic:radio"]').inputValue(),"1");
+  await noOverflow(page,"320px selective battery allocation");
+  assert.deepEqual(exceptions,[]);
+  console.log("PASS explicit partial battery reservation, shared pool, approval revocation and persistence");
+  passed++;await ctx.close();
+ }
+
  // Legacy spare sets are not converted to cells; changing days invalidates checked plans.
  {
   const {ctx,page,exceptions}=await open(320);
@@ -838,6 +894,10 @@ try{
    "localized energy confirmation "+locale);
   assert.equal(await page.locator('input[data-battery-stock]').count(),7,"seven battery types shown "+locale);
   assert.equal(await page.locator('select[data-battery-type="option:headlamp"]').count(),1,"localized device battery type "+locale);
+  assert.equal(await page.locator('input[data-battery-reserve="option:headlamp"]').count(),1,
+   "localized partial battery allocation field "+locale);
+  assert.ok((await page.locator('label').filter({has:page.locator('input[data-battery-reserve="option:headlamp"]')}).innerText()).trim().length>15,
+   "localized battery allocation explanation "+locale);
   assert.ok((await page.locator('label.g-check').filter({has:page.locator('input[data-battery-confirm="option:headlamp"]')}).innerText()).trim().length>10,"localized battery plan confirmation "+locale);
   await page.locator('button[data-back]').click();
   await page.locator('button[data-goal="water"]').click();

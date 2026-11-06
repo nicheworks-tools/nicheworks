@@ -97,6 +97,84 @@ test("shared typed spare cells are allocated once across lights and radios",()=>
  assert.equal(row(normal,"light").effective,3,"current working units are distinct from blackout-period coverage");
  assert.equal(row(normal,"light").sustainedEffective,0);
 });
+test("explicit battery reservations sustain only selected units from a shared AA pool",()=>{
+ const stocks={"home:batteries":{batteryCells:{AA:4,AAA:6}},
+   "home:radio":{qty:1,powerReadyQty:1,powerReadyConfirmed:true,
+     batteryType:"AAA",cellsPerChange:3,plannedChanges:2,batteryPlanConfirmed:true,batteryPlanDays:3}};
+ const variants={"home:headlamp":{qty:2,powerReadyQty:2,powerReadyConfirmed:true,
+   batteryType:"AA",cellsPerChange:2,plannedChanges:1,batteryPlanConfirmed:true,batteryPlanDays:3},
+   "home:flashlight":{qty:1,powerReadyQty:1,powerReadyConfirmed:true,
+   batteryType:"AA",cellsPerChange:2,plannedChanges:1,batteryPlanConfirmed:true,batteryPlanDays:3}};
+ const all=assess({powerOut:true,stocks,variants});
+ assert.equal(all.batteryReview.rows.find(r=>r.type==="AA").required,6);
+ assert.equal(row(all,"light").effective,0,"unreviewed shared shortfall is never automatically split between devices");
+ const reserved=assess({powerOut:true,stocks,variants:{
+  "home:headlamp":{...variants["home:headlamp"],batteryReservedUnits:2},
+  "home:flashlight":{...variants["home:flashlight"],batteryReservedUnits:0}
+ }});
+ const aa=reserved.batteryReview.rows.find(r=>r.type==="AA");
+ assert.equal(aa.required,4);
+ assert.equal(aa.available,4);
+ assert.equal(aa.shortage,0);
+ assert.equal(row(reserved,"light").currentEffective,3);
+ assert.equal(row(reserved,"light").sustainedEffective,2);
+ assert.equal(row(reserved,"light").effective,2,"only two deliberately allocated headlamps are sustainable");
+ assert.equal(row(reserved,"radio").effective,1,"AAA radio remains independently sustainable");
+ assert.equal(reserved.batteryReview.sustainedUnits,3);
+ assert.equal(reserved.batteryReview.devices.find(d=>d.id==="flashlight").reserved,0);
+ const alternative=assess({powerOut:true,stocks,variants:{
+  "home:headlamp":{...variants["home:headlamp"],batteryReservedUnits:1},
+  "home:flashlight":{...variants["home:flashlight"],batteryReservedUnits:1}
+ }});
+ assert.equal(alternative.batteryReview.rows.find(r=>r.type==="AA").required,4);
+ assert.equal(row(alternative,"light").effective,2,"two separate devices may share a verified four-cell budget");
+ const wrong=assess({powerOut:true,stocks,variants:{
+  "home:headlamp":{...variants["home:headlamp"],batteryReservedUnits:2},
+  "home:flashlight":{...variants["home:flashlight"],batteryReservedUnits:1}
+ }});
+ assert.equal(row(wrong,"light").effective,0,"an overdrawn explicit plan also fails closed");
+ assert.equal(wrong.batteryReview.rows.find(r=>r.type==="AA").shortage,2);
+});
+test("invalid or stale per-device battery reservations are not silently clamped",()=>{
+ const full={qty:2,powerReadyQty:1,powerReadyConfirmed:true,
+  batteryType:"AA",cellsPerChange:2,plannedChanges:1,batteryPlanConfirmed:true,batteryPlanDays:3};
+ const base={powerOut:true,stocks:{"home:batteries":{batteryCells:{AA:10}}}};
+ const cases=[1.5,-1,2,999,"not a count"];
+ for(const count of cases){
+  const a=assess({...base,variants:{"home:headlamp":{...full,batteryReservedUnits:count}}});
+  assert.equal(row(a,"light").effective,0,"no fractional, negative, over-owned, or malformed battery reservation");
+  assert.equal(a.batteryReview.uncheckedDevices,1);
+  assert.equal(a.batteryReview.devices[0].reserveValid,false);
+ }
+ const legacy=assess({...base,variants:{"home:headlamp":full}});
+ assert.equal(legacy.batteryReview.devices[0].reserved,1,"older saved plans implicitly cover every working unit");
+ assert.equal(row(legacy,"light").effective,1);
+ const explicitZero=assess({...base,variants:{"home:headlamp":{...full,batteryReservedUnits:0}}});
+ assert.equal(explicitZero.batteryReview.devices[0].verified,true);
+ assert.equal(row(explicitZero,"light").effective,0,"zero reserved is deliberate, not missing value");
+ assert.equal(explicitZero.batteryReview.rows.find(r=>r.type==="AA").required,0);
+ const stale=assess({...base,days:7,variants:{"home:headlamp":{...full,batteryReservedUnits:1}}});
+ assert.equal(stale.batteryReview.uncheckedDevices,1);
+ assert.equal(row(stale,"light").effective,0);
+ const invalidChangedCount=assess({...base,variants:{"home:headlamp":{...full,powerReadyQty:0,batteryReservedUnits:1}}});
+ assert.equal(row(invalidChangedCount,"light").effective,0,"operational-count edits cannot inherit old selected units");
+});
+test("partial reservations in go-bag are isolated from home spare cells",()=>{
+ const go={qty:2,powerReadyQty:2,powerReadyConfirmed:true,
+   batteryType:"AA",cellsPerChange:2,plannedChanges:1,batteryPlanConfirmed:true,batteryPlanDays:1,
+   batteryReservedUnits:1};
+ const a=assess({powerOut:true,mode:"go",
+  stocks:{"home:batteries":{batteryCells:{AA:999}},"go:batteries":{batteryCells:{AA:2}}},
+  variants:{"go:headlamp":go}});
+ assert.equal(a.batteryReview.planDays,1);
+ assert.equal(row(a,"light").effective,1);
+ assert.equal(row(a,"light").currentEffective,2);
+ assert.equal(a.batteryReview.rows.find(r=>r.type==="AA").required,2);
+ const homeOnly=assess({powerOut:true,mode:"go",stocks:{"home:batteries":{batteryCells:{AA:999}}},
+   variants:{"go:headlamp":go}});
+ assert.equal(row(homeOnly,"light").effective,0);
+ assert.equal(homeOnly.batteryReview.rows.find(r=>r.type==="AA").shortage,2);
+});
 test("expired, wrong-size, unknown and fractional spares never cover a battery plan",()=>{
  const headlamp={"home:headlamp":{qty:2,powerReadyQty:2,powerReadyConfirmed:true,
    batteryType:"AA",cellsPerChange:3,plannedChanges:1,batteryPlanConfirmed:true,batteryPlanDays:3}};

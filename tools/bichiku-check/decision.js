@@ -97,10 +97,17 @@ function batterySupplyReview(s,options,now){
   const cells=Math.floor(numeric(entry.cellsPerChange));
   const changes=Math.floor(numeric(entry.plannedChanges));
   const freshWhole=Number.isInteger(Number(entry.cellsPerChange))&&Number.isInteger(Number(entry.plannedChanges));
-  const verified=entry.batteryPlanConfirmed===true&&entry.batteryPlanDays===planDays&&
+  // The operator may explicitly reserve just a subset of the currently
+  // checked working devices. Missing field on older saves means "all
+  // working", preserving existing behavior; zero is a deliberate choice.
+  const hasReserved=entry.batteryReservedUnits!==undefined&&entry.batteryReservedUnits!==null&&entry.batteryReservedUnits!=="";
+  const reservedRaw=Number(entry.batteryReservedUnits);
+  const reserveValid=!hasReserved||(Number.isInteger(reservedRaw)&&reservedRaw>=0&&reservedRaw<=working);
+  const reserved=hasReserved&&reserveValid?reservedRaw:working;
+  const verified=entry.batteryPlanConfirmed===true&&entry.batteryPlanDays===planDays&&reserveValid&&
     (type==="rechargeable" || (batteryTypes.includes(type)&&freshWhole&&cells>0));
-  const required=verified&&type!=="rechargeable"?working*cells*changes:0;
-  devices.push({source,id,parent,owned,working,type,cells,changes,required,
+  const required=verified&&type!=="rechargeable"?reserved*cells*changes:0;
+  devices.push({source,id,parent,owned,working,reserved,reserveValid,type,cells,changes,required,
     verified,sustained:0,needsReview:!verified});
  }
  for(const id of ["light","lantern","radio"])
@@ -116,7 +123,9 @@ function batterySupplyReview(s,options,now){
  });
  const budget=Object.fromEntries(rows.map(x=>[x.type,x]));
  for(const d of devices){
-  d.sustained=d.verified&&(d.type==="rechargeable"||budget[d.type]?.enough)?d.working:0;
+  // No automatic distribution of a short shared pool: only user-approved
+  // per-device allocations become sustainable, with no cell spent twice.
+  d.sustained=d.verified&&(d.type==="rechargeable"||budget[d.type]?.enough)?d.reserved:0;
  }
  return {planDays,devices,rows,spareLegacySets:numeric(spare.qty),
    workingUnits:devices.reduce((v,d)=>v+d.working,0),
