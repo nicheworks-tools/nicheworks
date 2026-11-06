@@ -31,7 +31,7 @@ for (const item of cases) {
     page.includes(phone.sources.specificationsUrl.replaceAll('&','\\u0026')),
     item.id+' official primary source not linked');
   assert.ok(page.includes('G-57QT78M3JB'),item.id+' GA4 tag removed');
-  assert.ok(page.includes('ca-pub-9879006623791285'),item.id+' Ads tag removed');
+  assert.ok(page.includes('ca-pub-9879006623791275'),item.id+' Ads tag removed');
   assert.ok(page.includes('model-profile-affiliate.js'),item.id+' click tracker missing');
   assert.ok(page.includes('適格販売により収入を得ています'),item.id+' Amazon disclosure missing');
   assert.ok(page.includes('rel="sponsored noopener noreferrer"'));
