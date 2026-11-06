@@ -63,7 +63,7 @@ const active = {
   clearManualResult(){},calculate(){},latestValidResult:null,scheduleHistorySave(){}
 };
 vm.createContext(active);
-vm.runInContext(activeFunction('clearHistory','loadHistory') + '\\n' + activeFunction('applyCategory','convertTemperature'), active);
+vm.runInContext(activeFunction('clearHistory','loadHistory') + '\n' + activeFunction('applyCategory','convertTemperature'), active);
 active.clearHistory();
 assert.equal(active.historyTimer,null);
 assert.equal(activePending.size,0);
