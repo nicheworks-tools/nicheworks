@@ -97,6 +97,85 @@ test("shared typed spare cells are allocated once across lights and radios",()=>
  assert.equal(row(normal,"light").effective,3,"current working units are distinct from blackout-period coverage");
  assert.equal(row(normal,"light").sustainedEffective,0);
 });
+test("type-specific battery deficits drive power gap counts without double-shopping generic sets",()=>{
+ const headlamp={qty:2,powerReadyQty:2,powerReadyConfirmed:true,
+  batteryType:"AA",cellsPerChange:2,plannedChanges:1,
+  batteryPlanConfirmed:true,batteryPlanDays:3};
+ const settings={powerOut:true,stocks:{"home:batteries":{qty:99,batteryCells:{AA:2}}},
+  variants:{"home:headlamp":headlamp}};
+ const a=assess(settings);
+ const aa=a.batteryReview.rows.find(r=>r.type==="AA");
+ assert.equal(aa.required,4);
+ assert.equal(aa.available,2);
+ assert.equal(aa.shortage,2);
+ assert.equal(a.batteryReview.typedPlan,true);
+ assert.deepEqual(a.batteryReview.shoppingShortages,[{type:"AA",required:4,available:2,missing:2}]);
+ assert.equal(row(a,"batteries").autoTarget,1);
+ assert.equal(row(a,"batteries").required,0,
+  "the example one untyped set is not a second purchase on top of real AA requirements");
+ assert.equal(row(a,"batteries").typedPlanReplacesExample,true);
+ assert.equal(row(a,"batteries").missing,0);
+ assert.equal(row(a,"batteries").ownedManual,99,
+  "untyped legacy sets remain stored and cannot erase a type-specific shortage");
+ assert.equal(a.groups.find(g=>g.id==="power").typedBatteryShortages.length,1);
+ assert.equal(a.groups.find(g=>g.id==="power").missingCategories,
+  a.groups.find(g=>g.id==="power").rows.filter(r=>r.missing>0).length+1);
+ assert.equal(a.calc.missingCount,a.calc.items.filter(r=>r.missing>0).length+1,
+  "overview category-count includes the separately actionable AA shortage");
+ assert.equal(row(a,"light").effective,0);
+ const full=assess({...settings,stocks:{"home:batteries":{qty:99,batteryCells:{AA:4}}}});
+ assert.equal(full.batteryReview.shoppingShortages.length,0);
+ assert.equal(full.batteryReview.typedPlan,true);
+ assert.equal(row(full,"batteries").required,0);
+ assert.equal(row(full,"light").effective,2);
+ assert.equal(full.calc.missingCount,full.calc.items.filter(r=>r.missing>0).length);
+});
+test("custom generic battery targets remain separate; unknown, expired and unverified types never make phantom cells",()=>{
+ const headlamp={qty:1,powerReadyQty:1,powerReadyConfirmed:true,
+  batteryType:"AAA",cellsPerChange:3,plannedChanges:1,
+  batteryPlanConfirmed:true,batteryPlanDays:3};
+ const base={powerOut:true,variants:{"home:headlamp":headlamp}};
+ const custom=assess({...base,stocks:{"home:batteries":{target:2,qty:0,batteryCells:{AAA:1}}}});
+ assert.equal(row(custom,"batteries").required,2,
+  "an explicit independent generic-set goal is preserved");
+ assert.equal(row(custom,"batteries").missing,2);
+ assert.deepEqual(custom.batteryReview.shoppingShortages,
+  [{type:"AAA",required:3,available:1,missing:2}]);
+ assert.equal(custom.groups.find(g=>g.id==="power").typedBatteryShortages.length,1);
+ const normal=assess({...base,powerOut:false,stocks:{"home:batteries":{qty:0,batteryCells:{AAA:3}}}});
+ assert.equal(row(normal,"batteries").required,1,
+  "without an outage, the existing generic-set example is preserved");
+ assert.deepEqual(normal.batteryReview.shoppingShortages,[]);
+ const unchecked=assess({...base,variants:{"home:headlamp":{...headlamp,batteryPlanConfirmed:false}},
+  stocks:{"home:batteries":{qty:0,batteryCells:{AAA:0}}}});
+ assert.equal(unchecked.batteryReview.typedPlan,false);
+ assert.deepEqual(unchecked.batteryReview.shoppingShortages,[]);
+ assert.equal(unchecked.batteryReview.uncheckedDevices,1);
+ assert.equal(row(unchecked,"batteries").required,1,
+  "do not invent a typed shortage before device power plan is confirmed");
+ const expired=assess({...base,stocks:{"home:batteries":{batteryCells:{AAA:10},expiry:"2026-10-31"}}});
+ assert.equal(expired.batteryReview.shoppingShortages[0].missing,3,
+  "expired cells do not cover the required AAA shortage");
+ const go=assess({...base,mode:"go",stocks:{"home:batteries":{batteryCells:{AAA:10}}},
+  variants:{"go:headlamp":{...headlamp,batteryPlanDays:1}}});
+ assert.equal(go.batteryReview.shoppingShortages[0].missing,3,
+  "home spare cells do not cover the go-bag's typed buying requirements");
+});
+test("independent battery types remain separate actionable missing-cell rows",()=>{
+ const a=assess({powerOut:true,stocks:{"home:batteries":{batteryCells:{AA:1,AAA:2}},
+  "home:radio":{qty:1,powerReadyQty:1,powerReadyConfirmed:true,
+    batteryType:"AAA",cellsPerChange:3,plannedChanges:1,
+    batteryPlanConfirmed:true,batteryPlanDays:3}},
+  variants:{"home:headlamp":{qty:1,powerReadyQty:1,powerReadyConfirmed:true,
+    batteryType:"AA",cellsPerChange:2,plannedChanges:1,
+    batteryPlanConfirmed:true,batteryPlanDays:3}}});
+ assert.deepEqual(a.batteryReview.shoppingShortages,[
+  {type:"AA",required:2,available:1,missing:1},
+  {type:"AAA",required:3,available:2,missing:1}
+ ]);
+ assert.equal(a.groups.find(g=>g.id==="power").typedBatteryShortages.length,2);
+ assert.equal(a.calc.missingCount,a.calc.items.filter(r=>r.missing>0).length+2);
+});
 test("explicit battery reservations sustain only selected units from a shared AA pool",()=>{
  const stocks={"home:batteries":{batteryCells:{AA:4,AAA:6}},
    "home:radio":{qty:1,powerReadyQty:1,powerReadyConfirmed:true,
