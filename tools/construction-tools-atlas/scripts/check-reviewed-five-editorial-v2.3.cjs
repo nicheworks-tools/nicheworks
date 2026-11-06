@@ -6,7 +6,7 @@ const data=JSON.parse(fs.readFileSync(path.join(root,"data/reviewed-editorial-fi
 const manifest=JSON.parse(fs.readFileSync(path.join(root,"data/seo-detail-pages-v2.3.json"),"utf8"));
 const expected=["ball_valve","insulation","laser_level","rotary_hammer","safety_harness"];
 assert.equal(data.schema,"cta-reviewed-editorial-five-v2.3");
-assert.equal(data.version,"2026-11-05-gsc-five-source-guard-1");
+assert.equal(data.version,"2026-11-06-gsc-five-source-guard-2");
 assert.deepEqual(data.entries.map(x=>x.id).sort(),expected);
 assert.equal(manifest.summary.public_runtime_entries,865);
 assert.equal(manifest.summary.published_static_detail_pages,55);
