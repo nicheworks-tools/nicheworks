@@ -13,6 +13,7 @@ import { performance } from 'node:perf_hooks';
 import { chromium } from 'playwright';
 import { createWorker } from 'tesseract.js';
 import { japaneseRealPhotoSources } from './japanese-real-photo-corpus.mjs';
+import { additionalJapanesePhotoSources } from './japanese-real-photo-expansion.mjs';
 import { createProductionLabelScorer, aggregateProductionAssessments } from './production-label-scoring.mjs';
 
 const require = createRequire(import.meta.url);
@@ -22,6 +23,10 @@ const reportFile = process.env.FASTSCAN_JA_REPORT;
 assert.ok(sourceDir && reportFile, 'Transient photo directory and numeric-only report are required');
 assert.equal(japaneseRealPhotoSources.length, 2, 'Keep fixed source-backed photo sample');
 assert.equal(new Set(japaneseRealPhotoSources.map(x => x.id)).size, 2);
+assert.ok(additionalJapanesePhotoSources.length >= 2, 'At least two new independent photo sources required');
+const allJapanesePhotoSources = [...japaneseRealPhotoSources, ...additionalJapanesePhotoSources];
+assert.equal(new Set(allJapanesePhotoSources.map(x => x.id)).size, allJapanesePhotoSources.length,
+  'Every actual photograph must be independently identified');
 
 const context = {};
 vm.runInNewContext(fs.readFileSync('tools/inci-fastscan/js/core_ocr_post.js', 'utf8') +
@@ -81,14 +86,54 @@ try {
   await page.goto('about:blank');
   await page.addScriptTag({ path: path.resolve('tools/inci-fastscan/js/image_preprocess.js') });
   assert.equal(await page.evaluate(() => typeof window.prepareFastScanOcrImage), 'function');
-  for (const source of japaneseRealPhotoSources) {
-    assert.ok(source.ingredientList.length >= 45, 'Must use a substantial published ingredient list');
-    const file = path.join(sourceDir, source.id + '.jpg');
+  for (const source of allJapanesePhotoSources) {
+    assert.ok(source.ingredientList.length >= (source.photoFormat === 'webp' ? 20 : 40),
+      'Every source must contain a substantial actual ingredient list');
+    const format = source.photoFormat || 'jpg';
+    assert.ok(['jpg', 'webp'].includes(format), 'Only explicitly validated public photo formats');
+    const file = path.join(sourceDir, source.id + '.' + format);
     const image = fs.readFileSync(file);
-    assert.ok(image.length > 8000 && image[0] === 0xff && image[1] === 0xd8,
-      source.id + ' is not a valid downloaded real JPEG image');
+    assert.ok(image.length > 8000, 'Downloaded public image must be non-trivial');
+    const isJpegBytes = image[0] === 0xff && image[1] === 0xd8;
+    const isWebpBytes = image.toString('latin1', 0, 4) === 'RIFF' &&
+      image.toString('latin1', 8, 12) === 'WEBP';
+    // Some image CDNs negotiate JPEG bytes even for URLs ending in .webp.
+    // Accept only a verified raster signature, never trust the suffix.
+    assert.ok(isJpegBytes || isWebpBytes,
+      source.id + ' is neither a valid JPEG nor a valid WebP image');
+    if (format === 'jpg') assert.ok(isJpegBytes,
+      'The pinned JPEG corpus must stay JPEG, not silently change formats');
+    // Tesseract's Node decoder requires a common raster format. Actual WebP
+    // bytes are converted losslessly to PNG via Chromium BEFORE both control
+    // and enhanced measurements. CDN-negotiated JPEG bytes remain untouched.
+    let unprocessedPixels = image;
+    if (isWebpBytes) {
+      const png = await page.evaluate(async encoded => {
+        const raw = atob(encoded);
+        const bytes = new Uint8Array(raw.length);
+        for (let i = 0; i < raw.length; i++) bytes[i] = raw.charCodeAt(i);
+        const blob = new Blob([bytes], { type: 'image/webp' });
+        const uri = URL.createObjectURL(blob);
+        try {
+          const visual = new Image();
+          visual.src = uri;
+          await visual.decode();
+          const canvas = document.createElement('canvas');
+          canvas.width = visual.naturalWidth;
+          canvas.height = visual.naturalHeight;
+          const ctx = canvas.getContext('2d');
+          if (!ctx) throw new Error('WebP decoding needs local Chromium canvas');
+          ctx.drawImage(visual, 0, 0);
+          return canvas.toDataURL('image/png').split(',')[1];
+        } finally {
+          URL.revokeObjectURL(uri);
+        }
+      }, image.toString('base64'));
+      assert.ok(png.length > 1000);
+      unprocessedPixels = Buffer.from(png, 'base64');
+    }
 
-    const control = await assessPhoto(image, source);
+    const control = await assessPhoto(unprocessedPixels, source);
     const enhancedBytesBase64 = await page.evaluate(async bytes64 => {
       const raw = atob(bytes64);
       const bytes = new Uint8Array(raw.length);
@@ -197,7 +242,7 @@ try {
   await browser.close();
 }
 
-assert.equal(results.length, japaneseRealPhotoSources.length, 'Every real Japanese photo must have genuine OCR');
+assert.equal(results.length, allJapanesePhotoSources.length, 'Every real Japanese photo must have genuine OCR');
 const sum = field => aggregateProductionAssessments(results.map(row => ({ analysis: row[field].analysis })));
 const original = sum('original');
 const enhanced = sum('enhanced');
@@ -233,13 +278,15 @@ const report = {
   corpus: {
     photos: results.length,
     language: 'jpn+eng',
-    publiclyReferencedSources: japaneseRealPhotoSources.map(row => ({
+    publiclyReferencedSources: allJapanesePhotoSources.map(row => ({
       id: row.id,
       photoSourceUrl: row.photoSourceUrl,
       ingredientSourceUrl: row.ingredientSourceUrl,
       photoUrl: row.photoUrl,
       ingredientCount: row.ingredientList.length,
-      packagingVersion: row.packagingVersion
+      packagingVersion: row.packagingVersion,
+      referenceCaveat: row.referenceCaveat || null,
+      labelClass: row.labelClass || 'cosmetic'
     })),
     noImagesOrLabelTextsUploaded: true,
     photoToReferenceVersionIndependentlyVerified: false

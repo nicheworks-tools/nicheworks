@@ -6,6 +6,8 @@ on:
     paths:
       - '.github/workflows/fastscan-japanese-real-photo.yml'
       - 'tools/inci-fastscan/qa/japanese-real-photo-corpus.mjs'
+      - 'tools/inci-fastscan/qa/japanese-real-photo-expansion.mjs'
+      - 'tools/inci-fastscan/qa/check-japanese-photo-expansion.mjs'
       - 'tools/inci-fastscan/qa/chromium-japanese-real-photo-pilot.mjs'
       - 'tools/inci-fastscan/qa/check-japanese-real-photo-corpus.mjs'
       - 'tools/inci-fastscan/qa/japanese-source-alias-evidence.mjs'
@@ -60,9 +62,12 @@ jobs:
       - name: Verify real source corpus and parser (no image uploads)
         run: |
           node --check tools/inci-fastscan/qa/japanese-real-photo-corpus.mjs
+          node --check tools/inci-fastscan/qa/japanese-real-photo-expansion.mjs
+          node --check tools/inci-fastscan/qa/check-japanese-photo-expansion.mjs
           node --check tools/inci-fastscan/qa/chromium-japanese-real-photo-pilot.mjs
           node tools/inci-fastscan/qa/check-production-label-scoring.mjs
           node tools/inci-fastscan/qa/check-japanese-real-photo-corpus.mjs
+          node tools/inci-fastscan/qa/check-japanese-photo-expansion.mjs
           node tools/inci-fastscan/qa/check-japanese-source-alias-wave.mjs
           node tools/inci-fastscan/validate-dictionary.mjs
           node tools/inci-fastscan/qa/check-japanese-source-backed-new-records.mjs
@@ -92,7 +97,20 @@ jobs:
             --user-agent 'Mozilla/5.0 (compatible; NicheWorks-Research-OCR/1.0)' \
             'https://fitter.cosme.net/media/collection/145/3225/11814607.jpg' \
             --output "$FASTSCAN_JA_CORPUS_DIR/kisocare-super-wrinkle-cream-va-no036-50g.jpg"
-          test "$(find "$FASTSCAN_JA_CORPUS_DIR" -name '*.jpg' | wc -l)" -eq 2
+          curl --fail --silent --show-error --location --retry 3 \
+            --connect-timeout 20 --max-time 120 \
+            --user-agent 'Mozilla/5.0 (compatible; NicheWorks-Research-OCR/1.0)' \
+            'https://stat.ameba.jp/user_images/20210317/20/rik01194/87/9f/j/o1080108014911798705.jpg' \
+            --output "$FASTSCAN_JA_CORPUS_DIR/naturaglace-color-control-base-01-202103.jpg"
+          curl --fail --silent --show-error --location --retry 3 \
+            --connect-timeout 20 --max-time 120 \
+            --user-agent 'Mozilla/5.0 (compatible; NicheWorks-Research-OCR/1.0)' \
+            'https://cdn.yamibuy.net/item/e2388734cd318a74db0709b22d68dcfe_757x757.webp' \
+            --output "$FASTSCAN_JA_CORPUS_DIR/toone-petal-float-flawless-touch-01-4570106735626.webp"
+          test "$(find "$FASTSCAN_JA_CORPUS_DIR" -name '*.jpg' | wc -l)" -eq 3
+          test "$(find "$FASTSCAN_JA_CORPUS_DIR" -name '*.webp' | wc -l)" -eq 1
+          test "$(wc -c < "$FASTSCAN_JA_CORPUS_DIR/naturaglace-color-control-base-01-202103.jpg")" -gt 8000
+          test "$(wc -c < "$FASTSCAN_JA_CORPUS_DIR/toone-petal-float-flawless-touch-01-4570106735626.webp")" -gt 8000
           test "$(wc -c < "$FASTSCAN_JA_CORPUS_DIR/zigen-all-in-one-gel-2025.jpg")" -gt 8000
           test "$(wc -c < "$FASTSCAN_JA_CORPUS_DIR/kisocare-super-wrinkle-cream-va-no036-50g.jpg")" -gt 8000
 
