@@ -245,5 +245,44 @@
     "link_type": "dropoff_facility",
     "url": "https://www.town.hiroo.lg.jp/kurashi/seikatsu/gomi/dashikata/",
     "scope_note": "町公式。南十勝環境衛生センター（広尾町紋別760番地3）の持込料金・受付時間を案内。平日9:00–12:00、13:00–16:30。"
+  },
+  {
+    "pref": "北海道",
+    "city": "池田町",
+    "lgcode": "016446",
+    "last_checked": "2026-11-06",
+    "status": "active",
+    "language": "ja",
+    "name": "池田町ごみ分別ガイド",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.hokkaido-ikeda.lg.jp/kurashi/gomi/type/4432.html",
+    "scope_note": "町公式の分別ガイド。"
+  },
+  {
+    "pref": "北海道",
+    "city": "池田町",
+    "lgcode": "016446",
+    "last_checked": "2026-11-06",
+    "status": "active",
+    "language": "ja",
+    "name": "ごみの収集日（地区別）",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.town.hokkaido-ikeda.lg.jp/kurashi/gomi/type/355.html",
+    "scope_note": "町公式。A〜E地区・農村地区で収集曜日が異なる。農村地区の粗大ごみ・剪定枝は事前申込が必要。"
+  },
+  {
+    "pref": "北海道",
+    "city": "池田町",
+    "lgcode": "016446",
+    "last_checked": "2026-11-06",
+    "status": "active",
+    "language": "ja",
+    "name": "家庭系ごみの自己搬入先",
+    "type": "持込施設",
+    "link_type": "dropoff_facility",
+    "url": "https://www.town.hokkaido-ikeda.lg.jp/kurashi/gomi/jikohannyu/",
+    "scope_note": "町公式。くりりんセンター及び池田町リサイクルセンターの自己搬入案内への入口。"
   }
 ]
