@@ -195,7 +195,7 @@ async function main(){
  const unpinned=results.filter(x=>!(/^[a-f0-9]{40}$/.test(x.pin)));
  if(unpinned.length)throw Error("First-pass intake only: pin the independently verified SHA1 values before promotion: "+unpinned.map(x=>x.id+"="+x.sha1).join(", "));
  results.forEach(it=>ensure(it.sha1===it.pin,it.id+" source SHA1 differs from review pin"));
- const registry=read("undefined"),lifecycle=read("image-lifecycle-v2.3.json"),intake=read("affiliate-image-acquisition-wave6-v2.3.json");
+ const registry=read("image-registry-v2.3.json"),lifecycle=read("image-lifecycle-v2.3.json"),intake=read("affiliate-image-acquisition-wave6-v2.3.json");
  ensure(registry.items.length===64,"base image registry changed");
  ensure(intake.expected.active_affiliate_mappings===430&&intake.expected.revenue_ready===55&&intake.expected.awaiting_source===375&&intake.expected.first_wave===0,"base queue changed");
  for(const it of results){
@@ -215,7 +215,7 @@ async function main(){
     notes:"Wave13: "+it.review+" Exact Commons original SHA-1 verified against independent pin and live MediaWiki API."});
  }
  write("image-wave13-sources-v2.3.json",{schema:"cta-image-wave13-sources-v2.3",version:VERSION,policy:{runtime_hotlink:false,source_provider:"Wikimedia Commons",promotion_rule:"Only ten source-pinned original photos with independently pinned original SHA-1, a Commons API byte/hash match, and complete uncropped local WebP may be published."},items:ledgers});
- registry.version=VERSION;write("undefined",registry);
+ registry.version=VERSION;write("image-registry-v2.3.json",registry);
  const {candidateDigest,loadContext}=require("./image-lifecycle-v2.3.cjs"),context=await loadContext();
  const t=Math.floor(Date.now()/1000)*1000;
  for(let index=0;index<results.length;index++){
@@ -243,7 +243,7 @@ async function main(){
  write("affiliate-image-acquisition-wave6-v2.3.json",intake);
  const hotfix=path.join(ROOT,"detail-image-hotfix.js");let js=fs.readFileSync(hotfix,"utf8");
  ensure(/image-registry-v2\.3\.json\?v=[^"']+/.test(js),"runtime image cache version missing");
- js=js.replace(/image-registry-v2\.3\.json\?v=[^"']+/,"undefined?v="+VERSION);fs.writeFileSync(hotfix,js);
+ js=js.replace(/image-registry-v2\.3\.json\?v=[^"']+/,"image-registry-v2.3.json?v="+VERSION);fs.writeFileSync(hotfix,js);
  for(const task of [
    ["audit-image-inventory-v2.3.cjs","--write"],
    ["audit-public-image-inventory-v2.3.cjs","--write"],
