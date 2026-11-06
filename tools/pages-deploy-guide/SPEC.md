@@ -121,6 +121,7 @@ Amazon affiliate monetization is not part of the current product contract. The p
 - [ ] Initial HTML exposes the core current platform rules without requiring the user to generate a checklist.
 - [ ] The same generation also produces a symptom diagnosis tree and deployment handoff pack without a paid gate.
 - [ ] Combined copy includes checklist, errors, diagnosis, and handoff content.
+- [ ] If inputs change during a pending clipboard write, completion warns that the clipboard contains the previous result and instructs copying again.
 - [ ] Markdown export is available without entitlement or purchase state.
 - [ ] No legacy `NW-PDG-...` code, `pdg_pro_key`, shared Pro entitlement, Stripe purchase link, or Pro bridge is required or rendered.
 - [ ] The UI does not imply that checklist completion verifies a real deployment.
