@@ -140,6 +140,8 @@ function batterySummary(a){
    ' / '+esc(T.batteryAvailable)+': '+fmt(r.available)+
    (r.shortage?' · '+esc(T.batteryShortage)+': '+fmt(r.shortage):"")+'</span></div>').join("")+'</div>'+
   (b.uncheckedDevices?'<p class="g-pending">'+esc(T.batteryUnchecked)+': '+fmt(b.uncheckedDevices)+'</p>':"")+
+  (b.devices.some(d=>d.verified&&d.reserved<d.working)?
+    '<p class="g-fine">'+esc(T.batteryPartialNote)+'</p>':"")+
   '<p class="g-fine">'+esc(T.batteryNoDouble)+'</p>'+
   '<p class="g-fine">'+esc(T.batterySafety)+' <a href="https://baj.or.jp/safety/primarybattery_light/safety20.html" target="_blank" rel="noopener">'+esc(T.batterySource)+'</a></p></div>';
 }
@@ -216,7 +218,9 @@ function batteryPlanFields(item,id,isBasic){
    '<label>'+esc(T.batteryPerChange)+
     '<input type="number" min="0" max="10000000" step="1" inputmode="numeric" data-battery-cells="'+source+'" value="'+fmt(n(item.cellsPerChange))+'"></label>'+
    '<label>'+esc(T.batteryCycles)+
-    '<input type="number" min="0" max="10000000" step="1" inputmode="numeric" data-battery-changes="'+source+'" value="'+fmt(n(item.plannedChanges))+'"></label></div>'+
+    '<input type="number" min="0" max="10000000" step="1" inputmode="numeric" data-battery-changes="'+source+'" value="'+fmt(n(item.plannedChanges))+'"></label>'+
+   '<label>'+esc(T.batteryReserveUnits)+
+    '<input type="number" min="0" max="10000000" step="1" inputmode="numeric" data-battery-reserve="'+source+'" value="'+(item.batteryReservedUnits==null?"":fmt(n(item.batteryReservedUnits)))+'" placeholder="'+esc(T.batteryReserveAll)+'"></label></div>'+
    '<label class="g-check"><input type="checkbox" data-battery-confirm="'+source+'" '+(confirmed?"checked":"")+'>'+esc(T.batteryPlanConfirm)+'</label>'+
    '<p class="g-fine">'+esc(T.batteryRechargeableNote)+'</p></div>';
 }
@@ -474,7 +478,7 @@ result.addEventListener("change",e=>{
   item.batteryCells=Object.assign({},item.batteryCells||{},{[type]:n(t.value)});
   state.stocks[key("batteries")]=item;save();preserveOpen();render();return;
  }
- const batteryTarget=t.dataset.batteryType||t.dataset.batteryCells||t.dataset.batteryChanges||t.dataset.batteryConfirm;
+ const batteryTarget=t.dataset.batteryType||t.dataset.batteryCells||t.dataset.batteryChanges||t.dataset.batteryReserve||t.dataset.batteryConfirm;
  if(batteryTarget){
   const [kind,id]=batteryTarget.split(":");
   const valid=(kind==="basic"&&["light","lantern","radio"].includes(id))||
@@ -489,6 +493,14 @@ result.addEventListener("change",e=>{
    if(!t.checkValidity()||!Number.isInteger(Number(t.value))){t.reportValidity();return}
    if(t.dataset.batteryCells)item.cellsPerChange=n(t.value);
    if(t.dataset.batteryChanges)item.plannedChanges=n(t.value);
+   item.batteryPlanConfirmed=false;
+  }
+  if(t.dataset.batteryReserve){
+   if(t.value.trim()==="")delete item.batteryReservedUnits;
+   else{
+    if(!t.checkValidity()||!Number.isInteger(Number(t.value))){t.reportValidity();return}
+    item.batteryReservedUnits=n(t.value);
+   }
    item.batteryPlanConfirmed=false;
   }
   if(t.dataset.batteryConfirm){
