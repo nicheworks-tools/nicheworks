@@ -31,6 +31,13 @@ jobs:
               *) echo "Unexpected state $state: $file"; exit 1 ;;
             esac
           done < <(git diff --name-status "$BASE" HEAD -- sitemap.xml tools/construction-tools-atlas/data tools/construction-tools-atlas/entries tools/construction-tools-atlas/images tools/construction-tools-atlas/detail-image-hotfix.js tools/construction-tools-atlas/sitemap.xml)
+      - name: Install ImageMagick for source-preserving WebP conversion
+        run: |
+          if command -v magick >/dev/null || command -v convert >/dev/null; then
+            (magick -version || convert -version)
+          else
+            sudo apt-get update -qq && sudo apt-get install -y imagemagick
+          fi
       - name: Rebuild only visually accepted source images and public pages
         run: |
           node tools/construction-tools-atlas/scripts/promote-image-wave13-eight-v2.3.cjs
