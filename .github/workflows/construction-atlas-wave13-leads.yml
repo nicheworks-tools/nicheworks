@@ -1,0 +1,30 @@
+name: Construction Atlas Wave13 source-lead safety
+on:
+  pull_request:
+    paths:
+      - 'tools/construction-tools-atlas/data/image-wave13-source-leads-v2.3.json'
+      - 'tools/construction-tools-atlas/data/affiliate-image-acquisition-queue-v2.3.json'
+      - 'tools/construction-tools-atlas/data/image-registry-v2.3.json'
+      - 'tools/construction-tools-atlas/scripts/check-image-wave13-source-leads-v2.3.cjs'
+      - '.github/workflows/construction-atlas-wave13-leads.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/construction-tools-atlas/data/image-wave13-source-leads-v2.3.json'
+      - 'tools/construction-tools-atlas/data/affiliate-image-acquisition-queue-v2.3.json'
+      - 'tools/construction-tools-atlas/data/image-registry-v2.3.json'
+      - 'tools/construction-tools-atlas/scripts/check-image-wave13-source-leads-v2.3.cjs'
+      - '.github/workflows/construction-atlas-wave13-leads.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-lead-safety:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tools/construction-tools-atlas/scripts/check-image-wave13-source-leads-v2.3.cjs
