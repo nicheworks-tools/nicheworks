@@ -298,7 +298,12 @@
       const version = resultVersion;
       const value = combinedText;
       const copied = await copy(value);
-      if (version !== resultVersion) return;
+      if (version !== resultVersion) {
+        toast(copied
+          ? msg("条件が変更されました。クリップボードには変更前の結果が入っています。最新の結果をコピーし直してください。", "Conditions changed. The clipboard contains the previous result; copy again for the latest version.")
+          : msg("条件が変更され、コピーにも失敗しました。最新の結果をコピーし直してください。", "Conditions changed and copying failed. Copy the latest result again."));
+        return;
+      }
       toast(copied ? msg("全結果をコピーしました。", "Copied all results.") : msg("コピーに失敗しました。", "Copy failed."));
     });
     $("downloadMd").addEventListener("click", () => {
