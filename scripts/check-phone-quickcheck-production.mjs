@@ -219,8 +219,8 @@ async function httpSmoke(){
       assert.ok(html.includes('適格販売により収入を得ています'),'Amazon disclosure '+slug);
     }
     const directory=await (await req('models/')).text();
-    assert.equal((directory.match(/data-phone-id=/g)||[]).length,275,'275 static index rows in production');
-    console.log('275 listings and 12 source-backed affiliate profiles HTTP PASS');
+    assert.equal((directory.match(/data-phone-id=/g)||[]).length,285,'275 static index rows in production');
+    console.log('285 listings and 12 source-backed affiliate profiles HTTP PASS');
   }
 
   if (process.env.PHONE_SMOKE_REQUIRE_CROSS_MAKER === 'true') {
@@ -233,8 +233,23 @@ async function httpSmoke(){
       assert.ok(body.includes('適格販売により収入を得ています'),'Amazon Associates disclosure '+slug);
     }
     const listing=await (await req('models/')).text();
-    assert.equal((listing.match(/data-phone-id=/g)||[]).length,275,'Published static 275-model index missing');
-    console.log('275 growth HTTP PASS: 14 representative commercial pages, five Amazon search links each');
+    assert.equal((listing.match(/data-phone-id=/g)||[]).length,285,'Published static 285-model index missing');
+    console.log('285 growth HTTP PASS: 14 representative commercial pages, five Amazon search links each');
+  }
+
+  if (process.env.PHONE_SMOKE_REQUIRE_CROSS_MAKER === 'true') {
+    for (const slug of ["xiaomi-redmi-15-5g","xiaomi-redmi-note-15-5g","xiaomi-redmi-note-15-pro-5g","xiaomi-poco-f7","xiaomi-poco-f7-ultra","xiaomi-xiaomi-15t","xiaomi-xiaomi-15t-pro","sharp-aquos-r9-pro","xiaomi-xiaomi-14t","xiaomi-xiaomi-15"]) {
+      const endpoint='models/'+slug+'/';
+      const response=await req(endpoint);
+      assert.equal(response.status,200,'New 285 catalog profile status '+endpoint);
+      const html=await response.text();
+      const canonical='https://nicheworks.app/tools/phone-quickcheck/models/'+slug+'/';
+      assert.ok(html.includes('href="'+canonical+'"'),'New profile canonical absent '+slug);
+      assert.equal((html.match(/class="amazon" data-offer-key=/g)||[]).length,5,'Five Amazon links absent '+slug);
+      assert.ok(html.includes('tag=nicheworks09-22'),'Tagged Amazon links absent '+slug);
+      assert.ok(html.includes('適格販売により収入を得ています'),'Affiliate disclosure absent '+slug);
+    }
+    console.log('New 285 catalog profile HTTP PASS: ten newly added device profiles with 50 affiliate searches');
   }
 
   // Verify both ManualFinder locales really deploy the exact-SKU Samsung funnel

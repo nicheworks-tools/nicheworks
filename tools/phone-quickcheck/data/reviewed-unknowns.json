@@ -683,6 +683,184 @@
         "https://exclusive-origin.sony.jp/xperia/xperia/xperia10m3/spec_simlockfree.html"
       ],
       "reviewedAt": "2026-11-06"
+    },
+    {
+      "phoneId": "xiaomi-redmi-note-15-pro-5g",
+      "field": "included.adapter",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_retail_package_unverified",
+      "reason": "The checked Japanese official specifications and package guidance do not conclusively prove the exact retail AC charger in-box state across Japanese sales channels; retain unknown.",
+      "evidenceUrls": [
+        "https://www.mi.com/jp/product/redmi-note-15-pro-5g/specs/"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "phoneId": "xiaomi-redmi-note-15-pro-5g",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_retail_package_unverified",
+      "reason": "The checked Japanese official specifications and package guidance do not conclusively prove the exact retail USB cable in-box state across Japanese sales channels; retain unknown.",
+      "evidenceUrls": [
+        "https://www.mi.com/jp/product/redmi-note-15-pro-5g/specs/"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "phoneId": "xiaomi-redmi-note-15-pro-5g",
+      "field": "water",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_water_rating_unverified",
+      "reason": "The checked Japanese official specifications and product material do not conclusively establish a water/dust ingress rating for this exact configuration; grade remains unknown.",
+      "evidenceUrls": [
+        "https://www.mi.com/jp/product/redmi-note-15-pro-5g/specs/"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "phoneId": "xiaomi-poco-f7-ultra",
+      "field": "water",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_water_rating_unverified",
+      "reason": "The checked Japanese official specifications and product material do not conclusively establish a water/dust ingress rating for this exact configuration; grade remains unknown.",
+      "evidenceUrls": [
+        "https://www.mi.com/jp/product/poco-f7-ultra/specs/"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "phoneId": "xiaomi-xiaomi-15t",
+      "field": "included.adapter",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_retail_package_unverified",
+      "reason": "The checked Japanese official specifications and package guidance do not conclusively prove the exact retail AC charger in-box state across Japanese sales channels; retain unknown.",
+      "evidenceUrls": [
+        "https://www.mi.com/jp/product/xiaomi-15t/specs/",
+        "https://www.mi.com/jp/support/faq/details/KA-692446/"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "phoneId": "xiaomi-xiaomi-15t",
+      "field": "water",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_water_rating_unverified",
+      "reason": "The checked Japanese official specifications and product material do not conclusively establish a water/dust ingress rating for this exact configuration; grade remains unknown.",
+      "evidenceUrls": [
+        "https://www.mi.com/jp/product/xiaomi-15t/specs/",
+        "https://www.mi.com/jp/support/faq/details/KA-692446/"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "phoneId": "xiaomi-xiaomi-15t-pro",
+      "field": "included.adapter",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_retail_package_unverified",
+      "reason": "The checked Japanese official specifications and package guidance do not conclusively prove the exact retail AC charger in-box state across Japanese sales channels; retain unknown.",
+      "evidenceUrls": [
+        "https://www.mi.com/jp/product/xiaomi-15t-pro/specs/"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "phoneId": "xiaomi-xiaomi-15t-pro",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_retail_package_unverified",
+      "reason": "The checked Japanese official specifications and package guidance do not conclusively prove the exact retail USB cable in-box state across Japanese sales channels; retain unknown.",
+      "evidenceUrls": [
+        "https://www.mi.com/jp/product/xiaomi-15t-pro/specs/"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "phoneId": "xiaomi-xiaomi-15t-pro",
+      "field": "water",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_water_rating_unverified",
+      "reason": "The checked Japanese official specifications and product material do not conclusively establish a water/dust ingress rating for this exact configuration; grade remains unknown.",
+      "evidenceUrls": [
+        "https://www.mi.com/jp/product/xiaomi-15t-pro/specs/"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "phoneId": "sharp-aquos-r9-pro",
+      "field": "included.adapter",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_retail_package_unverified",
+      "reason": "The checked Japanese official specifications and package guidance do not conclusively prove the exact retail AC charger in-box state across Japanese sales channels; retain unknown.",
+      "evidenceUrls": [
+        "https://www.sharp.co.jp/k-tai/products/aquos-r9-pro/specs/"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "phoneId": "sharp-aquos-r9-pro",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_retail_package_unverified",
+      "reason": "The checked Japanese official specifications and package guidance do not conclusively prove the exact retail USB cable in-box state across Japanese sales channels; retain unknown.",
+      "evidenceUrls": [
+        "https://www.sharp.co.jp/k-tai/products/aquos-r9-pro/specs/"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "phoneId": "xiaomi-xiaomi-14t",
+      "field": "included.adapter",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_retail_package_unverified",
+      "reason": "The checked Japanese official specifications and package guidance do not conclusively prove the exact retail AC charger in-box state across Japanese sales channels; retain unknown.",
+      "evidenceUrls": [
+        "https://www.mi.com/jp/product/xiaomi-14t/specs/"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "phoneId": "xiaomi-xiaomi-14t",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_retail_package_unverified",
+      "reason": "The checked Japanese official specifications and package guidance do not conclusively prove the exact retail USB cable in-box state across Japanese sales channels; retain unknown.",
+      "evidenceUrls": [
+        "https://www.mi.com/jp/product/xiaomi-14t/specs/"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "phoneId": "xiaomi-xiaomi-15",
+      "field": "included.adapter",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_retail_package_unverified",
+      "reason": "The checked Japanese official specifications and package guidance do not conclusively prove the exact retail AC charger in-box state across Japanese sales channels; retain unknown.",
+      "evidenceUrls": [
+        "https://www.mi.com/jp/product/xiaomi-15/specs/"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "phoneId": "xiaomi-xiaomi-15",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_retail_package_unverified",
+      "reason": "The checked Japanese official specifications and package guidance do not conclusively prove the exact retail USB cable in-box state across Japanese sales channels; retain unknown.",
+      "evidenceUrls": [
+        "https://www.mi.com/jp/product/xiaomi-15/specs/"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "phoneId": "xiaomi-xiaomi-15",
+      "field": "water",
+      "status": "reviewed_unresolved",
+      "reasonCode": "exact_jp_water_rating_unverified",
+      "reason": "The checked Japanese official specifications and product material do not conclusively establish a water/dust ingress rating for this exact configuration; grade remains unknown.",
+      "evidenceUrls": [
+        "https://www.mi.com/jp/product/xiaomi-15/specs/"
+      ],
+      "reviewedAt": "2026-11-06"
     }
   ]
 }

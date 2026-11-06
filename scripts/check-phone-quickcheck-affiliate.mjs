@@ -114,6 +114,7 @@ execFileSync(process.execPath, ['scripts/check-phone-quickcheck-model-profiles.m
 execFileSync(process.execPath, ['scripts/check-phone-quickcheck-cross-maker-profiles.mjs'], { stdio: 'inherit' });
 execFileSync(process.execPath, ['scripts/check-phone-quickcheck-265-listings-and-affiliates.mjs'], { stdio: 'inherit' });
 execFileSync(process.execPath, ['scripts/check-phone-quickcheck-275-models-batch-20261106.mjs'], { stdio: 'inherit' });
+execFileSync(process.execPath, ['scripts/check-phone-quickcheck-285-200-commercial-20261106.mjs'], { stdio: 'inherit' });
 
 // Verify exact-SKU Samsung ManualFinder→Phone QuickCheck model-profile conversion.
 execFileSync(process.execPath, ['scripts/check-manualfinder-phone-galaxy-funnel.mjs'], { stdio: 'inherit' });
