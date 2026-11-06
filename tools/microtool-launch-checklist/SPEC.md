@@ -81,3 +81,10 @@ The primary flow is one select control followed by actions and a single output b
 - Successful initiation is described as download started, not guaranteed disk persistence.
 - Production script regression: `node --test tools/microtool-launch-checklist/tests/async-export.test.mjs`.
 - Browser viewport and download permission checks remain pending; Node regression alone does not establish second-pass acceptance.
+
+## Export initialization failure acceptance (2026-11-07)
+
+- If Blob construction, object URL creation, anchor creation, or anchor insertion fails, both Markdown and TXT exports report download initiation failure instead of throwing an uncaught exception.
+- An object URL created before a later failure is revoked; temporary anchors are removed where possible.
+- The successful export message still indicates initiation, not confirmed disk persistence.
+- Regression: `node --test tools/microtool-launch-checklist/tests/async-export.test.mjs`.
