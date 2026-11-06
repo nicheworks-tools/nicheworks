@@ -1889,12 +1889,12 @@
       "lgcode": "016641",
       "pref": "北海道",
       "municipality": "標茶町",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "standard",
+      "reviewed_at": "2026-11-07",
+      "qualifying_source_count": 5,
+      "distinct_link_type_count": 4,
       "service_provider": null,
-      "review_note": null
+      "review_note": "標茶町公式の家庭ごみ分別、地区別収集日、粗大ごみ、クリーンセンター自己搬入、家庭ごみ分別マニュアルの5独立URLを確認。収集日は地区別、マニュアルは令和5年度版で令和8年度版とは扱わない。"
     },
     {
       "lgcode": "016659",

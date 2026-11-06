@@ -1,0 +1,67 @@
+[
+  {
+    "pref": "北海道",
+    "city": "標茶町",
+    "name": "家庭ごみの分別方法について",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://town.shibecha.hokkaido.jp/kurashi/sougou/gomi_kankyou_eisei_dog/gomi_recycle/bunbetsu.html",
+    "lgcode": "016641",
+    "last_checked": "2026-11-07",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "町公式。家庭ごみの種類別分別方法と排出ルール。"
+  },
+  {
+    "pref": "北海道",
+    "city": "標茶町",
+    "name": "家庭ごみの出し方、収集の日程について",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://town.shibecha.hokkaido.jp/kurashi/sougou/gomi_kankyou_eisei_dog/gomi_recycle/gomishuushuu.html",
+    "lgcode": "016641",
+    "last_checked": "2026-11-07",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "町公式。地区別の収集曜日・時間帯を記載。地区間の差異を維持し、全町一律とは扱わない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "標茶町",
+    "name": "粗大ごみ(家庭用大型ごみ)の出し方について",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://town.shibecha.hokkaido.jp/kurashi/sougou/gomi_kankyou_eisei_dog/gomi_recycle/sodaigomi.html",
+    "lgcode": "016641",
+    "last_checked": "2026-11-07",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "町公式。原則自己搬入、事情により戸別収集を依頼可能。"
+  },
+  {
+    "pref": "北海道",
+    "city": "標茶町",
+    "name": "標茶町クリーンセンターについて",
+    "type": "持込施設",
+    "link_type": "dropoff_facility",
+    "url": "https://town.shibecha.hokkaido.jp/kurashi/sougou/gomi_kankyou_eisei_dog/gomi_recycle/cleancenter.html",
+    "lgcode": "016641",
+    "last_checked": "2026-11-07",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "町公式。自己搬入の受入時間、休業日、料金を掲載。"
+  },
+  {
+    "pref": "北海道",
+    "city": "標茶町",
+    "name": "標茶町家庭ごみ分別マニュアル",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://town.shibecha.hokkaido.jp/kurashi/sougou/gomi_kankyou_eisei_dog/gomi_recycle/bunbetu_manual.html",
+    "lgcode": "016641",
+    "last_checked": "2026-11-07",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "町公式の令和5年度版マニュアル掲載ページ。令和8年度版と誤認しない。"
+  }
+]
