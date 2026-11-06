@@ -1,0 +1,48 @@
+name: Construction Atlas Wave13 eight-image publication
+on:
+  pull_request:
+    paths:
+      - 'tools/construction-tools-atlas/data/**'
+      - 'tools/construction-tools-atlas/images/**'
+      - 'tools/construction-tools-atlas/entries/**'
+      - 'tools/construction-tools-atlas/scripts/promote-image-wave13-eight-v2.3.cjs'
+      - 'tools/construction-tools-atlas/scripts/check-production-wave13-eight-publication.mjs'
+      - '.github/workflows/construction-atlas-wave13-publication.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/construction-tools-atlas/data/**'
+      - 'tools/construction-tools-atlas/images/**'
+      - 'tools/construction-tools-atlas/entries/**'
+      - 'tools/construction-tools-atlas/scripts/promote-image-wave13-eight-v2.3.cjs'
+      - 'tools/construction-tools-atlas/scripts/check-production-wave13-eight-publication.mjs'
+      - '.github/workflows/construction-atlas-wave13-publication.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  local-image-integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          node tools/construction-tools-atlas/scripts/check-image-wave13-source-leads-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/check-image-registry-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/check-image-attribution-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/check-image-lifecycle-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/build-seo-detail-pages-v2.3.cjs --check
+  live-production:
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    needs: local-image-integrity
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tools/construction-tools-atlas/scripts/check-production-wave13-eight-publication.mjs
