@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-05",
+  "updatedAt": "2026-11-06",
   "policy": "reviewed_unknowns_preserve_unknown_when_primary_evidence_does_not_support_a_stronger_jp_canonical_claim",
   "entries": [
     {
@@ -540,6 +540,149 @@
         "https://jp-jp.support.motorola.com/app/answers/detail/a_id/187375/~/specifications---moto-g05"
       ],
       "reviewedAt": "2026-11-05"
+    },
+    {
+      "phoneId": "google-pixel-3-xl",
+      "field": "included.adapter",
+      "status": "reviewed_unresolved",
+      "reasonCode": "jp_exact_package_not_established",
+      "reason": "The Japan-directed official product source did not conclusively enumerate the AC adapter as shipped in the exact package for this model. Do not infer from global or other carrier packages.",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "phoneId": "google-pixel-3-xl",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "jp_exact_package_not_established",
+      "reason": "The Japan-directed official product source did not conclusively enumerate the charging cable as shipped in the exact package for this model. Do not infer from global or other carrier packages.",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "phoneId": "google-pixel-3-xl",
+      "field": "water",
+      "status": "reviewed_unresolved",
+      "reasonCode": "jp_exact_water_grade_not_established",
+      "reason": "The maintained Japan-directed official product source did not establish an exact certified water or dust grade for the specified version. Keep unknown; no equivalence with variants.",
+      "evidenceUrls": [
+        "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "phoneId": "oppo-a79-5g",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "jp_exact_package_not_established",
+      "reason": "The Japan-directed official product source did not conclusively enumerate the charging cable as shipped in the exact package for this model. Do not infer from global or other carrier packages.",
+      "evidenceUrls": [
+        "https://www.oppo.com/jp/smartphones/series-a/a79-5g/specs/"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "phoneId": "oppo-a73",
+      "field": "water",
+      "status": "reviewed_unresolved",
+      "reasonCode": "jp_exact_water_grade_not_established",
+      "reason": "The maintained Japan-directed official product source did not establish an exact certified water or dust grade for the specified version. Keep unknown; no equivalence with variants.",
+      "evidenceUrls": [
+        "https://www.oppo.com/jp/smartphones/series-a/a73/specs/"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "phoneId": "oppo-reno3-a",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "jp_exact_package_not_established",
+      "reason": "The Japan-directed official product source did not conclusively enumerate the charging cable as shipped in the exact package for this model. Do not infer from global or other carrier packages.",
+      "evidenceUrls": [
+        "https://www.oppo.com/jp/newsroom/press/reno3arelease/"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "phoneId": "xiaomi-poco-f7-pro",
+      "field": "water",
+      "status": "reviewed_unresolved",
+      "reasonCode": "jp_exact_water_grade_not_established",
+      "reason": "The maintained Japan-directed official product source did not establish an exact certified water or dust grade for the specified version. Keep unknown; no equivalence with variants.",
+      "evidenceUrls": [
+        "https://www.mi.com/jp/product/poco-f7-pro/specs/"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "phoneId": "motorola-moto-g66j-5g",
+      "field": "included.adapter",
+      "status": "reviewed_unresolved",
+      "reasonCode": "jp_exact_package_not_established",
+      "reason": "The Japan-directed official product source did not conclusively enumerate the AC adapter as shipped in the exact package for this model. Do not infer from global or other carrier packages.",
+      "evidenceUrls": [
+        "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192473/~/%E4%BB%95%E6%A7%98---moto-g66j-5g"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "phoneId": "motorola-moto-g66j-5g",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "jp_exact_package_not_established",
+      "reason": "The Japan-directed official product source did not conclusively enumerate the charging cable as shipped in the exact package for this model. Do not infer from global or other carrier packages.",
+      "evidenceUrls": [
+        "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192473/~/%E4%BB%95%E6%A7%98---moto-g66j-5g"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "phoneId": "sharp-aquos-sense6s-shg07",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "jp_exact_package_not_established",
+      "reason": "The Japan-directed official product source did not conclusively enumerate the charging cable as shipped in the exact package for this model. Do not infer from global or other carrier packages.",
+      "evidenceUrls": [
+        "https://www.sharp.co.jp/products/aquos-sense6s/a/"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "phoneId": "sony-xperia-10-iii-lite-xqbt44",
+      "field": "included.adapter",
+      "status": "reviewed_unresolved",
+      "reasonCode": "jp_exact_package_not_established",
+      "reason": "The Japan-directed official product source did not conclusively enumerate the AC adapter as shipped in the exact package for this model. Do not infer from global or other carrier packages.",
+      "evidenceUrls": [
+        "https://exclusive-origin.sony.jp/xperia/xperia/xperia10m3/spec_simlockfree.html"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "phoneId": "sony-xperia-10-iii-lite-xqbt44",
+      "field": "included.cable",
+      "status": "reviewed_unresolved",
+      "reasonCode": "jp_exact_package_not_established",
+      "reason": "The Japan-directed official product source did not conclusively enumerate the charging cable as shipped in the exact package for this model. Do not infer from global or other carrier packages.",
+      "evidenceUrls": [
+        "https://exclusive-origin.sony.jp/xperia/xperia/xperia10m3/spec_simlockfree.html"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "phoneId": "sony-xperia-10-iii-lite-xqbt44",
+      "field": "water",
+      "status": "reviewed_unresolved",
+      "reasonCode": "jp_exact_water_grade_not_established",
+      "reason": "The maintained Japan-directed official product source did not establish an exact certified water or dust grade for the specified version. Keep unknown; no equivalence with variants.",
+      "evidenceUrls": [
+        "https://exclusive-origin.sony.jp/xperia/xperia/xperia10m3/spec_simlockfree.html"
+      ],
+      "reviewedAt": "2026-11-06"
     }
   ]
 }

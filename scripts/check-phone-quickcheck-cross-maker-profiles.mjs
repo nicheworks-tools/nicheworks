@@ -14,7 +14,7 @@ const cases = [
   {id:'sony-xperia-1-vii', maker:'Sony', points:['30W','最大入力','ワイヤレス充電']},
   {id:'oppo-reno14-5g', maker:'OPPO', points:['SUPERVOOC','80W','33W','PPS']}
 ];
-assert.equal(phones.length,265,'Maintained catalog must remain 265 verified models');
+assert.equal(phones.length,275,'Maintained catalog must remain 275 verified models');
 for (const item of cases) {
   const phone=phones.find(x=>x.id===item.id);
   assert.ok(phone,'Missing source-backed phone: '+item.id);
@@ -63,5 +63,5 @@ for (const item of cases) {
   }
   assert.ok(page.includes('保証しません'),item.id+' compatibility disclaimer missing');
 }
-assert.equal((index.match(/data-phone-id=/g)||[]).length,265,'265 static entries unchanged');
-console.log('Phone QuickCheck cross-maker SEO PASS: four official JP profiles, four maker landing pages, eight tagged Amazon searches and unchanged 265-phone catalog.');
+assert.equal((index.match(/data-phone-id=/g)||[]).length,275,'275 static entries unchanged');
+console.log('Phone QuickCheck cross-maker SEO PASS: four official JP profiles, four maker landing pages, eight tagged Amazon searches and unchanged 275-phone catalog.');

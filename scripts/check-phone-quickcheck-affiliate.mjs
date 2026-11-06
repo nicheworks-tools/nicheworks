@@ -113,6 +113,7 @@ execFileSync(process.execPath, ['scripts/check-phone-quickcheck-model-profiles.m
 // Source-backed commercial SEO guides beyond the existing five Galaxy profiles.
 execFileSync(process.execPath, ['scripts/check-phone-quickcheck-cross-maker-profiles.mjs'], { stdio: 'inherit' });
 execFileSync(process.execPath, ['scripts/check-phone-quickcheck-265-listings-and-affiliates.mjs'], { stdio: 'inherit' });
+execFileSync(process.execPath, ['scripts/check-phone-quickcheck-275-models-batch-20261106.mjs'], { stdio: 'inherit' });
 
 // Verify exact-SKU Samsung ManualFinder→Phone QuickCheck model-profile conversion.
 execFileSync(process.execPath, ['scripts/check-manualfinder-phone-galaxy-funnel.mjs'], { stdio: 'inherit' });

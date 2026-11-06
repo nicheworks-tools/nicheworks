@@ -1,6 +1,6 @@
 {
   "version": 8,
-  "updatedAt": "2026-11-05",
+  "updatedAt": "2026-11-06",
   "phones": [
     {
       "id": "apple-iphone-18-pro",
@@ -13195,6 +13195,498 @@
         "manualUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/187375/~/specifications---moto-g05",
         "verifiedAt": "2026-11-05",
         "chargingUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192472/~/仕様---moto-g05"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "google-pixel-3-xl",
+      "manufacturer": "Google",
+      "model": "Pixel 3 XL",
+      "aliases": [
+        "Pixel3XL",
+        "Google Pixel 3 XL"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2018,
+      "dimensions": {
+        "heightMm": 158,
+        "widthMm": 76.7,
+        "depthMm": 7.9
+      },
+      "weightG": 184,
+      "displayInch": 6.3,
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 3430,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+        },
+        "wiredRecommendedW": 18,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB PD 2.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": "Qi",
+        "wirelessMaxW": null
+      },
+      "included": {
+        "adapter": "unknown",
+        "cable": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
+        "manualUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
+        "verifiedAt": "2026-11-06",
+        "chargingUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja",
+        "wirelessUrl": "https://support.google.com/pixelphone/answer/16043605?hl=ja"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "oppo-a79-5g",
+      "manufacturer": "OPPO",
+      "model": "OPPO A79 5G",
+      "aliases": [
+        "OPPOA795G",
+        "OPPO OPPO A79 5G"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2024,
+      "dimensions": {
+        "heightMm": 166,
+        "widthMm": 76,
+        "depthMm": 8
+      },
+      "weightG": 193,
+      "displayInch": 6.7,
+      "waterRating": "IPX4/IP5X",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.oppo.com/jp/smartphones/series-a/a79-5g/specs/"
+        },
+        "wiredRecommendedW": 33,
+        "wiredMaxW": null,
+        "protocols": [
+          "33W SUPERVOOC",
+          "USB PD PPS"
+        ],
+        "pps": "supported",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "adapter": "not_included",
+        "cable": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.oppo.com/jp/smartphones/series-a/a79-5g/specs/",
+        "manualUrl": "https://www.oppo.com/jp/smartphones/series-a/a79-5g/specs/",
+        "verifiedAt": "2026-11-06",
+        "chargingUrl": "https://www.oppo.com/jp/smartphones/series-a/a79-5g/specs/",
+        "waterUrl": "https://www.oppo.com/jp/smartphones/series-a/a79-5g/specs/"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "oppo-a73",
+      "manufacturer": "OPPO",
+      "model": "OPPO A73",
+      "aliases": [
+        "OPPOA73",
+        "OPPO OPPO A73"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2020,
+      "dimensions": {
+        "heightMm": 159.8,
+        "widthMm": 72.9,
+        "depthMm": 7.45
+      },
+      "weightG": 162,
+      "displayInch": 6.44,
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.oppo.com/jp/smartphones/series-a/a73/specs/"
+        },
+        "wiredRecommendedW": 18,
+        "wiredMaxW": null,
+        "protocols": [
+          "Qualcomm Quick Charge 3.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "adapter": "included",
+        "cable": "included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.oppo.com/jp/smartphones/series-a/a73/specs/",
+        "manualUrl": "https://www.oppo.com/jp/smartphones/series-a/a73/specs/",
+        "verifiedAt": "2026-11-06",
+        "chargingUrl": "https://www.oppo.com/jp/smartphones/series-a/a73/specs/"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "oppo-reno3-a",
+      "manufacturer": "OPPO",
+      "model": "OPPO Reno3 A",
+      "aliases": [
+        "OPPOReno3A",
+        "OPPO OPPO Reno3 A"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2020,
+      "dimensions": {
+        "heightMm": 160.9,
+        "widthMm": 74.1,
+        "depthMm": 8.2
+      },
+      "weightG": 175,
+      "displayInch": 6.44,
+      "waterRating": "IPX8/IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4025,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.oppo.com/jp/newsroom/press/reno3arelease/"
+        },
+        "wiredRecommendedW": 18,
+        "wiredMaxW": null,
+        "protocols": [
+          "Qualcomm Quick Charge 2.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "adapter": "included",
+        "cable": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.oppo.com/jp/newsroom/press/reno3arelease/",
+        "manualUrl": "https://www.oppo.com/jp/newsroom/press/reno3arelease/",
+        "verifiedAt": "2026-11-06",
+        "chargingUrl": "https://www.oppo.com/jp/newsroom/press/reno3arelease/",
+        "waterUrl": "https://www.oppo.com/jp/newsroom/press/reno3arelease/"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "xiaomi-poco-x7-pro",
+      "manufacturer": "Xiaomi",
+      "model": "POCO X7 Pro",
+      "aliases": [
+        "POCOX7Pro",
+        "Xiaomi POCO X7 Pro"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "dimensions": {
+        "heightMm": 160.75,
+        "widthMm": 75.24
+      },
+      "displayInch": 6.67,
+      "waterRating": "IP68",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 6000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.mi.com/jp/product/poco-x7-pro/specs/"
+        },
+        "wiredRecommendedW": 90,
+        "wiredMaxW": null,
+        "protocols": [
+          "90W HyperCharge"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "adapter": "included",
+        "cable": "included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.mi.com/jp/product/poco-x7-pro/specs/",
+        "manualUrl": "https://www.mi.com/jp/product/poco-x7-pro/specs/",
+        "verifiedAt": "2026-11-06",
+        "chargingUrl": "https://www.mi.com/jp/product/poco-x7-pro/specs/",
+        "waterUrl": "https://www.mi.com/jp/product/poco-x7-pro/specs/"
+      },
+      "affiliateKeys": [],
+      "physicalVariants": [
+        {
+          "key": "plastic",
+          "labelJa": "樹脂仕上げ",
+          "labelEn": "Plastic finish",
+          "depthMm": 8.29,
+          "weightG": 195
+        },
+        {
+          "key": "pu",
+          "labelJa": "PU仕上げ",
+          "labelEn": "PU finish",
+          "depthMm": 8.43,
+          "weightG": 198
+        }
+      ]
+    },
+    {
+      "id": "xiaomi-poco-f7-pro",
+      "manufacturer": "Xiaomi",
+      "model": "POCO F7 Pro",
+      "aliases": [
+        "POCOF7Pro",
+        "Xiaomi POCO F7 Pro"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "dimensions": {
+        "heightMm": 160.26,
+        "widthMm": 74.95,
+        "depthMm": 8.12
+      },
+      "weightG": 206,
+      "displayInch": 6.67,
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 6000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.mi.com/jp/product/poco-f7-pro/specs/"
+        },
+        "wiredRecommendedW": 90,
+        "wiredMaxW": null,
+        "protocols": [
+          "90W HyperCharge"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "adapter": "included",
+        "cable": "included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.mi.com/jp/product/poco-f7-pro/specs/",
+        "manualUrl": "https://www.mi.com/jp/product/poco-f7-pro/specs/",
+        "verifiedAt": "2026-11-06",
+        "chargingUrl": "https://www.mi.com/jp/product/poco-f7-pro/specs/"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "motorola-moto-g66j-5g",
+      "manufacturer": "Motorola",
+      "model": "moto g66j 5G",
+      "aliases": [
+        "motog66j5G",
+        "Motorola moto g66j 5G"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "dimensions": {
+        "heightMm": 165.75,
+        "widthMm": 76.26,
+        "depthMm": 8.5
+      },
+      "weightG": 200,
+      "displayInch": 6.7,
+      "waterRating": "IP68/IP69",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 5200,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192473/~/%E4%BB%95%E6%A7%98---moto-g66j-5g"
+        },
+        "wiredRecommendedW": 30,
+        "wiredMaxW": null,
+        "protocols": [
+          "TurboPower"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "adapter": "unknown",
+        "cable": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192473/~/%E4%BB%95%E6%A7%98---moto-g66j-5g",
+        "manualUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192473/~/%E4%BB%95%E6%A7%98---moto-g66j-5g",
+        "verifiedAt": "2026-11-06",
+        "chargingUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192473/~/%E4%BB%95%E6%A7%98---moto-g66j-5g",
+        "waterUrl": "https://jp-jp.support.motorola.com/app/answers/detail/a_id/192473/~/%E4%BB%95%E6%A7%98---moto-g66j-5g"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "zte-nubia-s-5g-a403zt",
+      "manufacturer": "ZTE",
+      "model": "nubia S 5G (A403ZT)",
+      "aliases": [
+        "nubiaS5G(A403ZT)",
+        "ZTE nubia S 5G (A403ZT)"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2025,
+      "dimensions": {
+        "heightMm": 168,
+        "widthMm": 77,
+        "depthMm": 8.7
+      },
+      "weightG": 197,
+      "displayInch": 6.7,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 5000,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.ymobile.jp/lineup/smartphone/nubia_s/"
+        },
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "adapter": "not_included",
+        "cable": "not_included"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.ymobile.jp/lineup/smartphone/nubia_s/",
+        "manualUrl": "https://www.ymobile.jp/lineup/smartphone/nubia_s/",
+        "verifiedAt": "2026-11-06",
+        "waterUrl": "https://www.ymobile.jp/lineup/smartphone/nubia_s/"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "sharp-aquos-sense6s-shg07",
+      "manufacturer": "SHARP",
+      "model": "AQUOS sense6s (SHG07)",
+      "aliases": [
+        "AQUOSsense6s(SHG07)",
+        "SHARP AQUOS sense6s (SHG07)"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2022,
+      "dimensions": {
+        "heightMm": 152,
+        "widthMm": 70,
+        "depthMm": 7.9
+      },
+      "weightG": 156,
+      "displayInch": 6.1,
+      "waterRating": "IPX5/IPX8 / IP6X",
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4570,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://www.sharp.co.jp/products/aquos-sense6s/a/"
+        },
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [
+          "USB Power Delivery 3.0"
+        ],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "adapter": "not_included",
+        "cable": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://www.sharp.co.jp/products/aquos-sense6s/a/",
+        "manualUrl": "https://www.sharp.co.jp/products/aquos-sense6s/a/",
+        "verifiedAt": "2026-11-06",
+        "chargingUrl": "https://www.sharp.co.jp/products/aquos-sense6s/a/",
+        "waterUrl": "https://www.sharp.co.jp/products/aquos-sense6s/a/"
+      },
+      "affiliateKeys": []
+    },
+    {
+      "id": "sony-xperia-10-iii-lite-xqbt44",
+      "manufacturer": "Sony",
+      "model": "Xperia 10 III Lite (XQ-BT44)",
+      "aliases": [
+        "Xperia10IIILite(XQ-BT44)",
+        "Sony Xperia 10 III Lite (XQ-BT44)"
+      ],
+      "market": [
+        "JP"
+      ],
+      "releaseYear": 2021,
+      "dimensions": {
+        "heightMm": 154,
+        "widthMm": 68,
+        "depthMm": 8.3
+      },
+      "weightG": 169,
+      "displayInch": 6,
+      "charging": {
+        "connector": "USB-C",
+        "battery": {
+          "capacityMah": 4500,
+          "valueClass": "manufacturer",
+          "sourceRef": "https://exclusive-origin.sony.jp/xperia/xperia/xperia10m3/spec_simlockfree.html"
+        },
+        "wiredRecommendedW": null,
+        "wiredMaxW": null,
+        "protocols": [],
+        "pps": "unknown",
+        "wirelessStandard": null,
+        "wirelessMaxW": null
+      },
+      "included": {
+        "adapter": "unknown",
+        "cable": "unknown"
+      },
+      "sources": {
+        "specificationsUrl": "https://exclusive-origin.sony.jp/xperia/xperia/xperia10m3/spec_simlockfree.html",
+        "manualUrl": "https://exclusive-origin.sony.jp/xperia/xperia/xperia10m3/spec_simlockfree.html",
+        "verifiedAt": "2026-11-06"
       },
       "affiliateKeys": []
     }
