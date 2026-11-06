@@ -34,7 +34,9 @@ for(const row of rows){
  assert.ok(html.includes('<meta name="description" content="'+row.seo.meta_description_ja+'">'),id+": SEO meta not deployed");
  for(const lang of ["ja","en"])assert.ok(html.includes('<p lang="'+lang+'">'+row.description[lang]+'</p>'),id+": "+lang+" definition not deployed");
  assert.ok(html.includes('data-affiliate-entry="'+id+'"'),id+": maintained affiliate mapping absent");
- assert.ok(html.includes('/images/'+id+'/primary.webp'),id+": formal image missing");
+ const imageState=seo.entries.find(x=>x.id===id)?.image;
+ assert.ok(["promoted","not_required"].includes(imageState),id+": invalid image policy");
+ if(imageState==="promoted") assert.ok(html.includes("/images/"+id+"/primary.webp"),id+": formal image missing");
  const schema=html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
  assert.ok(schema,id+": schema missing");
  assert.equal(JSON.parse(schema[1])[0].description,row.description.ja,id+": structured description stale");

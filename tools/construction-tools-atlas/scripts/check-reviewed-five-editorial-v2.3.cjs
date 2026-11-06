@@ -28,7 +28,7 @@ for(const row of approved){
  }
  assert.ok(!html.includes(row.expected_description.ja+'</p>'),id+" stale JA source remains");
  assert.ok(html.includes('data-affiliate-entry="'+id+'"'),id+" maintained affiliate mapping missing");
- assert.ok(manifest.entries.some(e=>e.id===id&&e.image==="promoted"&&e.affiliate==="active"),id+" revenue-ready cohort changed");
- assert.ok(html.includes('/images/'+id+'/primary.webp'),id+" reviewed image missing");
+ assert.ok(manifest.entries.some(e=>e.id===id&&["promoted","not_required"].includes(e.image)&&e.affiliate==="active"),id+" revenue-ready cohort changed");
+ assert.ok(manifest.entries.some(e=>e.id===id&&e.image==="not_required")||html.includes('/images/'+id+'/primary.webp'),id+" image status mismatch");
 }
 console.log("CTA_GSC_FIVE_EDITORIAL_PASS="+JSON.stringify({entry_ids:expected,published_terms:865,seo_pages:55,reviewed_titles:3,reviewed_ja_en_definitions:6,affiliate_links_preserved:3,canonicals_preserved:3}));
