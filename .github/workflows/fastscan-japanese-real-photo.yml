@@ -116,16 +116,23 @@ jobs:
             --connect-timeout 20 --max-time 120 \
             --user-agent 'Mozilla/5.0 (compatible; NicheWorks-Research-OCR/1.0)' \
             'https://cloudflare.lipscosme.com/image/f5b50fa925ac91660be84c6d-1580295578.png' \
-            --output "$FASTSCAN_JA_CORPUS_DIR/muji-sensitive-highmoist-2019-photo-12.png"
+            --output "$FASTSCAN_JA_CORPUS_DIR/muji-sensitive-highmoist-2020-photo-12.png"
           curl --fail --silent --show-error --location --retry 3 \
             --connect-timeout 20 --max-time 120 \
             --user-agent 'Mozilla/5.0 (compatible; NicheWorks-Research-OCR/1.0)' \
             'https://cdn.shopify.com/s/files/1/0695/5712/5440/files/P-2-BIOR-FWMOIS-130-Kao_Biore_Skin_Care_Face_Wash_Moisture_130g.jpg?v=1743425367' \
             --output "$FASTSCAN_JA_CORPUS_DIR/biore-skin-care-face-wash-moisture-130g-4901301259660.jpg"
+          # Diagnostic metadata only: file basename, byte count and MIME; no image text.
+          for source_image in "$FASTSCAN_JA_CORPUS_DIR"/*; do
+            printf 'FASTSCAN_JA_IMAGE_FETCH_META=%s bytes=%s mime=%s\n' \
+              "$(basename "$source_image")" \
+              "$(wc -c < "$source_image")" \
+              "$(file --brief --mime-type "$source_image")"
+          done
           test "$(find "$FASTSCAN_JA_CORPUS_DIR" -name '*.jpg' | wc -l)" -eq 4
           test "$(find "$FASTSCAN_JA_CORPUS_DIR" -name '*.png' | wc -l)" -eq 1
           test "$(find "$FASTSCAN_JA_CORPUS_DIR" -name '*.webp' | wc -l)" -eq 1
-          test "$(wc -c < "$FASTSCAN_JA_CORPUS_DIR/muji-sensitive-highmoist-2019-photo-12.png")" -gt 8000
+          test "$(wc -c < "$FASTSCAN_JA_CORPUS_DIR/muji-sensitive-highmoist-2020-photo-12.png")" -gt 8000
           test "$(wc -c < "$FASTSCAN_JA_CORPUS_DIR/biore-skin-care-face-wash-moisture-130g-4901301259660.jpg")" -gt 8000
           test "$(wc -c < "$FASTSCAN_JA_CORPUS_DIR/naturaglace-color-control-base-01-202103.jpg")" -gt 8000
           test "$(wc -c < "$FASTSCAN_JA_CORPUS_DIR/toone-petal-float-flawless-touch-01-4570106735626.webp")" -gt 8000
