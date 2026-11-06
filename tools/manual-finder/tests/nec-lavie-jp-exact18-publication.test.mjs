@@ -38,9 +38,9 @@ for(const row of rows){
  assert.equal(cfg.getConsumableOffers(row).length,0);
 }
 const cov=fs.readFileSync(new URL('COVERAGE.md',root),'utf8');
-assert.ok(cov.includes('**2,667 verified model/caliber rows**'));
-assert.ok(cov.includes('| **Total** | **2,667** |'));
+assert.ok(cov.includes('**2,679 verified model/caliber rows**'));
+assert.ok(cov.includes('| **Total** | **2,679** |'));
 assert.ok(cov.includes('| NEC LAVIE | 18 | expanded, bounded |'));
 assert.ok(cov.includes('| 17 | NEC LAVIE | **expanded — 18**'));
-for(const f of ['index.html','en/index.html','app.paged.js'])assert.ok(fs.readFileSync(new URL(f,root),'utf8').includes('mf-oppo7-20261105a'),f);
+for(const f of ['index.html','en/index.html','app.paged.js'])assert.ok(fs.readFileSync(new URL(f,root),'utf8').includes('mf-oneplus12-20261106a'),f);
 console.log('NEC 18 exact SKU official manuals indexes, base mapping, amendment notes and tagged searches PASS.');

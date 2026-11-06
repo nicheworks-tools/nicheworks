@@ -42,9 +42,9 @@ assert.equal(rows.find(r=>r.model==='Reno13 A').manualKind,'direct-quick-guide-p
 assert.ok(rows.find(r=>r.model==='Reno3 5G').noteJa.includes('ソフトバンク'));
 assert.equal(rows.filter(r=>r.manualKind==='direct-getting-started-guide-pdf').length,6);
 const cov=fs.readFileSync(new URL('COVERAGE.md',root),'utf8');
-assert.ok(cov.includes('**2,667 verified model/caliber rows**'));
-assert.ok(cov.includes('| **Total** | **2,667** |'));
+assert.ok(cov.includes('**2,679 verified model/caliber rows**'));
+assert.ok(cov.includes('| **Total** | **2,679** |'));
 assert.ok(cov.includes('| OPPO | 7 | expanded, bounded |'));
 assert.ok(cov.includes('| 23 | OPPO | **expanded — 7**'));
-for(const f of ['index.html','en/index.html','app.paged.js'])assert.ok(fs.readFileSync(new URL(f,root),'utf8').includes('mf-oppo7-20261105a'),f);
+for(const f of ['index.html','en/index.html','app.paged.js'])assert.ok(fs.readFileSync(new URL(f,root),'utf8').includes('mf-oneplus12-20261106a'),f);
 console.log('OPPO 7 Japanese PDF source-validated model guides, 2 held, 7 precise affiliate model searches PASS');
