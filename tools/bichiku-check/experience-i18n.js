@@ -76,5 +76,11 @@ Object.assign(extra.ja,{drinkHouseholdChanged:"人数構成が変わったか、
 Object.assign(extra.en,{drinkHouseholdChanged:"Household counts have changed, or the earlier approval did not record who it covered. Recheck drinking-water needs and confirm again; saved quantities are retained."});
 Object.assign(extra.zh,{drinkHouseholdChanged:"家庭成员人数已变化，或旧确认记录未包含人数。请重新核实饮用水需求并再次确认；已保存的数量不会删除。"});
 Object.assign(extra.vi,{drinkHouseholdChanged:"Số người/vật nuôi đã thay đổi hoặc lần xác nhận cũ không lưu thành phần gia đình. Hãy kiểm tra lại nhu cầu uống và xác nhận lần nữa; số lượng đã lưu vẫn được giữ."});
+// Explicitly allocate the shared reserve to selected working devices. The
+// default blank setting retains full working-unit coverage on legacy saves.
+Object.assign(extra.ja,{batteryReserveUnits:"期間中に予備電池を割り当てて維持する台数",batteryReserveAll:"空欄：確認済み稼働台数の全台",batteryPartialNote:"一部の稼働機器だけに予備電池を配分しています。配分しなかった機器を期間中の使用可能台数に含めていません。型・交換回数・在庫と実機の状況を確認してください。"});
+Object.assign(extra.en,{batteryReserveUnits:"Working devices to sustain with this battery allocation",batteryReserveAll:"Blank: all verified working units",batteryPartialNote:"Only some working devices are assigned spare cells. Unallocated devices are excluded from sustained coverage. Check actual battery type, cycles and physical stock."});
+Object.assign(extra.zh,{batteryReserveUnits:"本期分配备用电池以维持工作的设备台数",batteryReserveAll:"留空：所有已确认正常工作的设备",batteryPartialNote:"仅为部分可运行设备分配了备用电池。未分配的设备不计入全期可用数量。请核实电池型号、更换次数和实际库存。"});
+Object.assign(extra.vi,{batteryReserveUnits:"Số thiết bị đang hoạt động được cấp pin dự phòng trong kỳ",batteryReserveAll:"Để trống: tất cả thiết bị đã xác minh hoạt động",batteryPartialNote:"Chỉ một phần thiết bị đang hoạt động được phân bổ pin dự phòng. Thiết bị chưa được phân bổ không được tính là duy trì suốt kỳ. Kiểm tra đúng loại pin, số lần thay và tồn kho thực tế."});
 for(const [lang,text] of Object.entries(extra))Object.assign(window.BICHIKU_GUIDED_TEXT[lang],text);
 })();
