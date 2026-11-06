@@ -10,7 +10,7 @@ const profileIds=["xiaomi-redmi-15-5g","xiaomi-redmi-note-15-5g","xiaomi-redmi-n
 assert.equal(all.length,285);assert.equal(new Set(all.map(p=>p.id)).size,285);
 assert.equal(base.length,271);assert.equal(growth.length,14);
 assert.equal((index.match(/data-phone-id=/g)||[]).length,285);
-assert.equal(newModels.length,10);assert.equal(profileIds.length,101);assert.equal(new Set(profileIds).size,100);
+assert.equal(newModels.length,10);assert.equal(profileIds.length,101);assert.equal(new Set(profileIds).size,101);
 assert.equal(new Set(all.map(p=>p.manufacturer)).size,11);
 for(const id of newModels){
 const p=all.find(q=>q.id===id);
