@@ -94,6 +94,19 @@ Both English and Japanese OCR photo interfaces now have an **off-by-default** "E
 
 Automated regression: `node tools/_shared/check-fastscan-image-enhancement.mjs` checks untouched default-image handling, concrete grayscale pixel writes, upscale and memory cap, expected failure handling and blob-URL release, bilingual option wiring, optional QA comparison and photo privacy. The noindex QA page at `tools/inci-fastscan/qa/photo-ocr-benchmark.html` now exposes the same checkbox so manual testers can compare original and browser-enhanced scans of a **single independently transcribed real label**.
 
+## Japanese real-label photo QA wave 3: 4 to 6 (2026-11-06)
+
+Two more genuine public photographs of printed Japanese cosmetic ingredient panels are added as externally downloaded CI test candidates. They are **not committed or redistributed**. The runner uses the actual `jpn+eng` OCR and production ingredient parser/dictionary, compares original pixels and fixed opt-in preprocessing modes, and records per-photo numeric results.
+
+| Photo | Reference provenance | Limitations |
+| --- | --- | --- |
+| [MUJI sensitive skin high moisture, older formula](https://lipscosme.com/posts/1732104) | **Provisional visually read labels on the pictured physical bottle** (12 discrete Japanese ingredient names, read independently of our Tesseract output) | No independent human second transcription or batch/label authentication; `photo-visual-provisional` is **not** certified ground truth, and older photographed composition must not be replaced with a current MUJI site formula |
+| [Bioré Skin Care Face Wash Moisture 130g, genuine retailer rear tube](https://japanesetaste.co.uk/products/kao-biore-skin-care-face-wash-moisture-130g), JAN 4901301259660 | [Kao current official formula](https://www.kao-kirei.com/ja/item/khg/biore/4901301259660/), 14 ingredients | `public-product-page-proxy`, not a photograph transcription: some retailers list **methylparaben** where the present-day official page says **sodium benzoate**, even for this JAN. Therefore a missing name may reflect changed formula, *not an OCR error*. |
+
+**Crucial metric separation:** The new 6-photo combined source-reference proxy recall does **not** count as 6 photos with independently verified same-photo ground truth. In particular the MUJI reading was generated from visible label text and is provisional, and the Biore pairing has contradictory historic formula evidence. The older 4-photo control's published ingredient reference counts and its 121/127 two-photo dictionary coverage still mean only what they did before. **Human-verified complete photo transcriptions remain 0/10.** These values must be promoted only after independent photo-by-photo checking, with package-version notes and actual phone/browser execution.
+
+The `check-japanese-photo-wave3.mjs` gate requires two unique HTTPS images (one visibly read provisional/one source-list proxy), explicit conflict warning for the Biore JAN, source-name uniqueness, nontrivial dictionary support and honest version uncertainty. The real-photo CI retrieves one PNG-path retailer image and one JPG; the pilot checks **actual PNG/JPEG/WebP byte signatures**, not the extension, with transient browser conversion only for genuine WebP. No user image upload or product UI change is added. This still does not change the production image enhancement default, crop behavior or safety claims.
+
 ## Japanese public photo corpus expansion — 2 to 4 (2026-11-06)
 
 Two additional public photographs of **actual Japanese cosmetic package ingredient panels**, not generated text labels, are now registered separately from the original frozen ZIGEN/KISOCARE two-photo corpus. Sources remain external and are downloaded **only into CI's temporary workspace**; the user-facing app, Git repo and CI artifact contain no photo bytes or recognized text.
