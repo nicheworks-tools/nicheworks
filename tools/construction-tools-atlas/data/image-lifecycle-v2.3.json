@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-lifecycle-v2.3",
-  "version": "2026-11-05-reviewed-image-wave12-seven-1",
+  "version": "2026-11-06-reviewed-image-wave13-ten-1",
   "candidates": [
     {
       "id": "existing:allen_key",
@@ -655,6 +655,96 @@
         "file": "image-wave12-sources-v2.3.json",
         "entry_id": "extension_cord"
       }
+    },
+    {
+      "id": "wave13:anchor_bolt",
+      "source_entry_id": "anchor_bolt",
+      "kind": "photograph",
+      "source_ref": {
+        "file": "image-wave13-sources-v2.3.json",
+        "entry_id": "anchor_bolt"
+      }
+    },
+    {
+      "id": "wave13:bolt_nut",
+      "source_entry_id": "bolt_nut",
+      "kind": "photograph",
+      "source_ref": {
+        "file": "image-wave13-sources-v2.3.json",
+        "entry_id": "bolt_nut"
+      }
+    },
+    {
+      "id": "wave13:concrete_mixer",
+      "source_entry_id": "concrete_mixer",
+      "kind": "photograph",
+      "source_ref": {
+        "file": "image-wave13-sources-v2.3.json",
+        "entry_id": "concrete_mixer"
+      }
+    },
+    {
+      "id": "wave13:crimping_tool",
+      "source_entry_id": "crimping_tool",
+      "kind": "photograph",
+      "source_ref": {
+        "file": "image-wave13-sources-v2.3.json",
+        "entry_id": "crimping_tool"
+      }
+    },
+    {
+      "id": "wave13:fish_tape",
+      "source_entry_id": "fish_tape",
+      "kind": "photograph",
+      "source_ref": {
+        "file": "image-wave13-sources-v2.3.json",
+        "entry_id": "fish_tape"
+      }
+    },
+    {
+      "id": "wave13:generator",
+      "source_entry_id": "generator",
+      "kind": "photograph",
+      "source_ref": {
+        "file": "image-wave13-sources-v2.3.json",
+        "entry_id": "generator"
+      }
+    },
+    {
+      "id": "wave13:heat_gun",
+      "source_entry_id": "heat_gun",
+      "kind": "photograph",
+      "source_ref": {
+        "file": "image-wave13-sources-v2.3.json",
+        "entry_id": "heat_gun"
+      }
+    },
+    {
+      "id": "wave13:hole_saw",
+      "source_entry_id": "hole_saw",
+      "kind": "photograph",
+      "source_ref": {
+        "file": "image-wave13-sources-v2.3.json",
+        "entry_id": "hole_saw"
+      }
+    },
+    {
+      "id": "wave13:plumb_bob",
+      "source_entry_id": "plumb_bob",
+      "kind": "photograph",
+      "source_ref": {
+        "file": "image-wave13-sources-v2.3.json",
+        "entry_id": "plumb_bob"
+      }
+    },
+    {
+      "id": "wave13:pvc_pipe",
+      "source_entry_id": "pvc_pipe",
+      "kind": "photograph",
+      "source_ref": {
+        "file": "image-wave13-sources-v2.3.json",
+        "entry_id": "pvc_pipe"
+      }
     }
   ],
   "items": [
@@ -783,6 +873,42 @@
           "reason": "An anchor bolt is a concrete fastening component with a distinct physical form and installation context; a verified photograph is useful for identification.",
           "candidate_id": null,
           "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-11-06T10:38:09Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Commons-described photograph of the canonical tool or material; final review required before merge.",
+          "candidate_id": "wave13:anchor_bolt",
+          "candidate_sha256": "41b4433b7ea21375563e3d6979cdaf26b0315d0909fe92cd1dee8d1ad7f689b7",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-11-06T10:38:10Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Exact source bytes SHA-1 and length match pinned metadata and Commons MediaWiki API; author and license recorded.",
+          "candidate_id": "wave13:anchor_bolt",
+          "candidate_sha256": "41b4433b7ea21375563e3d6979cdaf26b0315d0909fe92cd1dee8d1ad7f689b7",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-11-06T10:38:11Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Commons describes construction anchor bolts. Check the entire fastening subject.",
+          "candidate_id": "wave13:anchor_bolt",
+          "candidate_sha256": "41b4433b7ea21375563e3d6979cdaf26b0315d0909fe92cd1dee8d1ad7f689b7",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-11-06T10:38:12Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+          "candidate_id": "wave13:anchor_bolt",
+          "candidate_sha256": "41b4433b7ea21375563e3d6979cdaf26b0315d0909fe92cd1dee8d1ad7f689b7",
           "hold": null
         }
       ]
@@ -1137,6 +1263,42 @@
           "reason": "Bolts and nuts are visually identifiable fastening hardware; a close reviewed photograph materially aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-11-06T10:38:14Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Commons-described photograph of the canonical tool or material; final review required before merge.",
+          "candidate_id": "wave13:bolt_nut",
+          "candidate_sha256": "2fb8d72d47f92ca3f099d8d7bef6d1864239437f6966919f79184ace99c2a58a",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-11-06T10:38:15Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Exact source bytes SHA-1 and length match pinned metadata and Commons MediaWiki API; author and license recorded.",
+          "candidate_id": "wave13:bolt_nut",
+          "candidate_sha256": "2fb8d72d47f92ca3f099d8d7bef6d1864239437f6966919f79184ace99c2a58a",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-11-06T10:38:16Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Commons own-work photograph identified as bolt and nut.",
+          "candidate_id": "wave13:bolt_nut",
+          "candidate_sha256": "2fb8d72d47f92ca3f099d8d7bef6d1864239437f6966919f79184ace99c2a58a",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-11-06T10:38:17Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+          "candidate_id": "wave13:bolt_nut",
+          "candidate_sha256": "2fb8d72d47f92ca3f099d8d7bef6d1864239437f6966919f79184ace99c2a58a",
           "hold": null
         }
       ]
@@ -2186,6 +2348,42 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-11-06T10:38:19Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Commons-described photograph of the canonical tool or material; final review required before merge.",
+          "candidate_id": "wave13:concrete_mixer",
+          "candidate_sha256": "195f9b0722aba7cd64c78b9a5dfba680feecdb1adeb7071d9e3ed3c727b6535d",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-11-06T10:38:20Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Exact source bytes SHA-1 and length match pinned metadata and Commons MediaWiki API; author and license recorded.",
+          "candidate_id": "wave13:concrete_mixer",
+          "candidate_sha256": "195f9b0722aba7cd64c78b9a5dfba680feecdb1adeb7071d9e3ed3c727b6535d",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-11-06T10:38:21Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Older electrically powered standalone concrete mixer according to Commons.",
+          "candidate_id": "wave13:concrete_mixer",
+          "candidate_sha256": "195f9b0722aba7cd64c78b9a5dfba680feecdb1adeb7071d9e3ed3c727b6535d",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-11-06T10:38:22Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+          "candidate_id": "wave13:concrete_mixer",
+          "candidate_sha256": "195f9b0722aba7cd64c78b9a5dfba680feecdb1adeb7071d9e3ed3c727b6535d",
+          "hold": null
         }
       ]
     },
@@ -2567,6 +2765,42 @@
           "reason": "A crimping tool is a distinctive hand tool with crimping dies/jaws; a subject-matched photograph aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-11-06T10:38:24Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Commons-described photograph of the canonical tool or material; final review required before merge.",
+          "candidate_id": "wave13:crimping_tool",
+          "candidate_sha256": "a1889c9f100db3615b8ddc9e41912691aec2d889720c787ce9fabf0f3902748c",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-11-06T10:38:25Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Exact source bytes SHA-1 and length match pinned metadata and Commons MediaWiki API; author and license recorded.",
+          "candidate_id": "wave13:crimping_tool",
+          "candidate_sha256": "a1889c9f100db3615b8ddc9e41912691aec2d889720c787ce9fabf0f3902748c",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-11-06T10:38:26Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Commons labels this photo as a crimping tool. Check jaws and handles.",
+          "candidate_id": "wave13:crimping_tool",
+          "candidate_sha256": "a1889c9f100db3615b8ddc9e41912691aec2d889720c787ce9fabf0f3902748c",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-11-06T10:38:27Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+          "candidate_id": "wave13:crimping_tool",
+          "candidate_sha256": "a1889c9f100db3615b8ddc9e41912691aec2d889720c787ce9fabf0f3902748c",
           "hold": null
         }
       ]
@@ -3609,6 +3843,42 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-11-06T10:38:29Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Commons-described photograph of the canonical tool or material; final review required before merge.",
+          "candidate_id": "wave13:fish_tape",
+          "candidate_sha256": "14cf089887ad65a4c47dc2c12d861349287ca525f0c10be50e4e9be64d6d92d9",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-11-06T10:38:30Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Exact source bytes SHA-1 and length match pinned metadata and Commons MediaWiki API; author and license recorded.",
+          "candidate_id": "wave13:fish_tape",
+          "candidate_sha256": "14cf089887ad65a4c47dc2c12d861349287ca525f0c10be50e4e9be64d6d92d9",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-11-06T10:38:31Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Flickr-originated Commons image, described as a 50-foot reel.",
+          "candidate_id": "wave13:fish_tape",
+          "candidate_sha256": "14cf089887ad65a4c47dc2c12d861349287ca525f0c10be50e4e9be64d6d92d9",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-11-06T10:38:32Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+          "candidate_id": "wave13:fish_tape",
+          "candidate_sha256": "14cf089887ad65a4c47dc2c12d861349287ca525f0c10be50e4e9be64d6d92d9",
+          "hold": null
         }
       ]
     },
@@ -3962,6 +4232,42 @@
           "reason": "A portable/jobsite generator is a distinctive power-supply machine; a subject-matched photograph strongly aids identification.",
           "candidate_id": null,
           "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-11-06T10:38:34Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Commons-described photograph of the canonical tool or material; final review required before merge.",
+          "candidate_id": "wave13:generator",
+          "candidate_sha256": "20c634a4a61458f9cf8528adae507c4497955a265c4e855fd54b598c63e74e2d",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-11-06T10:38:35Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Exact source bytes SHA-1 and length match pinned metadata and Commons MediaWiki API; author and license recorded.",
+          "candidate_id": "wave13:generator",
+          "candidate_sha256": "20c634a4a61458f9cf8528adae507c4497955a265c4e855fd54b598c63e74e2d",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-11-06T10:38:36Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Branded Generac photograph for visual identification only, not endorsement or JP power claim.",
+          "candidate_id": "wave13:generator",
+          "candidate_sha256": "20c634a4a61458f9cf8528adae507c4497955a265c4e855fd54b598c63e74e2d",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-11-06T10:38:37Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+          "candidate_id": "wave13:generator",
+          "candidate_sha256": "20c634a4a61458f9cf8528adae507c4497955a265c4e855fd54b598c63e74e2d",
           "hold": null
         }
       ]
@@ -4499,6 +4805,42 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-11-06T10:38:39Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Commons-described photograph of the canonical tool or material; final review required before merge.",
+          "candidate_id": "wave13:heat_gun",
+          "candidate_sha256": "bb1cea09a69f5243a5fd5842326888ea404f6ea9ffe14ae7e75e638c63e871fd",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-11-06T10:38:40Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Exact source bytes SHA-1 and length match pinned metadata and Commons MediaWiki API; author and license recorded.",
+          "candidate_id": "wave13:heat_gun",
+          "candidate_sha256": "bb1cea09a69f5243a5fd5842326888ea404f6ea9ffe14ae7e75e638c63e871fd",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-11-06T10:38:41Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Commons labels as heat gun. Check full unit and nozzle.",
+          "candidate_id": "wave13:heat_gun",
+          "candidate_sha256": "bb1cea09a69f5243a5fd5842326888ea404f6ea9ffe14ae7e75e638c63e871fd",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-11-06T10:38:42Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+          "candidate_id": "wave13:heat_gun",
+          "candidate_sha256": "bb1cea09a69f5243a5fd5842326888ea404f6ea9ffe14ae7e75e638c63e871fd",
+          "hold": null
         }
       ]
     },
@@ -4567,6 +4909,42 @@
           "reason": "A hole saw is a distinctive cup-shaped cutting accessory; a close subject-matched photograph strongly aids recognition.",
           "candidate_id": null,
           "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-11-06T10:38:44Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Commons-described photograph of the canonical tool or material; final review required before merge.",
+          "candidate_id": "wave13:hole_saw",
+          "candidate_sha256": "ad46c90eecee5b4a6a1238f388a7a8dfd76427714a8d4e160297edbd1f7e1feb",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-11-06T10:38:45Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Exact source bytes SHA-1 and length match pinned metadata and Commons MediaWiki API; author and license recorded.",
+          "candidate_id": "wave13:hole_saw",
+          "candidate_sha256": "ad46c90eecee5b4a6a1238f388a7a8dfd76427714a8d4e160297edbd1f7e1feb",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-11-06T10:38:46Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Indonesian source describes hole saw for cutting round holes in PVC pipe.",
+          "candidate_id": "wave13:hole_saw",
+          "candidate_sha256": "ad46c90eecee5b4a6a1238f388a7a8dfd76427714a8d4e160297edbd1f7e1feb",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-11-06T10:38:47Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+          "candidate_id": "wave13:hole_saw",
+          "candidate_sha256": "ad46c90eecee5b4a6a1238f388a7a8dfd76427714a8d4e160297edbd1f7e1feb",
           "hold": null
         }
       ]
@@ -6465,6 +6843,42 @@
           "candidate_id": null,
           "candidate_sha256": null,
           "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-11-06T10:38:49Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Commons-described photograph of the canonical tool or material; final review required before merge.",
+          "candidate_id": "wave13:plumb_bob",
+          "candidate_sha256": "5b1a5bf90ead36945904833ad37684a99a7877373b351ef6a5407cfb414b27c4",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-11-06T10:38:50Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Exact source bytes SHA-1 and length match pinned metadata and Commons MediaWiki API; author and license recorded.",
+          "candidate_id": "wave13:plumb_bob",
+          "candidate_sha256": "5b1a5bf90ead36945904833ad37684a99a7877373b351ef6a5407cfb414b27c4",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-11-06T10:38:51Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Museum object identified on Commons as a plumb bob; verify tool identity.",
+          "candidate_id": "wave13:plumb_bob",
+          "candidate_sha256": "5b1a5bf90ead36945904833ad37684a99a7877373b351ef6a5407cfb414b27c4",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-11-06T10:38:52Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+          "candidate_id": "wave13:plumb_bob",
+          "candidate_sha256": "5b1a5bf90ead36945904833ad37684a99a7877373b351ef6a5407cfb414b27c4",
+          "hold": null
         }
       ]
     },
@@ -6814,6 +7228,42 @@
           "reason": "PVC pipe is a physical piping material with recognizable rigid tube and fitting forms; a reviewed photograph is appropriate.",
           "candidate_id": null,
           "candidate_sha256": null,
+          "hold": null
+        },
+        {
+          "state": "candidate",
+          "at": "2026-11-06T10:38:54Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Commons-described photograph of the canonical tool or material; final review required before merge.",
+          "candidate_id": "wave13:pvc_pipe",
+          "candidate_sha256": "8a0ee2792ef85eed2575380c77985287a1240143dce55680194b5a55a7035318",
+          "hold": null
+        },
+        {
+          "state": "provenance_verified",
+          "at": "2026-11-06T10:38:55Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Exact source bytes SHA-1 and length match pinned metadata and Commons MediaWiki API; author and license recorded.",
+          "candidate_id": "wave13:pvc_pipe",
+          "candidate_sha256": "8a0ee2792ef85eed2575380c77985287a1240143dce55680194b5a55a7035318",
+          "hold": null
+        },
+        {
+          "state": "verified",
+          "at": "2026-11-06T10:38:56Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Commons photo of PVC Pipe, no claims about strength or grades.",
+          "candidate_id": "wave13:pvc_pipe",
+          "candidate_sha256": "8a0ee2792ef85eed2575380c77985287a1240143dce55680194b5a55a7035318",
+          "hold": null
+        },
+        {
+          "state": "promoted",
+          "at": "2026-11-06T10:38:57Z",
+          "actor": "image-wave13-reviewed-20261106",
+          "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+          "candidate_id": "wave13:pvc_pipe",
+          "candidate_sha256": "8a0ee2792ef85eed2575380c77985287a1240143dce55680194b5a55a7035318",
           "hold": null
         }
       ]
