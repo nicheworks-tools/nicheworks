@@ -53,6 +53,9 @@ try{
    for(const lang of ["en","ja"]){
     for(const width of [390,1280]){
      const context=await browser.newContext({viewport:{width,height:844},acceptDownloads:true,reducedMotion:"no-preference"});
+     // Isolate first-party functionality: the free catalog embeds live ad/analytics scripts.
+     // Third-party exceptions and ad delivery are outside this offline compatibility test.
+     await context.route("**/*",route=>route.request().url().startsWith(origin+"/")?route.continue():route.fulfill({status:200,contentType:"application/javascript",body:"/* offline QA: third-party request disabled */"}));
      const page=await context.newPage(),errors=[];
      page.on("pageerror",err=>errors.push(String(err)));
      try{
