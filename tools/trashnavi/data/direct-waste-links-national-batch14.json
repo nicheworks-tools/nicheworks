@@ -284,5 +284,57 @@
     "link_type": "dropoff_facility",
     "url": "https://www.town.hokkaido-ikeda.lg.jp/kurashi/gomi/jikohannyu/",
     "scope_note": "町公式。くりりんセンター及び池田町リサイクルセンターの自己搬入案内への入口。"
+  },
+  {
+    "pref": "北海道",
+    "city": "本別町",
+    "lgcode": "016462",
+    "last_checked": "2026-11-06",
+    "status": "active",
+    "language": "ja",
+    "name": "ごみの出し方",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.honbetsu.hokkaido.jp/web/life/details/post_64.html",
+    "scope_note": "町公式。16種類の分別と当日朝8時までの排出を案内。"
+  },
+  {
+    "pref": "北海道",
+    "city": "本別町",
+    "lgcode": "016462",
+    "last_checked": "2026-11-06",
+    "status": "active",
+    "language": "ja",
+    "name": "ごみの収集日",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.town.honbetsu.hokkaido.jp/web/life/details/post_22.html",
+    "scope_note": "町公式。市街地区と農村地区の別PDFを掲載。地区別日程を全町共通としない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "本別町",
+    "lgcode": "016462",
+    "last_checked": "2026-11-06",
+    "status": "active",
+    "language": "ja",
+    "name": "粗大ごみの出し方",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.town.honbetsu.hokkaido.jp/web/life/details/post_62.html",
+    "scope_note": "町公式。事前予約、2か月に1回の地区別収集、処理券を案内。"
+  },
+  {
+    "pref": "北海道",
+    "city": "本別町",
+    "lgcode": "016462",
+    "last_checked": "2026-11-06",
+    "status": "active",
+    "language": "ja",
+    "name": "自己搬入について",
+    "type": "持込施設",
+    "link_type": "dropoff_facility",
+    "url": "https://www.town.honbetsu.hokkaido.jp/web/life/details/post_65.html",
+    "scope_note": "町公式。銀河クリーンセンターは火災により家庭一般ごみ・粗大ごみ受入停止。くりりんセンターの搬入案内あり。"
   }
 ]
