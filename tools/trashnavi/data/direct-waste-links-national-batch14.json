@@ -154,5 +154,70 @@
     "link_type": "collection_calendar",
     "url": "https://www.vill.nakasatsunai.hokkaido.jp/kurashi/gomi_kankyou/shushubi/",
     "scope_note": "村公式。令和8年度ごみ回収予定PDFを掲載。天候等による変更があるため毎月のくらしのカレンダーで再確認を案内。"
+  },
+  {
+    "pref": "北海道",
+    "city": "更別村",
+    "lgcode": "016390",
+    "last_checked": "2026-11-06",
+    "status": "active",
+    "language": "ja",
+    "name": "ごみの出し方",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.sarabetsu.jp/kurashi/sumai_seikatsu/dust_recycle/dashikata/",
+    "scope_note": "村公式。市街地区は午前8時、農村地区はごみ種類により午前8時または10時まで。一般ごみ・資源ごみ・大型ごみの分別と出し方を記載。"
+  },
+  {
+    "pref": "北海道",
+    "city": "更別村",
+    "lgcode": "016390",
+    "last_checked": "2026-11-06",
+    "status": "active",
+    "language": "ja",
+    "name": "令和8年度家庭ごみ収集日程表（市街地区）",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.sarabetsu.jp/file/contents/85/22935/R8calendarsigaitiku.pdf",
+    "scope_note": "村公式PDF。令和8年度・市街地区専用。農村地区には適用しない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "更別村",
+    "lgcode": "016390",
+    "last_checked": "2026-11-06",
+    "status": "active",
+    "language": "ja",
+    "name": "リサイクルセンター",
+    "type": "持込施設",
+    "link_type": "dropoff_facility",
+    "url": "https://www.sarabetsu.jp/kurashi/sumai_seikatsu/dust_recycle/recycle_center/",
+    "scope_note": "村公式。更別村本町、火・木・土・日受付。資源ごみ持込施設であり一般ごみ全品目の搬入先ではない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "大樹町",
+    "lgcode": "016411",
+    "last_checked": "2026-11-06",
+    "status": "active",
+    "language": "ja",
+    "name": "ごみの出し方について",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.town.taiki.hokkaido.jp/kurashi-tetsuzuki/gomi-kankyohozen/4/1122.html",
+    "scope_note": "町公式の家庭ごみの出し方。年度・地区の適用は個別の収集日検索を参照。"
+  },
+  {
+    "pref": "北海道",
+    "city": "大樹町",
+    "lgcode": "016411",
+    "last_checked": "2026-11-06",
+    "status": "active",
+    "language": "ja",
+    "name": "地域別収集日検索",
+    "type": "収集カレンダー",
+    "link_type": "collection_calendar",
+    "url": "https://www.town.taiki.hokkaido.jp/kurashi-tetsuzuki/gomi-kankyohozen/4/1761.html",
+    "scope_note": "町公式の地域別収集日検索入口。地区ごとの収集日を確認するもので、町全域共通カレンダーではない。"
   }
 ]
