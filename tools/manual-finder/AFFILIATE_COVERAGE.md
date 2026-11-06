@@ -523,3 +523,7 @@ Seven actual Japanese manufacturer PDF guide rows enable existing canonical opt-
 ### OnePlus global English model-document 12 exact smartphone searches (2026-11-06)
 
 Twelve OnePlus English manufacturer PDF records (eight full manuals and four short EU quick guides) support existing canonical Amazon Associates exact device model searches, `tag=nicheworks09-22`, category `PC・スマホ`. These are optional product **searches only**; manufacturer documents do not establish retailer availability, appropriate Japanese-region variants, charger/battery compatibility, sales or commissions. Original checked manufacturer source ledger: `coverage-passes/oneplus/global-english-twelve-20261106.json`. Printer ink proof remains unchanged.
+
+### Dyson Japan six exact device searches (2026-11-06)
+
+Six accepted Dyson Japan manufacturer manual-index product or hardware edition rows support canonical Amazon search for **device model** only using `tag=nicheworks09-22`. No battery, filter, charger or styling attachment compatibility is asserted, nor any inventory/sales. Manufacturer manual page evidence is browser-readable while GitHub runner requests returned HTTP403; no manufacturer direct PDF verification claimed.
