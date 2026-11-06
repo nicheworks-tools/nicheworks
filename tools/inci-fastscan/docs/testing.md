@@ -94,6 +94,19 @@ Both English and Japanese OCR photo interfaces now have an **off-by-default** "E
 
 Automated regression: `node tools/_shared/check-fastscan-image-enhancement.mjs` checks untouched default-image handling, concrete grayscale pixel writes, upscale and memory cap, expected failure handling and blob-URL release, bilingual option wiring, optional QA comparison and photo privacy. The noindex QA page at `tools/inci-fastscan/qa/photo-ocr-benchmark.html` now exposes the same checkbox so manual testers can compare original and browser-enhanced scans of a **single independently transcribed real label**.
 
+## Japanese public photo corpus expansion — 2 to 4 (2026-11-06)
+
+Two additional public photographs of **actual Japanese cosmetic package ingredient panels**, not generated text labels, are now registered separately from the original frozen ZIGEN/KISOCARE two-photo corpus. Sources remain external and are downloaded **only into CI's temporary workspace**; the user-facing app, Git repo and CI artifact contain no photo bytes or recognized text.
+
+| Product/photo | Independently published reference source | Caveat |
+| --- | --- | --- |
+| Naturaglace Color Control Base 01 Violet, 2021 side-of-box panel (purchaser photo) | [Same original purchaser's detailed photograph + ingredient transcription](https://ameblo.jp/rik01194/entry-12662974737.html) | Same article supplies photograph and source transcription; batch/formula not independently certified. Optional +/- pigments and organic stars are normalized only for the scoring proxy. Do not substitute later product formulas. |
+| to/one Petal Float Flawless Touch 01, visible printed Japanese backside, **JAN 4570106735626** | [Retailer's actual photographed box](https://www.yami.com/zht/p/to-one-petal-float-flawless-touch-powder-foundation-01-1-7g/1023679931), [manufacturer's full ingredient declaration for JAN 4570106735626](https://toonecosmetics.com/Form/Product/ProductDetail.aspx?bid=TO01&cat=TBDTOO&pid=4570106735626&shop=0) | Manufacturer lists two shade regions; matching uses their **unique name union** and omits +/- pigment decorators. Image-to-formula revision is not verified. The actual public photo uses WebP, converted losslessly through local Chromium to PNG for the original Node OCR control. |
+
+The **original two-product 127-name source control** and its 121/127 dictionary coverage remain unchanged and are still tested on their own. The expanded genuine-photo OCR runner evaluates four photos with the same `jpn+eng` pinned Tesseract.js, original and Chromium-canvas-enhanced pixels, and the pre-registered PSM/contrast/crop recipes. It reports the combined numeric-only source-based reference recall *and* per-photo metrics; two more photos do not establish full photographic label truth or physical smartphone validity. In particular, do not compare percentages across the older two-photo and new four-photo denominators.
+
+The new `check-japanese-photo-expansion.mjs` asserts unique photo links, public HTTPS source evidence, documented source-version uncertainty, distinct ingredient references, and an actual production-dictionary positive control. The Japanese real-photo CI downloads `.jpg` and `.webp` originals; no image is reused to artificially increase the photo count. Full ten independently transcribed Japanese product photographs, batch matching and phone QA are still open gates.
+
 ## Japanese actual-photograph crop/contrast fixed-recipe trial (2026-11-06)
 
 Use the **existing two genuine photographed Japanese cosmetic packages** to test three source-independent image preprocessing recipes against the identical `jpn+eng` pinned Tesseract.js PSM6 engine:
