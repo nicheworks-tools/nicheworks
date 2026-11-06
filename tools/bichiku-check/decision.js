@@ -179,6 +179,13 @@ function normalize(s){
    toiletDisposalConfirmed:!!s.toiletDisposalConfirmed
  });
 }
+// Household composition is part of a drinking-reserve approval. A volume
+// approved for one adult cannot silently certify a larger family, even if the
+// selected number of days happens to be unchanged. No legacy approval without
+// a household snapshot is silently promoted into a current verification.
+function drinkingHouseholdKey(s){
+ return ["adults","children","infants","pets"].map(k=>String(numeric(s[k]))).join(":");
+}
 function assessment(catalog,options,source,today){
  const s=normalize(source),now=validDate(today)||new Date().toISOString().slice(0,10);
  const stored=storedWater(s,options,now);
@@ -203,10 +210,14 @@ function assessment(catalog,options,source,today){
  const planDays=s.mode==="go"?1:([3,7,14].includes(Number(s.days))?Number(s.days):7);
  const drinkingReserveLiters=numeric(waterEntry.drinkingReserveLiters);
  const household=Number(s.adults||0)+Number(s.children||0)+Number(s.infants||0)+Number(s.pets||0);
+ const householdKey=drinkingHouseholdKey(s);
+ const householdChanged=waterEntry.drinkingReserveConfirmed===true&&
+   waterEntry.drinkingReserveHousehold!==householdKey;
  const reserveValueValid=Number.isFinite(Number(waterEntry.drinkingReserveLiters))&&
    Number(waterEntry.drinkingReserveLiters)>=0;
  const drinkingReserveConfirmed=waterEntry.drinkingReserveConfirmed===true&&
-   waterEntry.drinkingReservePlanDays===planDays&&reserveValueValid&&
+   waterEntry.drinkingReservePlanDays===planDays&&
+   !householdChanged&&reserveValueValid&&
    (household<=0||drinkingReserveLiters>0);
  const combinedAllocation=round(drinkingReserveLiters+waterAllocation);
  const waterOvercommitted=s.waterOut&&drinkingReserveConfirmed&&combinedAllocation>stored;
@@ -216,6 +227,7 @@ function assessment(catalog,options,source,today){
    (!s.waterOut||drinkingReserveConfirmed);
  const drinkingReview={
    planDays,reserveLiters:drinkingReserveLiters,confirmed:drinkingReserveConfirmed,
+   householdChanged,householdKey,
    combinedAllocation,available:stored,overcommitted:waterOvercommitted,
    needsReview:waterBudgetNeedsReview,
    afterBoth:drinkingReserveConfirmed?round(Math.max(0,stored-combinedAllocation)):null
@@ -334,7 +346,7 @@ function assessment(catalog,options,source,today){
    waterAllocation,uncheckedFoods,waterRemainingAfterPrep:round(Math.max(0,stored-waterAllocation)),
    food,water,pad,warmth,waterConflict};
 }
-const api=Object.freeze({assessment,groups,optionUsable,storedWater,foodRoleOverview,toiletSupplyReview,heatSupplyReview,batterySupplyReview,batteryTypes});
+const api=Object.freeze({assessment,groups,optionUsable,storedWater,foodRoleOverview,toiletSupplyReview,heatSupplyReview,batterySupplyReview,batteryTypes,drinkingHouseholdKey});
 root.BichikuDecision=api;
 if(typeof module==="object"&&module.exports)module.exports=api;
 })(typeof globalThis==="object"?globalThis:this);
