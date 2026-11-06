@@ -346,7 +346,11 @@ function shoppingItems(a){
   item:{id:"battery:"+r.type,names:{[lang]:T.batteryShopItem+" ("+r.type+")"},search:""},
   missing:r.missing,batteryType:r.type
  }));
- return typed.concat(categoryRows);
+ // Preserve an independently customized generic-set goal and put it
+ // alongside the typed deficits within the eight default visible items.
+ // It remains a distinct unit and never covers missing AA/AAA cells.
+ const explicitSet=categoryRows.filter(r=>r.item.id==="batteries"&&r.hasCustomTarget);
+ return typed.concat(explicitSet,categoryRows.filter(r=>!explicitSet.includes(r)));
 }
 function batteryShoppingNotice(a){
  if(!state.powerOut)return "";
