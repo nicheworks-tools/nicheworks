@@ -1,0 +1,36 @@
+name: Construction Atlas Wave13 finalize eight source photos
+on:
+  pull_request:
+    paths:
+      - .github/workflows/construction-atlas-wave13-finalize-eight-temp.yml
+permissions:
+  contents: write
+jobs:
+  finalize-reviewed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/atlas-wave13-reviewed-ten-20261106
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Remove rejected sources and re-audit eight existing approved originals
+        run: |
+          node tools/construction-tools-atlas/scripts/correct-image-wave13-eight-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/check-image-wave13-source-leads-v2.3.cjs
+      - name: Commit safe corrected images, ledgers and generated pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/construction-atlas-wave13-finalize-eight-temp.yml
+          git rm .github/workflows/construction-atlas-wave13-correct-eight-temp.yml
+          git rm tools/construction-tools-atlas/scripts/promote-image-wave13-ten-v2.3.cjs
+          git add -A tools/construction-tools-atlas sitemap.xml
+          git diff --cached --check -- tools/construction-tools-atlas/data tools/construction-tools-atlas/images/ATTRIBUTION.md tools/construction-tools-atlas/scripts sitemap.xml
+          git commit -m "fix(atlas): publish only eight visually accepted Wave13 image candidates"
+          git push origin HEAD:refs/heads/feat/atlas-wave13-reviewed-ten-20261106
