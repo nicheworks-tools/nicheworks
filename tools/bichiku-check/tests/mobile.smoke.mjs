@@ -587,6 +587,91 @@ try{
   passed++;await ctx.close();
  }
 
+
+ // Exact typed cell shortages must be exported and printed as missing pieces,
+ // not a phantom generic "one set" or 99 untyped legacy battery sets.
+ {
+  const {ctx,page,exceptions}=await open(320);
+  await page.evaluate(()=>localStorage.setItem("bichiku-check-v1",JSON.stringify({
+   mode:"home",adults:1,days:3,powerOut:true,
+   stocks:{"home:batteries":{qty:99,batteryCells:{AA:2}}},
+   variants:{"home:headlamp":{qty:2,powerReadyQty:2,powerReadyConfirmed:true,
+     batteryType:"AA",cellsPerChange:2,plannedChanges:1,
+     batteryPlanConfirmed:true,batteryPlanDays:3}}
+  })));
+  await page.reload({waitUntil:"domcontentloaded"});
+  await page.locator("#calculate").click();
+  const powerCard=page.locator(".g-goal").filter({has:page.locator('button[data-goal="power"]')});
+  assert.match(await powerCard.innerText(),/不足/);
+  await page.locator('button[data-shopping]').click();
+  const cellRow=page.locator('.g-shop-row').filter({has:page.locator('input[data-shop="battery:AA"]')});
+  assert.equal(await cellRow.count(),1,"AA cells must be a selectable shopping item");
+  assert.match(await cellRow.innerText(),/AA/);
+  assert.match(await cellRow.innerText(),/不足: 2本/,"shop the exact 2 missing cells");
+  assert.equal(await page.locator('.g-shop-row input[data-shop="batteries"]').count(),0,
+   "generic set target must not duplicate the verified cell-count shopping need");
+  assert.equal(await page.locator('input[data-shop="battery:AA"]').isChecked(),true,
+   "typed deficit is part of the first eight selected shopping rows");
+  await page.evaluate(()=>{
+   Object.defineProperty(navigator,"clipboard",{configurable:true,value:{
+    writeText:(content)=>{window.__copied=content;return Promise.resolve()}
+   }});
+   window.print=()=>{window.__printedRows=[...document.querySelectorAll("#g-print-list li")].map(x=>x.textContent||"")};
+  });
+  await page.locator("#copyList").click();
+  await page.waitForFunction(()=>typeof window.__copied==="string");
+  assert.match(await page.evaluate(()=>window.__copied),/AA.*2本/,"copied list contains the typed shortage");
+  const [download]=await Promise.all([page.waitForEvent("download"),page.locator("#exportCsv").click()]);
+  const csv=fs.readFileSync(await download.path(),"utf8");
+  assert.match(csv,/AA.*","2","本"/,"CSV uses the same selected type and missing unit count");
+  await page.locator("#printList").click();
+  assert.ok((await page.evaluate(()=>window.__printedRows)).some(x=>x.includes("AA")&&x.includes("2本")),
+   "print uses the same typed shortage");
+  await page.locator('input[data-shop="battery:AA"]').uncheck();
+  await page.locator("#copyList").click();
+  await page.waitForFunction(()=>window.__copied&&!window.__copied.includes("AA"));
+  assert.doesNotMatch(await page.evaluate(()=>window.__copied),/AA/,"unchecked typed item omitted from copy");
+  await page.locator("button[data-back]").click();
+  await page.locator('button[data-goal="power"]').click();
+  await page.locator('details[data-battery-stock-panel] summary').click();
+  await page.locator('input[data-battery-stock="AA"]').fill("4");
+  await page.locator('input[data-battery-stock="AA"]').press("Tab");
+  await page.locator("button[data-shopping]").first().click();
+  assert.equal(await page.locator('.g-shop-row input[data-shop="battery:AA"]').count(),0,
+   "once four AA cells are physically present there is no AA shortfall to buy");
+  await noOverflow(page,"320px typed battery shopping and export");
+  assert.deepEqual(exceptions,[]);
+  console.log("PASS exact AA deficit, legacy-set separation, CSV/copy/print selection and replenishment");
+  passed++;await ctx.close();
+ }
+
+ // A declared additional generic-set target is a distinct user choice, and
+ // must not suppress the actual typed-cell shortage in shopping.
+ {
+  const {ctx,page,exceptions}=await open(390);
+  await page.evaluate(()=>localStorage.setItem("bichiku-check-v1",JSON.stringify({
+   mode:"home",adults:1,days:3,powerOut:true,
+   stocks:{"home:batteries":{qty:0,target:2,batteryCells:{AAA:1}}},
+   variants:{"home:headlamp":{qty:1,powerReadyQty:1,powerReadyConfirmed:true,
+     batteryType:"AAA",cellsPerChange:3,plannedChanges:1,
+     batteryPlanConfirmed:true,batteryPlanDays:3}}
+  })));
+  await page.reload({waitUntil:"domcontentloaded"});
+  await page.locator("#calculate").click();
+  await page.locator('button[data-shopping]').click();
+  assert.equal(await page.locator('input[data-shop="battery:AAA"]').count(),1);
+  assert.equal(await page.locator('input[data-shop="batteries"]').count(),1,
+   "an independently customized generic-set target must remain purchasable");
+  const aaa=page.locator(".g-shop-row").filter({has:page.locator('input[data-shop="battery:AAA"]')});
+  assert.match(await aaa.innerText(),/2本/);
+  const generic=page.locator(".g-shop-row").filter({has:page.locator('input[data-shop="batteries"]')});
+  assert.match(await generic.innerText(),/別/,"generic set must have explicit non-equivalence note");
+  await noOverflow(page,"390px independent custom set plus AAA deficit");
+  assert.deepEqual(exceptions,[]);
+  console.log("PASS custom generic-set goal remains separate from measured AAA shortage");
+  passed++;await ctx.close();
+ }
+
  // Legacy spare sets are not converted to cells; changing days invalidates checked plans.
  {
   const {ctx,page,exceptions}=await open(320);
@@ -846,6 +931,31 @@ try{
   assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem("bichiku-check-v1")).stocks["home:water"].drinkingReserveHousehold),"1:0:0:0");
   assert.deepEqual(exceptions,[]);
   console.log("PASS legacy drinking approval requires fresh household confirmation at 320px");
+  passed++;await ctx.close();
+ }
+
+ // Four localizations must provide actionable countable AA items, not just
+ // generic sets, in the shopping results.
+ for(const [locale,dir] of locales){
+  const {ctx,page,exceptions}=await open(390,dir);
+  await page.evaluate(()=>localStorage.setItem("bichiku-check-v1",JSON.stringify({
+   mode:"home",adults:1,days:3,powerOut:true,
+   stocks:{"home:batteries":{qty:99,batteryCells:{AA:1}}},
+   variants:{"home:headlamp":{qty:1,powerReadyQty:1,powerReadyConfirmed:true,
+    batteryType:"AA",cellsPerChange:2,plannedChanges:1,
+    batteryPlanConfirmed:true,batteryPlanDays:3}}
+  })));
+  await page.reload({waitUntil:"domcontentloaded"});
+  await page.locator("#calculate").click();
+  await page.locator('button[data-shopping]').click();
+  const r=page.locator('.g-shop-row').filter({has:page.locator('input[data-shop="battery:AA"]')});
+  assert.equal(await r.count(),1,"typed AA shortage localized in "+locale);
+  const label=await page.evaluate(()=>window.BICHIKU_GUIDED_TEXT[document.body.getAttribute("data-lang")].batteryShopItem);
+  assert.ok((await r.innerText()).includes(label),"localized typed battery shopping label "+locale);
+  assert.equal(await page.locator('.g-shop-row input[data-shop="batteries"]').count(),0,"no redundant set "+locale);
+  await noOverflow(page,"typed cells shopping "+locale);
+  assert.deepEqual(exceptions,[]);
+  console.log("PASS typed dry-cell shopping locale "+locale);
   passed++;await ctx.close();
  }
 

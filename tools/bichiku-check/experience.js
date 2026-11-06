@@ -9,7 +9,7 @@ const defaults={mode:"home",adults:1,children:0,infants:0,pets:0,days:7,powerOut
 const key=id=>state.mode+":"+id,esc=x=>String(x==null?"":x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const n=x=>Number.isFinite(Number(x))?Math.min(10000000,Math.max(0,Number(x))):0;
 const fmt=x=>Number.isInteger(x)?String(x):String(Math.round(x*100)/100);
-const unit=id=>id==="water"?"L":id==="food"?T.unitMeals:id==="toilet"?T.unitUses:"";
+const unit=id=>id.startsWith("battery:")?T.batteryCellsUnit:id==="water"?"L":id==="food"?T.unitMeals:id==="toilet"?T.unitUses:"";
 const today=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
 let state=Object.assign({},defaults),stage="setup",goal="food",tab="emergency",search="",showAll=false;
 let openOptions=new Set(),openParents=new Set(),selected=null,impression=false,advancedOpen=false,batteryPanelOpen=false;
@@ -77,7 +77,7 @@ function waterBudgetWarning(a){
 function resultsPage(a){
  const total=a.groups.reduce((sum,g)=>sum+g.missingCategories,0);
  return '<div class="g-head"><h2>'+esc(T.step2)+'</h2><button type="button" data-edit class="g-link">'+esc(T.edit)+'</button></div>'+
- '<p class="g-lead">'+esc(T.guide)+'</p>'+overlapWarning(a)+waterBudgetWarning(a)+'<div class="g-total"><strong>'+total+'</strong><span>'+esc(T.missingItems)+'</span></div>'+
+ '<p class="g-lead">'+esc(T.guide)+'</p>'+overlapWarning(a)+waterBudgetWarning(a)+batteryShoppingNotice(a)+'<div class="g-total"><strong>'+total+'</strong><span>'+esc(T.missingItems)+'</span></div>'+
  '<div class="g-goals">'+groupCards(a)+'</div><button type="button" class="primary wide" data-shopping>'+esc(T.toShopping)+' →</button>';
 }
 function preserveOpen(){
@@ -337,23 +337,45 @@ function detailPage(a){
  '<div id="g-choice-list">'+renderChoices(a)+'</div></section>'+
  '<button type="button" class="primary wide" data-shopping>'+esc(T.toShopping)+' →</button>';
 }
+// Shopping and export consume the SAME list: exact cell counts for every
+// shortage in a verified shared-size battery budget, never a guessed "set".
+function shoppingItems(a){
+ const categoryRows=a.calc.items.filter(x=>x.missing>0);
+ if(!state.powerOut)return categoryRows;
+ const typed=(a.batteryReview.shoppingShortages||[]).map(r=>({
+  item:{id:"battery:"+r.type,names:{[lang]:T.batteryShopItem+" ("+r.type+")"},search:""},
+  missing:r.missing,batteryType:r.type
+ }));
+ // Preserve an independently customized generic-set goal and put it
+ // alongside the typed deficits within the eight default visible items.
+ // It remains a distinct unit and never covers missing AA/AAA cells.
+ const explicitSet=categoryRows.filter(r=>r.item.id==="batteries"&&r.hasCustomTarget);
+ return typed.concat(explicitSet,categoryRows.filter(r=>!explicitSet.includes(r)));
+}
+function batteryShoppingNotice(a){
+ if(!state.powerOut)return "";
+ return (a.batteryReview.typedPlan?'<p class="g-fine">'+esc(T.batteryShoppingMeasured)+'</p>':"")+
+  (a.batteryReview.uncheckedDevices?'<p class="g-pending">'+esc(T.batteryShoppingUnchecked)+
+   ': '+fmt(a.batteryReview.uncheckedDevices)+'</p>':"");
+}
 function shoppingRows(a){
- const arr=a.calc.items.filter(x=>x.missing>0);
+ const arr=shoppingItems(a);
  // Never include undisplayed items in copy/CSV/print by default.
  if(selected===null)selected=new Set(arr.slice(0,8).map(x=>x.item.id));
  return (showAll?arr:arr.slice(0,8)).map(row=>{
  const id=row.item.id,check=selected.has(id);
  return '<div class="g-shop-row"><label class="g-shop-check"><input type="checkbox" data-shop="'+id+'" '+(check?"checked":"")+'>'+
  '<span><strong>'+esc(row.item.names[lang]||row.item.names.ja)+'</strong><small>'+esc(T.missing)+': '+fmt(row.missing)+unit(id)+'</small>'+
- (id==="water"&&row.allocationExtraRequired>0?'<small>'+esc(T.drinkShoppingReason)+': +'+fmt(row.allocationExtraRequired)+'L</small>':"")+'</span></label>'+
+ (id==="water"&&row.allocationExtraRequired>0?'<small>'+esc(T.drinkShoppingReason)+': +'+fmt(row.allocationExtraRequired)+'L</small>':"")+
+ (id==="batteries"?'<small>'+esc(T.batteryGenericSetNote)+'</small>':"")+'</span></label>'+
  (check&&row.item.search?'<div class="g-aff" data-category-aff="'+id+'"></div>':"")+'</div>';
  }).join("");
 }
 function shoppingPage(a){
- const missing=a.calc.items.filter(x=>x.missing>0);
+ const missing=shoppingItems(a);
  return '<div class="g-head"><button type="button" data-back class="g-link">← '+esc(T.back)+'</button>'+
  '<button data-edit type="button" class="g-link">'+esc(T.edit)+'</button></div><h2>'+esc(T.step4)+'</h2>'+
- '<p class="g-lead">'+esc(T.shopHelp)+'</p>'+overlapWarning(a)+waterBudgetWarning(a)+
+ '<p class="g-lead">'+esc(T.shopHelp)+'</p>'+overlapWarning(a)+waterBudgetWarning(a)+batteryShoppingNotice(a)+
  '<p class="g-fine">'+esc(T.shopShowing)+'</p>'+
  '<p id="g-shop-selected" class="g-shop-counter">'+esc(T.shopSelected)+': <strong>'+(selected===null?Math.min(missing.length,8):missing.filter(x=>selected.has(x.item.id)).length)+'</strong></p>'+
  '<p class="g-fine">'+esc(T.disclosure)+'</p>'+
@@ -431,7 +453,7 @@ result.addEventListener("click",e=>{
  if(b.hasAttribute("data-more")){showAll=!showAll;render();return}
  if(b.id==="reset"){if(confirm(T.resetConfirm)){try{localStorage.removeItem("bichiku-check-v1")}catch(_){}state=Object.assign({},defaults);state.stocks={};state.variants={};selected=null;stage="setup";render();setup.scrollIntoView({behavior:"smooth",block:"start"})}return}
  if(["copyList","exportCsv","printList"].includes(b.id)){
-  const rows=calc().calc.items.filter(x=>x.missing>0&&selected&&selected.has(x.item.id));
+  const rows=shoppingItems(calc()).filter(x=>selected&&selected.has(x.item.id));
   if(b.id==="printList"){
    const preview=result.querySelector("#g-print-list");
    if(preview)preview.innerHTML='<h2>'+esc(T.printHeading)+'</h2><ul>'+rows.map(x=>'<li>'+esc(x.item.names[lang]||x.item.names.ja)+' — '+fmt(x.missing)+unit(x.item.id)+'</li>').join("")+'</ul>';
