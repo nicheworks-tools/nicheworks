@@ -66,9 +66,9 @@ for(const row of rows){
 assert.equal(rows.filter(x=>x.manualKind==='direct-full-user-manual-pdf').length,8);
 assert.equal(rows.filter(x=>x.manualKind==='direct-quick-guide-pdf').length,4);
 const cov=fs.readFileSync(new URL('COVERAGE.md',root),'utf8');
-assert.ok(cov.includes('**2,679 verified model/caliber rows**'));
-assert.ok(cov.includes('| **Total** | **2,679** |'));
+assert.ok(cov.includes('**2,685 verified model/caliber rows**'));
+assert.ok(cov.includes('| **Total** | **2,685** |'));
 assert.ok(cov.includes('| OnePlus | 12 | expanded, bounded |'));
 assert.ok(cov.includes('| 24 | OnePlus | **expanded — 12**'));
-for(const f of ['index.html','en/index.html','app.paged.js'])assert.ok(fs.readFileSync(new URL(f,root),'utf8').includes('mf-oneplus12-20261106a'),f);
+for(const f of ['index.html','en/index.html','app.paged.js'])assert.ok(fs.readFileSync(new URL(f,root),'utf8').includes('mf-dyson6-20261106a'),f);
 console.log('OnePlus 12 real manufacturer PDFs = 8 full English + 4 EU English quick guides, canonical model searches and prior counts reconciled PASS');

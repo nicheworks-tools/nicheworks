@@ -1,0 +1,39 @@
+name: ManualFinder Dyson JP six exact manual index source gate
+on:
+  pull_request:
+    paths:
+      - 'tools/manual-finder/**'
+      - '.github/workflows/manualfinder-dyson-jp-six.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  dyson-jp-six:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate variant and manual section rejection fixture
+        run: node tools/manual-finder/tests/dyson-jp-six-manual-index-live.test.mjs
+      - name: Attempt manufacturer sources; HTTP403 explicitly recorded as blocked, never verified
+        run: node tools/manual-finder/scripts/dyson-jp-six-manual-index-live.mjs
+      - name: Verify six exact published model indexes and historical source evidence
+        run: node tools/manual-finder/tests/dyson-jp-six-publication.test.mjs
+      - name: Run all bounded manufacturer and affiliate regressions
+        run: |
+          node tools/manual-finder/tests/coverage-pass-pipeline.test.mjs
+          node tools/manual-finder/tests/oneplus-global-twelve-publication.test.mjs
+          node tools/manual-finder/tests/oppo-jp-seven-publication.test.mjs
+          node tools/manual-finder/tests/huawei-jp-five-publication.test.mjs
+          node tools/manual-finder/tests/msi-jp-ms1542-six-publication.test.mjs
+          node tools/manual-finder/tests/nec-lavie-jp-exact18-publication.test.mjs
+          node tools/manual-finder/tests/acer-jp-pdf16-publication.test.mjs
+          node tools/manual-finder/tests/hp-jp-17-publication.test.mjs
+          node tools/manual-finder/tests/lenovo-jp-13-publication.test.mjs
+          node tools/manual-finder/tests/dell-jp-20-publication.test.mjs
+          node tools/manual-finder/tests/canon-pixus-wave3l-publication.test.mjs
+          node tools/manual-finder/tests/affiliate-coverage.test.mjs
+          node tools/manual-finder/tests/affiliate-doc-sync.test.mjs

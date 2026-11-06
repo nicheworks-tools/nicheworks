@@ -23,7 +23,8 @@
     "manuals.coverage-pass.msi-jp-ms1542-six.js",
     "manuals.coverage-pass.huawei-jp-wearables-5.js",
     "manuals.coverage-pass.oppo-jp-seven-guides.js",
-    "manuals.coverage-pass.oneplus-global-en-twelve.js"
+    "manuals.coverage-pass.oneplus-global-en-twelve.js",
+    "manuals.coverage-pass.dyson-jp-six-manual-index.js"
   ]);
 
   window.MANUALFINDER_BUILD_COVERAGE_PASSES = () => [
@@ -48,6 +49,7 @@
     ...(window.MANUALFINDER_COVERAGE_PASS_MSI_JP || []),
     ...(window.MANUALFINDER_COVERAGE_PASS_HUAWEI_JP || []),
     ...(window.MANUALFINDER_COVERAGE_PASS_OPPO_JP || []),
-    ...(window.MANUALFINDER_COVERAGE_PASS_ONEPLUS_GLOBAL || [])
+    ...(window.MANUALFINDER_COVERAGE_PASS_ONEPLUS_GLOBAL || []),
+    ...(window.MANUALFINDER_COVERAGE_PASS_DYSON_JP || [])
   ];
 })();
