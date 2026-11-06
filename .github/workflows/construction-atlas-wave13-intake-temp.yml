@@ -1,0 +1,49 @@
+name: Construction Atlas Wave13 temporary verified image intake
+on:
+  push:
+    branches:
+      - feat/atlas-wave13-reviewed-ten-20261106
+    paths:
+      - .github/workflows/construction-atlas-wave13-intake-temp.yml
+permissions:
+  contents: write
+jobs:
+  acquire-and-stage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Ensure ImageMagick for WebP conversion
+        shell: bash
+        run: |
+          if command -v magick >/dev/null || command -v convert >/dev/null; then
+            (magick -version || convert -version)
+          else
+            sudo apt-get update -qq && sudo apt-get install -y imagemagick
+          fi
+      - name: Fetch source, verify SHA1 and Commons API, derive noncropped WebP and regenerate manifests
+        run: node tools/construction-tools-atlas/scripts/promote-image-wave13-ten-v2.3.cjs
+      - name: Check source-lead safety and generated content
+        run: |
+          node tools/construction-tools-atlas/scripts/check-image-wave13-source-leads-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/build-seo-detail-pages-v2.3.cjs --check
+          node tools/construction-tools-atlas/scripts/check-image-registry-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/check-image-attribution-v2.3.cjs
+          node tools/construction-tools-atlas/scripts/check-image-lifecycle-v2.3.cjs
+      - name: Commit generated source binaries and ledgers, remove temporary write workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/construction-atlas-wave13-intake-temp.yml
+          git add tools/construction-tools-atlas sitemap.xml
+          git diff --cached --check
+          git diff --cached --stat | tail -35
+          git commit -m "feat(atlas): stage ten pinned Commons image originals and uncropped WebP"
+          git push origin HEAD:refs/heads/feat/atlas-wave13-reviewed-ten-20261106
