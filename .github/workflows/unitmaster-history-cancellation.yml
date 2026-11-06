@@ -1,0 +1,17 @@
+name: UnitMaster history cancellation
+on:
+  pull_request:
+    paths:
+      - 'tools/unitmaster/**'
+      - 'tests/unitmaster-history-cancellation.test.cjs'
+      - '.github/workflows/unitmaster-history-cancellation.yml'
+  workflow_dispatch:
+jobs:
+  history-cancellation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tests/unitmaster-history-cancellation.test.cjs

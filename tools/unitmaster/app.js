@@ -189,6 +189,8 @@ function applyLanguage(lang, persist = true) {
 function clearOptions(select) { select.replaceChildren(); }
 function addOption(select, value, label) { const option = document.createElement("option"); option.value = value; option.textContent = label; select.appendChild(option); }
 function applyCategory(cat, preserveUnits = false, saveAutoHistory = true) {
+  clearTimeout(historyTimer);
+  historyTimer = null;
   const safeCat = categoryKeys.includes(cat) ? cat : "length";
   const prevFrom = fromSel.value;
   const prevTo = toSel.value;
@@ -286,7 +288,12 @@ function saveHistory(result) {
   loadHistory();
 }
 function scheduleHistorySave() { clearTimeout(historyTimer); historyTimer = setTimeout(() => latestValidResult && saveHistory(latestValidResult.result), HISTORY_DEBOUNCE_MS); }
-function clearHistory() { try { localStorage.removeItem(HISTORY_KEY); } catch (e) {} loadHistory(); }
+function clearHistory() {
+  clearTimeout(historyTimer);
+  historyTimer = null;
+  try { localStorage.removeItem(HISTORY_KEY); } catch (e) {}
+  loadHistory();
+}
 function loadHistory() {
   const list = readHistory();
   const fragment = document.createDocumentFragment();

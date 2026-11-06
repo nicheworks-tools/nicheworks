@@ -78,6 +78,7 @@ desktopではcategory tabsとside reference cardsを併用し、mobileではsele
 - [ ] 手動計算OFF時のカテゴリ・変換元/先・値の変更は以前の結果と一括換算を即時消去し、Calculate押下までは自動換算・遅延履歴保存を行わない。JSONランタイムとfallback runtime両方で同じ動作にする。
 - [ ] bulk conversionが同categoryの複数unit結果を表示する。
 - [ ] conversion historyは直近5件を超えず、localStorageから再読込できる。
+- [ ] 履歴クリア直後に900msの保存待機が残っていても履歴は復活しない。カテゴリ変更時も旧カテゴリの保存タイマーを破棄する。active JSON runtimeとfallback app.jsの両方でNode回帰を実行する。
 - [ ] language/theme settingがlocalStorageへ保存される。
 - [ ] input valueをexternal conversion APIへ送信しない。
 
