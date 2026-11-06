@@ -70,7 +70,7 @@ try{
       await page.locator("#add-track").click();
       assert.equal(await page.locator(".track").count(),3);
       await page.locator("#timeline-scrub").evaluate(el=>{el.value="550";el.dispatchEvent(new Event("input",{bubbles:true}));});
-      assert.equal(await page.locator("#timeline-cursor").text(),"550 ms");
+      assert.equal(await page.locator("#timeline-cursor").textContent(),"550 ms");
       const positions=await page.locator(".studio-layer").evaluateAll(nodes=>nodes.map(el=>el.getAnimations().map(a=>[a.playState,a.currentTime])));
       assert.ok(positions.every(list=>list.length===1&&list[0][0]==="paused"&&Math.abs(list[0][1]-550)<5),engine+": seek failed "+JSON.stringify(positions));
       await page.locator("#target-text").fill("SAVED PROJECT");
