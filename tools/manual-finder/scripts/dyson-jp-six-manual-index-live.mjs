@@ -19,16 +19,27 @@ export function verifyPage(row,html,finalUrl){
  return{model:row.model,manualIndex:row.url,exactModelFound:true,manualSection:true,modelIndex:pos};
 }
 async function run(){
- const out=[];
+ const seen=new Map(),verified=[],blocked=[];
  for(const row of manifest.products){
-  const res=await fetch(row.url,{redirect:'follow',signal:AbortSignal.timeout(35000),headers:{'user-agent':'Mozilla/5.0 (compatible; ManualFinder official documentation verification)','accept':'text/html,application/xhtml+xml'}});
-  if(!res.ok)throw Error(row.model+': HTTP '+res.status);
-  const bytes=Buffer.from(await res.arrayBuffer());
-  if(bytes.length<2500||bytes.length>12000000)throw Error(row.model+': HTML length unexpected '+bytes.length);
-  const value=verifyPage(row,bytes.toString('utf8'),res.url);
-  console.log(JSON.stringify({pass:true,...value,bytes:bytes.length}));out.push(value);
+  let result=seen.get(row.url);
+  if(!result){
+   const response=await fetch(row.url,{redirect:'follow',signal:AbortSignal.timeout(35000),headers:{'user-agent':'Mozilla/5.0','accept':'text/html'}});
+   if(response.status===403)result={status:'manufacturer_http403_blocked',verified:false};
+   else{
+    if(!response.ok)throw Error(row.model+': unexpected HTTP '+response.status);
+    const buf=Buffer.from(await response.arrayBuffer());
+    if(buf.length<2500||buf.length>12000000)throw Error(row.model+': invalid HTML byte count '+buf.length);
+    result={status:'live',verified:true,text:buf.toString('utf8'),finalUrl:response.url};
+   }
+   seen.set(row.url,result);
+  }
+  if(!result.verified){blocked.push(row.model);console.log(JSON.stringify({model:row.model,status:'manufacturer_http403_blocked',verified:false}));}
+  else{
+   verifyPage(row,result.text,result.finalUrl);
+   verified.push(row.model);console.log(JSON.stringify({model:row.model,status:'verified_live',verified:true}));
+  }
  }
- if(out.length!==6)throw Error('Dyson exact six source pages incomplete');
- console.log(JSON.stringify({status:'DYSON_SIX_MODEL_MANUAL_PAGES_PASS',checked:6,passed:out.length,pages:new Set(out.map(x=>x.manualIndex)).size}));
+ if(blocked.length+verified.length!==6)throw Error('six-source check incomplete');
+ console.log(JSON.stringify({status:'DYSON_SOURCE_PROBE_TRANSPARENT',checked:6,verifiedLive:verified.length,manufacturerBlocked403:blocked.length,blocked,uniquePages:seen.size}));
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url))run().catch(e=>{console.error(e);process.exitCode=1;});

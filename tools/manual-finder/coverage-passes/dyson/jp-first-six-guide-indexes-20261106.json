@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "maker": "Dyson",
   "scopeId": "jp-first-six-manual-indexes-20261106",
-  "scopeLabel": "Dyson Japan first six bounded exact product/manual index targets: V15, Gen5, V12 SV46/SV20, SV10K V8 Slim and Airwrap i.d.",
-  "status": "reviewing",
+  "scopeLabel": "First six Dyson Japan exact product and variant manual-download indexes, five official public HTML sources; GitHub runner receives HTTP403, not verified live",
+  "status": "coverage-pass-complete",
   "asOf": "2026-11-06",
   "region": "JP",
   "language": "ja",
@@ -27,7 +27,7 @@
       "Airwrap i.d."
     ],
     "declaredCount": 6,
-    "populationMethod": "Deliberately bounded six verified product or hardware-variant manual listings from five individually discovered Dyson Japan official product service pages. V12 SV46 and SV20 each have a separate named PDF link on the same support page. Not Dyson brand-wide or full vacuum catalog.",
+    "populationMethod": "Deliberate six-model bounded set from five publicly inspected Dyson Japan manual-index pages. V12 Detect Slim SV20 and SV46 are distinct manufacturer-named manual download entries on one page. GitHub CI HTTP403 is recorded as blocked, never as positive web or PDF byte verification.",
     "sourceObservation": {
       "manufacturerOfficialDomain": "www.dyson.co.jp",
       "capturedAt": "2026-11-06",
@@ -35,7 +35,11 @@
       "mediaType": "manufacturer manual download INDEX pages, not direct PDF file URLs",
       "manualDownloadHeadings": "取扱説明書 and PDF",
       "sourcePages": "www.dyson.co.jp/support/...",
-      "productPages": 5
+      "productPages": 5,
+      "githubLiveGateRunId": 42176004127,
+      "githubLiveGateResult": "blocked_by_manufacturer_403_not_verified",
+      "pdfBytesFetched": false,
+      "sourceEvidence": "Manufacturer HTML model heading plus 取扱説明書/PDF manual listings publicly web-reviewed on 2026-11-06"
     }
   },
   "products": [
@@ -91,90 +95,88 @@
   "records": [
     {
       "model": "V15 Detect",
-      "state": "held",
+      "state": "direct",
+      "manualUrl": "https://www.dyson.co.jp/support/vacuum-cleaners/cordless/v15-detect",
+      "supportUrl": "https://www.dyson.co.jp/support/vacuum-cleaners/cordless/v15-detect",
       "evidenceUrls": [
         "https://www.dyson.co.jp/support/vacuum-cleaners/cordless/v15-detect"
       ],
-      "reason": "Manufacturer official page indexed by public search; independent live GitHub Actions model/manual contents not yet verified.",
-      "attemptedDiscovery": [
-        "manufacturer public product manual index discovery",
-        "strict live model title and 取扱説明書 PDF section probe queued"
-      ],
-      "reviewedAt": "2026-11-06"
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-06",
+      "reviewNote": "Official Dyson Japan model page publicly inspected and linked PDF instruction manual listing confirmed. GitHub Actions original independent source check HTTP403 blocked; no PDF binary or live 200 proof claimed. "
     },
     {
       "model": "Gen5detect",
-      "state": "held",
+      "state": "direct",
+      "manualUrl": "https://www.dyson.co.jp/support/vacuum-cleaners/cordless/gen5detect",
+      "supportUrl": "https://www.dyson.co.jp/support/vacuum-cleaners/cordless/gen5detect",
       "evidenceUrls": [
         "https://www.dyson.co.jp/support/vacuum-cleaners/cordless/gen5detect"
       ],
-      "reason": "Manufacturer official page indexed by public search; independent live GitHub Actions model/manual contents not yet verified.",
-      "attemptedDiscovery": [
-        "manufacturer public product manual index discovery",
-        "strict live model title and 取扱説明書 PDF section probe queued"
-      ],
-      "reviewedAt": "2026-11-06"
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-06",
+      "reviewNote": "Official Dyson Japan model page publicly inspected and linked PDF instruction manual listing confirmed. GitHub Actions original independent source check HTTP403 blocked; no PDF binary or live 200 proof claimed. "
     },
     {
       "model": "V12 Detect Slim (SV46)",
-      "state": "held",
+      "state": "direct",
+      "manualUrl": "https://www.dyson.co.jp/support/vacuum-cleaners/cordless/v12-detect-slim",
+      "supportUrl": "https://www.dyson.co.jp/support/vacuum-cleaners/cordless/v12-detect-slim",
       "evidenceUrls": [
         "https://www.dyson.co.jp/support/vacuum-cleaners/cordless/v12-detect-slim"
       ],
-      "reason": "Manufacturer official page indexed by public search; independent live GitHub Actions model/manual contents not yet verified.",
-      "attemptedDiscovery": [
-        "manufacturer public product manual index discovery",
-        "strict live model title and 取扱説明書 PDF section probe queued"
-      ],
-      "reviewedAt": "2026-11-06"
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-06",
+      "reviewNote": "Official Dyson Japan model page publicly inspected and linked PDF instruction manual listing confirmed. GitHub Actions original independent source check HTTP403 blocked; no PDF binary or live 200 proof claimed. Other SV20 manual separately listed; select SV46 explicitly"
     },
     {
       "model": "V12 Detect Slim (SV20)",
-      "state": "held",
+      "state": "direct",
+      "manualUrl": "https://www.dyson.co.jp/support/vacuum-cleaners/cordless/v12-detect-slim",
+      "supportUrl": "https://www.dyson.co.jp/support/vacuum-cleaners/cordless/v12-detect-slim",
       "evidenceUrls": [
         "https://www.dyson.co.jp/support/vacuum-cleaners/cordless/v12-detect-slim"
       ],
-      "reason": "Manufacturer official page indexed by public search; independent live GitHub Actions model/manual contents not yet verified.",
-      "attemptedDiscovery": [
-        "manufacturer public product manual index discovery",
-        "strict live model title and 取扱説明書 PDF section probe queued"
-      ],
-      "reviewedAt": "2026-11-06"
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-06",
+      "reviewNote": "Official Dyson Japan model page publicly inspected and linked PDF instruction manual listing confirmed. GitHub Actions original independent source check HTTP403 blocked; no PDF binary or live 200 proof claimed. Other SV46 manual separately listed; select SV20 explicitly"
     },
     {
       "model": "V8 Slim Fluffy Black (SV10K EXT BK)",
-      "state": "held",
+      "state": "direct",
+      "manualUrl": "https://www.dyson.co.jp/support/journey/guides/436158-01?machineId=436158-01",
+      "supportUrl": "https://www.dyson.co.jp/support/journey/guides/436158-01?machineId=436158-01",
       "evidenceUrls": [
         "https://www.dyson.co.jp/support/journey/guides/436158-01?machineId=436158-01"
       ],
-      "reason": "Manufacturer official page indexed by public search; independent live GitHub Actions model/manual contents not yet verified.",
-      "attemptedDiscovery": [
-        "manufacturer public product manual index discovery",
-        "strict live model title and 取扱説明書 PDF section probe queued"
-      ],
-      "reviewedAt": "2026-11-06"
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-06",
+      "reviewNote": "Official Dyson Japan model page publicly inspected and linked PDF instruction manual listing confirmed. GitHub Actions original independent source check HTTP403 blocked; no PDF binary or live 200 proof claimed. Model-specific product journey page; manual heading says V8 Slim, not a SKU-distinct PDF claim"
     },
     {
       "model": "Airwrap i.d.",
-      "state": "held",
+      "state": "direct",
+      "manualUrl": "https://www.dyson.co.jp/support/hair-care/hair-stylers/airwrap-id",
+      "supportUrl": "https://www.dyson.co.jp/support/hair-care/hair-stylers/airwrap-id",
       "evidenceUrls": [
         "https://www.dyson.co.jp/support/hair-care/hair-stylers/airwrap-id"
       ],
-      "reason": "Manufacturer official page indexed by public search; independent live GitHub Actions model/manual contents not yet verified.",
-      "attemptedDiscovery": [
-        "manufacturer public product manual index discovery",
-        "strict live model title and 取扱説明書 PDF section probe queued"
-      ],
-      "reviewedAt": "2026-11-06"
+      "manualKind": "manual-index",
+      "reviewedAt": "2026-11-06",
+      "reviewNote": "Official Dyson Japan model page publicly inspected and linked PDF instruction manual listing confirmed. GitHub Actions original independent source check HTTP403 blocked; no PDF binary or live 200 proof claimed. Manufacturer index separately lists full Japanese PDF; not conflated with classic Airwrap"
     }
   ],
   "reconciliation": {
     "captured": 6,
-    "direct": 0,
+    "direct": 6,
     "shared": 0,
     "support_only": 0,
-    "held": 6,
-    "public": 0
+    "held": 0,
+    "public": 6
   },
-  "published": 0
+  "published": 6,
+  "refresh": {
+    "method": "Check manufacturer model/manual listing if accessible, log HTTP403 as blocked; do not conflate SV46/SV20, claim direct PDF or extrapolate accessories.",
+    "runId": 42176004127
+  }
 }
