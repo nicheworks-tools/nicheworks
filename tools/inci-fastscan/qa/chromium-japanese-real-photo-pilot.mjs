@@ -94,18 +94,20 @@ try {
     const file = path.join(sourceDir, source.id + '.' + format);
     const image = fs.readFileSync(file);
     assert.ok(image.length > 8000, 'Downloaded public image must be non-trivial');
-    if (format === 'jpg') {
-      assert.ok(image[0] === 0xff && image[1] === 0xd8,
-        source.id + ' is not a JPEG image');
-    } else {
-      assert.equal(image.toString('ascii', 0, 4), 'RIFF');
-      assert.equal(image.toString('ascii', 8, 12), 'WEBP');
-    }
-    // Tesseract's Node decoder requires a common raster format. WebP is
-    // converted losslessly to PNG via Chromium BEFORE both control and
-    // enhanced measurements; no contrast/grayscale alteration is introduced.
+    const isJpegBytes = image[0] === 0xff && image[1] === 0xd8;
+    const isWebpBytes = image.toString('latin1', 0, 4) === 'RIFF' &&
+      image.toString('latin1', 8, 12) === 'WEBP';
+    // Some image CDNs negotiate JPEG bytes even for URLs ending in .webp.
+    // Accept only a verified raster signature, never trust the suffix.
+    assert.ok(isJpegBytes || isWebpBytes,
+      source.id + ' is neither a valid JPEG nor a valid WebP image');
+    if (format === 'jpg') assert.ok(isJpegBytes,
+      'The pinned JPEG corpus must stay JPEG, not silently change formats');
+    // Tesseract's Node decoder requires a common raster format. Actual WebP
+    // bytes are converted losslessly to PNG via Chromium BEFORE both control
+    // and enhanced measurements. CDN-negotiated JPEG bytes remain untouched.
     let unprocessedPixels = image;
-    if (format === 'webp') {
+    if (isWebpBytes) {
       const png = await page.evaluate(async encoded => {
         const raw = atob(encoded);
         const bytes = new Uint8Array(raw.length);
