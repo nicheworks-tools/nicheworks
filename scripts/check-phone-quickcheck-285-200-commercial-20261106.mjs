@@ -24,8 +24,12 @@ if(isUnknown)assert.ok(reviews.some(x=>x.phoneId===id&&x.field===field&&x.status
 }
 const oldProfileCount=99;
 assert.equal(oldProfileCount,99);
-const indexAnchors=[...index.matchAll(/class="profile-link" href="\.\/([^/]+)\/">充電器・ケース・画面フィルムのガイド/g)].map(x=>x[1]);
+const indexAnchors=[...index.matchAll(/class="profile-link" href="\.\/([a-z0-9-]+)\/"/g)].map(x=>x[1]);
 assert.equal(indexAnchors.length,200);
+assert.equal(new Set(indexAnchors).size,200,'Duplicate model-profile href in static catalog');
+const sitemapIds=[...site.matchAll(/<loc>https:\/\/nicheworks\.app\/tools\/phone-quickcheck\/models\/([a-z0-9-]+)\/<\/loc>/g)].map(x=>x[1]);
+assert.equal(sitemapIds.length,200,'Exactly 200 real device-level sitemap entries');
+assert.deepEqual(indexAnchors.slice().sort(),sitemapIds.slice().sort(),'Every sitemap profile must be linked from catalog');
 for(const id of profileIds){
 const p=all.find(q=>q.id===id);assert.ok(p);
 const h=read('tools/phone-quickcheck/models/'+id+'/index.html');
