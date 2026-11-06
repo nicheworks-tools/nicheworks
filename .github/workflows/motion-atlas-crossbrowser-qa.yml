@@ -24,4 +24,6 @@ jobs:
           node tools/motion-atlas/tests/behavior.test.mjs
           node tools/motion-atlas/tests/studio-billing-lifecycle.test.mjs
       - name: Chromium, Firefox, WebKit and generated React/CSS rendering
+        env:
+          HOME: /root
         run: node tools/motion-atlas/tests/studio-crossbrowser-runtime.test.mjs
