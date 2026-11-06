@@ -59,11 +59,11 @@ for(const row of rows){
 }
 assert.equal(rows.filter(x=>evidence.get(x.model).scopeKind==='series').length,2);
 const cov=fs.readFileSync(new URL('COVERAGE.md',root),'utf8');
-assert.ok(cov.includes('**2,667 verified model/caliber rows**'));
-assert.ok(cov.includes('| **Total** | **2,667** |'));
+assert.ok(cov.includes('**2,679 verified model/caliber rows**'));
+assert.ok(cov.includes('| **Total** | **2,679** |'));
 assert.ok(cov.includes('| HP | 17 | expanded, bounded |'));
 assert.ok(cov.includes('| 9 | HP | **expanded — 17**'));
 for(const f of ['index.html','en/index.html','app.paged.js']){
- assert.ok(fs.readFileSync(new URL(f,root),'utf8').includes('mf-oppo7-20261105a'),f+' is not cache-refreshed');
+ assert.ok(fs.readFileSync(new URL(f,root),'utf8').includes('mf-oneplus12-20261106a'),f+' is not cache-refreshed');
 }
 console.log('HP JP bounded 17: official indexed model/series manuals, HP live 403 disclosed, 17 Amazon model searches, no inferred accessories; bilingual loader passed.');

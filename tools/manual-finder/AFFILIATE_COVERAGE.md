@@ -519,3 +519,7 @@ The five exact manufacturer-confirmed Japanese WATCH/Band model-level manual ind
 ### OPPO Japan seven exact verified mobile model searches (2026-11-05)
 
 Seven actual Japanese manufacturer PDF guide rows enable existing canonical opt-in Amazon Associates exact **device** searches (`PC・スマホ`, `tag=nicheworks09-22`). Held Reno A/Reno7 A candidate PDFs are excluded from model/public/commercial publication. No product inventory, reported sales, charger/battery fit or other accessory compatibility is inferred. Source `coverage-passes/oppo/jp-first-nine-mobile-guidepdf-20261105.json`. Printer ink inventory unchanged.
+
+### OnePlus global English model-document 12 exact smartphone searches (2026-11-06)
+
+Twelve OnePlus English manufacturer PDF records (eight full manuals and four short EU quick guides) support existing canonical Amazon Associates exact device model searches, `tag=nicheworks09-22`, category `PC・スマホ`. These are optional product **searches only**; manufacturer documents do not establish retailer availability, appropriate Japanese-region variants, charger/battery compatibility, sales or commissions. Original checked manufacturer source ledger: `coverage-passes/oneplus/global-english-twelve-20261106.json`. Printer ink proof remains unchanged.
