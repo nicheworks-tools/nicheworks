@@ -17,7 +17,7 @@
   },
   "sources": {
     "quality_manifest_version": "2026-09-14-manifest-8",
-    "image_registry_version": "2026-11-05-reviewed-image-wave12-seven-1",
+    "image_registry_version": "2026-11-06-reviewed-image-wave13-eight-1",
     "exception_ledger_version": "2026-11-03-five-canonical-retirements-1",
     "source_ledgers": [
       {
@@ -39,6 +39,11 @@
         "file": "image-wave12-sources-v2.3.json",
         "version": "2026-11-05-reviewed-image-wave12-seven-1",
         "items": 7
+      },
+      {
+        "file": "image-wave13-sources-v2.3.json",
+        "version": "2026-11-06-reviewed-image-wave13-eight-1",
+        "items": 8
       },
       {
         "file": "image-wave2-sources-v2.3.json",
@@ -84,14 +89,14 @@
   },
   "summary": {
     "corpus_entries": 5536,
-    "formal_image_entries": 64,
-    "missing_formal_image_entries": 5427,
+    "formal_image_entries": 72,
+    "missing_formal_image_entries": 5419,
     "not_required_entries": 45,
     "unobtainable_entries": 0,
     "classified_entries": 5536,
-    "formal_coverage_percent": 1.1561,
-    "registry_items": 64,
-    "source_ledger_items": 64,
+    "formal_coverage_percent": 1.3006,
+    "registry_items": 72,
+    "source_ledger_items": 72,
     "identity_holds": 0
   },
   "public_lifecycle": {
@@ -102,19 +107,19 @@
     "applicability_reviewed": 865,
     "required": 820,
     "on_hold": 0,
-    "final_dispositions": 109,
-    "unresolved": 756,
+    "final_dispositions": 117,
+    "unresolved": 748,
     "by_stage": {
       "unreviewed": 0,
       "not_required": 45,
-      "awaiting_source": 756,
+      "awaiting_source": 748,
       "candidate": 0,
       "provenance_verified": 0,
       "subject_verified": 0,
       "verified": 0,
-      "promoted": 64
+      "promoted": 72
     },
-    "evidence_sha256": "a0f3605ab420ce5de20ebebbbd8f24a2f5e0123c22779f239a12ffd44956bae2"
+    "evidence_sha256": "203a4bf4749d3cdfd4117f48d16ec49e51f973c74fca79f682940464173ffee0"
   },
   "by_type": {
     "access": {
@@ -280,17 +285,17 @@
     },
     "tool": {
       "corpus": 379,
-      "formal_image": 55,
-      "missing_formal_image": 300,
+      "formal_image": 63,
+      "missing_formal_image": 292,
       "not_required": 24,
       "unobtainable": 0
     }
   },
   "hashes": {
     "corpus_id_sha256": "bff8aae6f75c763415864d81b9b2686131a2964b60bc354e85f84d64e3433f31",
-    "formal_image_id_sha256": "9889d4313f7a7d5b5ffab1432a27155dde4f09ec9b90ca1e7b225bd441c39527",
-    "missing_formal_image_id_sha256": "fef32717b74384f668baed16b1f616fd210ec0466647e33e25ea88ca104552c9",
-    "classification_sha256": "00242a0ab45dec7ccd33666bb0ef1ae53e3bc8a8e6c609372010a12c7d2fd46a"
+    "formal_image_id_sha256": "ef68ee1545b84ae9b121f316de96b074e9270e9b4da9d807882458168f1f47a9",
+    "missing_formal_image_id_sha256": "834db09262ada09c5b34458a8252ae7e19076b4ec137d52ca3bf60b73f156e90",
+    "classification_sha256": "99c165fc7af690e2f7a0dfdc84a798b86067c80d08e0b73df22f871698c5788f"
   },
   "missing_sample": [
     "access_door",
@@ -298,7 +303,6 @@
     "acoustic_panel",
     "adhesion_test",
     "air_compressor",
-    "anchor_bolt",
     "anchor_plastic_plug",
     "angle_finder",
     "as_built",
@@ -309,7 +313,6 @@
     "base_trim",
     "baseboard",
     "beam",
-    "bolt_nut",
     "borescope",
     "brick_hammer",
     "brick_trowel",
@@ -317,6 +320,8 @@
     "cable_ramp",
     "cable_tray",
     "carpet_tile",
-    "caulk_back_up_tape"
+    "caulk_back_up_tape",
+    "caulk_finisher",
+    "caulking_scraper"
   ]
 }

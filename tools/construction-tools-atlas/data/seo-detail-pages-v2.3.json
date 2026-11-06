@@ -12,20 +12,26 @@
     "revenue_priority_policy_version": "2026-09-19-revenue-priority-2",
     "public_content_quality_version": "2026-09-16-q014-identity-closure-1",
     "public_image_inventory_version": "2026-09-16-q014-identity-closure-1",
-    "image_registry_version": "2026-11-05-reviewed-image-wave12-seven-1",
+    "image_registry_version": "2026-11-06-reviewed-image-wave13-eight-1",
     "affiliate_offers_version": "2026-09-18-wave6l-affiliate-1"
   },
   "summary": {
     "public_runtime_entries": 865,
-    "published_static_detail_pages": 55,
-    "with_promoted_image": 54,
+    "published_static_detail_pages": 63,
+    "with_promoted_image": 62,
     "image_not_required": 1,
-    "with_active_affiliate_mapping": 55
+    "with_active_affiliate_mapping": 63
   },
   "entries": [
     {
       "id": "allen_key",
       "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/allen_key/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "anchor_bolt",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/anchor_bolt/",
       "image": "promoted",
       "affiliate": "active"
     },
@@ -44,6 +50,12 @@
     {
       "id": "bolt_cutter",
       "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/bolt_cutter/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "bolt_nut",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/bolt_nut/",
       "image": "promoted",
       "affiliate": "active"
     },
@@ -96,6 +108,12 @@
       "affiliate": "active"
     },
     {
+      "id": "concrete_mixer",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/concrete_mixer/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
       "id": "cordless_drill",
       "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/cordless_drill/",
       "image": "promoted",
@@ -120,6 +138,12 @@
       "affiliate": "active"
     },
     {
+      "id": "fish_tape",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/fish_tape/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
       "id": "flashing",
       "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/flashing/",
       "image": "promoted",
@@ -128,6 +152,12 @@
     {
       "id": "float",
       "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/float/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "generator",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/generator/",
       "image": "promoted",
       "affiliate": "active"
     },
@@ -146,6 +176,18 @@
     {
       "id": "hard_hat",
       "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/hard_hat/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "heat_gun",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/heat_gun/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "hole_saw",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/hole_saw/",
       "image": "promoted",
       "affiliate": "active"
     },
@@ -248,6 +290,12 @@
     {
       "id": "pipe_wrench",
       "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/pipe_wrench/",
+      "image": "promoted",
+      "affiliate": "active"
+    },
+    {
+      "id": "plumb_bob",
+      "url": "https://nicheworks.app/tools/construction-tools-atlas/entries/plumb_bob/",
       "image": "promoted",
       "affiliate": "active"
     },

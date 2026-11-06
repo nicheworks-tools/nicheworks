@@ -20,18 +20,18 @@
   "sources": {
     "publication_inventory_version": "2026-09-16-q014-identity-closure-1",
     "publication_id_sha256": "d0264617677052f0f446a0f4ebbfafc2315766d5858480b7103267320d88752d",
-    "image_registry_version": "2026-11-05-reviewed-image-wave12-seven-1",
+    "image_registry_version": "2026-11-06-reviewed-image-wave13-eight-1",
     "image_exception_ledger_version": "2026-11-03-five-canonical-retirements-1"
   },
   "summary": {
     "public_entries": 865,
-    "formal_image_entries": 64,
-    "missing_formal_image_entries": 756,
+    "formal_image_entries": 72,
+    "missing_formal_image_entries": 748,
     "not_required_entries": 45,
     "unobtainable_entries": 0,
     "classified_entries": 865,
-    "formal_coverage_percent": 7.3988,
-    "registry_items_total": 64,
+    "formal_coverage_percent": 8.3237,
+    "registry_items_total": 72,
     "formal_images_inherited_via_redirect": 6,
     "formal_images_outside_public": 0,
     "image_exceptions_outside_public": 0,
@@ -46,20 +46,20 @@
       "applicability_reviewed": 865,
       "required": 820,
       "on_hold": 0,
-      "final_dispositions": 109,
-      "unresolved": 756,
+      "final_dispositions": 117,
+      "unresolved": 748,
       "by_stage": {
         "unreviewed": 0,
         "not_required": 45,
-        "awaiting_source": 756,
+        "awaiting_source": 748,
         "candidate": 0,
         "provenance_verified": 0,
         "subject_verified": 0,
         "verified": 0,
-        "promoted": 64
+        "promoted": 72
       }
     },
-    "evidence_sha256": "a0f3605ab420ce5de20ebebbbd8f24a2f5e0123c22779f239a12ffd44956bae2",
+    "evidence_sha256": "203a4bf4749d3cdfd4117f48d16ec49e51f973c74fca79f682940464173ffee0",
     "rows": [
       {
         "id": "access_door",
@@ -129,15 +129,15 @@
       {
         "id": "anchor_bolt",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "An anchor bolt is a concrete fastening component with a distinct physical form and installation context; a verified photograph is useful for identification.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+        "candidate_id": "wave13:anchor_bolt",
+        "source_entry_id": "anchor_bolt",
+        "attachment": "direct"
       },
       {
         "id": "anchor_plastic_plug",
@@ -324,15 +324,15 @@
       {
         "id": "bolt_nut",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "Bolts and nuts are visually identifiable fastening hardware; a close reviewed photograph materially aids recognition.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+        "candidate_id": "wave13:bolt_nut",
+        "source_entry_id": "bolt_nut",
+        "attachment": "direct"
       },
       {
         "id": "borescope",
@@ -779,15 +779,15 @@
       {
         "id": "concrete_mixer",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "A concrete mixer is a distinctive mixing machine; a subject-matched photograph strongly aids identification.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+        "candidate_id": "wave13:concrete_mixer",
+        "source_entry_id": "concrete_mixer",
+        "attachment": "direct"
       },
       {
         "id": "concrete_pump",
@@ -1507,15 +1507,15 @@
       {
         "id": "fish_tape",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "Fish tape is a distinctive electrical pulling tool with a reel/case and flexible tape; a subject-matched photograph aids recognition.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+        "candidate_id": "wave13:fish_tape",
+        "source_entry_id": "fish_tape",
+        "attachment": "direct"
       },
       {
         "id": "five_s_5s",
@@ -1702,15 +1702,15 @@
       {
         "id": "generator",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "A portable/jobsite generator is a distinctive power-supply machine; a subject-matched photograph strongly aids identification.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+        "candidate_id": "wave13:generator",
+        "source_entry_id": "generator",
+        "attachment": "direct"
       },
       {
         "id": "gfci_rcd",
@@ -1949,15 +1949,15 @@
       {
         "id": "heat_gun",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "A heat gun is a distinctive handheld hot-air power tool; a subject-matched photograph strongly aids identification.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+        "candidate_id": "wave13:heat_gun",
+        "source_entry_id": "heat_gun",
+        "attachment": "direct"
       },
       {
         "id": "heat_shrink_tubing",
@@ -1988,15 +1988,15 @@
       {
         "id": "hole_saw",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "A hole saw is a distinctive cup-shaped cutting accessory; a close subject-matched photograph strongly aids recognition.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+        "candidate_id": "wave13:hole_saw",
+        "source_entry_id": "hole_saw",
+        "attachment": "direct"
       },
       {
         "id": "hose_clamp",
@@ -2872,15 +2872,15 @@
       {
         "id": "plumb_bob",
         "applicability": "required",
-        "stage": "awaiting_source",
+        "stage": "promoted",
         "applicability_reviewed": true,
-        "provenance_verified": false,
-        "subject_verified": false,
+        "provenance_verified": true,
+        "subject_verified": true,
         "hold": null,
-        "reason": "A plumb bob is a distinctive pointed weight suspended from a line; a subject-matched photograph clearly aids identification.",
-        "candidate_id": null,
-        "source_entry_id": null,
-        "attachment": "none"
+        "reason": "Local original and separately optimized primary and thumbnail WebP retained with reviewed provenance.",
+        "candidate_id": "wave13:plumb_bob",
+        "source_entry_id": "plumb_bob",
+        "attachment": "direct"
       },
       {
         "id": "plumb_laser",
@@ -11458,17 +11458,17 @@
     },
     "tool": {
       "public_entries": 330,
-      "formal_image": 53,
-      "missing_formal_image": 253,
+      "formal_image": 61,
+      "missing_formal_image": 245,
       "not_required": 24,
       "unobtainable": 0
     }
   },
   "hashes": {
     "public_id_sha256": "d0264617677052f0f446a0f4ebbfafc2315766d5858480b7103267320d88752d",
-    "public_formal_image_id_sha256": "b5fdee1a2c91252400676d1c51526824bb99aa9b8f8eb4629bcb38e71226a203",
-    "public_missing_formal_image_id_sha256": "4ebfb8dee45c179921ba4e525924c1dfa8ed1f527c2787e51945df8184356aab",
-    "public_image_classification_sha256": "bb06499d760277163797742a2d9c9732a3212e0c45327ece5e6cf9eacca1a067"
+    "public_formal_image_id_sha256": "c926eab39ff2ae9bf1bac4889da28d242859e9da07967382f5da5fe1aaa79eea",
+    "public_missing_formal_image_id_sha256": "4d759e5623eb390e80df0c8fed020f7ae46cb7eea27cca7aa9f57fc423f30d84",
+    "public_image_classification_sha256": "4d3286dbf6c69120f084cd3c1d7f083f8f77077b5dff33371cf476b9ba9745b3"
   },
   "inherited_formal_images": [
     {
@@ -11503,7 +11503,6 @@
     "access_panel",
     "acoustic_panel",
     "adhesion_test",
-    "anchor_bolt",
     "anchor_plastic_plug",
     "angle_finder",
     "asphalt_felt",
@@ -11513,7 +11512,6 @@
     "base_trim",
     "baseboard",
     "beam",
-    "bolt_nut",
     "borescope",
     "brick_hammer",
     "brick_trowel",
@@ -11523,6 +11521,8 @@
     "carpet_tile",
     "caulk_back_up_tape",
     "caulk_finisher",
-    "caulking_scraper"
+    "caulking_scraper",
+    "caulking_sealant",
+    "ceiling_grid"
   ]
 }

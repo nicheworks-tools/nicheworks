@@ -1,6 +1,6 @@
 {
   "schema": "cta-affiliate-image-acquisition-wave6-v2.3",
-  "version": "2026-11-05-reviewed-image-wave12-seven-1",
+  "version": "2026-11-06-reviewed-image-wave13-eight-1",
   "policy": {
     "queue_order": "curated source-feasibility work order, NOT empirical market ranking",
     "no_guessed_search_volume": true,
@@ -17,8 +17,8 @@
   },
   "expected": {
     "active_affiliate_mappings": 430,
-    "revenue_ready": 55,
-    "awaiting_source": 375,
+    "revenue_ready": 63,
+    "awaiting_source": 367,
     "first_wave": 0,
     "source_leads": 3
   },
@@ -44,7 +44,15 @@
     "nails",
     "ladder",
     "masking_tape",
-    "extension_cord"
+    "extension_cord",
+    "anchor_bolt",
+    "bolt_nut",
+    "concrete_mixer",
+    "fish_tape",
+    "generator",
+    "heat_gun",
+    "hole_saw",
+    "plumb_bob"
   ],
   "source_leads": [
     {
@@ -203,6 +211,46 @@
       "entry_id": "extension_cord",
       "disposition": "promoted",
       "review": "Full source JPEG and uncropped WebP visually inspected. License/attribution and exact Commons original SHA1 confirmed. Commons original 3072x2048 clearly identified as a yellow three-outlet NEMA 5-15 extension cord; Japanese plug compatibility must not be implied."
+    },
+    {
+      "entry_id": "anchor_bolt",
+      "disposition": "promoted",
+      "review": "Original JPEG, WebP and Commons source bytes SHA1 verified in staging; final visual review required before merge. Commons describes construction anchor bolts. Check the entire fastening subject."
+    },
+    {
+      "entry_id": "bolt_nut",
+      "disposition": "promoted",
+      "review": "Original JPEG, WebP and Commons source bytes SHA1 verified in staging; final visual review required before merge. Commons own-work photograph identified as bolt and nut."
+    },
+    {
+      "entry_id": "concrete_mixer",
+      "disposition": "promoted",
+      "review": "Original JPEG, WebP and Commons source bytes SHA1 verified in staging; final visual review required before merge. Older electrically powered standalone concrete mixer according to Commons."
+    },
+    {
+      "entry_id": "fish_tape",
+      "disposition": "promoted",
+      "review": "Original JPEG, WebP and Commons source bytes SHA1 verified in staging; final visual review required before merge. Flickr-originated Commons image, described as a 50-foot reel."
+    },
+    {
+      "entry_id": "generator",
+      "disposition": "promoted",
+      "review": "Original JPEG, WebP and Commons source bytes SHA1 verified in staging; final visual review required before merge. Branded Generac photograph for visual identification only, not endorsement or JP power claim."
+    },
+    {
+      "entry_id": "heat_gun",
+      "disposition": "promoted",
+      "review": "Original JPEG, WebP and Commons source bytes SHA1 verified in staging; final visual review required before merge. Commons labels as heat gun. Check full unit and nozzle."
+    },
+    {
+      "entry_id": "hole_saw",
+      "disposition": "promoted",
+      "review": "Original JPEG, WebP and Commons source bytes SHA1 verified in staging; final visual review required before merge. Indonesian source describes hole saw for cutting round holes in PVC pipe."
+    },
+    {
+      "entry_id": "plumb_bob",
+      "disposition": "promoted",
+      "review": "Original JPEG, WebP and Commons source bytes SHA1 verified in staging; final visual review required before merge. Museum object identified on Commons as a plumb bob; verify tool identity."
     }
   ]
 }

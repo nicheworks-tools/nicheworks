@@ -1,6 +1,6 @@
 {
   "schema": "cta-image-registry-v2.3",
-  "version": "2026-11-05-reviewed-image-wave12-seven-1",
+  "version": "2026-11-06-reviewed-image-wave13-eight-1",
   "policy": {
     "primary_format": "webp",
     "formal_min_state": "reviewed",
@@ -1543,6 +1543,198 @@
         "modifications": "Auto-oriented, fit-within resized without cropping, metadata stripped, and converted to local WebP; exact original retained; derivative stays under source license."
       },
       "notes": "Wave12: Commons original 3072x2048 clearly identified as a yellow three-outlet NEMA 5-15 extension cord; Japanese plug compatibility must not be implied. Exact Commons original SHA-1 verified against independent pin and live MediaWiki API."
+    },
+    {
+      "entry_id": "anchor_bolt",
+      "alt_ja": "アンカーボルトの施工写真",
+      "alt_en": "Installed anchor bolts",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/anchor_bolt/source.jpg",
+        "display": "./images/anchor_bolt/primary.webp",
+        "thumbnail": "./images/anchor_bolt/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/AnchorBolt_Setsubi_01.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:AnchorBolt_Setsubi_01.jpg",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "author": "ほーるだうん",
+        "attribution": "ほーるだうん / Wikimedia Commons, CC BY-SA 3.0",
+        "source_sha1": "16249a4282e59cd9ced009dbc8492db406192a2d",
+        "modifications": "Auto-oriented, fit-within resized without cropping, metadata stripped, and converted to local WebP; exact original retained; derivative stays under source license."
+      },
+      "notes": "Wave13: Commons describes construction anchor bolts. Check the entire fastening subject. Exact Commons original SHA-1 verified against independent pin and live MediaWiki API."
+    },
+    {
+      "entry_id": "bolt_nut",
+      "alt_ja": "ボルトとナットの実物写真",
+      "alt_en": "Bolt and nut",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/bolt_nut/source.jpg",
+        "display": "./images/bolt_nut/primary.webp",
+        "thumbnail": "./images/bolt_nut/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Bolt_and_Nut_2018.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Bolt_and_Nut_2018.jpg",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "author": "Ossewa",
+        "attribution": "Ossewa / Wikimedia Commons, CC BY-SA 4.0",
+        "source_sha1": "bf57183a7f8db505d8451d61f18d922262be9dac",
+        "modifications": "Auto-oriented, fit-within resized without cropping, metadata stripped, and converted to local WebP; exact original retained; derivative stays under source license."
+      },
+      "notes": "Wave13: Commons own-work photograph identified as bolt and nut. Exact Commons original SHA-1 verified against independent pin and live MediaWiki API."
+    },
+    {
+      "entry_id": "concrete_mixer",
+      "alt_ja": "電動式コンクリートミキサー",
+      "alt_en": "Portable concrete mixer",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/concrete_mixer/source.jpg",
+        "display": "./images/concrete_mixer/primary.webp",
+        "thumbnail": "./images/concrete_mixer/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/d/dc/ConcreteMixer4.JPG",
+        "source_page": "https://commons.wikimedia.org/wiki/File:ConcreteMixer4.JPG",
+        "license": "Public Domain",
+        "license_url": "https://commons.wikimedia.org/wiki/Template:PD-self",
+        "author": "KVDP",
+        "attribution": "KVDP / Wikimedia Commons, Public Domain (PD-self)",
+        "source_sha1": "ceb610da346c12ea4aed592adbece84dbc5742f2",
+        "modifications": "Auto-oriented, fit-within resized without cropping, metadata stripped, and converted to local WebP; exact original retained; derivative stays under source license."
+      },
+      "notes": "Wave13: Older electrically powered standalone concrete mixer according to Commons. Exact Commons original SHA-1 verified against independent pin and live MediaWiki API."
+    },
+    {
+      "entry_id": "fish_tape",
+      "alt_ja": "配線用フィッシュテープのリール",
+      "alt_en": "Electrical fish tape reel",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/fish_tape/source.jpg",
+        "display": "./images/fish_tape/primary.webp",
+        "thumbnail": "./images/fish_tape/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Fish_tape.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Fish_tape.jpg",
+        "license": "CC BY-SA 2.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+        "author": "Lucius Kwok",
+        "attribution": "Lucius Kwok / Wikimedia Commons, CC BY-SA 2.0",
+        "source_sha1": "cc1591fbc2f811d00cb667a7e28d1a76093b09d5",
+        "modifications": "Auto-oriented, fit-within resized without cropping, metadata stripped, and converted to local WebP; exact original retained; derivative stays under source license."
+      },
+      "notes": "Wave13: Flickr-originated Commons image, described as a 50-foot reel. Exact Commons original SHA-1 verified against independent pin and live MediaWiki API."
+    },
+    {
+      "entry_id": "generator",
+      "alt_ja": "可搬型発電機の一例",
+      "alt_en": "Portable inverter generator",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/generator/source.jpg",
+        "display": "./images/generator/primary.webp",
+        "thumbnail": "./images/generator/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/1/15/Generac_iQ3500_Generator.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Generac_iQ3500_Generator.jpg",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "author": "TaurusEmerald",
+        "attribution": "TaurusEmerald / Wikimedia Commons, CC BY-SA 4.0",
+        "source_sha1": "aa091cdc53fc228de1dea72aae2f53f646aa6bd1",
+        "modifications": "Auto-oriented, fit-within resized without cropping, metadata stripped, and converted to local WebP; exact original retained; derivative stays under source license."
+      },
+      "notes": "Wave13: Branded Generac photograph for visual identification only, not endorsement or JP power claim. Exact Commons original SHA-1 verified against independent pin and live MediaWiki API."
+    },
+    {
+      "entry_id": "heat_gun",
+      "alt_ja": "ヒートガンの本体写真",
+      "alt_en": "Handheld heat gun",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/heat_gun/source.jpg",
+        "display": "./images/heat_gun/primary.webp",
+        "thumbnail": "./images/heat_gun/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Heat_Gun.JPG",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Heat_Gun.JPG",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "author": "Jmdestefanis",
+        "attribution": "Jmdestefanis / Wikimedia Commons, CC BY-SA 3.0",
+        "source_sha1": "6df3047dedda6a3e5b01fec744fbaf8053bd2de6",
+        "modifications": "Auto-oriented, fit-within resized without cropping, metadata stripped, and converted to local WebP; exact original retained; derivative stays under source license."
+      },
+      "notes": "Wave13: Commons labels as heat gun. Check full unit and nozzle. Exact Commons original SHA-1 verified against independent pin and live MediaWiki API."
+    },
+    {
+      "entry_id": "hole_saw",
+      "alt_ja": "ホールソー刃の実物写真",
+      "alt_en": "Hole saw cutting tool",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/hole_saw/source.jpg",
+        "display": "./images/hole_saw/primary.webp",
+        "thumbnail": "./images/hole_saw/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/9/94/Mata_Bor_Hidroponik_Hole_Saw.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Mata_Bor_Hidroponik_Hole_Saw.jpg",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "author": "Herusutimbul",
+        "attribution": "Herusutimbul / Wikimedia Commons, CC BY-SA 4.0",
+        "source_sha1": "4999c894ea6e61ed1f877cb0848f4497ae09ba31",
+        "modifications": "Auto-oriented, fit-within resized without cropping, metadata stripped, and converted to local WebP; exact original retained; derivative stays under source license."
+      },
+      "notes": "Wave13: Indonesian source describes hole saw for cutting round holes in PVC pipe. Exact Commons original SHA-1 verified against independent pin and live MediaWiki API."
+    },
+    {
+      "entry_id": "plumb_bob",
+      "alt_ja": "鉛直確認用の下げ振り",
+      "alt_en": "Plumb bob for vertical alignment",
+      "image_state": "verified",
+      "subject_match": "matched",
+      "migration_state": "promoted",
+      "primary": {
+        "source": "./images/plumb_bob/source.jpg",
+        "display": "./images/plumb_bob/primary.webp",
+        "thumbnail": "./images/plumb_bob/thumb.webp"
+      },
+      "source": {
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Plumb_Bob.jpg",
+        "source_page": "https://commons.wikimedia.org/wiki/File:Plumb_Bob.jpg",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "author": "CatalinaDurhan",
+        "attribution": "CatalinaDurhan / Wikimedia Commons, CC BY-SA 4.0",
+        "source_sha1": "0d4ebc6eaf339dd350a8444efa4891c18537b4e5",
+        "modifications": "Auto-oriented, fit-within resized without cropping, metadata stripped, and converted to local WebP; exact original retained; derivative stays under source license."
+      },
+      "notes": "Wave13: Museum object identified on Commons as a plumb bob; verify tool identity. Exact Commons original SHA-1 verified against independent pin and live MediaWiki API."
     }
   ]
 }
