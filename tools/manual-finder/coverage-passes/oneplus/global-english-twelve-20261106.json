@@ -1,0 +1,345 @@
+{
+  "schemaVersion": 1,
+  "maker": "OnePlus",
+  "scopeId": "global-official-12-model-english-pdf-candidate-20261106",
+  "scopeLabel": "12 individually located manufacturer English language PDFs, eight full operating manuals and four region-specific quick guides; candidate only until live PDF bytes and exact identity pass",
+  "status": "reviewing",
+  "asOf": "2026-11-06",
+  "region": "Global",
+  "language": "en",
+  "allowedDomains": [
+    "oneplus.com"
+  ],
+  "universe": {
+    "sourceUrls": [
+      "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_8_User_Manual_EN.pdf",
+      "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_User_Manual_EN.pdf",
+      "https://service.oneplus.com/content/dam/support/user-manuals/en/OnePlus_Nord_3_5G_User_Manual_EN.pdf",
+      "https://service.oneplus.com/content/dam/support/user-manuals/en/OnePlus_Nord_N30_5G_User_Manual_EN.pdf",
+      "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_Nord_2T_5G_User_Manual_EN.pdf",
+      "https://service.oneplus.com/content/dam/support/user-manuals/en/OnePlus_Nord_N300_5G_User_Manual_EN.pdf",
+      "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_Nord_N200_5G_User_Manual_EN.pdf",
+      "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_Nord_N20_5G_User_Manual_EN.pdf",
+      "https://www.oneplus.com/content/dam/oneplus/2024/eu/store/safety_guide/OnePlus_13_Quick_Guide.pdf",
+      "https://www.oneplus.com/content/dam/oneplus/2024/eu/store/safety_guide/OnePlus_13R_Quick_Guide.pdf",
+      "https://www.oneplus.com/content/dam/oneplus/2024/eu/store/safety_guide/OnePlus_15_Quick_Guide.pdf",
+      "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_Nord4_Quick_Guide_EU.pdf"
+    ],
+    "models": [
+      "OnePlus 8",
+      "OnePlus 9",
+      "OnePlus Nord 3 5G",
+      "OnePlus Nord N30 5G",
+      "OnePlus Nord 2T 5G",
+      "OnePlus Nord N300 5G",
+      "OnePlus Nord N200 5G",
+      "OnePlus Nord N20 5G",
+      "OnePlus 13",
+      "OnePlus 13R",
+      "OnePlus 15",
+      "OnePlus Nord 4"
+    ],
+    "declaredCount": 12,
+    "populationMethod": "Finite 12 exact OnePlus manufacturer-owned PDF files separately indexed on oneplus.com and service.oneplus.com; deliberately narrow selection, not OnePlus vendor catalog nor a published complete country model list.",
+    "sourceObservation": {
+      "observedAt": "2026-11-06",
+      "eightFullManuals": 8,
+      "fourEUQuickGuides": 4,
+      "originalManufacturers": [
+        "service.oneplus.com",
+        "www.oneplus.com"
+      ],
+      "marketNote": "Most direct PDFs are in English; latest four Quick Guide candidates are EU editions. Japan-specific applicability and translations are NOT claimed.",
+      "identityNote": "Full manual requires exact product name in extracted text; EU Quick Guide requires its manufacturer's printed internal CPH model code. Document-title differences must not be suppressed."
+    }
+  },
+  "records": [
+    {
+      "model": "OnePlus 8",
+      "state": "held",
+      "manualUrl": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_8_User_Manual_EN.pdf",
+      "evidenceUrls": [
+        "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_8_User_Manual_EN.pdf"
+      ],
+      "reason": "Candidate manufacturer PDF indexed; full binary magic and exact model text not yet independently validated in CI.",
+      "attemptedDiscovery": [
+        "official-site individual indexed manufacturer PDF",
+        "queued GitHub Actions live download verification"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "model": "OnePlus 9",
+      "state": "held",
+      "manualUrl": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_User_Manual_EN.pdf",
+      "evidenceUrls": [
+        "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_User_Manual_EN.pdf"
+      ],
+      "reason": "Candidate manufacturer PDF indexed; full binary magic and exact model text not yet independently validated in CI.",
+      "attemptedDiscovery": [
+        "official-site individual indexed manufacturer PDF",
+        "queued GitHub Actions live download verification"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "model": "OnePlus Nord 3 5G",
+      "state": "held",
+      "manualUrl": "https://service.oneplus.com/content/dam/support/user-manuals/en/OnePlus_Nord_3_5G_User_Manual_EN.pdf",
+      "evidenceUrls": [
+        "https://service.oneplus.com/content/dam/support/user-manuals/en/OnePlus_Nord_3_5G_User_Manual_EN.pdf"
+      ],
+      "reason": "Candidate manufacturer PDF indexed; full binary magic and exact model text not yet independently validated in CI.",
+      "attemptedDiscovery": [
+        "official-site individual indexed manufacturer PDF",
+        "queued GitHub Actions live download verification"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "model": "OnePlus Nord N30 5G",
+      "state": "held",
+      "manualUrl": "https://service.oneplus.com/content/dam/support/user-manuals/en/OnePlus_Nord_N30_5G_User_Manual_EN.pdf",
+      "evidenceUrls": [
+        "https://service.oneplus.com/content/dam/support/user-manuals/en/OnePlus_Nord_N30_5G_User_Manual_EN.pdf"
+      ],
+      "reason": "Candidate manufacturer PDF indexed; full binary magic and exact model text not yet independently validated in CI.",
+      "attemptedDiscovery": [
+        "official-site individual indexed manufacturer PDF",
+        "queued GitHub Actions live download verification"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "model": "OnePlus Nord 2T 5G",
+      "state": "held",
+      "manualUrl": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_Nord_2T_5G_User_Manual_EN.pdf",
+      "evidenceUrls": [
+        "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_Nord_2T_5G_User_Manual_EN.pdf"
+      ],
+      "reason": "Candidate manufacturer PDF indexed; full binary magic and exact model text not yet independently validated in CI.",
+      "attemptedDiscovery": [
+        "official-site individual indexed manufacturer PDF",
+        "queued GitHub Actions live download verification"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "model": "OnePlus Nord N300 5G",
+      "state": "held",
+      "manualUrl": "https://service.oneplus.com/content/dam/support/user-manuals/en/OnePlus_Nord_N300_5G_User_Manual_EN.pdf",
+      "evidenceUrls": [
+        "https://service.oneplus.com/content/dam/support/user-manuals/en/OnePlus_Nord_N300_5G_User_Manual_EN.pdf"
+      ],
+      "reason": "Candidate manufacturer PDF indexed; full binary magic and exact model text not yet independently validated in CI.",
+      "attemptedDiscovery": [
+        "official-site individual indexed manufacturer PDF",
+        "queued GitHub Actions live download verification"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "model": "OnePlus Nord N200 5G",
+      "state": "held",
+      "manualUrl": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_Nord_N200_5G_User_Manual_EN.pdf",
+      "evidenceUrls": [
+        "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_Nord_N200_5G_User_Manual_EN.pdf"
+      ],
+      "reason": "Candidate manufacturer PDF indexed; full binary magic and exact model text not yet independently validated in CI.",
+      "attemptedDiscovery": [
+        "official-site individual indexed manufacturer PDF",
+        "queued GitHub Actions live download verification"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "model": "OnePlus Nord N20 5G",
+      "state": "held",
+      "manualUrl": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_Nord_N20_5G_User_Manual_EN.pdf",
+      "evidenceUrls": [
+        "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_Nord_N20_5G_User_Manual_EN.pdf"
+      ],
+      "reason": "Candidate manufacturer PDF indexed; full binary magic and exact model text not yet independently validated in CI.",
+      "attemptedDiscovery": [
+        "official-site individual indexed manufacturer PDF",
+        "queued GitHub Actions live download verification"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "model": "OnePlus 13",
+      "state": "held",
+      "manualUrl": "https://www.oneplus.com/content/dam/oneplus/2024/eu/store/safety_guide/OnePlus_13_Quick_Guide.pdf",
+      "evidenceUrls": [
+        "https://www.oneplus.com/content/dam/oneplus/2024/eu/store/safety_guide/OnePlus_13_Quick_Guide.pdf"
+      ],
+      "reason": "Candidate manufacturer PDF indexed; full binary magic and exact model text not yet independently validated in CI.",
+      "attemptedDiscovery": [
+        "official-site individual indexed manufacturer PDF",
+        "queued GitHub Actions live download verification"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "model": "OnePlus 13R",
+      "state": "held",
+      "manualUrl": "https://www.oneplus.com/content/dam/oneplus/2024/eu/store/safety_guide/OnePlus_13R_Quick_Guide.pdf",
+      "evidenceUrls": [
+        "https://www.oneplus.com/content/dam/oneplus/2024/eu/store/safety_guide/OnePlus_13R_Quick_Guide.pdf"
+      ],
+      "reason": "Candidate manufacturer PDF indexed; full binary magic and exact model text not yet independently validated in CI.",
+      "attemptedDiscovery": [
+        "official-site individual indexed manufacturer PDF",
+        "queued GitHub Actions live download verification"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "model": "OnePlus 15",
+      "state": "held",
+      "manualUrl": "https://www.oneplus.com/content/dam/oneplus/2024/eu/store/safety_guide/OnePlus_15_Quick_Guide.pdf",
+      "evidenceUrls": [
+        "https://www.oneplus.com/content/dam/oneplus/2024/eu/store/safety_guide/OnePlus_15_Quick_Guide.pdf"
+      ],
+      "reason": "Candidate manufacturer PDF indexed; full binary magic and exact model text not yet independently validated in CI.",
+      "attemptedDiscovery": [
+        "official-site individual indexed manufacturer PDF",
+        "queued GitHub Actions live download verification"
+      ],
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "model": "OnePlus Nord 4",
+      "state": "held",
+      "manualUrl": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_Nord4_Quick_Guide_EU.pdf",
+      "evidenceUrls": [
+        "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_Nord4_Quick_Guide_EU.pdf"
+      ],
+      "reason": "Candidate manufacturer PDF indexed; full binary magic and exact model text not yet independently validated in CI.",
+      "attemptedDiscovery": [
+        "official-site individual indexed manufacturer PDF",
+        "queued GitHub Actions live download verification"
+      ],
+      "reviewedAt": "2026-11-06"
+    }
+  ],
+  "groups": [
+    {
+      "model": "OnePlus 8",
+      "kind": "full",
+      "url": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_8_User_Manual_EN.pdf",
+      "needle": "OnePlus 8",
+      "language": "en",
+      "region": "Global",
+      "sourceType": "official-manufacturer-pdf-candidate"
+    },
+    {
+      "model": "OnePlus 9",
+      "kind": "full",
+      "url": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_User_Manual_EN.pdf",
+      "needle": "OnePlus 9",
+      "language": "en",
+      "region": "Global",
+      "sourceType": "official-manufacturer-pdf-candidate"
+    },
+    {
+      "model": "OnePlus Nord 3 5G",
+      "kind": "full",
+      "url": "https://service.oneplus.com/content/dam/support/user-manuals/en/OnePlus_Nord_3_5G_User_Manual_EN.pdf",
+      "needle": "Nord 3 5G",
+      "language": "en",
+      "region": "Global",
+      "sourceType": "official-manufacturer-pdf-candidate"
+    },
+    {
+      "model": "OnePlus Nord N30 5G",
+      "kind": "full",
+      "url": "https://service.oneplus.com/content/dam/support/user-manuals/en/OnePlus_Nord_N30_5G_User_Manual_EN.pdf",
+      "needle": "Nord N30 5G",
+      "language": "en",
+      "region": "Global",
+      "sourceType": "official-manufacturer-pdf-candidate"
+    },
+    {
+      "model": "OnePlus Nord 2T 5G",
+      "kind": "full",
+      "url": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_Nord_2T_5G_User_Manual_EN.pdf",
+      "needle": "Nord 2T 5G",
+      "language": "en",
+      "region": "Global",
+      "sourceType": "official-manufacturer-pdf-candidate"
+    },
+    {
+      "model": "OnePlus Nord N300 5G",
+      "kind": "full",
+      "url": "https://service.oneplus.com/content/dam/support/user-manuals/en/OnePlus_Nord_N300_5G_User_Manual_EN.pdf",
+      "needle": "Nord N300 5G",
+      "language": "en",
+      "region": "Global",
+      "sourceType": "official-manufacturer-pdf-candidate"
+    },
+    {
+      "model": "OnePlus Nord N200 5G",
+      "kind": "full",
+      "url": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_Nord_N200_5G_User_Manual_EN.pdf",
+      "needle": "Nord N200 5G",
+      "language": "en",
+      "region": "Global",
+      "sourceType": "official-manufacturer-pdf-candidate"
+    },
+    {
+      "model": "OnePlus Nord N20 5G",
+      "kind": "full",
+      "url": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_Nord_N20_5G_User_Manual_EN.pdf",
+      "needle": "Nord N20 5G",
+      "language": "en",
+      "region": "Global",
+      "sourceType": "official-manufacturer-pdf-candidate"
+    },
+    {
+      "model": "OnePlus 13",
+      "kind": "quick",
+      "url": "https://www.oneplus.com/content/dam/oneplus/2024/eu/store/safety_guide/OnePlus_13_Quick_Guide.pdf",
+      "needle": "CPH2653",
+      "language": "en",
+      "region": "EU",
+      "sourceType": "official-manufacturer-pdf-candidate"
+    },
+    {
+      "model": "OnePlus 13R",
+      "kind": "quick",
+      "url": "https://www.oneplus.com/content/dam/oneplus/2024/eu/store/safety_guide/OnePlus_13R_Quick_Guide.pdf",
+      "needle": "CPH2645",
+      "language": "en",
+      "region": "EU",
+      "sourceType": "official-manufacturer-pdf-candidate"
+    },
+    {
+      "model": "OnePlus 15",
+      "kind": "quick",
+      "url": "https://www.oneplus.com/content/dam/oneplus/2024/eu/store/safety_guide/OnePlus_15_Quick_Guide.pdf",
+      "needle": "CPH2747",
+      "language": "en",
+      "region": "EU",
+      "sourceType": "official-manufacturer-pdf-candidate"
+    },
+    {
+      "model": "OnePlus Nord 4",
+      "kind": "quick",
+      "url": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_Nord4_Quick_Guide_EU.pdf",
+      "needle": "CPH2663",
+      "language": "en",
+      "region": "EU",
+      "sourceType": "official-manufacturer-pdf-candidate"
+    }
+  ],
+  "reconciliation": {
+    "captured": 12,
+    "direct": 0,
+    "shared": 0,
+    "support_only": 0,
+    "held": 12,
+    "public": 0
+  },
+  "published": 0
+}
