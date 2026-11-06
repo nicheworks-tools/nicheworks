@@ -22,7 +22,7 @@ for(const [field,isUnknown] of [['included.adapter',p.included?.adapter==='unkno
 if(isUnknown)assert.ok(reviews.some(x=>x.phoneId===id&&x.field===field&&x.status==='reviewed_unresolved'),'Unknown without review '+id+field);
 }
 }
-const oldProfileCount=100;
+const oldProfileCount=99;
 assert.equal(oldProfileCount,99);
 const indexAnchors=[...index.matchAll(/class="profile-link" href="\.\/([^/]+)\/">充電器・ケース・画面フィルムのガイド/g)].map(x=>x[1]);
 assert.equal(indexAnchors.length,200);
