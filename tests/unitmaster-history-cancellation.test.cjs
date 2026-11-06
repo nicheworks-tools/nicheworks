@@ -41,3 +41,35 @@ assert.equal(ctx.historyTimer, null);
 assert.equal(pending.size, 0, 'category switch must cancel old save');
 assert.equal(ctx.categorySelect.value, 'length');
 console.log('UnitMaster production history cancellation: PASS');
+
+// The page loads app-json-runtime.js; verify the same cancellation contract there.
+const activeSource = fs.readFileSync('tools/unitmaster/app-json-runtime.js', 'utf8');
+function activeFunction(name, next) {
+  const start = activeSource.indexOf('function ' + name + '(');
+  const end = activeSource.indexOf('function ' + next + '(', start);
+  assert.ok(start >= 0 && end > start, 'active runtime function boundaries: ' + name);
+  return activeSource.slice(start, end);
+}
+let activePending = new Set([101]);
+let activeRemoved = [];
+const active = {
+  historyTimer: 101,
+  clearTimeout(id) { activePending.delete(id); },
+  localStorage: { removeItem(k) { activeRemoved.push(k); } },
+  HISTORY_KEY: 'unitmaster_history', loadHistory() {},
+  runtimeCategoryKeys: ['length'], runtimeUnits: {length:{m:1,cm:0.01}},
+  els: {categorySelect:{value:'length'},fromSel:{value:'m'},toSel:{value:'cm'},autoCalc:{checked:false}},
+  tabs:[],clearOptions(){},addOption(){},unitLabel(c,u){return u;},
+  clearManualResult(){},calculate(){},latestValidResult:null,scheduleHistorySave(){}
+};
+vm.createContext(active);
+vm.runInContext(activeFunction('clearHistory','loadHistory') + '\\n' + activeFunction('applyCategory','convertTemperature'), active);
+active.clearHistory();
+assert.equal(active.historyTimer,null);
+assert.equal(activePending.size,0);
+assert.deepEqual(activeRemoved,['unitmaster_history']);
+active.historyTimer=102; activePending.add(102);
+active.applyCategory('length');
+assert.equal(active.historyTimer,null);
+assert.equal(activePending.size,0);
+console.log('UnitMaster active JSON runtime cancellation: PASS');
