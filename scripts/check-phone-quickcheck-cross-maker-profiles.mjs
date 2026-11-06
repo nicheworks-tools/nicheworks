@@ -14,7 +14,7 @@ const cases = [
   {id:'sony-xperia-1-vii', maker:'Sony', points:['30W','最大入力','ワイヤレス充電']},
   {id:'oppo-reno14-5g', maker:'OPPO', points:['SUPERVOOC','80W','33W','PPS']}
 ];
-assert.equal(phones.length,275,'Maintained catalog must remain 275 verified models');
+assert.equal(phones.length,285,'Maintained catalog must remain 285 verified models');
 for (const item of cases) {
   const phone=phones.find(x=>x.id===item.id);
   assert.ok(phone,'Missing source-backed phone: '+item.id);
@@ -31,7 +31,7 @@ for (const item of cases) {
     page.includes(phone.sources.specificationsUrl.replaceAll('&','\\u0026')),
     item.id+' official primary source not linked');
   assert.ok(page.includes('G-57QT78M3JB'),item.id+' GA4 tag removed');
-  assert.ok(page.includes('ca-pub-9879006623791275'),item.id+' Ads tag removed');
+  assert.ok(page.includes('ca-pub-9879006623791285'),item.id+' Ads tag removed');
   assert.ok(page.includes('model-profile-affiliate.js'),item.id+' click tracker missing');
   assert.ok(page.includes('適格販売により収入を得ています'),item.id+' Amazon disclosure missing');
   assert.ok(page.includes('rel="sponsored noopener noreferrer"'));
@@ -63,5 +63,5 @@ for (const item of cases) {
   }
   assert.ok(page.includes('保証しません'),item.id+' compatibility disclaimer missing');
 }
-assert.equal((index.match(/data-phone-id=/g)||[]).length,275,'275 static entries unchanged');
-console.log('Phone QuickCheck cross-maker SEO PASS: four official JP profiles, four maker landing pages, eight tagged Amazon searches and unchanged 275-phone catalog.');
+assert.equal((index.match(/data-phone-id=/g)||[]).length,285,'285 static entries unchanged');
+console.log('Phone QuickCheck cross-maker SEO PASS: four official JP profiles, four maker landing pages, eight tagged Amazon searches and unchanged 285-phone catalog.');
