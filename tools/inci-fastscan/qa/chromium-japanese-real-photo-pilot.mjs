@@ -1,5 +1,5 @@
 /**
- * Run real jpn+eng Tesseract OCR against TWO actual Japanese package photos.
+ * Run real jpn+eng Tesseract OCR against independently sourced Japanese package photos.
  * Source lists are independent published text, NOT OCR-derived annotations.
  * Source/packaging versions may differ. No image, raw transcription or OCR
  * text ever enters logs or the metrics artifact.
@@ -14,6 +14,7 @@ import { chromium } from 'playwright';
 import { createWorker } from 'tesseract.js';
 import { japaneseRealPhotoSources } from './japanese-real-photo-corpus.mjs';
 import { additionalJapanesePhotoSources } from './japanese-real-photo-expansion.mjs';
+import { japanesePhotoWave3 } from './japanese-real-photo-wave3.mjs';
 import { createProductionLabelScorer, aggregateProductionAssessments } from './production-label-scoring.mjs';
 
 const require = createRequire(import.meta.url);
@@ -24,7 +25,10 @@ assert.ok(sourceDir && reportFile, 'Transient photo directory and numeric-only r
 assert.equal(japaneseRealPhotoSources.length, 2, 'Keep fixed source-backed photo sample');
 assert.equal(new Set(japaneseRealPhotoSources.map(x => x.id)).size, 2);
 assert.ok(additionalJapanesePhotoSources.length >= 2, 'At least two new independent photo sources required');
-const allJapanesePhotoSources = [...japaneseRealPhotoSources, ...additionalJapanesePhotoSources];
+assert.equal(japanesePhotoWave3.length, 2, 'Exactly two independently sourced third-wave photos');
+const allJapanesePhotoSources = [
+  ...japaneseRealPhotoSources, ...additionalJapanesePhotoSources, ...japanesePhotoWave3
+];
 assert.equal(new Set(allJapanesePhotoSources.map(x => x.id)).size, allJapanesePhotoSources.length,
   'Every actual photograph must be independently identified');
 
@@ -87,22 +91,28 @@ try {
   await page.addScriptTag({ path: path.resolve('tools/inci-fastscan/js/image_preprocess.js') });
   assert.equal(await page.evaluate(() => typeof window.prepareFastScanOcrImage), 'function');
   for (const source of allJapanesePhotoSources) {
-    assert.ok(source.ingredientList.length >= (source.photoFormat === 'webp' ? 20 : 40),
-      'Every source must contain a substantial actual ingredient list');
+    const minReferenceNames = source.referenceType === 'photo-visual-provisional' ? 10 :
+      source.referenceType === 'public-product-page-proxy' ? 12 :
+      (source.photoFormat === 'webp' ? 20 : 40);
+    assert.ok(source.ingredientList.length >= minReferenceNames,
+      'Reference must meet its declared annotation-grade sample floor');
     const format = source.photoFormat || 'jpg';
-    assert.ok(['jpg', 'webp'].includes(format), 'Only explicitly validated public photo formats');
+    assert.ok(['jpg', 'webp', 'png'].includes(format), 'Only explicitly validated public photo formats');
     const file = path.join(sourceDir, source.id + '.' + format);
     const image = fs.readFileSync(file);
     assert.ok(image.length > 8000, 'Downloaded public image must be non-trivial');
     const isJpegBytes = image[0] === 0xff && image[1] === 0xd8;
+    const isPngBytes = image.subarray(0, 8).equals(
+      Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]));
     const isWebpBytes = image.toString('latin1', 0, 4) === 'RIFF' &&
       image.toString('latin1', 8, 12) === 'WEBP';
     // Some image CDNs negotiate JPEG bytes even for URLs ending in .webp.
     // Accept only a verified raster signature, never trust the suffix.
-    assert.ok(isJpegBytes || isWebpBytes,
-      source.id + ' is neither a valid JPEG nor a valid WebP image');
+    assert.ok(isJpegBytes || isPngBytes || isWebpBytes,
+      source.id + ' is neither a JPEG, PNG nor WebP image');
     if (format === 'jpg') assert.ok(isJpegBytes,
-      'The pinned JPEG corpus must stay JPEG, not silently change formats');
+      'Pinned JPEG corpus must stay JPEG, not silently change formats');
+    const sourceMime = isPngBytes ? 'image/png' : isWebpBytes ? 'image/webp' : 'image/jpeg';
     // Tesseract's Node decoder requires a common raster format. Actual WebP
     // bytes are converted losslessly to PNG via Chromium BEFORE both control
     // and enhanced measurements. CDN-negotiated JPEG bytes remain untouched.
@@ -134,11 +144,11 @@ try {
     }
 
     const control = await assessPhoto(unprocessedPixels, source);
-    const enhancedBytesBase64 = await page.evaluate(async bytes64 => {
+    const enhancedBytesBase64 = await page.evaluate(async ({ bytes64, sourceMime }) => {
       const raw = atob(bytes64);
       const bytes = new Uint8Array(raw.length);
       for (let i = 0; i < raw.length; i++) bytes[i] = raw.charCodeAt(i);
-      const input = new File([bytes], 'public-japanese-label.jpg', { type: 'image/jpeg' });
+      const input = new File([bytes], 'public-japanese-label', { type: sourceMime });
       const output = await window.prepareFastScanOcrImage(input, 0, {
         enhanceForOcr: true, contrastPercent: 100, deskewDegrees: 0,
         crop: { left: 0, right: 0, top: 0, bottom: 0 }
@@ -149,7 +159,7 @@ try {
         reader.onload = () => resolve(String(reader.result || '').split(',')[1]);
         reader.readAsDataURL(output);
       });
-    }, image.toString('base64'));
+    }, { bytes64: image.toString('base64'), sourceMime });
     assert.ok(enhancedBytesBase64?.length > 1000);
     const enhancedBytes = Buffer.from(enhancedBytesBase64, 'base64');
     const enhanced = await assessPhoto(enhancedBytes, source);
@@ -177,11 +187,11 @@ try {
     await worker.setParameters({ tessedit_pageseg_mode: '6' });
     const fixedPixelExperiments = {};
     for (const candidate of pixelRecipes) {
-      const variantBase64 = await page.evaluate(async ({ sourceBase64, contrastPercent, crop }) => {
+      const variantBase64 = await page.evaluate(async ({ sourceBase64, contrastPercent, crop, sourceMime }) => {
         const raw = atob(sourceBase64);
         const bytes = new Uint8Array(raw.length);
         for (let i = 0; i < raw.length; i++) bytes[i] = raw.charCodeAt(i);
-        const input = new File([bytes], 'public-japanese-label.jpg', { type: 'image/jpeg' });
+        const input = new File([bytes], 'public-japanese-label', { type: sourceMime });
         const output = await window.prepareFastScanOcrImage(input, 0, {
           enhanceForOcr: true, contrastPercent, deskewDegrees: 0, crop
         });
@@ -193,7 +203,7 @@ try {
         });
       }, {
         sourceBase64: image.toString('base64'), contrastPercent: candidate.contrastPercent,
-        crop: candidate.crop
+        crop: candidate.crop, sourceMime
       });
       assert.ok(variantBase64?.length > 1000, 'Real adjusted pixels are required');
       const measured = await assessPhoto(Buffer.from(variantBase64, 'base64'), source);
@@ -215,8 +225,10 @@ try {
     const row = {
       id: source.id,
       sourceType: source.sourceType,
+      referenceType: source.referenceType || 'public-product-page-proxy',
       sourceIngredientCount: source.ingredientList.length,
       sourceVariantVersionVerified: false,
+      independentlyHumanTranscribed: false,
       sourceControl,
       original: control,
       enhanced,
@@ -286,10 +298,15 @@ const report = {
       ingredientCount: row.ingredientList.length,
       packagingVersion: row.packagingVersion,
       referenceCaveat: row.referenceCaveat || null,
-      labelClass: row.labelClass || 'cosmetic'
+      labelClass: row.labelClass || 'cosmetic',
+      referenceType: row.referenceType || 'public-product-page-proxy',
+      independentHumanCheck: false
     })),
     noImagesOrLabelTextsUploaded: true,
-    photoToReferenceVersionIndependentlyVerified: false
+    photoToReferenceVersionIndependentlyVerified: false,
+    provisionalPhotoVisualReferences: japanesePhotoWave3.filter(
+      row => row.referenceType === 'photo-visual-provisional').length,
+    independentlyHumanVerifiedPhotoReferences: 0
   },
   environment: {
     viewport: 'Chromium simulated 360px mobile viewport; NOT physical smartphone',
