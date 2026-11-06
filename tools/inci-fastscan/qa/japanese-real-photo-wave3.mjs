@@ -14,7 +14,7 @@ const entries = [
   {
     id: 'muji-sensitive-highmoist-2020-photo-12',
     product: 'MUJI sensitive skin high-moisture lotion (older printed formulation, early-2020 photograph)',
-    photoUrl: 'https://cloudflare.lipscosme.com/image/f5b50fa925ac91660be84c6d-1580295578.png',
+    photoUrl: 'https://cloudflare.lipscosme.com/image/f5b50fa925ac91660be84c6d-1580295578.png?auto=avif%2Cwebp&fio=1&orient=1&width=1424',
     photoSourceUrl: 'https://lipscosme.com/posts/1732104',
     ingredientSourceUrl: 'https://lipscosme.com/posts/1732104',
     sourceType: 'consumer independently photographed Japanese label, photo-derived provisional transcription',
