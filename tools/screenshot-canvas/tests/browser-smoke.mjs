@@ -302,6 +302,31 @@ function pageSmoke() {
     lang.dispatchEvent(new Event('change', { bubbles: true }));
     check(status().includes('Images 3'), 'English UI switch: ' + JSON.stringify({status:status(), value:lang.value, documentLanguage:document.documentElement.lang}));
     await extended();
+    if (window.innerWidth >= 1000) {
+      document.body.dataset.qaStage = 'high-resolution-capacity';
+      const w=document.querySelector('#width'),h=document.querySelector('#height'),error=document.querySelector('#error');
+      const previousWidth=c.width,previousHeight=c.height;
+      w.value='6000';h.value='4000';
+      h.dispatchEvent(new Event('change',{bubbles:true}));
+      check(c.width===6000 && c.height===4000,'24MP canvas accepted at exact limit');
+      check(rgbAt(4,4)[3]===0,'24MP transparent canvas draws correctly');
+      h.value='4001';
+      h.dispatchEvent(new Event('change',{bubbles:true}));
+      check(c.width===6000 && c.height===4000,'24MP+ pixel request rejected without allocating');
+      check(w.value==='6000' && h.value==='4000','invalid high-res dimensions reverted');
+      check(!error.hidden && /24 million/i.test(error.textContent),'high-res guard announced');
+      document.querySelector('#undo').click();
+      check(c.width===previousWidth && c.height===previousHeight,'high-res allocation undo releases canvas');
+      const original=HTMLCanvasElement.prototype.toBlob;
+      try {
+        HTMLCanvasElement.prototype.toBlob=function(callback){callback(null);};
+        document.querySelector('#export').click();
+        check(!error.hidden && /PNG export failed/i.test(error.textContent),'failed PNG encoder reports error');
+      } finally {
+        HTMLCanvasElement.prototype.toBlob=original;
+      }
+      check(status().includes('Images 1'),'export failure preserves editing state');
+    }
     check(errors.length === 0, 'browser runtime errors: ' + errors.join(' | '));
     check(document.body.scrollWidth - document.body.clientWidth <= 8, 'page horizontal overflow');
     return 'PASS:IMPORT2:ROW:DRAG:UNDO_REDO:BACKGROUND:OPACITY:SIZE:DUPLICATE:DELETE:LAYOUTS:PNG:LANG:CONTENT' + document.body.clientWidth + ':VIEWPORT' + window.innerWidth;

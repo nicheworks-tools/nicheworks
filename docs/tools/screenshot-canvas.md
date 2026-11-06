@@ -31,7 +31,7 @@ Canvas preview and locally generated `screenshot-canvas.png` via Canvas toBlob. 
 
 ## 6. Error behavior
 
-Unsupported or corrupt image inputs are rejected with an accessible on-page error. Individual files must be at most 32MiB and 24MP; combined source image pixels across layers must remain within 48MP. Each canvas dimension must be 100–12,000px with a 24MP total limit, which prevents accidental 12,000×12,000px allocations. Images decode in sequence to preserve selection order and temporary object URLs are revoked. PNG export errors are recoverable and shown in the page. These caps are defensive and do not guarantee performance on low-memory devices.
+Unsupported or corrupt image inputs are rejected with an accessible on-page error. Individual files must be at most 32MiB and 24MP; combined source image pixels across layers must remain within 48MP. Each canvas dimension must be 100–12,000px with a 24MP total limit, which prevents accidental 12,000×12,000px allocations. Images decode in sequence to preserve selection order and temporary object URLs are revoked. PNG export errors are recoverable and shown in the page. These caps are defensive and do not guarantee performance on low-memory devices. Desktop Chromium CI additionally exercises an actual 6000×4000 (24MP) canvas allocation and the rejection of 6000×4001, including undo recovery and failed PNG generation. This is not a low-memory mobile hardware benchmark.
 
 ## 7. Privacy/data handling
 
