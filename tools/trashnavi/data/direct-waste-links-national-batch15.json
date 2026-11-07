@@ -128,5 +128,31 @@
     "status": "active",
     "language": "ja",
     "scope_note": "町公式。持込方法・受入時間・料金を掲載。"
+  },
+  {
+    "pref": "北海道",
+    "city": "羅臼町",
+    "name": "ごみの出し方（地区別収集日・ごみ分別）",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.rausu-town.jp/pages/dekigoto/20",
+    "lgcode": "016942",
+    "last_checked": "2026-11-07",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "町公式。地区別収集日とごみ分別資料を掲載。幌萌町一部・北浜以北の通常収集対象外や季節収集を明記。地区別日程を町内一律と扱わない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "羅臼町",
+    "name": "ごみ袋等取扱店及び料金表（粗大ごみ処理証紙）",
+    "type": "粗大ごみ",
+    "link_type": "bulky_waste",
+    "url": "https://www.rausu-town.jp/pages/view/6",
+    "lgcode": "016942",
+    "last_checked": "2026-11-07",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "町公式、2026年4月10日更新。令和8年4月現在の粗大ごみ処理証紙販売店・料金（20kgにつき200円）を掲載。"
   }
 ]
