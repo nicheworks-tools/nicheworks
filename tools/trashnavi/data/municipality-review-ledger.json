@@ -1966,12 +1966,12 @@
       "lgcode": "016942",
       "pref": "北海道",
       "municipality": "羅臼町",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "limited",
+      "reviewed_at": "2026-11-07",
+      "qualifying_source_count": 2,
+      "distinct_link_type_count": 2,
       "service_provider": null,
-      "review_note": null
+      "review_note": "羅臼町公式の地区別収集日・分別案内と、令和8年4月現在の粗大ごみ処理証紙料金を確認。地区・季節ごとの収集対象差に注意。"
     },
     {
       "lgcode": "022012",
