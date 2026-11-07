@@ -1878,12 +1878,12 @@
       "lgcode": "016632",
       "pref": "北海道",
       "municipality": "浜中町",
-      "coverage_state": "pending_review",
-      "reviewed_at": null,
-      "qualifying_source_count": 0,
-      "distinct_link_type_count": 0,
+      "coverage_state": "limited",
+      "reviewed_at": "2026-11-07",
+      "qualifying_source_count": 1,
+      "distinct_link_type_count": 1,
       "service_provider": null,
-      "review_note": null
+      "review_note": "Batch15: 浜中町公式ごみ分別ページ。令和7年3月改訂ガイド、令和8年度地区別（第1・3／第2・4区域）収集カレンダーを確認。地区別日程を全町共通と扱わない。"
     },
     {
       "lgcode": "016641",
