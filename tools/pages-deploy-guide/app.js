@@ -53,20 +53,30 @@
   }
 
   function saveFile(filename, value) {
-    const blob = new Blob([value], { type: "text/markdown;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
+    let url = null;
+    let a = null;
     try {
+      const blob = new Blob([value], { type: "text/markdown;charset=utf-8" });
+      url = URL.createObjectURL(blob);
+      a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
       a.click();
       return true;
     } catch (_) {
       return false;
     } finally {
-      a.remove();
-      setTimeout(() => URL.revokeObjectURL(url), 500);
+      if (a) {
+        try { a.remove(); } catch (_) {}
+      }
+      if (url !== null) {
+        try {
+          setTimeout(() => URL.revokeObjectURL(url), 500);
+        } catch (_) {
+          try { URL.revokeObjectURL(url); } catch (_) {}
+        }
+      }
     }
   }
 
