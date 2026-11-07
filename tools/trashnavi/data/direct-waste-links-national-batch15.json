@@ -154,5 +154,18 @@
     "status": "active",
     "language": "ja",
     "scope_note": "町公式、2026年4月10日更新。令和8年4月現在の粗大ごみ処理証紙販売店・料金（20kgにつき200円）を掲載。"
+  },
+  {
+    "pref": "北海道",
+    "city": "鶴居村",
+    "name": "鶴居村ごみの区分け、収集日について",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://www.vill.tsurui.lg.jp/soshikikarasagasu/juminseikatsuka/seikatsukankyokakari/4/gomi/696.html",
+    "lgcode": "016675",
+    "last_checked": "2026-11-07",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "村公式。2026年7月14日更新。令和8年ごみ収集カレンダーと分別区分、2026年1月からのスプレー缶回収方法を掲載。カレンダーの地区別条件は原本参照。"
   }
 ]
