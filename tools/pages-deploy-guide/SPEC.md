@@ -123,6 +123,7 @@ Amazon affiliate monetization is not part of the current product contract. The p
 - [ ] Combined copy includes checklist, errors, diagnosis, and handoff content.
 - [ ] If inputs change during a pending clipboard write, completion warns that the clipboard contains the previous result and instructs copying again.
 - [ ] Markdown export is available without entitlement or purchase state.
+- [ ] Markdown export reports failure without an uncaught exception when object URL creation, DOM insertion, or anchor click fails; created object URLs and anchors are cleaned up on failure.
 - [ ] No legacy `NW-PDG-...` code, `pdg_pro_key`, shared Pro entitlement, Stripe purchase link, or Pro bridge is required or rendered.
 - [ ] The UI does not imply that checklist completion verifies a real deployment.
 
