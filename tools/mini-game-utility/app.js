@@ -123,7 +123,10 @@
       const raw = localStorage.getItem(STORAGE_KEY);
       if (!raw) return [];
       const parsed = JSON.parse(raw);
-      return Array.isArray(parsed) ? parsed : [];
+      // Ignore malformed legacy records instead of crashing history rendering or CSV export.
+      return Array.isArray(parsed)
+        ? parsed.filter((entry) => entry !== null && typeof entry === "object" && !Array.isArray(entry))
+        : [];
     } catch (_) {
       return [];
     }
