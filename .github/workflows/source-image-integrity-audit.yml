@@ -1,0 +1,43 @@
+name: Source image integrity audit
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/source-image-integrity-audit.yml"
+permissions:
+  contents: read
+jobs:
+  verify-originals:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        name: [bolt_nut, generator, heat_gun, hole_saw]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check public source images against their pinned Git identities
+        env:
+          ORIGINAL_NAME: ${{ matrix.name }}
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const crypto = require('node:crypto');
+          const known = {
+            bolt_nut: 'ee70edbd138fab1e2d6f704d51ae416ee2df75a0',
+            generator: 'b7fccd71b80e6649dbe0ae7d4a6c4b606363b8d7',
+            heat_gun: '4561b600b2c230a4ae6be9d899ed2d54d1caee85',
+            hole_saw: '4cff957451f1b4a2735d7483db43bcabfdb333c5'
+          };
+          const name = process.env.ORIGINAL_NAME;
+          if (!Object.hasOwn(known, name)) throw Error('Unknown image type');
+          const path = 'tools/construction-tools-atlas/images/'+name+'/source.jpg';
+          const data = fs.readFileSync(path);
+          const sha = crypto.createHash('sha1').update('blob '+data.length+'\0').update(data).digest('hex');
+          if (sha !== known[name]) throw Error('Original image SHA mismatch '+name+': '+sha);
+          console.log('NW_IMAGE_BEGIN '+name+' '+data.length+' '+sha);
+          const blocks = 12000;
+          const encoded = data.toString('base64');
+          for(let i=0,offset=0;offset<encoded.length;i++,offset+=blocks) {
+            console.log('NW_IMAGE_CHUNK '+name+' '+i+' '+encoded.slice(offset,offset+blocks));
+          }
+          console.log('NW_IMAGE_END '+name);
+          NODE
