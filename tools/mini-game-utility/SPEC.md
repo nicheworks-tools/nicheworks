@@ -17,6 +17,7 @@ Provide a simple browser timer and persistent score log for lightweight games, e
 - Use `Player` when the name is blank. Reject blank or non-finite new score input with a validation message; do not add a history entry.
 - For CSV export only, normalize non-finite scores from previously stored legacy entries to `0` without modifying the saved history.
 - Store newest score entries first and retain at most 50 entries.
+- Ignore null, primitive, and array entries in malformed legacy score history without preventing valid records from rendering or exporting. Do not rewrite stored history on read.
 - Export current score history as CSV with `name,score,time` columns.
 - Clear all stored score history.
 - Switch JP/EN UI labels.
@@ -67,6 +68,7 @@ The timer, two score inputs, actions, and history are a compact single-column ut
 - [ ] CSV export contains the current stored score history and does nothing when history is empty.
 - [ ] Blank and non-finite score input is rejected without changing the saved history; a valid finite score is recorded.
 - [ ] Names/timestamps with commas, quotes or newlines round-trip as CSV fields; formula-like player names are neutralized and invalid legacy numeric scores export as `0` without modifying stored history.
+- [ ] A saved score array containing null, primitive, or nested-array elements still renders and exports its valid object entries without throwing or modifying localStorage.
 
 ## Implementation evidence
 
