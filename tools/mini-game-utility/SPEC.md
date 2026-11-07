@@ -14,7 +14,8 @@ Provide a simple browser timer and persistent score log for lightweight games, e
 - Start, pause, and reset a count-up timer displayed as minutes and seconds.
 - Increment the timer once per second while running.
 - Record player/team name, numeric score, and the browser-local timestamp.
-- Use `Player` when the name is blank and `0` when the score is not a finite number.
+- Use `Player` when the name is blank. Reject blank or non-finite new score input with a validation message; do not add a history entry.
+- For CSV export only, normalize non-finite scores from previously stored legacy entries to `0` without modifying the saved history.
 - Store newest score entries first and retain at most 50 entries.
 - Export current score history as CSV with `name,score,time` columns.
 - Clear all stored score history.
@@ -64,7 +65,8 @@ The timer, two score inputs, actions, and history are a compact single-column ut
 - [ ] Reset returns the timer to `00:00` without deleting score history.
 - [ ] Adding more than 50 scores retains only the newest 50 in localStorage.
 - [ ] CSV export contains the current stored score history and does nothing when history is empty.
-- [ ] Names/timestamps with commas, quotes or newlines round-trip as CSV fields; formula-like player names are neutralized and invalid legacy numeric scores never become formulas.
+- [ ] Blank and non-finite score input is rejected without changing the saved history; a valid finite score is recorded.
+- [ ] Names/timestamps with commas, quotes or newlines round-trip as CSV fields; formula-like player names are neutralized and invalid legacy numeric scores export as `0` without modifying stored history.
 
 ## Implementation evidence
 
