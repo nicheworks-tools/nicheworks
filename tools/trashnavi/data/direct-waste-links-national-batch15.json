@@ -76,5 +76,57 @@
     "status": "active",
     "language": "ja",
     "scope_note": "厚岸町公式。6分別17種類の分別案内。掲載分別表は令和3年10月改訂であり、令和8年度版とは扱わない。"
+  },
+  {
+    "pref": "北海道",
+    "city": "別海町",
+    "name": "ごみの分別収集とリサイクルについて",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://betsukai.jp/kurashi/life/gomi/collecting_garbage_separately/",
+    "lgcode": "016918",
+    "last_checked": "2026-11-07",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "町公式。分別収集の基本ルールと粗大ごみの排出方法を案内。"
+  },
+  {
+    "pref": "北海道",
+    "city": "別海町",
+    "name": "別海町ごみ処理場へのごみの持ち込み",
+    "type": "持込施設",
+    "link_type": "dropoff_facility",
+    "url": "https://betsukai.jp/kurashi/life/gomi/waste_treatment/",
+    "lgcode": "016918",
+    "last_checked": "2026-11-07",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "町公式。直接搬入の所在地・受付時間と広域焼却施設への直接搬入制限を案内。"
+  },
+  {
+    "pref": "北海道",
+    "city": "中標津町",
+    "name": "収集ごみ分別",
+    "type": "ごみ分別ページ",
+    "link_type": "waste_sorting",
+    "url": "https://nakashibetsu.jp/kurashi/seikatsu/gomi/bunbetsu/",
+    "lgcode": "016926",
+    "last_checked": "2026-11-07",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "町公式。家庭ごみの種類別分別案内。分別ポスターはR6.10～、外部ごみサクはR8.10～と明記。"
+  },
+  {
+    "pref": "北海道",
+    "city": "中標津町",
+    "name": "中標津町一般廃棄物最終処分場",
+    "type": "持込施設",
+    "link_type": "dropoff_facility",
+    "url": "https://www.nakashibetsu.jp/shisetsu_koutsu/shisetsu/sonota/syobunnsyori/",
+    "lgcode": "016926",
+    "last_checked": "2026-11-07",
+    "status": "active",
+    "language": "ja",
+    "scope_note": "町公式。持込方法・受入時間・料金を掲載。"
   }
 ]
